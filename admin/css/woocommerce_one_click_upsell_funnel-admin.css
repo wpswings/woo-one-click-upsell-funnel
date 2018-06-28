@@ -1,0 +1,428 @@
+/**
+* All of the CSS for your admin-specific functionality should be
+* included in this file.
+*/
+.mwb-wocuf-main {
+ display: inline-block;
+ width: 70%;
+}
+.mwb-wocuf-pro-banner {
+ display: inline-block;
+ vertical-align: top;
+ width: 28%;
+}
+.mwb-wocuf-main {
+ display: inline-block;
+ width: 65%;
+ border: 1px solid #bababa;
+ margin-right: 18px;
+ padding: 7px;
+ border-radius: 7px;
+}
+.mwb-wocuf-pro-banner {
+ display: inline-block;
+ vertical-align: top;
+ width: 28%;
+ border: 1px solid #bababa;
+ padding: 7px;
+ border-radius: 7px;
+}
+.mwb-wocuf-pro-banner .upsell-main-heading {
+ font-size: 22px;
+ margin-top: 50px;
+ text-align: center;
+ text-transform: uppercase;
+}
+.mwb-wocuf-pro-banner .upsell-para {
+ color: #000;
+ font-size: 20px !important;
+}
+.mwb-wocuf-pro-banner .upsell-prod-ul {
+ list-style: outside none disc;
+ padding-left: 20px;
+ font-size: 14px;
+ margin-bottom: 20px;
+}
+.mwb-wocuf-pro-banner .upsell-prod-ul li {
+ margin-bottom: 20px;
+}
+
+.mwb-wocuf-pro-banner {
+ border: 1px solid #bababa;
+ border-radius: 7px;
+ display: inline-block;
+ padding: 7px;
+ vertical-align: top;
+ width: 28%;
+ padding-bottom: 25px !important;
+}
+.mwb-wocuf-pro-banner img {
+ width: 100%;
+}
+
+.mwb-wocuf-pro-banner .upsell-prod-ul li {
+ margin-bottom: 26px;
+ font-size: 15px;
+}
+.mwb-wocuf-pro-banner .upsell-prod-ul {
+ font-size: 14px;
+ list-style: outside none disc;
+ margin-bottom: 45px;
+ padding-left: 20px;
+}
+.mwb-wocuf-pro-banner .upsell-btn-wrap {
+ text-align: center;
+ margin-bottom: 15px;
+}
+.mwb-wocuf-pro-banner .upsell-prod-link.upsell-main-buy {
+ background: #ca4a1f none repeat scroll 0 0;
+ color: #fff;
+ display: inline-block;
+ font-size: 15px;
+ padding: 10px 30px;
+ text-decoration: none;
+}
+.mwb-wocuf-pro-banner h5 {
+ background: #a4a4a4 none repeat scroll 0 0;
+ color: #fff;
+ font-size: 20px;
+ line-height: 28px;
+ padding: 11px;
+ text-align: center;
+}
+#mwb_wocuf_target_pro_ids ~ span.select2.select2-container {
+    width: auto !important;
+}
+------------------------------------------------------------------------------------------
+#mwb_wocuf_setting_wrapper p{
+  color: #000;
+  font-size: 17px;
+  font-weight: 500;
+  padding: 15px!important;
+  text-align: left;
+}
+.mwb_wocuf_funnel_links{
+  background-color:#73c4c1;
+  padding:5px;
+  border-radius:20px;
+  color:white;
+}
+.mwb_wocuf_funnels_list{
+  margin-top: 50px;
+  overflow-x: auto;
+}
+.mwb_wocuf_funnels_list h1, .mwb_table .new_created_offers h2, .mwb_table  h1 {
+  background-color: #1894AC;
+  color: #fff;
+  font-size: 32px;
+  font-weight: 500;
+  padding: 15px;
+  text-align: center;
+  text-transform: capitalize;
+}
+.mwb_table  h1{
+  margin:30px 0 0;
+}
+.mwb_table .new_created_offers h2{
+  background-color: #B6B8B5;
+  color: #000;
+}
+.mwb_wocuf_funnels_list table {
+  border: 2px none;
+  margin: 60px auto;
+  width: 100%;
+  border-collapse: collapse;
+}
+.mwb_wocuf_funnels_list table th, .mwb_table table th, .mwb_table table th label h4{
+  color: #000;
+  font-size: 17px;
+  font-weight: 500;
+  padding: 15px!important;
+  text-align: left;
+}
+.mwb_wocuf_funnels_list table td,.mwb_table table td {
+  font-size: 16px;
+  padding: 15px;
+  text-align: left;
+}
+.mwb_wocuf_funnels_list table td a{
+  font-size: 15px;
+  font-weight: 400;
+  padding: 12px;
+  cursor: pointer;
+  border: none;
+}
+#mwb_wocuf_setting_wrapper .nav-tab:hover,.mwb_wocuf_funnels_list table td a:hover{
+  opacity: 0.85;
+}
+.mwb_wocuf_create_new_funnel a {
+  font-size: 24px;
+  margin-bottom: 15px;
+  padding: 15px;
+  display: inline-block;
+}
+#mwb_wocuf_setting_wrapper{
+  background: #fff none repeat scroll 0 0;
+  padding: 0 20px;
+}
+.nav-tab{
+  background-color:#0a12a9;
+  color: white;
+}
+.nav-tab:hover{
+  background-color:#011b44;
+  color:white; 
+}
+#mwb_wocuf_setting_wrapper .nav-tab-active{
+  background: white none repeat scroll 0 0;
+  color: black ;
+}
+
+#mwb_wocuf_setting_wrapper #mwb_wocuf_setting_form .titledesc {
+  padding-left: 19px;
+}
+
+#mwb_wocuf_setting_form tr:nth-child(2n+1) {
+  background: #fff none repeat scroll 0 0;
+}
+#mwb_wocuf_setting_form .mwb_table {
+  border: 1px solid #ccc;
+  overflow-x:auto; 
+}
+#mwb_wocuf_setting_form .submit input {
+  background: #592e48 none repeat scroll 0 0;
+  border: 1px solid #592e48 ;
+  color: #fff;
+  margin-left: 19px;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+#mwb_wocuf_setting_form tr:nth-child(2n) {
+  background: #f1f1f1 none repeat scroll 0 0;
+}
+.hide
+{
+  display: none;
+}
+.show
+{
+  display: inline; !important;
+}
+.mwb_wocuf_create_new_funnel{
+  margin:0 auto;
+  text-align: center;
+  padding-bottom: 20px;
+  font-size: 30px;
+}
+.hide{
+  display: none;
+}
+.show{
+  display: inline;
+}
+/*custom style*/
+#mwb_wocuf_setting_wrapper .nav-tab {
+  background-color: #1894AC;
+  border: medium none;
+  color: white;
+}
+#mwb_wocuf_setting_wrapper .nav-tab:nth-child(1) {
+  margin-left: 0;
+}
+#mwb_wocuf_setting_wrapper .nav-tab.nav-tab-active {
+
+ background-color: #fff;
+ border: 1px solid;
+ color: #000;
+}
+.mwb_wocuf_funnels_list table td, .mwb_wocuf_funnels_list table th,.mwb_table table th,.mwb_table table td{
+  border: 1px solid #f1f1f1;
+  padding:15px;
+}
+/*edit create funnel style*/
+.mwb_table {
+  margin-top: 50px;
+  overflow: auto;
+}
+.mwb_table table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.mwb_table table th{
+  width: 35%;
+}
+.mwb_table .new_created_offers h2{
+  font-size: 22px;
+}
+.mwb_table select {
+  height: 45px;
+  padding: 10px;
+  /* width: 100% !important;*/
+}
+.mwb_table select option{
+  padding: 10px;
+}
+.mwb_table table th label h4{
+  padding:15px 0;
+}
+.mwb_wocuf_create_new_offer::before,.mwb_wocuf_create_new_funnel a::before {
+  background-color:#A1D5E2;
+  left: -48%;
+  transform-origin: 100% 50% 0;
+  width: 100%;
+}
+.mwb_wocuf_create_new_offer::before, .mwb_wocuf_create_new_offer::after ,.mwb_wocuf_create_new_funnel a::before,.mwb_wocuf_create_new_funnel a::after{
+  bottom: -200%;
+  content: "";
+  display: block;
+  position: absolute;
+  top: -200%;
+  transform: rotate(45deg);
+  transition: width 600ms cubic-bezier(0.23, 1, 0.32, 1) 0s;
+  z-index: -1;
+}
+.mwb_wocuf_create_new_offer::after,.mwb_wocuf_create_new_funnel a::after {
+  background-color: #1894AC;
+  right: -48%;
+  transform-origin: 0 50% 0;
+  width: 100%;
+}
+
+.mwb_wocuf_create_new_offer,.mwb_wocuf_create_new_funnel a{
+  background-color: #fff;
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 700;
+  height: 45px;
+  letter-spacing: 3px;
+  line-height: 24px;
+  overflow: hidden;
+  padding: 10px 15px;
+  position: relative;
+  text-transform: uppercase;
+  transition: box-shadow 100ms linear 0s;
+  border: none;
+  cursor: pointer;
+  z-index: 99;
+  text-decoration: none;
+  color:#fff;
+}
+.mwb_wocuf_create_new_offer:hover,.mwb_wocuf_create_new_funnel a:hover{
+  color: #000;
+  border: 1px solid #000;
+}
+.mwb_wocuf_create_new_offer:hover::before, .mwb_wocuf_create_new_offer.active::before, .mwb_wocuf_create_new_offer:hover::after, .mwb_wocuf_create_new_offer.active::after {
+  transform: rotate(45deg);
+  width: 0;
+  color: #000;
+}
+.mwb_wocuf_create_new_offer:hover, .mwb_wocuf_create_new_offer.active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.13) inset;
+}
+.mwb_wocuf_create_new_funnel a:hover::before, .mwb_wocuf_create_new_funnel a.active::before, .mwb_wocuf_create_new_funnel a:hover::after, .mwb_wocuf_create_new_funnel a.active::after {
+  transform: rotate(45deg);
+  width: 0;
+  color: #000;
+}
+#mwb_wocuf_creation_setting_save {
+  background-color: #1d424b;
+  border: medium none;
+  box-shadow: 0 1px 0 #c1c3c0;
+  color: #fff;
+  text-shadow: none;
+}
+#mwb_wocuf_creation_setting_save:hover {
+  opacity: 0.75
+}
+#mwb_wocuf_setting_wrapper p,#mwb_wocuf_setting_wrapper span{
+  font-size: 16px;
+  font-weight: 400;
+}
+#mwb_wocuf_setting_wrapper p.submit {
+  padding: 15px 0 !important;
+}
+#mwb_wocuf_setting_wrapper .mwb_wocuf_funnels_list p {
+  margin: 20px;
+}
+#mwb_wocuf_setting_wrapper tr:nth-child(2n) {
+  background-color: #f1f1f1;
+}
+.mwb_wocuf_new_offer {
+  margin: 30px 0;
+  text-align: center;
+}
+#mwb_wocuf_setting_wrapper .mwb_wocuf_no_funnel{
+  text-align: center;
+}
+#mwb_wocuf_loader {
+ background-color: rgba(255, 255, 255, 0.6);
+ bottom: 0;
+ height: 100%;
+ left: 0;
+ position: fixed;
+ right: 0;
+ top: 0;
+ width: 100%;
+ z-index: 99999;
+}
+#mwb_wocuf_loader img {
+ display: block;
+ left: 0;
+ margin: 0 auto;
+ position: absolute;
+ right: 0;
+ top: 40%;
+}
+.mwb_table .wp-picker-container {
+ display: inline-block;
+}
+
+@media only screen and (max-width:1090px)  {
+  .mwb_table select {
+    width: auto !important;
+  }
+  .mwb_wocuf_common_class {
+    width: auto !important;
+  }
+}
+
+@media only screen and (max-width:875px)  {
+  .mwb-wocuf-main {
+    width: 100%;
+  }
+  .mwb-wocuf-pro-banner{
+    width: 100%;
+    margin-top: 20px;
+  }
+  .mwb_table select{
+    width: 220px !important;
+  }
+}
+
+@media only screen and (max-width:600px)  {
+  .mwb_wocuf_funnels_list table {
+    width: 530px;
+  }
+  .mwb_wocuf_funnels_list {
+    overflow-x: auto;
+    width: 100%;
+  }
+  #mwb_wocuf_setting_wrapper .nav-tab {
+    margin-top: 17px;
+  }
+  table.form-table.mwb_wocuf_creation_setting select#mwb_wocuf_applied_rule {
+    width: 100%;
+  }
+  table.form-table.mwb_wocuf_creation_setting span.select2.select2-container.select2-container--default.select2-container--focus.select2-container--below {
+    width: 100% !important;
+  }
+  table.form-table.mwb_wocuf_creation_setting {
+    overflow-y: scroll;
+    display: block;
+  }
+  .new_created_offers {
+   overflow-x: auto;
+   width: 100%;
+ }
+}
