@@ -1,5 +1,5 @@
 === WooCommerce One Click Upsell Funnel ===
-
+![alt text](https://i.stack.imgur.com/fxifn.png)
 Contributors:MakeWebBetter
 Donate link: http://makewebbetter.com/
 Tags: woocommerce,store,upsell,funnel,increase sales,one click,offers,post purchase,cod
