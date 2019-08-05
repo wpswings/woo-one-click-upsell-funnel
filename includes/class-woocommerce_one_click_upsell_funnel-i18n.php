@@ -34,7 +34,7 @@ class Woocommerce_one_click_upsell_funnel_i18n {
 	 */
 	public function load_plugin_textdomain() {
 
-		$r = load_plugin_textdomain(
+		load_plugin_textdomain(
 			'woocommerce_one_click_upsell_funnel',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'

@@ -175,4 +175,3 @@ Description :- This shortcode only returns the link so it has to be used in the 
 * Improved: Better Security and Performance
 * Improved: Better Funnels listing page
 * Other: Issues and Bugs Fixed.
-

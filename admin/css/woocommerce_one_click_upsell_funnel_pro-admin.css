@@ -1,0 +1,1490 @@
+/**
+* All of the CSS for your admin-specific functionality should be
+* included in this file.
+*/
+#mwb_wocuf_pro_setting_wrapper *{
+  box-sizing: border-box;
+}
+#mwb_wocuf_pro_setting_wrapper p{
+  color: #000;
+  text-align: left;
+  padding: 10px;
+}
+.mwb_wocuf_pro_funnels_list table{
+  table-layout: fixed;
+}
+.mwb_wocuf_pro_shortcodes p{
+  display: inline-block;
+}
+#mwb_wocuf_pro_setting_wrapper h1{
+  padding: 7px 20px;
+  font-size: 20px;
+  border-radius: 10px 0px;
+  color: #1d1d1d;
+  text-align: left;
+}
+.mwb-wocuf-pro-wrap p.submit input#submit {
+ background: #0474b7 ;
+ padding: 10px 10px;
+ border: 0px;
+ color: #fff;
+ border-radius: 5px;
+ cursor: pointer;
+}
+.mwb-wocuf-pro-form-table tr {
+ margin-top: 20px;
+ display: block;
+ background: #fff;
+ width: 100% !important;
+ padding: 20px 10px;
+}
+
+.mwb_wocuf_pro_funnel_links{
+  background-color:#73c4c1;
+  padding:5px;
+  border-radius:20px;
+  color:white;
+}
+.mwb_wocuf_pro_funnels_list{
+  margin-top: 30px;
+  overflow-x: auto;
+}
+.mwb_wocuf_pro_funnels_list h1, .mwb_upsell_table .new_created_offers h2, .mwb_upsell_table  h1 {
+  background-color: #1894AC;
+  color: #fff;
+  font-size: 32px;
+  font-weight: 500;
+  padding: 15px;
+  text-align: center;
+  text-transform: capitalize;
+}
+.mwb_upsell_table  h1{
+  margin:30px 0 0;
+}
+.mwb_upsell_table .new_created_offers h2{
+  background-color: #B6B8B5;
+  color: #000;
+}
+.mwb_wocuf_pro_funnels_list table {
+  border: 2px solid #e4e4e4;
+  width: 100%;
+  border-collapse: collapse;
+}
+.mwb_wocuf_pro_creation_setting tr td {
+  padding: 15px 20px;
+}
+#mwb_wocuf_pro_setting_wrapper tr td .mwb_wocuf_pro_funnel_links {
+  background-color: #3ddabd;
+  display: inline-block;
+  padding: 6px 10px;
+  margin: 5px 0px
+}
+#mwb_wocuf_pro_setting_wrapper tr td .mwb_wocuf_pro_funnel_links:hover {
+  color: #fff;
+  background-color: #38bba3;
+}
+.mwb_wocuf_pro_funnels_list table th, .mwb_upsell_table table th, .mwb_upsell_table table th label h4{
+  color: #000;
+  font-size: 17px;
+  font-weight: 500;
+  padding: 15px!important;
+  text-align: left;
+}
+.mwb_wocuf_pro_funnels_list table td,.mwb_upsell_table table td {
+  font-size: 16px;
+  padding: 15px;
+  text-align: left;
+}
+.mwb_wocuf_pro_funnels_list table td a{
+  font-size: 15px;
+  font-weight: 400;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+#mwb_wocuf_pro_setting_wrapper .nav-tab:hover,.mwb_wocuf_pro_funnels_list table td a:hover{
+  background-color: #38bba3;
+}
+.mwb_wocuf_pro_create_new_funnel a {
+  font-size: 24px;
+  margin-bottom: 15px;
+  padding: 15px;
+  display: inline-block;
+}
+#mwb_wocuf_pro_setting_wrapper{
+  background: #fff none repeat scroll 0 0;
+  padding: 0 20px;
+}
+.nav-tab{
+  background-color:#0a12a9;
+  color: white;
+}
+.nav-tab:hover{
+  background-color:#011b44;
+  color:white; 
+}
+#mwb_wocuf_pro_setting_wrapper .nav-tab-active{
+  background: white none repeat scroll 0 0;
+  color: black ;
+}
+
+#mwb_wocuf_pro_setting_wrapper #mwb_wocuf_pro_setting_form .titledesc {
+  padding-left: 19px;
+}
+
+#mwb_wocuf_pro_setting_form tr:nth-child(2n+1) {
+  background: #fff none repeat scroll 0 0;
+}
+#mwb_wocuf_pro_setting_form .mwb_upsell_table {
+  border: 1px solid #ccc;
+  overflow-x:auto; 
+}
+#mwb_wocuf_pro_setting_form .submit input {
+  background: #592e48 none repeat scroll 0 0;
+  border: 1px solid #592e48 ;
+  color: #fff;
+  margin-left: 19px;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+#mwb_wocuf_pro_setting_wrapper {
+  background: #fff none repeat scroll 0 0;
+  padding: 20px;
+}
+#mwb_wocuf_pro_setting_form tr:nth-child(2n) {
+  background: #f1f1f1 none repeat scroll 0 0;
+}
+.hide
+{
+  display: none;
+}
+.show
+{
+  display: inline; !important;
+}
+.mwb_wocuf_pro_create_new_funnel{
+  margin:0 auto;
+  text-align: center;
+  padding-bottom: 20px;
+  font-size: 30px;
+}
+/*custom style*/
+#mwb_wocuf_pro_setting_wrapper .nav-tab {
+  background: #3ddabd;
+  border: 0;
+  padding: 10px 50px 10px 50px;
+  margin-left: -18px;
+  border-radius: 20px 0px 20px 0px;
+}
+
+#mwb_wocuf_pro_setting_wrapper .nav-tab.nav-tab-active {
+  background-color: #38bba3;
+  color: #fff;
+}
+.mwb_wocuf_pro_funnels_list table td, .mwb_wocuf_pro_funnels_list table th,.mwb_upsell_table table th,.mwb_upsell_table table td{
+  border: 1px solid #f1f1f1;
+  padding:15px;
+
+}
+
+.mwb_wocuf_pro_funnels_list table th {
+  border: 1px solid #d0cccc;
+}
+
+/*edit create funnel style*/
+.mwb_upsell_table table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.mwb_upsell_table table th{
+  width: 30%;
+}
+.mwb_upsell_table .new_created_offers h2{
+  font-size: 22px;
+}
+.mwb_upsell_table select {
+  height: 40px !important;
+  padding-left: 10px;
+  width: 50%;
+}
+.mwb_upsell_table select option{
+  padding: 10px;
+}
+.mwb_upsell_table table th label h4{
+  padding:15px 0;
+}
+.mwb_wocuf_pro_create_new_offer::before,.mwb_wocuf_pro_create_new_funnel a::before {
+  background-color:#38bba3;
+  left: -48%;
+  transform-origin: 100% 50% 0;
+  width: 100%;
+}
+.mwb_wocuf_pro_create_new_offer::before, .mwb_wocuf_pro_create_new_offer::after ,.mwb_wocuf_pro_create_new_funnel a::before,.mwb_wocuf_pro_create_new_funnel a::after{
+  bottom: -200%;
+  content: "";
+  display: block;
+  position: absolute;
+  top: -200%;
+  transform: rotate(45deg);
+  transition: width 600ms cubic-bezier(0.23, 1, 0.32, 1) 0s;
+  z-index: -1;
+}
+.mwb_wocuf_pro_create_new_offer::after,.mwb_wocuf_pro_create_new_funnel a::after {
+  background-color: #3ddabd;
+  right: -48%;
+  transform-origin: 0 50% 0;
+  width: 100%;
+}
+
+.mwb_wocuf_pro_create_new_offer,.mwb_wocuf_pro_create_new_funnel a{
+  background-color: #fff;
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  line-height: 24px;
+  overflow: hidden;
+  padding: 10px 15px;
+  position: relative;
+  text-transform: uppercase;
+  transition: box-shadow 100ms linear 0s;
+  border: none;
+  cursor: pointer;
+  z-index: 99;
+  text-decoration: none;
+  color:#fff;
+}
+.mwb_wocuf_pro_create_new_offer:hover,.mwb_wocuf_pro_create_new_funnel a:hover{
+  color: #000;
+  border: 1px solid #000;
+}
+.mwb_wocuf_pro_create_new_offer:hover::before, .mwb_wocuf_pro_create_new_offer.active::before, .mwb_wocuf_pro_create_new_offer:hover::after, .mwb_wocuf_pro_create_new_offer.active::after {
+  transform: rotate(45deg);
+  width: 0;
+  color: #000;
+}
+.mwb_wocuf_pro_create_new_offer:hover, .mwb_wocuf_pro_create_new_offer.active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.13) inset;
+}
+.mwb_wocuf_pro_create_new_funnel a:hover::before, .mwb_wocuf_pro_create_new_funnel a.active::before, .mwb_wocuf_pro_create_new_funnel a:hover::after, .mwb_wocuf_pro_create_new_funnel a.active::after {
+  transform: rotate(45deg);
+  width: 0;
+  color: #000;
+}
+#mwb_wocuf_pro_creation_setting_save {
+  background-color: #1d424b;
+  border: medium none;
+  box-shadow: 0 1px 0 #c1c3c0;
+  color: #fff;
+  text-shadow: none;
+}
+#mwb_wocuf_pro_creation_setting_save:hover {
+  opacity: 0.75
+}
+#mwb_wocuf_pro_setting_wrapper p,#mwb_wocuf_pro_setting_wrapper span{
+  font-size: 16px;
+  font-weight: 400;
+}
+#mwb_wocuf_pro_setting_wrapper p.submit {
+  padding: 15px 0 !important;
+}
+h1.mwb_wocuf_pro_setting_title .mwb-wocuf-pro-wrap h1 {
+  padding: 10px 10px;
+  font-weight: 400;
+  border-radius: 10px 0px;
+}
+.mwb_wocuf_pro_license_text p.submit #mwb_wocuf_pro_license_activate {
+  background-color: #3ddabd !important;
+  border: 0;
+  box-shadow: 0px 0px;
+  text-shadow: 0px 0px;
+  padding: 5px 20px;
+  height: auto;
+}
+#mwb_wocuf_pro_setting_wrapper .mwb_wocuf_pro_funnels_list p {
+  margin: 0;
+}
+table.form-table.mwb_wocuf_pro_shortcodes .mwb_upsell_shortcode_div {
+  margin: 10px 0px;
+}
+table.form-table.mwb_wocuf_pro_shortcodes tr td, table.form-table.mwb_wocuf_pro_shortcodes tr th {
+  vertical-align: middle;
+}
+table.form-table.mwb_wocuf_pro_shortcodes {
+  margin-top: 20px;
+}
+.mwb_wocuf_pro_new_offer {
+  margin: 30px 0;
+  text-align: center;
+}
+#mwb_wocuf_pro_setting_wrapper .mwb_wocuf_pro_no_funnel{
+  text-align: center;
+}
+#mwb_wocuf_pro_loader {
+ background-color: rgba(255, 255, 255, 0.6);
+ bottom: 0;
+ height: 100%;
+ left: 0;
+ position: fixed;
+ right: 0;
+ top: 0;
+ width: 100%;
+ z-index: 99999;
+}
+#mwb_wocuf_pro_loader img {
+  display: block;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.mwb_upsell_table .wp-picker-container {
+ display: inline-block;
+}
+
+span.mwb_wocuf_pro_span label {
+  background-color: #d9edf7 ;
+  border-left: 3px solid #0073aa ;
+  color: #31708f ;
+  display: inline-block;
+  height: 28px;
+  line-height: 28px;
+  margin: -4px 0 0;
+  padding: 0 18px 0 15px;
+  position: relative;
+}
+
+span.mwb_wocuf_pro_span label::after {
+  border-bottom: 8px solid transparent;
+  border-left: 10px solid #0073aa ;
+  border-top: 8px solid transparent;
+  content: "";
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+/*mycss*/
+.mwb_wocuf_pro_delete_new_created_offers {
+  border: 0;
+}
+.new_created_offers span {
+  display: block;
+}
+/*=====  End of media query  ======*/
+
+#mwb-wocuf-day-count {
+  color: #c40b0b;
+  font-weight: bold !important;
+}
+
+/*updated*/
+.mwb_wocuf_pro_commone_class {
+  height: 45px !important;
+}
+
+
+/**
+ * V3.0.0 CSS Starts HERE ------------>>>>>>>>>>>>>>>>>>>
+ * 
+ */
+
+ /*since v3.0.0 - Global Settings - Start*/
+
+ .mwb_wocuf_pro_creation_setting textarea {
+  max-width: 100% !important;
+}
+
+/*since v3.0.0 - Global Settings - Start*/
+
+/*since v3.0.0 - Funnel status - Start*/
+
+.mwb_upsell_funnel_status_on.active,
+.mwb_upsell_funnel_status_off.active {
+  display: inline-block;
+}
+
+.mwb_upsell_funnel_status_on,
+.mwb_upsell_funnel_status_off {
+  display: none;
+}
+
+/*since v3.0.0 - Funnel status - End*/
+
+/*since v3.0.0 - Shortcodes - Start*/
+
+.mwb_upsell_tip_tip {
+  font-size: 11px;
+}
+
+.mwb_upsell_shortcode {
+  background-color: #f1f1f1 ;
+  padding: 10px;
+  margin: 20px 0px;
+  border-radius: 10px;
+}
+
+.mwb_upsell_old_shortcodes_link {
+  overflow: hidden;
+  display: inline-block;
+  width: 27px;
+  top: 12px;
+  margin-left: 15px;
+  position: absolute;
+}
+
+.mwb_upsell_old_shortcodes_title {
+  position: relative;
+  background-color: #f1f1f1;
+  margin-top: 30px;
+}
+.mwb_upsell_old_shortcodes_title h2 {
+  color: #5f5555;
+  padding-left: 20px;
+}
+
+.mwb_upsell_old_shortcodes {
+  display: none;
+}
+
+.mwb_upsell_old_shortcodes_title h2 {
+  display: inline-block;
+}
+
+.mwb_upsell_old_shortcodes_link:focus {
+  box-shadow: 0px 0px 0px 0px;
+}
+
+.mwb_upsell_old_shortcodes_link img {
+  width: 100%;
+}
+
+.mwb_upsell_shortcodes_hr {
+  height: auto;
+  color: inherit;
+  background-color: inherit;
+  border: 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #fafafa;
+}
+
+
+/*since v3.0.0 - Old shortcodes - End*/
+
+/*since v3.0.0 - Offer preview - Start*/
+
+.mwb_upsell_offer_template_preview_one,
+.mwb_upsell_offer_template_preview_two,
+.mwb_upsell_offer_template_preview_three {
+  display: none;
+}
+
+.mwb_upsell_preview_body {
+  overflow: hidden;
+}
+
+.mwb_upsell_offer_template_previews {
+  display: none;
+}
+
+/*since v3.0.0 - Offer preview - End*/
+
+/*since v3.0.0 - Offer template not supported - End*/
+
+.mwb_upsell_offer_template_unsupported h4 {
+  font-weight: 400;
+  font-size: 17px;
+}
+
+/*since v3.0.0 - Offer template not supported - End*/
+
+/*since v3.0.0 - Funnel list - Start*/
+
+.mwb_upsell_funnel_list_name {
+  font-size: 16px !important;
+  font-weight: 200 !important;
+}
+
+.mwb_wocuf_pro_funnels_list p {
+
+  color: #444 !important  ;
+}
+
+.mwb_upsell_funnel_list_targets {
+  background-color: #f1f1f1;
+  border-radius: 10px 10px;
+}
+
+.mwb_upsell_funnel_list_live,
+.mwb_upsell_funnel_list_sandbox {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  top: 6px;
+}
+
+.mwb_upsell_funnel_list_live {
+  background-color: #6dbe45;
+}
+
+.mwb_upsell_funnel_list_sandbox {
+  background-color: #fc7626;
+}
+
+.mwb_upsell_funnel_list_live_name,
+.mwb_upsell_funnel_list_sandbox_name {
+  padding-left: 10px;
+  line-height: 35px;
+  display: inline-block;
+}
+
+.mwb_upsell_funnel_list_live_name {
+  color: #6dbe45;
+  font-weight: 500 !important;
+}
+
+.mwb_upsell_funnel_list_sandbox_name {
+  color: #fc7626;
+  font-weight: 500 !important;
+}
+
+#mwb_upsell_funnel_list_target_th {
+  width: 25%;
+}
+
+/*since v3.0.0 - Funnel list - End*/
+
+/*since v3.0.0 - Buton focus- Start*/
+
+.mwb_wocuf_pro_create_new_offer:focus, .mwb_wocuf_pro_create_new_funnel a:focus {
+ border: 0;
+ box-shadow: 0px 0px;
+ outline: solid 1px #ccc;
+}
+
+.mwb_wocuf_pro_create_new_offer:focus {
+  outline: solid 1px #ccc;
+}
+#mwb_wocuf_pro_setting_wrapper tr td .mwb_wocuf_pro_funnel_links:focus {
+  outline: none;
+  box-shadow: 0px 0px;
+  color: #fff;
+}
+
+/*since v3.0.0 - Buton focus- End*/
+
+/*since v3.0.0 - Elementor notice - Start*/
+
+#mwb_upsell_elementor_notice p {
+  font-size: 15px;
+  font-weight: 300;
+}
+
+#mwb_upsell_elementor_notice .submit {
+  font-weight: inherit;
+}
+
+#mwb_upsell_elementor_notice .mwb_upsell_heading_span {
+  color: #6d6666;
+  font-weight: 600 !important;
+}
+
+#mwb_upsell_dismiss_elementor_inactive_notice {
+  margin-top: 10px;
+}
+
+#mwb_upsell_elementor_notice {
+  border-left-color: #3ddabd;
+  margin-top: 15px;
+}
+
+#mwb_upsell_activate_elementor {
+  background-color: #3ddabd;
+  color: #fff;
+  font-size: 14px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0px 0px;
+  text-shadow: 0px 0px;
+  padding: 5px 18px;
+  height: auto; 
+}
+
+#mwb_upsell_dismiss_elementor_inactive_notice {
+  border: 1px solid #e0e0e0;
+  box-shadow: 0px 0px;
+  height: auto;
+}
+
+/*since v3.0.0 - Elementor notice - End*/
+
+/*since v3.0.0 - Overview - Start*/
+
+#mwb_upsell_lite_overview #mwb_upsell_lite_overview_video h2 {
+  text-align: center;
+  font-size: 21px;
+  color: #76807e;
+  font-weight: 400;
+  margin-top: 30px;
+}
+
+#mwb_upsell_lite_overview #mwb_upsell_lite_overview_pro_version h2 {
+  text-align: center;
+  font-size: 30px;
+  color: #76807e;
+  line-height: 1em;
+}
+
+#mwb_upsell_lite_overview .mwb_upsell_overview_supported_product .mwb_upsell_overview_simple_product_icon {
+  float: left;
+  width: 50%;
+  text-align: center;
+  padding: 0px 15px;
+  box-sizing: border-box;
+}
+.mwb_upsell_overview_subscription_product_icon {
+  max-width: 50%;
+  margin: 30px auto;
+  text-align: center;
+  clear: both;
+}
+.mwb_upsell_overview_subscription_product_icon img,
+.mwb_upsell_overview_simple_product_icon img {
+  opacity: 0.9;
+}
+#mwb_upsell_lite_overview .mwb_upsell_overview_supported_product .mwb_upsell_overview_simple_product_icon img{
+  max-width: 100%;
+}
+#mwb_upsell_lite_overview .mwb_upsell_overview_supported_product:after {
+  display: block;
+  clear: both;
+  content: '';
+}
+#mwb_upsell_lite_overview #mwb_upsell_lite_overview_pro_version .mwb_upsell_overview_supported_payment_gateways img {
+  width: 100%;
+}
+#mwb_upsell_lite_overview #mwb_upsell_lite_overview_pro_version .mwb_upsell_overview_go_pro a.button {
+  background-color: #78c900;
+  color: #fff;
+  border: 0;
+  padding: 20px 40px;
+  height: auto;
+  font-size: 25px;
+  display: inline-block;
+}
+
+#mwb_upsell_lite_overview #mwb_upsell_lite_overview_pro_version .mwb_upsell_overview_go_pro a.button:hover {
+  background-color: #80d600;
+}
+
+#mwb_upsell_lite_overview #mwb_upsell_lite_overview_pro_version .mwb_upsell_overview_go_pro a.button:focus {
+  box-shadow: 0 0 3px #ccc;
+}
+
+#mwb_upsell_lite_overview #mwb_upsell_lite_overview_pro_version .mwb_upsell_overview_go_pro {
+  text-align: center;
+}
+#mwb_upsell_lite_overview #mwb_upsell_lite_overview_pro_version h3 {
+  background-color: #f1f1f1;
+  padding: 10px 10px;
+  font-size: 18px;
+  text-align: center;
+  border-radius: 10px 0px;
+  line-height: 29px;
+}
+
+#mwb_upsell_lite_overview #mwb_upsell_lite_overview_pro_version h4 {
+  font-size: 15px;
+}
+
+@media only screen and (max-width: 480px) {
+  #mwb_upsell_lite_overview .mwb_upsell_overview_supported_product .mwb_upsell_overview_simple_product_icon{
+    width: 100%;
+  }
+  #mwb_upsell_lite_overview .mwb_upsell_overview_supported_product .mwb_upsell_overview_simple_product_icon img{
+    width: 50%;
+  }
+  #mwb_upsell_lite_overview #mwb_upsell_lite_overview_pro_version .mwb_upsell_overview_go_pro a.button {
+    padding: 20px 0px;
+    font-size: 20px;
+    width: 100%;
+  }
+  #mwb_upsell_lite_overview #mwb_upsell_lite_overview_pro_version h2 {
+    font-size: 20px;
+  }
+}
+
+/*since v3.0.0 - Overview - End*/
+
+/*since v3.0.0 - Designer CSS - Start*/
+
+#mwb_wocuf_pro_setting_wrapper .mwb_wocuf_pro_setting_title {
+  color: #23282d;
+  padding: 6px 20px;
+  font-size: 30px;
+  border-radius: 10px 0px;
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 0;
+}
+#mwb_wocuf_pro_setting_wrapper .mwb_wocuf_pro_setting_title span.mwb_wocuf_pro_setting_title_version {
+  float: right;
+}
+#mwb_wocuf_pro_setting_wrapper p {
+  margin: 0;
+}
+#mwb_wocuf_pro_setting_wrapper nav.nav-tab-wrapper.woo-nav-tab-wrapper {
+  margin: 0;
+  padding: 0px 20px;
+  border-bottom: solid 1px #e0e0e0;
+}
+
+#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading h2 {
+  margin: 20px 0px;
+  margin-left: -15px;
+  line-height: normal;
+  font-size: 50px;
+  font-weight: 200 !important;
+  color: #23282d;
+  padding: 10px 20px;
+  border-radius: 10px 0px;
+  width: calc(100% - 250px);
+  float: left;
+}
+
+
+#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr th, #mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr td {
+  padding: 15px 10px 10px 35px !important;
+  vertical-align: middle;
+  position: relative;
+}
+#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr td .select2.select2-container.select2-container--default .select2-selection.select2-selection--single,
+#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr td input[type="text"] {
+  height: 40px;
+}
+#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr td .mwb_upsell_attribute_description {
+  position: relative;
+}
+#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr td .mwb_upsell_attribute_description span.woocommerce-help-tip {
+  left: -25px;
+}
+#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr td .mwb_upsell_global_description {
+  font-size: 13px;
+  font-style: italic;
+  display: block;
+}
+.new_created_offers.mwb_upsell_single_offer .mwb_upsell_offer_templates_parent {
+  display: flex;
+  flex-wrap: wrap;
+}
+#mwb_wocuf_pro_setting_wrapper .nav-tab:focus {
+  box-shadow: 0px 0px;
+  color: #fff;
+}
+#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr td #mwb_upsell_funnel_name {
+  height: 40px !important;
+  width: 100%;
+  max-width: 400px;
+}
+.mwb_upsell_old_shortcodes_title h2 {
+  font-size: 14px;
+}
+.mwb_wocuf_pro_header {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+#mwb_wocuf_pro_setting_wrapper .mwb_wocuf_pro_setting_title {
+  font-size: 25px;
+  font-weight: 200;
+  line-height: 25px;
+  text-align: left;
+  margin: 0;
+  width: 65%;
+}
+#mwb_upsell_skype_connect_with_us {
+  text-align: center;
+  width: 30%;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  margin-left: 1%;
+}
+#mwb_upsell_skype_connect_with_us .button {
+  height: auto;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  padding: 2px 10px;
+  box-shadow: none;
+  font-size: 13px;
+  transition: 0.2s linear all;
+}
+#mwb_upsell_skype_connect_with_us .button:hover,
+#mwb_upsell_skype_connect_with_us .button:focus{
+ color: #00aaf2;
+ transition: 0.2s linear all;
+}
+#mwb_upsell_skype_connect_with_us .button img {
+  width: 21px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+#mwb_upsell_skype_connect_with_us p {
+  text-align: center;
+  font-size: 13px;
+  color: #474343;
+}
+#mwb_upsell_skype_connect_with_us .mwb_upsell_skype_connect_title {
+  font-weight: normal;
+  font-size: 14px;
+  color: #474343;
+  margin: 1em 0;
+}
+#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .mwb_wocuf_pro_offers h1 {
+  background-color: #f1f1f1;
+  padding: 10px 10px;
+  font-size: 20px;
+  color: #23282d;
+  text-align: left;
+  border-radius: 10px 0px;
+}
+#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table p.submit #mwb_wocuf_pro_creation_setting_save {
+  background-color: #3ddabd;
+  padding: 7px 23px;
+  height: auto;
+  font-size: 14px;
+}
+/*.new_created_offers.mwb_upsell_single_offer .mwb_upsell_offer_title {
+    background-color: #23282d;
+    font-weight: 400;
+    color: #fff;
+    }*/
+    #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .new_offers .mwb_upsell_offer_title {
+      display: inline-block;
+      border-radius: 10px 0px;
+      margin: 0;
+      font-size: 16px;
+      padding: 10px 100px;
+      background-color: #38bba3;
+      color: #fff;
+    }
+    #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .new_offers tr th label h4 {
+      padding: 0px !important;
+      margin: 0;
+      font-size: 14px;
+    }
+    .mwb_upsell_offer_templates_parent .mwb_upsell_offer_template {
+     float: left;
+     width: 33.333%;
+     padding: 0px 10px;
+     box-sizing: border-box;
+     margin-bottom: 15px;
+   }
+
+   .mwb_upsell_offer_templates_parent .mwb_upsell_offer_template .mwb_upsell_offer_template_sub_div {
+    position: relative;
+    padding: 5px;
+  }
+
+  .mwb_upsell_offer_templates_parent .mwb_upsell_offer_template h5 {
+   text-align: center;
+   background-color: #f1f1f1;
+   padding: 12px 0px;
+   color: #211b1c;
+   margin-bottom: 10px;
+ }
+
+ .new_created_offers.mwb_upsell_single_offer button.button.mwb_wocuf_pro_delete_old_created_offers {
+  color: #ffffff;
+  background-color: #f91d1d;
+  border: 0px;
+  padding: 2px 16px;
+  height: auto;
+}
+
+.new_created_offers.mwb_upsell_single_offer button.button.mwb_wocuf_pro_delete_new_created_offers {
+  color: #ffffff;
+  background-color: #f91d1d;
+  border: 0px;
+  padding: 2px 16px;
+  height: auto;
+}
+
+.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template .mwb_upsell_offer_preview img {
+  width: 100%;
+
+}
+.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template .mwb_upsell_offer_preview{
+  margin-bottom: 20px;
+}
+.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template .mwb_upsell_offer_preview a {
+  display: block;
+  position: relative;
+  border: 1px solid #e0e0e0
+}
+.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template.active .mwb_upsell_view_offer_template {
+  border: solid 2px #38bba3;
+}
+.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template.active h5 {
+  background-color: #38bba3;
+  color: #fff;
+}
+.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template .mwb_upsell_offer_preview a:hover:after {
+  background-color: rgba(0, 0, 0, 0.63);
+  width: 100%;
+  top: 0px;
+  height: 100%;
+  content: '';
+  position: absolute;
+  left: 0;
+}
+.new_created_offers.mwb_upsell_single_offer .mwb_upsell_offer_description {
+  font-size: 13px !important;
+  font-style: italic;
+}
+.mwb_upsell_offer_template.mwb_upsell_custom_page_link_div.active h6 {
+  text-align: center;
+  font-size: 16px;
+  margin: 20px 0px;
+}
+#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr th label {
+  font-size: 15px;
+}
+.mwb_upsell_offer_template.mwb_upsell_custom_page_link_div.active {
+  border: solid 2px #38bba3;
+}
+.mwb_upsell_offer_template.mwb_upsell_custom_page_link_div p {
+  text-align: center !important;
+  font-size: 14px !important;
+}
+.new_created_offers.mwb_upsell_single_offer table {
+  border: solid 2px #38bba3;
+  margin-bottom: 30px !important;
+  border-collapse: collapse;
+}
+#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .new_offers tr td select, #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .new_offers tr td input {
+  width: 100%;
+  height: 40px;
+}
+#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .new_offers tr td .select2-container.select2-container--default.select2-container--focus {
+  width: 100% !important;
+}
+.new_created_offers.mwb_upsell_single_offer .mwb_upsell_offer_templates_parent:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading div#mwb_upsell_funnel_status {
+  float: right;
+  padding: 40px 10px;
+  width: 180px;
+}
+#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading div#mwb_upsell_funnel_status span {
+  padding: 7px 10px;
+}
+#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading div#mwb_upsell_funnel_status label{
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  top: -3px;
+}
+#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading 
+div#mwb_upsell_funnel_status input{
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading 
+div#mwb_upsell_funnel_status input:checked + .mwb_upsell_funnel_span {
+  background-color: #6dbe45;
+}
+
+#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading 
+div#mwb_upsell_funnel_status input:focus + .mwb_upsell_funnel_span {
+  box-shadow: 0 0 1px #3ddabd;
+}
+
+#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading 
+div#mwb_upsell_funnel_status input:checked + .mwb_upsell_funnel_span:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading 
+div#mwb_upsell_funnel_status .mwb_upsell_funnel_span {
+
+  border-radius: 34px;
+}
+#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading 
+div#mwb_upsell_funnel_status .mwb_upsell_funnel_span:before {
+  border-radius: 50%;
+}
+
+
+.slider.round:before {
+}
+#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading div#mwb_upsell_funnel_status .mwb_upsell_funnel_span{
+ position: absolute;
+ cursor: pointer;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ background-color: #fc7626;
+ -webkit-transition: .4s;
+ transition: .4s;
+}
+#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading div#mwb_upsell_funnel_status .mwb_upsell_funnel_span:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template button, .mwb_upsell_offer_templates_parent .mwb_upsell_offer_template .mwb_upsell_offer_template_sub_div .mwb_upsell_offer_action button, .mwb_upsell_offer_templates_parent .mwb_upsell_offer_template .mwb_upsell_offer_template_sub_div .mwb_upsell_offer_action .button {
+  background-color: #f1f1f1;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0px 0px;
+  color: #40484a;
+  text-shadow: 0px 0px;
+  padding: 5px 18px;
+  height: auto;
+
+}
+.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template.active .button {
+  background-color: #38bba3 !important;
+  color: #fff !important;
+}
+.mwb_upsell_offer_template_preview_three.active,
+.mwb_upsell_offer_template_preview_two.active,
+.mwb_upsell_offer_template_preview_one.active {
+  display: block;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.79);
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  overflow-Y: scroll;
+}
+.mwb_upsell_offer_template_preview_three.active .mwb_upsell_offer_template_preview_three_sub_div,
+.mwb_upsell_offer_template_preview_two.active .mwb_upsell_offer_template_preview_two_sub_div,
+.mwb_upsell_offer_template_preview_one.active .mwb_upsell_offer_template_preview_one_sub_div {
+  width: 100%;
+  max-width: 1020px;
+  margin: 90px auto;
+}
+.mwb_upsell_offer_template_preview_three.active .mwb_upsell_offer_template_preview_three_sub_div img,
+.mwb_upsell_offer_template_preview_two.active .mwb_upsell_offer_template_preview_two_sub_div img,
+.mwb_upsell_offer_template_preview_one.active .mwb_upsell_offer_template_preview_one_sub_div img {
+  width: 100%;
+}
+
+.mwb_upsell_offer_template_previews .mwb_upsell_offer_preview_close {
+  z-index: 9999999;
+  pointer-events: auto;
+  transform: scale(1);
+  transition-timing-function: ease-out;
+  transition: transform 300ms ease-in;
+  display: block;
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  width: 40px;
+  height: 40px;
+  border: solid 1px #fff !important;
+  border-radius: 50%;
+}
+.mwb_upsell_offer_template_previews .mwb_upsell_offer_preview_close .mwb_upsell_offer_preview_close_span:before {
+  transform: rotate(45deg);
+}
+.mwb_upsell_offer_template_previews .mwb_upsell_offer_preview_close .mwb_upsell_offer_preview_close_span:after {
+  transform: rotate(-45deg);
+}
+.mwb_upsell_offer_template_previews .mwb_upsell_offer_preview_close .mwb_upsell_offer_preview_close_span:before, .mwb_upsell_offer_template_previews .mwb_upsell_offer_preview_close .mwb_upsell_offer_preview_close_span:after {
+  background: #ffffff;
+  content: "";
+  margin: auto;
+  outline: 2px solid rgba(13, 13, 13, 0.37);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  width: 20px;
+  height: 2px;
+  transform-origin: center center;
+  transition: transform 250ms cubic-bezier(0.785,0.135,0.15,0.86);
+  will-change: transform;
+}
+#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading div#mwb_upsell_funnel_status span.mwb_upsell_funnel_status_on {
+  color: #6dbe45;
+}
+#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading div#mwb_upsell_funnel_status span.mwb_upsell_funnel_status_off {
+  color: #fc7626;
+}
+#mwb_upsell_funnel_status span {
+  font-weight: 500;
+}
+.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template .mwb_upsell_offer_preview a:hover:before {
+  width: 100%;
+  top: 50%;
+  content: 'Preview';
+  position: absolute;
+  left: 0;
+  color: #fff;
+  z-index: 999;
+  right: 0px;
+  text-align: center;
+}
+.mwb_wocuf_pro_funnels_list table td a:hover {
+  background-color: transparent;
+}
+.mwb_wocuf_pro_funnels_list tr th {
+  background-color: #f1f1f1;
+  color: #23282d;
+}
+table.form-table.mwb_wocuf_pro_creation_setting {
+  margin-top: 30px !important;
+  margin-bottom: 15px !important;
+  border: solid 2px #ccc;
+}
+div#mwb_wocuf_pro_setting_wrapper .submit #mwb_wocuf_pro_creation_setting_save {
+  background-color: #3ddabd;
+  padding: 7px 23px;
+  height: auto;
+  font-size: 14px;
+}
+table.form-table.mwb_wocuf_pro_shortcodes {
+  margin-top: 30px !important;
+  border: solid 2px #ccc;
+}
+.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template button:hover,
+.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template .mwb_upsell_offer_template_sub_div .mwb_upsell_offer_action button:hover,
+.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template .mwb_upsell_offer_template_sub_div .mwb_upsell_offer_action .button:hover{
+  background: #38bba3;
+  color: #fff;
+  box-shadow: 0px 0px;
+  border: 1px solid #e0e0e0;
+}
+table.form-table.mwb_wocuf_pro_creation_setting .mwb_wocuf_pro_enable_plugin_label {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  top: -3px;
+}
+table.form-table.mwb_wocuf_pro_creation_setting .mwb_wocuf_pro_enable_plugin_label .mwb_wocuf_pro_enable_plugin_input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+table.form-table.mwb_wocuf_pro_creation_setting .mwb_wocuf_pro_enable_plugin_label span.mwb_wocuf_pro_enable_plugin_span {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 30px;
+}
+table.form-table.mwb_wocuf_pro_creation_setting .mwb_wocuf_pro_enable_plugin_label span.mwb_wocuf_pro_enable_plugin_span:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+table.form-table.mwb_wocuf_pro_creation_setting .mwb_wocuf_pro_enable_plugin_label .mwb_wocuf_pro_enable_plugin_input:checked + .mwb_wocuf_pro_enable_plugin_span:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+table.form-table.mwb_wocuf_pro_creation_setting .mwb_wocuf_pro_enable_plugin_label .mwb_wocuf_pro_enable_plugin_input:checked + .mwb_wocuf_pro_enable_plugin_span {
+  background-color: #6dbe45;
+}
+button.button-primary.mwb_upsell_activate_offer_template:focus {
+  background-color: #38bba3 !important;
+  border: 0;
+  box-shadow: 0px 0px;
+}
+.mwb-wocuf-pro-wrap {
+  margin-top: 30px;
+}
+.mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text {
+  border: solid 2px #ccc;
+  margin-top: 10px;
+  padding: 10px 15px;
+}
+.mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text #mwb_wocuf_pro_license_form .submit {
+  padding: 0px 5px !important;
+}
+.mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text table.mwb-wocuf-pro-form-table tr {
+  padding: 0;
+}
+.mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text table.mwb-wocuf-pro-form-table {
+  width: 100%;
+}
+.mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text table.mwb-wocuf-pro-form-table tr th {
+  width: 12%;
+  text-align: left;
+}
+.mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text table.mwb-wocuf-pro-form-table tr td {
+  width: 60%;
+  display: block;
+}
+.mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text table.mwb-wocuf-pro-form-table tr #mwb_wocuf_pro_license_key {
+  height: 38px;
+  width: 100%;
+  max-width: 380px !important;
+} 
+.mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text p.submit {
+  padding: 20px 10px !important;
+}
+.mwb-wocuf-pro-wrap h1 {
+  font-size: 22px !important;
+  background-color: #f1f1f1;
+  padding: 10px 10px;
+  border-radius: 10px 0px;
+}
+.mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text {
+  border: solid 2px #ccc;
+  margin-top: 10px;
+  padding: 10px 15px;
+}
+#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr td .woocommerce-help-tip {
+  margin: 0;
+  top: 50%;
+  position: absolute;
+  left: 10px;
+  transform: translateY(-50%);
+}
+#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr td span.select2-selection__rendered {
+  line-height: 38px;
+}
+#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr td .select2.select2-container.select2-container--default .select2-selection.select2-selection--single .select2-selection__arrow {
+  height: 38px;
+}
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+  border-color: #5b9dd9 !important;
+  box-shadow: 0 0 2px rgba(30,140,190,.8);
+  outline: 0;
+}
+.mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text table.mwb-wocuf-pro-form-table tr td #mwb_wocuf_pro_license_key {
+  width: calc(100% - 30px) !important;
+  float: left;
+}
+.mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text table.mwb-wocuf-pro-form-table tr td #mwb_upsell_license_ajax_loader {
+  float: left;
+  left: 10px;
+  top: 10px;
+  position: relative;
+}
+.mwb_upsell_overview_supported_woo_addons_banner img {
+  max-width: 100%;
+  width: auto;
+}
+.mwb_upsell_overview_go_pro {
+  margin: 40px 0;
+}
+/*===================================
+=            media query            =
+===================================*/
+@media only screen and (max-width:867px)  {
+  #mwb_wocuf_pro_setting_wrapper .nav-tab {
+    padding: 10px 35px 10px 35px;
+  }
+  #mwb_wocuf_pro_setting_wrapper .nav-tab {
+    margin-top: 17px;
+  }
+  #mwb_wocuf_pro_setting_wrapper .nav-tab:nth-child(1){
+    margin-top: 17px !important;
+  }
+  #mwb_wocuf_pro_setting_wrapper nav.nav-tab-wrapper.woo-nav-tab-wrapper {
+   display: flex;
+   flex-wrap: wrap;
+ }
+ .mwb_upsell_offer_templates_parent .mwb_upsell_offer_template {
+  width: 50%;
+}
+.new_created_offers.mwb_upsell_single_offer th, .new_created_offers.mwb_upsell_single_offer td {
+  display: block;
+}
+ #mwb_wocuf_pro_setting_wrapper .mwb_wocuf_pro_setting_title,
+  #mwb_upsell_skype_connect_with_us{
+    width: 100%;
+  }
+  #mwb_upsell_skype_connect_with_us{
+    margin-top: 10px;
+    margin-right: 0;
+  }
+}
+@media only screen and (max-width:767px)  {
+  .mwb_wocuf_pro_funnels_list table {
+    width: 710px;
+  }
+  .mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text table.mwb-wocuf-pro-form-table tr td{
+    width: 100%;
+    display: block;
+  }
+  .mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text table.mwb-wocuf-pro-form-table tr th {
+    width: 100%;
+  }
+
+  #mwb_upsell_dismiss_elementor_inactive_notice,
+  #mwb_upsell_activate_elementor {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+}
+@media only screen and (max-width:600px)  {
+
+  .mwb_wocuf_pro_funnels_list {
+    overflow-x: auto;
+    width: 100%;
+  }
+  table.form-table.mwb_wocuf_pro_creation_setting select#mwb_wocuf_pro_applied_rule {
+    width: 100%;
+  }
+  table.form-table.mwb_wocuf_pro_creation_setting span.select2.select2-container.select2-container--default.select2-container--focus.select2-container--below {
+    width: 100% !important;
+  }
+  table.form-table.mwb_wocuf_pro_creation_setting {}
+  .new_created_offers {
+    overflow-x: auto;
+    width: 100%;
+  }
+  #wpbody select {
+    height: auto;
+  }
+  .mwb_upsell_table select {
+    width: 100%;
+  }
+
+}
+
+
+@media only screen and (max-width:500px)  {
+  #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading h2 {
+    width: 100%;
+    font-size: 28px;
+  }
+  .mwb_upsell_offer_templates_parent .mwb_upsell_offer_template {
+    width: 100%;
+  }
+  #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading div#mwb_upsell_funnel_status {
+    float: left;
+    padding: 10px 10px;
+    width: 100%;
+  }
+  #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .select2-container .select2-search__field {
+    font-size: 11px !important;
+    width: 80% !important;
+  }
+  #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .new_created_offers input {
+    width: 85% !important;
+    font-size: 10px !important;
+  }
+  #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .new_created_offers select {
+    font-size: 11px !important;
+    height: 39px !important;
+    width: 80% !important;
+  }
+  #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .new_offers .mwb_upsell_offer_title {
+    padding: 10px 24px;
+  }
+  .mwb_upsell_table table th label h4{
+    padding:0 !important;
+  }
+  #mwb_wocuf_pro_setting_wrapper p, #mwb_wocuf_pro_setting_wrapper span{
+    font-size: 14px !important; 
+  }
+
+  #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .select2-selection.select2-selection--multiple {
+    width: 65% !important;
+  }
+  #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table select{
+    width: 64% !important;
+  }
+  #mwb_wocuf_pro_setting_wrapper .mwb_wocuf_pro_common_class {
+    width: 95% !important;
+  }
+
+  #mwb_wocuf_pro_setting_wrapper .mwb_wocuf_pro_common_class {
+    font-size: 12px !important;
+  }
+
+  /*updated*/
+  #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_wocuf_pro_funnel_name {
+    width: 100% !important;
+  }
+
+  #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table select {
+    width: 100% !important;
+  }
+
+/*  .mwb_upsell_table table th {
+    width: 100%;
+    }*/
+
+    .form-table.mwb_wocuf_pro_creation_setting .select2.select2-container.select2-container--default {
+      min-width: 100% !important;
+      width: 100% !important;
+    }
+
+    #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .select2-selection.select2-selection--multiple {
+      width: 100% !important;
+    }
+
+    #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .select2-container .select2-search__field {
+      font-size: 15px !important;
+      height: 33px;
+    }
+    #mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr td input[type="text"]{
+      width: 100%;
+    }
+
+    #mwb_upsell_dismiss_elementor_inactive_notice,
+    #mwb_upsell_activate_elementor {
+      font-size: 13px;
+      padding: 8px 10px;
+    }
+    #mwb_wocuf_pro_setting_wrapper .nav-tab{
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  /*since v3.0.0 - Designer CSS - End*/
+
+/**
+ * V3.0.0 CSS Ends HERE ------------>>>>>>>>>>>>>>>>>>>
+ * 
+ */
