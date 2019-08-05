@@ -11,7 +11,7 @@
 * Requires PHP: 5.6
 * License: GPLv3 or later 
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
-[![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg)](https://travis-ci.org/twbs/bootstrap)
+[![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg)]
 
 # Description
 
