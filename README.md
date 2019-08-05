@@ -1,16 +1,9 @@
-![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg)![Active installs](https://img.shields.io/badge/Active-700%2B-brightgreen)
+![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg)![Active installs](https://img.shields.io/badge/Active-700%2B-brightgreen)![License](https://img.shields.io/badge/License-GPLv3 or later-yellowgreen)![WP tested](https://img.shields.io/badge/WP%20tested-5.2-brightgreen)![WC tested](https://img.shields.io/badge/WC%20tested-3.6.3-brightgreen)![Requires PHP](https://img.shields.io/badge/Requires%20PHP-5.6-blue)
 # WooCommerce One Click Upsell Funnel
 ![WooCommerce One Click Upsell Funnel](https://ps.w.org/woo-one-click-upsell-funnel/assets/banner-772x250.jpg?rev=1857606)
 * Contributors:MakeWebBetter
 * Donate link: http://makewebbetter.com/
 * Tags: woocommerce,store,upsell,funnel,increase sales,one click,offers,post purchase,cod
-* Requires WP at least: 4.0
-* Tested up to WP: 5.2
-* WC requires at least: 3.0.0
-* WC tested up to: 3.6.3
-* Stable tag: 2.0.1
-* Requires PHP: 5.6
-* License: GPLv3 or later 
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 
