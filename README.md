@@ -1,3 +1,4 @@
+![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg)
 # WooCommerce One Click Upsell Funnel
 ![WooCommerce One Click Upsell Funnel](https://ps.w.org/woo-one-click-upsell-funnel/assets/banner-772x250.jpg?rev=1857606)
 * Contributors:MakeWebBetter
@@ -11,7 +12,7 @@
 * Requires PHP: 5.6
 * License: GPLv3 or later 
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
-![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg)
+
 
 # Description
 
