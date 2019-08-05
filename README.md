@@ -27,9 +27,9 @@ If your answer is Yes, then you must install the **WooCommerce One Click Upsell 
 
 It is an upselling plugin that facilitates store owners to make one-time special offers immediately after their customer’s purchase, enabling them to increase their Average Order Value and conversions. To encourage this, store owners need to add the most attractive products into their funnel offers and experience the magic of upselling in the online e-commerce business.
 
-[WooCommerce One Click Upsell Funnel](https://www.youtube.com/watch?v=Wa3NL4oy-tE)
+[WooCommerce One Click Upsells [2019] | How it Works | Steps to Create a Funnel](https://www.youtube.com/watch?v=Wa3NL4oy-tE)
 
-== MAIN FEATURES ==
+# MAIN FEATURES
 
 * **Post Purchase - Special One time Offer** - Make an exclusive special one-time offer to your customers when the chances of them buying it, are the most favorable. WooCommerce One Click Upsell Funnel is the perfect tool which will allow showing upsell offers to your store customers at the best time - after they have purchased something from you.
 * **Just a precious single click to Accept the offer** - The Offer product is processed and added to the customer's existing order in one click without the need to enter card details again or any other hassle.
@@ -42,19 +42,19 @@ A Combined order makes packaging and shipping convenient.
 * **Funnel Sandbox mode** - View and Customize Funnel Offer pages in sandbox mode and modify each and every element of the offer page before going Live.
 * **Responsive Offer pages** - Mobile and Tablet view of offer pages in Sandbox mode and customize the same offer page differently according to them.
 
-== Products and Payment methods ==
+# Products and Payment methods 
 
 * **Supported Products** - Simple products.
 * **Supported Payment methods** - Cash on Delivery.
 
 > Note: The features listed below are available with the Premium version of WooCommerce One Click Upsell Funnel. This implies that you need WooCommerce One Click Upsell Funnel - “Premium version” to take advantage of these exclusive features. You can get the [premium version here](https://makewebbetter.com/product/woocommerce-one-click-upsell-funnel-pro/?utm_source=MWB-one-click-upsell-funnel-org&utm_medium=MWB-ORG-page&utm_campaign=MWB-one-click-upsell-funnel-org) 
 
-== Premium Addon Features ==
+# Premium Addon Features 
 
 * **Supported Products** - Simple products, Variable products and Subscription products.
 * **Supported Payment methods** - *WooCommerce Standard Paypal*, *Stripe*, *Paypal Express Checkout*, *Authorize.net*, *Paystack*, *Vipps*, *Tpay*, *Cardcom* and core payment options such as *Cash On Delivery*, *Direct Bank Transfer*, and *Cheque Payments*.
 
-== Benefits ==
+# Benefits 
 
 * Make your customers feel special with exciting offers.
 
@@ -74,16 +74,16 @@ A Combined order makes packaging and shipping convenient.
 
 
 
-== Want Help! ==
+# Want Help!
 
 * For **More Plugins By makewebbetter** you can [visit here](https://makewebbetter.com/store/)
 
 
-= Support =
+# Support 
 
 If you need support or have any question then kindly use our online chat window [here](https://makewebbetter.com/) or send us an email at [support@makewebbetter.com](mailto:support@makewebbetter.com)
 
-= Follow Us =
+# Follow Us 
 
 * **Our Official Website** - [https://makewebbetter.com/](https://makewebbetter.com/) 
 * **Our Facebook Page** - [https://www.facebook.com/makewebbetter](https://www.facebook.com/makewebbetter)
@@ -91,23 +91,23 @@ If you need support or have any question then kindly use our online chat window 
 * **Our LinkedIn Account** - [https://www.linkedin.com/company/makewebbetter](https://www.linkedin.com/company/makewebbetter)
 
 
-== Installation ==
+# Installation 
 
-= Automatic installation =
+## Automatic installation 
 
 Automatic installation is the easiest option as WordPress handles the file transfers itself and you don't need to leave your web browser. To do an automatic install of WooCommerce One Click Upsell Funnel, log in to your WordPress dashboard, navigate to the Plugins menu and click Add New.
 
 In the search field type "WooCommerce One Click Upsell Funnel" and click Search Plugins. Once you've found our WooCommerce One Click Upsell Funnel plugin you can view details about it such as the point release, rating and description. Most importantly of course, you can install it by simply clicking "Install Now".
 
-= Manual installation =
+## Manual installation 
 
 The manual installation method involves downloading our WooCommerce One Click Upsell Funnel and uploading it to your web server via your favorite FTP application. The WordPress codex contains [instructions on how to do this here](http://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation).
 
-= Updating =
+# Updating 
 
 Automatic updates should work like a charm; as always though, ensure you backup your site just in case.
 
-== Screenshots ==
+# Screenshots 
 
 1. How Does Offer Funnel Works
 2. Create new Funnel
@@ -122,9 +122,9 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 11. Payment Gateway
 
 
-== Frequently Asked Questions ==
+# Frequently Asked Questions
 
-=I installed the plugin, created funnels and added the offers too but still, it does not show up on purchasing the funnel targets?=
+## I installed the plugin, created funnels and added the offers too but still, it does not show up on purchasing the funnel targets?
 
 Make sure:
 The Funnel is live.
@@ -132,7 +132,7 @@ You are testing for correct target product which you have set in the funnel.
 The Upsell offer redirection will be done only when the customer has purchased through the upsell supported gateways.
 
 
-=What are the payment methods that this plugin supports?=
+## What are the payment methods that this plugin supports?
 
 **Free Version**: Supports only Cash on Delivery.
 
@@ -140,14 +140,14 @@ The Upsell offer redirection will be done only when the customer has purchased t
 
 
 
-=What Products does this plugin supports?=
+## What Products does this plugin supports?
 
 **Free Version**: Only Simple Products
 
 **Premium version**: Simple, Variable and Subscription products.
 
 
-=How can I use Custom Page Shortcodes for BUY NOW and NO THANKS?=
+## How can I use Custom Page Shortcodes for BUY NOW and NO THANKS?
 
 For “Buy Now” shortcode:
 
@@ -162,14 +162,14 @@ You need to copy this No Thanks → [mwb_upsell_no] and place at a suitable plac
 Description :- This shortcode only returns the link so it has to be used in the link section. In html use it as href=”[mwb_upsell_no]” of an anchor tag.
 
 
-== Changelog ==
+## Changelog
 
-= 2.0.1 =
+### 2.0.1
 * Improved: Better Security and Performance
 * Improved: Better Funnels listing page
 * Other: Issues and Bugs Fixed.
 
-= 2.0.0 =
+### 2.0.0 
 * New: Default Offer with Wordpress new Live editor ( Please reactivate plugin once )
 * New: Built-in Offer templates
 * New: View and Customize offer pages in Sandbox mode
@@ -177,22 +177,22 @@ Description :- This shortcode only returns the link so it has to be used in the 
 * Improved: Better and smooth Admin UI
 * Other: Issues and Bugs Fixed.
 
-= 1.0.2 =
+### 1.0.2
 * bug fix
 
-= 1.0.1 =
+### 1.0.1
 * Bug fix
 
-= 1.0.1 =
+### 1.0.1
 * Added support for woocommerce standard product page for funnel offers and few new options in settings. 
 
-= 1.0.0 =
+### 1.0.0
 * First version 
 
 
-== Upgrade Notice ==
+## Upgrade Notice 
 
-= 2.0.1 =
+### 2.0.1
 * Improved: Better Security and Performance
 * Improved: Better Funnels listing page
 * Other: Issues and Bugs Fixed.
