@@ -1,4 +1,4 @@
-![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg)
+![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg)https://img.shields.io/badge/Active-700%2B-brightgreen
 # WooCommerce One Click Upsell Funnel
 ![WooCommerce One Click Upsell Funnel](https://ps.w.org/woo-one-click-upsell-funnel/assets/banner-772x250.jpg?rev=1857606)
 * Contributors:MakeWebBetter
