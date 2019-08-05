@@ -13,11 +13,11 @@ License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 
-== Description ==
+#Description
 
 Are you tired trying using everything for increasing the sales and yet it's not up to the mark? Have you considered the customer's easiness to shop on your store? Are you expecting more from your store sales and revenue, then have a try on WooCommerce One Click Upsell Funnel. A powerful WooCommerce extension for increasing your store sales instantly. The extension helps in increasing the average order amount value by showing funnel offers to store customers immediately after they purchase something from you.
 
-= Main Features =
+#Main Features
 
 * Woocommerce extension that allows you to create multiple post purchase offers for your customers.
 
@@ -37,7 +37,7 @@ Are you tired trying using everything for increasing the sales and yet it's not 
 
 * Better visualization for funnel offers page. 
 
-= Addon Features of Premium Version =
+#Addon Features of Premium Version
 
 * Variable product support in funnel targets.
 
@@ -59,7 +59,7 @@ Are you tired trying using everything for increasing the sales and yet it's not 
 To Get the **premium version** click [here](https://makewebbetter.com/product/woocommerce-one-click-upsell-funnel-pro/?utm_source=MWB-one-click-upsell-funnel-org&utm_medium=MWB-ORG&utm_campaign=MWB-one-click-upsell-funnel-org)
 
 
-= Benefits =
+#Benefits
 
 * Increases the WooCommerce store sales instantly.
 
@@ -79,16 +79,16 @@ To Get the **premium version** click [here](https://makewebbetter.com/product/wo
 
 
 
-= Want Help! =
+#Want Help!
 
 * For **More Plugins By makewebbetter** you can [visit here](https://makewebbetter.com/store/)
 
 
-= Support =
+#Support
 
 If you need support or have any question then kindly use our online chat window [here](https://makewebbetter.com/) or send us email at support@makewebbetter.com
 
-= Follow Us =
+#Follow Us
 
 * **Our Official Website** - [https://makewebbetter.com/](https://makewebbetter.com/) 
 * **Our Facebook Page** - [https://www.facebook.com/makewebbetter](https://www.facebook.com/makewebbetter)
@@ -97,23 +97,23 @@ If you need support or have any question then kindly use our online chat window 
 * **Our LinkedIn Account** - [https://www.linkedin.com/company/makewebbetter](https://www.linkedin.com/company/makewebbetter)
 
 
-== Installation ==
+#Installation
 
-= Automatic installation =
+##Automatic installation
 
 Automatic installation is the easiest option as WordPress handles the file transfers itself and you don't need to leave your web browser. To do an automatic install of WooCommerce One Click Upsell Funnel, log in to your WordPress dashboard, navigate to the Plugins menu and click Add New.
 
 In the search field type "WooCommerce One Click Upsell Funnel" and click Search Plugins. Once you've found our WooCommerce One Click Upsell Funnel plugin you can view details about it such as the point release, rating and description. Most importantly of course, you can install it by simply clicking "Install Now".
 
-= Manual installation =
+##Manual installation
 
 The manual installation method involves downloading our WooCommerce One Click Upsell Funnel and uploading it to your web server via your favorite FTP application. The WordPress codex contains [instructions on how to do this here](http://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation).
 
-= Updating =
+#Updating
 
 Automatic updates should work like a charm; as always though, ensure you backup your site just in case.
 
-== Screenshots ==
+#Screenshots
 
 1. Offer on placing and order.
 
@@ -136,9 +136,9 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 10. This is the funnel offer page on the frontend. Customers can accept or skip the offer as they want.
 
 
-== Frequently Asked Questions ==
+#Frequently Asked Questions
 
-=I installed the product, created funnels and added the offers too but still it does not show up on purchasing the funnel targets?=
+###I installed the product, created funnels and added the offers too but still it does not show up on purchasing the funnel targets?
 
 Make sure:
 Your offer page is published.
@@ -146,7 +146,7 @@ You are testing for correct target product which you have set in funnel.
 The Upsell offer redirection will be done only when customer has purchased through COD.
 
 
-=What are those payment methods it support?=
+###What are those payment methods it support?
 
 **Free Version**: It supports only COD.
 
