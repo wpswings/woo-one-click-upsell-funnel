@@ -27,7 +27,7 @@ If your answer is Yes, then you must install the **WooCommerce One Click Upsell 
 
 It is an upselling plugin that facilitates store owners to make one-time special offers immediately after their customer’s purchase, enabling them to increase their Average Order Value and conversions. To encourage this, store owners need to add the most attractive products into their funnel offers and experience the magic of upselling in the online e-commerce business.
 
-[youtube https://www.youtube.com/watch?v=Wa3NL4oy-tE ]
+[WooCommerce One Click Upsell Funnel](https://www.youtube.com/watch?v=Wa3NL4oy-tE)
 
 == MAIN FEATURES ==
 
