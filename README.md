@@ -1,4 +1,4 @@
-![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg) ![Active installs](https://img.shields.io/badge/Active-700%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-5.2-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-3.6.3-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-5.6-blue)
+![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg) ![Active installs](https://img.shields.io/badge/Active-700%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-5.2.2-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-3.6.5-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-5.6-blue)
 # WooCommerce One Click Upsell Funnel
 ![WooCommerce One Click Upsell Funnel](https://ps.w.org/woo-one-click-upsell-funnel/assets/banner-772x250.jpg?rev=1857606)
 * Contributors:MakeWebBetter
@@ -100,21 +100,6 @@ The manual installation method involves downloading our WooCommerce One Click Up
 # Updating 
 
 Automatic updates should work like a charm; as always though, ensure you backup your site just in case.
-
-# Screenshots 
-
-1. How Does Offer Funnel Works
-2. Create new Funnel
-3. Add Offer in the funnel
-4. Make Funnel Live
-5. Template-1
-6. Template-2
-7. Template-3
-8. Funnels List
-9. Shortcodes
-10. Global Settings
-11. Payment Gateway
-
 
 # Frequently Asked Questions
 
