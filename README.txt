@@ -1,3 +1,4 @@
+![makewebbetter.com One click upsell Banner](https://ps.w.org/woo-one-click-upsell-funnel/assets/banner-772x250.jpg?rev=1857606)
 === WooCommerce One Click Upsell Funnel ===
 
 Contributors:MakeWebBetter
