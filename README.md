@@ -3,15 +3,15 @@
 * Contributors:MakeWebBetter
 * Donate link: http://makewebbetter.com/
 * Tags: woocommerce,store,upsell,funnel,increase sales,one click,offers,post purchase,cod
-* Requires at least: 4.0
-* Tested up to: 5.2
+* Requires WP at least: 4.0
+* Tested up to WP: 5.2
 * WC requires at least: 3.0.0
 * WC tested up to: 3.6.3
 * Stable tag: 2.0.1
 * Requires PHP: 5.6
 * License: GPLv3 or later 
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
-
+[![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg)](https://travis-ci.org/twbs/bootstrap)
 
 # Description
 
