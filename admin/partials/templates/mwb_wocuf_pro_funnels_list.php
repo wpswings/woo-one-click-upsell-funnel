@@ -144,7 +144,7 @@ else {
 
 								$product = wc_get_product( $single_target_product );
 								?>
-								<p><?php echo esc_html( $product->get_title() ) . "( #" . esc_html( $single_target_product ) . " )"; ?></p>
+								<p><?php echo esc_html( $product->get_title() ) . '( #' . esc_html( $single_target_product ) . ' )'; ?></p>
 								<?php
 
 							endforeach;
@@ -181,7 +181,7 @@ else {
 									continue;
 								}
 								?>
-								<p><?php echo '<strong>' . esc_html__( 'Offer', 'woocommerce-one-click-upsell-funnel-pro' ) . ' #' . esc_html( $offer_key ) . '</strong> &rarr; ' . esc_html( $product->get_title() ) . "( #" . $single_offer_product . " )"; ?></p>
+								<p><?php echo '<strong>' . esc_html__( 'Offer', 'woocommerce-one-click-upsell-funnel-pro' ) . ' #' . esc_html( $offer_key ) . '</strong> &rarr; ' . esc_html( $product->get_title() ) . '( #' . $single_offer_product . ' )'; ?></p>
 								<?php
 
 							endforeach;

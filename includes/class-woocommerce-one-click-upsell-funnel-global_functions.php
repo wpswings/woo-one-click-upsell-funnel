@@ -271,7 +271,7 @@ function mwb_upsell_lite_lite_elementor_offer_template_3() {
 	// phpcs:disable
 	$elementor_data = file_get_contents( MWB_WOCUF_DIRPATH . 'json/offer-template-3.json' );
 	// phpcs:enable
-	
+
 	return $elementor_data;
 }
 

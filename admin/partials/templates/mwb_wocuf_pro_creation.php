@@ -73,7 +73,6 @@ if ( ! isset( $_GET['funnel_id'] ) ) {
 		// Firstly it was 0 now changed it to 1, make sure that doesn't cause any issues.
 		$mwb_wocuf_pro_funnel_id = 1;
 	}
-
 } else {
 
 	// Retrieve new funnel id from GET parameter when redirected from funnel list's page.
@@ -576,7 +575,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 									?>
 
-									<option value="<?php echo esc_html( $current_offer_product_id ); ?>" selected="selected"><?php echo esc_html( $product_title ) . "( #". esc_html( $current_offer_product_id ) . " )"; ?>
+									<option value="<?php echo esc_html( $current_offer_product_id ); ?>" selected="selected"><?php echo esc_html( $product_title ) . '( #' . esc_html( $current_offer_product_id ) . ' )'; ?>
 										</option>
 
 									<?php

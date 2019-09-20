@@ -420,9 +420,9 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 			$funnel_id = sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) );
 
-			$order_key = sanitize_text_field(  wp_unslash( $_GET['ocuf_ok'] ) );
+			$order_key = sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) );
 
-			$wp_nonce = sanitize_text_field(  wp_unslash( $_GET['ocuf_ns'] ) );
+			$wp_nonce = sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) );
 
 			$order_id = wc_get_order_id_by_order_key( $order_key );
 
@@ -765,7 +765,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 */
 	public function mwb_wocuf_pro_charge_the_offer() {
 
-		if ( ( isset( $_POST['mwb_wocuf_post_nonce'] ) && wp_verify_nonce( $_POST['mwb_wocuf_post_nonce'] , 'mwb_wocuf_field_post_nonce' ) &&  isset( $_POST['mwb_wocuf_pro_buy'] ) ) || isset( $_GET['mwb_wocuf_pro_buy'] ) ) {
+		if ( ( isset( $_POST['mwb_wocuf_post_nonce'] ) && wp_verify_nonce( $_POST['mwb_wocuf_post_nonce'], 'mwb_wocuf_field_post_nonce' ) && isset( $_POST['mwb_wocuf_pro_buy'] ) ) || isset( $_GET['mwb_wocuf_pro_buy'] ) ) {
 
 			unset( $_POST['mwb_wocuf_pro_buy'] );
 
@@ -1801,7 +1801,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) ) : '';
 
-		$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] )) : '';
+		$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) ) : '';
 
 		$wp_nonce = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) ) : '';
 
@@ -1884,9 +1884,9 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) ) : '';
 
-		$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field(  wp_unslash( $_GET['ocuf_ok'] ) ) : '';
+		$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) ) : '';
 
-		$wp_nonce = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field(  wp_unslash( $_GET['ocuf_ns'] ) ) : '';
+		$wp_nonce = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) ) : '';
 
 		$order_id = wc_get_order_id_by_order_key( $order_key );
 
@@ -2250,7 +2250,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		<script type="text/javascript">
 
-			<?php echo $global_custom_js  ?>
+			<?php echo $global_custom_js; ?>
 			
 		</script>
 

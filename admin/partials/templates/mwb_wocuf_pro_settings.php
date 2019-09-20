@@ -26,7 +26,7 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 
 	if ( empty( $mwb_wocuf_pro_create_nonce ) || ! wp_verify_nonce( $mwb_wocuf_pro_create_nonce, 'mwb_wocuf_pro_setting_nonce' ) ) {
 
-		esc_html_e( "Sorry, your nonce didn't verified. Please refresh the page",'woocommerce_one_click_upsell_funnel' );
+		esc_html_e( "Sorry, your nonce didn't verified. Please refresh the page", 'woocommerce_one_click_upsell_funnel' );
 		wp_die();
 	}
 
@@ -203,7 +203,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 							$global_product_title = get_the_title( $global_product_id );
 
 							?>
-								<option value="<?php echo esc_html( $global_product_id ); ?>" selected="selected"><?php echo esc_html( $global_product_title ) . "( #" . esc_html( $global_product_id ) . " )"; ?>
+								<option value="<?php echo esc_html( $global_product_id ); ?>" selected="selected"><?php echo esc_html( $global_product_title ) . '( #' . esc_html( $global_product_id ) . ' )'; ?>
 								</option>
 
 							<?php
