@@ -158,9 +158,14 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 
 					wp_enqueue_script( 'woocommerce_admin' );
 
+					$wocuf_js_data = array( 
+							  			'ajaxurl' 		=> admin_url( 'admin-ajax.php' ),
+							  			'auth_nonce'	=> wp_create_nonce( 'mwb_wocuf_nonce' )
+								  	);
+
 					wp_enqueue_script( 'mwb-wocuf-pro-add_new-offer-script', plugin_dir_url( __FILE__ ) . 'js/mwb_wocuf_pro_add_new_offer_script.js', array( 'woocommerce_admin', 'wc-enhanced-select' ), $this->version, false );
 
-					wp_localize_script( 'mwb-wocuf-pro-add_new-offer-script', 'ajax_url', admin_url( 'admin-ajax.php' ) );
+					wp_localize_script( 'mwb-wocuf-pro-add_new-offer-script', 'mwb', $wocuf_js_data );
 
 					if ( ! empty( $_GET['mwb-upsell-offer-section'] ) ) {
 
@@ -216,6 +221,8 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	 * @since    1.0.0
 	 */
 	public function return_funnel_offer_section_content() {
+
+		check_ajax_referer( 'mwb_wocuf_nonce' , 'nonce' );
 
 		if ( isset( $_POST['mwb_wocuf_pro_flag'] ) && isset( $_POST['mwb_wocuf_pro_funnel'] ) ) {
 
@@ -483,6 +490,8 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	 */
 	public function activate_respective_offer_template() {
 
+		check_ajax_referer( 'mwb_wocuf_nonce' , 'nonce' );
+
 		$funnel_id = isset( $_POST['funnel_id'] ) ? sanitize_text_field( $_POST['funnel_id'] ) : '';
 		$offer_id = isset( $_POST['offer_id'] ) ? sanitize_text_field( $_POST['offer_id'] ) : '';
 		$template_id = isset( $_POST['template_id'] ) ? sanitize_text_field( $_POST['template_id'] ) : '';
@@ -526,6 +535,8 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	 * @since    1.0.0
 	 */
 	public function seach_products_for_funnel() {
+
+		check_ajax_referer( 'mwb_wocuf_nonce' , 'nonce' );
 		$return = array();
 
 		$search_results = new WP_Query(
@@ -583,6 +594,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	 */
 	public function seach_products_for_offers() {
 
+		check_ajax_referer( 'mwb_wocuf_nonce' , 'nonce' );
 		$return = array();
 
 		$search_results = new WP_Query(
