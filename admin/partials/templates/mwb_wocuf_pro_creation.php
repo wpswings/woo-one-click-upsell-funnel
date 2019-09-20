@@ -119,7 +119,7 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 	// }
 
 	// Sanitize and strip slashes for Funnel Name.
-	$_POST['mwb_wocuf_funnel_name'] = ! empty( $_POST['mwb_wocuf_funnel_name'] ) ? stripslashes( sanitize_text_field( $_POST['mwb_wocuf_funnel_name'] ) ) : '';
+	$_POST['mwb_wocuf_funnel_name'] = ! empty( $_POST['mwb_wocuf_funnel_name'] ) ? stripslashes( sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_funnel_name'] ) ) ) : '';
 
 	// Sanitize and strip slashes for Funnel Offers custom page url.
 	$offer_custom_page_url_array = ! empty( $_POST['mwb_wocuf_offer_custom_page_url'] ) ? array_map( 'esc_url', $_POST['mwb_wocuf_offer_custom_page_url'] ) : '';

@@ -238,7 +238,9 @@ function mwb_upsell_lite_supported_gateways() {
  */
 function mwb_upsell_lite_elementor_offer_template_1() {
 
+	// phpcs:disable
 	$elementor_data = file_get_contents( MWB_WOCUF_DIRPATH . 'json/offer-template-1.json' );
+	// phpcs:enable
 
 	return $elementor_data;
 }
@@ -250,7 +252,9 @@ function mwb_upsell_lite_elementor_offer_template_1() {
  */
 function mwb_upsell_lite_elementor_offer_template_2() {
 
+	// phpcs:disable
 	$elementor_data = file_get_contents( MWB_WOCUF_DIRPATH . 'json/offer-template-2.json' );
+	// phpcs:enable
 
 	return $elementor_data;
 }
@@ -264,8 +268,10 @@ function mwb_upsell_lite_elementor_offer_template_2() {
  */
 function mwb_upsell_lite_lite_elementor_offer_template_3() {
 
+	// phpcs:disable
 	$elementor_data = file_get_contents( MWB_WOCUF_DIRPATH . 'json/offer-template-3.json' );
-
+	// phpcs:enable
+	
 	return $elementor_data;
 }
 

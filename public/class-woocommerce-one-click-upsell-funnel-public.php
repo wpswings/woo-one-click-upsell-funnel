@@ -634,6 +634,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 								<div id="mwb_wocuf_pro_variation_attributes" ></div>
 								<input type="hidden" name="ocuf_ofd" value="' . $offer_id . '">
 								<input type="hidden" name="ocuf_ok" value="' . $order_key . '">
+								<input type="hidden" name="mwb_wocuf_post_nonce" value="' . wp_create_nonce( 'mwb_wocuf_field_post_nonce' ) . '">
 								<button data-id="' . $funnel_id . '" style="background-color:' . $mwb_wocuf_pro_buy_button_color . '" class="mwb_wocuf_pro_buy mwb_wocuf_pro_custom_buy" type="submit" name="mwb_wocuf_pro_buy">' . $mwb_wocuf_pro_buy_text . '</button></form>
 								<a style="color:' . $ocuf_th_button_color . '" class="mwb_wocuf_pro_skip mwb_wocuf_pro_no" href="?ocuf_ns=' . $wp_nonce . '&ocuf_th=1&ocuf_ok=' . $order_key . '&ocuf_ofd=' . $offer_id . '&ocuf_fid=' . $funnel_id . '">' . $mwb_wocuf_pro_no_text . '</a>
 								</div>
@@ -764,7 +765,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 */
 	public function mwb_wocuf_pro_charge_the_offer() {
 
-		if ( isset( $_POST['mwb_wocuf_pro_buy'] ) || isset( $_GET['mwb_wocuf_pro_buy'] ) ) {
+		if ( ( isset( $_POST['mwb_wocuf_post_nonce'] ) && wp_verify_nonce( $_POST['mwb_wocuf_post_nonce'] , 'mwb_wocuf_field_post_nonce' ) &&  isset( $_POST['mwb_wocuf_pro_buy'] ) ) || isset( $_GET['mwb_wocuf_pro_buy'] ) ) {
 
 			unset( $_POST['mwb_wocuf_pro_buy'] );
 
@@ -1925,6 +1926,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 							<input type="hidden" name="product_id" class="mwb_wocuf_pro_variation_id" value="' . absint( $product->get_id() ) . '">
 							<input type="hidden" name="ocuf_ofd" value="' . $offer_id . '">
 							<input type="hidden" name="ocuf_ok" value="' . $order_key . '">
+							<input type="hidden" name="mwb_wocuf_post_nonce" value="' . wp_create_nonce( 'mwb_wocuf_field_post_nonce' ) . '">
 							<button style="' . $atts['style'] . '" class="mwb_wocuf_pro_custom_buy ' . $atts['class'] . '" type="submit" onclick="" name="mwb_wocuf_pro_buy">' . $content . '</button>
 						</form>';
 
@@ -1935,6 +1937,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 						<input type="hidden" name="product_id" class="mwb_wocuf_pro_variation_id" value="">
 						<input type="hidden" name="ocuf_ofd" value="' . $offer_id . '">
 						<input type="hidden" name="ocuf_ok" value="' . $order_key . '">
+						<input type="hidden" name="mwb_wocuf_post_nonce" value="' . wp_create_nonce( 'mwb_wocuf_field_post_nonce' ) . '">
 						<button style="' . $atts['style'] . '" class="mwb_wocuf_pro_custom_buy ' . $atts['class'] . '" type="submit" name="mwb_wocuf_pro_buy">' . $content . '</button>
 					</form>';
 		}
@@ -2214,7 +2217,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		<style type="text/css">
 
-			<?php echo wp_unslash( $global_custom_css ); ?>
+			<?php echo $global_custom_css; ?>
 			
 		</style>
 
@@ -2247,7 +2250,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		<script type="text/javascript">
 
-			<?php echo wp_unslash( $global_custom_js ); ?>
+			<?php echo $global_custom_js  ?>
 			
 		</script>
 
