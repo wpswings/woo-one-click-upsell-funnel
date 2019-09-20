@@ -105,29 +105,29 @@ class Woocommerce_one_click_upsell_funnel {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce_one_click_upsell_funnel-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce-one-click-upsell-funnel-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce_one_click_upsell_funnel-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce-one-click-upsell-funnel-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-woocommerce_one_click_upsell_funnel-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-woocommerce-one-click-upsell-funnel-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-woocommerce_one_click_upsell_funnel-public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-woocommerce-one-click-upsell-funnel-public.php';
 
 		/**
 		 * The file responsible for defining global plugin functions.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce_one_click_upsell_funnel-global_functions.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce-one-click-upsell-funnel-global_functions.php';
 
 		$this->loader = new Woocommerce_one_click_upsell_funnel_Loader();
 

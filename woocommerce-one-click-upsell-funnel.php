@@ -79,7 +79,7 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 	 * This action is documented in includes/class-woocommerce_one_click_upsell_funnel_pro-activator.php
 	 */
 	function activate_woocommerce_one_click_upsell_funnel() {
-		include_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce_one_click_upsell_funnel-activator.php';
+		include_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-one-click-upsell-funnel-activator.php';
 		Woocommerce_one_click_upsell_funnel_Activator::activate();
 	}
 
@@ -88,7 +88,7 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 	 * This action is documented in includes/class-woocommerce_one_click_upsell_funnel_pro-deactivator.php
 	 */
 	function deactivate_woocommerce_one_click_upsell_funnel() {
-		include_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce_one_click_upsell_funnel-deactivator.php';
+		include_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-one-click-upsell-funnel-deactivator.php';
 		woocommerce_one_click_upsell_funnel_Deactivator::deactivate();
 	}
 
@@ -131,7 +131,7 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 	 * The core plugin class that is used to define internationalization,
 	 * admin-specific hooks, and public-facing site hooks.
 	 */
-	include plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce_one_click_upsell_funnel.php';
+	include plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-one-click-upsell-funnel.php';
 
 	/**
 	 * Begins execution of the plugin.
