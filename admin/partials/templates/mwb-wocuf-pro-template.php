@@ -7,17 +7,18 @@
  
 <html <?php language_attributes(); ?> class="no-js">
 <head>
-    <meta charset="<?php bloginfo( 'charset' ); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php wp_head(); ?>
+	<meta charset="<?php bloginfo( 'charset' ); ?>">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<?php wp_head(); ?>
 
-    <?php // add tracking scripts ?>
+	<?php // add tracking scripts ?>
 </head>
 <body>
 <?php
-    while ( have_posts() ) : the_post();   
-        the_content();
-    endwhile;
+while ( have_posts() ) :
+	the_post();
+	the_content();
+	endwhile;
 ?>
 <?php wp_footer(); ?>
 </body>

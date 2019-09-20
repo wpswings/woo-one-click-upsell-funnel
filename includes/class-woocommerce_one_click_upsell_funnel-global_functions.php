@@ -3,7 +3,7 @@
 /**
  * The file that defines the global plugin functions.
  *
- * All Global functions that are used through out the plugin.  
+ * All Global functions that are used through out the plugin.
  *
  * @link       https://makewebbetter.com/
  * @since      2.0.0
@@ -22,9 +22,7 @@ function mwb_upsell_lite_elementor_plugin_active() {
 	if ( is_plugin_active( 'elementor/elementor.php' ) ) {
 
 		return true;
-	}
-
-	else {	
+	} else {
 
 		return false;
 	}
@@ -37,12 +35,10 @@ function mwb_upsell_lite_elementor_plugin_active() {
  */
 function mwb_upsell_lite_validate_upsell_nonce() {
 
-	if (  isset( $_GET['ocuf_ns'] ) && wp_verify_nonce( sanitize_text_field( $_GET['ocuf_ns'] ) , 'funnel_offers' ) ) {
+	if ( isset( $_GET['ocuf_ns'] ) && wp_verify_nonce( sanitize_text_field( $_GET['ocuf_ns'] ), 'funnel_offers' ) ) {
 
 		return true;
-	}
-
-	else {	
+	} else {
 
 		return false;
 	}
@@ -57,21 +53,21 @@ function mwb_upsell_lite_get_product_discount() {
 
 	$mwb_wocuf_pro_offered_discount = '';
 
-	$funnel_id = isset( $_GET[ 'ocuf_fid' ] )? sanitize_text_field( $_GET[ 'ocuf_fid' ] ) : 'not_set';
-	$offer_id = isset( $_GET[ 'ocuf_ofd' ] )? sanitize_text_field( $_GET[ 'ocuf_ofd' ] ) : 'not_set';
-	
+	$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( $_GET['ocuf_fid'] ) : 'not_set';
+	$offer_id = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( $_GET['ocuf_ofd'] ) : 'not_set';
+
 	// If Live offer.
-	if( 'not_set' !== $funnel_id && 'not_set' !== $offer_id ) {
+	if ( 'not_set' !== $funnel_id && 'not_set' !== $offer_id ) {
 
 		$mwb_wocuf_pro_all_funnels = get_option( 'mwb_wocuf_funnels_list' );
 
-		$mwb_wocuf_pro_offered_discount	= $mwb_wocuf_pro_all_funnels[$funnel_id]["mwb_wocuf_offer_discount_price"][$offer_id];
+		$mwb_wocuf_pro_offered_discount = $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ];
 
-		$mwb_wocuf_pro_offered_discount	= !empty( $mwb_wocuf_pro_all_funnels[$funnel_id]["mwb_wocuf_offer_discount_price"][$offer_id] ) ? $mwb_wocuf_pro_all_funnels[$funnel_id]["mwb_wocuf_offer_discount_price"][$offer_id] : '';
+		$mwb_wocuf_pro_offered_discount = ! empty( $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] ) ? $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] : '';
 	}
 
 	// When not live and only for admin view.
-	elseif( current_user_can( 'manage_options' ) ) {
+	elseif ( current_user_can( 'manage_options' ) ) {
 
 		// Get funnel and offer id from current offer page post id.
 		global $post;
@@ -81,19 +77,19 @@ function mwb_upsell_lite_get_product_discount() {
 
 		$product_found_in_funnel = false;
 
-		if( !empty( $funnel_data ) && is_array( $funnel_data ) && count( $funnel_data ) ) {
+		if ( ! empty( $funnel_data ) && is_array( $funnel_data ) && count( $funnel_data ) ) {
 
 			$funnel_id = $funnel_data['funnel_id'];
 			$offer_id = $funnel_data['offer_id'];
 
-			if( isset( $funnel_id ) && isset( $offer_id ) ) {
+			if ( isset( $funnel_id ) && isset( $offer_id ) ) {
 
 				$mwb_wocuf_pro_all_funnels = get_option( 'mwb_wocuf_funnels_list' );
 
 				// When New offer is added ( Not saved ) so only at that time it will return 50%.
-				$mwb_wocuf_pro_offered_discount	= isset( $mwb_wocuf_pro_all_funnels[$funnel_id]["mwb_wocuf_offer_discount_price"][$offer_id] ) ? $mwb_wocuf_pro_all_funnels[$funnel_id]["mwb_wocuf_offer_discount_price"][$offer_id] : '50%';
+				$mwb_wocuf_pro_offered_discount = isset( $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] ) ? $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] : '50%';
 
-				$mwb_wocuf_pro_offered_discount	= !empty( $mwb_wocuf_pro_offered_discount ) ? $mwb_wocuf_pro_offered_discount : '';
+				$mwb_wocuf_pro_offered_discount = ! empty( $mwb_wocuf_pro_offered_discount ) ? $mwb_wocuf_pro_offered_discount : '';
 			}
 		}
 
@@ -103,8 +99,8 @@ function mwb_upsell_lite_get_product_discount() {
 			// Get global product discount.
 
 			$mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', array() );
-										
-			$global_product_discount = isset( $mwb_upsell_global_settings['global_product_discount'] ) ? $mwb_upsell_global_settings['global_product_discount'] : '50%'; 
+
+			$global_product_discount = isset( $mwb_upsell_global_settings['global_product_discount'] ) ? $mwb_upsell_global_settings['global_product_discount'] : '50%';
 
 			$mwb_wocuf_pro_offered_discount = $global_product_discount;
 		}
@@ -122,12 +118,12 @@ function mwb_upsell_lite_get_pid_from_url_params() {
 
 	$params['status'] = 'false';
 
-	if ( isset( $_GET['ocuf_ofd'] ) && isset( $_GET['ocuf_fid'] ) ) {	
+	if ( isset( $_GET['ocuf_ofd'] ) && isset( $_GET['ocuf_fid'] ) ) {
 
 		$params['status'] = 'true';
 
-		$params['offer_id'] = sanitize_text_field( $_GET["ocuf_ofd"] );
-		$params['funnel_id'] = sanitize_text_field( $_GET["ocuf_fid"] );
+		$params['offer_id'] = sanitize_text_field( $_GET['ocuf_ofd'] );
+		$params['funnel_id'] = sanitize_text_field( $_GET['ocuf_fid'] );
 	}
 
 	return $params;
@@ -146,22 +142,20 @@ function mwb_upsell_lite_live_offer_url_params() {
 
 		$params['status'] = 'true';
 
-		$params['upsell_nonce'] = sanitize_text_field( $_POST["ocuf_ns"] );
-		$params['order_key'] = sanitize_text_field( $_POST["ocuf_ok"] );
-		$params['offer_id'] = sanitize_text_field( $_POST["ocuf_ofd"] );
-		$params['funnel_id'] = sanitize_text_field( $_POST["ocuf_fid"] );
-		$params['product_id'] = sanitize_text_field( $_POST["product_id"] );
-	}
-
-	elseif( isset( $_GET['ocuf_ns'] ) && isset( $_GET['ocuf_ok'] ) && isset( $_GET['ocuf_ofd'] ) && isset( $_GET['ocuf_fid'] ) && isset( $_GET['product_id'] ) ) {	
+		$params['upsell_nonce'] = sanitize_text_field( $_POST['ocuf_ns'] );
+		$params['order_key'] = sanitize_text_field( $_POST['ocuf_ok'] );
+		$params['offer_id'] = sanitize_text_field( $_POST['ocuf_ofd'] );
+		$params['funnel_id'] = sanitize_text_field( $_POST['ocuf_fid'] );
+		$params['product_id'] = sanitize_text_field( $_POST['product_id'] );
+	} elseif ( isset( $_GET['ocuf_ns'] ) && isset( $_GET['ocuf_ok'] ) && isset( $_GET['ocuf_ofd'] ) && isset( $_GET['ocuf_fid'] ) && isset( $_GET['product_id'] ) ) {
 
 		$params['status'] = 'true';
 
-		$params['upsell_nonce'] = sanitize_text_field( $_GET["ocuf_ns"] );
-		$params['order_key'] = sanitize_text_field( $_GET["ocuf_ok"] );
-		$params['offer_id'] = sanitize_text_field( $_GET["ocuf_ofd"] );
-		$params['funnel_id'] = sanitize_text_field( $_GET["ocuf_fid"] );
-		$params['product_id'] = sanitize_text_field( $_GET["product_id"] );
+		$params['upsell_nonce'] = sanitize_text_field( $_GET['ocuf_ns'] );
+		$params['order_key'] = sanitize_text_field( $_GET['ocuf_ok'] );
+		$params['offer_id'] = sanitize_text_field( $_GET['ocuf_ofd'] );
+		$params['funnel_id'] = sanitize_text_field( $_GET['ocuf_fid'] );
+		$params['product_id'] = sanitize_text_field( $_GET['product_id'] );
 	}
 
 	return $params;
@@ -179,20 +173,22 @@ function mwb_upsell_lite_offer_page_posts_deletion() {
 	// Get all saved offer post ids.
 	$saved_offer_post_ids = get_option( 'mwb_upsell_lite_offer_post_ids', array() );
 
-	if( !empty( $all_created_funnels ) && is_array( $all_created_funnels ) && count( $all_created_funnels
-	 ) && !empty( $saved_offer_post_ids ) && is_array( $saved_offer_post_ids ) && count( $saved_offer_post_ids
-	 ) ) {
+	if ( ! empty( $all_created_funnels ) && is_array( $all_created_funnels ) && count(
+		$all_created_funnels
+	) && ! empty( $saved_offer_post_ids ) && is_array( $saved_offer_post_ids ) && count(
+		$saved_offer_post_ids
+	) ) {
 
 		$funnel_offer_post_ids = array();
 
-	 	// Retrieve all valid( present in funnel ) offer assigned page post ids.
+		// Retrieve all valid( present in funnel ) offer assigned page post ids.
 		foreach ( $all_created_funnels as $funnel_id => $single_funnel ) {
 
-			if( !empty( $single_funnel['mwb_upsell_post_id_assigned'] ) && is_array( $single_funnel['mwb_upsell_post_id_assigned'] ) && count( $single_funnel['mwb_upsell_post_id_assigned'] ) ) {
+			if ( ! empty( $single_funnel['mwb_upsell_post_id_assigned'] ) && is_array( $single_funnel['mwb_upsell_post_id_assigned'] ) && count( $single_funnel['mwb_upsell_post_id_assigned'] ) ) {
 
 				foreach ( $single_funnel['mwb_upsell_post_id_assigned'] as $offer_post_id ) {
-					
-					if( !empty( $offer_post_id ) ) {
+
+					if ( ! empty( $offer_post_id ) ) {
 
 						$funnel_offer_post_ids[] = $offer_post_id;
 					}
@@ -202,10 +198,10 @@ function mwb_upsell_lite_offer_page_posts_deletion() {
 
 		// Now delete save posts which are not present in funnel.
 		foreach ( $saved_offer_post_ids as $saved_offer_post_key => $saved_offer_post_id ) {
-			
-			if( !in_array( $saved_offer_post_id, $funnel_offer_post_ids ) ) {
 
-				unset( $saved_offer_post_ids[$saved_offer_post_key] );
+			if ( ! in_array( $saved_offer_post_id, $funnel_offer_post_ids ) ) {
+
+				unset( $saved_offer_post_ids[ $saved_offer_post_key ] );
 
 				// Delete post permanently.
 				wp_delete_post( $saved_offer_post_id, true );
@@ -282,7 +278,6 @@ function mwb_upsell_lite_lite_elementor_offer_template_3() {
  */
 function mwb_upsell_lite_gutenberg_offer_content() {
 
-
 	$post_content = '<!-- wp:spacer {"height":50} -->
 		<div style="height:50px" aria-hidden="true" class="wp-block-spacer"></div>
 		<!-- /wp:spacer -->
@@ -344,4 +339,4 @@ function mwb_upsell_lite_gutenberg_offer_content() {
 		<!-- /wp:spacer -->';
 
 		return $post_content;
-}	
+}
