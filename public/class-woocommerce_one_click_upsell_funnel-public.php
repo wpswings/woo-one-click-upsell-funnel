@@ -6,7 +6,7 @@
  * @link       https://makewebbetter.com/
  * @since      1.0.0
  *
- * @package    woo_one_click_upsell_funnel
+ * @package     woo_one_click_upsell_funnel
  * @subpackage woo_one_click_upsell_funnel/public
  */
 
@@ -16,7 +16,7 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    woo_one_click_upsell_funnel
+ * @package     woo_one_click_upsell_funnel
  * @subpackage woo_one_click_upsell_funnel/public
  * @author     makewebbetter <webmaster@makewebbetter.com>
  */

@@ -9,7 +9,7 @@
  * @link       http://makewebbetter.com/
  * @since      1.0.0
  *
- * @package    woo_one_click_upsell_funnel
+ * @package     woo_one_click_upsell_funnel
  * @subpackage woo_one_click_upsell_funnel/includes
  */
 
@@ -23,7 +23,7 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    woo_one_click_upsell_funnel
+ * @package     woo_one_click_upsell_funnel
  * @subpackage woo_one_click_upsell_funnel/includes
  * @author     makewebbetter <webmaster@makewebbetter.com>
  */
