@@ -638,6 +638,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 								<input type="hidden" name="ocuf_ofd" value="' . $offer_id . '">
 								<input type="hidden" name="ocuf_ok" value="' . $order_key . '">
 								<input type="hidden" name="mwb_wocuf_post_nonce" value="' . wp_create_nonce( 'mwb_wocuf_field_post_nonce' ) . '">
+								<input type="hidden" name="mwb_wocuf_after_post_nonce" value="' . wp_create_nonce( 'mwb_wocuf_after_field_post_nonce' ) . '">
 								<button data-id="' . $funnel_id . '" style="background-color:' . $mwb_wocuf_pro_buy_button_color . '" class="mwb_wocuf_pro_buy mwb_wocuf_pro_custom_buy" type="submit" name="mwb_wocuf_pro_buy">' . $mwb_wocuf_pro_buy_text . '</button></form>
 								<a style="color:' . $ocuf_th_button_color . '" class="mwb_wocuf_pro_skip mwb_wocuf_pro_no" href="?ocuf_ns=' . $wp_nonce . '&ocuf_th=1&ocuf_ok=' . $order_key . '&ocuf_ofd=' . $offer_id . '&ocuf_fid=' . $funnel_id . '">' . $mwb_wocuf_pro_no_text . '</a>
 								</div>
@@ -1934,6 +1935,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 							<input type="hidden" name="ocuf_ofd" value="' . $offer_id . '">
 							<input type="hidden" name="ocuf_ok" value="' . $order_key . '">
 							<input type="hidden" name="mwb_wocuf_post_nonce" value="' . wp_create_nonce( 'mwb_wocuf_field_post_nonce' ) . '">
+							<input type="hidden" name="mwb_wocuf_after_post_nonce" value="' . wp_create_nonce( 'mwb_wocuf_after_field_post_nonce' ) . '">
 							<button style="' . $atts['style'] . '" class="mwb_wocuf_pro_custom_buy ' . $atts['class'] . '" type="submit" onclick="" name="mwb_wocuf_pro_buy">' . $content . '</button>
 						</form>';
 
@@ -1945,6 +1947,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 						<input type="hidden" name="ocuf_ofd" value="' . $offer_id . '">
 						<input type="hidden" name="ocuf_ok" value="' . $order_key . '">
 						<input type="hidden" name="mwb_wocuf_post_nonce" value="' . wp_create_nonce( 'mwb_wocuf_field_post_nonce' ) . '">
+						<input type="hidden" name="mwb_wocuf_after_post_nonce" value="' . wp_create_nonce( 'mwb_wocuf_after_field_post_nonce' ) . '">
 						<button style="' . $atts['style'] . '" class="mwb_wocuf_pro_custom_buy ' . $atts['class'] . '" type="submit" name="mwb_wocuf_pro_buy">' . $content . '</button>
 					</form>';
 		}
