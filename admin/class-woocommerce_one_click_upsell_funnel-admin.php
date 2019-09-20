@@ -801,7 +801,7 @@ class Woocommerce_one_click_upsell_funnel_Admin
 	public function mwb_wocuf_pro_maintain_report( $tabs ) {
 
 		$tabs['mwb_wocuf_reports'] = array(
-			'title' 		=>  __( 'WooCommerce One Click Upsell Funnel', 'woocommerce_one_click_upsell_funnel' ),
+			'title' 		=>  __( 'One Click Upsell Funnel for WooCommerce', 'woocommerce_one_click_upsell_funnel' ),
 			'reports' 		=> array(
 				'mwb_wocuf_report_by_date' => array(
 					'title'       => __( 'Upsell Funnel Revenue By Date', 'woocommerce_one_click_upsell_funnel' ),

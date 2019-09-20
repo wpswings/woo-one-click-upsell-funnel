@@ -57,7 +57,7 @@ do_action('mwb_wocuf_pro_setting_tab_active');
 	</div>
     
     <div class="mwb_wocuf_pro_header">
-    	<div class="mwb_wocuf_pro_setting_title"><?php esc_html_e( 'WooCommerce One Click Upsell Funnel', 'woocommerce_one_click_upsell_funnel' )?></div>
+    	<div class="mwb_wocuf_pro_setting_title"><?php esc_html_e( 'One Click Upsell Funnel for WooCommerce', 'woocommerce_one_click_upsell_funnel' )?></div>
 
         <div id="mwb_upsell_skype_connect_with_us">   
             <div class="mwb_upsell_skype_connect_title"><?php esc_html_e( 'Connect with Us in one click', 'woocommerce_one_click_upsell_funnel' )?></div>

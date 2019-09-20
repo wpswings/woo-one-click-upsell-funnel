@@ -174,7 +174,7 @@ else {
 	    <?php if( 'woo_inactive' == $mwb_upsell_lite_plugin_activation['message'] ) : ?>
 
 		    <div class="notice notice-error is-dismissible">
-		        <p><strong><?php esc_html_e( 'WooCommerce' ); ?></strong><?php esc_html_e( ' is not activated, Please activate WooCommerce first to activate ' ); ?><strong><?php esc_html_e( 'WooCommerce One Click Upsell Funnel' ); ?></strong><?php esc_html_e( '.' ); ?></p>
+		        <p><strong><?php esc_html_e( 'WooCommerce' ); ?></strong><?php esc_html_e( ' is not activated, Please activate WooCommerce first to activate ' ); ?><strong><?php esc_html_e( 'One Click Upsell Funnel for WooCommerce' ); ?></strong><?php esc_html_e( '.' ); ?></p>
 		    </div>
 
 	    <?php endif;
