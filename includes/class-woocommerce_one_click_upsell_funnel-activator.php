@@ -43,7 +43,7 @@ class Woocommerce_one_click_upsell_funnel_Activator {
 		// For Wordpress 5 and + versions, Guttenberg content will be used for default offer page. 
 		$post_content = '5' <= get_bloginfo('version') ? mwb_upsell_lite_gutenberg_offer_content() : '[mwb_wocuf_pro_funnel_default_offer_page]';
 
-		if( empty( $mwb_wocuf_pro_offer_default_page_id ) || get_post_status( $mwb_wocuf_pro_offer_default_page_id ) !== 'publish' )
+		if( empty( $mwb_wocuf_pro_offer_default_page_id ) || 'publish' !== get_post_status( $mwb_wocuf_pro_offer_default_page_id ) )
 		{
 	       	$mwb_wocuf_pro_funnel_page = array(
 				'comment_status' 		=> 'closed',

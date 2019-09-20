@@ -190,7 +190,7 @@ class Woocommerce_one_click_upsell_funnel {
 		// Insert and Activate respective template ajax handle function.
 		$this->loader->add_action( 'wp_ajax_mwb_upsell_activate_offer_template_ajax', $plugin_admin, 'activate_respective_offer_template' );
 
-		if( $mwb_wocuf_enable_plugin === "on" ) {
+		if( "on" === $mwb_wocuf_enable_plugin ) {
 
 			// Adding Upsell Orders column in Orders table in backend.
 			$this->loader->add_filter( 'manage_edit-shop_order_columns', $plugin_admin, 'mwb_wocuf_pro_add_columns_to_admin_orders', 11 );
@@ -253,10 +253,9 @@ class Woocommerce_one_click_upsell_funnel {
 
 		$this->loader->add_action( 'init', $plugin_public, 'upsell_shortcodes' );
 		
-
 		$mwb_wocuf_enable_plugin = get_option( "mwb_wocuf_enable_plugin", "on" );
 
-		if( $mwb_wocuf_enable_plugin === "on" ) {
+		if( "on" === $mwb_wocuf_enable_plugin ) {
 
 			// Initiate Upsell Orders before processing payment.
 			$this->loader->add_action( 'woocommerce_checkout_order_processed', $plugin_public, 'mwb_wocuf_initate_upsell_orders' );

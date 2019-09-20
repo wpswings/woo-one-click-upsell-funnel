@@ -71,7 +71,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 						?>
 
 						<label class="mwb_wocuf_pro_enable_plugin_label">
-							<input class="mwb_wocuf_pro_enable_plugin_input" type="checkbox" <?php echo ($mwb_wocuf_enable_plugin == 'on')?"checked='checked'":""?> name="mwb_wocuf_enable_plugin" >	
+							<input class="mwb_wocuf_pro_enable_plugin_input" type="checkbox" <?php echo ( 'on' == $mwb_wocuf_enable_plugin )?"checked='checked'":""?> name="mwb_wocuf_enable_plugin" >	
 							<span class="mwb_wocuf_pro_enable_plugin_span"></span>
 						</label>		
 					</td>

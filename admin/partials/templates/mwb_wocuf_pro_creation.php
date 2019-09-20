@@ -439,7 +439,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 					if( !empty( $mwb_wocuf_pro_offers_buy_now_offers ) ) {
 						
 						// If link is set to No thanks.
-						if( $mwb_wocuf_pro_offers_buy_now_offers[$current_offer_id] == 'thanks' ) {
+						if( 'thanks' == $mwb_wocuf_pro_offers_buy_now_offers[$current_offer_id] ) {
 
 							$mwb_wocuf_pro_buy_now_action_html = '<select name="mwb_wocuf_attached_offers_on_buy[' . $current_offer_id . ']"><option value="thanks" selected="">' . __( 'Order ThankYou Page', 'woocommerce_one_click_upsell_funnel') . '</option>' . $mwb_wocuf_pro_buy_attached_offers;
 						}
@@ -477,7 +477,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 					if( !empty( $mwb_wocuf_pro_offers_no_thanks_offers ) ) {
 
 						// If link is set to No thanks.
-						if( $mwb_wocuf_pro_offers_no_thanks_offers[$current_offer_id] == 'thanks' ) {
+						if( 'thanks' == $mwb_wocuf_pro_offers_no_thanks_offers[$current_offer_id] ) {
 
 							$mwb_wocuf_pro_no_thanks_action_html = '<select name="mwb_wocuf_attached_offers_on_no[' . $current_offer_id . ']"><option value="thanks" selected="">' . __( 'Order ThankYou Page', 'woocommerce_one_click_upsell_funnel' ) . '</option>' . $mwb_wocuf_pro_no_attached_offers;
 						}

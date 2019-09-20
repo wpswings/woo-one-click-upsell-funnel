@@ -189,7 +189,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 									{
 										$mwb_wocuf_pro_proceed = true;
 									}
-									elseif( $mwb_wocuf_pro_funnel_schedule === "7" )
+									elseif( "7" === $mwb_wocuf_pro_funnel_schedule )
 									{
 										$mwb_wocuf_pro_proceed = true;
 									}
@@ -198,7 +198,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 										$mwb_wocuf_pro_proceed = true;
 									}
 
-									if( $mwb_wocuf_pro_proceed == false )
+									if( false == $mwb_wocuf_pro_proceed )
 									{
 										// Break from placed order items loop and move to next funnel.
 										break;
@@ -371,7 +371,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 											{
 												$result = $mwb_wocuf_pro_all_funnels[$mwb_wocuf_pro_single_funnel]["mwb_wocuf_offer_custom_page_url"][$ocuf_ofd];
 											}
-											elseif( !empty( $mwb_wocuf_pro_offer_page_id ) && get_post_status( $mwb_wocuf_pro_offer_page_id ) == 'publish' )
+											elseif( !empty( $mwb_wocuf_pro_offer_page_id ) && 'publish' == get_post_status( $mwb_wocuf_pro_offer_page_id ) )
 											{
 												$result = get_page_link( $mwb_wocuf_pro_offer_page_id );
 											}
@@ -400,7 +400,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 							}
 						}
 
-						if( $mwb_wocuf_pro_flag == 1 ) {
+						if( 1 == $mwb_wocuf_pro_flag ) {
 
 							// Break from 'all funnels' loop.
 							break;
@@ -455,7 +455,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 	public function mwb_wocuf_pro_process_the_funnel() {
 
-		if( isset( $_GET["ocuf_th"] ) && $_GET["ocuf_th"] == 1 && isset( $_GET["ocuf_ofd"] ) && isset( $_GET["ocuf_fid"] ) && isset( $_GET["ocuf_ok"] ) && isset( $_GET["ocuf_ns"] ) ) {
+		if( isset( $_GET["ocuf_th"] ) && 1 == $_GET["ocuf_th"] && isset( $_GET["ocuf_ofd"] ) && isset( $_GET["ocuf_fid"] ) && isset( $_GET["ocuf_ok"] ) && isset( $_GET["ocuf_ns"] ) ) {
 
 			$offer_id = sanitize_text_field( $_GET["ocuf_ofd"] );
 
@@ -491,12 +491,12 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 			$mwb_wocuf_pro_check_action = isset( $mwb_wocuf_pro_action_on_no[$offer_id] )?$mwb_wocuf_pro_action_on_no[$offer_id]:"";
 
-			if( $mwb_wocuf_pro_check_action == "thanks" ) {
+			if( "thanks" == $mwb_wocuf_pro_check_action ) {
 
 				$this->initiate_order_payment_and_redirect( $order_id );
 			}
 
-			elseif( $mwb_wocuf_pro_check_action != "thanks" ) {
+			elseif( "thanks" != $mwb_wocuf_pro_check_action ) {
 				
 				// Next offer id.
 				$offer_id = $mwb_wocuf_pro_check_action;
@@ -566,7 +566,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 						$mwb_wocuf_pro_next_offer_url = $mwb_wocuf_pro_all_funnels[$funnel_id]["mwb_wocuf_offer_custom_page_url"][$offer_id];
 					}
 
-					elseif( !empty( $mwb_wocuf_pro_offer_page_id ) && get_post_status( $mwb_wocuf_pro_offer_page_id ) == 'publish' ) {
+					elseif( !empty( $mwb_wocuf_pro_offer_page_id ) && get_post_status(  'publish' == $mwb_wocuf_pro_offer_page_id ) ) {
 
 						$mwb_wocuf_pro_next_offer_url = get_page_link( $mwb_wocuf_pro_offer_page_id );
 					}
@@ -779,7 +779,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 			$mwb_wocuf_pro_product_price = $product_price;
 
-			if( strpos( $price, '%' ) !== FALSE )
+			if( FALSE !== strpos( $price, '%' ) )
 			{
 				$price = trim( $price, '%' );
 
@@ -904,14 +904,14 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 						if( $is_product_with_variations ) {
 
-							if( $upsell_product->get_type() == 'variation' ){
+							if( 'variation' == $upsell_product->get_type() ) {
 
 								$upsell_var_attb = $upsell_product->get_variation_attributes();
 
 								// Variation has blank attribute when it is set as 'Any..' in backend.
 								
 								// Check if upsell product variation has any blank attribute ?
-								if( array_search( '', $upsell_var_attb ) !== false ) {
+								if( false !== array_search( '', $upsell_var_attb ) ) {
 
 									// If yes then set attributes retrieved from form.
 									$upsell_product->set_attributes( $variation_attributes );
@@ -934,13 +934,13 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 					$url = "";
 
-					if( isset( $mwb_wocuf_pro_buy_action[$offer_id] ) && $mwb_wocuf_pro_buy_action[$offer_id] == "thanks" ) {	
+					if( isset( $mwb_wocuf_pro_buy_action[$offer_id] ) && "thanks" == $mwb_wocuf_pro_buy_action[$offer_id] ) {
 
 						$this->initiate_order_payment_and_redirect( $order_id );
 
 					}
 
-					elseif( isset( $mwb_wocuf_pro_buy_action[$offer_id] ) && $mwb_wocuf_pro_buy_action[$offer_id] != "thanks" )
+					elseif( isset( $mwb_wocuf_pro_buy_action[$offer_id] ) && "thanks" != $mwb_wocuf_pro_buy_action[$offer_id] )
 					{
 						// Next offer id.
 						$offer_id = $mwb_wocuf_pro_buy_action[$offer_id];
@@ -1013,7 +1013,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 									$mwb_wocuf_pro_next_offer_url = $mwb_wocuf_pro_all_funnels[$funnel_id]["mwb_wocuf_offer_custom_page_url"][$offer_id];
 								}
 
-								elseif( !empty( $mwb_wocuf_pro_offer_page_id ) && get_post_status( $mwb_wocuf_pro_offer_page_id ) == 'publish' ) {
+								elseif( !empty( $mwb_wocuf_pro_offer_page_id ) && 'publish' == get_post_status( $mwb_wocuf_pro_offer_page_id ) ) {
 
 									$mwb_wocuf_pro_next_offer_url = get_page_link( $mwb_wocuf_pro_offer_page_id );
 								}
