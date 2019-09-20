@@ -1285,19 +1285,17 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 			$product_not_selected_text = esc_html__( 'Product not selected, please save a product in offer or save a global Offer product in Global settings.', 'woocommerce_one_click_upsell_funnel' );
 
-			// phpcs:disable
 			?>
 
 			<script type="text/javascript">
 
-				var product_not_selected_text = '<?php echo $product_not_selected_text; ?>';
+				var product_not_selected_text = '<?php echo $product_not_selected_text; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  ?>';
 
 				alert( product_not_selected_text );
 				
 			</script>
 
 			<?php
-			// phpcs:enable
 		}
 
 		wp_cache_set( 'mwb_upsell_no_product_in_offer', 'true' );
@@ -2196,9 +2194,9 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		$shop_page_url = function_exists( 'wc_get_page_id' ) ? get_permalink( wc_get_page_id( 'shop' ) ) : get_permalink( woocommerce_get_page_id( 'shop' ) );
 
 		$result = '<div style="text-align: center;margin-top: 30px;" id="mwb_upsell_offer_expired"><h2 style="font-weight: 200;">' . __( 'Sorry, Offer expired.', 'woocommerce_one_click_upsell_funnel' ) . '</h2><a class="button wc-backward" href="' . $shop_page_url . '">' . esc_html__( 'Return to Shop ', 'woocommerce_one_click_upsell_funnel' ) . '&rarr;</a></div>';
-		// phpcs:disable
-		echo $result;
-		// phpcs:enable
+
+		echo $result; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
 		wp_die();
 	}
 
@@ -2228,9 +2226,8 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		<style type="text/css">
 
-			<?php // phpcs:disable 
-				echo $global_custom_css; 
-				// phpcs:enable 
+			<?php echo $global_custom_css; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
 			?>
 
 		</style>
@@ -2265,9 +2262,8 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		<script type="text/javascript">
 
 			<?php
-				// phpcs:disable
-			 		echo $global_custom_js; 
-				// phpcs:enable
+			 	echo $global_custom_js;  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
 			 ?>
 			
 		</script>
