@@ -10,18 +10,18 @@
  *
  * @link              https://makewebbetter.com/
  * @since             1.0.0
- * @package           Woocommerce_one_click_upsell_funnel
+ * @package           woo_one_click_upsell_funnel
  *
  * @wordpress-plugin
- * Plugin Name:       WooCommerce One Click Upsell Funnel
+ * Plugin Name:       One Click Upsell Funnel for Woocommerce
  * Plugin URI:        https://wordpress.org/plugins/woo-one-click-upsell-funnel/
  * Description:       Increases your woocommerce store sales instantly by showing special offers on purchased products after checkout. Offer products are purchased in a single click with Combined order. Elementor integration : Now with Built in Offer templates with Sandbox View and Edit functionality with Elementor. 
- * Version:           2.0.1
+ * Version:           2.0.2
  *
  * Requires at least: 		4.4
- * Tested up to: 			5.2
+ * Tested up to: 			5.2.3
  * WC requires at least: 	3.0
- * WC tested up to: 		3.6.3
+ * WC tested up to: 		3.7.0
  *
  * Author:            MakeWebBetter
  * Author URI:        https://makewebbetter.com/
@@ -70,7 +70,7 @@ if( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 
 	define('MWB_WOCUF_DIRPATH', plugin_dir_path( __FILE__ ));
 
-	define( 'MWB_WOCUF_VERSION', '2.0.1' );
+	define( 'MWB_WOCUF_VERSION', '2.0.2' );
 
 
 	/**

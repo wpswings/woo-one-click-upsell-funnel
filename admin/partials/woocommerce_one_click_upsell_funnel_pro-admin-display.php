@@ -8,8 +8,8 @@
  * @link       https://makewebbetter.com/
  * @since      1.0.0
  *
- * @package    Woocommerce_one_click_upsell_funnel
- * @subpackage Woocommerce_one_click_upsell_funnel/admin/partials
+ * @package    woo_one_click_upsell_funnel
+ * @subpackage woo_one_click_upsell_funnel/admin/partials
  */
 
 if ( ! defined( 'ABSPATH' ) ) 

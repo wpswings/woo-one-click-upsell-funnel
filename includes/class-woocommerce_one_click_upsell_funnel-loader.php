@@ -6,8 +6,8 @@
  * @link       http://makewebbetter.com/
  * @since      1.0.0
  *
- * @package    Woocommerce_one_click_upsell_funnel
- * @subpackage Woocommerce_one_click_upsell_funnel/includes
+ * @package    woo_one_click_upsell_funnel
+ * @subpackage woo_one_click_upsell_funnel/includes
  */
 
 /**
@@ -17,8 +17,8 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Woocommerce_one_click_upsell_funnel
- * @subpackage Woocommerce_one_click_upsell_funnel/includes
+ * @package    woo_one_click_upsell_funnel
+ * @subpackage woo_one_click_upsell_funnel/includes
  * @author     makewebbetter <webmaster@makewebbetter.com>
  */
 class Woocommerce_one_click_upsell_funnel_Loader {

@@ -6,8 +6,8 @@
  * @link       https://makewebbetter.com/
  * @since      1.0.0
  *
- * @package    Woocommerce_one_click_upsell_funnel
- * @subpackage Woocommerce_one_click_upsell_funnel/admin
+ * @package    woo_one_click_upsell_funnel
+ * @subpackage woo_one_click_upsell_funnel/admin
  */
 
 /**
@@ -16,8 +16,8 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Woocommerce_one_click_upsell_funnel
- * @subpackage Woocommerce_one_click_upsell_funnel/admin
+ * @package    woo_one_click_upsell_funnel
+ * @subpackage woo_one_click_upsell_funnel/admin
  * @author     makewebbetter <webmaster@makewebbetter.com>
  */
 class Woocommerce_one_click_upsell_funnel_Admin 
