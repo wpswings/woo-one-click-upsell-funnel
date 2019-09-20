@@ -91,7 +91,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 					<td class="forminp forminp-text">
 						<?php
 						$attribut_description = esc_html__( 'Enable Upsell plugin.', 'woocommerce_one_click_upsell_funnel' );
-						echo wc_help_tip( $attribut_description );
+						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 
 						<label class="mwb_wocuf_pro_enable_plugin_label">
@@ -112,7 +112,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 					<td class="forminp forminp-text">
 						<?php
 						$attribute_description = esc_html__( 'Please set up and activate Upsell supported payment gateways as offers will only appear through them.', 'woocommerce_one_click_upsell_funnel' );
-						echo wc_help_tip( $attribute_description );
+						echo wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 						<a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=checkout' ) ); ?>"><?php esc_html_e( 'Manage Upsell supported payment gateways &rarr;', 'woocommerce_one_click_upsell_funnel' ); ?></a>		
 					</td>
@@ -130,7 +130,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 						<?php
 						$attribut_description = __( 'Skip funnel if any offer product in funnel is already present during checkout.', 'woocommerce_one_click_upsell_funnel' );
-						echo wc_help_tip( $attribut_description );
+						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 
 						<?php
@@ -160,7 +160,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 						<?php
 						$attribut_description = __( 'Remove theme and other plugin styles from offer pages. (Not applicable for Custom Offer pages)', 'woocommerce_one_click_upsell_funnel' );
-						echo wc_help_tip( $attribut_description );
+						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 
 						<?php
@@ -190,7 +190,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 						<?php
 						$attribut_description = __( '( Not for Live Offer ) Set Global Offer Product for Sandbox View of : 1) Offer page when no offer product is set. 2) Custom page for offer.', 'woocommerce_one_click_upsell_funnel' );
-						echo wc_help_tip( $attribut_description );
+						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 
 						<select class="wc-offer-product-search mwb_upsell_offer_product" name="global_product_id" data-placeholder="<?php esc_html_e( 'Search for a product&hellip;', 'woocommerce_one_click_upsell_funnel' ); ?>">
@@ -227,7 +227,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 							<?php
 							$attribut_description = __( '( Not for Live Offer ) Set Global Offer Discount in product price for Sandbox View of : 1) Custom page for offer.', 'woocommerce_one_click_upsell_funnel' );
-							echo wc_help_tip( $attribut_description );
+							echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							?>
 
 							<?php
@@ -256,7 +256,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 							<?php
 							$attribut_description = __( 'Enter your Custom CSS without style tags.', 'woocommerce_one_click_upsell_funnel' );
-							echo wc_help_tip( $attribut_description );
+							echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							?>
 
 							<?php
@@ -284,7 +284,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 							<?php
 							$attribut_description = __( 'Enter your Custom JS without script tags.', 'woocommerce_one_click_upsell_funnel' );
-							echo wc_help_tip( $attribut_description );
+							echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							?>
 
 							<?php

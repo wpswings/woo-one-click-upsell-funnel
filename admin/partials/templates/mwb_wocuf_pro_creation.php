@@ -292,7 +292,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 						<?php
 
 						$description = esc_html__( 'Provide the name of your funnel', 'woocommerce_one_click_upsell_funnel' );
-						echo wc_help_tip( $description );
+						echo wc_help_tip( $description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 						?>
 
@@ -314,7 +314,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 						$description = esc_html__( 'If any one of these Target Products is checked out then the this funnel will be triggered and the below offers will be shown.', 'woocommerce_one_click_upsell_funnel' );
 
-						echo wc_help_tip( $description );
+						echo wc_help_tip( $description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 						?>
 
@@ -359,7 +359,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 						$description = esc_html__( 'Schedule your funnel for specific weekdays.', 'woocommerce_one_click_upsell_funnel' );
 
-						echo wc_help_tip( $description );
+						echo wc_help_tip( $description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 						?>
 
