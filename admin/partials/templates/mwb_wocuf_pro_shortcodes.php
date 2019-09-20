@@ -33,6 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<p class="mwb_upsell_shortcode">
 								<?php
 								$attribute_description = sprintf( '<p class="mwb_upsell_tip_tip">%s</p><p class="mwb_upsell_tip_tip">%s</p>', esc_html__( 'Accept Offer.', 'woocommerce_one_click_upsell_funnel' ), esc_html__( 'This shortcode only returns the link so it has to be used in the link section. In html use it as href="[mwb_upsell_yes]" of anchor tag.', 'woocommerce_one_click_upsell_funnel' ) );
+								
 								echo wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								?>
 								<span class="mwb_upsell_shortcode_title"><?php esc_html_e( 'Buy Now &rarr;', 'woocommerce_one_click_upsell_funnel' ); ?></span>
@@ -43,6 +44,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<p class="mwb_upsell_shortcode">
 								<?php
 								$attribute_description = sprintf( '<p class="mwb_upsell_tip_tip">%s</p><p class="mwb_upsell_tip_tip">%s</p>', esc_html__( 'Reject Offer.', 'woocommerce_one_click_upsell_funnel' ), esc_html__( 'This shortcode only returns the link so it has to be used in the link section. In html use it as href="[mwb_upsell_no]" of anchor tag.', 'woocommerce_one_click_upsell_funnel' ) );
+
 								echo wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								?>
 								<span class="mwb_upsell_shortcode_title"><?php esc_html_e( 'No Thanks &rarr;', 'woocommerce_one_click_upsell_funnel' ); ?></span>
@@ -63,6 +65,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<p class="mwb_upsell_shortcode">
 								<?php
 								$attribute_description = sprintf( '<p class="mwb_upsell_tip_tip">%s</p>', esc_html__( 'This shortcode returns the product title.', 'woocommerce_one_click_upsell_funnel' ) );
+
 								echo wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								?>
 								<span class="mwb_upsell_shortcode_title"><?php esc_html_e( 'Product Title &rarr;', 'woocommerce_one_click_upsell_funnel' ); ?></span>
@@ -73,6 +76,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<p class="mwb_upsell_shortcode">
 								<?php
 								$attribute_description = sprintf( '<p class="mwb_upsell_tip_tip">%s</p>', esc_html__( 'This shortcode returns the product description.', 'woocommerce_one_click_upsell_funnel' ) );
+
 								echo wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								?>
 								<span class="mwb_upsell_shortcode_title"><?php esc_html_e( 'Product Description &rarr;', 'woocommerce_one_click_upsell_funnel' ); ?></span>
@@ -83,6 +87,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<p class="mwb_upsell_shortcode">
 								<?php
 								$attribute_description = sprintf( '<p class="mwb_upsell_tip_tip">%s</p>', esc_html__( 'This shortcode returns the product short description.', 'woocommerce_one_click_upsell_funnel' ) );
+
 								echo wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								?>
 								<span class="mwb_upsell_shortcode_title"><?php esc_html_e( 'Product Short Description &rarr;', 'woocommerce_one_click_upsell_funnel' ); ?></span>
@@ -94,6 +99,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<p class="mwb_upsell_shortcode">
 								<?php
 								$attribute_description = sprintf( '<p class="mwb_upsell_tip_tip">%s</p>', esc_html__( 'This shortcode returns the product image.', 'woocommerce_one_click_upsell_funnel' ) );
+
 								echo wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								?>
 								<span class="mwb_upsell_shortcode_title"><?php esc_html_e( 'Product Image &rarr;', 'woocommerce_one_click_upsell_funnel' ); ?></span>
@@ -104,6 +110,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<p class="mwb_upsell_shortcode">
 								<?php
 								$attribute_description = sprintf( '<p class="mwb_upsell_tip_tip">%s</p>', esc_html__( 'This shortcode returns the product price.', 'woocommerce_one_click_upsell_funnel' ) );
+
 								echo wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								?>
 								<span class="mwb_upsell_shortcode_title"><?php esc_html_e( 'Product Price &rarr;', 'woocommerce_one_click_upsell_funnel' ); ?></span>
@@ -114,6 +121,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<p class="mwb_upsell_shortcode">
 								<?php
 								$attribute_description = sprintf( '<p class="mwb_upsell_tip_tip">%s</p>', esc_html__( '( Only for Pro ) This shortcode returns the product variations if offer product is a variable product.', 'woocommerce_one_click_upsell_funnel' ) );
+
 								echo wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								?>
 								<span class="mwb_upsell_shortcode_title"><?php esc_html_e( 'Product Variations &rarr;', 'woocommerce_one_click_upsell_funnel' ); ?></span>
@@ -150,7 +158,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div class="mwb_upsell_old_shortcodes_title">
 	<h2><?php esc_html_e( 'Old shortcodes ( Deprecated )', 'woocommerce_one_click_upsell_funnel' ); ?></h2>
-	<a href="#" class="mwb_upsell_old_shortcodes_link"><img src="<?php echo MWB_WOCUF_URL . 'admin/resources/down.png'; ?>"></a>
+	<a href="#" class="mwb_upsell_old_shortcodes_link"><img src="<?php echo esc_url( MWB_WOCUF_URL . 'admin/resources/down.png' ); ?>"></a>
 </div>
 
 <div class="mwb_upsell_table mwb_upsell_old_shortcodes">
@@ -163,7 +171,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<td class="forminp forminp-text">
 						<p>
 							<?php
-							$attribut_description = esc_html_e( 'This is the shortcode for accepting the offer on custom page.', 'woocommerce_one_click_upsell_funnel' );
+							$attribut_description = esc_html( 'This is the shortcode for accepting the offer on custom page.', 'woocommerce_one_click_upsell_funnel' );
+
 							echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							?>
 							<?php esc_html_e( 'Single Mode', 'woocommerce_one_click_upsell_funnel' ); ?>
@@ -171,7 +180,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 						</p>
 						<p>
 							<?php
-							$attribut_description = esc_html_e( 'This is the shortcode for accepting the offer on custom page. In wrapping mode, custom text can be used in between shortcodes.', 'woocommerce_one_click_upsell_funnel' );
+							$attribut_description = esc_html( 'This is the shortcode for accepting the offer on custom page. In wrapping mode, custom text can be used in between shortcodes.', 'woocommerce_one_click_upsell_funnel' );
+
 							echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							?>
 							<?php esc_html_e( 'Wrapping Mode', 'woocommerce_one_click_upsell_funnel' ); ?>
@@ -186,7 +196,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<td class="forminp forminp-text">
 						<p>
 							<?php
-							$attribut_description = esc_html_e( 'This is the shortcode for rejecting the offer on custom page.', 'woocommerce_one_click_upsell_funnel' );
+							$attribut_description = esc_html( 'This is the shortcode for rejecting the offer on custom page.', 'woocommerce_one_click_upsell_funnel' );
+
 							echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							?>
 							<?php esc_html_e( 'Single Mode', 'woocommerce_one_click_upsell_funnel' ); ?>
@@ -194,7 +205,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 						</p>
 						<p>
 							<?php
-							$attribut_description = esc_html_e( 'This is the shortcode for rejecting the offer on custom page. In wrapping mode, custom text can be used in between shortcodes.', 'woocommerce_one_click_upsell_funnel' );
+							$attribut_description = esc_html( 'This is the shortcode for rejecting the offer on custom page. In wrapping mode, custom text can be used in between shortcodes.', 'woocommerce_one_click_upsell_funnel' );
+
 							echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							?>
 							<?php esc_html_e( 'Wrapping Mode', 'woocommerce_one_click_upsell_funnel' ); ?>
@@ -209,7 +221,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<td class="forminp forminp-text">
 						<p>
 						<?php
-						$attribut_description = esc_html_e( 'This is the shortcode for showing the variation selector for variable products on custom offer page.', 'woocommerce_one_click_upsell_funnel' );
+						$attribut_description = esc_html( 'This is the shortcode for showing the variation selector for variable products on custom offer page.', 'woocommerce_one_click_upsell_funnel' );
+
 						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 						<?php echo '[mwb_wocuf_pro_selector]'; ?>
@@ -223,7 +236,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<td class="forminp forminp-text">
 						<p>
 						<?php
-						$attribut_description = esc_html_e( 'This is the shortcode for showing the special offer price for a product on custom page. For variable product, shows the price as well as appropriate messages.', 'woocommerce_one_click_upsell_funnel' );
+						$attribut_description = esc_html( 'This is the shortcode for showing the special offer price for a product on custom page. For variable product, shows the price as well as appropriate messages.', 'woocommerce_one_click_upsell_funnel' );
+
 						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 						<?php echo '[mwb_wocuf_pro_offer_price]'; ?>
@@ -237,7 +251,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<td class="forminp forminp-text">
 						<p>
 						<?php
-						$attribut_description = esc_html_e( "This is the shortcode for jumping directly to order details/thankyou page if customer doesn't want to buy any of your offers.", 'woocommerce_one_click_upsell_funnel' );
+						$attribut_description = esc_html( "This is the shortcode for jumping directly to order details/thankyou page if customer doesn't want to buy any of your offers.", 'woocommerce_one_click_upsell_funnel' );
+
 						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 						<?php esc_html_e( 'Single Mode', 'woocommerce_one_click_upsell_funnel' ); ?>
@@ -245,7 +260,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 						</p>
 						<p>
 						<?php
-						$attribut_description = esc_html_e( "This is the shortcode for jumping directly to order details/thankyou page if customer doesn't want to buy any of your offers. In wrapping mode, custom text can be used in between shortcodes.", 'woocommerce_one_click_upsell_funnel' );
+						$attribut_description = esc_html( "This is the shortcode for jumping directly to order details/thankyou page if customer doesn't want to buy any of your offers. In wrapping mode, custom text can be used in between shortcodes.", 'woocommerce_one_click_upsell_funnel' );
+
 						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 						<?php esc_html_e( 'Wrapping Mode', 'woocommerce_one_click_upsell_funnel' ); ?>

@@ -546,7 +546,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 					<div class="new_created_offers mwb_upsell_single_offer" data-id="<?php echo esc_html( $current_offer_id ); ?>" data-scroll-id="#offer-section-<?php echo esc_html( $current_offer_id ); ?>">
 
 						<h2 class="mwb_upsell_offer_title" >
-							<?php echo esc_html__( 'Offer #', 'woocommerce_one_click_upsell_funnel' ) . $current_offer_id; ?>
+							<?php echo esc_html__( 'Offer #', 'woocommerce_one_click_upsell_funnel' ) . esc_html( $current_offer_id ); ?>
 						</h2>
 
 						<table>
@@ -601,7 +601,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 								</th>
 
 								<td>
-								<input type="text" class="mwb_upsell_offer_price" name="mwb_wocuf_offer_discount_price[<?php echo esc_html( $current_offer_id ); ?>]" value="<?php esc_html_e( $mwb_wocuf_pro_products_discount[ $current_offer_id ] ); ?>">
+								<input type="text" class="mwb_upsell_offer_price" name="mwb_wocuf_offer_discount_price[<?php echo esc_html( $current_offer_id ); ?>]" value="<?php echo esc_html( $mwb_wocuf_pro_products_discount[ $current_offer_id ] ); ?>">
 								<span class="mwb_upsell_offer_description"><?php esc_html_e( 'Specify new offer price or discount %', 'woocommerce_one_click_upsell_funnel' ); ?></span>
 
 								</td>
@@ -614,7 +614,11 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 								</th>
 
 								<td>
-									<?php echo $mwb_wocuf_pro_buy_now_action_html; ?>
+									<?php 	
+										// phpcs:disable
+										echo $mwb_wocuf_pro_buy_now_action_html; 
+										// phpcs:enable
+									?>
 									<span class="mwb_upsell_offer_description"><?php esc_html_e( 'Select where the customer will be redirected after accepting this offer', 'woocommerce_one_click_upsell_funnel' ); ?></span>
 								</td>
 							</tr>
@@ -626,7 +630,11 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 								</th>
 
 								<td>
-									<?php echo $mwb_wocuf_pro_no_thanks_action_html; ?>
+									<?php 	
+										// phpcs:disable
+										echo $mwb_wocuf_pro_no_thanks_action_html; 
+										// phpcs:enable
+									?>
 									<span class="mwb_upsell_offer_description"><?php esc_html_e( 'Select where the customer will be redirected after rejecting this offer', 'woocommerce_one_click_upsell_funnel' ); ?></span>
 								</td>
 							</tr>
