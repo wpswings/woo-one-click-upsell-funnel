@@ -1,4 +1,15 @@
 <?php
+/**
+ * Provide a admin area view for the plugin
+ *
+ * This file is used to markup the overview of the plugin.
+ *
+ * @link       https://makewebbetter.com/
+ * @since      1.0.0
+ *
+ * @package     woo_one_click_upsell_funnel
+ * @subpackage woo_one_click_upsell_funnel/admin/partials/templates
+ */
 
 /**
  * Plugin Overview Template.
@@ -39,17 +50,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="mwb_upsell_overview_supported_product">
 
 			<div class="mwb_upsell_overview_simple_product_icon">
-				<img src="<?php echo MWB_WOCUF_URL . 'admin/resources/simple-products.png'; ?>">
+				<img src="<?php echo esc_url( MWB_WOCUF_URL . 'admin/resources/simple-products.png' ); ?>">
 				<h4><?php esc_html_e( 'Simple Products', 'woocommerce_one_click_upsell_funnel' ); ?></h4>
 			</div>
 
 			<div class="mwb_upsell_overview_simple_product_icon">
-				<img src="<?php echo MWB_WOCUF_URL . 'admin/resources/variable-products.png'; ?>">
+				<img src="<?php echo esc_url( MWB_WOCUF_URL . 'admin/resources/variable-products.png' ); ?>">
 				<h4><?php esc_html_e( 'Variable Products', 'woocommerce_one_click_upsell_funnel' ); ?></h4>
 			</div>
 
 			<div class="mwb_upsell_overview_subscription_product_icon">
-				<img src="<?php echo MWB_WOCUF_URL . 'admin/resources/subscription-products.png'; ?>">
+				<img src="<?php echo esc_url( MWB_WOCUF_URL . 'admin/resources/subscription-products.png' ); ?>">
 				<h4><?php esc_html_e( 'Subscription Products', 'woocommerce_one_click_upsell_funnel' ); ?></h4>
 			</div>
 
@@ -60,7 +71,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="mwb_upsell_overview_supported_payment_gateways">
 
 			<div class="mwb_upsell_overview_supported_payment_gateways_banner">
-				<img src="<?php echo MWB_WOCUF_URL . 'admin/resources/payment-gateways.jpg'; ?>">
+				<img src="<?php echo esc_url( MWB_WOCUF_URL . 'admin/resources/payment-gateways.jpg' ); ?>">
 			</div>
 
 		</div>
@@ -70,7 +81,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="mwb_upsell_overview_supported_woo_addons">
 
 			<div class="mwb_upsell_overview_supported_woo_addons_banner">
-				<img src="<?php echo MWB_WOCUF_URL . 'admin/resources/woo-subscription-compatibility.png'; ?>">
+				<img src="<?php echo esc_url( MWB_WOCUF_URL . 'admin/resources/woo-subscription-compatibility.png' ); ?>">
 			</div>
 
 		</div>
@@ -79,8 +90,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			<a class="button mwb_upsell_overview_go_pro_button" target="_blank" href="https://makewebbetter.com/product/woocommerce-one-click-upsell-funnel-pro/?utm_source=MWB-upsell-org&utm_medium=Overview&utm_campaign=ORG"><?php echo esc_html__( 'Upgrade to Premium', 'woocommerce_one_click_upsell_funnel' ) . ' &rarr;'; ?></a>
 		</div>
-
-
 	</div>
 
 </div>

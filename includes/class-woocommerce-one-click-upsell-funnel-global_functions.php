@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The file that defines the global plugin functions.
  *
@@ -35,7 +34,7 @@ function mwb_upsell_lite_elementor_plugin_active() {
  */
 function mwb_upsell_lite_validate_upsell_nonce() {
 
-	if ( isset( $_GET['ocuf_ns'] ) && wp_verify_nonce( sanitize_text_field( $_GET['ocuf_ns'] ), 'funnel_offers' ) ) {
+	if ( isset( $_GET['ocuf_ns'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) ), 'funnel_offers' ) ) {
 
 		return true;
 	} else {
@@ -53,8 +52,8 @@ function mwb_upsell_lite_get_product_discount() {
 
 	$mwb_wocuf_pro_offered_discount = '';
 
-	$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( $_GET['ocuf_fid'] ) : 'not_set';
-	$offer_id = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( $_GET['ocuf_ofd'] ) : 'not_set';
+	$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) ) : 'not_set';
+	$offer_id = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) ) : 'not_set';
 
 	// If Live offer.
 	if ( 'not_set' !== $funnel_id && 'not_set' !== $offer_id ) {
@@ -122,8 +121,8 @@ function mwb_upsell_lite_get_pid_from_url_params() {
 
 		$params['status'] = 'true';
 
-		$params['offer_id'] = sanitize_text_field( $_GET['ocuf_ofd'] );
-		$params['funnel_id'] = sanitize_text_field( $_GET['ocuf_fid'] );
+		$params['offer_id'] = sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) );
+		$params['funnel_id'] = sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) );
 	}
 
 	return $params;
@@ -142,20 +141,21 @@ function mwb_upsell_lite_live_offer_url_params() {
 
 		$params['status'] = 'true';
 
-		$params['upsell_nonce'] = sanitize_text_field( $_POST['ocuf_ns'] );
-		$params['order_key'] = sanitize_text_field( $_POST['ocuf_ok'] );
-		$params['offer_id'] = sanitize_text_field( $_POST['ocuf_ofd'] );
-		$params['funnel_id'] = sanitize_text_field( $_POST['ocuf_fid'] );
-		$params['product_id'] = sanitize_text_field( $_POST['product_id'] );
+		$params['upsell_nonce'] = sanitize_text_field( wp_unslash( $_POST['ocuf_ns'] ) );
+		$params['order_key'] = sanitize_text_field( wp_unslash( $_POST['ocuf_ok'] ) );
+		$params['offer_id'] = sanitize_text_field( wp_unslash( $_POST['ocuf_ofd'] ) );
+		$params['funnel_id'] = sanitize_text_field( wp_unslash( $_POST['ocuf_fid'] ) );
+		$params['product_id'] = sanitize_text_field( wp_unslash( $_POST['product_id'] ) );
+
 	} elseif ( isset( $_GET['ocuf_ns'] ) && isset( $_GET['ocuf_ok'] ) && isset( $_GET['ocuf_ofd'] ) && isset( $_GET['ocuf_fid'] ) && isset( $_GET['product_id'] ) ) {
 
 		$params['status'] = 'true';
 
-		$params['upsell_nonce'] = sanitize_text_field( $_GET['ocuf_ns'] );
-		$params['order_key'] = sanitize_text_field( $_GET['ocuf_ok'] );
-		$params['offer_id'] = sanitize_text_field( $_GET['ocuf_ofd'] );
-		$params['funnel_id'] = sanitize_text_field( $_GET['ocuf_fid'] );
-		$params['product_id'] = sanitize_text_field( $_GET['product_id'] );
+		$params['upsell_nonce'] = sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) );
+		$params['order_key'] = sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) );
+		$params['offer_id'] = sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) );
+		$params['funnel_id'] = sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) );
+		$params['product_id'] = sanitize_text_field( wp_unslash( $_GET['product_id'] ) );
 	}
 
 	return $params;

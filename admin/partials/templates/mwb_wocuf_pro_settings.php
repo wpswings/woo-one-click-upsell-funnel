@@ -1,5 +1,17 @@
 <?php
 /**
+ * Provide a admin area view for the plugin
+ *
+ * This file is used for Global settings of the plugin.
+ *
+ * @link       https://makewebbetter.com/
+ * @since      1.0.0
+ *
+ * @package     woo_one_click_upsell_funnel
+ * @subpackage  woo_one_click_upsell_funnel/admin/partials/templates
+ */
+
+/**
  * Exit if accessed directly
  */
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,9 +22,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 
 	// Nonce verification.
-	if ( empty( $_POST['mwb_wocuf_pro_nonce'] ) || ! wp_verify_nonce( $_POST['mwb_wocuf_pro_nonce'], 'mwb_wocuf_pro_setting_nonce' ) ) {
+	$mwb_wocuf_pro_create_nonce = ! empty( $_POST['mwb_wocuf_pro_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_pro_nonce'] ) ) : '';
 
-		esc_html_e( "Sorry, your nonce didn't verified. Please refresh the page" );
+	if ( empty( $mwb_wocuf_pro_create_nonce ) || ! wp_verify_nonce( $mwb_wocuf_pro_create_nonce, 'mwb_wocuf_pro_setting_nonce' ) ) {
+
+		esc_html_e( "Sorry, your nonce didn't verified. Please refresh the page",'woocommerce_one_click_upsell_funnel' );
 		wp_die();
 	}
 
@@ -22,22 +36,22 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 	$mwb_upsell_global_options['mwb_wocuf_enable_plugin'] = ! empty( $_POST['mwb_wocuf_enable_plugin'] ) ? 'on' : 'off';
 
 	// Global product id.
-	$mwb_upsell_global_options['global_product_id'] = ! empty( $_POST['global_product_id'] ) ? sanitize_text_field( $_POST['global_product_id'] ) : '';
+	$mwb_upsell_global_options['global_product_id'] = ! empty( $_POST['global_product_id'] ) ? sanitize_text_field( wp_unslash( $_POST['global_product_id'] ) ) : '';
 
 	// Global product discount.
-	$mwb_upsell_global_options['global_product_discount'] = ! empty( $_POST['global_product_discount'] ) ? sanitize_text_field( $_POST['global_product_discount'] ) : '';
+	$mwb_upsell_global_options['global_product_discount'] = ! empty( $_POST['global_product_discount'] ) ? sanitize_text_field( wp_unslash( $_POST['global_product_discount'] ) ) : '';
 
 	// Skip similar offer.
-	$mwb_upsell_global_options['skip_similar_offer'] = ! empty( $_POST['skip_similar_offer'] ) ? sanitize_text_field( $_POST['skip_similar_offer'] ) : '';
+	$mwb_upsell_global_options['skip_similar_offer'] = ! empty( $_POST['skip_similar_offer'] ) ? sanitize_text_field( wp_unslash( $_POST['skip_similar_offer'] ) ) : '';
 
 	// Skip similar offer.
-	$mwb_upsell_global_options['remove_all_styles'] = ! empty( $_POST['remove_all_styles'] ) ? sanitize_text_field( $_POST['remove_all_styles'] ) : '';
+	$mwb_upsell_global_options['remove_all_styles'] = ! empty( $_POST['remove_all_styles'] ) ? sanitize_text_field( wp_unslash( $_POST['remove_all_styles'] ) ) : '';
 
 	// Custom CSS.
-	$mwb_upsell_global_options['global_custom_css'] = ! empty( $_POST['global_custom_css'] ) ? sanitize_textarea_field( $_POST['global_custom_css'] ) : '';
+	$mwb_upsell_global_options['global_custom_css'] = ! empty( $_POST['global_custom_css'] ) ? sanitize_textarea_field( wp_unslash( $_POST['global_custom_css'] ) ) : '';
 
 	// Custom JS.
-	$mwb_upsell_global_options['global_custom_js'] = ! empty( $_POST['global_custom_js'] ) ? sanitize_textarea_field( $_POST['global_custom_js'] ) : '';
+	$mwb_upsell_global_options['global_custom_js'] = ! empty( $_POST['global_custom_js'] ) ? sanitize_textarea_field( wp_unslash( $_POST['global_custom_js'] ) ) : '';
 
 	// Save.
 	update_option( 'mwb_wocuf_enable_plugin', $mwb_upsell_global_options['mwb_wocuf_enable_plugin'] );
@@ -47,7 +61,7 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 
 	<!-- Settings saved notice. -->
 	<div class="notice notice-success is-dismissible"> 
-		<p><strong><?php _e( 'Settings saved', 'woocommerce_one_click_upsell_funnel' ); ?></strong></p>
+		<p><strong><?php esc_html_e( 'Settings saved', 'woocommerce_one_click_upsell_funnel' ); ?></strong></p>
 	</div>
 	<?php
 }
@@ -100,7 +114,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 						$attribute_description = esc_html__( 'Please set up and activate Upsell supported payment gateways as offers will only appear through them.', 'woocommerce_one_click_upsell_funnel' );
 						echo wc_help_tip( $attribute_description );
 						?>
-						<a href="<?php echo admin_url( 'admin.php?page=wc-settings&tab=checkout' ); ?>"><?php esc_html_e( 'Manage Upsell supported payment gateways &rarr;', 'woocommerce_one_click_upsell_funnel' ); ?></a>		
+						<a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=checkout' ) ); ?>"><?php esc_html_e( 'Manage Upsell supported payment gateways &rarr;', 'woocommerce_one_click_upsell_funnel' ); ?></a>		
 					</td>
 				</tr>
 				<!-- Payment Gateways end -->
@@ -189,13 +203,10 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 							$global_product_title = get_the_title( $global_product_id );
 
 							?>
-									
+								<option value="<?php echo esc_html( $global_product_id ); ?>" selected="selected"><?php echo esc_html( $global_product_title ) . "( #" . esc_html( $global_product_id ) . " )"; ?>
+								</option>
 
-								<option value="<?php echo $global_product_id; ?>" selected="selected"><?php echo $global_product_title . "( #$global_product_id )"; ?>
-									</option>
-
-								<?php
-
+							<?php
 						}
 						?>
 						</select>
@@ -225,7 +236,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 							?>
 
-							<input type="text" name="global_product_discount" value="<?php echo $global_product_discount; ?>">
+							<input type="text" name="global_product_discount" value="<?php echo esc_html( $global_product_discount ); ?>">
 						</div>
 						<span class="mwb_upsell_global_description"><?php esc_html_e( 'Specify new offer price or discount %', 'woocommerce_one_click_upsell_funnel' ); ?></span>
 					</td>
@@ -288,13 +299,12 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 				</tr>
 				<!-- Global Custom JS end -->
 				
-				
 				<?php do_action( 'mwb_wocuf_pro_create_more_settings' ); ?>
 			</tbody>
 		</table>
 	</div>
 
 	<p class="submit">
-	<input type="submit" value="<?php _e( 'Save Changes', 'woocommerce_one_click_upsell_funnel' ); ?>" class="button-primary woocommerce-save-button" name="mwb_wocuf_pro_common_settings_save" id="mwb_wocuf_pro_creation_setting_save" >
+	<input type="submit" value="<?php esc_html_e( 'Save Changes', 'woocommerce_one_click_upsell_funnel' ); ?>" class="button-primary woocommerce-save-button" name="mwb_wocuf_pro_common_settings_save" id="mwb_wocuf_pro_creation_setting_save" >
 	</p>
 </form>

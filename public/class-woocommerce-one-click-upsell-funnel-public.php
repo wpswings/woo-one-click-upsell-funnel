@@ -416,13 +416,13 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		if ( isset( $_GET['ocuf_th'] ) && 1 == $_GET['ocuf_th'] && isset( $_GET['ocuf_ofd'] ) && isset( $_GET['ocuf_fid'] ) && isset( $_GET['ocuf_ok'] ) && isset( $_GET['ocuf_ns'] ) ) {
 
-			$offer_id = sanitize_text_field( $_GET['ocuf_ofd'] );
+			$offer_id = sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) );
 
-			$funnel_id = sanitize_text_field( $_GET['ocuf_fid'] );
+			$funnel_id = sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) );
 
-			$order_key = sanitize_text_field( $_GET['ocuf_ok'] );
+			$order_key = sanitize_text_field(  wp_unslash( $_GET['ocuf_ok'] ) );
 
-			$wp_nonce = sanitize_text_field( $_GET['ocuf_ns'] );
+			$wp_nonce = sanitize_text_field(  wp_unslash( $_GET['ocuf_ns'] ) );
 
 			$order_id = wc_get_order_id_by_order_key( $order_key );
 
@@ -543,17 +543,17 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		$result = '';
 
 		if ( isset( $_GET['ocuf_ok'] ) ) {
-			$order_key = sanitize_text_field( $_GET['ocuf_ok'] );
+			$order_key = sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) );
 
 			$order_id = wc_get_order_id_by_order_key( $order_key );
 
 			if ( isset( $_GET['ocuf_ofd'] ) && isset( $_GET['ocuf_fid'] ) ) {
-				$offer_id = sanitize_text_field( $_GET['ocuf_ofd'] );
+				$offer_id = sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) );
 
-				$funnel_id = sanitize_text_field( $_GET['ocuf_fid'] );
+				$funnel_id = sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) );
 
 				if ( isset( $_GET['ocuf_ns'] ) && wp_verify_nonce( $_GET['ocuf_ns'], 'funnel_offers' ) ) {
-					$wp_nonce = sanitize_text_field( $_GET['ocuf_ns'] );
+					$wp_nonce = sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) );
 
 					$mwb_wocuf_pro_all_funnels = get_option( 'mwb_wocuf_funnels_list', array() );
 
@@ -690,11 +690,10 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 * applying offer on product price
 	 *
 	 * @since    1.0.0
-	 * @param    object $temp_product    object of product
-	 * @param    string $price           offer price
-	 * @return   object   $temp_product    object of product with new offer price
+	 * @param    object $temp_product    object of product.
+	 * @param    string $price           offer price.
+	 * @return   object   $temp_product    object of product with new offer price.
 	 */
-
 	public function mwb_wocuf_pro_change_offered_product_price( $temp_product, $price ) {
 		if ( ! empty( $price ) && ! empty( $temp_product ) ) {
 
@@ -726,6 +725,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 					$temp_product->set_price( $price );// Set active price.
 				}
+
 				/**
 				 * If sale price is not set then to show regular plus discounted price
 				 * instead of just discounted price.
@@ -777,7 +777,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 				if ( ! empty( $_POST['wocuf_var_attb'] ) ) {
 
 					// Retrieve all variations from form.
-					$variation_attributes = sanitize_text_field( $_POST['wocuf_var_attb'] );
+					$variation_attributes = sanitize_text_field( wp_unslash( $_POST['wocuf_var_attb'] ) );
 					$variation_attributes = stripslashes( $variation_attributes );
 					$variation_attributes = str_replace( "'", '"', $variation_attributes );
 
@@ -1033,7 +1033,6 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 * @since    1.0.0
 	 * @param    int $order_id    Order ID.
 	 */
-
 	public function initiate_order_payment_and_redirect( $order_id ) {
 
 		$result = $this->upsell_order_final_payment( $order_id );
@@ -1068,7 +1067,6 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 * @since    1.0.0
 	 * @param    int $order_id    Order ID.
 	 */
-
 	public function upsell_order_final_payment( $order_id = '' ) {
 
 		if ( empty( $order_id ) ) {
@@ -1101,7 +1099,6 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 * @param    $args              args for variable product dropdown
 	 * @return   $html              html for variable product dropdown
 	 */
-
 	public function mwb_wocuf_pro_variation_attribute_options( $args = array() ) {
 
 		$args = wp_parse_args(
@@ -1570,10 +1567,10 @@ class Woocommerce_one_click_upsell_funnel_Public {
 						$buy_now_link = '#mwb_upsell';
 					} else {
 
-						$wp_nonce = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field( $_GET['ocuf_ns'] ) : '';
-						$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( $_GET['ocuf_ok'] ) : '';
-						$offer_id = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( $_GET['ocuf_ofd'] ) : '';
-						$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( $_GET['ocuf_fid'] ) : '';
+						$wp_nonce = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) ) : '';
+						$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) ) : '';
+						$offer_id = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) ) : '';
+						$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) ) : '';
 
 						$buy_now_link = '?mwb_wocuf_pro_buy=true&ocuf_ns=' . $wp_nonce . '&ocuf_ok=' . $order_key . '&ocuf_ofd=' . $offer_id . '&ocuf_fid=' . $funnel_id . '&product_id=' . $product_id;
 					}
@@ -1612,10 +1609,10 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 				if ( 'live_offer' == $validate_shortcode ) {
 
-					$wp_nonce = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field( $_GET['ocuf_ns'] ) : '';
-					$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( $_GET['ocuf_ok'] ) : '';
-					$offer_id = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( $_GET['ocuf_ofd'] ) : '';
-					$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( $_GET['ocuf_fid'] ) : '';
+					$wp_nonce = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) ) : '';
+					$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) ) : '';
+					$offer_id = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) ) : '';
+					$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) ) : '';
 
 					$no_thanks_link = '?ocuf_ns=' . $wp_nonce . '&ocuf_th=1&ocuf_ok=' . $order_key . '&ocuf_ofd=' . $offer_id . '&ocuf_fid=' . $funnel_id;
 				} elseif ( 'admin_view' == $validate_shortcode ) {
@@ -1677,7 +1674,6 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 * @param       $atts           attributes of the shortcode
 	 * @param       $content        content under wrapping mode
 	 */
-
 	public function mwb_wocuf_pro_custom_page_product_offer_price( $atts, $content = '' ) {
 		$atts = shortcode_atts(
 			array(
@@ -1703,7 +1699,6 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 * @param       $atts           attributes of the shortcode
 	 * @param       $content        content under wrapping mode
 	 */
-
 	public function mwb_wocuf_pro_custom_page_action_link_yes( $atts, $content = '' ) {
 		$atts = shortcode_atts(
 			array(
@@ -1729,7 +1724,6 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 * @param       $atts           attributes of the shortcode
 	 * @param       $content        content under wrapping mode
 	 */
-
 	public function mwb_wocuf_pro_custom_page_order_details_link( $atts, $content = '' ) {
 		$atts = shortcode_atts(
 			array(
@@ -1748,6 +1742,13 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		);
 	}
 
+	/**
+	 * Showing order details at thankyou page.
+	 *
+	 * @since       1.0.0
+	 * @param       $atts           attributes of the shortcode
+	 * @param       $content        content under wrapping mode
+	 */
 	public function mwb_wocuf_pro_custom_page_order_details_link_for_all( $atts, $content = '' ) {
 		$result = '';
 
@@ -1764,7 +1765,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 			$content = apply_filters( 'mwb_wocuf_pro_order_details_link_text', $content );
 		}
 
-		$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( $_GET['ocuf_ok'] ) : '';
+		$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) ) : '';
 
 		$order_id = wc_get_order_id_by_order_key( $order_key );
 
@@ -1777,7 +1778,13 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		return $result;
 	}
 
-
+	/**
+	 * Internal functioning of price shortcode.
+	 *
+	 * @since       1.0.0
+	 * @param       $atts           attributes of the shortcode
+	 * @param       $content        content under wrapping mode
+	 */
 	public function mwb_wocuf_pro_custom_page_offer_price_for_all( $atts, $content = '' ) {
 		 $result = '';
 
@@ -1789,13 +1796,13 @@ class Woocommerce_one_click_upsell_funnel_Public {
 			$atts['class'] = '';
 		}
 
-		$offer_id = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( $_GET['ocuf_ofd'] ) : '';
+		$offer_id = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) ) : '';
 
-		$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( $_GET['ocuf_fid'] ) : '';
+		$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) ) : '';
 
-		$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( $_GET['ocuf_ok'] ) : '';
+		$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] )) : '';
 
-		$wp_nonce = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field( $_GET['ocuf_ns'] ) : '';
+		$wp_nonce = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) ) : '';
 
 		$order_id = wc_get_order_id_by_order_key( $order_key );
 
@@ -1843,13 +1850,12 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	}
 
 	/**
-	 * creating shortcode for yes link on custom page for simple as well as variable product
+	 * Internal functioning of yes link shortcode.
 	 *
 	 * @since       1.0.0
 	 * @param       $atts           attributes of the shortcode
 	 * @param       $content        content under wrapping mode
 	 */
-
 	public function mwb_wocuf_pro_custom_page_yes_link_for_all( $atts, $content = '' ) {
 		$result = '';
 
@@ -1873,13 +1879,13 @@ class Woocommerce_one_click_upsell_funnel_Public {
 			$content = $mwb_wocuf_pro_buy_text;
 		}
 
-		$offer_id = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( $_GET['ocuf_ofd'] ) : '';
+		$offer_id = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) ) : '';
 
-		$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( $_GET['ocuf_fid'] ) : '';
+		$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) ) : '';
 
-		$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( $_GET['ocuf_ok'] ) : '';
+		$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field(  wp_unslash( $_GET['ocuf_ok'] ) ) : '';
 
-		$wp_nonce = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field( $_GET['ocuf_ns'] ) : '';
+		$wp_nonce = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field(  wp_unslash( $_GET['ocuf_ns'] ) ) : '';
 
 		$order_id = wc_get_order_id_by_order_key( $order_key );
 
@@ -1937,13 +1943,12 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	}
 
 	/**
-	 * creating shortcode for thanks link on custom page
+	 * creating shortcode for thanks link on custom page.
 	 *
 	 * @since       1.0.0
 	 * @param       $atts           attributes of the shortcode
 	 * @param       $content        content under wrapping mode
 	 */
-
 	public function mwb_wocuf_pro_custom_page_action_link_no( $atts, $content = '' ) {
 		$atts = shortcode_atts(
 			array(
@@ -1969,7 +1974,6 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 * @param       $atts           attributes of the shortcode
 	 * @param       $content        content under wrapping mode
 	 */
-
 	public function mwb_wocuf_pro_custom_page_no_link_for_all( $atts, $content = '' ) {
 		$result = '';
 
@@ -1981,13 +1985,13 @@ class Woocommerce_one_click_upsell_funnel_Public {
 			$atts['class'] = '';
 		}
 
-		$offer_id = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( $_GET['ocuf_ofd'] ) : '';
+		$offer_id = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) ) : '';
 
-		$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( $_GET['ocuf_fid'] ) : '';
+		$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) ) : '';
 
-		$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( $_GET['ocuf_ok'] ) : '';
+		$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) ) : '';
 
-		$wp_nonce = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field( $_GET['ocuf_ns'] ) : '';
+		$wp_nonce = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) ) : '';
 
 		$order_id = wc_get_order_id_by_order_key( $order_key );
 

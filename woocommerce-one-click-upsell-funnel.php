@@ -109,6 +109,9 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 
 	add_filter( 'plugin_row_meta', 'mwb_upsell_lite_add_doc_and_premium_link', 10, 2 );
 
+	/**
+	 * This action is for add premium version link.
+	 */
 	function mwb_upsell_lite_add_doc_and_premium_link( $links, $file ) {
 		if ( false !== strpos( $file, 'woocommerce_one_click_upsell_funnel.php' ) ) {
 
@@ -152,9 +155,12 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 	run_woocommerce_one_click_upsell_funnel();
 } else {
 
+	// Deactivation of plugin at dependency failed.
 	add_action( 'admin_init', 'mwb_upsell_lite_plugin_activation_failure' );
 
-	// Deactivate this plugin.
+	/**
+	 * Deactivate this plugin.
+	 */
 	function mwb_upsell_lite_plugin_activation_failure() {
 
 		deactivate_plugins( plugin_basename( __FILE__ ) );
@@ -163,12 +169,14 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 	// Add admin error notice.
 	add_action( 'admin_notices', 'mwb_upsell_lite_plugin_activation_admin_notice' );
 
-	// This function is used to display plugin activation error notice.
+	/**
+	 * This function is used to display plugin activation error notice.
+	 */
 	function mwb_upsell_lite_plugin_activation_admin_notice() {
 
 		global $mwb_upsell_lite_plugin_activation;
 
-		// to hide Plugin activated notice.
+		// To hide Plugin activated notice.
 		unset( $_GET['activate'] );
 
 		?>

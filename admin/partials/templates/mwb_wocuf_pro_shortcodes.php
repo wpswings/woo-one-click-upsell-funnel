@@ -1,5 +1,17 @@
 <?php
 /**
+ * Provide a admin area view for the plugin
+ *
+ * This file is used for listing all the shortcodes of the plugin.
+ *
+ * @link       https://makewebbetter.com/
+ * @since      1.0.0
+ *
+ * @package     woo_one_click_upsell_funnel
+ * @subpackage  woo_one_click_upsell_funnel/admin/partials/templates
+ */
+
+/**
  * Exit if accessed directly
  */
 
@@ -146,58 +158,58 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<tbody>
 				<tr valign="top">
 					<th scope="row" class="titledesc">
-						<label for="mwb_wocuf_pro_shortcode_2"><?php _e( 'Shortcode for "Buy Now"', 'woocommerce_one_click_upsell_funnel' ); ?></label>
+						<label for="mwb_wocuf_pro_shortcode_2"><?php esc_html_e( 'Shortcode for "Buy Now"', 'woocommerce_one_click_upsell_funnel' ); ?></label>
 					</th>
 					<td class="forminp forminp-text">
 						<p>
 							<?php
-							$attribut_description = __( 'This is the shortcode for accepting the offer on custom page.', 'woocommerce_one_click_upsell_funnel' );
+							$attribut_description = esc_html_e( 'This is the shortcode for accepting the offer on custom page.', 'woocommerce_one_click_upsell_funnel' );
 							echo wc_help_tip( $attribut_description );
 							?>
-							<?php _e( 'Single Mode', 'woocommerce_one_click_upsell_funnel' ); ?>
-							<?php echo ' : ' . '[mwb_wocuf_pro_yes]'; ?>
+							<?php esc_html_e( 'Single Mode', 'woocommerce_one_click_upsell_funnel' ); ?>
+							<?php echo ' : [mwb_wocuf_pro_yes]'; ?>
 						</p>
 						<p>
 							<?php
-							$attribut_description = __( 'This is the shortcode for accepting the offer on custom page. In wrapping mode, custom text can be used in between shortcodes.', 'woocommerce_one_click_upsell_funnel' );
+							$attribut_description = esc_html_e( 'This is the shortcode for accepting the offer on custom page. In wrapping mode, custom text can be used in between shortcodes.', 'woocommerce_one_click_upsell_funnel' );
 							echo wc_help_tip( $attribut_description );
 							?>
-							<?php _e( 'Wrapping Mode', 'woocommerce_one_click_upsell_funnel' ); ?>
-							<?php echo ':' . '[mwb_wocuf_pro_yes]...[/mwb_wocuf_pro_yes]'; ?>
+							<?php esc_html_e( 'Wrapping Mode', 'woocommerce_one_click_upsell_funnel' ); ?>
+							<?php echo ':[mwb_wocuf_pro_yes]...[/mwb_wocuf_pro_yes]'; ?>
 						</p>		
 					</td>
 				</tr>
 				<tr valign="top">
 					<th scope="row" class="titledesc">
-						<label for="mwb_wocuf_pro_shortcode_3"><?php _e( 'Shortcode for "No,thanks"', 'woocommerce_one_click_upsell_funnel' ); ?></label>
+						<label for="mwb_wocuf_pro_shortcode_3"><?php esc_html_e( 'Shortcode for "No,thanks"', 'woocommerce_one_click_upsell_funnel' ); ?></label>
 					</th>
 					<td class="forminp forminp-text">
 						<p>
 							<?php
-							$attribut_description = __( 'This is the shortcode for rejecting the offer on custom page.', 'woocommerce_one_click_upsell_funnel' );
+							$attribut_description = esc_html_e( 'This is the shortcode for rejecting the offer on custom page.', 'woocommerce_one_click_upsell_funnel' );
 							echo wc_help_tip( $attribut_description );
 							?>
-							<?php _e( 'Single Mode', 'woocommerce_one_click_upsell_funnel' ); ?>
-							<?php echo ' : ' . '[mwb_wocuf_pro_no]'; ?>
+							<?php esc_html_e( 'Single Mode', 'woocommerce_one_click_upsell_funnel' ); ?>
+							<?php echo esc_html( ' : [mwb_wocuf_pro_no]' ); ?>
 						</p>
 						<p>
 							<?php
-							$attribut_description = __( 'This is the shortcode for rejecting the offer on custom page. In wrapping mode, custom text can be used in between shortcodes.', 'woocommerce_one_click_upsell_funnel' );
+							$attribut_description = esc_html_e( 'This is the shortcode for rejecting the offer on custom page. In wrapping mode, custom text can be used in between shortcodes.', 'woocommerce_one_click_upsell_funnel' );
 							echo wc_help_tip( $attribut_description );
 							?>
-							<?php _e( 'Wrapping Mode', 'woocommerce_one_click_upsell_funnel' ); ?>
-							<?php echo ' : ' . '[mwb_wocuf_pro_no]...[/mwb_wocuf_pro_no]'; ?>
+							<?php esc_html_e( 'Wrapping Mode', 'woocommerce_one_click_upsell_funnel' ); ?>
+							<?php echo esc_html( ' : [mwb_wocuf_pro_no]...[/mwb_wocuf_pro_no]' ); ?>
 						</p>				
 					</td>
 				</tr>
 				<tr valign="top">
 					<th scope="row" class="titledesc">
-						<label for="mwb_wocuf_pro_shortcode_5"><?php _e( 'Shortcode for "Product Selector"', 'woocommerce_one_click_upsell_funnel' ); ?></label>
+						<label for="mwb_wocuf_pro_shortcode_5"><?php esc_html_e( 'Shortcode for "Product Selector"', 'woocommerce_one_click_upsell_funnel' ); ?></label>
 					</th>
 					<td class="forminp forminp-text">
 						<p>
 						<?php
-						$attribut_description = __( 'This is the shortcode for showing the variation selector for variable products on custom offer page.', 'woocommerce_one_click_upsell_funnel' );
+						$attribut_description = esc_html_e( 'This is the shortcode for showing the variation selector for variable products on custom offer page.', 'woocommerce_one_click_upsell_funnel' );
 						echo wc_help_tip( $attribut_description );
 						?>
 						<?php echo '[mwb_wocuf_pro_selector]'; ?>
@@ -206,12 +218,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</tr>
 				<tr valign="top">
 					<th scope="row" class="titledesc">
-						<label for="mwb_wocuf_pro_shortcode_3"><?php _e( 'Shortcode for "Offer Price"', 'woocommerce_one_click_upsell_funnel' ); ?></label>
+						<label for="mwb_wocuf_pro_shortcode_3"><?php esc_html_e( 'Shortcode for "Offer Price"', 'woocommerce_one_click_upsell_funnel' ); ?></label>
 					</th>
 					<td class="forminp forminp-text">
 						<p>
 						<?php
-						$attribut_description = __( 'This is the shortcode for showing the special offer price for a product on custom page. For variable product, shows the price as well as appropriate messages.', 'woocommerce_one_click_upsell_funnel' );
+						$attribut_description = esc_html_e( 'This is the shortcode for showing the special offer price for a product on custom page. For variable product, shows the price as well as appropriate messages.', 'woocommerce_one_click_upsell_funnel' );
 						echo wc_help_tip( $attribut_description );
 						?>
 						<?php echo '[mwb_wocuf_pro_offer_price]'; ?>
@@ -220,24 +232,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</tr>
 				<tr valign="top">
 					<th scope="row" class="titledesc">
-						<label for="mwb_wocuf_pro_shortcode_4"><?php _e( 'Shortcode for "Order Details"', 'woocommerce_one_click_upsell_funnel' ); ?></label>
+						<label for="mwb_wocuf_pro_shortcode_4"><?php esc_html_e( 'Shortcode for "Order Details"', 'woocommerce_one_click_upsell_funnel' ); ?></label>
 					</th>
 					<td class="forminp forminp-text">
 						<p>
 						<?php
-						$attribut_description = __( "This is the shortcode for jumping directly to order details/thankyou page if customer doesn't want to buy any of your offers.", 'woocommerce_one_click_upsell_funnel' );
+						$attribut_description = esc_html_e( "This is the shortcode for jumping directly to order details/thankyou page if customer doesn't want to buy any of your offers.", 'woocommerce_one_click_upsell_funnel' );
 						echo wc_help_tip( $attribut_description );
 						?>
-						<?php _e( 'Single Mode', 'woocommerce_one_click_upsell_funnel' ); ?>
+						<?php esc_html_e( 'Single Mode', 'woocommerce_one_click_upsell_funnel' ); ?>
 						<?php echo '[mwb_wocuf_pro_order_details]'; ?>
 						</p>
 						<p>
 						<?php
-						$attribut_description = __( "This is the shortcode for jumping directly to order details/thankyou page if customer doesn't want to buy any of your offers. In wrapping mode, custom text can be used in between shortcodes.", 'woocommerce_one_click_upsell_funnel' );
+						$attribut_description = esc_html_e( "This is the shortcode for jumping directly to order details/thankyou page if customer doesn't want to buy any of your offers. In wrapping mode, custom text can be used in between shortcodes.", 'woocommerce_one_click_upsell_funnel' );
 						echo wc_help_tip( $attribut_description );
 						?>
-						<?php _e( 'Wrapping Mode', 'woocommerce_one_click_upsell_funnel' ); ?>
-						<?php echo ' : ' . '[mwb_wocuf_pro_order_details]...[/mwb_wocuf_pro_order_details]'; ?>
+						<?php esc_html_e( 'Wrapping Mode', 'woocommerce_one_click_upsell_funnel' ); ?>
+						<?php echo ' : [mwb_wocuf_pro_order_details]...[/mwb_wocuf_pro_order_details]'; ?>
 						</p>		
 					</td>
 				</tr>

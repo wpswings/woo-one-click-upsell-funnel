@@ -315,6 +315,12 @@ class Woocommerce_one_click_upsell_funnel {
 		return $this->version;
 	}
 
+	/**
+	 * Retrieve the version number of the woocommerce plugin.
+	 *
+	 * @since     1.0.0
+	 * @return    string    The version number of the woocommerce plugin.
+	 */
 	public function mwb_wocuf_woocommerce_version_check() {
 
 		require_once( ABSPATH . 'wp-content/plugins/woocommerce/woocommerce.php' );
