@@ -19,7 +19,7 @@ $active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['ta
 
 if ( 'overview' === get_transient( 'mwb_upsell_default_settings_tab' ) ) {
 
-	$active_tab = isset( $_GET['tab'] ) ? wp_unslash( $_GET['tab'] ) : 'overview';
+	$active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'overview';
 }
 
 do_action( 'mwb_wocuf_pro_setting_tab_active' );

@@ -552,8 +552,11 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 				$funnel_id = sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) );
 
-				if ( isset( $_GET['ocuf_ns'] ) && wp_verify_nonce( $_GET['ocuf_ns'], 'funnel_offers' ) ) {
+				if ( isset( $_GET['ocuf_ns'] ) ) {
+
 					$wp_nonce = sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) );
+
+					wp_verify_nonce( $wp_nonce, 'funnel_offers' );
 
 					$mwb_wocuf_pro_all_funnels = get_option( 'mwb_wocuf_funnels_list', array() );
 
@@ -765,7 +768,9 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 */
 	public function mwb_wocuf_pro_charge_the_offer() {
 
-		if ( ( isset( $_POST['mwb_wocuf_post_nonce'] ) && wp_verify_nonce( $_POST['mwb_wocuf_post_nonce'], 'mwb_wocuf_field_post_nonce' ) && isset( $_POST['mwb_wocuf_pro_buy'] ) ) || isset( $_GET['mwb_wocuf_pro_buy'] ) ) {
+		$add_product_nonce = !empty( $_POST['mwb_wocuf_post_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_post_nonce'] ) ) : '';
+
+		if ( ( isset( $add_product_nonce ) ) && wp_verify_nonce( $add_product_nonce, 'mwb_wocuf_field_post_nonce' ) && isset( $_POST['mwb_wocuf_pro_buy'] ) || isset( $_GET['mwb_wocuf_pro_buy'] ) ) {
 
 			unset( $_POST['mwb_wocuf_pro_buy'] );
 
@@ -1279,6 +1284,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 			$product_not_selected_text = esc_html__( 'Product not selected, please save a product in offer or save a global Offer product in Global settings.', 'woocommerce_one_click_upsell_funnel' );
 
+			// phpcs:disable
 			?>
 
 			<script type="text/javascript">
@@ -1290,6 +1296,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 			</script>
 
 			<?php
+			// phpcs:enable
 		}
 
 		wp_cache_set( 'mwb_upsell_no_product_in_offer', 'true' );
@@ -2186,8 +2193,9 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		$shop_page_url = function_exists( 'wc_get_page_id' ) ? get_permalink( wc_get_page_id( 'shop' ) ) : get_permalink( woocommerce_get_page_id( 'shop' ) );
 
 		$result = '<div style="text-align: center;margin-top: 30px;" id="mwb_upsell_offer_expired"><h2 style="font-weight: 200;">' . __( 'Sorry, Offer expired.', 'woocommerce_one_click_upsell_funnel' ) . '</h2><a class="button wc-backward" href="' . $shop_page_url . '">' . esc_html__( 'Return to Shop ', 'woocommerce_one_click_upsell_funnel' ) . '&rarr;</a></div>';
-
+		// phpcs:disable
 		echo $result;
+		// phpcs:enable
 		wp_die();
 	}
 
@@ -2217,8 +2225,11 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		<style type="text/css">
 
-			<?php echo $global_custom_css; ?>
-			
+			<?php // phpcs:disable 
+				echo $global_custom_css; 
+				// phpcs:enable 
+			?>
+
 		</style>
 
 		<?php
@@ -2250,7 +2261,11 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		<script type="text/javascript">
 
-			<?php echo $global_custom_js; ?>
+			<?php
+				// phpcs:disable
+			 		echo $global_custom_js; 
+				// phpcs:enable
+			 ?>
 			
 		</script>
 

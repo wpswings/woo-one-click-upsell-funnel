@@ -136,7 +136,7 @@ function mwb_upsell_lite_get_pid_from_url_params() {
 function mwb_upsell_lite_live_offer_url_params() {
 
 	$params['status'] = 'false';
-
+	// phpcs:disable
 	if ( isset( $_POST['ocuf_ns'] ) && isset( $_POST['ocuf_ok'] ) && isset( $_POST['ocuf_ofd'] ) && isset( $_POST['ocuf_fid'] ) && isset( $_POST['product_id'] ) ) {
 
 		$params['status'] = 'true';
@@ -157,7 +157,7 @@ function mwb_upsell_lite_live_offer_url_params() {
 		$params['funnel_id'] = sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) );
 		$params['product_id'] = sanitize_text_field( wp_unslash( $_GET['product_id'] ) );
 	}
-
+	// phpcs:enable
 	return $params;
 }
 

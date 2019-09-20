@@ -21,7 +21,6 @@
  */
 class Woocommerce_one_click_upsell_funnel_Admin {
 
-
 	/**
 	 * The ID of this plugin.
 	 *
@@ -358,7 +357,9 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 
 			$new_data = apply_filters( 'mwb_wocuf_pro_add_more_to_offers', $data );
 
-			echo $new_data;
+ 			// phpcs:disable
+			echo $new_data; 
+			// phpcs:enable
 		}
 
 		wp_die();
@@ -410,9 +411,13 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 
 						<input class="mwb_wocuf_pro_offer_template_input" type="hidden" name="mwb_wocuf_pro_offer_template[<?php echo esc_html( $current_offer_id ); ?>]" value="<?php echo esc_html( $offer_template_active ); ?>">
 
-						<?php foreach ( $offer_templates_array as $template_key => $template_name ) : ?>
+						<?php // phpcs:disable
+
+						 foreach ( $offer_templates_array as $template_key => $template_name ) : ?>
 							<!-- Offer templates foreach start-->
+
 							<div class="mwb_upsell_offer_template <?php echo $template_key == $offer_template_active ? 'active' : ''; ?>">
+
 
 								<div class="mwb_upsell_offer_template_sub_div"> 
 
@@ -441,7 +446,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 								
 							</div>
 							<!-- Offer templates foreach end-->
-						<?php endforeach; ?>
+						<?php endforeach; // phpcs:enable ?>
 							
 						<!-- Offer link to custom page start-->
 						<div class="mwb_upsell_offer_template mwb_upsell_custom_page_link_div <?php echo esc_html( 'custom' == $offer_template_active ? 'active' : '' ); ?>">
@@ -682,9 +687,9 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 
 					$data .= __( 'Single Order', 'woocommerce_one_click_upsell_funnel' );
 				}
-
+				// phpcs:disable
 				echo $data;
-
+				// phpcs:enable
 				break;
 		}
 	}
