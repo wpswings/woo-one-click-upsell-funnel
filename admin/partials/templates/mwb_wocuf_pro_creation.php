@@ -1,6 +1,7 @@
 <?php
-
-// Exit if accessed directly.
+/**
+ * Exit if accessed directly
+ */
 if ( ! defined( 'ABSPATH' ) ) {
 
 	exit;
@@ -72,6 +73,13 @@ else {
 if( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 	
 	unset( $_POST['mwb_wocuf_pro_creation_setting_save'] );
+
+	// Nonce verification.
+	if ( empty( $_POST[ 'mwb_wocuf_pro_nonce' ] ) || ! wp_verify_nonce( $_POST[ 'mwb_wocuf_pro_nonce' ], 'mwb_wocuf_pro_creation_nonce' ) ) {
+ 
+	   esc_html_e( "Sorry, your nonce didn't verified. Please refresh the page" );
+	   wp_die();
+	}
 
 	// Saved funnel id.
 	$mwb_wocuf_pro_funnel_id = sanitize_text_field( $_POST['mwb_wocuf_funnel_id'] );
@@ -197,6 +205,9 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 		<table class="form-table mwb_wocuf_pro_creation_setting">
 
 			<tbody>
+				
+				<!-- Nonce field here. -->
+   				<?php wp_nonce_field( 'mwb_wocuf_pro_creation_nonce', 'mwb_wocuf_pro_nonce' ); ?>
 
 				<input type="hidden" name="mwb_wocuf_funnel_id" value="<?php echo $mwb_wocuf_pro_funnel_id?>">
 

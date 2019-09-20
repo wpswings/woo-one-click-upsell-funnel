@@ -9,6 +9,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  // Save settings on Save changes.
 if( isset( $_POST["mwb_wocuf_pro_common_settings_save"] ) ) {
 
+	// Nonce verification.
+	if ( empty( $_POST[ 'mwb_wocuf_pro_nonce' ] ) || ! wp_verify_nonce( $_POST[ 'mwb_wocuf_pro_nonce' ], 'mwb_wocuf_pro_setting_nonce' ) ) {
+ 
+	   esc_html_e( "Sorry, your nonce didn't verified. Please refresh the page" );
+	   wp_die();
+	}
+
 	$mwb_upsell_global_options = array();
 
 	// Enable Plugin.
@@ -56,6 +63,9 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 	<div class="mwb_upsell_table">
 		<table class="form-table mwb_wocuf_pro_creation_setting">
 			<tbody>
+
+				<!-- Nonce field here. -->
+   				<?php wp_nonce_field( 'mwb_wocuf_pro_setting_nonce', 'mwb_wocuf_pro_nonce' ); ?>
 
 				<!-- Enable Plugin start -->
 				<tr valign="top">
