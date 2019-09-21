@@ -407,7 +407,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 					<!-- Offer templates parent div start -->
 					<div class="mwb_upsell_offer_templates_parent">
 
-						<input class="mwb_wocuf_pro_offer_template_input" type="hidden" name="mwb_wocuf_pro_offer_template[<?php echo esc_html__( $current_offer_id ); ?>]" value="<?php echo esc_html__( $offer_template_active ); ?>">
+						<input class="mwb_wocuf_pro_offer_template_input" type="hidden" name="mwb_wocuf_pro_offer_template[<?php echo esc_html( $current_offer_id ); ?>]" value="<?php echo esc_html( $offer_template_active ); ?>">
 
 						<?php
 
@@ -419,7 +419,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 
 								<div class="mwb_upsell_offer_template_sub_div"> 
 
-									<h5><?php echo esc_html__( $template_name ); ?></h5>
+									<h5><?php echo esc_html( $template_name ); ?></h5>
 
 									<div class="mwb_upsell_offer_preview">
 
@@ -430,7 +430,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 
 										<?php if ( $template_key != $offer_template_active ) : ?>
 
-										<button class="button-primary mwb_upsell_activate_offer_template" data-template-id="<?php echo esc_html__( $template_key ); ?>" data-offer-id="<?php echo esc_html__( $current_offer_id ); ?>" data-funnel-id="<?php echo esc_html__( $mwb_wocuf_pro_funnel_id ); ?>" data-offer-post-id="<?php echo esc_html__( $assigned_post_id ); ?>" ><?php esc_html_e( 'Insert and Activate', 'woocommerce_one_click_upsell_funnel' ); ?></button>
+										<button class="button-primary mwb_upsell_activate_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" data-offer-id="<?php echo esc_html( $current_offer_id ); ?>" data-funnel-id="<?php echo esc_html( $mwb_wocuf_pro_funnel_id ); ?>" data-offer-post-id="<?php echo esc_html( $assigned_post_id ); ?>" ><?php esc_html_e( 'Insert and Activate', 'woocommerce_one_click_upsell_funnel' ); ?></button>
 
 										<?php else : ?>
 
@@ -447,13 +447,13 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 						<?php endforeach; ?>
 							
 						<!-- Offer link to custom page start-->
-						<div class="mwb_upsell_offer_template mwb_upsell_custom_page_link_div <?php echo esc_html__( 'custom' == $offer_template_active ? 'active' : '' ); ?>">
+						<div class="mwb_upsell_offer_template mwb_upsell_custom_page_link_div <?php echo esc_html( 'custom' == $offer_template_active ? 'active' : '' ); ?>">
 
 							<h5><?php esc_html_e( 'LINK TO CUSTOM PAGE', 'woocommerce_one_click_upsell_funnel' ); ?></h5>
 
 							<?php if ( 'custom' != $offer_template_active ) : ?>
 
-								<button class="button-primary mwb_upsell_activate_offer_template" data-template-id="custom" data-offer-id="<?php echo esc_html__( $current_offer_id ); ?>" data-funnel-id="<?php echo esc_html__( $mwb_wocuf_pro_funnel_id ); ?>" data-offer-post-id="<?php echo esc_html__( $assigned_post_id ); ?>" ><?php esc_html_e( 'Activate', 'woocommerce_one_click_upsell_funnel' ); ?></button>
+								<button class="button-primary mwb_upsell_activate_offer_template" data-template-id="custom" data-offer-id="<?php echo esc_html( $current_offer_id ); ?>" data-funnel-id="<?php echo esc_html( $mwb_wocuf_pro_funnel_id ); ?>" data-offer-post-id="<?php echo esc_html( $assigned_post_id ); ?>" ><?php esc_html_e( 'Activate', 'woocommerce_one_click_upsell_funnel' ); ?></button>
 
 							<?php else : ?>
 

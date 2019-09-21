@@ -203,7 +203,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 							$global_product_title = get_the_title( $global_product_id );
 
 							?>
-								<option value="<?php echo esc_html__( $global_product_id ); ?>" selected="selected"><?php echo esc_html__( $global_product_title ) . '( #' . esc_html__( $global_product_id ) . ' )'; ?>
+								<option value="<?php echo esc_html( $global_product_id ); ?>" selected="selected"><?php echo esc_html( $global_product_title ) . '( #' . esc_html( $global_product_id ) . ' )'; ?>
 								</option>
 
 							<?php
@@ -236,7 +236,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 							?>
 
-							<input type="text" name="global_product_discount" value="<?php echo esc_html__( $global_product_discount ); ?>">
+							<input type="text" name="global_product_discount" value="<?php echo esc_html( $global_product_discount ); ?>">
 						</div>
 						<span class="mwb_upsell_global_description"><?php esc_html_e( 'Specify new offer price or discount %', 'woocommerce_one_click_upsell_funnel' ); ?></span>
 					</td>

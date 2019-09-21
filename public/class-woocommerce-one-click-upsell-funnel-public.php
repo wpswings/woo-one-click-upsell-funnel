@@ -166,7 +166,8 @@ class Woocommerce_one_click_upsell_funnel_Public {
 										$mwb_wocuf_pro_funnel_schedule = '0';
 									}
 
-									$current_schedule = date_i18n( 'w' ,time() );
+									// In order to use server time only.
+									$current_schedule = date( 'w' );
 
 									if ( $current_schedule === $mwb_wocuf_pro_funnel_schedule ) {
 										$mwb_wocuf_pro_proceed = true;
@@ -1137,7 +1138,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		}
 
 		$html = '<select id="' . esc_attr( $id ) . '" class="' . esc_attr( $class ) . '" name="' . esc_attr( $name ) . '" data-attribute_name="attribute_' . esc_attr( sanitize_title( $attribute ) ) . '" data-show_option_none="' . ( $show_option_none ? 'yes' : 'no' ) . '">';
-		$html .= '<option value="">' . esc_html__( $show_option_none_text ) . '</option>';
+		$html .= '<option value="">' . esc_html( $show_option_none_text ) . '</option>';
 
 		if ( ! empty( $options ) ) {
 			if ( $product && taxonomy_exists( $attribute ) ) {
