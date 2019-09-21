@@ -29,11 +29,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Funnel Creation Template.
  */
-function mwb_wocuf_pro_array_push_assoc( $array, $key, $value ) {
-
-	$array[ $key ] = $value;
-	return $array;
-}
 
 // New Funnel id.
 if ( ! isset( $_GET['funnel_id'] ) ) {
@@ -85,13 +80,7 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 	unset( $_POST['mwb_wocuf_pro_creation_setting_save'] );
 
 	// Nonce verification.
-	$mwb_wocuf_pro_create_nonce = ! empty( $_POST['mwb_wocuf_pro_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_pro_nonce'] ) ) : '';
-
-	if ( empty( $mwb_wocuf_pro_create_nonce ) || ! wp_verify_nonce( $mwb_wocuf_pro_create_nonce, 'mwb_wocuf_pro_creation_nonce' ) ) {
-
-		esc_html_e( "Sorry, your nonce didn't verified. Please refresh the page.", 'woocommerce_one_click_upsell_funnel' );
-		wp_die();
-	}
+	check_admin_referer( 'mwb_wocuf_pro_creation_nonce', 'mwb_wocuf_pro_nonce' );
 
 	// Saved funnel id.
 	$mwb_wocuf_pro_funnel_id = ! empty( $_POST['mwb_wocuf_funnel_id'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_funnel_id'] ) ) : '';
@@ -121,91 +110,64 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 	$mwb_wocuf_pro_funnel['mwb_wocuf_pro_funnel_schedule'] = ! empty( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ) : '';
 
 	// Sanitize and strip slashes for Funnel Target products.
-	if ( ! empty( $_POST['mwb_wocuf_target_pro_ids'] ) ) {
-
-		$target_pro_ids_array = array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_target_pro_ids'] ) );
-	}
+	$target_pro_ids_array = ! empty( $_POST['mwb_wocuf_target_pro_ids'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_target_pro_ids'] ) ) : array();
 
 	$mwb_wocuf_pro_funnel['mwb_wocuf_target_pro_ids'] = ! empty( $target_pro_ids_array ) ? $target_pro_ids_array : array();
 
 
 	// Sanitize and strip slashes for Funnel Offer products.
-	if ( ! empty( $_POST['mwb_wocuf_products_in_offer'] ) ) {
-
-		$products_in_offer_array = array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_products_in_offer'] ) );
-	}
+	$products_in_offer_array = ! empty( $_POST['mwb_wocuf_products_in_offer'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_products_in_offer'] ) ) : '';
 
 	$mwb_wocuf_pro_funnel['mwb_wocuf_products_in_offer'] = ! empty( $products_in_offer_array ) ? $products_in_offer_array : array();
 
 
 	// Sanitize and strip slashes for Funnel Offer price.
-	if ( ! empty( $_POST['mwb_wocuf_offer_discount_price'] ) ) {
-
-		$offer_discount_price_array = array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_offer_discount_price'] ) );
-	}
+	$offer_discount_price_array = ! empty( $_POST['mwb_wocuf_offer_discount_price'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_offer_discount_price'] ) ) : '';
 
 	$mwb_wocuf_pro_funnel['mwb_wocuf_offer_discount_price'] = ! empty( $offer_discount_price_array ) ? $offer_discount_price_array : array();
 
 
 	// Sanitize and strip slashes for attached offer on yes array.
-	if ( ! empty( $_POST['mwb_wocuf_attached_offers_on_buy'] ) ) {
-
-		$attached_offers_on_buy = array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_attached_offers_on_buy'] ) );
-	}
+	$attached_offers_on_buy = ! empty( $_POST['mwb_wocuf_attached_offers_on_buy'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_attached_offers_on_buy'] ) ) : '';
 
 	$mwb_wocuf_pro_funnel['mwb_wocuf_attached_offers_on_buy'] = $attached_offers_on_buy;
 
 
 	// Sanitize and strip slashes for attached offer on no array.
-	if ( ! empty( $_POST['mwb_wocuf_attached_offers_on_no'] ) ) {
-
-		$attached_offers_on_no = array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_attached_offers_on_no'] ) );
-	}
+	$attached_offers_on_no = ! empty( $_POST['mwb_wocuf_attached_offers_on_no'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_attached_offers_on_no'] ) ) : '';
 
 	$mwb_wocuf_pro_funnel['mwb_wocuf_attached_offers_on_no'] = $attached_offers_on_no;
 
 
 	// Sanitize and strip slashes for attached offer template array.
-	if ( ! empty( $_POST['mwb_wocuf_pro_offer_template'] ) ) {
-
-		$offer_template = array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_pro_offer_template'] ) );
-	}
+	$offer_template = ! empty( $_POST['mwb_wocuf_pro_offer_template'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_pro_offer_template'] ) ) : '';
 
 	$mwb_wocuf_pro_funnel['mwb_wocuf_pro_offer_template'] = $offer_template;
 
 
-	// // Sanitize and strip slashes for custom page url array.
-	if ( ! empty( $_POST['mwb_wocuf_offer_custom_page_url'] ) ) {
+	// Sanitize and strip slashes for custom page url array.
+	$offer_custom_page_url = ! empty( $_POST['mwb_wocuf_offer_custom_page_url'] ) ?  array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_offer_custom_page_url'] ) ) : '';
 
-		$offer_custom_page_url = array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_offer_custom_page_url'] ) );
-
-		$offer_custom_page_url = array_map( 'esc_url', wp_unslash( $offer_custom_page_url ) );
-	}
+	$offer_custom_page_url = ! empty( $offer_custom_page_url ) ? array_map( 'esc_url', wp_unslash( $offer_custom_page_url ) ) : '';
 
 	$mwb_wocuf_pro_funnel['mwb_wocuf_offer_custom_page_url'] = $offer_custom_page_url;
 
 
 	// Sanitize and strip slashes for applied offer number.
-	if ( ! empty( $_POST['mwb_wocuf_applied_offer_number'] ) ) {
-
-		$applied_offer_number = array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_applied_offer_number'] ) );
-	}
+	$applied_offer_number = ! empty( $_POST['mwb_wocuf_applied_offer_number'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_applied_offer_number'] ) ) : '';
 
 	$mwb_wocuf_pro_funnel['mwb_wocuf_applied_offer_number'] = $applied_offer_number;
 
 
 	// Sanitize and strip slashes for page id assigned.
-	if ( ! empty( $_POST['mwb_upsell_post_id_assigned'] ) ) {
-
-		$post_id_assigned = array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_upsell_post_id_assigned'] ) );
-	}
+	$post_id_assigned = ! empty( $_POST['mwb_upsell_post_id_assigned'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_upsell_post_id_assigned'] ) ) : '';
 
 	$mwb_wocuf_pro_funnel['mwb_upsell_post_id_assigned'] = $post_id_assigned;
 
 	$mwb_wocuf_pro_funnel_series = array();
 
 	// POST funnel as array at funnel id key.
-	$mwb_wocuf_pro_funnel_series[ $mwb_wocuf_pro_funnel_id ] = ! empty( $mwb_wocuf_pro_funnel ) ? $mwb_wocuf_pro_funnel : array();
+	$mwb_wocuf_pro_funnel_series[ $mwb_wocuf_pro_funnel_id ] = ! empty( $mwb_wocuf_pro_funnel ) && is_array( $mwb_wocuf_pro_funnel ) ? $mwb_wocuf_pro_funnel : array();
 
 	// Get all funnels.
 	$mwb_wocuf_pro_created_funnels = get_option( 'mwb_wocuf_funnels_list', array() );
@@ -673,11 +635,8 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 								</th>
 
 								<td>
-									<?php
-										// phpcs:disable
-										echo $mwb_wocuf_pro_buy_now_action_html;
-										// phpcs:enable
-									?>
+									<?php echo $mwb_wocuf_pro_buy_now_action_html; ?>
+
 									<span class="mwb_upsell_offer_description"><?php esc_html_e( 'Select where the customer will be redirected after accepting this offer', 'woocommerce_one_click_upsell_funnel' ); ?></span>
 								</td>
 							</tr>
@@ -689,11 +648,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 								</th>
 
 								<td>
-									<?php
-										// phpcs:disable
-										echo $mwb_wocuf_pro_no_thanks_action_html;
-										// phpcs:enable
-									?>
+									<?php echo $mwb_wocuf_pro_no_thanks_action_html; ?>
 									<span class="mwb_upsell_offer_description"><?php esc_html_e( 'Select where the customer will be redirected after rejecting this offer', 'woocommerce_one_click_upsell_funnel' ); ?></span>
 								</td>
 							</tr>

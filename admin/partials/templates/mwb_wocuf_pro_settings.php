@@ -26,7 +26,7 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 
 	if ( empty( $mwb_wocuf_pro_create_nonce ) || ! wp_verify_nonce( $mwb_wocuf_pro_create_nonce, 'mwb_wocuf_pro_setting_nonce' ) ) {
 
-		esc_html_e( "Sorry, your nonce didn't verified. Please refresh the page", 'woocommerce_one_click_upsell_funnel' );
+		esc_html_e( "Sorry, due to some security issue, your settings could not be saved.", 'woocommerce_one_click_upsell_funnel' );
 		wp_die();
 	}
 

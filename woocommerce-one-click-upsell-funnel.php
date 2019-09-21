@@ -43,14 +43,11 @@ function mwb_upsell_lite_plugin_activation() {
 	$activation['status'] = true;
 	$activation['message'] = '';
 
-	include_once ABSPATH . 'wp-admin/includes/plugin.php';
-
 	// Dependant plugin.
-	if ( ! is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+	if ( ! in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 
-		$activation['status'] = false;
+	    $activation['status'] = false;
 		$activation['message'] = 'woo_inactive';
-
 	}
 
 	return $activation;
@@ -61,10 +58,9 @@ $mwb_upsell_lite_plugin_activation = mwb_upsell_lite_plugin_activation();
 if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 
 	// If pro plugin active, load nothing.
-	if ( is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
+	if ( in_array( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 
 		return;
-
 	}
 
 	define( 'MWB_WOCUF_URL', plugin_dir_url( __FILE__ ) );

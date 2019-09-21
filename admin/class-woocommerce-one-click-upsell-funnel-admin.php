@@ -357,7 +357,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 
 			$new_data = apply_filters( 'mwb_wocuf_pro_add_more_to_offers', $data );
 
-			echo $new_data; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo $new_data; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped It just displayes the html itself. Content in it is already escaped if required.
 		}
 
 		wp_die();
@@ -415,7 +415,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 							?>
 							<!-- Offer templates foreach start-->
 
-							<div class="mwb_upsell_offer_template <?php echo $template_key == $offer_template_active ? 'active' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
+							<div class="mwb_upsell_offer_template <?php echo $template_key == $offer_template_active ? 'active' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped It just displayes the html itself. Content in it is already escaped if required. ?>">
 
 
 								<div class="mwb_upsell_offer_template_sub_div"> 
@@ -424,7 +424,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 
 									<div class="mwb_upsell_offer_preview">
 
-										<a href="javascript:void(0)" class="mwb_upsell_view_offer_template" data-template-id="<?php echo $template_key; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>" ><img src="<?php echo esc_url( MWB_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-$template_key.jpg" ); ?>"></a>
+										<a href="javascript:void(0)" class="mwb_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>" ><img src="<?php echo esc_url( MWB_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-$template_key.jpg" ); ?>"></a>
 									</div>
 
 									<div class="mwb_upsell_offer_action">
@@ -687,7 +687,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 					$data .= esc_html__( 'Single Order', 'woocommerce_one_click_upsell_funnel' );
 				}
 
-				echo $data; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo $data; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped It just displayes the html itself. Content in it is already escaped if required.
 
 				break;
 		}

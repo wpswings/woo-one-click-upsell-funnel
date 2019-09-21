@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The public-facing functionality of the plugin.
  *
@@ -1290,7 +1289,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 			<script type="text/javascript">
 
-				var product_not_selected_text = '<?php echo $product_not_selected_text; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>';
+				var product_not_selected_text = '<?php echo esc_html( $product_not_selected_text ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped It just displayes message that is already escaped above. ?>';
 
 				alert( product_not_selected_text );
 				
@@ -2196,14 +2195,14 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		$result = '<div style="text-align: center;margin-top: 30px;" id="mwb_upsell_offer_expired"><h2 style="font-weight: 200;">' . esc_html__( 'Sorry, Offer expired.', 'woocommerce_one_click_upsell_funnel' ) . '</h2><a class="button wc-backward" href="' . esc_url( $shop_page_url ) . '">' . esc_html__( 'Return to Shop ', 'woocommerce_one_click_upsell_funnel' ) . '&rarr;</a></div>';
 
-		echo $result; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo $result; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped It just displayes the html itself. Content in it is already escaped.
 
 		wp_die();
 	}
 
 	/**
 	 * Global Custom CSS.
-	 *
+	 * 
 	 * @since    3.0.0
 	 */
 	public function global_custom_css() {
@@ -2228,7 +2227,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		<style type="text/css">
 
 			<?php
-			echo $global_custom_css; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo wp_unslash( $global_custom_css ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped It just displayes the html itself. Content in it is already escaped if required.
 
 			?>
 
@@ -2264,10 +2263,9 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		<script type="text/javascript">
 
 			<?php
-				echo $global_custom_js;  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-
+				echo wp_unslash( $global_custom_js ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped It just displayes the html itself. Content in it is already escaped if required.
 			?>
-			
+
 		</script>
 
 		<?php

@@ -48,8 +48,7 @@ if ( isset( $_GET['del_funnel_id'] ) ) {
 
 	update_option( 'mwb_wocuf_funnels_list', $mwb_wocuf_pro_funnels );
 
-	wp_safe_redirect( esc_url( admin_url( 'admin.php' ) . '?page=mwb-wocuf-setting&tab=funnels-list' ) );
-
+	wp_redirect( esc_url( admin_url( 'admin.php' ) . '?page=mwb-wocuf-setting&tab=funnels-list' ) );
 	exit();
 }
 
@@ -182,7 +181,7 @@ else {
 								}
 								// phpcs:disable
 								?>
-								<p><?php echo '<strong>' . esc_html__( 'Offer', 'woocommerce-one-click-upsell-funnel-pro' ) . ' #' . esc_html( $offer_key ) . '</strong> &rarr; ' . esc_html( $product->get_title() ) . '( #' . $single_offer_product . ' )'; ?></p>
+								<p><?php echo '<strong>' . esc_html__( 'Offer', 'woocommerce-one-click-upsell-funnel-pro' ) . ' #' . esc_html( $offer_key ) . '</strong> &rarr; ' . esc_html( $product->get_title() ) . '( #' . esc_html( $single_offer_product ) . ' )'; ?></p>
 								<?php
 								// phpcs:enable
 
