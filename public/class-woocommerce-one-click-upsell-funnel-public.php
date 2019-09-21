@@ -770,7 +770,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 */
 	public function mwb_wocuf_pro_charge_the_offer() {
 
-		$add_product_nonce = !empty( $_POST['mwb_wocuf_post_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_post_nonce'] ) ) : '';
+		$add_product_nonce = ! empty( $_POST['mwb_wocuf_post_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_post_nonce'] ) ) : '';
 
 		if ( ( isset( $add_product_nonce ) ) && wp_verify_nonce( $add_product_nonce, 'mwb_wocuf_field_post_nonce' ) && isset( $_POST['mwb_wocuf_pro_buy'] ) || isset( $_GET['mwb_wocuf_pro_buy'] ) ) {
 
@@ -1290,7 +1290,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 			<script type="text/javascript">
 
-				var product_not_selected_text = '<?php echo $product_not_selected_text; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped  ?>';
+				var product_not_selected_text = '<?php echo $product_not_selected_text; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>';
 
 				alert( product_not_selected_text );
 				
@@ -2227,7 +2227,8 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		<style type="text/css">
 
-			<?php echo $global_custom_css; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			<?php
+			echo $global_custom_css; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 			?>
 
@@ -2263,9 +2264,9 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		<script type="text/javascript">
 
 			<?php
-			 	echo $global_custom_js;  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo $global_custom_js;  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
-			 ?>
+			?>
 			
 		</script>
 

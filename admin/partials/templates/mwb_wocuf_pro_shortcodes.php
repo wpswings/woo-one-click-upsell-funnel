@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<p class="mwb_upsell_shortcode">
 								<?php
 								$attribute_description = sprintf( '<p class="mwb_upsell_tip_tip">%s</p><p class="mwb_upsell_tip_tip">%s</p>', esc_html__( 'Accept Offer.', 'woocommerce_one_click_upsell_funnel' ), esc_html__( 'This shortcode only returns the link so it has to be used in the link section. In html use it as href="[mwb_upsell_yes]" of anchor tag.', 'woocommerce_one_click_upsell_funnel' ) );
-								
+
 								echo wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								?>
 								<span class="mwb_upsell_shortcode_title"><?php esc_html_e( 'Buy Now &rarr;', 'woocommerce_one_click_upsell_funnel' ); ?></span>
@@ -48,7 +48,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								echo wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								?>
 								<span class="mwb_upsell_shortcode_title"><?php esc_html_e( 'No Thanks &rarr;', 'woocommerce_one_click_upsell_funnel' ); ?></span>
-								<span class="mwb_upsell_shortcode_content"><?php echo esc_html__('[mwb_upsell_no]'); ?></span>
+								<span class="mwb_upsell_shortcode_content"><?php echo esc_html__( '[mwb_upsell_no]' ); ?></span>
 							</p>
 						</div>		
 					</td>
@@ -69,7 +69,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								echo wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								?>
 								<span class="mwb_upsell_shortcode_title"><?php esc_html_e( 'Product Title &rarr;', 'woocommerce_one_click_upsell_funnel' ); ?></span>
-								<span class="mwb_upsell_shortcode_content"><?php echo esc_html__('[mwb_upsell_title]'); ?></span>
+								<span class="mwb_upsell_shortcode_content"><?php echo esc_html__( '[mwb_upsell_title]' ); ?></span>
 							</p>
 						</div>
 						<div class="mwb_upsell_shortcode_div" >
@@ -80,7 +80,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								echo wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								?>
 								<span class="mwb_upsell_shortcode_title"><?php esc_html_e( 'Product Description &rarr;', 'woocommerce_one_click_upsell_funnel' ); ?></span>
-								<span class="mwb_upsell_shortcode_content"><?php echo esc_html__('[mwb_upsell_desc]'); ?></span>
+								<span class="mwb_upsell_shortcode_content"><?php echo esc_html__( '[mwb_upsell_desc]' ); ?></span>
 							</p>
 						</div>	
 						<div class="mwb_upsell_shortcode_div" >
@@ -91,7 +91,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								echo wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								?>
 								<span class="mwb_upsell_shortcode_title"><?php esc_html_e( 'Product Short Description &rarr;', 'woocommerce_one_click_upsell_funnel' ); ?></span>
-								<span class="mwb_upsell_shortcode_content"><?php echo esc_html__('[mwb_upsell_desc_short]'); ?></span>
+								<span class="mwb_upsell_shortcode_content"><?php echo esc_html__( '[mwb_upsell_desc_short]' ); ?></span>
 							</p>
 						</div>	
 						<hr class="mwb_upsell_shortcodes_hr">
@@ -103,7 +103,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								echo wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								?>
 								<span class="mwb_upsell_shortcode_title"><?php esc_html_e( 'Product Image &rarr;', 'woocommerce_one_click_upsell_funnel' ); ?></span>
-								<span class="mwb_upsell_shortcode_content"><?php echo esc_html__('[mwb_upsell_image]'); ?></span>
+								<span class="mwb_upsell_shortcode_content"><?php echo esc_html__( '[mwb_upsell_image]' ); ?></span>
 							</p>
 						</div>
 						<div class="mwb_upsell_shortcode_div" >
@@ -114,7 +114,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								echo wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								?>
 								<span class="mwb_upsell_shortcode_title"><?php esc_html_e( 'Product Price &rarr;', 'woocommerce_one_click_upsell_funnel' ); ?></span>
-								<span class="mwb_upsell_shortcode_content"><?php echo esc_html__('[mwb_upsell_price]'); ?></span>
+								<span class="mwb_upsell_shortcode_content"><?php echo esc_html__( '[mwb_upsell_price]' ); ?></span>
 							</p>
 						</div>
 						<div class="mwb_upsell_shortcode_div" >
@@ -125,7 +125,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								echo wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								?>
 								<span class="mwb_upsell_shortcode_title"><?php esc_html_e( 'Product Variations &rarr;', 'woocommerce_one_click_upsell_funnel' ); ?></span>
-								<span class="mwb_upsell_shortcode_content"><?php echo esc_html__('[mwb_upsell_variations]'); ?></span>
+								<span class="mwb_upsell_shortcode_content"><?php echo esc_html__( '[mwb_upsell_variations]' ); ?></span>
 							</p>
 						</div>
 					</td>
@@ -145,7 +145,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								echo wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								?>
 								<span class="mwb_upsell_shortcode_title"><?php esc_html_e( 'Star Ratings &rarr;', 'woocommerce_one_click_upsell_funnel' ); ?></span>
-								<span class="mwb_upsell_shortcode_content"><?php echo esc_html__('[mwb_upsell_star_review]'); ?></span>
+								<span class="mwb_upsell_shortcode_content"><?php echo esc_html__( '[mwb_upsell_star_review]' ); ?></span>
 							</p>
 						</div>
 					</td>
@@ -225,7 +225,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
-						<?php echo esc_html__('[mwb_wocuf_pro_selector]'); ?>
+						<?php echo esc_html__( '[mwb_wocuf_pro_selector]' ); ?>
 						</p>		
 					</td>
 				</tr>
@@ -240,7 +240,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
-						<?php echo esc_html__('[mwb_wocuf_pro_offer_price]'); ?>
+						<?php echo esc_html__( '[mwb_wocuf_pro_offer_price]' ); ?>
 						</p>		
 					</td>
 				</tr>
@@ -256,7 +256,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 						<?php esc_html_e( 'Single Mode', 'woocommerce_one_click_upsell_funnel' ); ?>
-						<?php echo esc_html__('[mwb_wocuf_pro_order_details]'); ?>
+						<?php echo esc_html__( '[mwb_wocuf_pro_order_details]' ); ?>
 						</p>
 						<p>
 						<?php
@@ -265,7 +265,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 						<?php esc_html_e( 'Wrapping Mode', 'woocommerce_one_click_upsell_funnel' ); ?>
-						<?php echo esc_html__(' : [mwb_wocuf_pro_order_details]...[/mwb_wocuf_pro_order_details]'); ?>
+						<?php echo esc_html__( ' : [mwb_wocuf_pro_order_details]...[/mwb_wocuf_pro_order_details]' ); ?>
 						</p>		
 					</td>
 				</tr>

@@ -115,13 +115,13 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 
 	// Sanitize and strip slashes for normal single value feilds.
 	$mwb_wocuf_pro_funnel['mwb_upsell_funnel_status'] = ! empty( $_POST['mwb_upsell_funnel_status'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_upsell_funnel_status'] ) ) : '';
-	$mwb_wocuf_pro_funnel['mwb_wocuf_funnel_id'] = ! empty( $_POST['mwb_wocuf_funnel_id'] ) ?  sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_funnel_id'] ) ) : '';
-	$mwb_wocuf_pro_funnel['mwb_upsell_fsav3'] = ! empty( $_POST['mwb_upsell_fsav3'] ) ?  sanitize_text_field( wp_unslash( $_POST['mwb_upsell_fsav3'] ) ) : '';
-	$mwb_wocuf_pro_funnel['mwb_wocuf_funnel_name'] = ! empty( $_POST['mwb_wocuf_funnel_name'] ) ?  sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_funnel_name'] ) ) : '';
-	$mwb_wocuf_pro_funnel['mwb_wocuf_pro_funnel_schedule'] = ! empty( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ?  sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ) : '';
+	$mwb_wocuf_pro_funnel['mwb_wocuf_funnel_id'] = ! empty( $_POST['mwb_wocuf_funnel_id'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_funnel_id'] ) ) : '';
+	$mwb_wocuf_pro_funnel['mwb_upsell_fsav3'] = ! empty( $_POST['mwb_upsell_fsav3'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_upsell_fsav3'] ) ) : '';
+	$mwb_wocuf_pro_funnel['mwb_wocuf_funnel_name'] = ! empty( $_POST['mwb_wocuf_funnel_name'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_funnel_name'] ) ) : '';
+	$mwb_wocuf_pro_funnel['mwb_wocuf_pro_funnel_schedule'] = ! empty( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ) : '';
 
 	// Sanitize and strip slashes for Funnel Target products.
-	if( ! empty( $_POST['mwb_wocuf_target_pro_ids'] ) ) {
+	if ( ! empty( $_POST['mwb_wocuf_target_pro_ids'] ) ) {
 
 		$target_pro_ids_array = array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_target_pro_ids'] ) );
 	}
@@ -130,7 +130,7 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 
 
 	// Sanitize and strip slashes for Funnel Offer products.
-	if( ! empty( $_POST['mwb_wocuf_products_in_offer'] ) ) {
+	if ( ! empty( $_POST['mwb_wocuf_products_in_offer'] ) ) {
 
 		$products_in_offer_array = array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_products_in_offer'] ) );
 	}
@@ -139,7 +139,7 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 
 
 	// Sanitize and strip slashes for Funnel Offer price.
-	if( ! empty( $_POST['mwb_wocuf_offer_discount_price'] ) ) {
+	if ( ! empty( $_POST['mwb_wocuf_offer_discount_price'] ) ) {
 
 		$offer_discount_price_array = array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_offer_discount_price'] ) );
 	}
@@ -148,7 +148,7 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 
 
 	// Sanitize and strip slashes for attached offer on yes array.
-	if( ! empty( $_POST['mwb_wocuf_attached_offers_on_buy'] ) ) {
+	if ( ! empty( $_POST['mwb_wocuf_attached_offers_on_buy'] ) ) {
 
 		$attached_offers_on_buy = array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_attached_offers_on_buy'] ) );
 	}
@@ -157,7 +157,7 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 
 
 	// Sanitize and strip slashes for attached offer on no array.
-	if( ! empty( $_POST['mwb_wocuf_attached_offers_on_no'] ) ) {
+	if ( ! empty( $_POST['mwb_wocuf_attached_offers_on_no'] ) ) {
 
 		$attached_offers_on_no = array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_attached_offers_on_no'] ) );
 	}
@@ -166,7 +166,7 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 
 
 	// Sanitize and strip slashes for attached offer template array.
-	if( ! empty( $_POST['mwb_wocuf_pro_offer_template'] ) ) {
+	if ( ! empty( $_POST['mwb_wocuf_pro_offer_template'] ) ) {
 
 		$offer_template = array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_pro_offer_template'] ) );
 	}
@@ -175,7 +175,7 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 
 
 	// // Sanitize and strip slashes for custom page url array.
-	if( ! empty( $_POST['mwb_wocuf_offer_custom_page_url'] ) ) {
+	if ( ! empty( $_POST['mwb_wocuf_offer_custom_page_url'] ) ) {
 
 		$offer_custom_page_url = array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_offer_custom_page_url'] ) );
 
@@ -186,7 +186,7 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 
 
 	// Sanitize and strip slashes for applied offer number.
-	if( ! empty( $_POST['mwb_wocuf_applied_offer_number'] ) ) {
+	if ( ! empty( $_POST['mwb_wocuf_applied_offer_number'] ) ) {
 
 		$applied_offer_number = array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_applied_offer_number'] ) );
 	}
@@ -195,7 +195,7 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 
 
 	// Sanitize and strip slashes for page id assigned.
-	if( ! empty( $_POST['mwb_upsell_post_id_assigned'] ) ) {
+	if ( ! empty( $_POST['mwb_upsell_post_id_assigned'] ) ) {
 
 		$post_id_assigned = array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_upsell_post_id_assigned'] ) );
 	}
@@ -673,9 +673,9 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 								</th>
 
 								<td>
-									<?php 	
+									<?php
 										// phpcs:disable
-										echo $mwb_wocuf_pro_buy_now_action_html; 
+										echo $mwb_wocuf_pro_buy_now_action_html;
 										// phpcs:enable
 									?>
 									<span class="mwb_upsell_offer_description"><?php esc_html_e( 'Select where the customer will be redirected after accepting this offer', 'woocommerce_one_click_upsell_funnel' ); ?></span>
@@ -689,9 +689,9 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 								</th>
 
 								<td>
-									<?php 	
+									<?php
 										// phpcs:disable
-										echo $mwb_wocuf_pro_no_thanks_action_html; 
+										echo $mwb_wocuf_pro_no_thanks_action_html;
 										// phpcs:enable
 									?>
 									<span class="mwb_upsell_offer_description"><?php esc_html_e( 'Select where the customer will be redirected after rejecting this offer', 'woocommerce_one_click_upsell_funnel' ); ?></span>

@@ -135,7 +135,7 @@ function mwb_upsell_lite_get_pid_from_url_params() {
  */
 function mwb_upsell_lite_live_offer_url_params() {
 
-	$add_live_nonce = !empty( $_POST['mwb_wocuf_after_post_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_after_post_nonce'] ) ) : '';
+	$add_live_nonce = ! empty( $_POST['mwb_wocuf_after_post_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_after_post_nonce'] ) ) : '';
 
 	wp_verify_nonce( $add_live_nonce, 'mwb_wocuf_after_field_post_nonce' );
 

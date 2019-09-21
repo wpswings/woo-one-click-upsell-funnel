@@ -411,7 +411,8 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 
 						<?php
 
-						 foreach ( $offer_templates_array as $template_key => $template_name ) : ?>
+						foreach ( $offer_templates_array as $template_key => $template_name ) :
+							?>
 							<!-- Offer templates foreach start-->
 
 							<div class="mwb_upsell_offer_template <?php echo $template_key == $offer_template_active ? 'active' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
