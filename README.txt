@@ -164,6 +164,10 @@ Description :- This shortcode only returns the link so it has to be used in the 
 
 == Changelog ==
 
+= 2.0.2 =
+* Improved: Better Security and Performance
+* Other: Issues and Bugs Fixed.
+
 = 2.0.1 =
 * Improved: Better Security and Performance
 * Improved: Better Funnels listing page
