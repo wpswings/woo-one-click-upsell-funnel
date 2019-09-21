@@ -48,7 +48,7 @@ if ( isset( $_GET['del_funnel_id'] ) ) {
 
 	update_option( 'mwb_wocuf_funnels_list', $mwb_wocuf_pro_funnels );
 
-	wp_redirect( esc_url( admin_url( 'admin.php' ) . '?page=mwb-wocuf-setting&tab=funnels-list' ) );
+	wp_safe_redirect( esc_url( admin_url( 'admin.php' ) . '?page=mwb-wocuf-setting&tab=funnels-list' ) );
 
 	exit();
 }
@@ -108,7 +108,7 @@ else {
 
 				<tr>		
 					<!-- Funnel Name -->
-					<td><a class="mwb_upsell_funnel_list_name" href="?page=mwb-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $key ); ?>"><?php echo esc_html( $value['mwb_wocuf_funnel_name'] ); ?></a></td>
+					<td><a class="mwb_upsell_funnel_list_name" href="?page=mwb-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html__( $key ); ?>"><?php echo esc_html__( $value['mwb_wocuf_funnel_name'] ); ?></a></td>
 
 					<!-- Funnel Status -->
 					<td>
@@ -144,7 +144,7 @@ else {
 
 								$product = wc_get_product( $single_target_product );
 								?>
-								<p><?php echo esc_html( $product->get_title() ) . '( #' . esc_html( $single_target_product ) . ' )'; ?></p>
+								<p><?php echo esc_html__( $product->get_title() ) . '( #' . esc_html__( $single_target_product ) . ' )'; ?></p>
 								<?php
 
 							endforeach;
@@ -170,7 +170,7 @@ else {
 
 							echo '<div class="mwb_upsell_funnel_list_targets">';
 
-							echo '<p><i>' . esc_html__( 'Offers Count', 'woocommerce-one-click-upsell-funnel-pro' ) . ' - ' . esc_html( $offers_count ) . '</i></p>';
+							echo '<p><i>' . esc_html__( 'Offers Count', 'woocommerce-one-click-upsell-funnel-pro' ) . ' - ' . esc_html__( $offers_count ) . '</i></p>';
 
 							foreach ( $value['mwb_wocuf_products_in_offer'] as $offer_key => $single_offer_product ) :
 
@@ -182,7 +182,7 @@ else {
 								}
 								// phpcs:disable
 								?>
-								<p><?php echo '<strong>' . esc_html__( 'Offer', 'woocommerce-one-click-upsell-funnel-pro' ) . ' #' . esc_html( $offer_key ) . '</strong> &rarr; ' . esc_html( $product->get_title() ) . '( #' . $single_offer_product . ' )'; ?></p>
+								<p><?php echo '<strong>' . esc_html__( 'Offer', 'woocommerce-one-click-upsell-funnel-pro' ) . ' #' . esc_html__( $offer_key ) . '</strong> &rarr; ' . esc_html__( $product->get_title() ) . '( #' . $single_offer_product . ' )'; ?></p>
 								<?php
 								// phpcs:enable
 
@@ -203,10 +203,10 @@ else {
 					<td>
 
 						<!-- Funnel View/Edit link -->
-						<a class="mwb_wocuf_pro_funnel_links" href="?page=mwb-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $key ); ?>"><?php esc_html_e( 'View / Edit', 'woocommerce_one_click_upsell_funnel' ); ?></a>
+						<a class="mwb_wocuf_pro_funnel_links" href="?page=mwb-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html__( $key ); ?>"><?php esc_html_e( 'View / Edit', 'woocommerce_one_click_upsell_funnel' ); ?></a>
 
 						<!-- Funnel Delete link -->
-						<a class="mwb_wocuf_pro_funnel_links" href="?page=mwb-wocuf-setting&tab=funnels-list&del_funnel_id=<?php echo esc_html( $key ); ?>"><?php esc_html_e( 'Delete', 'woocommerce_one_click_upsell_funnel' ); ?></a>
+						<a class="mwb_wocuf_pro_funnel_links" href="?page=mwb-wocuf-setting&tab=funnels-list&del_funnel_id=<?php echo esc_html__( $key ); ?>"><?php esc_html_e( 'Delete', 'woocommerce_one_click_upsell_funnel' ); ?></a>
 					</td>
 
 					<?php do_action( 'mwb_wocuf_pro_funnel_add_more_col_data' ); ?>
@@ -222,7 +222,7 @@ else {
 <!-- Create New Funnel -->
 <div class="mwb_wocuf_pro_create_new_funnel">
 
-	<a href="?page=mwb-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $mwb_wocuf_pro_funnel_number + 1 ); ?>"><?php esc_html_e( '+Create New Funnel', 'woocommerce_one_click_upsell_funnel' ); ?></a>
+	<a href="?page=mwb-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html__( $mwb_wocuf_pro_funnel_number + 1 ); ?>"><?php esc_html_e( '+Create New Funnel', 'woocommerce_one_click_upsell_funnel' ); ?></a>
 </div>
 
 <?php do_action( 'mwb_wocuf_pro_extend_funnels_listing' ); ?>

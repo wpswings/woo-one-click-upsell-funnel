@@ -102,7 +102,7 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 		$plugin_links = array(
 			'<a href="' .
 						admin_url( 'admin.php?page=mwb-wocuf-setting&tab=overview' ) .
-						'">' . __( 'Settings', 'woocommerce_one_click_upsell_funnel' ) . '</a>',
+						'">' . esc_html__( 'Settings', 'woocommerce_one_click_upsell_funnel' ) . '</a>',
 		);
 		return array_merge( $plugin_links, $links );
 	}

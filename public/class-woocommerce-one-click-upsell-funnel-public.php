@@ -166,7 +166,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 										$mwb_wocuf_pro_funnel_schedule = '0';
 									}
 
-									$current_schedule = date( 'w' );
+									$current_schedule = date_i18n( 'w' ,time() );
 
 									if ( $current_schedule === $mwb_wocuf_pro_funnel_schedule ) {
 										$mwb_wocuf_pro_proceed = true;
@@ -533,7 +533,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 				}
 
-				wp_redirect( $url );
+				wp_safe_redirect( $url );
 				exit();
 			}
 		}
@@ -560,11 +560,11 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 					$mwb_wocuf_pro_all_funnels = get_option( 'mwb_wocuf_funnels_list', array() );
 
-					$mwb_wocuf_pro_buy_text = get_option( 'mwb_wocuf_pro_buy_text', __( 'Buy Now', 'woocommerce_one_click_upsell_funnel' ) );
+					$mwb_wocuf_pro_buy_text = get_option( 'mwb_wocuf_pro_buy_text', esc_html__( 'Buy Now', 'woocommerce_one_click_upsell_funnel' ) );
 
-					$mwb_wocuf_pro_no_text = get_option( 'mwb_wocuf_pro_no_text', __( 'No,thanks', 'woocommerce_one_click_upsell_funnel' ) );
+					$mwb_wocuf_pro_no_text = get_option( 'mwb_wocuf_pro_no_text', esc_html__( 'No,thanks', 'woocommerce_one_click_upsell_funnel' ) );
 
-					$mwb_wocuf_pro_before_offer_price_text = get_option( 'mwb_wocuf_pro_before_offer_price_text', __( 'Special Offer Price', 'woocommerce_one_click_upsell_funnel' ) );
+					$mwb_wocuf_pro_before_offer_price_text = get_option( 'mwb_wocuf_pro_before_offer_price_text', esc_html__( 'Special Offer Price', 'woocommerce_one_click_upsell_funnel' ) );
 
 					$mwb_wocuf_pro_offered_products = isset( $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_products_in_offer'] ) ? $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_products_in_offer'] : array();
 
@@ -576,7 +576,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 					$result .= '<div style="display:none;" id="mwb_wocuf_pro_offer_loader"><img id="mwb-wocuf-loading-offer" src="' . MWB_WOCUF_URL . 'public/images/ajax-loader.gif"></div><div class="mwb_wocuf_pro_offer_container"><div class="woocommerce"><div class="mwb_wocuf_pro_special_offers_for_you">';
 
-					$mwb_wocuf_pro_offer_banner_text = get_option( 'mwb_wocuf_pro_offer_banner_text', __( 'Special Offer For You Only', 'woocommerce_one_click_upsell_funnel' ) );
+					$mwb_wocuf_pro_offer_banner_text = get_option( 'mwb_wocuf_pro_offer_banner_text', esc_html__( 'Special Offer For You Only', 'woocommerce_one_click_upsell_funnel' ) );
 
 					$result .= '<div class="mwb_wocuf_pro_special_offer_banner">
 								<h1>' . trim( $mwb_wocuf_pro_offer_banner_text, '"' ) . '</h1></div>';
@@ -648,9 +648,9 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 					$result .= '</div></div></div>';
 				} else {
-					$error_msg = __( 'You ran out of the special offers session.', 'woocommerce_one_click_upsell_funnel' );
+					$error_msg = esc_html__( 'You ran out of the special offers session.', 'woocommerce_one_click_upsell_funnel' );
 
-					$link_text = __( 'Go to the "Order details" page.', 'woocommerce_one_click_upsell_funnel' );
+					$link_text = esc_html__( 'Go to the "Order details" page.', 'woocommerce_one_click_upsell_funnel' );
 
 					$error_msg = apply_filters( 'mwb_wocuf_pro_error_message', $error_msg );
 
@@ -663,9 +663,9 @@ class Woocommerce_one_click_upsell_funnel_Public {
 					$result .= $error_msg . '<a href="' . $order_received_url . '" class="button">' . $link_text . '</a>';
 				}
 			} else {
-				$error_msg = __( 'You ran out of the special offers session.', 'woocommerce_one_click_upsell_funnel' );
+				$error_msg = esc_html__( 'You ran out of the special offers session.', 'woocommerce_one_click_upsell_funnel' );
 
-				$link_text = __( 'Go to the "Order details" page.', 'woocommerce_one_click_upsell_funnel' );
+				$link_text = esc_html__( 'Go to the "Order details" page.', 'woocommerce_one_click_upsell_funnel' );
 
 				$error_msg = apply_filters( 'mwb_wocuf_pro_error_message', $error_msg );
 
@@ -680,11 +680,11 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		}
 
 		if ( ! isset( $_GET['ocuf_ok'] ) || ! isset( $_GET['ocuf_ofd'] ) || ! isset( $_GET['ocuf_fid'] ) ) {
-			$mwb_wocuf_pro_no_offer_text = get_option( 'mwb_wocuf_pro_no_offer_text', __( 'Sorry, you have no offers', 'woocommerce_one_click_upsell_funnel' ) );
+			$mwb_wocuf_pro_no_offer_text = get_option( 'mwb_wocuf_pro_no_offer_text', esc_html__( 'Sorry, you have no offers', 'woocommerce_one_click_upsell_funnel' ) );
 
 			$result .= '<div class="mwb-wocuf_pro-no-offer"><h2>' . trim( $mwb_wocuf_pro_no_offer_text, '"' ) . '</h2>';
 
-			$result .= '<a class="button wc-backward" href="' . esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ) . '">' . __( 'Return to Shop', 'woocommerce_one_click_upsell_funnel' ) . '</a></div>';
+			$result .= '<a class="button wc-backward" href="' . esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ) . '">' . esc_html__( 'Return to Shop', 'woocommerce_one_click_upsell_funnel' ) . '</a></div>';
 
 		}
 
@@ -951,7 +951,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 							}
 						}
 
-						wp_redirect( $url );
+						wp_safe_redirect( $url );
 						exit;
 					}
 				} else {
@@ -974,7 +974,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 			$schedules['mwb_wocuf_twenty_minutes'] = array(
 				'interval' => 20 * 60,
-				'display' => __( 'Once every 20 minutes', 'woocommerce_one_click_upsell_funnel' ),
+				'display' => esc_html__( 'Once every 20 minutes', 'woocommerce_one_click_upsell_funnel' ),
 			);
 		}
 
@@ -1050,7 +1050,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		if ( isset( $result['result'] ) && 'success' === $result['result'] ) {
 
-			wp_redirect( $result['redirect'] );
+			wp_safe_redirect( $result['redirect'] );
 			exit;
 		}
 
@@ -1059,11 +1059,11 @@ class Woocommerce_one_click_upsell_funnel_Public {
 			global $woocommerce;
 			$cart_page_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : $woocommerce->cart->get_cart_url();
 
-			wp_redirect( $cart_page_url );
+			wp_safe_redirect( $cart_page_url );
 			exit;
 		} else {
 
-			wp_redirect( $url );
+			wp_safe_redirect( $url );
 			exit;
 		}
 	}
@@ -1129,7 +1129,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		$id                    = $args['id'] ? $args['id'] : sanitize_title( $attribute );
 		$class                 = $args['class'];
 		$show_option_none      = $args['show_option_none'] ? true : false;
-		$show_option_none_text = $args['show_option_none'] ? $args['show_option_none'] : __( 'Choose an option', 'woocommerce_one_click_upsell_funnel' );
+		$show_option_none_text = $args['show_option_none'] ? $args['show_option_none'] : esc_html__( 'Choose an option', 'woocommerce_one_click_upsell_funnel' );
 
 		if ( empty( $options ) && ! empty( $product ) && ! empty( $attribute ) ) {
 			$attributes = $product->get_variation_attributes();
@@ -1137,7 +1137,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		}
 
 		$html = '<select id="' . esc_attr( $id ) . '" class="' . esc_attr( $class ) . '" name="' . esc_attr( $name ) . '" data-attribute_name="attribute_' . esc_attr( sanitize_title( $attribute ) ) . '" data-show_option_none="' . ( $show_option_none ? 'yes' : 'no' ) . '">';
-		$html .= '<option value="">' . esc_html( $show_option_none_text ) . '</option>';
+		$html .= '<option value="">' . esc_html__( $show_option_none_text ) . '</option>';
 
 		if ( ! empty( $options ) ) {
 			if ( $product && taxonomy_exists( $attribute ) ) {
@@ -1146,14 +1146,14 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 				foreach ( $terms as $term ) {
 					if ( in_array( $term->slug, $options ) ) {
-						$html .= '<option value="' . esc_attr( $term->slug ) . '" ' . selected( sanitize_title( $args['selected'] ), $term->slug, false ) . '>' . esc_html( apply_filters( 'woocommerce_variation_option_name', $term->name ) ) . '</option>';
+						$html .= '<option value="' . esc_attr( $term->slug ) . '" ' . selected( sanitize_title( $args['selected'] ), $term->slug, false ) . '>' . esc_html__( apply_filters( 'woocommerce_variation_option_name', $term->name ) ) . '</option>';
 					}
 				}
 			} else {
 				foreach ( $options as $option ) {
 					// This handles < 2.4.0 bw compatibility where text attributes were not sanitized.
 					$selected = sanitize_title( $args['selected'] ) === $args['selected'] ? selected( $args['selected'], sanitize_title( $option ), false ) : selected( $args['selected'], $option, false );
-					$html .= '<option value="' . esc_attr( $option ) . '" ' . $selected . '>' . esc_html( apply_filters( 'woocommerce_variation_option_name', $option ) ) . '</option>';
+					$html .= '<option value="' . esc_attr( $option ) . '" ' . $selected . '>' . esc_html__( apply_filters( 'woocommerce_variation_option_name', $option ) ) . '</option>';
 				}
 			}
 		}
@@ -1768,7 +1768,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		}
 
 		if ( empty( $content ) ) {
-			$content = __( 'Show Order Details', 'woocommerce_one_click_upsell_funnel' );
+			$content = esc_html__( 'Show Order Details', 'woocommerce_one_click_upsell_funnel' );
 			$content = apply_filters( 'mwb_wocuf_pro_order_details_link_text', $content );
 		}
 
@@ -1815,7 +1815,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		$mwb_wocuf_pro_all_funnels = get_option( 'mwb_wocuf_funnels_list', array() );
 
-		$mwb_wocuf_pro_before_offer_price_text = get_option( 'mwb_wocuf_pro_before_offer_price_text', __( 'Special Offer Price', 'woocommerce_one_click_upsell_funnel' ) );
+		$mwb_wocuf_pro_before_offer_price_text = get_option( 'mwb_wocuf_pro_before_offer_price_text', esc_html__( 'Special Offer Price', 'woocommerce_one_click_upsell_funnel' ) );
 
 		$mwb_wocuf_pro_offered_products = isset( $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_products_in_offer'] ) ? $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_products_in_offer'] : array();
 
@@ -1880,7 +1880,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		$mwb_wocuf_pro_all_funnels = get_option( 'mwb_wocuf_funnels_list', array() );
 
-		$mwb_wocuf_pro_buy_text = get_option( 'mwb_wocuf_pro_buy_text', __( 'Add to my order', 'woocommerce_one_click_upsell_funnel' ) );
+		$mwb_wocuf_pro_buy_text = get_option( 'mwb_wocuf_pro_buy_text', esc_html__( 'Add to my order', 'woocommerce_one_click_upsell_funnel' ) );
 
 		if ( empty( $content ) ) {
 			$content = $mwb_wocuf_pro_buy_text;
@@ -2008,7 +2008,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		$th = 1;
 
-		$mwb_wocuf_pro_no_text = get_option( 'mwb_wocuf_pro_no_text', __( 'No,thanks', 'woocommerce_one_click_upsell_funnel' ) );
+		$mwb_wocuf_pro_no_text = get_option( 'mwb_wocuf_pro_no_text', esc_html__( 'No,thanks', 'woocommerce_one_click_upsell_funnel' ) );
 
 		if ( empty( $content ) ) {
 			$content = $mwb_wocuf_pro_no_text;
@@ -2193,7 +2193,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		$shop_page_url = function_exists( 'wc_get_page_id' ) ? get_permalink( wc_get_page_id( 'shop' ) ) : get_permalink( woocommerce_get_page_id( 'shop' ) );
 
-		$result = '<div style="text-align: center;margin-top: 30px;" id="mwb_upsell_offer_expired"><h2 style="font-weight: 200;">' . __( 'Sorry, Offer expired.', 'woocommerce_one_click_upsell_funnel' ) . '</h2><a class="button wc-backward" href="' . $shop_page_url . '">' . esc_html__( 'Return to Shop ', 'woocommerce_one_click_upsell_funnel' ) . '&rarr;</a></div>';
+		$result = '<div style="text-align: center;margin-top: 30px;" id="mwb_upsell_offer_expired"><h2 style="font-weight: 200;">' . esc_html__( 'Sorry, Offer expired.', 'woocommerce_one_click_upsell_funnel' ) . '</h2><a class="button wc-backward" href="' . esc_url( $shop_page_url ) . '">' . esc_html__( 'Return to Shop ', 'woocommerce_one_click_upsell_funnel' ) . '&rarr;</a></div>';
 
 		echo $result; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 

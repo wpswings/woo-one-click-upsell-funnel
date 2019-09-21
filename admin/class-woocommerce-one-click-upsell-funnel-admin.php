@@ -128,16 +128,16 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 					$decimal = isset( $locale['decimal_point'] ) ? $locale['decimal_point'] : '.';
 					$params = array(
 						/* translators: %s: decimal */
-						'i18n_decimal_error'                => sprintf( __( 'Please enter in decimal (%s) format without thousand separators.', 'woocommerce_one_click_upsell_funnel' ), $decimal ),
+						'i18n_decimal_error'                => sprintf( esc_html__( 'Please enter in decimal (%s) format without thousand separators.', 'woocommerce_one_click_upsell_funnel' ), $decimal ),
 						/* translators: %s: price decimal separator */
-						'i18n_mon_decimal_error'            => sprintf( __( 'Please enter in monetary decimal (%s) format without thousand separators and currency symbols.', 'woocommerce_one_click_upsell_funnel' ), wc_get_price_decimal_separator() ),
-						'i18n_country_iso_error'            => __( 'Please enter in country code with two capital letters.', 'woocommerce_one_click_upsell_funnel' ),
-						'i18_sale_less_than_regular_error'  => __( 'Please enter in a value less than the regular price.', 'woocommerce_one_click_upsell_funnel' ),
+						'i18n_mon_decimal_error'            => sprintf( esc_html__( 'Please enter in monetary decimal (%s) format without thousand separators and currency symbols.', 'woocommerce_one_click_upsell_funnel' ), wc_get_price_decimal_separator() ),
+						'i18n_country_iso_error'            => esc_html__( 'Please enter in country code with two capital letters.', 'woocommerce_one_click_upsell_funnel' ),
+						'i18_sale_less_than_regular_error'  => esc_html__( 'Please enter in a value less than the regular price.', 'woocommerce_one_click_upsell_funnel' ),
 						'decimal_point'                     => $decimal,
 						'mon_decimal_point'                 => wc_get_price_decimal_separator(),
 						'strings' => array(
-							'import_products' => __( 'Import', 'woocommerce_one_click_upsell_funnel' ),
-							'export_products' => __( 'Export', 'woocommerce_one_click_upsell_funnel' ),
+							'import_products' => esc_html__( 'Import', 'woocommerce_one_click_upsell_funnel' ),
+							'export_products' => esc_html__( 'Export', 'woocommerce_one_click_upsell_funnel' ),
 						),
 						'urls' => array(
 							'import_products' => esc_url_raw( admin_url( 'edit.php?post_type=product&page=product_importer' ) ),
@@ -149,7 +149,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 
 					wp_localize_script( 'mwb_wocuf_pro_admin_script', 'mwb_wocuf_pro_location', admin_url( 'admin.php' ) . '?page=mwb-wocuf-setting&tab=settings' );
 
-					wp_localize_script( 'mwb_wocuf_pro_admin_script', 'mwb_wocuf_pro_offer_deletion', __( 'Are you sure to delete this offer', 'woocommerce_one_click_upsell_funnel' ) );
+					wp_localize_script( 'mwb_wocuf_pro_admin_script', 'mwb_wocuf_pro_offer_deletion', esc_html__( 'Are you sure to delete this offer', 'woocommerce_one_click_upsell_funnel' ) );
 
 					wp_enqueue_script( 'mwb_wocuf_pro_admin_script' );
 
@@ -295,19 +295,19 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 			$mwb_wocuf_pro_offers_to_add = isset( $mwb_wocuf_pro_funnel[ $funnel_id ]['mwb_wocuf_applied_offer_number'] ) ? $mwb_wocuf_pro_funnel[ $funnel_id ]['mwb_wocuf_applied_offer_number'] : array();
 
 			// Buy now action select html.
-			$buy_now_action_select_html = '<select name="mwb_wocuf_attached_offers_on_buy[' . $offer_index . ']"><option value="thanks">' . __( 'Order ThankYou Page', 'woocommerce_one_click_upsell_funnel' ) . '</option>';
+			$buy_now_action_select_html = '<select name="mwb_wocuf_attached_offers_on_buy[' . $offer_index . ']"><option value="thanks">' . esc_html__( 'Order ThankYou Page', 'woocommerce_one_click_upsell_funnel' ) . '</option>';
 
 			// No thanks action select html.
-			$no_thanks_action_select_html = '<select name="mwb_wocuf_attached_offers_on_no[' . $offer_index . ']"><option value="thanks">' . __( 'Order ThankYou Page', 'woocommerce_one_click_upsell_funnel' ) . '</option>';
+			$no_thanks_action_select_html = '<select name="mwb_wocuf_attached_offers_on_no[' . $offer_index . ']"><option value="thanks">' . esc_html__( 'Order ThankYou Page', 'woocommerce_one_click_upsell_funnel' ) . '</option>';
 
 			// If there are other offers then add them to select html.
 			if ( ! empty( $mwb_wocuf_pro_offers_to_add ) ) {
 
 				foreach ( $mwb_wocuf_pro_offers_to_add as $offer_id ) {
 
-					$buy_now_action_select_html .= '<option value=' . $offer_id . '>' . __( 'Offer #', 'woocommerce_one_click_upsell_funnel' ) . $offer_id . '</option>';
+					$buy_now_action_select_html .= '<option value=' . $offer_id . '>' . esc_html__( 'Offer #', 'woocommerce_one_click_upsell_funnel' ) . $offer_id . '</option>';
 
-					$no_thanks_action_select_html .= '<option value=' . $offer_id . '>' . __( 'Offer #', 'woocommerce_one_click_upsell_funnel' ) . $offer_id . '</option>';
+					$no_thanks_action_select_html .= '<option value=' . $offer_id . '>' . esc_html__( 'Offer #', 'woocommerce_one_click_upsell_funnel' ) . $offer_id . '</option>';
 				}
 			}
 
@@ -317,14 +317,14 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 			$offer_scroll_id_val = "#offer-section-$offer_index";
 
 			$data = '<div style="display:none;" data-id="' . $offer_index . '" data-scroll-id="' . $offer_scroll_id_val . '" class="new_created_offers mwb_upsell_single_offer">
-			<h2 class="mwb_upsell_offer_title">' . __( 'Offer #', 'woocommerce_one_click_upsell_funnel' ) . $offer_index . '</h2>
+			<h2 class="mwb_upsell_offer_title">' . esc_html__( 'Offer #', 'woocommerce_one_click_upsell_funnel' ) . $offer_index . '</h2>
 			<table>
 			<tr>
-			<th><label><h4>' . __( 'Offer Product', 'woocommerce_one_click_upsell_funnel' ) . '</h4></label></th>
+			<th><label><h4>' . esc_html__( 'Offer Product', 'woocommerce_one_click_upsell_funnel' ) . '</h4></label></th>
 			<td><select class="wc-offer-product-search mwb_upsell_offer_product" name="mwb_wocuf_products_in_offer[' . $offer_index . ']" data-placeholder="' . esc_html__( 'Search for a product&hellip;', 'woocommerce_one_click_upsell_funnel' ) . '"></select></td>
 			</tr>
 			<tr>
-			<th><label><h4>' . __( 'Offer Price / Discount', 'woocommerce_one_click_upsell_funnel' ) . '</h4></label></th>
+			<th><label><h4>' . esc_html__( 'Offer Price / Discount', 'woocommerce_one_click_upsell_funnel' ) . '</h4></label></th>
 			<td>
 			<input type="text" class="mwb_upsell_offer_price" name="mwb_wocuf_offer_discount_price[' . $offer_index . ']" value="50%" >
 			<span class="mwb_upsell_offer_description" >' . esc_html__( 'Specify new offer price or discount %', 'woocommerce_one_click_upsell_funnel' ) . '</span>
@@ -339,14 +339,14 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 		    <td>' . $no_thanks_action_select_html . '<span class="mwb_upsell_offer_description">' . esc_html__( 'Select where the customer will be redirected after rejecting this offer', 'woocommerce-one-click-upsell-funnel-pro ' ) . '</td>
 		    </tr>' . $funnel_offer_template_section_html . '
 		    <tr>
-		    <th><label><h4>' . __( 'Offer Custom Page Link', 'woocommerce_one_click_upsell_funnel' ) . '</h4></label></th>
+		    <th><label><h4>' . esc_html__( 'Offer Custom Page Link', 'woocommerce_one_click_upsell_funnel' ) . '</h4></label></th>
 		    <td>
 		    <input type="text" class="mwb_upsell_custom_offer_page_url" name="mwb_wocuf_offer_custom_page_url[' . $offer_index . ']" >
 		    </td>
 		    </tr>
 		    <tr>
 		    <td colspan="2">
-		    <button class="button mwb_wocuf_pro_delete_new_created_offers" data-id="' . $offer_index . '">' . __( 'Remove', 'woocommerce_one_click_upsell_funnel' ) . '</button>
+		    <button class="button mwb_wocuf_pro_delete_new_created_offers" data-id="' . $offer_index . '">' . esc_html__( 'Remove', 'woocommerce_one_click_upsell_funnel' ) . '</button>
 		    </td>
 		    </tr>
 		    </table>
@@ -407,7 +407,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 					<!-- Offer templates parent div start -->
 					<div class="mwb_upsell_offer_templates_parent">
 
-						<input class="mwb_wocuf_pro_offer_template_input" type="hidden" name="mwb_wocuf_pro_offer_template[<?php echo esc_html( $current_offer_id ); ?>]" value="<?php echo esc_html( $offer_template_active ); ?>">
+						<input class="mwb_wocuf_pro_offer_template_input" type="hidden" name="mwb_wocuf_pro_offer_template[<?php echo esc_html__( $current_offer_id ); ?>]" value="<?php echo esc_html__( $offer_template_active ); ?>">
 
 						<?php
 
@@ -419,7 +419,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 
 								<div class="mwb_upsell_offer_template_sub_div"> 
 
-									<h5><?php echo esc_html( $template_name ); ?></h5>
+									<h5><?php echo esc_html__( $template_name ); ?></h5>
 
 									<div class="mwb_upsell_offer_preview">
 
@@ -430,7 +430,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 
 										<?php if ( $template_key != $offer_template_active ) : ?>
 
-										<button class="button-primary mwb_upsell_activate_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" data-offer-id="<?php echo esc_html( $current_offer_id ); ?>" data-funnel-id="<?php echo esc_html( $mwb_wocuf_pro_funnel_id ); ?>" data-offer-post-id="<?php echo esc_html( $assigned_post_id ); ?>" ><?php esc_html_e( 'Insert and Activate', 'woocommerce_one_click_upsell_funnel' ); ?></button>
+										<button class="button-primary mwb_upsell_activate_offer_template" data-template-id="<?php echo esc_html__( $template_key ); ?>" data-offer-id="<?php echo esc_html__( $current_offer_id ); ?>" data-funnel-id="<?php echo esc_html__( $mwb_wocuf_pro_funnel_id ); ?>" data-offer-post-id="<?php echo esc_html__( $assigned_post_id ); ?>" ><?php esc_html_e( 'Insert and Activate', 'woocommerce_one_click_upsell_funnel' ); ?></button>
 
 										<?php else : ?>
 
@@ -447,13 +447,13 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 						<?php endforeach; ?>
 							
 						<!-- Offer link to custom page start-->
-						<div class="mwb_upsell_offer_template mwb_upsell_custom_page_link_div <?php echo esc_html( 'custom' == $offer_template_active ? 'active' : '' ); ?>">
+						<div class="mwb_upsell_offer_template mwb_upsell_custom_page_link_div <?php echo esc_html__( 'custom' == $offer_template_active ? 'active' : '' ); ?>">
 
 							<h5><?php esc_html_e( 'LINK TO CUSTOM PAGE', 'woocommerce_one_click_upsell_funnel' ); ?></h5>
 
 							<?php if ( 'custom' != $offer_template_active ) : ?>
 
-								<button class="button-primary mwb_upsell_activate_offer_template" data-template-id="custom" data-offer-id="<?php echo esc_html( $current_offer_id ); ?>" data-funnel-id="<?php echo esc_html( $mwb_wocuf_pro_funnel_id ); ?>" data-offer-post-id="<?php echo esc_html( $assigned_post_id ); ?>" ><?php esc_html_e( 'Activate', 'woocommerce_one_click_upsell_funnel' ); ?></button>
+								<button class="button-primary mwb_upsell_activate_offer_template" data-template-id="custom" data-offer-id="<?php echo esc_html__( $current_offer_id ); ?>" data-funnel-id="<?php echo esc_html__( $mwb_wocuf_pro_funnel_id ); ?>" data-offer-post-id="<?php echo esc_html__( $assigned_post_id ); ?>" ><?php esc_html_e( 'Activate', 'woocommerce_one_click_upsell_funnel' ); ?></button>
 
 							<?php else : ?>
 
@@ -657,7 +657,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	 */
 	public function mwb_wocuf_pro_add_columns_to_admin_orders( $columns ) {
 
-		$columns['mwb-upsell-orders'] = __( 'Upsell Orders', 'woocommerce_one_click_upsell_funnel' );
+		$columns['mwb-upsell-orders'] = esc_html__( 'Upsell Orders', 'woocommerce_one_click_upsell_funnel' );
 
 		return $columns;
 	}
@@ -680,10 +680,10 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 
 				if ( 'true' === $upsell_order ) {
 
-					$data .= sprintf( '<a href="%s" >%s</a>', get_edit_post_link( $post_id ), __( 'Upsell Order', 'woocommerce_one_click_upsell_funnel' ) );
+					$data .= sprintf( '<a href="%s" >%s</a>', get_edit_post_link( $post_id ), esc_html__( 'Upsell Order', 'woocommerce_one_click_upsell_funnel' ) );
 				} else {
 
-					$data .= __( 'Single Order', 'woocommerce_one_click_upsell_funnel' );
+					$data .= esc_html__( 'Single Order', 'woocommerce_one_click_upsell_funnel' );
 				}
 
 				echo $data; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -803,10 +803,10 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	public function mwb_wocuf_pro_maintain_report( $tabs ) {
 
 		$tabs['mwb_wocuf_reports'] = array(
-			'title'         => __( 'One Click Upsell Funnel for WooCommerce', 'woocommerce_one_click_upsell_funnel' ),
+			'title'         => esc_html__( 'One Click Upsell Funnel for WooCommerce', 'woocommerce_one_click_upsell_funnel' ),
 			'reports'       => array(
 				'mwb_wocuf_report_by_date' => array(
-					'title'       => __( 'Upsell Funnel Revenue By Date', 'woocommerce_one_click_upsell_funnel' ),
+					'title'       => esc_html__( 'Upsell Funnel Revenue By Date', 'woocommerce_one_click_upsell_funnel' ),
 					'description' => '',
 					'hide_title'  => false,
 					'callback'    => array( $this, 'mwb_wocuf_pro_get_upsell_report' ),

@@ -129,7 +129,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 					<td>
 
 						<?php
-						$attribut_description = __( 'Skip funnel if any offer product in funnel is already present during checkout.', 'woocommerce_one_click_upsell_funnel' );
+						$attribut_description = esc_html__( 'Skip funnel if any offer product in funnel is already present during checkout.', 'woocommerce_one_click_upsell_funnel' );
 						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 
@@ -159,7 +159,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 					<td>
 
 						<?php
-						$attribut_description = __( 'Remove theme and other plugin styles from offer pages. (Not applicable for Custom Offer pages)', 'woocommerce_one_click_upsell_funnel' );
+						$attribut_description = esc_html__( 'Remove theme and other plugin styles from offer pages. (Not applicable for Custom Offer pages)', 'woocommerce_one_click_upsell_funnel' );
 						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 
@@ -189,7 +189,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 					<td>
 
 						<?php
-						$attribut_description = __( '( Not for Live Offer ) Set Global Offer Product for Sandbox View of : 1) Offer page when no offer product is set. 2) Custom page for offer.', 'woocommerce_one_click_upsell_funnel' );
+						$attribut_description = esc_html__( '( Not for Live Offer ) Set Global Offer Product for Sandbox View of : 1) Offer page when no offer product is set. 2) Custom page for offer.', 'woocommerce_one_click_upsell_funnel' );
 						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 
@@ -203,7 +203,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 							$global_product_title = get_the_title( $global_product_id );
 
 							?>
-								<option value="<?php echo esc_html( $global_product_id ); ?>" selected="selected"><?php echo esc_html( $global_product_title ) . '( #' . esc_html( $global_product_id ) . ' )'; ?>
+								<option value="<?php echo esc_html__( $global_product_id ); ?>" selected="selected"><?php echo esc_html__( $global_product_title ) . '( #' . esc_html__( $global_product_id ) . ' )'; ?>
 								</option>
 
 							<?php
@@ -226,7 +226,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 						<div class="mwb_upsell_attribute_description">
 
 							<?php
-							$attribut_description = __( '( Not for Live Offer ) Set Global Offer Discount in product price for Sandbox View of : 1) Custom page for offer.', 'woocommerce_one_click_upsell_funnel' );
+							$attribut_description = esc_html__( '( Not for Live Offer ) Set Global Offer Discount in product price for Sandbox View of : 1) Custom page for offer.', 'woocommerce_one_click_upsell_funnel' );
 							echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							?>
 
@@ -236,7 +236,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 							?>
 
-							<input type="text" name="global_product_discount" value="<?php echo esc_html( $global_product_discount ); ?>">
+							<input type="text" name="global_product_discount" value="<?php echo esc_html__( $global_product_discount ); ?>">
 						</div>
 						<span class="mwb_upsell_global_description"><?php esc_html_e( 'Specify new offer price or discount %', 'woocommerce_one_click_upsell_funnel' ); ?></span>
 					</td>
@@ -255,7 +255,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 						<div class="mwb_upsell_attribute_description">
 
 							<?php
-							$attribut_description = __( 'Enter your Custom CSS without style tags.', 'woocommerce_one_click_upsell_funnel' );
+							$attribut_description = esc_html__( 'Enter your Custom CSS without style tags.', 'woocommerce_one_click_upsell_funnel' );
 							echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							?>
 
@@ -265,7 +265,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 							?>
 
-							<textarea name="global_custom_css" rows="4" cols="50"><?php echo esc_html( wp_unslash( $global_custom_css ) ); ?></textarea>
+							<textarea name="global_custom_css" rows="4" cols="50"><?php echo esc_html__( wp_unslash( $global_custom_css ) ); ?></textarea>
 						</div>
 					</td>
 				</tr>
@@ -283,17 +283,16 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 						<div class="mwb_upsell_attribute_description">
 
 							<?php
-							$attribut_description = __( 'Enter your Custom JS without script tags.', 'woocommerce_one_click_upsell_funnel' );
+							$attribut_description = esc_html__( 'Enter your Custom JS without script tags.', 'woocommerce_one_click_upsell_funnel' );
 							echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							?>
-
 							<?php
 
 							$global_custom_js = ! empty( $mwb_upsell_global_settings['global_custom_js'] ) ? $mwb_upsell_global_settings['global_custom_js'] : '';
 
 							?>
 
-							<textarea name="global_custom_js" rows="4" cols="50"><?php echo esc_html( wp_unslash( $global_custom_js ) ); ?></textarea>
+							<textarea name="global_custom_js" rows="4" cols="50"><?php echo esc_html__( wp_unslash( $global_custom_js ) ); ?></textarea>
 						</div>
 					</td>
 				</tr>
