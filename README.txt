@@ -1,8 +1,8 @@
 === One Click Upsell Funnel for WooCommerce ===
 
-Contributors:MakeWebBetter
+Contributors: MakeWebBetter
 Donate link: http://makewebbetter.com/
-Tags: woocommerce,store,upsell,funnel,increase sales,one click,offers,post purchase,cod
+Tags: woocommerce, store, upsell, funnel, increase sales, one click, offers, post purchase, cod
 Requires at least: 4.0
 Tested up to: 5.2.3
 WC requires at least: 3.0.0
@@ -23,11 +23,11 @@ Have you ever analyzed your customer’s buying experience at your online store?
 
 Are you expecting more from your store sales and revenue?
 
-If your answer is Yes, then you must install the **One Click Upsell Funnel for WooCommerce** now. 
+If your answer is Yes, then you must install the One Click Upsell Funnel for WooCommerce now. 
 
 It is an upselling plugin that facilitates store owners to make one-time special offers immediately after their customer’s purchase, enabling them to increase their Average Order Value and conversions. To encourage this, store owners need to add the most attractive products into their funnel offers and experience the magic of upselling in the online e-commerce business.
 
-[youtube https://www.youtube.com/watch?v=Wa3NL4oy-tE ]
+
 
 == MAIN FEATURES ==
 
@@ -42,17 +42,19 @@ A Combined order makes packaging and shipping convenient.
 * **Funnel Sandbox mode** - View and Customize Funnel Offer pages in sandbox mode and modify each and every element of the offer page before going Live.
 * **Responsive Offer pages** - Mobile and Tablet view of offer pages in Sandbox mode and customize the same offer page differently according to them.
 
-== Products and Payment methods ==
+== PRODUCTS AND PAYMENT METHODS ==
 
 * **Supported Products** - Simple products.
 * **Supported Payment methods** - Cash on Delivery.
 
-> Note: The features listed below are available with the Premium version of One Click Upsell Funnel for WooCommerce. This implies that you need One Click Upsell Funnel for WooCommerce - “Premium version” to take advantage of these exclusive features. You can get the [premium version here](https://makewebbetter.com/product/woocommerce-one-click-upsell-funnel-pro/?utm_source=MWB-one-click-upsell-funnel-org&utm_medium=MWB-ORG-page&utm_campaign=MWB-one-click-upsell-funnel-org) 
 
-== Premium Addon Features ==
+== PREMIUM ADDON FEATURES ==
 
 * **Supported Products** - Simple products, Variable products and Subscription products.
 * **Supported Payment methods** - *WooCommerce Standard Paypal*, *Stripe*, *Paypal Express Checkout*, *Authorize.net*, *Paystack*, *Vipps*, *Tpay*, *Cardcom* and core payment options such as *Cash On Delivery*, *Direct Bank Transfer*, and *Cheque Payments*.
+
+For **Premium Version** - [Visit Here](https://makewebbetter.com/product/woocommerce-one-click-upsell-funnel-pro/?utm_source=MWB-upsell-org&utm_medium=MWB-ORG&utm_campaign=MWB-upsell-org)
+
 
 == Benefits ==
 
@@ -73,22 +75,30 @@ A Combined order makes packaging and shipping convenient.
 * Provides the best Upsell strategy.
 
 
-
 == Want Help! ==
 
-* For **More Plugins By makewebbetter** you can [visit here](https://makewebbetter.com/store/)
+* For **Premium Version** [Visit Here](https://makewebbetter.com/product/woocommerce-one-click-upsell-funnel-pro/?utm_source=MWB-upsell-org&utm_medium=MWB-ORG&utm_campaign=MWB-upsell-org)
+
+* For **Plugin Documentation** [visit here](https://docs.makewebbetter.com/woocommerce-one-click-upsell-funnel/?utm_source=MWB-upsell-org&utm_medium=MWB-ORG&utm_campaign=MWB-upsell-org)
+
+* For **More Plugins** [visit here](https://makewebbetter.com/wordpress-plugins/?utm_source=MWB-upsell-org&utm_medium=MWB-org-page&utm_campaign=MWB-upsell-org) 
 
 
-= Support =
 
-If you need support or have any question then kindly use our online chat window [here](https://makewebbetter.com/) or send us an email at [support@makewebbetter.com](mailto:support@makewebbetter.com)
+== Support ==
 
-= Follow Us =
+If you need support or have any question then kindly use our online chat window [here](https://makewebbetter.com/?utm_source=MWB-upsell-org&utm_medium=MWB-org-page&utm_campaign=MWB-upsell-org) or send us an email at [support@makewebbetter.com](mailto:support@makewebbetter.com)
 
-* **Our Official Website** - [https://makewebbetter.com/](https://makewebbetter.com/) 
-* **Our Facebook Page** - [https://www.facebook.com/makewebbetter](https://www.facebook.com/makewebbetter)
-* **Our Twitter Account** - [https://twitter.com/makewebbetter](https://twitter.com/makewebbetter)
-* **Our LinkedIn Account** - [https://www.linkedin.com/company/makewebbetter](https://www.linkedin.com/company/makewebbetter)
+
+
+== Follow Us ==
+
+* [**Our Official Website**](https://makewebbetter.com/?utm_source=MWB-upsell-org&utm_medium=MWB-org-page&utm_campaign=MWB-upsell-org) 
+* [**Our Facebook Page**](https://www.facebook.com/makewebbetter)
+* [**Our Twitter Account**](https://twitter.com/makewebbetter)
+* [**Our LinkedIn Account**](https://www.linkedin.com/company/makewebbetter)
+
+
 
 
 == Installation ==
@@ -97,7 +107,7 @@ If you need support or have any question then kindly use our online chat window 
 
 Automatic installation is the easiest option as WordPress handles the file transfers itself and you don't need to leave your web browser. To do an automatic install of One Click Upsell Funnel for WooCommerce, log in to your WordPress dashboard, navigate to the Plugins menu and click Add New.
 
-In the search field type "One Click Upsell Funnel for WooCommerce" and click Search Plugins. Once you've found our One Click Upsell Funnel for WooCommerce plugin you can view details about it such as the point release, rating and description. Most importantly of course, you can install it by simply clicking "Install Now".
+In the search field type **"One Click Upsell Funnel for WooCommerce"** and click Search Plugins. Once you've found our One Click Upsell Funnel for WooCommerce plugin you can view details about it such as the point release, rating and description. Most importantly of course, you can install it by simply clicking **"Install Now"**.
 
 = Manual installation =
 
@@ -109,17 +119,15 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 == Screenshots ==
 
-1. How Does Offer Funnel Works
-2. Create new Funnel
-3. Add Offer in the funnel
-4. Make Funnel Live
-5. Template-1
-6. Template-2
-7. Template-3
-8. Funnels List
-9. Shortcodes
-10. Global Settings
-11. Payment Gateway
+1. Create new Funnel
+2. Add Offer in the funnel
+3. Make Funnel Live
+4. Template-1
+5. Template-2
+6. Template-3
+7. Funnels List
+8. Shortcodes
+9. Global Settings 
 
 
 == Frequently Asked Questions ==
@@ -149,17 +157,17 @@ The Upsell offer redirection will be done only when the customer has purchased t
 
 =How can I use Custom Page Shortcodes for BUY NOW and NO THANKS?=
 
-For “Buy Now” shortcode:
+For **“Buy Now”** shortcode:
 
-You need to copy this Buy Now → [mwb_upsell_yes] and place at a suitable place on your page.
+You need to copy this **Buy Now → [mwb_upsell_yes]** and place at a suitable place on your page.
 
-Description :- This shortcode only returns the link so it has to be used in the link section. In html use it as href=”[mwb_upsell_yes]” of an anchor tag.
+**Description :-** This shortcode only returns the link so it has to be used in the link section. In html use it as href=”[mwb_upsell_yes]” of an anchor tag.
 
-For “No thanks” shortcode:
+For **“No thanks”** shortcode:
 
-You need to copy this No Thanks → [mwb_upsell_no] and place at a suitable place on your page.
+You need to copy this **No Thanks → [mwb_upsell_no]** and place at a suitable place on your page.
 
-Description :- This shortcode only returns the link so it has to be used in the link section. In html use it as href=”[mwb_upsell_no]” of an anchor tag.
+**Description :-** This shortcode only returns the link so it has to be used in the link section. In html use it as href=”[mwb_upsell_no]” of an anchor tag.
 
 
 == Changelog ==
@@ -196,7 +204,6 @@ Description :- This shortcode only returns the link so it has to be used in the 
 
 == Upgrade Notice ==
 
-= 2.0.1 =
+= 2.0.2 =
 * Improved: Better Security and Performance
-* Improved: Better Funnels listing page
 * Other: Issues and Bugs Fixed.
