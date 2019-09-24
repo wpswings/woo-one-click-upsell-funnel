@@ -18,7 +18,7 @@
  */
 function mwb_upsell_lite_elementor_plugin_active() {
 
-	if ( ( ! in_array( 'elementor/elementor.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) ) {
+	if ( ( in_array( 'elementor/elementor.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) ) {
 		
 		return true;
 	} else {
