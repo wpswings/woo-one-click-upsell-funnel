@@ -36,6 +36,28 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Plugin Active Detection.
+ */
+function mwb_upsell_lite_is_plugin_active( $plugin_slug ) {
+
+	if ( empty( $plugin_slug ) ) {
+
+		return false;
+	}
+
+	$active_plugins = (array) get_option( 'active_plugins', array() );
+
+	if ( is_multisite() ) {
+
+		$active_plugins = array_merge( $active_plugins, get_site_option( 'active_sitewide_plugins', array() ) );
+
+	}
+
+	return in_array( $plugin_slug, $active_plugins ) || array_key_exists( $plugin_slug, $active_plugins );
+
+}
+
+/**
  * The code that runs during plugin activation.
  * This action is for woocommerce dependency check.
  */
@@ -44,7 +66,7 @@ function mwb_upsell_lite_plugin_activation() {
 	$activation['message'] = '';
 
 	// Dependant plugin.
-	if ( ! in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+	if ( ! mwb_upsell_lite_is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
 
 		$activation['status'] = false;
 		$activation['message'] = 'woo_inactive';
@@ -58,7 +80,7 @@ $mwb_upsell_lite_plugin_activation = mwb_upsell_lite_plugin_activation();
 if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 
 	// If pro plugin active, load nothing.
-	if ( in_array( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+	if ( mwb_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
 
 		return;
 	}
