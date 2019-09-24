@@ -46,7 +46,7 @@ function mwb_upsell_lite_plugin_activation() {
 	// Dependant plugin.
 	if ( ! in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 
-	    $activation['status'] = false;
+		$activation['status'] = false;
 		$activation['message'] = 'woo_inactive';
 	}
 

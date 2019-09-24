@@ -2202,7 +2202,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 	/**
 	 * Global Custom CSS.
-	 * 
+	 *
 	 * @since    3.0.0
 	 */
 	public function global_custom_css() {

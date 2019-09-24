@@ -146,7 +146,7 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 
 
 	// Sanitize and strip slashes for custom page url array.
-	$offer_custom_page_url = ! empty( $_POST['mwb_wocuf_offer_custom_page_url'] ) ?  array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_offer_custom_page_url'] ) ) : '';
+	$offer_custom_page_url = ! empty( $_POST['mwb_wocuf_offer_custom_page_url'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_offer_custom_page_url'] ) ) : '';
 
 	$offer_custom_page_url = ! empty( $offer_custom_page_url ) ? array_map( 'esc_url', wp_unslash( $offer_custom_page_url ) ) : '';
 
