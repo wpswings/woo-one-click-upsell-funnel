@@ -158,8 +158,9 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 					wp_enqueue_script( 'woocommerce_admin' );
 
 					$wocuf_js_data = array(
-						'ajaxurl'       => admin_url( 'admin-ajax.php' ),
-						'auth_nonce'    => wp_create_nonce( 'mwb_wocuf_nonce' ),
+						'ajaxurl'       	=> admin_url( 'admin-ajax.php' ),
+						'auth_nonce'    	=> wp_create_nonce( 'mwb_wocuf_nonce' ),
+						'current_version'   => MWB_WOCUF_VERSION,
 					);
 
 					wp_enqueue_script( 'mwb-wocuf-pro-add_new-offer-script', plugin_dir_url( __FILE__ ) . 'js/mwb_wocuf_pro_add_new_offer_script.js', array( 'woocommerce_admin', 'wc-enhanced-select' ), $this->version, false );

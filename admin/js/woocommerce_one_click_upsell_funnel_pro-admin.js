@@ -2,6 +2,13 @@
 	'use strict';
 	$(document).ready(function(){
 		$('#mwb_wocuf_pro_target_pro_ids').select2();
+
+		// Add multiselect to scheduling select after v2.1.0
+		if ( $( '.wc-bump-schedule-search' ).length ) {
+
+			$( '.wc-bump-schedule-search' ).select2();
+
+		}
 	});
 })( jQuery );
 

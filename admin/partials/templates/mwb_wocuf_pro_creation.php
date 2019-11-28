@@ -95,6 +95,27 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 		$_POST['mwb_upsell_funnel_status'] = 'no';
 	}
 
+	/**
+	 * Handle the schedule here.
+	 */
+	if( empty( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ) {
+
+		if( '0' == $_POST['mwb_wocuf_pro_funnel_schedule'] ) {
+
+			// Zero is marked as sunday.
+			$_POST['mwb_wocuf_pro_funnel_schedule'] = array( '0' );
+
+		} else {
+
+			// Empty is marked as daily.
+			$_POST['mwb_wocuf_pro_funnel_schedule'] = array( '7' );
+		}
+
+	} elseif ( ! is_array( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ) {
+
+		$_POST['mwb_wocuf_pro_funnel_schedule'] = array( $_POST['mwb_wocuf_pro_funnel_schedule'] );
+	}
+
 	$mwb_wocuf_pro_funnel = array();
 	$offer_custom_page_url_array = array();
 
@@ -107,7 +128,12 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 	$mwb_wocuf_pro_funnel['mwb_wocuf_funnel_id'] = ! empty( $_POST['mwb_wocuf_funnel_id'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_funnel_id'] ) ) : '';
 	$mwb_wocuf_pro_funnel['mwb_upsell_fsav3'] = ! empty( $_POST['mwb_upsell_fsav3'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_upsell_fsav3'] ) ) : '';
 	$mwb_wocuf_pro_funnel['mwb_wocuf_funnel_name'] = ! empty( $_POST['mwb_wocuf_funnel_name'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_funnel_name'] ) ) : '';
-	$mwb_wocuf_pro_funnel['mwb_wocuf_pro_funnel_schedule'] = ! empty( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ) : '';
+
+	// Sanitize and strip slashes for Funnel Target products.
+	$target_pro_schedule_array = ! empty( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ) : array();
+
+	$mwb_wocuf_pro_funnel['mwb_wocuf_pro_funnel_schedule'] = ! empty( $target_pro_schedule_array ) ? $target_pro_schedule_array : array();
+
 
 	// Sanitize and strip slashes for Funnel Target products.
 	$target_pro_ids_array = ! empty( $_POST['mwb_wocuf_target_pro_ids'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_target_pro_ids'] ) ) : array();
@@ -226,13 +252,13 @@ $mwb_wocuf_pro_funnel_data = get_option( 'mwb_wocuf_funnels_list', array() );
 $mwb_wocuf_pro_custom_th_page = ! empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_custom_th_page'] ) ? $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_custom_th_page'] : 'off';
 
 $mwb_wocuf_pro_funnel_schedule_options = array(
-	'0'     => esc_html__( 'on every Sunday', 'woocommerce_one_click_upsell_funnel' ),
-	'1'     => esc_html__( 'on every Monday', 'woocommerce_one_click_upsell_funnel' ),
-	'2'     => esc_html__( 'on every Tuesday', 'woocommerce_one_click_upsell_funnel' ),
-	'3'     => esc_html__( 'on every Wednesday', 'woocommerce_one_click_upsell_funnel' ),
-	'4'     => esc_html__( 'on every Thursday', 'woocommerce_one_click_upsell_funnel' ),
-	'5'     => esc_html__( 'on every Friday', 'woocommerce_one_click_upsell_funnel' ),
-	'6'     => esc_html__( 'on every Saturday', 'woocommerce_one_click_upsell_funnel' ),
+	'0'     => esc_html__( 'Sunday', 'woocommerce_one_click_upsell_funnel' ),
+	'1'     => esc_html__( 'Monday', 'woocommerce_one_click_upsell_funnel' ),
+	'2'     => esc_html__( 'Tuesday', 'woocommerce_one_click_upsell_funnel' ),
+	'3'     => esc_html__( 'Wednesday', 'woocommerce_one_click_upsell_funnel' ),
+	'4'     => esc_html__( 'Thursday', 'woocommerce_one_click_upsell_funnel' ),
+	'5'     => esc_html__( 'Friday', 'woocommerce_one_click_upsell_funnel' ),
+	'6'     => esc_html__( 'Saturday', 'woocommerce_one_click_upsell_funnel' ),
 	'7'     => esc_html__( 'Daily', 'woocommerce_one_click_upsell_funnel' ),
 );
 
@@ -390,24 +416,33 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 						echo wc_help_tip( $description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 						?>
-
-						<select class="mwb_wocuf_pro_funnel_schedule" name="mwb_wocuf_pro_funnel_schedule">
+						<!-- Add multiselect after v2.1.0 -->
+						<select class="mwb_wocuf_pro_funnel_schedule wc-bump-schedule-search" name="mwb_wocuf_pro_funnel_schedule[]" multiple="multiple" data-placeholder="<?php esc_attr_e( 'Search for a specific days&hellip;', 'woocommerce_one_click_upsell_funnel' ); ?>">
 
 							<?php
 
-							$selected_week = ! empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) ? $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] : 7;
+							/**
+							 * After v1.0.0 schedule value will be array.
+							 * Hence, convert earlier version data in array.
+							 */
+							if( empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) || ! is_array( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) ) {
 
-							foreach ( $mwb_wocuf_pro_funnel_schedule_options as $key => $value ) {
-
-								?>
-
-								<option <?php echo esc_html( $selected_week == $key ? 'selected=""' : '' ); ?> value="<?php echo esc_html( $key ); ?>"><?php echo esc_html( $value ); ?></option>
-
-								<?php
+								$selected_week = ! empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) ? array( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) : array( '7' );
 							}
 
+							else {
+
+								$selected_week = ! empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) ? $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] : array( '7' );
+							}
 							?>
-						</select>			
+
+							<?php foreach ( $mwb_wocuf_pro_funnel_schedule_options as $key => $day ) : ?>
+
+								<option <?php echo in_array( $key, $selected_week ) ? 'selected' : '' ?> value="<?php echo esc_html( $key ); ?>"><?php echo esc_html( $day ); ?></option>
+
+							<?php endforeach; ?>
+
+						</select>
 					</td>	
 				</tr>
 				<!-- Schedule your Funnel end -->

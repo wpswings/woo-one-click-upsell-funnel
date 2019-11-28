@@ -157,27 +157,36 @@ class Woocommerce_one_click_upsell_funnel_Public {
 										}
 									}
 
-									// Check for funnel schedule.
-									$mwb_wocuf_pro_funnel_schedule = ! empty( $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_wocuf_pro_funnel_schedule'] ) ? $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_wocuf_pro_funnel_schedule'] : '';
+									/**
+									 * Check for funnel schedule.
+									 * After v2.1.0 convert data in array first.
+									 */
+									$mwb_wocuf_pro_funnel_schedule = ! empty( $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_wocuf_pro_funnel_schedule'] ) ? $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_wocuf_pro_funnel_schedule'] : array( '7' );
 
 									if ( '0' == $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_wocuf_pro_funnel_schedule'] ) {
 
-										$mwb_wocuf_pro_funnel_schedule = '0';
+										$mwb_wocuf_pro_funnel_schedule = array( '0' );
 									}
 
+									elseif ( ! is_array( $mwb_wocuf_pro_funnel_schedule ) ) {
+
+										$mwb_wocuf_pro_funnel_schedule = array( $mwb_wocuf_pro_funnel_schedule );
+									}
+									
 									// In order to use server time only.
 									$current_schedule = date( 'w' );
 
-									if ( $current_schedule === $mwb_wocuf_pro_funnel_schedule ) {
+									if( in_array( '7', $mwb_wocuf_pro_funnel_schedule ) ) {
+
 										$mwb_wocuf_pro_proceed = true;
-									} elseif ( '7' === $mwb_wocuf_pro_funnel_schedule ) {
-										$mwb_wocuf_pro_proceed = true;
-									} elseif ( '0' != $mwb_wocuf_pro_funnel_schedule && empty( $mwb_wocuf_pro_funnel_schedule ) ) {
+
+									} elseif ( in_array( $current_schedule, $mwb_wocuf_pro_funnel_schedule ) ) {
 
 										$mwb_wocuf_pro_proceed = true;
 									}
 
 									if ( false == $mwb_wocuf_pro_proceed ) {
+
 										// Break from placed order items loop and move to next funnel.
 										break;
 									}
