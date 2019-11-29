@@ -150,10 +150,17 @@ class Woocommerce_one_click_upsell_funnel_Public {
 										// Check if funnel is live or not.
 										$funnel_status = ! empty( $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_upsell_funnel_status'] ) ? $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_upsell_funnel_status'] : '';
 
-										if ( 'yes' != $funnel_status ) {
+										/**
+										 * For Admin don't check this.
+										 * After v2.1.0
+										 */
+										if( ! current_user_can('administrator') ) {
+											
+											if ( 'yes' != $funnel_status ) {
 
-											// Break from placed order items loop and move to next funnel.
-											break;
+												// Break from placed order items loop and move to next funnel.
+												break;
+											}
 										}
 									}
 
