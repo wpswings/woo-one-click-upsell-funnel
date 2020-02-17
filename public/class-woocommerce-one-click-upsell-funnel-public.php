@@ -201,6 +201,39 @@ class Woocommerce_one_click_upsell_funnel_Public {
 									// Array of offers with product id.
 									if ( ! empty( $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_wocuf_products_in_offer'] ) && is_array( $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_wocuf_products_in_offer'] ) ) {
 
+										/**
+										 * Set funnel as shown if is exclusive offer funnel.
+										 * Do it just after checking target.
+										 */
+										if( ! empty( $mwb_wocuf_pro_funnel_data[ 'mwb_wocuf_exclusive_offer' ] ) && 'yes' == $mwb_wocuf_pro_funnel_data[ 'mwb_wocuf_exclusive_offer' ] ) {
+														    	
+												// Check if funnel still exists.
+												if( ! empty( $mwb_wocuf_pro_funnel_data ) ) {
+
+													if( ! empty( $mwb_wocuf_pro_funnel_data[ 'mwb_wocuf_exclusive_offer' ] ) && 'yes' == $mwb_wocuf_pro_funnel_data[ 'mwb_wocuf_exclusive_offer' ] ) {
+
+														$offer_already_shown_to_users = ! empty( $mwb_wocuf_pro_funnel_data[ 'offer_already_shown_to_users' ] ) ? $mwb_wocuf_pro_funnel_data[ 'offer_already_shown_to_users' ] : array();
+
+														$current_customer = ! empty( $order ) ? $order->get_billing_email() : '';
+
+														if( ! empty( $current_customer ) && ! empty( $offer_already_shown_to_users ) && in_array( $current_customer, $offer_already_shown_to_users ) ) {
+
+															// Skip to next funnel.
+															break;
+														}
+
+														// Not skipped. Mark as shown to this customer.
+														array_push( $offer_already_shown_to_users, $current_customer );
+														$mwb_wocuf_pro_funnel_data[ 'offer_already_shown_to_users' ] = $offer_already_shown_to_users;
+
+														$mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ] = $mwb_wocuf_pro_funnel_data;
+
+														update_option( 'mwb_wocuf_funnels_list', $mwb_wocuf_pro_all_funnels );
+													}
+												}
+											}
+
+
 										// To skip funnel if any funnel offer product is already present during checkout ( Order Items ).
 										$mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', array() );
 

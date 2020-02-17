@@ -201,6 +201,9 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 
 	$mwb_wocuf_pro_funnel['mwb_upsell_offer_image'] = ! empty( $custom_image_ids_array ) ? $custom_image_ids_array : array();
 
+
+	$mwb_wocuf_pro_funnel['mwb_wocuf_exclusive_offer'] = ! empty( $_POST[ 'mwb_wocuf_exclusive_offer' ] ) ? 'yes' : 'no';
+
 	$mwb_wocuf_pro_funnel_series = array();
 
 	// POST funnel as array at funnel id key.
@@ -246,14 +249,11 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 	mwb_upsell_lite_offer_page_posts_deletion();
 
 	?>
-
 	<!-- Settings saved notice -->
 	<div class="notice notice-success is-dismissible"> 
 		<p><strong><?php esc_html_e( 'Settings saved', 'woocommerce_one_click_upsell_funnel' ); ?></strong></p>
 	</div>
-
 	<?php
-
 }
 
 // Get all funnels.
@@ -457,7 +457,32 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 					</td>	
 				</tr>
 				<!-- Schedule your Funnel end -->
-				
+
+				<!-- Exclusive Offer start -->
+				<tr valign="top">
+
+					<th scope="row" class="titledesc">
+						<label for="mwb_wocuf_is_exclusive"><?php esc_html_e( 'Exclusive Offer', 'woocommerce_one_click_upsell_funnel' ); ?></label>
+					</th>
+
+					<td class="forminp forminp-text">
+						<?php
+
+						$attribut_description = esc_html__( 'This Feature shows the funnel one time offer per user. This works upon the order billing email.', 'woocommerce_one_click_upsell_funnel' );
+
+						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped.
+
+						$mwb_wocuf_is_exclusive = ! empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_exclusive_offer'] ) ? $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_exclusive_offer'] : 'no';
+						?>
+
+						<label class="mwb_wocuf_pro_enable_plugin_label">
+							<input class="mwb_wocuf_pro_enable_plugin_input" type="checkbox" <?php echo ( 'yes' == $mwb_wocuf_is_exclusive ) ? "checked='checked'" : ''; ?> name="mwb_wocuf_exclusive_offer" >	
+							<span class="mwb_wocuf_pro_enable_plugin_span"></span>
+						</label>		
+					</td>
+				</tr>
+				<!-- Exclusive Offer end -->
+
 			</tbody>
 		</table>
 		
