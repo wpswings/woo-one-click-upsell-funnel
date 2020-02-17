@@ -272,6 +272,9 @@ class Woocommerce_one_click_upsell_funnel {
 			// Global custom JS.
 			$this->loader->add_action( 'wp_footer', $plugin_public, 'global_custom_js' );
 
+			// Reset Timer session.
+			$this->loader->add_action( 'wp_footer', $plugin_public, 'reset_timer_session_data' );
+
 		}
 	}
 

@@ -549,11 +549,11 @@ class Woocommerce_one_click_upsell_funnel_Public {
 						*/
 						// $url = $redirect_to_url . '?ocuf_ns=' . $wp_nonce . '&ocuf_ofd=' . $offer_id . '&ocuf_ok=' . $order_key . '&ocuf_fid=' . $funnel_id;
 
-						$result = add_query_arg( array(
-							'ocuf_ns' => $mwb_wocuf_pro_nonce,
-							'ocuf_fid' => $mwb_wocuf_pro_single_funnel,
-							'ocuf_ok' => $ocuf_ok,
-							'ocuf_ofd' => $ocuf_ofd,
+						$url = add_query_arg( array(
+							'ocuf_ns' => $wp_nonce,
+							'ocuf_fid' => $funnel_id,
+							'ocuf_ok' => $order_key,
+							'ocuf_ofd' => $offer_id,
 						), $redirect_to_url );
 
 					} else {
@@ -578,21 +578,20 @@ class Woocommerce_one_click_upsell_funnel_Public {
 						$this->initiate_order_payment_and_redirect( $order_id );
 					}
 
-
-
 					/**
 					* Updated after v2.1.0
 					* Do not append params manually.
 					*/
 					// $mwb_wocuf_pro_next_offer_url = $mwb_wocuf_pro_next_offer_url . '?ocuf_ns=' . $wp_nonce . '&ocuf_ofd=' . $offer_id . '&ocuf_ok=' . $order_key . '&ocuf_fid=' . $funnel_id;
-					// $url = $mwb_wocuf_pro_next_offer_url;
 
-					$url = add_query_arg( array(
+					$mwb_wocuf_pro_next_offer_url = add_query_arg( array(
 						'ocuf_ns' => $wp_nonce,
 						'ocuf_fid' => $funnel_id,
 						'ocuf_ok' => $order_key,
 						'ocuf_ofd' => $offer_id,
 					), $mwb_wocuf_pro_next_offer_url );
+
+					$url = $mwb_wocuf_pro_next_offer_url;
 				}
 
 				wp_safe_redirect( $url );
@@ -1285,6 +1284,14 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		// Default Gutenberg offer
 		add_shortcode( 'mwb_upsell_default_offer_identification', array( $this, 'default_offer_identification' ) );
+
+		/**
+		 * Shortcodes after v2.1.0.
+		 * Quantity Field and Timer Shortcode.
+		 */
+		add_shortcode( 'mwb_upsell_timer', array( $this, 'timer_shortcode_content' ) );
+
+		add_shortcode( 'mwb_upsell_quantity', array( $this, 'quantity_shortcode_content' ) );
 	}
 
 	/**
@@ -2344,6 +2351,181 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		<?php
 
+	}
+
+	/**
+	 * Shortcode for offer - Timer button.
+	 * Returns : html :)
+	 *
+	 * 
+	 *
+	 * @since       2.1.0
+	 */
+	public function timer_shortcode_content( $atts, $content = '' ) {
+		
+		$validate_shortcode = $this->validate_shortcode();
+
+		if ( $validate_shortcode ) {
+
+			$minutes = ! empty( $atts['minutes'] ) ? abs( $atts['minutes'] ) : 5;
+			$expiration = $minutes * 60;
+
+			if( empty( $expiration ) || ! is_numeric( $expiration ) ) {
+
+				return esc_html__( 'Time is not specified correctly.', 'woocommerce-one-click-upsell-funnel-pro' ); 
+			}
+
+			?>
+
+			<?php ob_start(); ?>
+
+			<?php if( false === wp_cache_get( 'mwb_upsell_countdown_timer' ) ): ?>
+
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+				<script type="text/javascript">
+
+					jQuery(document).ready(function($) {
+
+						// Set the date we're counting down to.
+						var current = new Date();
+						var expiration = parseFloat( <?php echo( esc_html__( $expiration ) ); ?> ); // Digit in seconds.
+						var offer_id = <?php echo ! empty( $_GET[ 'ocuf_ofd' ] ) ? $_GET[ 'ocuf_ofd' ] : 'null' ; ?>;
+
+						var timer_limit = sessionStorage.getItem( 'timerlimit_' + offer_id );
+						var countDowntime = null != offer_id && null != timer_limit ? timer_limit : current.setSeconds( current.getSeconds()+expiration );
+
+						// Update the count down every 1 second.
+						var  timer  = setInterval(function() {
+
+							// Find the distance between now and the count down time.
+							var distance = countDowntime - new Date().getTime();
+
+							// Time calculations for days, hours, minutes and seconds
+							var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+							var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+							var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+							// If the count down is finished, redirect;
+							if ( distance < 0 ) {
+
+								clearInterval( timer );
+
+								// Expired the session before redirecting.
+								$( 'a' ).each(function() {
+
+									if( this.href.includes( 'ocuf_th' ) ) {
+										
+										jQuery( this )[0].click();
+									}
+								});
+
+							} else {
+
+								if( seconds.toString().length == '1' ) {
+
+									seconds = '0' + seconds;
+
+								} 
+
+								if( minutes.toString().length == '1' ) {
+
+									minutes = '0' + minutes;
+
+								}
+
+								$('.mwb_upsell_lite_display_hours').html( hours );
+								$('.mwb_upsell_lite_display_minutes').html( minutes );
+								$('.mwb_upsell_lite_display_seconds').html( seconds );
+
+							}
+
+						}, 300 );
+
+						sessionStorage.setItem( 'timerlimit_' + offer_id, countDowntime );
+					});
+		
+				</script>
+
+				<?php wp_cache_set( 'mwb_upsell_countdown_timer', 'true' ) ?>
+
+			<?php endif; ?>
+			
+			<!-- Countdown timer html. -->
+			<span class="mwb_upsell_lite_display_timer_wrap">
+				<span class="mwb_upsell_lite_timer_digit">
+					<span class="mwb_upsell_lite_display_minutes mwb_upsell_lite_display_timer">00</span>
+					<span class="mwb_upsell_lite_text"><?php esc_html_e( 'minutes', 'woocommerce-one-click-upsell-funnel-pro' ); ?></span>
+				</span>
+				<span class="mwb_upsell_lite_timer_digit">
+					<span class="mwb_upsell_lite_display_timer_col">:</span>
+				</span>
+				<span class="mwb_upsell_lite_timer_digit">
+					<span class="mwb_upsell_lite_display_seconds mwb_upsell_lite_display_timer">00</span>
+					<span class="mwb_upsell_lite_text"><?php esc_html_e( 'seconds', 'woocommerce-one-click-upsell-funnel-pro' ); ?></span>
+				</span>
+			</span>
+
+			<?php
+
+			$output = ob_get_contents();
+			ob_end_clean();
+
+			return $output;
+		}
+	}
+
+	/**
+	 * Global Custom JS.
+	 *
+	 * @since   2.1.0
+	 */
+	public function reset_timer_session_data() {
+
+		// Don this only on thank you page.
+		if ( ! is_wc_endpoint_url( 'order-received' ) ) {
+
+			return;
+		}
+
+		?>
+
+		<script type="text/javascript">
+			
+			// Clear timestamp from SessionStorage.
+			if( typeof sessionStorage !== 'undefined' && sessionStorage.length > 0 ) {
+
+				// Browser issue.
+				sessionStorage.removeItem( 'timerlimit_1' );
+
+				for ( var i = 0; i < sessionStorage.length; i++ ) {
+
+				    if( sessionStorage.key(i).search( 'timerlimit_' ) == 0 ) {
+
+				    	sessionStorage.removeItem( sessionStorage.key(i) );
+				    }
+				}
+			}
+			
+		</script>
+
+		<?php
+		
+	}
+
+
+	/**
+	 * 
+	 * 
+	 */
+	public function quantity_shortcode_content( $atts, $content = '' ) {
+		
+		$validate_shortcode = $this->validate_shortcode();
+
+		if ( $validate_shortcode ) {
+
+			
+		}
 	}
 }
 ?>
