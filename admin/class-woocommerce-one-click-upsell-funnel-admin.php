@@ -330,6 +330,11 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 			<input type="text" class="mwb_upsell_offer_price" name="mwb_wocuf_offer_discount_price[' . $offer_index . ']" value="50%" >
 			<span class="mwb_upsell_offer_description" >' . esc_html__( 'Specify new offer price or discount %', 'woocommerce_one_click_upsell_funnel' ) . '</span>
 			</td>
+			<tr>
+			    <th><label><h4>' . esc_html__( 'Offer Image', 'woocommerce-one-click-upsell-funnel-pro' ) . '</h4></label>
+			    </th>
+			    <td>' . $this->mwb_wocuf_pro_image_uploader_field( $offer_index, $image_post_id )  . '</td>
+			</tr>
 			</tr>
 		    <tr>
 		    <th><label><h4>' . esc_html__( 'After \'Buy Now\' go to', 'woocommerce_one_click_upsell_funnel' ) . '</h4></label></th>
@@ -899,6 +904,35 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 		set_transient( 'mwb_upsell_elementor_inactive_notice', 'notice_dismissed' );
 
 		wp_die();
+	}
+
+
+	/**
+	 * Add custom image upload.
+	 *
+	 * @since    	2.1.0
+	 */
+	public function mwb_wocuf_pro_image_uploader_field( $hidden_field_index, $image_post_id = '' ) {
+
+		$image = ' button">Upload image';
+		$display = 'none'; // Display state ot the "Remove image" button.
+
+		if( ! empty( $image_post_id ) ) {
+
+			// $image_attributes[0] - Image URL.
+			// $image_attributes[1] - Image width.
+			// $image_attributes[2] - Image height.
+			$image_attributes = wp_get_attachment_image_src( $image_post_id, 'thumbnail' );
+
+			$image = '"><img src="' . $image_attributes[0] . '" style="max-width:150px;display:block;" />';
+			$display = 'inline-block';
+		}
+
+		return '<div class="mwb_wocuf_saved_custom_image">
+		<a href="#" class="mwb_wocuf_pro_upload_image_button' . $image . '</a>
+		<input type="hidden" name="mwb_upsell_offer_image['. $hidden_field_index .']" id="mwb_upsell_offer_image_for_' . $hidden_field_index . '" value="' . esc_attr( $image_post_id ) . '" />
+		<a href="#" class="mwb_wocuf_pro_remove_image_button button" style="display:inline-block;margin-top: 10px;display:' . $display . '">Remove image</a>
+		</div>';
 	}
 
 }

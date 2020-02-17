@@ -353,3 +353,23 @@ function mwb_upsell_lite_gutenberg_offer_content() {
 
 		return $post_content;
 }
+
+/**
+ * Fetch upsell post id from url funnel and offer params.
+ *
+ * @since    2.1.0
+ */
+function mwb_upsell_get_pid_from_url_params() {
+
+	$params['status'] = 'false';
+
+	if ( isset( $_GET['ocuf_ofd'] ) && isset( $_GET['ocuf_fid'] ) ) {	
+
+		$params['status'] = 'true';
+
+		$params['offer_id'] = sanitize_text_field( $_GET["ocuf_ofd"] );
+		$params['funnel_id'] = sanitize_text_field( $_GET["ocuf_fid"] );
+	}
+
+	return $params;
+}

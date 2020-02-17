@@ -95,6 +95,11 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 		$_POST['mwb_upsell_funnel_status'] = 'no';
 	}
 
+	if ( empty( $_POST['mwb_upsell_offer_image'] ) ) {
+
+		$_POST['mwb_upsell_offer_image'] = array();
+	}
+
 	/**
 	 * Handle the schedule here.
 	 */
@@ -189,6 +194,12 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 	$post_id_assigned = ! empty( $_POST['mwb_upsell_post_id_assigned'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_upsell_post_id_assigned'] ) ) : '';
 
 	$mwb_wocuf_pro_funnel['mwb_upsell_post_id_assigned'] = $post_id_assigned;
+
+	// After v3.2.0.
+	// Sanitize and strip slashes for Funnel offer custom image.
+	$custom_image_ids_array = ! empty( $_POST['mwb_upsell_offer_image'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_upsell_offer_image'] ) ) : array();
+
+	$mwb_wocuf_pro_funnel['mwb_upsell_offer_image'] = ! empty( $custom_image_ids_array ) ? $custom_image_ids_array : array();
 
 	$mwb_wocuf_pro_funnel_series = array();
 
@@ -481,6 +492,9 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 		$post_id_assigned_array = ! empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_upsell_post_id_assigned'] ) ? $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_upsell_post_id_assigned'] : '';
 
 		// Funnel Offers array.
+		$mwb_wocuf_custom_offer_images = ! empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_upsell_offer_image'] ) ? $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_upsell_offer_image'] : array();
+
+		// Funnel Offers array.
 		// To be used for showing other offers except for itself in 'buy now' and 'no thanks' go to link.
 		$mwb_wocuf_pro_existing_offers_2 = $mwb_wocuf_pro_existing_offers;
 
@@ -663,6 +677,22 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 								</td>
 							</tr>
 							<!-- Offer price end -->
+
+							<!-- Offer custom image start -->
+							<tr>
+							    <th><label><h4><?php esc_html_e( 'Offer Image', 'woocommerce-one-click-upsell-funnel-pro' )?></h4></label>
+							    </th>
+
+							    <td>
+								    <?php
+
+								    	$image_post_id = ! empty( $mwb_wocuf_custom_offer_images[ $current_offer_id ] ) ? $mwb_wocuf_custom_offer_images[ $current_offer_id ] : '';
+
+								    	echo $this->mwb_wocuf_pro_image_uploader_field( $current_offer_id, $image_post_id ); 
+								    ?>
+							    </td>
+							</tr>
+							<!-- Offer custom image end -->
 
 							<!-- Buy now go to link start -->
 							<tr>
