@@ -339,7 +339,18 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 												$mwb_wocuf_pro_nonce = wp_create_nonce( 'funnel_offers' );
 
-												$result = $redirect_to_url . '?ocuf_ns=' . $mwb_wocuf_pro_nonce . '&ocuf_fid=' . $mwb_wocuf_pro_single_funnel . '&ocuf_ok=' . $ocuf_ok . '&ocuf_ofd=' . $ocuf_ofd;
+												/**
+												 * Updated after v2.1.0
+												 * Do not append params manually.
+												 */
+												// $result = $redirect_to_url . '?ocuf_ns=' . $mwb_wocuf_pro_nonce . '&ocuf_fid=' . $mwb_wocuf_pro_single_funnel . '&ocuf_ok=' . $ocuf_ok . '&ocuf_ofd=' . $ocuf_ofd;
+
+												$result = add_query_arg( array(
+												    'ocuf_ns' => $mwb_wocuf_pro_nonce,
+												    'ocuf_fid' => $mwb_wocuf_pro_single_funnel,
+												    'ocuf_ok' => $ocuf_ok,
+												    'ocuf_ofd' => $ocuf_ofd,
+												), $redirect_to_url );
 
 												$mwb_wocuf_pro_flag = 1;
 
@@ -367,7 +378,18 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 											$mwb_wocuf_pro_nonce = wp_create_nonce( 'funnel_offers' );
 
-											$result .= '?ocuf_ns=' . $mwb_wocuf_pro_nonce . '&ocuf_fid=' . $mwb_wocuf_pro_single_funnel . '&ocuf_ok=' . $ocuf_ok . '&ocuf_ofd=' . $ocuf_ofd;
+											/**
+											 * Updated after v2.1.0
+											 * Do not append params manually.
+											 */
+											// $result .= '?ocuf_ns=' . $mwb_wocuf_pro_nonce . '&ocuf_fid=' . $mwb_wocuf_pro_single_funnel . '&ocuf_ok=' . $ocuf_ok . '&ocuf_ofd=' . $ocuf_ofd;
+
+											$result = add_query_arg( array(
+											    'ocuf_ns' => $mwb_wocuf_pro_nonce,
+											    'ocuf_fid' => $mwb_wocuf_pro_single_funnel,
+											    'ocuf_ok' => $ocuf_ok,
+											    'ocuf_ofd' => $ocuf_ofd,
+											), $result );
 
 											$mwb_wocuf_pro_flag = 1;
 
@@ -520,7 +542,20 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 					if ( true === $redirect_to_upsell ) {
 
-						$url = $redirect_to_url . '?ocuf_ns=' . $wp_nonce . '&ocuf_ofd=' . $offer_id . '&ocuf_ok=' . $order_key . '&ocuf_fid=' . $funnel_id;
+
+						/**
+						* Updated after v2.1.0
+						* Do not append params manually.
+						*/
+						// $url = $redirect_to_url . '?ocuf_ns=' . $wp_nonce . '&ocuf_ofd=' . $offer_id . '&ocuf_ok=' . $order_key . '&ocuf_fid=' . $funnel_id;
+
+						$result = add_query_arg( array(
+							'ocuf_ns' => $mwb_wocuf_pro_nonce,
+							'ocuf_fid' => $mwb_wocuf_pro_single_funnel,
+							'ocuf_ok' => $ocuf_ok,
+							'ocuf_ofd' => $ocuf_ofd,
+						), $redirect_to_url );
+
 					} else {
 
 						$this->initiate_order_payment_and_redirect( $order_id );
@@ -543,10 +578,21 @@ class Woocommerce_one_click_upsell_funnel_Public {
 						$this->initiate_order_payment_and_redirect( $order_id );
 					}
 
-					$mwb_wocuf_pro_next_offer_url = $mwb_wocuf_pro_next_offer_url . '?ocuf_ns=' . $wp_nonce . '&ocuf_ofd=' . $offer_id . '&ocuf_ok=' . $order_key . '&ocuf_fid=' . $funnel_id;
 
-					$url = $mwb_wocuf_pro_next_offer_url;
 
+					/**
+					* Updated after v2.1.0
+					* Do not append params manually.
+					*/
+					// $mwb_wocuf_pro_next_offer_url = $mwb_wocuf_pro_next_offer_url . '?ocuf_ns=' . $wp_nonce . '&ocuf_ofd=' . $offer_id . '&ocuf_ok=' . $order_key . '&ocuf_fid=' . $funnel_id;
+					// $url = $mwb_wocuf_pro_next_offer_url;
+
+					$url = add_query_arg( array(
+						'ocuf_ns' => $wp_nonce,
+						'ocuf_fid' => $funnel_id,
+						'ocuf_ok' => $order_key,
+						'ocuf_ofd' => $offer_id,
+					), $mwb_wocuf_pro_next_offer_url );
 				}
 
 				wp_safe_redirect( $url );
@@ -937,7 +983,17 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 								if ( true === $redirect_to_upsell ) {
 
-									$url = $redirect_to_url . '?ocuf_ns=' . $wp_nonce . '&ocuf_ofd=' . $offer_id . '&ocuf_ok=' . $order_key . '&ocuf_fid=' . $funnel_id;
+									/** Updated after v2.1.0
+									 */
+									// $url = $redirect_to_url . '?ocuf_ns=' . $wp_nonce . '&ocuf_ofd=' . $offer_id . '&ocuf_ok=' . $order_key . '&ocuf_fid=' . $funnel_id;
+
+									$url = add_query_arg( array(
+									    'ocuf_ns' => $wp_nonce,
+									    'ocuf_fid' => $funnel_id,
+									    'ocuf_ok' => $order_key,
+									    'ocuf_ofd' => $offer_id,
+									), $redirect_to_url );
+
 								} else {
 
 									$this->initiate_order_payment_and_redirect( $order_id );
@@ -1638,6 +1694,8 @@ class Woocommerce_one_click_upsell_funnel_Public {
 					$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) ) : '';
 
 					$no_thanks_link = '?ocuf_ns=' . $wp_nonce . '&ocuf_th=1&ocuf_ok=' . $order_key . '&ocuf_ofd=' . $offer_id . '&ocuf_fid=' . $funnel_id;
+
+
 				} elseif ( 'admin_view' == $validate_shortcode ) {
 
 					$no_thanks_link = '#';
