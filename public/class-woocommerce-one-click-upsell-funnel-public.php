@@ -864,6 +864,8 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 				$order_key  = $live_offer_url_params['order_key'];
 
+				$offer_quantity  = ! empty( $live_offer_url_params['quantity'] ) ? $live_offer_url_params['quantity'] : '1';
+
 				$order_id   = wc_get_order_id_by_order_key( $order_key );
 
 				if ( ! empty( $order_id ) ) {
@@ -912,7 +914,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 							}
 						}
 
-						$order->add_product( $upsell_product, 1 );
+						$order->add_product( $upsell_product, $offer_quantity );
 
 						$order->calculate_totals();
 
@@ -2524,8 +2526,43 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		if ( $validate_shortcode ) {
 
-			
+			$maximum = ! empty( $atts['max'] ) ? abs( $atts['max'] ) : 3;
+			$minimum = ! empty( $atts['min'] ) ? abs( $atts['min'] ) : 1;
+
+			$product_id = $this->get_upsell_product_id_for_shortcode();
+
+			if ( ! empty( $product_id ) ) {
+
+				$post_type = get_post_type( $product_id );
+				$product = wc_get_product( $product_id );
+
+				if ( empty( $product ) ) {
+
+					return '';
+				}
+
+				if ( 'product' != $post_type && 'product_variation' != $post_type ) {
+
+					return '';
+				}
+
+				ob_start(); ?>
+				
+				<!-- Countdown timer html. -->
+				<div class="mwb_upsell_quantity quantity">
+					<label class="screen-reader-text" for="mwb_upsell_quantity_field"><?php echo esc_html( $product->get_title() ); ?></label>
+					<input type="number" id="mwb_upsell_quantity_field" class="input-text qty text mwb_upsell_quantity_input" step="1" min="<?php echo( esc_html( $minimum ) ); ?>" max="<?php echo( esc_html( $maximum ) ); ?>" value="1" title="Qty" inputmode="numeric">
+				</div>
+
+				<?php
+
+				$output = ob_get_contents();
+				ob_end_clean();
+
+				return $output;
+			}
 		}
 	}
 }
+
 ?>

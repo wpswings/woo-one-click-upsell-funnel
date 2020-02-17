@@ -151,6 +151,7 @@ function mwb_upsell_lite_live_offer_url_params() {
 		$params['offer_id'] = sanitize_text_field( wp_unslash( $_POST['ocuf_ofd'] ) );
 		$params['funnel_id'] = sanitize_text_field( wp_unslash( $_POST['ocuf_fid'] ) );
 		$params['product_id'] = sanitize_text_field( wp_unslash( $_POST['product_id'] ) );
+		$params['quantity'] = ! empty( $_POST['fetch'] ) ? sanitize_text_field( wp_unslash( $_POST['fetch'] ) ) : '';
 
 	} elseif ( isset( $_GET['ocuf_ns'] ) && isset( $_GET['ocuf_ok'] ) && isset( $_GET['ocuf_ofd'] ) && isset( $_GET['ocuf_fid'] ) && isset( $_GET['product_id'] ) ) {
 
@@ -161,6 +162,7 @@ function mwb_upsell_lite_live_offer_url_params() {
 		$params['offer_id'] = sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) );
 		$params['funnel_id'] = sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) );
 		$params['product_id'] = sanitize_text_field( wp_unslash( $_GET['product_id'] ) );
+		$params['quantity'] = ! empty( $_GET['fetch'] ) ? sanitize_text_field( wp_unslash( $_GET['fetch'] ) ) : '';
 	}
 	// phpcs:enable
 	return $params;
