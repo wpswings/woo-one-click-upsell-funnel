@@ -44,8 +44,11 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 	// Skip similar offer.
 	$mwb_upsell_global_options['skip_similar_offer'] = ! empty( $_POST['skip_similar_offer'] ) ? sanitize_text_field( wp_unslash( $_POST['skip_similar_offer'] ) ) : '';
 
-	// Skip similar offer.
+	// Remove all styles.
 	$mwb_upsell_global_options['remove_all_styles'] = ! empty( $_POST['remove_all_styles'] ) ? sanitize_text_field( wp_unslash( $_POST['remove_all_styles'] ) ) : '';
+
+
+	$mwb_upsell_global_options['offer_price_html_type'] = ! empty( $_POST['offer_price_html_type'] ) ? sanitize_text_field( wp_unslash( $_POST['offer_price_html_type'] ) ) : '';
 
 	// Custom CSS.
 	$mwb_upsell_global_options['global_custom_css'] = ! empty( $_POST['global_custom_css'] ) ? sanitize_textarea_field( wp_unslash( $_POST['global_custom_css'] ) ) : '';
@@ -174,6 +177,34 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 							<option value="yes" <?php selected( $remove_all_styles, 'yes' ); ?> ><?php esc_html_e( 'Yes', 'woocommerce_one_click_upsell_funnel' ); ?></option>
 							<option value="no" <?php selected( $remove_all_styles, 'no' ); ?> ><?php esc_html_e( 'No', 'woocommerce_one_click_upsell_funnel' ); ?></option>
 
+						</select>
+					</td>
+				</tr>
+				<!-- Remove all styles end -->
+
+				<!-- Remove all styles start -->
+				<tr valign="top">
+
+					<th scope="row" class="titledesc">
+						<label><?php esc_html_e( 'Price html format', 'woocommerce_one_click_upsell_funnel' ); ?></label>
+					</th>
+
+					<td>
+
+						<?php
+						$attribut_description = esc_html__( 'Select the format for price html to be shown.', 'woocommerce_one_click_upsell_funnel' );
+						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						?>
+
+						<?php
+
+						$offer_price_html_type = ! empty( $mwb_upsell_global_settings['offer_price_html_type'] ) ? $mwb_upsell_global_settings['offer_price_html_type'] : 'regular';
+
+						?>
+
+						<select class="mwb_upsell_remove_all_styles_select" name="offer_price_html_type">
+							<option value="regular" <?php selected( $offer_price_html_type, 'regular' ); ?> ><?php esc_html_e( '̶R̶e̶g̶u̶l̶a̶r̶ ̶P̶r̶i̶c̶e̶ Offer Price', 'woocommerce_one_click_upsell_funnel' ); ?></option>
+							<option value="sale" <?php selected( $offer_price_html_type, 'sale' ); ?> ><?php esc_html_e( '̶S̶a̶l̶e̶ ̶P̶r̶i̶c̶e̶  Offer Price', 'woocommerce_one_click_upsell_funnel' ); ?></option>
 						</select>
 					</td>
 				</tr>

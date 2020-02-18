@@ -793,68 +793,152 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 * @param    string $price           offer price.
 	 * @return   object   $temp_product    object of product with new offer price.
 	 */
+	// public function mwb_wocuf_pro_change_offered_product_price( $temp_product, $price ) {
+	// 	if ( ! empty( $price ) && ! empty( $temp_product ) ) {
+
+	// 		// If sale price is set then discount will be appiled on sale price else on regular price.
+	// 		if ( ! empty( $temp_product->get_sale_price() ) ) {
+
+	// 			$product_sale_price = true;
+	// 			$product_price = $temp_product->get_sale_price();
+	// 		} else {
+
+	// 			$product_sale_price = false;
+	// 			$product_price = $temp_product->get_regular_price();
+	// 		}
+
+	// 		$mwb_wocuf_pro_product_price = $product_price;
+
+	// 		// Discount is in %.
+	// 		if ( false !== strpos( $price, '%' ) ) {
+	// 			$price = trim( $price, '%' );
+
+	// 			$price = floatval( $mwb_wocuf_pro_product_price ) * ( floatval( $price ) / 100 );
+
+	// 			if ( $mwb_wocuf_pro_product_price > 0 ) {
+	// 				$price = $mwb_wocuf_pro_product_price - $price;
+	// 			} else {
+	// 				$price = $mwb_wocuf_pro_product_price;
+	// 			}
+
+	// 			if ( $product_sale_price ) {
+
+	// 				$temp_product->set_price( $price );// Set active price.
+	// 			}
+
+	// 			/**
+	// 			 * If sale price is not set then to show regular plus discounted price
+	// 			 * instead of just discounted price.
+	// 			 */
+	// 			else {
+
+	// 				$temp_product->set_price( $price );// Set active price.
+	// 				$temp_product->set_sale_price( $price );
+	// 			}
+	// 		}
+
+	// 		// Discount is fixed.
+	// 		 else {
+
+	// 			$price = floatval( $price );
+
+	// 			if ( $product_sale_price ) {
+
+	// 				$temp_product->set_price( $price );// Set active price.
+	// 			}
+
+	// 			/**
+	// 			 * If sale price is not set then to show regular plus discounted price
+	// 			 * instead of just discounted price.
+	// 			 */
+	// 			else {
+	// 				$temp_product->set_price( $price );// Set active price.
+	// 				$temp_product->set_sale_price( $price );
+	// 			}
+	// 		}
+	// 	}
+
+	// 	return $temp_product;
+	// }
+
+	/**
+	 * applying offer on product price
+	 *
+	 * @since    2.1.0
+	 * @param    object     $temp_product    Object of product.
+	 * @param    string 	$price           Offer price.
+	 * @return   object   	$temp_product    Object of product with new offer price.
+	 */
 	public function mwb_wocuf_pro_change_offered_product_price( $temp_product, $price ) {
+
 		if ( ! empty( $price ) && ! empty( $temp_product ) ) {
 
-			// If sale price is set then discount will be appiled on sale price else on regular price.
-			if ( ! empty( $temp_product->get_sale_price() ) ) {
+			$payable_price = $temp_product->get_price();
+			$sale_price = $temp_product->get_sale_price();
+			$regular_price = $temp_product->get_regular_price();
 
-				$product_sale_price = true;
-				$product_price = $temp_product->get_sale_price();
-			} else {
-
-				$product_sale_price = false;
-				$product_price = $temp_product->get_regular_price();
-			}
-
-			$mwb_wocuf_pro_product_price = $product_price;
-
+			// Discount is in %.
 			if ( false !== strpos( $price, '%' ) ) {
-				$price = trim( $price, '%' );
 
-				$price = floatval( $mwb_wocuf_pro_product_price ) * ( floatval( $price ) / 100 );
+				$discounted_percent = trim( $price, '%' );
+				$discounted_price = floatval( $payable_price ) * ( floatval( $discounted_percent ) / 100 );
 
-				if ( $mwb_wocuf_pro_product_price > 0 ) {
-					$price = $mwb_wocuf_pro_product_price - $price;
+				// Original price must be greater than zero.
+				if ( $payable_price > 0 ) {
+
+					$offer_price = $payable_price - $discounted_price;
+
 				} else {
-					$price = $mwb_wocuf_pro_product_price;
-				}
 
-				if ( $product_sale_price ) {
-
-					$temp_product->set_price( $price );// Set active price.
-				}
-
-				/**
-				 * If sale price is not set then to show regular plus discounted price
-				 * instead of just discounted price.
-				 */
-				else {
-
-					$temp_product->set_price( $price );// Set active price.
-					$temp_product->set_sale_price( $price );
-				}
-			} else {
-				$price = floatval( $price );
-
-				if ( $product_sale_price ) {
-
-					$temp_product->set_price( $price );// Set active price.
-				}
-				/**
-				 * If sale price is not set then to show regular plus discounted price
-				 * instead of just discounted price.
-				 */
-				else {
-
-					$temp_product->set_price( $price );// Set active price.
-					$temp_product->set_sale_price( $price );
+					$offer_price = $payable_price;
 				}
 			}
-		}
 
+			// Discount is fixed.
+			 else {
+
+				$offer_price = floatval( $price );
+			}
+
+			/**
+			 * Original price : $payable_price.
+			 * Sale price : $sale_price.
+			 * Regular price : $regular_price.
+			 * Offer price : $offer_price.
+			 */
+			$mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', array() );
+
+			$price_html_format = ! empty( $mwb_upsell_global_settings[ 'offer_price_html_type' ] ) ? $mwb_upsell_global_settings[ 'offer_price_html_type' ] : 'regular';
+
+			// ̶S̶a̶l̶e̶ ̶P̶r̶i̶c̶e̶  Offer Price.
+			if( 'sale' == $price_html_format ) {
+
+				if( ! empty( $sale_price ) ) {
+
+					$temp_product->set_regular_price( $sale_price );
+					$temp_product->set_sale_price( $offer_price );
+				}
+
+				else {
+
+					// No sale price is present.
+					$temp_product->set_sale_price( $offer_price );
+				}
+			}
+
+			// ̶R̶e̶g̶u̶l̶a̶r̶ ̶P̶r̶i̶c̶e̶ Offer Price.
+			else {
+
+				// In this case set the regular price as sale.
+				$temp_product->set_sale_price( $offer_price );
+			}
+
+			$temp_product->set_price( $offer_price );
+		}
+		
 		return $temp_product;
 	}
+
 
 	/**
 	 * When user clicks on Add upsell product to my Order.
