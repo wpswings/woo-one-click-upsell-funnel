@@ -26,410 +26,47 @@ class WC_Report_Mwb_Wocuf_Report_Sales_By_Category extends WC_Admin_Report {
   public $chart_colours = array();
 
   /**
-   * The report data.
+   * Categories ids.
    *
-   * @var stdClass
+   * @var array
    */
-  private $report_data;
+  public $show_categories = array();
 
   /**
-   * Get report data.
+   * Item sales.
    *
-   * @return stdClass
+   * @var array
    */
-  public function get_report_data() {
-    if ( empty( $this->report_data ) ) {
-      $this->query_report_data();
-    }
-    return $this->report_data;
+  private $item_sales = array();
 
+  /**
+   * Item sales and times.
+   *
+   * @var array
+   */
+  private $item_sales_and_times = array();
+
+  /**
+   * Constructor.
+   */
+  public function __construct() {
+    if ( isset( $_GET['show_categories'] ) ) {
+      $this->show_categories = is_array( $_GET['show_categories'] ) ? array_map( 'absint', $_GET['show_categories'] ) : array( absint( $_GET['show_categories'] ) );
+    }
   }
 
   /**
-   * Get all data needed for this report and store in the class.
+   * Get all product ids in a category (and its children).
+   *
+   * @param  int $category_id Category ID.
+   * @return array
    */
-  private function query_report_data() {
-    $this->report_data = new stdClass();
+  public function get_products_in_category( $category_id ) {
+    $term_ids    = get_term_children( $category_id, 'product_cat' );
+    $term_ids[]  = $category_id;
+    $product_ids = get_objects_in_term( $term_ids, 'product_cat' );
 
-    $this->report_data->order_counts = (array) $this->get_order_report_data(
-      array(
-        'data' => array(
-          'ID' => array(
-            'type'     => 'post_data',
-            'function' => 'COUNT',
-            'name'     => 'count',
-            'distinct' => true,
-          ),
-          'post_date' => array(
-            'type'     => 'post_data',
-            'function' => '',
-            'name'     => 'post_date',
-          ),
-          'mwb_wocuf_upsell_order' => array(
-            'type'     => 'meta',
-            'function' => '',
-            'name'     => 'mwb_wocuf_pro_upsell_meta',
-          ),
-        ),
-        'group_by'            => $this->group_by_query,
-        'order_by'            => 'post_date ASC',
-        'query_type'          => 'get_results',
-        'filter_range'        => true,
-        'order_types'         => wc_get_order_types( 'order-count' ),
-        'order_status'        => array( 'completed', 'processing', 'on-hold', 'refunded' ),
-      )
-    );
-
-    // All items from orders - even those refunded
-    $this->report_data->order_items = (array) $this->get_order_report_data(
-      array(
-        'data' => array(
-          '_qty' => array(
-            'type'            => 'order_item_meta',
-            'order_item_type' => 'line_item',
-            'function'        => 'SUM',
-            'name'            => 'order_item_count',
-          ),
-          'post_date' => array(
-            'type'     => 'post_data',
-            'function' => '',
-            'name'     => 'post_date',
-          ),
-          'mwb_wocuf_upsell_order' => array(
-            'type'     => 'meta',
-            'function' => '',
-            'name'     => 'mwb_wocuf_pro_upsell_meta',
-          ),
-        ),
-        'where' => array(
-          array(
-            'key'      => 'order_items.order_item_type',
-            'value'    => 'line_item',
-            'operator' => '=',
-          ),
-        ),
-        'group_by'            => $this->group_by_query,
-        'order_by'            => 'post_date ASC',
-        'query_type'          => 'get_results',
-        'filter_range'        => true,
-        'order_types'         => wc_get_order_types( 'order-count' ),
-        'order_status'        => array( 'completed', 'processing', 'on-hold', 'refunded' ),
-      )
-    );
-
-    /**
-     * Get total of fully refunded items.
-     */
-    $this->report_data->refunded_order_items = absint(
-      $this->get_order_report_data(
-        array(
-          'data' => array(
-            '_qty' => array(
-              'type'            => 'order_item_meta',
-              'order_item_type' => 'line_item',
-              'function'        => 'SUM',
-              'name'            => 'order_item_count',
-            ),
-            'mwb_wocuf_upsell_order' => array(
-              'type'     => 'meta',
-              'function' => '',
-              'name'     => 'mwb_wocuf_pro_upsell_meta',
-            ),
-          ),
-          'where' => array(
-            array(
-              'key'      => 'order_items.order_item_type',
-              'value'    => 'line_item',
-              'operator' => '=',
-            ),
-          ),
-          'query_type'          => 'get_var',
-          'filter_range'        => true,
-          'order_types'         => wc_get_order_types( 'order-count' ),
-          'order_status'        => array( 'refunded' ),
-        )
-      )
-    );
-
-    /**
-     * Order totals by date. Charts should show GROSS amounts to avoid going -ve.
-     */
-    $this->report_data->orders = (array) $this->get_order_report_data(
-      array(
-        'data' => array(
-          '_order_total' => array(
-            'type'     => 'meta',
-            'function' => 'SUM',
-            'name'     => 'total_sales',
-          ),
-          '_order_shipping' => array(
-            'type'     => 'meta',
-            'function' => 'SUM',
-            'name'     => 'total_shipping',
-          ),
-          '_order_tax' => array(
-            'type'     => 'meta',
-            'function' => 'SUM',
-            'name'     => 'total_tax',
-          ),
-          '_order_shipping_tax' => array(
-            'type'     => 'meta',
-            'function' => 'SUM',
-            'name'     => 'total_shipping_tax',
-          ),
-          'mwb_wocuf_upsell_order' => array(
-            'type'     => 'meta',
-            'function' => '',
-            'name'     => 'mwb_wocuf_pro_upsell_meta',
-          ),
-          'post_date' => array(
-            'type'     => 'post_data',
-            'function' => '',
-            'name'     => 'post_date',
-          ),
-        ),
-        'group_by'            => $this->group_by_query,
-        'order_by'            => 'post_date ASC',
-        'query_type'          => 'get_results',
-        'filter_range'        => true,
-        'order_types'         => wc_get_order_types( 'sales-reports' ),
-        'order_status'        => array( 'completed', 'processing', 'on-hold', 'refunded' ),
-      )
-    );
-
-    /**
-     * If an order is 100% refunded we should look at the parent's totals, but the refunds dates.
-     * We also need to ensure each parent order's values are only counted/summed once.
-     */
-    $this->report_data->full_refunds = (array) $this->get_order_report_data(
-      array(
-        'data' => array(
-          '_order_total' => array(
-            'type'     => 'parent_meta',
-            'function' => '',
-            'name'     => 'total_refund',
-          ),
-          '_order_shipping' => array(
-            'type'     => 'parent_meta',
-            'function' => '',
-            'name'     => 'total_shipping',
-          ),
-          '_order_tax' => array(
-            'type'     => 'parent_meta',
-            'function' => '',
-            'name'     => 'total_tax',
-          ),
-          '_order_shipping_tax' => array(
-            'type'     => 'parent_meta',
-            'function' => '',
-            'name'     => 'total_shipping_tax',
-          ),
-          'mwb_wocuf_upsell_order' => array(
-            'type'     => 'meta',
-            'function' => '',
-            'name'     => 'mwb_wocuf_pro_upsell_meta',
-          ),
-          'post_date' => array(
-            'type'     => 'post_data',
-            'function' => '',
-            'name'     => 'post_date',
-          ),
-        ),
-        'group_by'            => 'posts.post_parent',
-        'query_type'          => 'get_results',
-        'filter_range'        => true,
-        'order_status'        => false,
-        'parent_order_status' => array( 'refunded' ),
-      )
-    );
-
-    /**
-     * Partial refunds. This includes line items, shipping and taxes. Not grouped by date.
-     */
-    $this->report_data->partial_refunds = (array) $this->get_order_report_data(
-      array(
-        'data' => array(
-          'ID' => array(
-            'type'     => 'post_data',
-            'function' => '',
-            'name'     => 'refund_id',
-          ),
-          '_refund_amount' => array(
-            'type'     => 'meta',
-            'function' => '',
-            'name'     => 'total_refund',
-          ),
-          'post_date' => array(
-            'type'     => 'post_data',
-            'function' => '',
-            'name'     => 'post_date',
-          ),
-          'order_item_type' => array(
-            'type'      => 'order_item',
-            'function'  => '',
-            'name'      => 'item_type',
-            'join_type' => 'LEFT',
-          ),
-          '_order_total' => array(
-            'type'     => 'meta',
-            'function' => '',
-            'name'     => 'total_sales',
-          ),
-          '_order_shipping' => array(
-            'type'      => 'meta',
-            'function'  => '',
-            'name'      => 'total_shipping',
-            'join_type' => 'LEFT',
-          ),
-          '_order_tax' => array(
-            'type'      => 'meta',
-            'function'  => '',
-            'name'      => 'total_tax',
-            'join_type' => 'LEFT',
-          ),
-          '_order_shipping_tax' => array(
-            'type'      => 'meta',
-            'function'  => '',
-            'name'      => 'total_shipping_tax',
-            'join_type' => 'LEFT',
-          ),
-          'mwb_wocuf_upsell_order' => array(
-            'type'     => 'meta',
-            'function' => '',
-            'name'     => 'mwb_wocuf_pro_upsell_meta',
-          ),
-          '_qty' => array(
-            'type'            => 'order_item_meta',
-            'function'        => 'SUM',
-            'name'            => 'order_item_count',
-            'join_type'       => 'LEFT',
-          ),
-        ),
-        'group_by'            => 'refund_id',
-        'order_by'            => 'post_date ASC',
-        'query_type'          => 'get_results',
-        'filter_range'        => true,
-        'order_status'        => false,
-        'parent_order_status' => array( 'completed', 'processing', 'on-hold', 'refunded' ),
-      )
-    );
-
-    /**
-     * Refund lines - all partial refunds on all order types so we can plot full AND partial refunds on the chart.
-     */
-    $this->report_data->refund_lines = (array) $this->get_order_report_data(
-      array(
-        'data' => array(
-          'ID' => array(
-            'type'     => 'post_data',
-            'function' => '',
-            'name'     => 'refund_id',
-          ),
-          '_refund_amount' => array(
-            'type'     => 'meta',
-            'function' => '',
-            'name'     => 'total_refund',
-          ),
-          'post_date' => array(
-            'type'     => 'post_data',
-            'function' => '',
-            'name'     => 'post_date',
-          ),
-          'order_item_type' => array(
-            'type'      => 'order_item',
-            'function'  => '',
-            'name'      => 'item_type',
-            'join_type' => 'LEFT',
-          ),
-          '_order_total' => array(
-            'type'     => 'meta',
-            'function' => '',
-            'name'     => 'total_sales',
-          ),
-          '_order_shipping' => array(
-            'type'      => 'meta',
-            'function'  => '',
-            'name'      => 'total_shipping',
-            'join_type' => 'LEFT',
-          ),
-          '_order_tax' => array(
-            'type'      => 'meta',
-            'function'  => '',
-            'name'      => 'total_tax',
-            'join_type' => 'LEFT',
-          ),
-          '_order_shipping_tax' => array(
-            'type'      => 'meta',
-            'function'  => '',
-            'name'      => 'total_shipping_tax',
-            'join_type' => 'LEFT',
-          ),
-          'mwb_wocuf_upsell_order' => array(
-            'type'     => 'meta',
-            'function' => '',
-            'name'     => 'mwb_wocuf_pro_upsell_meta',
-          ),
-          '_qty' => array(
-            'type'            => 'order_item_meta',
-            'function'        => 'SUM',
-            'name'            => 'order_item_count',
-            'join_type'       => 'LEFT',
-          ),
-        ),
-        'group_by'            => 'refund_id',
-        'order_by'            => 'post_date ASC',
-        'query_type'          => 'get_results',
-        'filter_range'        => true,
-        'order_status'        => false,
-        'parent_order_status' => array( 'completed', 'processing', 'on-hold', 'refunded' ),
-      )
-    );
-
-    /**
-     * Total up refunds. Note: when an order is fully refunded, a refund line will be added.
-     */
-    $this->report_data->total_tax_refunded          = 0;
-    $this->report_data->total_shipping_refunded     = 0;
-    $this->report_data->total_shipping_tax_refunded = 0;
-    $this->report_data->total_refunds               = 0;
-
-    $refunded_orders = array_merge( $this->report_data->partial_refunds, $this->report_data->full_refunds );
-
-    foreach ( $refunded_orders as $key => $value ) {
-      $this->report_data->total_tax_refunded          += floatval( $value->total_tax < 0 ? $value->total_tax * -1 : $value->total_tax );
-      $this->report_data->total_refunds               += floatval( $value->total_refund );
-      $this->report_data->total_shipping_tax_refunded += floatval( $value->total_shipping_tax < 0 ? $value->total_shipping_tax * -1 : $value->total_shipping_tax );
-      $this->report_data->total_shipping_refunded     += floatval( $value->total_shipping < 0 ? $value->total_shipping * -1 : $value->total_shipping );
-
-      // Only applies to parial.
-      if ( isset( $value->order_item_count ) ) {
-        $this->report_data->refunded_order_items    += floatval( $value->order_item_count < 0 ? $value->order_item_count * -1 : $value->order_item_count );
-      }
-    }
-
-    // Totals from all orders - including those refunded. Subtract refunded amounts.
-    $this->report_data->total_tax          = wc_format_decimal( array_sum( wp_list_pluck( $this->report_data->orders, 'total_tax' ) ) - $this->report_data->total_tax_refunded, 2 );
-    $this->report_data->total_shipping     = wc_format_decimal( array_sum( wp_list_pluck( $this->report_data->orders, 'total_shipping' ) ) - $this->report_data->total_shipping_refunded, 2 );
-    $this->report_data->total_shipping_tax = wc_format_decimal( array_sum( wp_list_pluck( $this->report_data->orders, 'total_shipping_tax' ) ) - $this->report_data->total_shipping_tax_refunded, 2 );
-
-    // Total the refunds and sales amounts. Sales subract refunds. Note - total_sales also includes shipping costs.
-    $this->report_data->total_sales = wc_format_decimal( array_sum( wp_list_pluck( $this->report_data->orders, 'total_sales' ) ) - $this->report_data->total_refunds, 2 );
-    $this->report_data->net_sales   = wc_format_decimal( $this->report_data->total_sales - $this->report_data->total_shipping - max( 0, $this->report_data->total_tax ) - max( 0, $this->report_data->total_shipping_tax ), 2 );
-
-    // Calculate average based on net
-    $this->report_data->average_sales       = wc_format_decimal( $this->report_data->net_sales / ( $this->chart_interval + 1 ), 2 );
-    $this->report_data->average_total_sales = wc_format_decimal( $this->report_data->total_sales / ( $this->chart_interval + 1 ), 2 );
-
-    $this->report_data->total_refunded_orders = absint( count( $this->report_data->full_refunds ) );
-
-    // Total orders in this period, even if refunded.
-    $this->report_data->total_orders          = absint( array_sum( wp_list_pluck( $this->report_data->order_counts, 'count' ) ) );
-
-    // Item items ordered in this period, even if refunded.
-    $this->report_data->total_items = absint( array_sum( wp_list_pluck( $this->report_data->order_items, 'order_item_count' ) ) );
-
-    // 3rd party filtering of report data
-    $this->report_data = apply_filters( 'mwb_wocuf_pro_upsell_sales_report_data', $this->report_data );
+    return array_unique( apply_filters( 'woocommerce_report_sales_by_category_get_products_in_category', $product_ids, $category_id ) );
   }
 
   /**
@@ -438,101 +75,36 @@ class WC_Report_Mwb_Wocuf_Report_Sales_By_Category extends WC_Admin_Report {
    * @return array
    */
   public function get_chart_legend() {
+
+    if ( empty( $this->show_categories ) ) {
+      return array();
+    }
+
     $legend = array();
-    $data   = $this->get_report_data();
+    $index  = 0;
 
-    switch ( $this->chart_groupby ) {
-      case 'day':
-        /* translators: %s: average total sales */
-        $average_total_sales_title = sprintf(
-          __( '%s average gross daily upsell funnel sales', 'woocommerce-one-click-upsell-funnel-pro' ),
-          '<strong>' . wc_price( $data->average_total_sales ) . '</strong>'
-        );
-        /* translators: %s: average sales */
-        $average_sales_title = sprintf(
-          __( '%s average net daily upsell funnel sales', 'woocommerce-one-click-upsell-funnel-pro' ),
-          '<strong>' . wc_price( $data->average_sales ) . '</strong>'
-        );
-        break;
-      case 'month':
-      default:
-        /* translators: %s: average total sales */
-        $average_total_sales_title = sprintf(
-          __( '%s average gross monthly upsell funnel sales', 'woocommerce-one-click-upsell-funnel-pro' ),
-          '<strong>' . wc_price( $data->average_total_sales ) . '</strong>'
-        );
-        /* translators: %s: average sales */
-        $average_sales_title = sprintf(
-          __( '%s average net monthly upsell funnel sales', 'woocommerce-one-click-upsell-funnel-pro' ),
-          '<strong>' . wc_price( $data->average_sales ) . '</strong>'
-        );
-        break;
-    }
+    foreach ( $this->show_categories as $category ) {
 
-    $legend[] = array(
-      /* translators: %s: total sales */
-      'title' => sprintf(
-        __( '%s gross upsell funnel sales in this period', 'woocommerce-one-click-upsell-funnel-pro' ),
-        '<strong>' . wc_price( $data->total_sales ) . '</strong>'
-      ),
-      'placeholder'      => __( 'This is the sum of the upsell order totals after any refunds and including shipping and taxes.', 'woocommerce-one-click-upsell-funnel-pro' ),
-      'color'            => $this->chart_colours['sales_amount'],
-      'highlight_series' => 6,
-    );
-    if ( $data->average_total_sales > 0 ) {
+      $category    = get_term( $category, 'product_cat' );
+      $total       = 0;
+      $product_ids = $this->get_products_in_category( $category->term_id );
+
+      foreach ( $product_ids as $id ) {
+
+        if ( isset( $this->item_sales[ $id ] ) ) {
+          $total += $this->item_sales[ $id ];
+        }
+      }
+
       $legend[] = array(
-        'title' => $average_total_sales_title,
-        'color' => $this->chart_colours['average'],
-        'highlight_series' => 2,
+        /* translators: 1: total items sold 2: category name */
+        'title'            => sprintf( __( '%1$s sales in %2$s', 'woocommerce' ), '<strong>' . wc_price( $total ) . '</strong>', $category->name ),
+        'color'            => isset( $this->chart_colours[ $index ] ) ? $this->chart_colours[ $index ] : $this->chart_colours[0],
+        'highlight_series' => $index,
       );
+
+      $index++;
     }
-
-    $legend[] = array(
-      /* translators: %s: net sales */
-      'title' => sprintf(
-        __( '%s net upsell funnel sales in this period', 'woocommerce-one-click-upsell-funnel-pro' ),
-        '<strong>' . wc_price( $data->net_sales ) . '</strong>'
-      ),
-      'placeholder'      => __( 'This is the sum of the upsell order totals after any refunds and excluding shipping and taxes.', 'woocommerce-one-click-upsell-funnel-pro' ),
-      'color'            => $this->chart_colours['net_sales_amount'],
-      'highlight_series' => 7,
-    );
-    if ( $data->average_sales > 0 ) {
-      $legend[] = array(
-        'title' => $average_sales_title,
-        'color' => $this->chart_colours['net_average'],
-        'highlight_series' => 3,
-      );
-    }
-
-    $legend[] = array(
-      /* translators: %s: total orders */
-      'title' => sprintf(
-        __( '%s upsell orders placed', 'woocommerce-one-click-upsell-funnel-pro' ),
-        '<strong>' . $data->total_orders . '</strong>'
-      ),
-      'color' => $this->chart_colours['order_count'],
-      'highlight_series' => 1,
-    );
-
-    $legend[] = array(
-      /* translators: %s: total items */
-      'title' => sprintf(
-        __( '%s upsell funnel items purchased', 'woocommerce-one-click-upsell-funnel-pro' ),
-        '<strong>' . $data->total_items . '</strong>'
-      ),
-      'color' => $this->chart_colours['item_count'],
-      'highlight_series' => 0,
-    );
-    $legend[] = array(
-      /* translators: 1: total refunds 2: total refunded orders 3: refunded items */
-      'title' => sprintf(
-        __( '%s refunded items', 'woocommerce-one-click-upsell-funnel-pro' ),
-        '<strong>' . $data->refunded_order_items . '</strong>'
-      ),
-      'color' => $this->chart_colours['refund_amount'],
-      'highlight_series' => 8,
-    );
 
     return $legend;
   }
@@ -541,25 +113,17 @@ class WC_Report_Mwb_Wocuf_Report_Sales_By_Category extends WC_Admin_Report {
    * Output the report.
    */
   public function output_report() {
+
     $ranges = array(
-      'year'         => __( 'Year', 'woocommerce-one-click-upsell-funnel-pro' ),
-      'last_month'   => __( 'Last month', 'woocommerce-one-click-upsell-funnel-pro' ),
-      'month'        => __( 'This month', 'woocommerce-one-click-upsell-funnel-pro' ),
-      '7day'         => __( 'Last 7 days', 'woocommerce-one-click-upsell-funnel-pro' ),
+      'year'       => __( 'Year', 'woocommerce' ),
+      'last_month' => __( 'Last month', 'woocommerce' ),
+      'month'      => __( 'This month', 'woocommerce' ),
+      '7day'       => __( 'Last 7 days', 'woocommerce' ),
     );
 
-    $this->chart_colours = array(
-      'sales_amount'     => '#b1d4ea',
-      'net_sales_amount' => '#3498db',
-      'average'          => '#b1d4ea',
-      'net_average'      => '#3498db',
-      'order_count'      => '#dbe1e3',
-      'item_count'       => '#ecf0f1',
-      'shipping_amount'  => '#5cc488',
-      'refund_amount'    => '#e74c3c',
-    );
+    $this->chart_colours = array( '#3498db', '#34495e', '#1abc9c', '#2ecc71', '#f1c40f', '#e67e22', '#e74c3c', '#2980b9', '#8e44ad', '#2c3e50', '#16a085', '#27ae60', '#f39c12', '#d35400', '#c0392b' );
 
-    $current_range = ! empty( $_GET['range'] ) ? sanitize_text_field( $_GET['range'] ) : '7day';
+    $current_range = ! empty( $_GET['range'] ) ? sanitize_text_field( wp_unslash( $_GET['range'] ) ) : '7day';
 
     if ( ! in_array( $current_range, array( 'custom', 'year', 'last_month', 'month', '7day' ) ) ) {
       $current_range = '7day';
@@ -568,42 +132,150 @@ class WC_Report_Mwb_Wocuf_Report_Sales_By_Category extends WC_Admin_Report {
     $this->check_current_range_nonce( $current_range );
     $this->calculate_current_range( $current_range );
 
-    include( WC()->plugin_path() . '/includes/admin/views/html-report-by-date.php' );
+    // Get item sales data.
+    if ( ! empty( $this->show_categories ) ) {
+      $order_items = $this->get_order_report_data(
+        array(
+          'data'         => array(
+            '_product_id' => array(
+              'type'            => 'order_item_meta',
+              'order_item_type' => 'line_item',
+              'function'        => '',
+              'name'            => 'product_id',
+            ),
+            '_line_total' => array(
+              'type'            => 'order_item_meta',
+              'order_item_type' => 'line_item',
+              'function'        => 'SUM',
+              'name'            => 'order_item_amount',
+            ),
+            'post_date'   => array(
+              'type'     => 'post_data',
+              'function' => '',
+              'name'     => 'post_date',
+            ),
+          ),
+          'group_by'     => 'ID, product_id, post_date',
+          'query_type'   => 'get_results',
+          'filter_range' => true,
+        )
+      );
+
+      $this->item_sales           = array();
+      $this->item_sales_and_times = array();
+
+      if ( is_array( $order_items ) ) {
+
+        foreach ( $order_items as $order_item ) {
+
+          switch ( $this->chart_groupby ) {
+            case 'day':
+              $time = strtotime( date( 'Ymd', strtotime( $order_item->post_date ) ) ) * 1000;
+              break;
+            case 'month':
+            default:
+              $time = strtotime( date( 'Ym', strtotime( $order_item->post_date ) ) . '01' ) * 1000;
+              break;
+          }
+
+          $this->item_sales_and_times[ $time ][ $order_item->product_id ] = isset( $this->item_sales_and_times[ $time ][ $order_item->product_id ] ) ? $this->item_sales_and_times[ $time ][ $order_item->product_id ] + $order_item->order_item_amount : $order_item->order_item_amount;
+
+          $this->item_sales[ $order_item->product_id ] = isset( $this->item_sales[ $order_item->product_id ] ) ? $this->item_sales[ $order_item->product_id ] + $order_item->order_item_amount : $order_item->order_item_amount;
+        }
+      }
+    }
+
+    include WC()->plugin_path() . '/includes/admin/views/html-report-by-date.php';
+  }
+
+  /**
+   * Get chart widgets.
+   *
+   * @return array
+   */
+  public function get_chart_widgets() {
+
+    return array(
+      array(
+        'title'    => __( 'Categories', 'woocommerce' ),
+        'callback' => array( $this, 'category_widget' ),
+      ),
+    );
+  }
+
+  /**
+   * Output category widget.
+   */
+  public function category_widget() {
+
+    $categories = get_terms( 'product_cat', array( 'orderby' => 'name' ) );
+    ?>
+    <form method="GET">
+      <div>
+        <select multiple="multiple" data-placeholder="<?php esc_attr_e( 'Select categories&hellip;', 'woocommerce' ); ?>" class="wc-enhanced-select" id="show_categories" name="show_categories[]" style="width: 205px;">
+          <?php
+            $r                 = array();
+            $r['pad_counts']   = 1;
+            $r['hierarchical'] = 1;
+            $r['hide_empty']   = 1;
+            $r['value']        = 'id';
+            $r['selected']     = $this->show_categories;
+
+            include_once WC()->plugin_path() . '/includes/walkers/class-wc-product-cat-dropdown-walker.php';
+
+            echo wc_walk_category_dropdown_tree( $categories, 0, $r ); // @codingStandardsIgnoreLine
+          ?>
+        </select>
+        <?php // @codingStandardsIgnoreStart ?>
+        <a href="#" class="select_none"><?php esc_html_e( 'None', 'woocommerce' ); ?></a>
+        <a href="#" class="select_all"><?php esc_html_e( 'All', 'woocommerce' ); ?></a>
+        <button type="submit" class="submit button" value="<?php esc_attr_e( 'Show', 'woocommerce' ); ?>"><?php esc_html_e( 'Show', 'woocommerce' ); ?></button>
+        <input type="hidden" name="range" value="<?php echo ( ! empty( $_GET['range'] ) ) ? esc_attr( wp_unslash( $_GET['range'] ) ) : ''; ?>" />
+        <input type="hidden" name="start_date" value="<?php echo ( ! empty( $_GET['start_date'] ) ) ? esc_attr( wp_unslash( $_GET['start_date'] ) ) : ''; ?>" />
+        <input type="hidden" name="end_date" value="<?php echo ( ! empty( $_GET['end_date'] ) ) ? esc_attr( wp_unslash( $_GET['end_date'] ) ) : ''; ?>" />
+        <input type="hidden" name="page" value="<?php echo ( ! empty( $_GET['page'] ) ) ? esc_attr( wp_unslash( $_GET['page'] ) ) : ''; ?>" />
+        <input type="hidden" name="tab" value="<?php echo ( ! empty( $_GET['tab'] ) ) ? esc_attr( wp_unslash( $_GET['tab'] ) ) : ''; ?>" />
+        <input type="hidden" name="report" value="<?php echo ( ! empty( $_GET['report'] ) ) ? esc_attr( wp_unslash( $_GET['report'] ) ) : ''; ?>" />
+        <?php // @codingStandardsIgnoreEnd ?>
+      </div>
+      <script type="text/javascript">
+        jQuery(function(){
+          // Select all/None
+          jQuery( '.chart-widget' ).on( 'click', '.select_all', function() {
+            jQuery(this).closest( 'div' ).find( 'select option' ).attr( 'selected', 'selected' );
+            jQuery(this).closest( 'div' ).find('select').change();
+            return false;
+          });
+
+          jQuery( '.chart-widget').on( 'click', '.select_none', function() {
+            jQuery(this).closest( 'div' ).find( 'select option' ).removeAttr( 'selected' );
+            jQuery(this).closest( 'div' ).find('select').change();
+            return false;
+          });
+        });
+      </script>
+    </form>
+    <?php
   }
 
   /**
    * Output an export link.
    */
   public function get_export_button() {
-    $current_range = ! empty( $_GET['range'] ) ? sanitize_text_field( $_GET['range'] ) : '7day';
+
+    $current_range = ! empty( $_GET['range'] ) ? sanitize_text_field( wp_unslash( $_GET['range'] ) ) : '7day';
     ?>
     <a
       href="#"
-      download="report-<?php echo esc_attr( $current_range ); ?>-<?php echo date_i18n( 'Y-m-d', current_time( 'timestamp' ) ); ?>.csv"
+      download="report-<?php echo esc_attr( $current_range ); ?>-<?php echo esc_attr( date_i18n( 'Y-m-d', current_time( 'timestamp' ) ) ); ?>.csv"
       class="export_csv"
       data-export="chart"
-      data-xaxes="<?php esc_attr_e( 'Date', 'woocommerce-one-click-upsell-funnel-pro' ); ?>"
-      data-exclude_series="2"
-      data-groupby="<?php echo $this->chart_groupby; ?>"
+      data-xaxes="<?php esc_attr_e( 'Date', 'woocommerce' ); ?>"
+      data-groupby="<?php echo esc_attr( $this->chart_groupby ); ?>"
     >
-      <?php _e( 'Export CSV', 'woocommerce-one-click-upsell-funnel-pro' ); ?>
+      <?php esc_html_e( 'Export CSV', 'woocommerce' ); ?>
     </a>
     <?php
-  }
-
-  /**
-   * Round our totals correctly.
-   *
-   * @param array|string $amount
-   *
-   * @return array|string
-   */
-  private function round_chart_totals( $amount ) {
-    if ( is_array( $amount ) ) {
-      return array( $amount[0], wc_format_decimal( $amount[1], wc_get_price_decimals() ) );
-    } else {
-      return wc_format_decimal( $amount, wc_get_price_decimals() );
-    }
   }
 
   /**
@@ -612,212 +284,169 @@ class WC_Report_Mwb_Wocuf_Report_Sales_By_Category extends WC_Admin_Report {
   public function get_main_chart() {
     global $wp_locale;
 
-    // Prepare data for report
-    $data = array(
-      'order_counts'         => $this->prepare_chart_data( $this->report_data->order_counts, 'post_date', 'count', $this->chart_interval, $this->start_date, $this->chart_groupby ),
-      'order_item_counts'    => $this->prepare_chart_data( $this->report_data->order_items, 'post_date', 'order_item_count', $this->chart_interval, $this->start_date, $this->chart_groupby ),
-      'order_amounts'        => $this->prepare_chart_data( $this->report_data->orders, 'post_date', 'total_sales', $this->chart_interval, $this->start_date, $this->chart_groupby ),
-      'shipping_amounts'     => $this->prepare_chart_data( $this->report_data->orders, 'post_date', 'total_shipping', $this->chart_interval, $this->start_date, $this->chart_groupby ),
-      'refund_amounts'       => $this->prepare_chart_data( $this->report_data->refund_lines, 'post_date', 'total_refund', $this->chart_interval, $this->start_date, $this->chart_groupby ),
-      'shipping_tax_amounts' => $this->prepare_chart_data( $this->report_data->orders, 'post_date', 'total_shipping_tax', $this->chart_interval, $this->start_date, $this->chart_groupby ),
-      'tax_amounts'          => $this->prepare_chart_data( $this->report_data->orders, 'post_date', 'total_tax', $this->chart_interval, $this->start_date, $this->chart_groupby ),
-      'net_order_amounts'    => array(),
-      'gross_order_amounts'  => array(),
-    );
+    if ( empty( $this->show_categories ) ) {
+      ?>
+      <div class="chart-container">
+        <p class="chart-prompt"><?php esc_html_e( 'Choose a category to view stats', 'woocommerce' ); ?></p>
+      </div>
+      <?php
+    } else {
+      $chart_data = array();
+      $index      = 0;
 
-    foreach ( $data['order_amounts'] as $order_amount_key => $order_amount_value ) {
-      $data['gross_order_amounts'][ $order_amount_key ]    = $order_amount_value;
-      $data['gross_order_amounts'][ $order_amount_key ][1] -= $data['refund_amounts'][ $order_amount_key ][1];
+      foreach ( $this->show_categories as $category ) {
 
-      $data['net_order_amounts'][ $order_amount_key ]    = $order_amount_value;
-      // subtract the sum of the values from net order amounts
-      $data['net_order_amounts'][ $order_amount_key ][1] -=
-        $data['refund_amounts'][ $order_amount_key ][1] +
-        $data['shipping_amounts'][ $order_amount_key ][1] +
-        $data['shipping_tax_amounts'][ $order_amount_key ][1] +
-        $data['tax_amounts'][ $order_amount_key ][1];
-    }
+        $category            = get_term( $category, 'product_cat' );
+        $product_ids         = $this->get_products_in_category( $category->term_id );
+        $category_chart_data = array();
 
-    // 3rd party filtering of report data
-    $data = apply_filters( 'woocommerce_admin_report_chart_data', $data );
+        for ( $i = 0; $i <= $this->chart_interval; $i ++ ) {
 
-    // Encode in json format
-    $chart_data = json_encode(
-      array(
-        'order_counts'        => array_values( $data['order_counts'] ),
-        'order_item_counts'   => array_values( $data['order_item_counts'] ),
-        'order_amounts'       => array_map( array( $this, 'round_chart_totals' ), array_values( $data['order_amounts'] ) ),
-        'gross_order_amounts' => array_map( array( $this, 'round_chart_totals' ), array_values( $data['gross_order_amounts'] ) ),
-        'net_order_amounts'   => array_map( array( $this, 'round_chart_totals' ), array_values( $data['net_order_amounts'] ) ),
-        'shipping_amounts'    => array_map( array( $this, 'round_chart_totals' ), array_values( $data['shipping_amounts'] ) ),
-        'refund_amounts'      => array_map( array( $this, 'round_chart_totals' ), array_values( $data['refund_amounts'] ) ),
-      )
-    );
-    ?>
-    <div class="chart-container">
-      <div class="chart-placeholder main"></div>
-    </div>
-    <script type="text/javascript">
+          $interval_total = 0;
 
-      var main_chart;
+          switch ( $this->chart_groupby ) {
+            case 'day':
+              $time = strtotime( date( 'Ymd', strtotime( "+{$i} DAY", $this->start_date ) ) ) * 1000;
+              break;
+            case 'month':
+            default:
+              $time = strtotime( date( 'Ym', strtotime( "+{$i} MONTH", $this->start_date ) ) . '01' ) * 1000;
+              break;
+          }
 
-      jQuery(function(){
-        var order_data = jQuery.parseJSON( '<?php echo $chart_data; ?>' );
-        var drawGraph = function( highlight ) {
-          var series = [
-            {
-              label: "<?php echo esc_js( __( 'Number of items sold', 'woocommerce-one-click-upsell-funnel-pro' ) ); ?>",
-              data: order_data.order_item_counts,
-              color: '<?php echo $this->chart_colours['item_count']; ?>',
-              bars: { fillColor: '<?php echo $this->chart_colours['item_count']; ?>', fill: true, show: true, lineWidth: 0, barWidth: <?php echo $this->barwidth; ?> * 0.5, align: 'center' },
-              shadowSize: 0,
-              hoverable: false
-            },
-            {
-              label: "<?php echo esc_js( __( 'Number of orders', 'woocommerce-one-click-upsell-funnel-pro' ) ); ?>",
-              data: order_data.order_counts,
-              color: '<?php echo $this->chart_colours['order_count']; ?>',
-              bars: { fillColor: '<?php echo $this->chart_colours['order_count']; ?>', fill: true, show: true, lineWidth: 0, barWidth: <?php echo $this->barwidth; ?> * 0.5, align: 'center' },
-              shadowSize: 0,
-              hoverable: false
-            },
-            {
-              label: "<?php echo esc_js( __( 'Average gross sales amount', 'woocommerce-one-click-upsell-funnel-pro' ) ); ?>",
-              data: [ [ <?php echo min( array_keys( $data['order_amounts'] ) ); ?>, <?php echo $this->report_data->average_total_sales; ?> ], [ <?php echo max( array_keys( $data['order_amounts'] ) ); ?>, <?php echo $this->report_data->average_total_sales; ?> ] ],
-              yaxis: 2,
-              color: '<?php echo $this->chart_colours['average']; ?>',
-              points: { show: false },
-              lines: { show: true, lineWidth: 2, fill: false },
-              shadowSize: 0,
-              hoverable: false
-            },
-            {
-              label: "<?php echo esc_js( __( 'Average net sales amount', 'woocommerce-one-click-upsell-funnel-pro' ) ); ?>",
-              data: [ [ <?php echo min( array_keys( $data['order_amounts'] ) ); ?>, <?php echo $this->report_data->average_sales; ?> ], [ <?php echo max( array_keys( $data['order_amounts'] ) ); ?>, <?php echo $this->report_data->average_sales; ?> ] ],
-              yaxis: 2,
-              color: '<?php echo $this->chart_colours['net_average']; ?>',
-              points: { show: false },
-              lines: { show: true, lineWidth: 2, fill: false },
-              shadowSize: 0,
-              hoverable: false
-            },
-            {
-              label: "<?php echo esc_js( __( 'Shipping amount', 'woocommerce-one-click-upsell-funnel-pro' ) ); ?>",
-              data: order_data.shipping_amounts,
-              yaxis: 2,
-              color: '<?php echo $this->chart_colours['shipping_amount']; ?>',
-              points: { show: true, radius: 5, lineWidth: 2, fillColor: '#fff', fill: true },
-              lines: { show: true, lineWidth: 2, fill: false },
-              shadowSize: 0,
-              prepend_tooltip: "<?php echo get_woocommerce_currency_symbol(); ?>"
-            },
-            {
-              label: "<?php echo esc_js( __( 'Gross sales amount', 'woocommerce-one-click-upsell-funnel-pro' ) ); ?>",
-              data: order_data.gross_order_amounts,
-              yaxis: 2,
-              color: '<?php echo $this->chart_colours['sales_amount']; ?>',
-              points: { show: true, radius: 5, lineWidth: 2, fillColor: '#fff', fill: true },
-              lines: { show: true, lineWidth: 2, fill: false },
-              shadowSize: 0,
-              <?php echo $this->get_currency_tooltip(); ?>
-            },
-            {
-              label: "<?php echo esc_js( __( 'Net sales amount', 'woocommerce-one-click-upsell-funnel-pro' ) ); ?>",
-              data: order_data.net_order_amounts,
-              yaxis: 2,
-              color: '<?php echo $this->chart_colours['net_sales_amount']; ?>',
-              points: { show: true, radius: 6, lineWidth: 4, fillColor: '#fff', fill: true },
-              lines: { show: true, lineWidth: 5, fill: false },
-              shadowSize: 0,
-              <?php echo $this->get_currency_tooltip(); ?>
-            },
-            {
-              label: "<?php echo esc_js( __( 'Refund amount', 'woocommerce-one-click-upsell-funnel-pro' ) ); ?>",
-              data: order_data.refund_amounts,
-              yaxis: 2,
-              color: '<?php echo $this->chart_colours['refund_amount']; ?>',
-              points: { show: true, radius: 5, lineWidth: 2, fillColor: '#fff', fill: true },
-              lines: { show: true, lineWidth: 2, fill: false },
-              shadowSize: 0,
-              prepend_tooltip: "<?php echo get_woocommerce_currency_symbol(); ?>"
-            },
-          ];
+          foreach ( $product_ids as $id ) {
 
-          if ( highlight !== 'undefined' && series[ highlight ] ) {
-            highlight_series = series[ highlight ];
-
-            highlight_series.color = '#9c5d90';
-
-            if ( highlight_series.bars ) {
-              highlight_series.bars.fillColor = '#9c5d90';
-            }
-
-            if ( highlight_series.lines ) {
-              highlight_series.lines.lineWidth = 5;
+            if ( isset( $this->item_sales_and_times[ $time ][ $id ] ) ) {
+              $interval_total += $this->item_sales_and_times[ $time ][ $id ];
             }
           }
 
-          main_chart = jQuery.plot(
-            jQuery('.chart-placeholder.main'),
-            series,
-            {
-              legend: {
-                show: false
-              },
-              grid: {
-                color: '#aaa',
-                borderColor: 'transparent',
-                borderWidth: 0,
-                hoverable: true
-              },
-              xaxes: [ {
-                color: '#aaa',
-                position: "bottom",
-                tickColor: 'transparent',
-                mode: "time",
-                timeformat: "<?php echo ( 'day' === $this->chart_groupby ) ? '%d %b' : '%b'; ?>",
-                monthNames: <?php echo json_encode( array_values( $wp_locale->month_abbrev ) ); ?>,
-                tickLength: 1,
-                minTickSize: [1, "<?php echo $this->chart_groupby; ?>"],
-                font: {
-                  color: "#aaa"
-                }
-              } ],
-              yaxes: [
-                {
-                  min: 0,
-                  minTickSize: 1,
-                  tickDecimals: 0,
-                  color: '#d4d9dc',
-                  font: { color: "#aaa" }
-                },
-                {
-                  position: "right",
-                  min: 0,
-                  tickDecimals: 2,
-                  alignTicksWithAxis: 1,
-                  color: 'transparent',
-                  font: { color: "#aaa" }
-                }
-              ],
-            }
-          );
-
-          jQuery('.chart-placeholder').resize();
+          $category_chart_data[] = array( $time, (float) wc_format_decimal( $interval_total, wc_get_price_decimals() ) );
         }
 
-        drawGraph();
+        $chart_data[ $category->term_id ]['category'] = $category->name;
+        $chart_data[ $category->term_id ]['data']     = $category_chart_data;
 
-        jQuery('.highlight_series').hover(
-          function() {
-            drawGraph( jQuery(this).data('series') );
-          },
-          function() {
-            drawGraph();
+        $index++;
+      }
+      ?>
+      <div class="chart-container">
+        <div class="chart-placeholder main"></div>
+      </div>
+      <?php // @codingStandardsIgnoreStart ?>
+      <script type="text/javascript">
+        var main_chart;
+
+        jQuery(function(){
+          var drawGraph = function( highlight ) {
+            var series = [
+              <?php
+                $index = 0;
+                foreach ( $chart_data as $data ) {
+                  $color  = isset( $this->chart_colours[ $index ] ) ? $this->chart_colours[ $index ] : $this->chart_colours[0];
+                  $width  = $this->barwidth / sizeof( $chart_data );
+                  $offset = ( $width * $index );
+                  $series = $data['data'];
+
+                  foreach ( $series as $key => $series_data ) {
+                    $series[ $key ][0] = $series_data[0] + $offset;
+                  }
+
+                  $series = wp_json_encode( $series );
+
+                  echo '{
+                      label: "' . esc_js( $data['category'] ) . '",
+                      data: JSON.parse( decodeURIComponent( "' . rawurlencode( $series ) . '" ) ),
+                      color: "' . $color . '",
+                      bars: {
+                        fillColor: "' . $color . '",
+                        fill: true,
+                        show: true,
+                        lineWidth: 1,
+                        align: "center",
+                        barWidth: ' . $width * 0.75 . ',
+                        stack: false
+                      },
+                      ' . $this->get_currency_tooltip() . ',
+                      enable_tooltip: true,
+                      prepend_label: true
+                    },';
+                  $index++;
+                }
+              ?>
+            ];
+
+            if ( highlight !== 'undefined' && series[ highlight ] ) {
+              highlight_series = series[ highlight ];
+
+              highlight_series.color = '#9c5d90';
+
+              if ( highlight_series.bars ) {
+                highlight_series.bars.fillColor = '#9c5d90';
+              }
+
+              if ( highlight_series.lines ) {
+                highlight_series.lines.lineWidth = 5;
+              }
+            }
+
+            main_chart = jQuery.plot(
+              jQuery('.chart-placeholder.main'),
+              series,
+              {
+                legend: {
+                  show: false
+                },
+                grid: {
+                  color: '#aaa',
+                  borderColor: 'transparent',
+                  borderWidth: 0,
+                  hoverable: true
+                },
+                xaxes: [ {
+                  color: '#aaa',
+                  reserveSpace: true,
+                  position: "bottom",
+                  tickColor: 'transparent',
+                  mode: "time",
+                  timeformat: "<?php echo ( 'day' === $this->chart_groupby ) ? '%d %b' : '%b'; ?>",
+                  monthNames: JSON.parse( decodeURIComponent( '<?php echo rawurlencode( wp_json_encode( array_values( $wp_locale->month_abbrev ) ) ); ?>' ) ),
+                  tickLength: 1,
+                  minTickSize: [1, "<?php echo $this->chart_groupby; ?>"],
+                  tickSize: [1, "<?php echo $this->chart_groupby; ?>"],
+                  font: {
+                    color: "#aaa"
+                  }
+                } ],
+                yaxes: [
+                  {
+                    min: 0,
+                    tickDecimals: 2,
+                    color: 'transparent',
+                    font: { color: "#aaa" }
+                  }
+                ],
+              }
+            );
+
+            jQuery('.chart-placeholder').resize();
+
           }
-        );
-      });
-    </script>
-    <?php
+
+          drawGraph();
+
+          jQuery('.highlight_series').hover(
+            function() {
+              drawGraph( jQuery(this).data('series') );
+            },
+            function() {
+              drawGraph();
+            }
+          );
+        });
+      </script>
+      <?php // @codingStandardsIgnoreEnd ?>
+      <?php
+    }
   }
 }

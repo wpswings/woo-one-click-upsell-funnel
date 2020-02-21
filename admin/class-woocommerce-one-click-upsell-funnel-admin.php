@@ -967,13 +967,6 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 					'hide_title' => 1,
 					'callback' => array( 'Woocommerce_one_click_upsell_funnel_Admin', 'upsell_reporting_callback' ),
 				),
-
-	            'sales_by_order' => array(
-					'title' => 'Sale by Orders',
-					'description' => '',
-					'hide_title' => 1,
-					'callback' => array( 'Woocommerce_one_click_upsell_funnel_Admin', 'upsell_reporting_callback' ),
-				)
 			)
 		);
 
