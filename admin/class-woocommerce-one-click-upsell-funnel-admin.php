@@ -935,5 +935,82 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 		</div>';
 	}
 
+	/**
+	 * Add custom report. tab.
+	 *
+	 * @since    	2.1.0
+	 */
+	public function mwb_wocuf_woocommerce_admin_reports( $reports ) {
+
+	    $reports['upsell'] = array(
+
+		    'title'  => 'Upsell Tracking',
+		    'reports'  => array(
+
+	            'sales_by_date' => array(
+					'title' => 'Sales by date',
+					'description' => '',
+					'hide_title' => 1,
+					'callback' => array( 'Woocommerce_one_click_upsell_funnel_Admin', 'upsell_reporting_callback' ),
+				),
+
+				'sales_by_product' => array(
+					'title' => 'Sales by product',
+					'description' => '',
+					'hide_title' => 1,
+					'callback' => array( 'Woocommerce_one_click_upsell_funnel_Admin', 'upsell_reporting_callback' ),
+				),
+
+				'sales_by_category' => array(
+					'title' => 'Sales by category',
+					'description' => '',
+					'hide_title' => 1,
+					'callback' => array( 'Woocommerce_one_click_upsell_funnel_Admin', 'upsell_reporting_callback' ),
+				),
+
+	            'sales_by_order' => array(
+					'title' => 'Sale by Orders',
+					'description' => '',
+					'hide_title' => 1,
+					'callback' => array( 'Woocommerce_one_click_upsell_funnel_Admin', 'upsell_reporting_callback' ),
+				)
+			)
+		);
+
+	    return $reports;
+	}
+
+	/**
+	 * Add custom report. callback.
+	 *
+	 * @since    	2.1.0
+	 */
+	public static function upsell_reporting_callback( $report_type ) {
+	
+		$report_file = ! empty( $report_type ) ? str_replace( '_', '-', $report_type ) : '';
+		$preformat_string = ! empty( $report_type ) ? ucwords( str_replace( '_', ' ', $report_type ) ) : '';
+		$class_name = ! empty( $preformat_string ) ? 'WC_Report_Mwb_Wocuf_Report_' . str_replace( ' ', '_', $preformat_string ) : '';
+
+		/**
+		 * The file responsible for defining reporting.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'reporting/class-woocommerce-one-click-upsell-funnel-reporting-' . $report_file . '.php';
+
+		if( class_exists( $class_name ) ) {
+
+		    $report = new $class_name();
+		    $report->output_report();
+
+		} else {
+
+			?>
+			<div class="mwb_wocuf_report_error_wrap" style="text-align: center;">
+				<h2 class="mwb_wocuf_report_error_text">
+					<?php esc_html_e( 'Some Error Occured while creating report.', 'woocommerce_one_click_upsell_funnel' ); ?>
+				</h2>
+			</div>
+			<?php
+		}
+	}
 }
 ?>

@@ -209,6 +209,7 @@ class Woocommerce_one_click_upsell_funnel {
 
 		}
 
+		$this->loader->add_filter( 'woocommerce_admin_reports', $plugin_admin, 'mwb_wocuf_woocommerce_admin_reports' );
 	}
 
 	/**
@@ -256,7 +257,7 @@ class Woocommerce_one_click_upsell_funnel {
 
 			// Initiate Upsell Orders before processing payment.
 			$this->loader->add_action( 'woocommerce_checkout_order_processed', $plugin_public, 'mwb_wocuf_initate_upsell_orders' );
-
+			
 			// When user clicks on No thanks for Upsell offer.
 			! is_admin() && $this->loader->add_action( 'wp_loaded', $plugin_public, 'mwb_wocuf_pro_process_the_funnel' );
 
