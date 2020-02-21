@@ -1031,7 +1031,9 @@ class Woocommerce_one_click_upsell_funnel_Public {
 							}
 						}
 
-						$order->add_product( $upsell_product, $offer_quantity );
+						$upsell_item_id = $order->add_product( $upsell_product, $offer_quantity );
+
+						wc_add_order_item_meta(  $upsell_item_id, 'is_upsell_purchase', 'true' );
 
 						$order->calculate_totals();
 
@@ -2677,8 +2679,12 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 
 	/**
-	 * 
-	 * 
+	 * Shortcode for quantity.
+	 * Returns : html :)
+	 *
+	 * Shows woocommerce quantity field. 
+	 *
+	 * @since       2.1.0
 	 */
 	public function quantity_shortcode_content( $atts, $content = '' ) {
 		
@@ -2723,6 +2729,27 @@ class Woocommerce_one_click_upsell_funnel_Public {
 			}
 		}
 	}
+
+
+	/**
+	 * Hide upsell Items meta string. 
+	 *
+	 * @since       2.1.0
+	 */
+	public function hide_order_item_formatted_meta_data( $formatted_meta ){
+
+	    foreach( $formatted_meta as $key => $meta ) {
+
+	    	if( ! empty( $meta->key ) && 'is_upsell_purchase' == $meta->key ) {
+
+	    		unset( $formatted_meta[ $key ] );
+	    	}
+	    }
+
+	    return $formatted_meta;
+	}
+
+// End of class.
 }
 
 ?>

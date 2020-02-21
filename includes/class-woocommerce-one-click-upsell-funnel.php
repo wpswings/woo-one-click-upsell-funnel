@@ -276,6 +276,8 @@ class Woocommerce_one_click_upsell_funnel {
 			// Reset Timer session.
 			$this->loader->add_action( 'wp_footer', $plugin_public, 'reset_timer_session_data' );
 
+			// Hide the upsell meta string.
+			! is_admin() && $this->loader->add_filter( 'woocommerce_order_item_get_formatted_meta_data', $plugin_public, 'hide_order_item_formatted_meta_data' );
 		}
 	}
 
