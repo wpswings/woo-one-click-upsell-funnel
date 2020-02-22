@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
   exit; // Exit if accessed directly.
 }
 
-if ( class_exists( 'WC_Report_Mwb_Wocuf_Report_Sales_By_Order' ) ) {
+if ( class_exists( 'WC_Report_Mwb_Wocuf_Report_Sales_By_Date' ) ) {
     return;
 }
 

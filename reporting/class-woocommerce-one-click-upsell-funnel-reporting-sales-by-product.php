@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
   exit; // Exit if accessed directly.
 }
 
-if ( class_exists( 'WC_Report_Mwb_Wocuf_Report_Sales_By_Order' ) ) {
+if ( class_exists( 'WC_Report_Mwb_Wocuf_Report_Sales_By_Product' ) ) {
     return;
 }
 
@@ -76,11 +76,17 @@ class WC_Report_Mwb_Wocuf_Report_Sales_By_Product extends WC_Admin_Report {
           ),
         ),
         'where_meta'   => array(
-          'relation' => 'OR',
+          'relation' => 'AND',
           array(
             'type'       => 'order_item_meta',
             'meta_key'   => array( '_product_id', '_variation_id' ), // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
             'meta_value' => $this->product_ids, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
+            'operator'   => 'IN',
+          ),
+          array(
+            'type'       => 'order_item_meta',
+            'meta_key'   => 'is_upsell_purchase', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+            'meta_value' => 'true', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
             'operator'   => 'IN',
           ),
         ),
@@ -102,11 +108,17 @@ class WC_Report_Mwb_Wocuf_Report_Sales_By_Product extends WC_Admin_Report {
             ),
           ),
           'where_meta'   => array(
-            'relation' => 'OR',
+            'relation' => 'AND',
             array(
               'type'       => 'order_item_meta',
               'meta_key'   => array( '_product_id', '_variation_id' ), // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
               'meta_value' => $this->product_ids, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
+              'operator'   => 'IN',
+            ),
+            array(
+              'type'       => 'order_item_meta',
+              'meta_key'   => 'is_upsell_purchase', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+              'meta_value' => 'true', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
               'operator'   => 'IN',
             ),
           ),
@@ -252,6 +264,15 @@ class WC_Report_Mwb_Wocuf_Report_Sales_By_Product extends WC_Admin_Report {
                 'name'            => 'order_item_qty',
               ),
             ),
+            'where_meta'   => array(
+              'relation' => 'OR',
+                array(
+                  'type'       => 'order_item_meta',
+                  'meta_key'   => 'is_upsell_purchase', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+                  'meta_value' => 'true', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
+                  'operator'   => 'IN',
+                ),
+            ),
             'order_by'     => 'order_item_qty DESC',
             'group_by'     => 'product_id',
             'limit'        => 12,
@@ -298,12 +319,18 @@ class WC_Report_Mwb_Wocuf_Report_Sales_By_Product extends WC_Admin_Report {
               ),
             ),
             'where_meta'   => array(
-              array(
-                'type'       => 'order_item_meta',
-                'meta_key'   => '_line_subtotal', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
-                'meta_value' => '0', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
-                'operator'   => '=',
-              ),
+                array(
+                  'type'       => 'order_item_meta',
+                  'meta_key'   => '_line_subtotal', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+                  'meta_value' => '0', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
+                  'operator'   => '=',
+                ),
+                array(
+                  'type'       => 'order_item_meta',
+                  'meta_key'   => 'is_upsell_purchase', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+                  'meta_value' => 'true', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
+                  'operator'   => 'IN',
+                ),
             ),
             'order_by'     => 'order_item_qty DESC',
             'group_by'     => 'product_id',
@@ -348,6 +375,15 @@ class WC_Report_Mwb_Wocuf_Report_Sales_By_Product extends WC_Admin_Report {
                 'function'        => 'SUM',
                 'name'            => 'order_item_total',
               ),
+            ),
+            'where_meta'   => array(
+              'relation' => 'OR',
+                array(
+                  'type'       => 'order_item_meta',
+                  'meta_key'   => 'is_upsell_purchase', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+                  'meta_value' => 'true', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
+                  'operator'   => 'IN',
+                ),
             ),
             'order_by'     => 'order_item_total DESC',
             'group_by'     => 'product_id',

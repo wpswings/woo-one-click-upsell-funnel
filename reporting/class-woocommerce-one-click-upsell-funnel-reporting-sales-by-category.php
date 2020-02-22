@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
   exit; // Exit if accessed directly.
 }
 
-if ( class_exists( 'WC_Report_Mwb_Wocuf_Report_Sales_By_Order' ) ) {
+if ( class_exists( 'WC_Report_Mwb_Wocuf_Report_Sales_By_Category' ) ) {
     return;
 }
 
@@ -153,6 +153,11 @@ class WC_Report_Mwb_Wocuf_Report_Sales_By_Category extends WC_Admin_Report {
               'type'     => 'post_data',
               'function' => '',
               'name'     => 'post_date',
+            ),
+            'mwb_wocuf_upsell_order' => array(
+              'type'     => 'meta',
+              'function' => '',
+              'name'     => 'mwb_wocuf_pro_upsell_meta',
             ),
           ),
           'group_by'     => 'ID, product_id, post_date',
