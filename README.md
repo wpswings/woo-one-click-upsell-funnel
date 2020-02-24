@@ -1,6 +1,6 @@
 ![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg) ![Active installs](https://img.shields.io/badge/Active-700%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-5.3-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-3.8.1-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-5.6-blue)
 # WooCommerce One Click Upsell Funnel
-![WooCommerce One Click Upsell Funnel](https://ps.w.org/woo-one-click-upsell-funnel/assets/banner-772x250.jpg?rev=1857606)
+![WooCommerce One Click Upsell Funnel](https://ps.w.org/woo-one-click-upsell-funnel/assets/banner-772x250.png)
 * Contributors:MakeWebBetter
 * Author URI: http://makewebbetter.com/
 * Tags: woocommerce,store,upsell,funnel,increase sales,one click,offers,post purchase,cod
