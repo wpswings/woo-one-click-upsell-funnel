@@ -304,6 +304,37 @@ class Woocommerce_one_click_upsell_funnel_Public {
 											}
 										}
 
+
+										/**
+										 * Smart Skip if already purchased.
+										 * after v2.1.0
+										 */
+										$smart_skip_if_purchased = ! empty( $mwb_upsell_global_settings['smart_skip_if_purchased'] ) ? $mwb_upsell_global_settings['smart_skip_if_purchased'] : '';
+
+										if( 'yes' == $smart_skip_if_purchased ) {
+
+											$offer_product_already_purchased = false;
+
+											if( ! empty( $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_wocuf_products_in_offer'] ) && is_array( $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_wocuf_products_in_offer'] ) ) {
+
+												foreach ( $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_wocuf_products_in_offer'] as $single_offer_id ) {
+
+													if( true == self::mwb_wocuf_skip_for_pre_order( $single_offer_id ) ) {
+
+														// If already purchased.
+														$offer_product_already_purchased = true;
+														break;
+													}
+												}
+											}
+
+											if( true == $offer_product_already_purchased ) {
+
+												break;
+											}
+										}
+										
+
 										// To skip funnel if any offer product in funnel is out of stock.
 
 										$product_in_funnel_stock_out = false;
@@ -2796,6 +2827,80 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 	    return $formatted_meta;
 	}
+
+	/**
+	 * Skip offer product in case of the purchased in prevous orders.
+	 *
+	 * @param      string $offer_product_id    The Offer product id to check.
+	 *
+	 * @since    2.1.0
+	 */
+	public static function mwb_wocuf_skip_for_pre_order( $offer_product_id = '' ) {
+
+		if ( empty( $offer_product_id ) ) {
+
+			return;
+		}
+
+		$offer_product = wc_get_product( $offer_product_id );
+
+		// In case the offer is variable parent then no need to check this.
+		if ( ! empty( $offer_product ) && is_object( $offer_product ) && $offer_product->has_child() ) {
+
+			return false;
+		}
+
+		// Current user ID.
+		$customer_user_id = get_current_user_id();
+
+		// Getting current customer orders.
+		$order_statuses = array( 'wc-on-hold', 'wc-processing', 'wc-completed' );
+
+		$customer_orders = get_posts(
+			array(
+				'numberposts' => -1,
+				'fields' => 'ids', // Return only order ids.
+				'meta_key' => '_customer_user',
+				'meta_value' => $customer_user_id,
+				'post_type' => wc_get_order_types(),
+				'post_status' => $order_statuses,
+				'order' => 'DESC', // Get last order first.
+			)
+		);
+
+		// Past Orders.
+		foreach ( $customer_orders as $key => $single_order_id ) {
+
+			// Continue if order is not a valid one.
+			if ( ! $single_order_id ) {
+
+				continue;
+			}
+
+			$single_order = wc_get_order( $single_order_id );
+
+			// Continue if Order object is not a valid one.
+			if ( empty( $single_order ) || ! is_object( $single_order ) || is_wp_error( $single_order ) ) {
+
+				continue;
+			}
+
+			$items_purchased = $single_order->get_items();
+
+			foreach ( $items_purchased as $key => $single_item ) {
+
+				$product_id = ! empty( $single_item['variation_id'] ) ? $single_item['variation_id'] : $single_item['product_id'];
+
+				if ( $product_id == $offer_product_id ) {
+
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
 
 // End of class.
 }

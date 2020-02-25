@@ -47,8 +47,11 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 	// Remove all styles.
 	$mwb_upsell_global_options['remove_all_styles'] = ! empty( $_POST['remove_all_styles'] ) ? sanitize_text_field( wp_unslash( $_POST['remove_all_styles'] ) ) : '';
 
-
+	// Price Html format.
 	$mwb_upsell_global_options['offer_price_html_type'] = ! empty( $_POST['offer_price_html_type'] ) ? sanitize_text_field( wp_unslash( $_POST['offer_price_html_type'] ) ) : '';
+
+	// Smart Skip.
+	$mwb_upsell_global_options['smart_skip_if_purchased'] = ! empty( $_POST['smart_skip_if_purchased'] ) ? 'yes' : 'no';
 
 	// Custom CSS.
 	$mwb_upsell_global_options['global_custom_css'] = ! empty( $_POST['global_custom_css'] ) ? sanitize_textarea_field( wp_unslash( $_POST['global_custom_css'] ) ) : '';
@@ -182,7 +185,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 				</tr>
 				<!-- Remove all styles end -->
 
-				<!-- Remove all styles start -->
+				<!-- Price html format start -->
 				<tr valign="top">
 
 					<th scope="row" class="titledesc">
@@ -208,7 +211,30 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 						</select>
 					</td>
 				</tr>
-				<!-- Remove all styles end -->
+				<!-- Price html format end -->
+
+				<!-- Smart skip starts  -->
+				<tr valign="top">
+
+					<th scope="row" class="titledesc">
+						<label for="mwb_wocuf_enable_plugin"><?php esc_html_e( 'Smart Skip If Already Purchased', 'woocommerce_one_click_upsell_funnel' ); ?></label>
+					</th>
+
+					<td class="forminp forminp-text">
+						<?php
+						$attribut_description = esc_html__( 'This feature skip the funnel if the offer product is already purchased in past orders.', 'woocommerce_one_click_upsell_funnel' );
+						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped.
+
+						$skip_similar_offer = ! empty( $mwb_upsell_global_settings['smart_skip_if_purchased'] ) ? $mwb_upsell_global_settings['smart_skip_if_purchased'] : '';
+						?>
+
+						<label class="mwb_wocuf_pro_enable_plugin_label">
+							<input class="mwb_wocuf_pro_enable_plugin_input" type="checkbox" <?php echo ( 'yes' == $skip_similar_offer ) ? "checked='checked'" : ''; ?> name="smart_skip_if_purchased" >	
+							<span class="mwb_wocuf_pro_enable_plugin_span"></span>
+						</label>		
+					</td>
+				</tr>
+				<!-- Smart skip end -->
 
 				<!-- Global product start -->
 				<tr valign="top">
