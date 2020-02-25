@@ -204,6 +204,8 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 
 	$mwb_wocuf_pro_funnel['mwb_wocuf_exclusive_offer'] = ! empty( $_POST[ 'mwb_wocuf_exclusive_offer' ] ) ? 'yes' : 'no';
 
+	$mwb_wocuf_pro_funnel['mwb_wocuf_smart_offer_upgrade'] = ! empty( $_POST[ 'mwb_wocuf_smart_offer_upgrade' ] ) ? 'yes' : 'no';
+
 	$mwb_wocuf_pro_funnel_series = array();
 
 	// POST funnel as array at funnel id key.
@@ -483,6 +485,30 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 				</tr>
 				<!-- Exclusive Offer end -->
 
+				<!-- Smart Offer start -->
+				<tr valign="top">
+
+					<th scope="row" class="titledesc">
+						<label for="mwb_wocuf_is_exclusive"><?php esc_html_e( 'Smart Offer Upgrade', 'woocommerce_one_click_upsell_funnel' ); ?></label>
+					</th>
+
+					<td class="forminp forminp-text">
+						<?php
+
+						$attribut_description = esc_html__( 'This Feature replaces the target product with offer product instead of adding it as an extra order item.', 'woocommerce_one_click_upsell_funnel' );
+
+						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped.
+
+						$mwb_wocuf_smoff_upgrade = ! empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_smart_offer_upgrade'] ) ? $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_smart_offer_upgrade'] : 'no';
+						?>
+
+						<label class="mwb_wocuf_pro_enable_plugin_label">
+							<input class="mwb_wocuf_pro_enable_plugin_input" type="checkbox" <?php echo ( 'yes' == $mwb_wocuf_smoff_upgrade ) ? "checked='checked'" : ''; ?> name="mwb_wocuf_smart_offer_upgrade" >	
+							<span class="mwb_wocuf_pro_enable_plugin_span"></span>
+						</label>
+					</td>
+				</tr>
+				<!-- Smart Offer end -->
 			</tbody>
 		</table>
 		

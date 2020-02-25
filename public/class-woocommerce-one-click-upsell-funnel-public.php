@@ -204,35 +204,48 @@ class Woocommerce_one_click_upsell_funnel_Public {
 										/**
 										 * Set funnel as shown if is exclusive offer funnel.
 										 * Do it just after checking target.
+										 * Exclusive Offer 
 										 */
 										if( ! empty( $mwb_wocuf_pro_funnel_data[ 'mwb_wocuf_exclusive_offer' ] ) && 'yes' == $mwb_wocuf_pro_funnel_data[ 'mwb_wocuf_exclusive_offer' ] ) {
 														    	
-												// Check if funnel still exists.
-												if( ! empty( $mwb_wocuf_pro_funnel_data ) ) {
+											// Check if funnel still exists.
+											if( ! empty( $mwb_wocuf_pro_funnel_data ) ) {
 
-													if( ! empty( $mwb_wocuf_pro_funnel_data[ 'mwb_wocuf_exclusive_offer' ] ) && 'yes' == $mwb_wocuf_pro_funnel_data[ 'mwb_wocuf_exclusive_offer' ] ) {
+												if( ! empty( $mwb_wocuf_pro_funnel_data[ 'mwb_wocuf_exclusive_offer' ] ) && 'yes' == $mwb_wocuf_pro_funnel_data[ 'mwb_wocuf_exclusive_offer' ] ) {
 
-														$offer_already_shown_to_users = ! empty( $mwb_wocuf_pro_funnel_data[ 'offer_already_shown_to_users' ] ) ? $mwb_wocuf_pro_funnel_data[ 'offer_already_shown_to_users' ] : array();
+													$offer_already_shown_to_users = ! empty( $mwb_wocuf_pro_funnel_data[ 'offer_already_shown_to_users' ] ) ? $mwb_wocuf_pro_funnel_data[ 'offer_already_shown_to_users' ] : array();
 
-														$current_customer = ! empty( $order ) ? $order->get_billing_email() : '';
+													$current_customer = ! empty( $order ) ? $order->get_billing_email() : '';
 
-														if( ! empty( $current_customer ) && ! empty( $offer_already_shown_to_users ) && in_array( $current_customer, $offer_already_shown_to_users ) ) {
+													if( ! empty( $current_customer ) && ! empty( $offer_already_shown_to_users ) && in_array( $current_customer, $offer_already_shown_to_users ) ) {
 
-															// Skip to next funnel.
-															break;
-														}
-
-														// Not skipped. Mark as shown to this customer.
-														array_push( $offer_already_shown_to_users, $current_customer );
-														$mwb_wocuf_pro_funnel_data[ 'offer_already_shown_to_users' ] = $offer_already_shown_to_users;
-
-														$mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ] = $mwb_wocuf_pro_funnel_data;
-
-														update_option( 'mwb_wocuf_funnels_list', $mwb_wocuf_pro_all_funnels );
+														// Skip to next funnel.
+														break;
 													}
+
+													// Not skipped. Mark as shown to this customer.
+													array_push( $offer_already_shown_to_users, $current_customer );
+													$mwb_wocuf_pro_funnel_data[ 'offer_already_shown_to_users' ] = $offer_already_shown_to_users;
+
+													$mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ] = $mwb_wocuf_pro_funnel_data;
+
+													update_option( 'mwb_wocuf_funnels_list', $mwb_wocuf_pro_all_funnels );
 												}
 											}
+										}
 
+										/**
+										 * Set funnel as shown if is exclusive offer funnel.
+										 * Do it just after checking target.
+										 * Smart Offer Upgrade 
+										 */
+										if( ! empty( $mwb_wocuf_pro_funnel_data[ 'mwb_wocuf_smart_offer_upgrade' ] ) && 'yes' == $mwb_wocuf_pro_funnel_data[ 'mwb_wocuf_smart_offer_upgrade' ] ) {
+													
+											if( ! empty( $item_key ) ) {
+
+												update_post_meta( $order_id, '__smart_offer_upgrade_target_key', $item_key );
+											}
+										}
 
 										// To skip funnel if any funnel offer product is already present during checkout ( Order Items ).
 										$mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', array() );
@@ -1033,6 +1046,25 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 						$upsell_item_id = $order->add_product( $upsell_product, $offer_quantity );
 
+						$target_item_id = get_post_meta( $order_id, '__smart_offer_upgrade_target_key', true );
+
+						$force_payment = false;
+
+						if( ! empty( $target_item_id ) && is_numeric( $target_item_id ) ) {
+
+							foreach ( (array)$order->get_items() as $item_id => $item ) {
+
+								if ( $item_id == $target_item_id ) {
+
+									$order->remove_item( $item_id );
+									delete_post_meta( $order_id, '__smart_offer_upgrade_target_key' );
+									$force_payment = true;
+								}
+							}
+
+							$order->save();
+						}
+
 						wc_add_order_item_meta(  $upsell_item_id, 'is_upsell_purchase', 'true' );
 
 						$order->calculate_totals();
@@ -1048,7 +1080,16 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 					$url = '';
 
-					if ( isset( $mwb_wocuf_pro_buy_action[ $offer_id ] ) && 'thanks' == $mwb_wocuf_pro_buy_action[ $offer_id ] ) {
+					/**
+					 * After v3.3.0 :: Smart offer upgraded.
+					 * If target product is removed, then process the payment.
+					 */
+					if( ! empty( $force_payment ) && true === $force_payment ) {
+
+						$this->initiate_order_payment_and_redirect( $order_id );
+					}
+
+					elseif ( isset( $mwb_wocuf_pro_buy_action[ $offer_id ] ) && 'thanks' == $mwb_wocuf_pro_buy_action[ $offer_id ] ) {
 
 						$this->initiate_order_payment_and_redirect( $order_id );
 
@@ -1136,16 +1177,23 @@ class Woocommerce_one_click_upsell_funnel_Public {
 									$this->initiate_order_payment_and_redirect( $order_id );
 								}
 
-								$mwb_wocuf_pro_next_offer_url = $mwb_wocuf_pro_next_offer_url . '?ocuf_ns=' . $wp_nonce . '&ocuf_ofd=' . $offer_id . '&ocuf_ok=' . $order_key . '&ocuf_fid=' . $funnel_id;
+								// $mwb_wocuf_pro_next_offer_url = $mwb_wocuf_pro_next_offer_url . '?ocuf_ns=' . $wp_nonce . '&ocuf_ofd=' . $offer_id . '&ocuf_ok=' . $order_key . '&ocuf_fid=' . $funnel_id;
 
-								$url = $mwb_wocuf_pro_next_offer_url;
+								// $url = $mwb_wocuf_pro_next_offer_url;
 
+								$url = add_query_arg( array(
+								    'ocuf_ns' => $wp_nonce,
+								    'ocuf_fid' => $funnel_id,
+								    'ocuf_ok' => $order_key,
+								    'ocuf_ofd' => $offer_id,
+								), $mwb_wocuf_pro_next_offer_url );
 							}
 						}
 
 						wp_safe_redirect( $url );
 						exit;
 					}
+
 				} else {
 
 					$this->initiate_order_payment_and_redirect( $order_id );
