@@ -2738,8 +2738,9 @@ class Woocommerce_one_click_upsell_funnel_Public {
 			// Clear timestamp from SessionStorage.
 			if( typeof sessionStorage !== 'undefined' && sessionStorage.length > 0 ) {
 
-				// Browser issue.
+				// Must reduce these variable.
 				sessionStorage.removeItem( 'timerlimit_1' );
+				sessionStorage.removeItem( 'timerlimit_null' );
 
 				for ( var i = 0; i < sessionStorage.length; i++ ) {
 
