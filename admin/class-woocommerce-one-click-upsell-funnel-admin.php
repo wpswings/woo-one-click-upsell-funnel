@@ -333,7 +333,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 			<tr>
 			    <th><label><h4>' . esc_html__( 'Offer Image', 'woocommerce-one-click-upsell-funnel-pro' ) . '</h4></label>
 			    </th>
-			    <td>' . $this->mwb_wocuf_pro_image_uploader_field( $offer_index, $image_post_id )  . '</td>
+			    <td>' . $this->mwb_wocuf_pro_image_uploader_field( $offer_index )  . '</td>
 			</tr>
 			</tr>
 		    <tr>
