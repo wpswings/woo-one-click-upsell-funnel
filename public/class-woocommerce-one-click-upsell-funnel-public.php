@@ -73,7 +73,53 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	}
 
 	public function enqueue_scripts() {
+
 		 wp_enqueue_script( 'woocommerce-one-click-upsell-public-script', plugin_dir_url( __FILE__ ) . 'js/woocommerce-oneclick-upsell-funnel-public.js', array( 'jquery' ), $this->version, true );
+
+		/**
+		 * Scripts used to implement Ecommerce Tracking.
+		 * After v2.1.0
+		 */
+		$mwb_upsell_analytics_options = get_option( 'mwb_upsell_analytics_configuration', array() );
+
+		$mwb_upsell_fb_pixel_config = ! empty( $mwb_upsell_analytics_options[ 'facebook-pixel' ] ) ? $mwb_upsell_analytics_options[ 'facebook-pixel' ] : array();
+
+		$mwb_upsell_ga_analytics_config = ! empty( $mwb_upsell_analytics_options[ 'google-analytics' ] ) ? $mwb_upsell_analytics_options[ 'google-analytics' ] : array();
+
+		$localize_script_data = false;
+		if( ! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_tracking' ] ) && 'yes' == $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_tracking' ] ) {
+			// Localize the data for FB pixel and tracking.
+			$localize_script_data = true;
+		}
+
+		if( false === $localize_script_data && ! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_tracking' ] ) && 'yes' == $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_tracking' ] ) {
+			// Localize the data for GA analytics and tracking.
+			$localize_script_data = true;
+		} 
+
+		if( true === $localize_script_data ) {
+
+			wp_register_script( 'woocommerce-one-click-upsell-public-tracking-script', plugin_dir_url( __FILE__ ) . 'js/woocommerce-oneclick-upsell-funnel-public-analytics.js', array( 'jquery' ), $this->version, true );
+
+			$analytics_js_data = array(
+				'google_analytics' => array(
+					'is_ga_enabled'	=>	! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_tracking' ] ) && 'yes' == $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_tracking' ] ? 'true' : 'false',
+					'ga_account_id'	=>	! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_account_id' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_account_id' ] ) ) : '',
+					'enable_purchase_event'	=>	! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_purchase_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_purchase_event' ] ) ) : 'no',
+					'enable_pageview_event'	=>	! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_pageview_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_pageview_event' ] ) ) : 'no',
+				),
+
+				'facebook_pixel' => array(
+					'is_pixel_enabled'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_tracking' ] ) && 'yes' == $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_tracking' ] ? 'true' : 'false',
+					'pixel_account_id'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_account_id' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_account_id' ] ) ) : '',
+					'enable_purchase_event'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_purchase_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_purchase_event' ] ) ) : 'no',
+					'enable_pageview_event'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pageview_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pageview_event' ] ) ) : 'no',
+				),
+			);
+			
+			wp_localize_script( 'woocommerce-one-click-upsell-public-tracking-script', 'mwb', $analytics_js_data );
+			wp_enqueue_script( 'woocommerce-one-click-upsell-public-tracking-script' );
+		}
 	}
 
 	/**

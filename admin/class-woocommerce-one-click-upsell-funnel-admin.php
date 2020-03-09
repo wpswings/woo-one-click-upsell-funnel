@@ -76,7 +76,8 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 		if ( isset( $screen->id ) ) {
 			$pagescreen = $screen->id;
 
-			if ( 'toplevel_page_mwb-wocuf-setting' == $pagescreen ) {
+			if ( 'toplevel_page_mwb-wocuf-setting' == $pagescreen || '1-click-upsell_page_mwb-wocuf-setting-tracking' == $pagescreen ) {
+				
 				wp_register_style( 'mwb_wocuf_pro_admin_style', plugin_dir_url( __FILE__ ) . 'css/woocommerce_one_click_upsell_funnel_pro-admin.css', array(), $this->version, 'all' );
 
 				wp_enqueue_style( 'mwb_wocuf_pro_admin_style' );
@@ -116,7 +117,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 		if ( isset( $screen->id ) ) {
 			$pagescreen = $screen->id;
 
-			if ( 'toplevel_page_mwb-wocuf-setting' == $pagescreen ) {
+			if ( 'toplevel_page_mwb-wocuf-setting' == $pagescreen || '1-click-upsell_page_mwb-wocuf-setting-tracking' == $pagescreen ) {
 				wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/select2.min.js', array( 'jquery' ), $this->version, false );
 
 				wp_enqueue_script( 'mwb_wocuf_pro_admin_script', plugin_dir_url( __FILE__ ) . 'js/woocommerce_one_click_upsell_funnel_pro-admin.js', array( 'jquery' ), $this->version, false );
@@ -193,6 +194,10 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	 * @since    1.0.0
 	 */
 	public function mwb_wocuf_pro_admin_menu() {
+
+		/**
+		 * Add main menu.
+		 */
 		add_menu_page(
 			__( '1 Click Upsell', 'woocommerce_one_click_upsell_funnel' ),
 			__( '1 Click Upsell', 'woocommerce_one_click_upsell_funnel' ),
@@ -202,6 +207,16 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 			'dashicons-chart-area',
 			56
 		);
+
+		/**
+		 * Add sub-menu for funnel settings.
+		 */
+	    add_submenu_page( 'mwb-wocuf-setting', 'Funnel Setup', 'Funnel Setup', 'manage_options', 'mwb-wocuf-setting' );
+
+	   	/**
+	   	 * Add sub-menu for reportings settings.
+	   	 */
+	    add_submenu_page( 'mwb-wocuf-setting', 'Tracking & Reporting', 'Tracking & Reporting', 'manage_options', 'mwb-wocuf-setting-tracking', array( $this, 'add_submenu_page_reporting_callback' ) );
 	}
 
 	/**
@@ -1005,5 +1020,18 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 			<?php
 		}
 	}
+
+
+	/**
+	 * Add GA/FB tracking callback.
+	 *
+	 * @since    	2.1.0
+	 */
+	public function add_submenu_page_reporting_callback() {
+
+		require_once MWB_WOCUF_DIRPATH . 'tracking/woocommerce-one-click-upsell-funnel-tracking-config-panel.php';
+	}
+
+// End of class.
 }
 ?>

@@ -1,4 +1,4 @@
-/**
+*
 * All of the CSS for your admin-specific functionality should be
 * included in this file.
 */
@@ -626,7 +626,7 @@ span.mwb_wocuf_pro_span label::after {
 
 #mwb_upsell_lite_overview #mwb_upsell_lite_overview_video h2 {
   text-align: center;
-  font-size: 21px;
+  font-size: 30px;
   color: #76807e;
   font-weight: 400;
   margin-top: 30px;
@@ -641,7 +641,7 @@ span.mwb_wocuf_pro_span label::after {
 
 #mwb_upsell_lite_overview .mwb_upsell_overview_supported_product .mwb_upsell_overview_simple_product_icon {
   float: left;
-  width: 50%;
+  width: 48%;
   text-align: center;
   padding: 0px 15px;
   box-sizing: border-box;
@@ -658,6 +658,7 @@ span.mwb_wocuf_pro_span label::after {
 }
 #mwb_upsell_lite_overview .mwb_upsell_overview_supported_product .mwb_upsell_overview_simple_product_icon img{
   max-width: 100%;
+  width: 500px;
 }
 #mwb_upsell_lite_overview .mwb_upsell_overview_supported_product:after {
   display: block;
@@ -1313,6 +1314,30 @@ button.button-primary.mwb_upsell_activate_offer_template:focus {
 .mwb_upsell_overview_go_pro {
   margin: 40px 0;
 }
+
+/**=========================================== 
+              Version : 2.1.0
+ ============================================*/
+.mwb_upsell_overview_simple_product_icon {
+  border: 2px double #c1bebe;
+  border-radius: 12px;
+  margin: 10px;
+  max-width: 100%;
+  height: 324px;
+}
+.mwb_upsell_lite_tool_ga {
+  margin-top: 50px;
+  width: 500px;
+}
+.mwb_upsell_lite_tool_fb {
+  width: 439px !important;
+  margin-top: 20px;
+}
+.mwb_upsell_overview_simple_product_icon a:focus {
+  color: #ffffff;
+  box-shadow: none;
+  outline: none;
+}
 /*===================================
 =            media query            =
 ===================================*/
@@ -1487,4 +1512,4 @@ button.button-primary.mwb_upsell_activate_offer_template:focus {
 /**
  * V3.0.0 CSS Ends HERE ------------>>>>>>>>>>>>>>>>>>>
  * 
- */
+ 
