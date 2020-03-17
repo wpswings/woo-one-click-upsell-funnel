@@ -40,6 +40,7 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 		'mwb_upsell_enable_ga_account_id' => ! empty( $_POST[ 'mwb_upsell_enable_ga_account_id' ] ) ? sanitize_text_field( wp_unslash( $_POST[ 'mwb_upsell_enable_ga_account_id' ] ) ) : '',
 		'mwb_upsell_enable_purchase_event' => ! empty( $_POST[ 'mwb_upsell_enable_purchase_event' ] ) ? 'yes' : 'no',
 		'mwb_upsell_enable_pageview_event' => ! empty( $_POST[ 'mwb_upsell_enable_pageview_event' ] ) ? 'yes' : 'no',
+		'mwb_upsell_enable_debug_mode' => ! empty( $_POST[ 'mwb_upsell_enable_debug_mode' ] ) ? 'yes' : 'no',
 	);
 
 	if( ! empty( $mwb_upsell_fb_pixel_config ) || ! empty( $mwb_upsell_ga_analytics_config ) ) {
@@ -105,6 +106,15 @@ $google_analytics_fields = array(
 			'required'	=>	false,
 			'attribute_description'	=>	esc_html__( 'Enable Google Analytics Pageview Event.', 'woocommerce_one_click_upsell_funnel' ),
 			'value'	=>	! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_pageview_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_pageview_event' ] ) ) : 'no',
+	),
+
+	'mwb_wocuf_enable_debug_mode'	=>	array(
+		'name'	=>	'mwb_upsell_enable_debug_mode',
+		'label'	=>	'Enable Debug Mode',
+		'type'	=>	'checkbox',
+		'required'	=>	false,
+		'attribute_description'	=>	esc_html__( 'Enable Debug mode to see if data is processing correctly or not.', 'woocommerce_one_click_upsell_funnel' ),
+		'value'	=>	! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_debug_mode' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_debug_mode' ] ) ) : 'no',
 	),
 );
 

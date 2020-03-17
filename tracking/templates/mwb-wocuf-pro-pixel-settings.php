@@ -21,11 +21,14 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 	// Nonce verification.
 	$mwb_wocuf_pro_create_nonce = ! empty( $_POST['mwb_wocuf_pro_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_pro_nonce'] ) ) : '';
 
-	if ( empty( $mwb_wocuf_pro_create_nonce ) || ! wp_verify_nonce( $mwb_wocuf_pro_create_nonce, 'mwb_wocuf_pro_setting_nonce' ) ) {
+	if ( empty( $mwb_wocuf_pro_create_nonce ) || ! wp_verify_nonce( $mwb_wocuf_pro_create_nonce, 'mwb_wocuf_pro_setting_nonce' ) ) : ?>
 
-		esc_html_e( 'Sorry, due to some security issue, your settings could not be saved.', 'woocommerce_one_click_upsell_funnel' );
-		wp_die();
-	}
+		<div class="notice notice-error is-dismissible mwb-noticee">
+	         <p><?php esc_html_e( 'Sorry, due to some security issue, your settings could not be saved. Please reload the page.', 'woocommerce_one_click_upsell_funnel' ); ?></p>
+	    </div>
+		<?php return false;
+
+	endif;
 
 	$mwb_upsell_analytics_options = get_option( 'mwb_upsell_analytics_configuration', array() );
 
@@ -39,7 +42,10 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 		'mwb_upsell_enable_pixel_tracking' => ! empty( $_POST[ 'mwb_upsell_enable_pixel_tracking' ] ) ? 'yes' : 'no',
 		'mwb_upsell_enable_pixel_account_id' => ! empty( $_POST[ 'mwb_upsell_enable_pixel_account_id' ] ) ? sanitize_text_field( wp_unslash( $_POST[ 'mwb_upsell_enable_pixel_account_id' ] ) ) : '',
 		'mwb_upsell_enable_purchase_event' => ! empty( $_POST[ 'mwb_upsell_enable_purchase_event' ] ) ? 'yes' : 'no',
-		'mwb_upsell_enable_pageview_event' => ! empty( $_POST[ 'mwb_upsell_enable_pageview_event' ] ) ? 'yes' : 'no',
+		'mwb_upsell_enable_viewcontent_event' => ! empty( $_POST[ 'mwb_upsell_enable_viewcontent_event' ] ) ? 'yes' : 'no',
+		'mwb_upsell_enable_add_to_cart_event' => ! empty( $_POST[ 'mwb_upsell_enable_add_to_cart_event' ] ) ? 'yes' : 'no',
+		'mwb_upsell_enable_initiate_checkout_event' => ! empty( $_POST[ 'mwb_upsell_enable_initiate_checkout_event' ] ) ? 'yes' : 'no',
+		'mwb_upsell_enable_debug_mode' => ! empty( $_POST[ 'mwb_upsell_enable_debug_mode' ] ) ? 'yes' : 'no',
 	);
 
 	if( ! empty( $mwb_upsell_fb_pixel_config ) || ! empty( $mwb_upsell_ga_analytics_config ) ) {
@@ -72,39 +78,66 @@ $mwb_upsell_ga_analytics_config = ! empty( $mwb_upsell_analytics_options[ 'googl
 $google_analytics_fields = array(
 
 	'mwb_wocuf_enable_pixel_tracking'	=>	array(
-			'name'	=>	'mwb_upsell_enable_pixel_tracking',
-			'label'	=>	'Enable Pixel Tracking',
-			'type'	=>	'checkbox',
-			'required'	=>	false,
-			'attribute_description'	=>	esc_html__( 'Enable Facebook Pixel Tracking on the main site.', 'woocommerce_one_click_upsell_funnel' ),
-			'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_tracking' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_tracking' ] ) ) : 'no',
+		'name'	=>	'mwb_upsell_enable_pixel_tracking',
+		'label'	=>	'Enable Pixel Tracking',
+		'type'	=>	'checkbox',
+		'required'	=>	false,
+		'attribute_description'	=>	esc_html__( 'Enable Facebook Pixel Tracking on the main site. <br>Adds pixel base code and Page View Event.', 'woocommerce_one_click_upsell_funnel' ),
+		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_tracking' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_tracking' ] ) ) : 'no',
 	),
 
 	'mwb_wocuf_pixel_account_id'	=>	array(
-			'name'	=>	'mwb_upsell_enable_pixel_account_id',
-			'label'	=>	'Fb Pixel ID',
-			'type'	=>	'text',
-			'required'	=>	true,
-			'attribute_description'	=>	esc_html__( 'Log into your Facebook Pixel account to find your ID. eg: 580XXXXXXXXX325.', 'woocommerce_one_click_upsell_funnel' ),
-			'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_account_id' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_account_id' ] ) ) : '',
+		'name'	=>	'mwb_upsell_enable_pixel_account_id',
+		'label'	=>	'Fb Pixel ID',
+		'type'	=>	'text',
+		'required'	=>	true,
+		'attribute_description'	=>	esc_html__( 'Log into your Facebook Pixel account to find your ID. eg: 580XXXXXXXXX325.', 'woocommerce_one_click_upsell_funnel' ),
+		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_account_id' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_account_id' ] ) ) : '',
+	),
+
+	'mwb_wocuf_enable_viewcontent_event'	=>	array(
+		'name'	=>	'mwb_upsell_enable_viewcontent_event',
+		'label'	=>	'Enable View Content Event',
+		'type'	=>	'checkbox',
+		'required'	=>	false,
+		'attribute_description'	=>	esc_html__( 'Enable Facebook Pixel Pageview Event.<br>A visit to a web page you care about. For example, a product or landing page. View content tells you if someone visits a web page\'s URL, but not what they do or see on that web page.', 'woocommerce_one_click_upsell_funnel' ),
+		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_viewcontent_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_viewcontent_event' ] ) ) : 'no',
+	),
+
+	'mwb_wocuf_enable_add_to_cart_event'	=>	array(
+		'name'	=>	'mwb_upsell_enable_add_to_cart_event',
+		'label'	=>	'Enable Add to Cart Event',
+		'type'	=>	'checkbox',
+		'required'	=>	false,
+		'attribute_description'	=>	esc_html__( 'Enable Facebook Pixel Add to cart Event.<br>The addition of an item to a shopping cart or basket. For example, clicking an Add to Cart button on a website.', 'woocommerce_one_click_upsell_funnel' ),
+		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_add_to_cart_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_add_to_cart_event' ] ) ) : 'no',
+	),
+
+	'mwb_wocuf_enable_initiate_checkout_event'	=>	array(
+		'name'	=>	'mwb_upsell_enable_initiate_checkout_event',
+		'label'	=>	'Enable Initiate Checkout Event',
+		'type'	=>	'checkbox',
+		'required'	=>	false,
+		'attribute_description'	=>	esc_html__( 'Enable Facebook Pixel Initiate checkout Event.<br>The start of a checkout process. For example, clicking a Checkout button.', 'woocommerce_one_click_upsell_funnel' ),
+		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_initiate_checkout_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_initiate_checkout_event' ] ) ) : 'no',
 	),
 
 	'mwb_wocuf_enable_purchase_event'	=>	array(
-			'name'	=>	'mwb_upsell_enable_purchase_event',
-			'label'	=>	'Enable Purchase Event',
-			'type'	=>	'checkbox',
-			'required'	=>	false,
-			'attribute_description'	=>	esc_html__( 'Enable Facebook Pixel Purchase Event.', 'woocommerce_one_click_upsell_funnel' ),
-			'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_purchase_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_purchase_event' ] ) ) : 'no',
+		'name'	=>	'mwb_upsell_enable_purchase_event',
+		'label'	=>	'Enable Purchase Event',
+		'type'	=>	'checkbox',
+		'required'	=>	false,
+		'attribute_description'	=>	esc_html__( 'Enable Facebook Pixel Purchase Event.<br>The completion of a purchase, usually signified by receiving order or purchase confirmation, or a transaction receipt. For example, landing on a Thank You or confirmation page.', 'woocommerce_one_click_upsell_funnel' ),
+		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_purchase_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_purchase_event' ] ) ) : 'no',
 	),
 
-	'mwb_wocuf_enable_pageview_event'	=>	array(
-			'name'	=>	'mwb_upsell_enable_pageview_event',
-			'label'	=>	'Enable Pageview Event',
-			'type'	=>	'checkbox',
-			'required'	=>	false,
-			'attribute_description'	=>	esc_html__( 'Enable Facebook Pixel Pageview Event.', 'woocommerce_one_click_upsell_funnel' ),
-			'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pageview_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pageview_event' ] ) ) : 'no',
+	'mwb_wocuf_enable_debug_mode'	=>	array(
+		'name'	=>	'mwb_upsell_enable_debug_mode',
+		'label'	=>	'Enable Debug Mode',
+		'type'	=>	'checkbox',
+		'required'	=>	false,
+		'attribute_description'	=>	esc_html__( 'Enable Debug mode to see if data is processing correctly or not.', 'woocommerce_one_click_upsell_funnel' ),
+		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_debug_mode' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_debug_mode' ] ) ) : 'no',
 	),
 );
 
