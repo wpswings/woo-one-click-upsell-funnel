@@ -2948,8 +2948,70 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		return false;
 	}
 
+	/**
+	 * Add tracking basecode for Google Analytics and Facebook Pixel.
+	 *
+	 * @since   2.1.0
+	 */
+	public function add_tracking_base_code() {
 
-// End of class.
-}
+		/**
+		 * Scripts used to implement Ecommerce Tracking.
+		 * After v2.1.0
+		 */
+		$mwb_upsell_analytics_options = get_option( 'mwb_upsell_analytics_configuration', array() );
 
+		$mwb_upsell_ga_analytics_config = ! empty( $mwb_upsell_analytics_options[ 'google-analytics' ] ) ? $mwb_upsell_analytics_options[ 'google-analytics' ] : array();
+
+		$mwb_upsell_fb_pixel_config = ! empty( $mwb_upsell_analytics_options[ 'facebook-pixel' ] ) ? $mwb_upsell_analytics_options[ 'facebook-pixel' ] : array();
+
+		// Get ID.
+		$google_analytics_ID = ! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_account_id' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_account_id' ] ) ) : '';
+
+		$fb_pixel_ID = ! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_account_id' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_account_id' ] ) ) : '';
+
+		// GA Tracking.
+		if( ! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_tracking' ] ) && 'yes' == $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_tracking' ] ) : ?>
+
+			<!-- Global site tag (gtag.js) - Google Analytics -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo( esc_html( $google_analytics_ID ) ); ?>"></script>
+			<script>
+			  window.dataLayer = window.dataLayer || [];
+			  function gtag(){dataLayer.push(arguments);}
+			  gtag('js', new Date());
+
+			  gtag('config', '<?php echo( esc_html( $google_analytics_ID ) ); ?>');
+			</script>
+
+		<?php endif; ?>
+
+		<?php
+
+		// FB pixel Tracking.
+		if( ! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_tracking' ] ) && 'yes' == $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_tracking' ] ) : ?>
+
+			<!-- Facebook Pixel Code -->
+			<script>
+				!function(f,b,e,v,n,t,s)
+				{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+				n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+				if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+				n.queue=[];t=b.createElement(e);t.async=!0;
+				t.src=v;s=b.getElementsByTagName(e)[0];
+				s.parentNode.insertBefore(t,s)}(window, document,'script',
+				'https://connect.facebook.net/en_US/fbevents.js');
+				fbq('init', '<?php echo( esc_html( $fb_pixel_ID ) ); ?>');
+				fbq('track', 'PageView');
+			</script>
+			<noscript>
+				<img height="1" width="1" style="display:none"
+			src="https://www.facebook.com/tr?id=<?php echo( esc_html( $fb_pixel_ID ) ); ?>&ev=PageView&noscript=1"
+			/>
+			</noscript>
+			<!-- End Facebook Pixel Code -->
+
+		<?php endif;
+	}
+
+} // End of class.
 ?>
