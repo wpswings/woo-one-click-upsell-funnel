@@ -41,6 +41,7 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 	$mwb_upsell_fb_pixel_config = array(
 		'mwb_upsell_enable_pixel_tracking' => ! empty( $_POST[ 'mwb_upsell_enable_pixel_tracking' ] ) ? 'yes' : 'no',
 		'mwb_upsell_enable_pixel_account_id' => ! empty( $_POST[ 'mwb_upsell_enable_pixel_account_id' ] ) ? sanitize_text_field( wp_unslash( $_POST[ 'mwb_upsell_enable_pixel_account_id' ] ) ) : '',
+		'mwb_upsell_enable_pixel_product_catalog_id' => ! empty( $_POST[ 'mwb_upsell_enable_pixel_product_catalog_id' ] ) ? sanitize_text_field( wp_unslash( $_POST[ 'mwb_upsell_enable_pixel_product_catalog_id' ] ) ) : '',
 		'mwb_upsell_enable_purchase_event' => ! empty( $_POST[ 'mwb_upsell_enable_purchase_event' ] ) ? 'yes' : 'no',
 		'mwb_upsell_enable_viewcontent_event' => ! empty( $_POST[ 'mwb_upsell_enable_viewcontent_event' ] ) ? 'yes' : 'no',
 		'mwb_upsell_enable_add_to_cart_event' => ! empty( $_POST[ 'mwb_upsell_enable_add_to_cart_event' ] ) ? 'yes' : 'no',
@@ -93,6 +94,15 @@ $google_analytics_fields = array(
 		'required'	=>	true,
 		'attribute_description'	=>	esc_html__( 'Log into your Facebook Pixel account to find your ID. eg: 580XXXXXXXXX325.', 'woocommerce_one_click_upsell_funnel' ),
 		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_account_id' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_account_id' ] ) ) : '',
+	),
+
+	'mwb_wocuf_pixel_product_catalog_id'	=>	array(
+		'name'	=>	'mwb_upsell_enable_pixel_product_catalog_id',
+		'label'	=>	'Product Catalog ID',
+		'type'	=>	'text',
+		'required'	=>	false,
+		'attribute_description'	=>	esc_html__( 'Go to your Catalog managment portal in your Pixel Account. eg: 344XXXXXXXXX325.', 'woocommerce_one_click_upsell_funnel' ),
+		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_product_catalog_id' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_product_catalog_id' ] ) ) : '',
 	),
 
 	'mwb_wocuf_enable_viewcontent_event'	=>	array(
