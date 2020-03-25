@@ -75,6 +75,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	public function enqueue_scripts() {
 
 		 wp_enqueue_script( 'woocommerce-one-click-upsell-public-script', plugin_dir_url( __FILE__ ) . 'js/woocommerce-oneclick-upsell-funnel-public.js', array( 'jquery' ), $this->version, true );
+
 		/**
 		 * Scripts used to implement Ecommerce Tracking.
 		 * After v2.1.0
@@ -106,7 +107,6 @@ class Woocommerce_one_click_upsell_funnel_Public {
 			 */
 			$current_user = wp_get_current_user();
 			if( ! empty( $current_user ) ) {
-
 				$current_user_role = ! empty( $current_user->roles ) && is_array( $current_user->roles ) ? $current_user->roles : false;
 			}
 
@@ -120,10 +120,12 @@ class Woocommerce_one_click_upsell_funnel_Public {
 				$current_location = 'product';
 			} elseif ( is_cart() ) {
 				$current_location = 'cart';
-			} elseif ( is_checkout() ) {
+			} elseif ( is_checkout() && ! is_wc_endpoint_url('order-received') ) {
 				$current_location = 'checkout';
 			} elseif ( ! empty( $_GET[ 'ocuf_fid' ] ) ) {
 				$current_location = 'upsell';
+			} elseif ( is_wc_endpoint_url('order-received') && ! empty( $_GET[ 'key' ] ) ) {
+				$current_location = 'thank-you';
 			}
 
 			/**
@@ -140,6 +142,24 @@ class Woocommerce_one_click_upsell_funnel_Public {
 			$current_cart_value = false;
 			if( is_checkout() && ! empty( WC()->cart->get_cart_contents_count() ) ) {
 				$current_cart_value = WC()->cart->total;
+			}
+
+			/**
+			 * Get purchase event data at Upsell/Thank you page.
+			 */
+			if( ! empty( $current_location ) && in_array( $current_location, array( 'upsell', 'thank-you' ) ) ) {
+
+				/**
+				 * Get order id from live params.
+				 * Check the payment method for same order and ensure tracking if required.
+				 */
+				$order_id = get_order_id_from_live_param( $current_location );
+				$where_to_trigger = mwb_upsell_get_tracking_location( $order_id );
+
+				if( $where_to_trigger == $current_location ) {
+
+					$purchase_event_data = mwb_upsell_lite_get_purchase_data( $order_id, $current_location );
+				}
 			}
 
 			wp_register_script( 'woocommerce-one-click-upsell-public-tracking-script', plugin_dir_url( __FILE__ ) . 'js/woocommerce-oneclick-upsell-funnel-public-analytics.js', array( 'jquery' ), $this->version, true );
@@ -174,6 +194,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 				'cart_value' => ! empty( $current_cart_value ) ? $current_cart_value : false,
 				'post_fields' => ! empty( $_POST ) ? $_POST : false,
 				'get_fields' => ! empty( $_GET ) ? $_GET : false,
+				'purchase_to_trigger' => ! empty( $purchase_event_data ) ? $purchase_event_data : false,
 			);
 			
 			wp_localize_script( 'woocommerce-one-click-upsell-public-tracking-script', 'mwb', $analytics_js_data );
@@ -604,6 +625,12 @@ class Woocommerce_one_click_upsell_funnel_Public {
 					 */
 					update_post_meta( $order_id, 'mwb_upsell_order_started', 'true' );
 
+					/** 
+					 * First offer for Ecomm tracking.
+					 */
+					$first_offer_id = get_first_offer_after_redirect( $result );
+					update_post_meta( $order_id, '_mwb_upsell_order_first_offer', $first_offer_id );
+
 					// Store Order ID in session so it can be re-used after payment failure.
 					WC()->session->set( 'order_awaiting_payment', $order_id );
 
@@ -663,6 +690,11 @@ class Woocommerce_one_click_upsell_funnel_Public {
 					$this->expire_offer();
 				}
 			}
+
+			/**
+			 * No thanks was clicked, hence last neutralise last updated offer meta.
+			 */
+			delete_post_meta( $order_id, '_mwb_last_upsell_offer_accepted' );
 
 			$mwb_wocuf_pro_all_funnels = get_option( 'mwb_wocuf_funnels_list', array() );
 
@@ -1201,13 +1233,15 @@ class Woocommerce_one_click_upsell_funnel_Public {
 							$order->save();
 						}
 
-						wc_add_order_item_meta(  $upsell_item_id, 'is_upsell_purchase', 'true' );
+						// Mark this product as last accepted offer.
+						update_post_meta( $order_id, '_mwb_last_upsell_offer_accepted', $upsell_item_id );
+
+						wc_add_order_item_meta( $upsell_item_id, 'is_upsell_purchase', 'true' );
 
 						$order->calculate_totals();
 
 						// Upsell product was purchased for this order.
 						update_post_meta( $order_id, 'mwb_wocuf_upsell_order', 'true' );
-
 					}
 
 					$mwb_wocuf_pro_all_funnels = get_option( 'mwb_wocuf_funnels_list', array() );
