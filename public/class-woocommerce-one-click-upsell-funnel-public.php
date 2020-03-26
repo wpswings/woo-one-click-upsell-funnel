@@ -74,7 +74,19 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 	public function enqueue_scripts() {
 
-		 wp_enqueue_script( 'woocommerce-one-click-upsell-public-script', plugin_dir_url( __FILE__ ) . 'js/woocommerce-oneclick-upsell-funnel-public.js', array( 'jquery' ), $this->version, true );
+		$upsell_global_options = get_option( 'mwb_upsell_lite_global_options', array() );
+
+		wp_enqueue_script( 'woocommerce-one-click-upsell-public-script', plugin_dir_url( __FILE__ ) . 'js/woocommerce-oneclick-upsell-funnel-public.js', array( 'jquery' ), $this->version, true );
+
+		// Localise these on upsell pages only.
+		if( ! empty( $_GET[ 'ocuf_ns' ] ) ) {
+
+			$upsell_localised_strings = array(
+				'upsell_actions_message'	=>	! empty( $upsell_global_options[ 'upsell_actions_message' ] ) ? sanitize_text_field( $upsell_global_options[ 'upsell_actions_message' ] ) : '',
+			);
+
+			wp_localize_script( 'woocommerce-one-click-upsell-public-script', 'mwb_upsell', $upsell_localised_strings );
+		}
 
 		/**
 		 * Scripts used to implement Ecommerce Tracking.

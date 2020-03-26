@@ -24,3 +24,67 @@
 		color: green;
 	}
 </style>
+
+
+			/**
+			 * Get purchase event data at Upsell/Thank you page.
+			 */
+			if ( ! empty( $current_location ) && 'upsell' == $current_location ) {
+
+				/**
+				 * First offer : No upsell accepted meta. { Trigger Initial Purchase }
+				 * Second offer and so on : Upsell accepted meta present. { Trigger Last Upsell Purchase }
+				 */
+				$order_id = get_order_id_from_live_param( $current_location );
+				$order = ! empty( $order_id ) ? wc_get_order( $order_id ) : false;
+
+				if( 'true' == get_post_meta( $order_id, 'mwb_upsell_order_started', true ) ) {
+
+					/** 
+					 * Must have initial purchase completed.
+					 */
+					if( ! empty( $order ) && 'upsell-parent' == $order->get_status() ) {
+
+						// Check if first offer.
+						$first_offer_id = get_post_meta( $order_id, '_mwb_upsell_order_first_offer', true );
+
+						if( ! empty( $first_offer_id ) && ! empty( $_GET[ 'ocuf_ofd' ] ) && $_GET[ 'ocuf_ofd' ] == $first_offer_id ) {
+
+							/**
+							 * On upsell page with first offer shown.
+							 * Have to trigger only initial purchase.
+							 */
+							$is_upsell_accepted = get_post_meta( $order_id, 'mwb_wocuf_upsell_order', true );
+
+							// No upsell has been accepted.
+							if( empty( $is_upsell_accepted ) ) {
+								// Ready to trigger initial purchase.
+								
+							}
+						}
+					}
+
+					elseif ( 'upsell-parent' == $order->get_status() && 'true' == get_post_meta( $order_id, 'mwb_wocuf_upsell_order', true ) ) {
+
+						/**
+						 * Upsell accepted.
+						 * On next offer page.
+						 */
+						$get_last_offer_added = get_post_meta( $order_id, '_mwb_last_upsell_offer_accepted', true );
+
+						if( ! empty( $get_last_offer_added ) ) {
+
+							// Upsell item.
+							$upsell_item = new WC_Order_Item( $get_last_offer_added );
+						}
+					}
+				}
+
+			} elseif ( ! empty( $current_location ) && 'thank-you' == $current_location && ! empty( $_GET[ 'key' ] ) ) {
+
+				/**
+				 * Not Upsell Order : No upsell accepted meta. { Trigger Complete Purchase }
+				 * If Upsell Order : Upsell accepted meta present. { Trigger Last Upsell Purchase }
+				 */
+				$order_id = get_order_id_from_live_param( $current_location );
+			}
