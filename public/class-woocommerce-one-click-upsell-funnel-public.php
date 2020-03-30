@@ -187,6 +187,17 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 			wp_register_script( 'woocommerce-one-click-upsell-public-tracking-script', plugin_dir_url( __FILE__ ) . 'js/woocommerce-oneclick-upsell-funnel-public-analytics.js', array( 'jquery' ), $this->version, true );
 
+			$obj_id = get_queried_object_id();
+
+			if( ! empty( $obj_id ) ) {
+
+				$current_pageview = array(
+					'title' 	=> get_the_title( $obj_id ),
+					'path' 	=> get_permalink( $obj_id ),
+				);
+			}
+
+
 			$analytics_js_data = array(
 				'google_analytics' => array(
 					'is_ga_enabled'	=>	! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_tracking' ] ) && 'yes' == $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_tracking' ] ? 'true' : 'false',
@@ -220,6 +231,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 				'purchase_to_trigger' => ! empty( $purchase_event_data ) ? $purchase_event_data : false,
 				'is_upsell_order' => ! empty( $is_upsell_purchased ) ? $is_upsell_purchased : false,
 				'upsell_purchase_to_trigger' => ! empty( $upsell_purchase_event_data ) ? $upsell_purchase_event_data : false,
+				'enable_page_view_data' => ! empty( $current_pageview ) ? $current_pageview : false,
 			);
 			
 			wp_localize_script( 'woocommerce-one-click-upsell-public-tracking-script', 'mwb', $analytics_js_data );

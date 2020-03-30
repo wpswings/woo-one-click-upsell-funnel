@@ -14,6 +14,8 @@ jQuery(document).ready(function($) {
 	var enable_ga_purchase_event = 'no';
 	var enable_ga_pageview_event = 'no';
 	var enable_ga_debug_mode = 'no';
+	var ga_page_view_title = false;
+	var ga_page_view_path = false;
 
 	// Other required data.
 	var current_user_role = mwb.current_user;
@@ -106,6 +108,18 @@ jQuery(document).ready(function($) {
 		enable_ga_pageview_event = mwb.google_analytics.enable_pageview_event;
 		enable_ga_debug_mode = mwb.google_analytics.enable_debug_mode;
 
+		// Data. 
+		ga_page_view_title = mwb.enable_page_view_data.title;
+		ga_page_view_path = mwb.enable_page_view_data.path;
+
+		if( typeof enable_ga_pageview_event != 'undefined' && 'yes' == enable_ga_pageview_event ) {
+
+			gtag( 'config', ga_account_id, {
+			  'page_title' : ga_page_view_title,
+			  'page_path': ga_page_view_path,
+			});
+		}
+
 	} // End GA tracking end.
 
 	/**
@@ -114,9 +128,8 @@ jQuery(document).ready(function($) {
 	debug_setup_values();
 
 
-
 	/**==================================
-		All function definations here
+		All function definitions here
 	===================================*/
 
 	/**
@@ -154,19 +167,26 @@ jQuery(document).ready(function($) {
 	        });
 		}
 
-		// Trigger event.
-		fbq('track', 'AddToCart', {
+		var base_obj = {
+
 			value: total_value,
 			currency: currency_code,
-			contents: [
-				{
-				    id: product_id,
-				    quantity: quantity
-				}
-			],
-			content_type : 'product',
-			product_catalog_id : product_catalog_id,
-		});
+		};
+
+		if( typeof product_catalog_id != 'undefined' && product_catalog_id.length > 0 ) {
+
+			base_obj['product_catalog_id'] = product_catalog_id;
+
+			base_obj['contents'] = [{
+				id: product_id,
+				quantity: quantity
+			}];
+
+			base_obj['content_type'] = 'product';
+		}
+
+		// Trigger event.
+		fbq('track', 'AddToCart', base_obj );
 	}
 
 	/**
