@@ -560,3 +560,54 @@ if( ! function_exists( 'mwb_upsell_lite_get_purchase_data' ) ) {
 		} 
 	}
 }
+
+if( ! function_exists( 'mwb_upsell_lite_get_upsell_purchase_data' ) ) {
+
+	/**
+	 * Get Purchase event data according to location.
+	 * Have to handle upsell orders items.
+	 *
+	 * @since    2.1.0
+	 */
+	function mwb_upsell_lite_get_upsell_purchase_data( $order_id='', $current_location='' ) {
+
+		if( ! empty( $order_id ) && ! empty( $current_location ) ) {
+
+			$order = wc_get_order( $order_id );
+
+			if( ! empty( $order ) ) {
+
+				$order_items = $order->get_items( 'line_item' );
+				$upsell_items = get_post_meta( $order_id, '_upsell_remove_items_on_fail', true );
+
+				if( ! empty( $order_items ) && is_array( $order_items ) && ! empty( $upsell_items ) && is_array( $upsell_items ) ) {
+
+					$upsell_contents_array = array();
+					$upsell_total = 0;
+					foreach ( $order_items as $item_key => $item_obj ) {
+						
+						// Upsell orders
+						if( ! empty( $item_key ) && ! empty( $upsell_items ) && in_array( $item_key, $upsell_items ) ) {
+
+							// Each Items purchased.
+							$single_item_data = array(
+								'id'	=> ! empty( $item_obj->get_variation_id() ) ? $item_obj->get_variation_id() : $item_obj->get_product_id(),
+								'quantity'	=> $item_obj->get_quantity(),
+							);
+
+							$upsell_total += $item_obj->get_total();
+							array_push( $upsell_contents_array, $single_item_data );
+						}
+					}
+
+					// Return Data.
+					return array(
+						'value'	=> ! empty( $upsell_total ) ? $upsell_total : '0',
+						'upsell_contents'	=> ! empty( $upsell_contents_array ) ? $upsell_contents_array : array(),
+					);
+				}
+			}
+
+		} 
+	}
+}

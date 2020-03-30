@@ -47,7 +47,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 * @param      string $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
-		 $this->plugin_name = $plugin_name;
+		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 	}
 
@@ -100,6 +100,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		$localize_script_data = false;
 		if( ! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_tracking' ] ) && 'yes' == $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_tracking' ] ) {
+
 			// Localize the data for FB pixel and tracking.
 			$localize_script_data = true;
 		}
@@ -171,6 +172,16 @@ class Woocommerce_one_click_upsell_funnel_Public {
 				if( $where_to_trigger == $current_location ) {
 
 					$purchase_event_data = mwb_upsell_lite_get_purchase_data( $order_id, $current_location );
+
+					/** 
+					 * Check if upsell Order.
+					 * If needs to send seperate param then order payment will be pending.
+					 */
+					$is_upsell_purchased = get_post_meta( $order_id, 'mwb_wocuf_upsell_order', true );
+					if( 'true' == $is_upsell_purchased ) {
+
+						$upsell_purchase_event_data = mwb_upsell_lite_get_upsell_purchase_data( $order_id, $current_location );
+					}
 				}
 			}
 
@@ -207,6 +218,8 @@ class Woocommerce_one_click_upsell_funnel_Public {
 				'post_fields' => ! empty( $_POST ) ? $_POST : false,
 				'get_fields' => ! empty( $_GET ) ? $_GET : false,
 				'purchase_to_trigger' => ! empty( $purchase_event_data ) ? $purchase_event_data : false,
+				'is_upsell_order' => ! empty( $is_upsell_purchased ) ? $is_upsell_purchased : false,
+				'upsell_purchase_to_trigger' => ! empty( $upsell_purchase_event_data ) ? $upsell_purchase_event_data : false,
 			);
 			
 			wp_localize_script( 'woocommerce-one-click-upsell-public-tracking-script', 'mwb', $analytics_js_data );
@@ -1224,7 +1237,17 @@ class Woocommerce_one_click_upsell_funnel_Public {
 							}
 						}
 
+						$upsell_remove = get_post_meta( $order_id, '_upsell_remove_items_on_fail', true );
+
+						if ( empty( $upsell_remove ) ) {
+
+							$upsell_remove = array();
+						}
+
 						$upsell_item_id = $order->add_product( $upsell_product, $offer_quantity );
+
+						array_push( $upsell_remove, $upsell_item_id );
+						update_post_meta( $order_id, '_upsell_remove_items_on_fail', $upsell_remove );
 
 						$target_item_id = get_post_meta( $order_id, '__smart_offer_upgrade_target_key', true );
 

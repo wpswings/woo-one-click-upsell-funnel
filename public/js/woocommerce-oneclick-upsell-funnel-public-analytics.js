@@ -21,6 +21,8 @@ jQuery(document).ready(function($) {
 	var currency_symbol = mwb.currency_symbol;
 	var current_location = mwb.current_location;
 	var purchase_to_trigger = mwb.purchase_to_trigger;
+	var is_upsell_order = mwb.is_upsell_order;
+	var upsell_purchase_to_trigger = mwb.upsell_purchase_to_trigger;
 	var product_price = 0;
 	var quantity = 1;
 	var total_value = 0;
@@ -83,13 +85,13 @@ jQuery(document).ready(function($) {
 		 * Event : Purchase.
 		 * Location required : Thank you Page / Upsell.
 		 */
-
-
 		if( typeof( enable_pixel_purchase_event ) != 'undefined' && 'yes' == enable_pixel_purchase_event ) {
-				console.log( current_location );
 			
 			if( 'upsell' == current_location || 'thank-you' == current_location ) {
-				trigger_purchase();
+
+				if( typeof purchase_to_trigger !== 'undefined' || purchase_to_trigger.length > 0 ) {
+					trigger_purchase();
+				}
 			}
 		}
 
@@ -189,12 +191,26 @@ jQuery(document).ready(function($) {
 	 */
 	function trigger_purchase() {
 
-		fbq( 'track', 'Purchase', {
+		var base_obj = {
 			value: purchase_to_trigger.value,
 			currency: currency_code,
-			contents: purchase_to_trigger.content,
-			content_type: 'product',
-		});
+		};
+
+		if( typeof product_catalog_id != 'undefined' && product_catalog_id.length > 0 ) {
+
+			base_obj['contents'] = purchase_to_trigger.content;
+			base_obj['content_type'] = 'product';
+			base_obj['product_catalog_id'] = product_catalog_id;
+		}
+
+		// If upsell data has to be send.
+		if( 'true' == is_upsell_order ) {
+
+			base_obj['upsell_value'] = upsell_purchase_to_trigger.value;
+			base_obj['upsell_contents'] = upsell_purchase_to_trigger.upsell_contents;
+		}
+
+		fbq( 'track', 'Purchase', base_obj );
 	}
 
 	/**
