@@ -14,8 +14,7 @@ jQuery(document).ready(function($) {
 	var enable_ga_purchase_event = 'no';
 	var enable_ga_pageview_event = 'no';
 	var enable_ga_debug_mode = 'no';
-	var ga_page_view_title = false;
-	var ga_page_view_path = false;
+	var ga_purchase_event_data = false;
 
 	// Other required data.
 	var current_user_role = mwb.current_user;
@@ -108,16 +107,17 @@ jQuery(document).ready(function($) {
 		enable_ga_pageview_event = mwb.google_analytics.enable_pageview_event;
 		enable_ga_debug_mode = mwb.google_analytics.enable_debug_mode;
 
-		// Data. 
-		ga_page_view_title = mwb.enable_page_view_data.title;
-		ga_page_view_path = mwb.enable_page_view_data.path;
+		// Page View on every Page.
+		if( typeof enable_ga_pageview_event !== 'undefined' && 'yes' == enable_ga_pageview_event ) {
+			trigger_page_view();
+		}
 
-		if( typeof enable_ga_pageview_event != 'undefined' && 'yes' == enable_ga_pageview_event ) {
+		// Purchase at Thankyou and upsell page.
+		if( 'upsell' == current_location || 'thank-you' == current_location ) {
 
-			gtag( 'config', ga_account_id, {
-			  'page_title' : ga_page_view_title,
-			  'page_path': ga_page_view_path,
-			});
+			if( typeof enable_ga_purchase_event !== 'undefined' && 'yes' == enable_ga_purchase_event ) {
+				trigger_ga_purchase();
+			}
 		}
 
 	} // End GA tracking end.
@@ -132,6 +132,48 @@ jQuery(document).ready(function($) {
 		All function definitions here
 	===================================*/
 
+	/**========================================
+		Google Analytics Function Definitions
+	==========================================*/
+	
+	/**
+	 * Page View event Function.
+	 */
+	function trigger_page_view() {
+
+		// Send pageview.
+		ga( 'send', 'pageview' );
+	}
+
+
+	/**
+	 * Purchase event Function.
+	 */
+	function trigger_ga_purchase() {
+
+		ga_purchase_event_data = mwb.ga_purchase_event_data;
+
+		if ( typeof ga_purchase_event_data == 'undefined' && Object.keys( ga_purchase_event_data ).length < 0 ) {
+			return;
+		}
+
+		ga_transaction_data = ga_purchase_event_data.ga_transaction_data;
+		ga_single_item_data = ga_purchase_event_data.ga_single_item_data;
+
+		// Send Purchase.
+		ga('require', 'ecommerce');
+		ga('ecommerce:addTransaction', ga_transaction_data );
+		for ( var i = ga_single_item_data.length - 1; i >= 0; i-- ) {
+			ga('ecommerce:addItem', ga_single_item_data );
+		}
+		ga('ecommerce:send');
+	}
+
+
+	/**===================================
+		Facebook Function Definitions
+	=====================================*/
+	
 	/**
 	 * View Content event Function.
 	 */

@@ -480,7 +480,7 @@ if( ! function_exists( 'mwb_upsell_lite_get_purchase_data' ) ) {
 	 *
 	 * @since    2.1.0
 	 */
-	function mwb_upsell_lite_get_purchase_data( $order_id='', $current_location='' ) {
+	function mwb_upsell_lite_get_purchase_data( $order_id='', $current_location='', $track_type='' ) {
 
 		if( ! empty( $order_id ) && ! empty( $current_location ) ) {
 
@@ -522,41 +522,93 @@ if( ! function_exists( 'mwb_upsell_lite_get_purchase_data' ) ) {
 					if( ! $order->needs_payment() && empty( $is_fired_already ) ) {
 
 						/**
+						 * Pixel / GA Track.
 						 * Send order data now.
 						 * Add upsell order too.
 						 */
 						$contents_array = array();
-						$upsell_contents_array = array();
 
 						$order_items = $order->get_items( 'line_item' );
-						$upsell_items = get_post_meta( $order_id, '_upsell_remove_items_on_fail', true );
 						if( ! empty( $order_items ) && is_array( $order_items ) ) {
 
 							foreach ( $order_items as $item_key => $item_obj ) {
-								
-								// Upsell orders
-								if( ! empty( $item_key ) && ! empty( $upsell_items ) && in_array( $item_key, $upsell_items ) ) {
-
-
-								}
-						
+														
 								// Each Items purchased.
-								$single_item_data = array(
-									'id'	=> ! empty( $item_obj->get_variation_id() ) ? $item_obj->get_variation_id() : $item_obj->get_product_id(),
-									'quantity'	=> $item_obj->get_quantity(),
-								);
 
-								array_push( $contents_array, $single_item_data );
+								if( 'pixel' == $track_type ) {
+
+									$single_item_data = array(
+										'id'	=> ! empty( $item_obj->get_variation_id() ) ? $item_obj->get_variation_id() : $item_obj->get_product_id(),
+										'quantity'	=> $item_obj->get_quantity(),
+									);
+
+									array_push( $contents_array, $single_item_data );
+								}
+
+								elseif ( 'google_analytics' == $track_type ) {
+									
+									$product_id = ! empty( $item_obj->get_data()[ 'variation_id' ] ) ? $item_obj->get_data()[ 'variation_id' ] : $item_obj->get_data()[ 'product_id' ];
+
+									$product = wc_get_product( $product_id );
+
+									$product_categories = array();
+
+									$product_cat_obj_array = get_the_terms( $product_id, 'product_cat' );
+
+									if ( ! empty( $product_cat_obj_array ) && is_array( $product_cat_obj_array ) && count( $product_cat_obj_array ) ) {
+
+										foreach ( $product_cat_obj_array as $product_cat_obj ) {
+
+											if ( ! empty( $product_cat_obj->term_id ) ) {
+
+												if( $term = get_term_by( 'id', $product_cat_obj->term_id, 'product_cat' ) ){
+													
+													$product_categories[] = ! empty( $term->name ) ? $term->name : '';
+												}
+											}
+										}
+									}
+
+									$single_item_data = array(
+									    'id'=> ! empty( $product_id ) ? $product_id : $product_id ,
+									    'name'=> ! empty( $item_obj->get_name() ) ? $item_obj->get_name() : '' ,
+									   	'sku'=> ! empty( $product ) ? $product->get_sku() : '' ,
+									    'category'=> ! empty( json_encode( $product_categories ) ) ? json_encode( $product_categories ) : '' ,
+									    'price'=> ! empty( $item_obj->get_total() ) ? $item_obj->get_total() : '' ,
+									    'quantity'=> ! empty( $item_obj->get_quantity() ) ? $item_obj->get_quantity() : '' 
+									);
+
+									array_push( $contents_array, $single_item_data );
+								}
 							}
 						}
 
-						return $order_purchase_data = array(
-							'value'	=>	$order->get_total(),
-							'content'	=>	$contents_array,
-						);
+						if( 'pixel' == $track_type ) {
+
+							return 	$order_purchase_data = array(
+								'value'	=>	$order->get_total(),
+								'content'	=>	$contents_array,
+							);
+						} 
+
+						elseif ( 'google_analytics' == $track_type ) {
+
+							$transaction_data = array(
+								'id'	=> $order_id,                     	// Transaction ID. Required.
+								'affiliation'	=> get_bloginfo( 'name' ),   	// Affiliation or store name.
+								'revenue'	=> $order->get_total(),               	// Grand Total.
+								'shipping'	=> $order->get_shipping_total(),                  	// Shipping.
+								'tax'	=> $order->get_total_tax()                     	// Tax.
+							);
+
+							return 	$order_purchase_data = array(
+								'ga_transaction_data'	=>	$transaction_data,
+								'ga_single_item_data'	=>	$contents_array,
+							);
+						}
 					}
 				}
-			}
+			} // End Condition for thank you.
 		} 
 	}
 }
@@ -569,7 +621,7 @@ if( ! function_exists( 'mwb_upsell_lite_get_upsell_purchase_data' ) ) {
 	 *
 	 * @since    2.1.0
 	 */
-	function mwb_upsell_lite_get_upsell_purchase_data( $order_id='', $current_location='' ) {
+	function mwb_upsell_lite_get_upsell_purchase_data( $order_total='', $current_location='' ) {
 
 		if( ! empty( $order_id ) && ! empty( $current_location ) ) {
 

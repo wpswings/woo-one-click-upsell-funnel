@@ -139,6 +139,8 @@ class Woocommerce_one_click_upsell_funnel_Public {
 				$current_location = 'upsell';
 			} elseif ( is_wc_endpoint_url('order-received') && ! empty( $_GET[ 'key' ] ) ) {
 				$current_location = 'thank-you';
+			} elseif ( is_account_page() ) {
+				$current_location = 'my-account';
 			}
 
 			/**
@@ -171,7 +173,9 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 				if( $where_to_trigger == $current_location ) {
 
-					$purchase_event_data = mwb_upsell_lite_get_purchase_data( $order_id, $current_location );
+					$purchase_event_data = mwb_upsell_lite_get_purchase_data( $order_id, $current_location, 'pixel' );
+
+					$ga_purchase_event_data = mwb_upsell_lite_get_purchase_data( $order_id, $current_location, 'google_analytics' );
 
 					/** 
 					 * Check if upsell Order.
@@ -186,17 +190,6 @@ class Woocommerce_one_click_upsell_funnel_Public {
 			}
 
 			wp_register_script( 'woocommerce-one-click-upsell-public-tracking-script', plugin_dir_url( __FILE__ ) . 'js/woocommerce-oneclick-upsell-funnel-public-analytics.js', array( 'jquery' ), $this->version, true );
-
-			$obj_id = get_queried_object_id();
-
-			if( ! empty( $obj_id ) ) {
-
-				$current_pageview = array(
-					'title' 	=> get_the_title( $obj_id ),
-					'path' 	=> get_permalink( $obj_id ),
-				);
-			}
-
 
 			$analytics_js_data = array(
 				'google_analytics' => array(
@@ -231,7 +224,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 				'purchase_to_trigger' => ! empty( $purchase_event_data ) ? $purchase_event_data : false,
 				'is_upsell_order' => ! empty( $is_upsell_purchased ) ? $is_upsell_purchased : false,
 				'upsell_purchase_to_trigger' => ! empty( $upsell_purchase_event_data ) ? $upsell_purchase_event_data : false,
-				'enable_page_view_data' => ! empty( $current_pageview ) ? $current_pageview : false,
+				'ga_purchase_event_data' => ! empty( $ga_purchase_event_data ) ? $ga_purchase_event_data : false,
 			);
 			
 			wp_localize_script( 'woocommerce-one-click-upsell-public-tracking-script', 'mwb', $analytics_js_data );
@@ -3113,15 +3106,17 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		// GA Tracking.
 		if( ! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_tracking' ] ) && 'yes' == $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_tracking' ] ) : ?>
 
-			<!-- Global site tag (gtag.js) - Google Analytics -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo( esc_html( $google_analytics_ID ) ); ?>"></script>
+			<!-- Google Analytics -->
 			<script>
-			  window.dataLayer = window.dataLayer || [];
-			  function gtag(){dataLayer.push(arguments);}
-			  gtag('js', new Date());
-
-			  gtag('config', '<?php echo( esc_html( $google_analytics_ID ) ); ?>');
+				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 			</script>
+			<script>
+				ga( 'create', '<?php echo( esc_html( $google_analytics_ID ) ); ?>', 'auto' );
+			</script>
+			<!-- End Google Analytics -->
 
 		<?php endif; ?>
 
