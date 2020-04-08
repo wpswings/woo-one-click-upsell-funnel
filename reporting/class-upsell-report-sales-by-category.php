@@ -1,10 +1,13 @@
 <?php
 
 /**
- * WC_Report_Sales_By_Date
+ * Upsell Sales by Category Report.
  *
- * @package     WooCommerce/Admin/Reports
- * @version     2.1.0
+ * @link       https://makewebbetter.com/
+ * @since      3.0.0
+ *
+ * @package    woo_one_click_upsell_funnel
+ * @subpackage woo_one_click_upsell_funnel/reporting
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,11 +15,11 @@ if ( ! defined( 'ABSPATH' ) ) {
   exit; // Exit if accessed directly.
 }
 
-if ( class_exists( 'WC_Report_Mwb_Wocuf_Report_Sales_By_Category' ) ) {
+if ( class_exists( 'Mwb_Upsell_Report_Sales_By_Category' ) ) {
     return;
 }
 
-class WC_Report_Mwb_Wocuf_Report_Sales_By_Category extends WC_Admin_Report {
+class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 
   /**
    * Chart colors.
@@ -121,7 +124,7 @@ class WC_Report_Mwb_Wocuf_Report_Sales_By_Category extends WC_Admin_Report {
       '7day'       => __( 'Last 7 days', 'woocommerce' ),
     );
 
-    $this->chart_colours = array( '#3498db', '#34495e', '#1abc9c', '#2ecc71', '#f1c40f', '#e67e22', '#e74c3c', '#2980b9', '#8e44ad', '#2c3e50', '#16a085', '#27ae60', '#f39c12', '#d35400', '#c0392b' );
+    $this->chart_colours = array( '#8eba36', '#3498db', '#1abc9c', '#34495e', '#2ecc71', '#f1c40f', '#e67e22', '#e74c3c', '#2980b9', '#8e44ad', '#2c3e50', '#16a085', '#27ae60', '#f39c12', '#d35400', '#c0392b' );
 
     $current_range = ! empty( $_GET['range'] ) ? sanitize_text_field( wp_unslash( $_GET['range'] ) ) : '7day';
 
@@ -158,6 +161,12 @@ class WC_Report_Mwb_Wocuf_Report_Sales_By_Category extends WC_Admin_Report {
               'type'     => 'meta',
               'function' => '',
               'name'     => 'mwb_wocuf_pro_upsell_meta',
+            ),
+            'is_upsell_purchase' => array(
+              'type'     => 'order_item_meta',
+              'order_item_type' => 'line_item',
+              'function' => '',
+              'name'     => 'mwb_wocuf_pro_upsell_item_meta',
             ),
           ),
           'group_by'     => 'ID, product_id, post_date',

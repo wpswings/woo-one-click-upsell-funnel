@@ -2,12 +2,12 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
- .mwb-wocuf_pro-no-offer{
+.mwb-wocuf_pro-no-offer{
   width:60%;
   margin: 20px auto;
   text-align: center;
 }
-.mwb_wocuf_pro_offer_container{
+ .mwb_wocuf_pro_offer_container{
   padding:50px 150px;
   background: white;
 }
@@ -175,14 +175,14 @@
 
 /*Fixing default offer page css*/
 .mwb_wocuf_pro_product_image {
-  text-align: center;
+    text-align: center;
 }
 .mwb_wocuf_pro_offered_product_actions {
-  margin-top: 30px;
+    margin-top: 30px;
 }
 
 .mwb_wocuf_pro_skip.mwb_wocuf_pro_no {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 /**
@@ -190,18 +190,18 @@
  * 
  */
 
- /*since v3.0.0 - OFFER Price - Start*/
+/*since v3.0.0 - OFFER Price - Start*/
 
- .mwb_upsell_offer_product_price {
-  display: inline-block;
+.mwb_upsell_offer_product_price {
+    display: inline-block;
 }
 
 .mwb_upsell_offer_product_price del {
-  font-size: 85%;
+    font-size: 85%;
 }
 
 .mwb_upsell_offer_product_price ins {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 /*since v3.0.0 - OFFER Price - End*/
@@ -210,37 +210,37 @@
 /*since v3.0.0 - OFFER Variations - Start*/
 
 .mwb_upsell_offer_product_variations table{
- width: 100%;
+   width: 100%;
 }
 
 .mwb_upsell_offer_product_variations table td, table th {
- padding: 1em 1.41575em;
- vertical-align: middle;
+   padding: 1em 1.41575em;
+   vertical-align: middle;
 }
 
 .mwb_upsell_offer_product_variations .mwb_upsell_offer_variation_select {
-  width: 160px;
-  background-color: #fff;
-  height: 30px;
-  border-radius: 4px;
-  border: 0;
-  padding: 0px 7px;
-  border: solid 1px #ccc;
-  font-size: inherit;
-  font-family: inherit;
+    width: 160px;
+    background-color: #fff;
+    height: 30px;
+    border-radius: 4px;
+    border: 0;
+    padding: 0px 7px;
+    border: solid 1px #ccc;
+    font-size: inherit;
+    font-family: inherit;
 }
 
 .mwb_upsell_offer_product_variations table tbody td,
 .mwb_upsell_offer_product_variations table tbody th {
-  background-color: transparent !important; 
-  text-align: center;
+    background-color: transparent !important; 
+    text-align: center;
 }
 
 .mwb_upsell_offer_product_variations table tbody td:first-child {
-  width: 35%;
+    width: 35%;
 }
 .mwb_upsell_offer_product_variations table tbody td:last-child {
-  width: 65%;
+    width: 65%;
 }
 
 /*since v3.0.0 - OFFER Variations - End*/
@@ -248,7 +248,7 @@
 /*since v3.0.0 - OFFER Image - Start*/
 
 .mwb_upsell_offer_product_image {
-  display: inline-block;
+    display: inline-block;
 }
 
 /*since v3.0.0 - OFFER Image - End*/
@@ -256,51 +256,51 @@
 /*since v3.0.0 - OFFER star review - Start*/
 
 @font-face {
-  font-family: 'star';
-  src: url('star.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'star';
+    src: url('star.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 .mwb-upsell-star-rating {
-  display: inline-block;
+    display: inline-block;
 }
 
 .mwb-upsell-star-rating {
-  overflow: hidden;
-  position: relative;
-  height: 1.618em;
-  line-height: 1.618;
-  font-size: 1em;
-  width: 5.3em;
-  font-family: star;
-  font-weight: 400;
+    overflow: hidden;
+    position: relative;
+    height: 1.618em;
+    line-height: 1.618;
+    font-size: 1em;
+    width: 5.3em;
+    font-family: star;
+    font-weight: 400;
 }
 
 .mwb-upsell-star-rating::before {
-  content: '\53\53\53\53\53';
-  opacity: .25;
-  float: left;
-  top: 0;
-  left: 0;
-  position: absolute;
+    content: '\53\53\53\53\53';
+    opacity: .25;
+    float: left;
+    top: 0;
+    left: 0;
+    position: absolute;
 }
 
 .mwb-upsell-star-rating span {
-  overflow: hidden;
-  float: left;
-  top: 0;
-  left: 0;
-  position: absolute;
-  padding-top: 1.5em;
+    overflow: hidden;
+    float: left;
+    top: 0;
+    left: 0;
+    position: absolute;
+    padding-top: 1.5em;
 }
 
 .mwb-upsell-star-rating span::before {
-  content: '\53\53\53\53\53';
-  top: 0;
-  position: absolute;
-  left: 0;
-  color: #f1c40f;
+    content: '\53\53\53\53\53';
+    top: 0;
+    position: absolute;
+    left: 0;
+    color: #f1c40f;
 }
 
 /*since v3.0.0 - OFFER star review - End*/
@@ -320,20 +320,20 @@
   width: calc(100% - 55%);
 }
 .mwb_upsell_default_offer_image {
- text-align: center;
+   text-align: center;
 }
 
 .mwb_upsell_default_offer_image .mwb_upsell_offer_product_image {
- width: 100%;
- max-width: 400px;
- margin: 0 auto;
+   width: 100%;
+   max-width: 400px;
+   margin: 0 auto;
 }
 
 .mwb_upsell_default_offer_buy_now a:hover{
-  background-color: #80d600 !important;
+background-color: #80d600 !important;
 }
 .mwb_upsell_default_offer_no_thanks a:hover {
-  background-color: #bf0000 !important;
+background-color: #bf0000 !important;
 }
 
 .mwb_upsell_default_offer_variations .mwb_upsell_offer_product_variations {
@@ -342,12 +342,12 @@
 }
 
 .mwb_upsell_default_offer_variations .mwb_upsell_offer_product_variations table tbody td:first-child {
-  width: 40%;
+    width: 40%;
 }
 
 .mwb_upsell_default_offer_description {
-  text-align: center;
-  margin: 30px 10%;
+    text-align: center;
+    margin: 30px 10%;
 }
 
 /*since v3.0.0 - Default offer ( gutenberg ) - End */
@@ -365,89 +365,25 @@
 /**==================
  * Version 2.1.0 CSS
  * Updates CSS.
- ====================*/
+====================*/
 
- /* Quantity Shortcode */
- .mwb_upsell_quantity {
+/* Quantity Shortcode */
+.mwb_upsell_quantity {
   text-align: center;
 }
 
-/* Upsell Action loader */
-.mwb_upsell_loader {
-  position: fixed;
-  width: 100%;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background-color: rgba(21, 21, 21, 0.7);
-  z-index: 9999;
-  display: none;
-}
-@-webkit-keyframes spin {
-  from {-webkit-transform:rotate(0deg);}
-  to {-webkit-transform:rotate(360deg);}
-}
-
-@keyframes spin {
-  from {transform:rotate(0deg);}
-  to {transform:rotate(360deg);}
-}
-.mwb_upsell_loader::after {
-  content: '';
-  display: block;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 40%;
-  width: 100px;
-  height: 100px;
-  border-style: solid;
-  border-color: white;
-  border-top-color: transparent;
-  border-width: 7px;
-  border-radius: 50%;
-  -webkit-animation: spin .8s linear infinite;
-  animation: spin .8s linear infinite;
-  margin: 0 auto;
-}
-p.mwb_upsell_loader_text {
-  font-size: 22px;
-  position: absolute;
-  top: 60%;
-  right: 0;
-  left: 0;
-  text-align: center;
-  z-index: 999999;
-  transform: translateY(-50%);
-  width: 100%;
-  max-width: 600px;
-  margin: 10px auto;
-  color: #ffffff;
-}
 /**=========================================
  *        Media query for here.  
- ==========================================*/
- @media only screen and (max-width: 550px){
+==========================================*/
+@media only screen and (max-width: 550px){
   .mwb_wocuf_pro_product_price h4{
     font-size: 20px !important;
   }
   .mwb_wocuf_pro_special_offers_for_you .mwb_wocuf_pro_special_offer_banner{
     margin-bottom: 20px !important;
   }
-  .mwb_wocuf_pro_special_offers_for_you .mwb_wocuf_pro_special_offer_banner h1 {
+ .mwb_wocuf_pro_special_offers_for_you .mwb_wocuf_pro_special_offer_banner h1 {
     font-size: 20px;
-  }
-
-  /* Loader CSS */
-  .mwb_upsell_loader::after {
-    width: 50px;
-    height: 50px;
-    border-width: 5px;
-  }
-  p.mwb_upsell_loader_text {
-    font-size: 15px;
-    max-width: 600px;
   }
 }
 @media only screen and (max-width: 1200px){

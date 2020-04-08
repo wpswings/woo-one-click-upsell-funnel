@@ -1,10 +1,13 @@
 <?php
 
 /**
- * WC_Report_Sales_By_Date
+ * Upsell Sales by Product Report.
  *
- * @package     WooCommerce/Admin/Reports
- * @version     2.1.0
+ * @link       https://makewebbetter.com/
+ * @since      3.0.0
+ *
+ * @package    woo_one_click_upsell_funnel
+ * @subpackage woo_one_click_upsell_funnel/reporting
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,11 +15,11 @@ if ( ! defined( 'ABSPATH' ) ) {
   exit; // Exit if accessed directly.
 }
 
-if ( class_exists( 'WC_Report_Mwb_Wocuf_Report_Sales_By_Product' ) ) {
+if ( class_exists( 'Mwb_Upsell_Report_Sales_By_Product' ) ) {
     return;
 }
 
-class WC_Report_Mwb_Wocuf_Report_Sales_By_Product extends WC_Admin_Report {
+class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 
   /**
    * Chart colors.
@@ -74,6 +77,17 @@ class WC_Report_Mwb_Wocuf_Report_Sales_By_Product extends WC_Admin_Report {
             'function'        => 'SUM',
             'name'            => 'order_item_amount',
           ),
+          'mwb_wocuf_upsell_order' => array(
+            'type'     => 'meta',
+            'function' => '',
+            'name'     => 'mwb_wocuf_pro_upsell_meta',
+          ),
+          'is_upsell_purchase' => array(
+            'type'     => 'order_item_meta',
+            'order_item_type' => 'line_item',
+            'function' => '',
+            'name'     => 'mwb_wocuf_pro_upsell_item_meta',
+          ),
         ),
         'where_meta'   => array(
           'relation' => 'AND',
@@ -81,12 +95,6 @@ class WC_Report_Mwb_Wocuf_Report_Sales_By_Product extends WC_Admin_Report {
             'type'       => 'order_item_meta',
             'meta_key'   => array( '_product_id', '_variation_id' ), // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
             'meta_value' => $this->product_ids, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
-            'operator'   => 'IN',
-          ),
-          array(
-            'type'       => 'order_item_meta',
-            'meta_key'   => 'is_upsell_purchase', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
-            'meta_value' => 'true', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
             'operator'   => 'IN',
           ),
         ),
@@ -106,6 +114,18 @@ class WC_Report_Mwb_Wocuf_Report_Sales_By_Product extends WC_Admin_Report {
               'function'        => 'SUM',
               'name'            => 'order_item_count',
             ),
+            'mwb_wocuf_upsell_order' => array(
+              'type'     => 'meta',
+              'function' => '',
+              'name'     => 'mwb_wocuf_pro_upsell_meta',
+            ),
+            'is_upsell_purchase' => array(
+              'type'     => 'order_item_meta',
+              'order_item_type' => 'line_item',
+              'function' => '',
+              'name'     => 'mwb_wocuf_pro_upsell_item_meta',
+            ),
+
           ),
           'where_meta'   => array(
             'relation' => 'AND',
@@ -113,12 +133,6 @@ class WC_Report_Mwb_Wocuf_Report_Sales_By_Product extends WC_Admin_Report {
               'type'       => 'order_item_meta',
               'meta_key'   => array( '_product_id', '_variation_id' ), // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
               'meta_value' => $this->product_ids, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
-              'operator'   => 'IN',
-            ),
-            array(
-              'type'       => 'order_item_meta',
-              'meta_key'   => 'is_upsell_purchase', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
-              'meta_value' => 'true', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
               'operator'   => 'IN',
             ),
           ),
@@ -159,8 +173,8 @@ class WC_Report_Mwb_Wocuf_Report_Sales_By_Product extends WC_Admin_Report {
     );
 
     $this->chart_colours = array(
-      'sales_amount' => '#3498db',
-      'item_count'   => '#d4d9dc',
+      'sales_amount' => '#8eba36',
+      'item_count'   => '#dbe1e3',
     );
 
     $current_range = ! empty( $_GET['range'] ) ? sanitize_text_field( wp_unslash( $_GET['range'] ) ) : '7day'; //phpcs:ignore WordPress.Security.NonceVerification.NoNonceVerification

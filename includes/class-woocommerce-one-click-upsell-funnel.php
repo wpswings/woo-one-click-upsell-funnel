@@ -129,6 +129,12 @@ class Woocommerce_one_click_upsell_funnel {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce-one-click-upsell-funnel-global_functions.php';
 
+		/**
+		 * The file responsible for Upsell Sales by Funnel Data handling and Stats.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'reporting/class-upsell-report-sales-by-funnel.php';
+
+
 		$this->loader = new Woocommerce_one_click_upsell_funnel_Loader();
 
 	}
@@ -186,6 +192,9 @@ class Woocommerce_one_click_upsell_funnel {
 
 		// Insert and Activate respective template ajax handle function.
 		$this->loader->add_action( 'wp_ajax_mwb_upsell_activate_offer_template_ajax', $plugin_admin, 'activate_respective_offer_template' );
+
+		// Support Plugin Development handle.
+		$this->loader->add_action( 'wp_ajax_mwb_upsell_lite_support_plugin_development_handle', $plugin_admin, 'support_plugin_development_handle' );
 
 		if ( 'on' === $mwb_wocuf_enable_plugin ) {
 
@@ -256,7 +265,7 @@ class Woocommerce_one_click_upsell_funnel {
 		if ( 'on' === $mwb_wocuf_enable_plugin ) {
 
 			// Initiate Upsell Orders before processing payment.
-			$this->loader->add_action( 'woocommerce_checkout_order_processed', $plugin_public, 'mwb_wocuf_initate_upsell_orders' );
+			$this->loader->add_action( 'woocommerce_checkout_order_processed', $plugin_public, 'mwb_wocuf_initiate_upsell_orders' );
 			
 			// When user clicks on No thanks for Upsell offer.
 			! is_admin() && $this->loader->add_action( 'wp_loaded', $plugin_public, 'mwb_wocuf_pro_process_the_funnel' );
@@ -281,6 +290,9 @@ class Woocommerce_one_click_upsell_funnel {
 
 			// Add tracking basecode.
 			$this->loader->add_action( 'wp_footer', $plugin_public, 'add_tracking_base_code' );
+
+			// Handle Upsell Orders on Thankyou for Success Rate and Stats.
+			$this->loader->add_action( 'woocommerce_thankyou', $plugin_public, 'upsell_sales_by_funnel_handling' );
 		}
 	}
 
