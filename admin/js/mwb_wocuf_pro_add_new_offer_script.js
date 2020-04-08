@@ -106,6 +106,19 @@ jQuery(document).ready( function($) {
 		upsell_create_new_offer_post_request( index, funnel );		
 	});
 
+	function upsell_support_plugin_development( value ) {
+
+		$.ajax({
+		    type:'POST',
+		    url :mwb.ajaxurl,
+		    data:{
+		    	action: 'mwb_upsell_lite_support_plugin_development_handle',
+		    	nonce : mwb.auth_nonce,
+		    	upsell_support: value, 
+		    },
+	   });
+    }
+
 
 	function upsell_create_new_offer_post_request( index, funnel ) {
 
@@ -176,7 +189,45 @@ jQuery(document).ready( function($) {
 					},
 					minimumInputLength: 3 // the minimum of symbols to input before perform a search
 				});
-		    }
+
+				setTimeout( function() {
+
+					if( mwb.show_support_popup ) {
+
+						// Once shown so set it to false, so that the popup doesn't show again before reload.
+						mwb.show_support_popup = false;
+
+						// Show Support Pop up When adding 1st new offer in 2nd or greater funnel.
+						if( '1' == index && '2' <= funnel ) {
+
+							swal( mwb.support_popup_texts.main_title, mwb.support_popup_texts.main_text, 'info', {
+								buttons: {
+									never: mwb.support_popup_texts.button_text_3,
+									cancel: mwb.support_popup_texts.button_text_2,
+									support: mwb.support_popup_texts.button_text_1,
+								},
+							})
+							.then((value) => {
+
+
+								switch (value) {
+
+									case "support":
+										swal( {text: mwb.support_popup_texts.support_text, icon: 'success'} );
+										upsell_support_plugin_development(value);
+										break;
+
+									case "never":
+										swal( {text: mwb.support_popup_texts.never_text, icon: 'info'} );
+										upsell_support_plugin_development(value);
+										break;
+								}
+							});
+						}
+					}
+
+				}, 1000);
+			}
 	   });
     }
 

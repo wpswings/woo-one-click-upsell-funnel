@@ -118,6 +118,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 			$pagescreen = $screen->id;
 
 			if ( 'toplevel_page_mwb-wocuf-setting' == $pagescreen || '1-click-upsell_page_mwb-wocuf-setting-tracking' == $pagescreen ) {
+
 				wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/select2.min.js', array( 'jquery' ), $this->version, false );
 
 				wp_enqueue_script( 'mwb_wocuf_pro_admin_script', plugin_dir_url( __FILE__ ) . 'js/woocommerce_one_click_upsell_funnel_pro-admin.js', array( 'jquery' ), $this->version, false );
@@ -158,10 +159,31 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 
 					wp_enqueue_script( 'woocommerce_admin' );
 
+					// Manage Support Pop up.
+					$show_support_popup = false;
+
+					if( ! mwb_upsell_lite_is_upsell_pro_active() && false == get_option( 'mwb_upsell_lite_hide_support_popup' ) ) {
+
+						$show_support_popup = true;
+
+						// Enqueue Sweet Alert js.
+						wp_enqueue_script( 'mwb-upsell-sweet-alert-js', MWB_WOCUF_URL . 'public/js/sweet-alert.js', array(), '2.1.2', true );
+					}
+
 					$wocuf_js_data = array(
 						'ajaxurl'       	=> admin_url( 'admin-ajax.php' ),
 						'auth_nonce'    	=> wp_create_nonce( 'mwb_wocuf_nonce' ),
 						'current_version'   => MWB_WOCUF_VERSION,
+						'show_support_popup' => $show_support_popup,
+						'support_popup_texts' => array(
+								'main_title' => esc_html__( 'Support Us', 'woocommerce_one_click_upsell_funnel' ),
+								'main_text' => esc_html__( 'Support Plugin Development and send tracking data to us. You will receive exclusive information content and offers from us. We only need your email and website URL and that too only once.', 'woocommerce_one_click_upsell_funnel' ),
+								'button_text_1' => esc_html__( 'Yes Support!', 'woocommerce_one_click_upsell_funnel' ),
+								'button_text_2' => esc_html__( 'Decide Later..', 'woocommerce_one_click_upsell_funnel' ),
+								'button_text_3' => esc_html__( 'Never', 'woocommerce_one_click_upsell_funnel' ),
+								'support_text' => esc_html__( 'Thanks!', 'woocommerce_one_click_upsell_funnel' ),
+								'never_text' => __( 'Noted! We won\'t bother you again.', 'woocommerce_one_click_upsell_funnel' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped As we are localizing this we cannot escape html here as it contains ' in content.
+							)
 					);
 
 					wp_enqueue_script( 'mwb-wocuf-pro-add_new-offer-script', plugin_dir_url( __FILE__ ) . 'js/mwb_wocuf_pro_add_new_offer_script.js', array( 'woocommerce_admin', 'wc-enhanced-select' ), $this->version, false );
@@ -211,12 +233,12 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 		/**
 		 * Add sub-menu for funnel settings.
 		 */
-	    add_submenu_page( 'mwb-wocuf-setting', 'Funnel Setup', 'Funnel Setup', 'manage_options', 'mwb-wocuf-setting' );
+	    add_submenu_page( 'mwb-wocuf-setting', esc_html__( 'Funnels & Settings', 'woocommerce_one_click_upsell_funnel' ), esc_html__( 'Funnels & Settings', 'woocommerce_one_click_upsell_funnel' ), 'manage_options', 'mwb-wocuf-setting' );
 
 	   	/**
 	   	 * Add sub-menu for reportings settings.
 	   	 */
-	    add_submenu_page( 'mwb-wocuf-setting', 'Tracking & Reporting', 'Tracking & Reporting', 'manage_options', 'mwb-wocuf-setting-tracking', array( $this, 'add_submenu_page_reporting_callback' ) );
+	    add_submenu_page( 'mwb-wocuf-setting', esc_html__( 'Sales Reports & Tracking', 'woocommerce_one_click_upsell_funnel' ), esc_html__( 'Sales Reports & Tracking', 'woocommerce_one_click_upsell_funnel' ), 'manage_options', 'mwb-wocuf-setting-tracking', array( $this, 'add_submenu_page_reporting_callback' ) );
 	}
 
 	/**
@@ -387,7 +409,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	/**
 	 * Returns Funnel Offer Template section html.
 	 *
-	 * @since    3.0.0
+	 * @since    2.0.0
 	 */
 	public function get_funnel_offer_template_section_html( $funnel_offer_post_id, $offer_index, $funnel_id ) {
 
@@ -511,7 +533,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	/**
 	 * Insert and Activate respective template ajax handle function.
 	 *
-	 * @since    3.0.0
+	 * @since    2.0.0
 	 */
 	public function activate_respective_offer_template() {
 
@@ -550,6 +572,40 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 		}
 
 		echo wp_json_encode( array( 'status' => true ) );
+
+		wp_die();
+	}
+
+	/**
+	 * Support Plugin Development handle.
+	 *
+	 * @since    3.0.0
+	 */
+	public function support_plugin_development_handle() {
+
+		check_ajax_referer( 'mwb_wocuf_nonce', 'nonce' );
+
+		$upsell_support = ! empty( $_POST['upsell_support'] ) ? sanitize_text_field( wp_unslash( $_POST['upsell_support'] ) ) : '';
+
+		if( ! empty( $upsell_support ) && 'support' == $upsell_support ) {
+
+			$to = 'integrations@makewebbetter.com';
+
+			$subject = 'Support Plugin Development Request [Upsell]';
+
+			$content = 'Support Plugin Development Request for One Click Upsell' . PHP_EOL;
+			$content .= 'Site Url : ' . site_url() . PHP_EOL;
+			$content .= 'Admin Email : ' . get_option( 'admin_email' ) . PHP_EOL;
+
+			$sent = wp_mail( $to, $subject, $content );
+
+			update_option( 'mwb_upsell_lite_hide_support_popup', 'true' );
+		}
+
+		elseif( ! empty( $upsell_support ) && 'never' == $upsell_support ) {
+
+			update_option( 'mwb_upsell_lite_hide_support_popup', 'true' );
+		}
 
 		wp_die();
 	}
@@ -842,7 +898,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	/**
 	 * Hide Upsell offer pages in admin panel 'Pages'.
 	 *
-	 * @since       3.0.0
+	 * @since       2.0.0
 	 */
 	public function hide_upsell_offer_pages_in_admin( $query ) {
 
@@ -873,7 +929,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	/**
 	 * Add 'Upsell Support' column on payment gateways page.
 	 *
-	 * @since       3.0.0
+	 * @since       2.0.0
 	 */
 	public function upsell_support_in_payment_gateway( $default_columns ) {
 
@@ -890,7 +946,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	/**
 	 * 'Upsell Support' content on payment gateways page.
 	 *
-	 * @since       3.0.0
+	 * @since       2.0.0
 	 */
 	public function upsell_support_content_in_payment_gateway( $gateway ) {
 
@@ -912,7 +968,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	/**
 	 * Dismiss Elementor inactive notice.
 	 *
-	 * @since       3.0.0
+	 * @since       2.0.0
 	 */
 	public function dismiss_elementor_inactive_notice() {
 
@@ -959,25 +1015,25 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 
 	    $reports['upsell'] = array(
 
-		    'title'  => 'Upsell Tracking',
+		    'title'  => '1 Click Upsell',
 		    'reports'  => array(
 
 	            'sales_by_date' => array(
-					'title' => 'Sales by date',
+					'title' => 'Upsell Sales by date',
 					'description' => '',
 					'hide_title' => 1,
 					'callback' => array( 'Woocommerce_one_click_upsell_funnel_Admin', 'upsell_reporting_callback' ),
 				),
 
 				'sales_by_product' => array(
-					'title' => 'Sales by product',
+					'title' => 'Upsell Sales by product',
 					'description' => '',
 					'hide_title' => 1,
 					'callback' => array( 'Woocommerce_one_click_upsell_funnel_Admin', 'upsell_reporting_callback' ),
 				),
 
 				'sales_by_category' => array(
-					'title' => 'Sales by category',
+					'title' => 'Upsell Sales by category',
 					'description' => '',
 					'hide_title' => 1,
 					'callback' => array( 'Woocommerce_one_click_upsell_funnel_Admin', 'upsell_reporting_callback' ),
@@ -997,12 +1053,12 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	
 		$report_file = ! empty( $report_type ) ? str_replace( '_', '-', $report_type ) : '';
 		$preformat_string = ! empty( $report_type ) ? ucwords( str_replace( '_', ' ', $report_type ) ) : '';
-		$class_name = ! empty( $preformat_string ) ? 'WC_Report_Mwb_Wocuf_Report_' . str_replace( ' ', '_', $preformat_string ) : '';
+		$class_name = ! empty( $preformat_string ) ? 'Mwb_Upsell_Report_' . str_replace( ' ', '_', $preformat_string ) : '';
 
 		/**
 		 * The file responsible for defining reporting.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'reporting/class-woocommerce-one-click-upsell-funnel-reporting-' . $report_file . '.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'reporting/class-upsell-report-' . $report_file . '.php';
 
 		if( class_exists( $class_name ) ) {
 
@@ -1029,7 +1085,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	 */
 	public function add_submenu_page_reporting_callback() {
 
-		require_once MWB_WOCUF_DIRPATH . 'tracking/woocommerce-one-click-upsell-funnel-tracking-config-panel.php';
+		require_once MWB_WOCUF_DIRPATH . 'admin/reporting-and-tracking/upsell-reporting-and-tracking-config-panel.php';
 	}
 
 // End of class.

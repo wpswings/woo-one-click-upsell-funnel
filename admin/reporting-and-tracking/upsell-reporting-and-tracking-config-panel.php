@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'overview';
+$active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'reporting';
 
 if ( 'overview' === get_transient( 'mwb_upsell_default_settings_tab' ) ) {
 
@@ -46,24 +46,30 @@ do_action( 'mwb_wocuf_pro_setting_tab_active' ); ?>
 	<h1></h1>
 	
 	<nav class="nav-tab-wrapper woo-nav-tab-wrapper">
-		<a class="nav-tab <?php echo 'overview' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting-tracking&tab=overview"><?php esc_html_e( 'Overview', 'woocommerce_one_click_upsell_funnel' ); ?></a>
+
+		<a class="nav-tab <?php echo 'reporting' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting-tracking&tab=reporting"><?php esc_html_e( 'Sales Reports', 'woocommerce_one_click_upsell_funnel' ); ?></a>
 		<a class="nav-tab <?php echo 'pixel-setting' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting-tracking&tab=pixel-setting"><?php esc_html_e( 'FB Pixel', 'woocommerce_one_click_upsell_funnel' ); ?></a>
 		<a class="nav-tab <?php echo 'ga-setting' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting-tracking&tab=ga-setting"><?php esc_html_e( 'Google Analytics', 'woocommerce_one_click_upsell_funnel' ); ?></a>
+		<a class="nav-tab <?php echo 'overview' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting-tracking&tab=overview"><?php esc_html_e( 'Overview', 'woocommerce_one_click_upsell_funnel' ); ?></a>
 
 		<?php do_action( 'mwb_wocuf_pro_setting_tab' ); ?>	
 	</nav>
 	<?php
 
-	if ( 'ga-setting' == $active_tab ) {
-		include_once 'templates/mwb-wocuf-pro-ga-settings.php';
+	if ( 'reporting' == $active_tab ) {
+		include_once 'templates/reporting.php';
+	}
+
+	elseif ( 'ga-setting' == $active_tab ) {
+		include_once 'templates/ga-settings.php';
 	}
 
 	elseif ( 'pixel-setting' == $active_tab ) {
-		include_once 'templates/mwb-wocuf-pro-pixel-settings.php';
+		include_once 'templates/pixel-settings.php';
 	}
 
 	elseif ( 'overview' == $active_tab ) {
-		include_once 'templates/mwb-wocuf-pro-tracking-overview.php';
+		include_once 'templates/tracking-overview.php';
 	}
 
 	do_action( 'mwb_wocuf_pro_setting_tab_html' ); ?>

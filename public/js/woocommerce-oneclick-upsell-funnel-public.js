@@ -1,5 +1,4 @@
 var mwb_wocuf_pro_custom_offer_bought = false;
-var mwb_wocuf_custom_upsell_message = false;
 
 jQuery(document).ready(function($){
 	
@@ -65,27 +64,15 @@ jQuery(document).ready(function($){
         });
 	});
 
-	/**
-	 * Upsell Strings Scripts after v2.1.0
-	 */
-	if( 'undefined' !== typeof( mwb_upsell ) ) {
+	// Sweet Alert when Upsell Action Buttons are clicked in Preview Mode.
+	$('a[href="#preview"]').on( 'click', function(e) {
 
-		mwb_wocuf_custom_upsell_message = mwb_upsell.upsell_actions_message;
+		e.preventDefault();
 
-		// Check if message is present.
-		if( mwb_wocuf_custom_upsell_message.length ) {
+		swal( mwb_upsell_public.alert_preview_title, mwb_upsell_public.alert_preview_content, 'info' );
+	});
 
-			jQuery( 'body' ).append( '<div class="mwb_upsell_loader"><p class="mwb_upsell_loader_text">' + mwb_wocuf_custom_upsell_message + '</p></div>' );
 
-			jQuery( document ).on('click', 'a', function(e) {
 
-				// Check if any of them are empty.
-	            if( this.href.includes( 'mwb_wocuf_pro_buy' ) || this.href.includes( '#mwb_upsell' ) || this.href.includes( 'ocuf_th' ) ) {
 
-	            	// Show loader on click.
-	            	jQuery( '.mwb_upsell_loader' ).show();
-	            }
-			});
-		}
-	}
 });

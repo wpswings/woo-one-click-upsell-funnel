@@ -85,7 +85,7 @@
 }
 .mwb_wocuf_pro_funnels_list table th, .mwb_upsell_table table th, .mwb_upsell_table table th label h4{
   color: #000;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 500;
   padding: 15px!important;
   text-align: left;
@@ -388,19 +388,19 @@ span.mwb_wocuf_pro_span label::after {
 
 
 /**
- * V3.0.0 CSS Starts HERE ------------>>>>>>>>>>>>>>>>>>>
+ * v2.0.0 CSS Starts HERE ------------>>>>>>>>>>>>>>>>>>>
  * 
  */
 
- /*since v3.0.0 - Global Settings - Start*/
+ /*since v2.0.0 - Global Settings - Start*/
 
  .mwb_wocuf_pro_creation_setting textarea {
   max-width: 100% !important;
 }
 
-/*since v3.0.0 - Global Settings - Start*/
+/*since v2.0.0 - Global Settings - End*/
 
-/*since v3.0.0 - Funnel status - Start*/
+/*since v2.0.0 - Funnel status - Start*/
 
 .mwb_upsell_funnel_status_on.active,
 .mwb_upsell_funnel_status_off.active {
@@ -412,9 +412,14 @@ span.mwb_wocuf_pro_span label::after {
   display: none;
 }
 
-/*since v3.0.0 - Funnel status - End*/
+#mwb_upsell_funnel_status span.woocommerce-help-tip {
+  top: 5px;
+  left: 5px;
+}
 
-/*since v3.0.0 - Shortcodes - Start*/
+/*since v2.0.0 - Funnel status - End*/
+
+/*since v2.0.0 - Shortcodes - Start*/
 
 .mwb_upsell_tip_tip {
   font-size: 11px;
@@ -472,9 +477,9 @@ span.mwb_wocuf_pro_span label::after {
 }
 
 
-/*since v3.0.0 - Old shortcodes - End*/
+/*since v2.0.0 - Old shortcodes - End*/
 
-/*since v3.0.0 - Offer preview - Start*/
+/*since v2.0.0 - Offer preview - Start*/
 
 .mwb_upsell_offer_template_preview_one,
 .mwb_upsell_offer_template_preview_two,
@@ -490,18 +495,18 @@ span.mwb_wocuf_pro_span label::after {
   display: none;
 }
 
-/*since v3.0.0 - Offer preview - End*/
+/*since v2.0.0 - Offer preview - End*/
 
-/*since v3.0.0 - Offer template not supported - End*/
+/*since v2.0.0 - Offer template not supported - End*/
 
 .mwb_upsell_offer_template_unsupported h4 {
   font-weight: 400;
   font-size: 17px;
 }
 
-/*since v3.0.0 - Offer template not supported - End*/
+/*since v2.0.0 - Offer template not supported - End*/
 
-/*since v3.0.0 - Funnel list - Start*/
+/*since v2.0.0 - Funnel list - Start*/
 
 .mwb_upsell_funnel_list_name {
   font-size: 16px !important;
@@ -557,9 +562,9 @@ span.mwb_wocuf_pro_span label::after {
   width: 25%;
 }
 
-/*since v3.0.0 - Funnel list - End*/
+/*since v2.0.0 - Funnel list - End*/
 
-/*since v3.0.0 - Buton focus- Start*/
+/*since v2.0.0 - Buton focus- Start*/
 
 .mwb_wocuf_pro_create_new_offer:focus, .mwb_wocuf_pro_create_new_funnel a:focus {
  border: 0;
@@ -576,9 +581,9 @@ span.mwb_wocuf_pro_span label::after {
   color: #fff;
 }
 
-/*since v3.0.0 - Buton focus- End*/
+/*since v2.0.0 - Buton focus- End*/
 
-/*since v3.0.0 - Elementor notice - Start*/
+/*since v2.0.0 - Elementor notice - Start*/
 
 #mwb_upsell_elementor_notice p {
   font-size: 15px;
@@ -620,9 +625,9 @@ span.mwb_wocuf_pro_span label::after {
   height: auto;
 }
 
-/*since v3.0.0 - Elementor notice - End*/
+/*since v2.0.0 - Elementor notice - End*/
 
-/*since v3.0.0 - Overview - Start*/
+/*since v2.0.0 - Overview - Start*/
 
 #mwb_upsell_lite_overview #mwb_upsell_lite_overview_video h2 {
   text-align: center;
@@ -719,9 +724,32 @@ span.mwb_wocuf_pro_span label::after {
   }
 }
 
-/*since v3.0.0 - Overview - End*/
+/*since v2.0.0 - Overview - End*/
 
-/*since v3.0.0 - Designer CSS - Start*/
+/*since v3.0.0 - Upsell Funnel Reporting - Start*/
+
+.mwb_uspell_reporting_funnel_stats_hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.mwb_upsell_stats_conversion_rate {
+  background-color: #b4db65;
+  border-radius: 10px 10px;
+}
+
+.mwb_upsell_stats_total_sales {
+  background-color: #8eba36;
+  border-radius: 10px 10px;
+}
+
+.mwb_upsell_stats_conversion_rate p, .mwb_upsell_stats_total_sales p {
+  color: #ffffff !important;
+}
+
+/*since v3.0.0 - Upsell Funnel Reporting - End*/
+
+/*since v2.0.0 - Designer CSS - Start*/
 
 #mwb_wocuf_pro_setting_wrapper .mwb_wocuf_pro_setting_title {
   color: #23282d;
@@ -987,7 +1015,7 @@ span.mwb_wocuf_pro_span label::after {
 #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading div#mwb_upsell_funnel_status {
   float: right;
   padding: 40px 10px;
-  width: 180px;
+  width: 200px;
 }
 #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading div#mwb_upsell_funnel_status span {
   padding: 7px 10px;
@@ -1341,6 +1369,15 @@ button.button-primary.mwb_upsell_activate_offer_template:focus {
 /*===================================
 =            media query            =
 ===================================*/
+
+
+
+@media only screen and (max-width:1024px)  {
+  .mwb_wocuf_pro_funnels_list table {
+    width: 1024px;
+  }
+}
+
 @media only screen and (max-width:867px)  {
   #mwb_wocuf_pro_setting_wrapper .nav-tab {
     padding: 10px 35px 10px 35px;
@@ -1371,9 +1408,6 @@ button.button-primary.mwb_upsell_activate_offer_template:focus {
   }
 }
 @media only screen and (max-width:767px)  {
-  .mwb_wocuf_pro_funnels_list table {
-    width: 710px;
-  }
   .mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text table.mwb-wocuf-pro-form-table tr td{
     width: 100%;
     display: block;
@@ -1507,9 +1541,9 @@ button.button-primary.mwb_upsell_activate_offer_template:focus {
     }
   }
 
-  /*since v3.0.0 - Designer CSS - End*/
+  /*since v2.0.0 - Designer CSS - End*/
 
 /**
- * V3.0.0 CSS Ends HERE ------------>>>>>>>>>>>>>>>>>>>
+ * v2.0.0 CSS Ends HERE ------------>>>>>>>>>>>>>>>>>>>
  * 
  
