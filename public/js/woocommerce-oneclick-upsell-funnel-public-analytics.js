@@ -8,14 +8,6 @@ jQuery(document).ready(function($) {
 	var enable_pixel_viewcontent_event = 'no';
 	var enable_pixel_debug_mode = 'no';
 
-	// Google Amalytics data.
-	var is_ga_enabled = mwb.google_analytics.is_ga_enabled;
-	var ga_account_id = false;
-	var enable_ga_purchase_event = 'no';
-	var enable_ga_pageview_event = 'no';
-	var enable_ga_debug_mode = 'no';
-	var ga_purchase_event_data = false;
-
 	// Other required data.
 	var current_user_role = mwb.current_user;
 	var currency_code = mwb.currency_code;
@@ -89,8 +81,7 @@ jQuery(document).ready(function($) {
 		if( typeof( enable_pixel_purchase_event ) != 'undefined' && 'yes' == enable_pixel_purchase_event ) {
 			
 			if( 'upsell' == current_location || 'thank-you' == current_location ) {
-
-				if( typeof purchase_to_trigger !== 'undefined' || purchase_to_trigger.length > 0 ) {
+				if( typeof purchase_to_trigger !== 'undefined' && Object.keys( purchase_to_trigger ).length > 0 ) {
 					trigger_purchase();
 				}
 			}
@@ -98,77 +89,11 @@ jQuery(document).ready(function($) {
 
 	} // End Pixel tracking end.
 
-	// End GA tracking start.
-	if( typeof( is_ga_enabled ) !== 'undefined' &&  'true' == is_ga_enabled ) {
-
-		// Add GA basecode.
-		ga_account_id = mwb.google_analytics.ga_account_id;
-		enable_ga_purchase_event = mwb.google_analytics.enable_purchase_event;
-		enable_ga_pageview_event = mwb.google_analytics.enable_pageview_event;
-		enable_ga_debug_mode = mwb.google_analytics.enable_debug_mode;
-
-		// Page View on every Page.
-		if( typeof enable_ga_pageview_event !== 'undefined' && 'yes' == enable_ga_pageview_event ) {
-			trigger_page_view();
-		}
-
-		// Purchase at Thankyou and upsell page.
-		if( 'upsell' == current_location || 'thank-you' == current_location ) {
-
-			if( typeof enable_ga_purchase_event !== 'undefined' && 'yes' == enable_ga_purchase_event ) {
-				trigger_ga_purchase();
-			}
-		}
-
-	} // End GA tracking end.
 
 	/**
 	 * Start Debugging via console.
 	 */
 	debug_setup_values();
-
-
-	/**==================================
-		All function definitions here
-	===================================*/
-
-	/**========================================
-		Google Analytics Function Definitions
-	==========================================*/
-	
-	/**
-	 * Page View event Function.
-	 */
-	function trigger_page_view() {
-
-		// Send pageview.
-		ga( 'send', 'pageview' );
-	}
-
-
-	/**
-	 * Purchase event Function.
-	 */
-	function trigger_ga_purchase() {
-
-		ga_purchase_event_data = mwb.ga_purchase_event_data;
-
-		if ( typeof ga_purchase_event_data == 'undefined' && Object.keys( ga_purchase_event_data ).length < 0 ) {
-			return;
-		}
-
-		ga_transaction_data = ga_purchase_event_data.ga_transaction_data;
-		ga_single_item_data = ga_purchase_event_data.ga_single_item_data;
-
-		// Send Purchase.
-		ga('require', 'ecommerce');
-		ga('ecommerce:addTransaction', ga_transaction_data );
-		for ( var i = ga_single_item_data.length - 1; i >= 0; i-- ) {
-			ga('ecommerce:addItem', ga_single_item_data );
-		}
-		ga('ecommerce:send');
-	}
-
 
 	/**===================================
 		Facebook Function Definitions
@@ -252,6 +177,9 @@ jQuery(document).ready(function($) {
 	 * Purchase event Function.
 	 */
 	function trigger_purchase() {
+		if ( Object.keys( purchase_to_trigger ).length <= 0 ) {
+			return;
+		}
 
 		var base_obj = {
 			value: purchase_to_trigger.value,
@@ -266,7 +194,7 @@ jQuery(document).ready(function($) {
 		}
 
 		// If upsell data has to be send.
-		if( 'true' == is_upsell_order ) {
+		if( 'true' == is_upsell_order && Object.keys( upsell_purchase_to_trigger ).length > 0 ) {
 
 			base_obj['upsell_value'] = upsell_purchase_to_trigger.value;
 			base_obj['upsell_contents'] = upsell_purchase_to_trigger.upsell_contents;

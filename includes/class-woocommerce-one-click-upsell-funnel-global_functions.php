@@ -573,7 +573,7 @@ if( ! function_exists( 'mwb_upsell_lite_get_purchase_data' ) ) {
 									    'id'=> ! empty( $product_id ) ? $product_id : $product_id ,
 									    'name'=> ! empty( $item_obj->get_name() ) ? $item_obj->get_name() : '' ,
 									   	'sku'=> ! empty( $product ) ? $product->get_sku() : '' ,
-									    'category'=> ! empty( json_encode( $product_categories ) ) ? json_encode( $product_categories ) : '' ,
+									    'category'=> ! empty( $product_categories ) ? $product_categories : '' ,
 									    'price'=> ! empty( $item_obj->get_total() ) ? $item_obj->get_total() : '' ,
 									    'quantity'=> ! empty( $item_obj->get_quantity() ) ? $item_obj->get_quantity() : '' 
 									);

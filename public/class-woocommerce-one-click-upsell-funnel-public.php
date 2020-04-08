@@ -113,120 +113,10 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		if( true === $localize_script_data ) {
 
-			global $post;
-
-			/**
-			 * Get current user role.
-			 */
-			$current_user = wp_get_current_user();
-			if( ! empty( $current_user ) ) {
-				$current_user_role = ! empty( $current_user->roles ) && is_array( $current_user->roles ) ? $current_user->roles : false;
-			}
-
-			/**
-			 * Get current location.
-			 */
-			$current_location = false;
-			if( is_shop() ) {
-				$current_location = 'shop';
-			} elseif ( is_single() ) {
-				$current_location = 'product';
-			} elseif ( is_cart() ) {
-				$current_location = 'cart';
-			} elseif ( is_checkout() && ! is_wc_endpoint_url('order-received') ) {
-				$current_location = 'checkout';
-			} elseif ( ! empty( $_GET[ 'ocuf_fid' ] ) ) {
-				$current_location = 'upsell';
-			} elseif ( is_wc_endpoint_url('order-received') && ! empty( $_GET[ 'key' ] ) ) {
-				$current_location = 'thank-you';
-			} elseif ( is_account_page() ) {
-				$current_location = 'my-account';
-			}
-
-			/**
-			 * Get current product at single product page.
-			 */
-			$current_product = false;
-			if( is_single() && ! empty( $post ) && 'product' == $post->post_type ) {
-				$current_product = wc_get_product( $post->ID );
-			}
-
-			/**
-			 * Get current cart data at cart/checkout page.
-			 */
-			$current_cart_value = false;
-			if( is_checkout() && ! empty( WC()->cart->get_cart_contents_count() ) ) {
-				$current_cart_value = WC()->cart->total;
-			}
-
-			/**
-			 * Get purchase event data at Upsell/Thank you page.
-			 */
-			if( ! empty( $current_location ) && in_array( $current_location, array( 'upsell', 'thank-you' ) ) ) {
-
-				/**
-				 * Get order id from live params.
-				 * Check the payment method for same order and ensure tracking if required.
-				 */
-				$order_id = get_order_id_from_live_param( $current_location );
-				$where_to_trigger = mwb_upsell_get_tracking_location( $order_id );
-
-				if( $where_to_trigger == $current_location ) {
-
-					$purchase_event_data = mwb_upsell_lite_get_purchase_data( $order_id, $current_location, 'pixel' );
-
-					$ga_purchase_event_data = mwb_upsell_lite_get_purchase_data( $order_id, $current_location, 'google_analytics' );
-
-					/** 
-					 * Check if upsell Order.
-					 * If needs to send seperate param then order payment will be pending.
-					 */
-					$is_upsell_purchased = get_post_meta( $order_id, 'mwb_wocuf_upsell_order', true );
-					if( 'true' == $is_upsell_purchased ) {
-
-						$upsell_purchase_event_data = mwb_upsell_lite_get_upsell_purchase_data( $order_id, $current_location );
-					}
-				}
-			}
-
 			wp_register_script( 'woocommerce-one-click-upsell-public-tracking-script', plugin_dir_url( __FILE__ ) . 'js/woocommerce-oneclick-upsell-funnel-public-analytics.js', array( 'jquery' ), $this->version, true );
 
-			$analytics_js_data = array(
-				'google_analytics' => array(
-					'is_ga_enabled'	=>	! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_tracking' ] ) && 'yes' == $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_tracking' ] ? 'true' : 'false',
-					'ga_account_id'	=>	! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_account_id' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_account_id' ] ) ) : '',
-					'enable_purchase_event'	=>	! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_purchase_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_purchase_event' ] ) ) : 'no',
-					'enable_pageview_event'	=>	! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_pageview_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_pageview_event' ] ) ) : 'no',
-					'enable_debug_mode'	=>	! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_debug_mode' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_debug_mode' ] ) ) : 'no',
-				),
+			$analytics_js_data = $this->get_analytics_localisation_data( $mwb_upsell_ga_analytics_config,$mwb_upsell_fb_pixel_config );
 
-				'facebook_pixel' => array(
-					'is_pixel_enabled'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_tracking' ] ) && 'yes' == $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_tracking' ] ? 'true' : 'false',
-					'pixel_account_id'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_account_id' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_account_id' ] ) ) : '',
-					'product_catalog_id'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_product_catalog_id' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_product_catalog_id' ] ) ) : '',
-					'enable_purchase_event'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_purchase_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_purchase_event' ] ) ) : 'no',
-					'enable_viewcontent_event'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_viewcontent_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_viewcontent_event' ] ) ) : 'no',
-					'enable_add_to_cart_event'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_add_to_cart_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_add_to_cart_event' ] ) ) : 'no',
-					'enable_initiate_checkout_event'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_initiate_checkout_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_initiate_checkout_event' ] ) ) : 'no',
-					'enable_debug_mode'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_debug_mode' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_debug_mode' ] ) ) : 'no',
-				),
-
-				'current_user' => ! empty( $current_user_role ) ? $current_user_role : false,
-				'current_location' => ! empty( $current_location ) ? $current_location : false,
-				'product_id' => ! empty( $current_product ) && is_object( $current_product ) ? $current_product->get_id() : false,
-				'product_name' => ! empty( $current_product ) && is_object( $current_product ) ? $current_product->get_name() : false,
-				'product_price' => ! empty( $current_product ) && is_object( $current_product ) ? $current_product->get_price() : false,
-				'currency_code' => function_exists( 'get_woocommerce_currency' ) ? get_woocommerce_currency() : '',
-				'currency_symbol' => function_exists( 'get_woocommerce_currency_symbol' ) ? get_woocommerce_currency_symbol() : '',
-				'cart_value' => ! empty( $current_cart_value ) ? $current_cart_value : false,
-				'post_fields' => ! empty( $_POST ) ? $_POST : false,
-				'get_fields' => ! empty( $_GET ) ? $_GET : false,
-				'purchase_to_trigger' => ! empty( $purchase_event_data ) ? $purchase_event_data : false,
-				'is_upsell_order' => ! empty( $is_upsell_purchased ) ? $is_upsell_purchased : false,
-				'upsell_purchase_to_trigger' => ! empty( $upsell_purchase_event_data ) ? $upsell_purchase_event_data : false,
-				'ga_purchase_event_data' => ! empty( $ga_purchase_event_data ) ? $ga_purchase_event_data : false,
-			);
-			
 			wp_localize_script( 'woocommerce-one-click-upsell-public-tracking-script', 'mwb', $analytics_js_data );
 			wp_enqueue_script( 'woocommerce-one-click-upsell-public-tracking-script' );
 		}
@@ -3106,7 +2996,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		// GA Tracking.
 		if( ! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_tracking' ] ) && 'yes' == $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_tracking' ] ) : ?>
 
-			<!-- Google Analytics -->
+			<!-- Google Analytics Basecode. -->
 			<script>
 				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -3115,9 +3005,10 @@ class Woocommerce_one_click_upsell_funnel_Public {
 			</script>
 			<script>
 				ga( 'create', '<?php echo( esc_html( $google_analytics_ID ) ); ?>', 'auto' );
-			</script>
-			<!-- End Google Analytics -->
 
+				<?php esc_js( $this->mwb_print_ga_script( $mwb_upsell_ga_analytics_config, $mwb_upsell_fb_pixel_config ) ); ?>
+			</script>
+			<!-- End Google Analytics Basecode. -->
 		<?php endif; ?>
 
 		<?php
@@ -3146,6 +3037,197 @@ class Woocommerce_one_click_upsell_funnel_Public {
 			<!-- End Facebook Pixel Code -->
 
 		<?php endif;
+	}
+
+	public function get_analytics_localisation_data( $mwb_upsell_ga_analytics_config=array(),$mwb_upsell_fb_pixel_config=array() ) {
+		
+		global $post;
+
+		/**
+		 * Get current user role.
+		 */
+		$current_user = wp_get_current_user();
+		if( ! empty( $current_user ) ) {
+			$current_user_role = ! empty( $current_user->roles ) && is_array( $current_user->roles ) ? $current_user->roles : false;
+		}
+
+		/**
+		 * Get current location.
+		 */
+		$current_location = false;
+		if( is_shop() ) {
+			$current_location = 'shop';
+		} elseif ( is_single() ) {
+			$current_location = 'product';
+		} elseif ( is_cart() ) {
+			$current_location = 'cart';
+		} elseif ( is_checkout() && ! is_wc_endpoint_url('order-received') ) {
+			$current_location = 'checkout';
+		} elseif ( ! empty( $_GET[ 'ocuf_fid' ] ) ) {
+			$current_location = 'upsell';
+		} elseif ( is_wc_endpoint_url('order-received') && ! empty( $_GET[ 'key' ] ) ) {
+			$current_location = 'thank-you';
+		} elseif ( is_account_page() ) {
+			$current_location = 'my-account';
+		}
+
+		/**
+		 * Get current product at single product page.
+		 */
+		$current_product = false;
+		if( is_single() && ! empty( $post ) && 'product' == $post->post_type ) {
+			$current_product = wc_get_product( $post->ID );
+		}
+
+		/**
+		 * Get current cart data at cart/checkout page.
+		 */
+		$current_cart_value = false;
+		if( is_checkout() && ! empty( WC()->cart->get_cart_contents_count() ) ) {
+			$current_cart_value = WC()->cart->total;
+		}
+
+		/**
+		 * Get purchase event data at Upsell/Thank you page.
+		 */
+		if( ! empty( $current_location ) && in_array( $current_location, array( 'upsell', 'thank-you' ) ) ) {
+
+			/**
+			 * Get order id from live params.
+			 * Check the payment method for same order and ensure tracking if required.
+			 */
+			$order_id = get_order_id_from_live_param( $current_location );
+			$where_to_trigger = mwb_upsell_get_tracking_location( $order_id );
+
+			if( $where_to_trigger == $current_location ) {
+
+				$purchase_event_data = mwb_upsell_lite_get_purchase_data( $order_id, $current_location, 'pixel' );
+
+				$ga_purchase_event_data = mwb_upsell_lite_get_purchase_data( $order_id, $current_location, 'google_analytics' );
+
+				/** 
+				 * Check if upsell Order.
+				 * If needs to send seperate param then order payment will be pending.
+				 */
+				$is_upsell_purchased = get_post_meta( $order_id, 'mwb_wocuf_upsell_order', true );
+				if( 'true' == $is_upsell_purchased ) {
+
+					$upsell_purchase_event_data = mwb_upsell_lite_get_upsell_purchase_data( $order_id, $current_location );
+				}
+			}
+		}
+
+		return array(
+				'google_analytics' => array(
+					'is_ga_enabled'	=>	! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_tracking' ] ) && 'yes' == $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_tracking' ] ? 'true' : 'false',
+					'ga_account_id'	=>	! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_account_id' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_account_id' ] ) ) : '',
+					'enable_purchase_event'	=>	! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_purchase_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_purchase_event' ] ) ) : 'no',
+					'enable_pageview_event'	=>	! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_pageview_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_pageview_event' ] ) ) : 'no',
+					'enable_debug_mode'	=>	! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_debug_mode' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_debug_mode' ] ) ) : 'no',
+				),
+
+				'facebook_pixel' => array(
+					'is_pixel_enabled'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_tracking' ] ) && 'yes' == $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_tracking' ] ? 'true' : 'false',
+					'pixel_account_id'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_account_id' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_account_id' ] ) ) : '',
+					'product_catalog_id'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_product_catalog_id' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_product_catalog_id' ] ) ) : '',
+					'enable_purchase_event'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_purchase_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_purchase_event' ] ) ) : 'no',
+					'enable_viewcontent_event'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_viewcontent_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_viewcontent_event' ] ) ) : 'no',
+					'enable_add_to_cart_event'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_add_to_cart_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_add_to_cart_event' ] ) ) : 'no',
+					'enable_initiate_checkout_event'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_initiate_checkout_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_initiate_checkout_event' ] ) ) : 'no',
+					'enable_debug_mode'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_debug_mode' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_debug_mode' ] ) ) : 'no',
+				),
+
+				'current_user' => ! empty( $current_user_role ) ? $current_user_role : false,
+				'current_location' => ! empty( $current_location ) ? $current_location : false,
+				'product_id' => ! empty( $current_product ) && is_object( $current_product ) ? $current_product->get_id() : false,
+				'product_name' => ! empty( $current_product ) && is_object( $current_product ) ? $current_product->get_name() : false,
+				'product_price' => ! empty( $current_product ) && is_object( $current_product ) ? $current_product->get_price() : false,
+				'currency_code' => function_exists( 'get_woocommerce_currency' ) ? get_woocommerce_currency() : '',
+				'currency_symbol' => function_exists( 'get_woocommerce_currency_symbol' ) ? get_woocommerce_currency_symbol() : '',
+				'cart_value' => ! empty( $current_cart_value ) ? $current_cart_value : false,
+				'purchase_to_trigger' => ! empty( $purchase_event_data ) ? $purchase_event_data : false,
+				'is_upsell_order' => ! empty( $is_upsell_purchased ) ? $is_upsell_purchased : false,
+				'upsell_purchase_to_trigger' => ! empty( $upsell_purchase_event_data ) ? $upsell_purchase_event_data : false,
+				'ga_purchase_event_data' => ! empty( $ga_purchase_event_data ) ? $ga_purchase_event_data : false,
+			);
+	}
+
+	public function preformatting_ga_analytics_data( $analytics_live_data=array() ) {
+		
+		/**
+		 * Facebook pixel data is not required.
+		 */
+		unset( $analytics_live_data[ 'facebook_pixel' ] );
+		unset( $analytics_live_data[ 'purchase_to_trigger' ] );
+
+		/**
+		 * Format the data for GA data.
+		 */
+		$formatted_data = array(
+			'is_ga_enabled' 			=>	! empty( $analytics_live_data[ 'google_analytics' ][ 'is_ga_enabled' ] ) ? $analytics_live_data[ 'google_analytics' ][ 'is_ga_enabled' ] : '' ,
+			'ga_account_id' 			=>	! empty( $analytics_live_data[ 'google_analytics' ][ 'ga_account_id' ] ) ? $analytics_live_data[ 'google_analytics' ][ 'ga_account_id' ] : '' ,
+			'enable_purchase_event' 	=>	! empty( $analytics_live_data[ 'google_analytics' ][ 'enable_purchase_event' ] ) ? $analytics_live_data[ 'google_analytics' ][ 'enable_purchase_event' ] : '' ,
+			'enable_pageview_event' 	=>	! empty( $analytics_live_data[ 'google_analytics' ][ 'enable_pageview_event' ] ) ? $analytics_live_data[ 'google_analytics' ][ 'enable_pageview_event' ] : '' ,
+			'enable_debug_mode' 		=>	! empty( $analytics_live_data[ 'google_analytics' ][ 'enable_debug_mode' ] ) ? $analytics_live_data[ 'google_analytics' ][ 'enable_debug_mode' ] : '' ,
+		);
+
+		unset( $analytics_live_data[ 'google_analytics' ] );
+		unset( $analytics_live_data[ 'cart_value' ] );
+		unset( $analytics_live_data[ 'product_id' ] );
+		unset( $analytics_live_data[ 'product_name' ] );
+		unset( $analytics_live_data[ 'product_price' ] );
+
+		if ( ! empty( $formatted_data ) && ! empty( $analytics_live_data ) && is_array( $formatted_data ) && is_array( $analytics_live_data ) ) {
+			return array_merge( $formatted_data, $analytics_live_data );
+		}
+
+		return false;
+	}
+
+	public function mwb_print_ga_script( $mwb_upsell_ga_analytics_config=array(), $mwb_upsell_fb_pixel_config=array() ) {
+
+		$analytics_live_data = $this->get_analytics_localisation_data( $mwb_upsell_ga_analytics_config, $mwb_upsell_fb_pixel_config );
+
+		if ( ! empty( $analytics_live_data ) ) {
+
+			$formatted_ga_data = $this->preformatting_ga_analytics_data( $analytics_live_data );
+
+			if( ! empty( $formatted_ga_data ) && is_array( $formatted_ga_data ) ) {
+
+				if( ! empty( $formatted_ga_data[ 'enable_pageview_event' ] ) && 'yes' == $formatted_ga_data[ 'enable_pageview_event' ] ) : ?>
+
+					ga( 'send', 'pageview' );
+
+				<?php endif; ?>
+
+				<?php if( ! empty( $formatted_ga_data[ 'enable_purchase_event' ] ) && 'yes' == $formatted_ga_data[ 'enable_purchase_event' ] ) : ?>
+
+				<?php
+
+				$ga_purchase_event_data = ! empty( $formatted_ga_data[ 'ga_purchase_event_data' ] ) ? $formatted_ga_data[ 'ga_purchase_event_data' ] : array();
+
+				if ( empty( $ga_purchase_event_data ) ) {
+					return;
+				}
+
+				$ga_transaction_data = ! empty( $ga_purchase_event_data[ 'ga_transaction_data' ] ) ? $ga_purchase_event_data[ 'ga_transaction_data' ] : array();
+
+				$ga_single_item_data = ! empty( $ga_purchase_event_data[ 'ga_single_item_data' ] ) ? $ga_purchase_event_data[ 'ga_single_item_data' ] : array();
+				?>
+
+				ga('require', 'ecommerce');
+				ga('ecommerce:addTransaction', <?php echo wp_json_encode( $ga_transaction_data ); ?> );
+
+				<?php foreach ( $ga_single_item_data as $key => $single_item ) : ?>
+					ga('ecommerce:addItem', <?php echo wp_json_encode( $single_item ); ?> );
+				<?php endforeach; ?>
+				ga('ecommerce:send');
+
+			<?php endif; ?>
+
+			<?php 
+			} // formatted_ga_data Condition end.
+		}
 	}
 
 } // End of class.
