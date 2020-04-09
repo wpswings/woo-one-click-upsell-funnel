@@ -363,13 +363,66 @@ background-color: #bf0000 !important;
 /* since v3.0.0 - Stripe cc icons - End */
 
 /**==================
- * Version 2.1.0 CSS
+ * Version 3.0.0 CSS
  * Updates CSS.
-====================*/
+ ====================*/
 
-/* Quantity Shortcode */
+ /* Quantity Shortcode */
 .mwb_upsell_quantity {
   text-align: center;
+}
+
+/* Upsell Action loader */
+.mwb_upsell_loader {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(21, 21, 21, 0.7);
+  z-index: 9999;
+  display: none;
+}
+@-webkit-keyframes spin {
+  from {-webkit-transform:rotate(0deg);}
+  to {-webkit-transform:rotate(360deg);}
+}
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+.mwb_upsell_loader::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40%;
+  width: 100px;
+  height: 100px;
+  border-style: solid;
+  border-color: white;
+  border-top-color: transparent;
+  border-width: 7px;
+  border-radius: 50%;
+  -webkit-animation: spin .8s linear infinite;
+  animation: spin .8s linear infinite;
+  margin: 0 auto;
+}
+p.mwb_upsell_loader_text {
+  font-size: 22px;
+  position: absolute;
+  top: 60%;
+  right: 0;
+  left: 0;
+  text-align: center;
+  z-index: 999999;
+  transform: translateY(-50%);
+  width: 100%;
+  max-width: 600px;
+  margin: 10px auto;
+  color: #ffffff;
 }
 
 /**=========================================

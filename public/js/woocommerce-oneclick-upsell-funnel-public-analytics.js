@@ -8,18 +8,14 @@ jQuery(document).ready(function($) {
 	var enable_pixel_viewcontent_event = 'no';
 	var enable_pixel_debug_mode = 'no';
 
-	// Google Amalytics data.
-	var is_ga_enabled = mwb.google_analytics.is_ga_enabled;
-	var ga_account_id = false;
-	var enable_ga_purchase_event = 'no';
-	var enable_ga_pageview_event = 'no';
-	var enable_ga_debug_mode = 'no';
-
 	// Other required data.
 	var current_user_role = mwb.current_user;
 	var currency_code = mwb.currency_code;
 	var currency_symbol = mwb.currency_symbol;
 	var current_location = mwb.current_location;
+	var purchase_to_trigger = mwb.purchase_to_trigger;
+	var is_upsell_order = mwb.is_upsell_order;
+	var upsell_purchase_to_trigger = mwb.upsell_purchase_to_trigger;
 	var product_price = 0;
 	var quantity = 1;
 	var total_value = 0;
@@ -43,10 +39,7 @@ jQuery(document).ready(function($) {
 		if( typeof( enable_pixel_viewcontent_event ) != 'undefined' && 'yes' == enable_pixel_viewcontent_event ) {
 
 			if( 'product' == current_location ) {
-				fbq('track', 'ViewContent', {
-					value: mwb.product_price,
-					currency: currency_code,
-				});
+				trigger_view_content();
 			}
 		}
 
@@ -58,12 +51,12 @@ jQuery(document).ready(function($) {
 
 			if( 'product' == current_location ) {
 				if( jQuery( '.single_add_to_cart_button' ).length != '0' ) {
-					jQuery(document).on( 'click', '.single_add_to_cart_button', add_to_cart );
+					jQuery(document).on( 'click', '.single_add_to_cart_button', trigger_add_to_cart );
 				}
 			}
 
 			if( 'shop' == current_location ) {
-				jQuery(document).on( 'click', '.add_to_cart_button', add_to_cart );
+				jQuery(document).on( 'click', '.add_to_cart_button', trigger_add_to_cart );
 			}
 		}
 
@@ -76,39 +69,50 @@ jQuery(document).ready(function($) {
 			if( 'checkout' == current_location ) {
 
 				if( jQuery( '#place_order' ).length != '0' ) {
-					jQuery(document).on( 'click', '#place_order', initiate_checkout );
+					jQuery(document).on( 'click', '#place_order', trigger_initiate_checkout );
+				}
+			}
+		}
+
+		/**
+		 * Event : Purchase.
+		 * Location required : Thank you Page / Upsell.
+		 */
+		if( typeof( enable_pixel_purchase_event ) != 'undefined' && 'yes' == enable_pixel_purchase_event ) {
+			
+			if( 'upsell' == current_location || 'thank-you' == current_location ) {
+				if( typeof purchase_to_trigger !== 'undefined' && Object.keys( purchase_to_trigger ).length > 0 ) {
+					trigger_purchase();
 				}
 			}
 		}
 
 	} // End Pixel tracking end.
 
-	// End GA tracking start.
-	if( typeof( is_ga_enabled ) !== 'undefined' &&  'true' == is_ga_enabled ) {
-
-		// Add GA basecode.
-		ga_account_id = mwb.google_analytics.ga_account_id;
-		enable_ga_purchase_event = mwb.google_analytics.enable_purchase_event;
-		enable_ga_pageview_event = mwb.google_analytics.enable_pageview_event;
-		enable_ga_debug_mode = mwb.google_analytics.enable_debug_mode;
-
-	} // End GA tracking end.
 
 	/**
 	 * Start Debugging via console.
 	 */
 	debug_setup_values();
 
-
-
-	/**==================================
-		All function definations here
-	===================================*/
+	/**===================================
+		Facebook Function Definitions
+	=====================================*/
+	
+	/**
+	 * View Content event Function.
+	 */
+	function trigger_view_content() {
+		fbq('track', 'ViewContent', {
+			value: mwb.product_price,
+			currency: currency_code,
+		});
+	}
 
 	/**
 	 * Add to cart event Function.
 	 */
-	function add_to_cart(e) {
+	function trigger_add_to_cart(e) {
 
 		if( 'product' == current_location ) {
 			quantity = jQuery( 'input[name=quantity]' ).val();
@@ -130,25 +134,32 @@ jQuery(document).ready(function($) {
 	        });
 		}
 
-		// Trigger event.
-		fbq('track', 'AddToCart', {
+		var base_obj = {
+
 			value: total_value,
 			currency: currency_code,
-			contents: [
-				{
-				    id: product_id,
-				    quantity: quantity
-				}
-			],
-			content_type : 'product',
-			product_catalog_id : product_catalog_id,
-		});
+		};
+
+		if( typeof product_catalog_id != 'undefined' && product_catalog_id.length > 0 ) {
+
+			base_obj['product_catalog_id'] = product_catalog_id;
+
+			base_obj['contents'] = [{
+				id: product_id,
+				quantity: quantity
+			}];
+
+			base_obj['content_type'] = 'product';
+		}
+
+		// Trigger event.
+		fbq('track', 'AddToCart', base_obj );
 	}
 
 	/**
 	 * Initiate Checkout event Function.
 	 */
-	function initiate_checkout(e) {
+	function trigger_initiate_checkout(e) {
 
 		e.preventDefault();
 
@@ -160,6 +171,36 @@ jQuery(document).ready(function($) {
 
 		// Submit checkout form.
 		jQuery( 'form.checkout' ).submit();
+	}
+
+	/**
+	 * Purchase event Function.
+	 */
+	function trigger_purchase() {
+		if ( Object.keys( purchase_to_trigger ).length <= 0 ) {
+			return;
+		}
+
+		var base_obj = {
+			value: purchase_to_trigger.value,
+			currency: currency_code,
+		};
+
+		if( typeof product_catalog_id != 'undefined' && product_catalog_id.length > 0 ) {
+
+			base_obj['contents'] = purchase_to_trigger.content;
+			base_obj['content_type'] = 'product';
+			base_obj['product_catalog_id'] = product_catalog_id;
+		}
+
+		// If upsell data has to be send.
+		if( 'true' == is_upsell_order && Object.keys( upsell_purchase_to_trigger ).length > 0 ) {
+
+			base_obj['upsell_value'] = upsell_purchase_to_trigger.value;
+			base_obj['upsell_contents'] = upsell_purchase_to_trigger.upsell_contents;
+		}
+
+		fbq( 'track', 'Purchase', base_obj );
 	}
 
 	/**

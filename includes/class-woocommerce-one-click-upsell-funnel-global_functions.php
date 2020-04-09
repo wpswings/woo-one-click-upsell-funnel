@@ -390,3 +390,294 @@ function mwb_upsell_get_pid_from_url_params() {
 
 	return $params;
 }
+
+
+if( ! function_exists( 'get_order_id_from_live_param' ) ) {
+
+	/**
+	 * Get Order id from key.
+	 *
+	 * @since    2.1.0
+	 */
+	function get_order_id_from_live_param( $location='thank-you' ) {
+
+		if( 'thank-you' == $location ) {
+
+			$order_id = ! empty( $_GET[ 'key' ] ) ? wc_get_order_id_by_order_key( $_GET[ 'key' ] ) : false;
+
+		} elseif ( 'upsell' == $location ) {
+			
+			$order_id = ! empty( $_GET[ 'ocuf_ok' ] ) ? wc_get_order_id_by_order_key( $_GET[ 'ocuf_ok' ] ) : false;
+		}
+		return $order_id;
+	}
+}
+
+if( ! function_exists( 'get_first_offer_after_redirect' ) ) {
+
+	/**
+	 * Get Order id from key.
+	 *
+	 * @since    2.1.0
+	 */
+	function get_first_offer_after_redirect( $url=false ) {
+
+		if( ! empty( $url ) ) {
+
+			$url_components = parse_url( $url ); 
+
+			// Extract Query Params. 
+			if( ! empty( $url_components[ 'query' ] ) ) {
+				parse_str( $url_components['query'], $params ); 
+			}
+			
+			if( ! empty( $params[ 'ocuf_ofd' ] ) ) {
+				
+				$first_offer = ! empty( $params['ocuf_ofd'] ) ? sanitize_text_field( wp_unslash( $params['ocuf_ofd'] ) ) : '';
+				return $first_offer;
+			}	
+		}
+
+		return false;
+	}
+}
+
+
+if( ! function_exists( 'mwb_upsell_get_tracking_location' ) ) {
+
+	/**
+	 * Get Purchase event according to payment gateway.
+	 *
+	 * @since    2.1.0
+	 */
+	function mwb_upsell_get_tracking_location( $order_id='' ) {
+
+		if ( ! empty( $order_id ) ) {
+
+			$location = '';
+			$order = wc_get_order( $order_id );
+			if( ! empty( $order ) ) {
+				
+				$payment_method = $order->get_payment_method();
+
+				/**
+				 * Org Payment methods.
+				 * COD only.
+				 */
+				if( function_exists( 'mwb_upsell_lite_supported_gateways' ) && in_array( $payment_method, mwb_upsell_lite_supported_gateways() ) ) {
+					
+					$location = 'thank-you';
+				}
+
+				/**
+				 * Pro Payment methods.
+				 * Upsell Parent Supported which support parent order.
+				 */
+				elseif( function_exists( 'mwb_supported_gateways_to_trigger_parent' ) && in_array( $payment_method, mwb_supported_gateways_to_trigger_parent() ) ) {
+					
+					$location = 'upsell';
+				}
+
+				elseif( function_exists( 'mwb_upsell_supported_gateways_with_redirection' ) && in_array( $payment_method, mwb_upsell_supported_gateways_with_redirection() ) ) {
+					
+					$location = 'thank-you';
+				}
+
+				return $location;
+			}
+		}
+	}
+}
+
+
+if( ! function_exists( 'mwb_upsell_lite_get_purchase_data' ) ) {
+
+	/**
+	 * Get Purchase event data according to location.
+	 * Have to handle upsell and nonupsell orders.
+	 *
+	 * @since    2.1.0
+	 */
+	function mwb_upsell_lite_get_purchase_data( $order_id='', $current_location='', $track_type='' ) {
+
+		if( ! empty( $order_id ) && ! empty( $current_location ) ) {
+
+			$order = wc_get_order( $order_id );
+			$is_fired_already = get_post_meta( $order_id, 'purchase_event_fired' , true );
+
+			if( 'upsell' == $current_location ) {
+
+				/** 
+				 * Upsell is shown, May be first offer, have to fire main purchase.
+				 * Check for accepeted offer, have to fire last upsell purchase.
+				 */
+				$is_upsell_accepted = get_post_meta( $order_id, 'mwb_wocuf_upsell_order', true );
+				$is_main_accepted = get_post_meta( $order_id, 'mwb_wocuf_upsell_order', true );
+			}
+
+			elseif ( 'thank-you' == $current_location ) {
+
+				/** 
+				 * May be normal order.
+				 * May be Non-upsell order.
+				 * May be upsell order without redirection.
+				 * May be upsell order with parent order, have to fire last purchase.
+				 */
+				if( function_exists( 'mwb_supported_gateways_to_trigger_parent' ) && in_array( $order->get_payment_method() , mwb_supported_gateways_to_trigger_parent() ) ) {
+
+					/**
+					 * Check upsell is accepted or not.
+					 * Trigger last accepted offer.
+					 */
+				}
+				
+				elseif( ( function_exists( 'mwb_upsell_lite_supported_gateways' ) && in_array( $order->get_payment_method() , mwb_upsell_lite_supported_gateways() ) ) || ( function_exists( 'mwb_upsell_supported_gateways_with_redirection' ) && in_array( $order->get_payment_method() , mwb_upsell_supported_gateways_with_redirection() ) )  ) {
+
+					/**
+					 * Trigger for complete order items.
+					 * If upsell accepted then sends data in seperate params.
+					 */
+					if( ! $order->needs_payment() && empty( $is_fired_already ) ) {
+
+						/**
+						 * Pixel / GA Track.
+						 * Send order data now.
+						 * Add upsell order too.
+						 */
+						$contents_array = array();
+
+						$order_items = $order->get_items( 'line_item' );
+						if( ! empty( $order_items ) && is_array( $order_items ) ) {
+
+							foreach ( $order_items as $item_key => $item_obj ) {
+														
+								// Each Items purchased.
+
+								if( 'pixel' == $track_type ) {
+
+									$single_item_data = array(
+										'id'	=> ! empty( $item_obj->get_variation_id() ) ? $item_obj->get_variation_id() : $item_obj->get_product_id(),
+										'quantity'	=> $item_obj->get_quantity(),
+									);
+
+									array_push( $contents_array, $single_item_data );
+								}
+
+								elseif ( 'google_analytics' == $track_type ) {
+									
+									$product_id = ! empty( $item_obj->get_data()[ 'variation_id' ] ) ? $item_obj->get_data()[ 'variation_id' ] : $item_obj->get_data()[ 'product_id' ];
+
+									$product = wc_get_product( $product_id );
+
+									$product_categories = array();
+
+									$product_cat_obj_array = get_the_terms( $product_id, 'product_cat' );
+
+									if ( ! empty( $product_cat_obj_array ) && is_array( $product_cat_obj_array ) && count( $product_cat_obj_array ) ) {
+
+										foreach ( $product_cat_obj_array as $product_cat_obj ) {
+
+											if ( ! empty( $product_cat_obj->term_id ) ) {
+
+												if( $term = get_term_by( 'id', $product_cat_obj->term_id, 'product_cat' ) ){
+													
+													$product_categories[] = ! empty( $term->name ) ? $term->name : '';
+												}
+											}
+										}
+									}
+
+									$single_item_data = array(
+									    'id'=> ! empty( $product_id ) ? $product_id : $product_id ,
+									    'name'=> ! empty( $item_obj->get_name() ) ? $item_obj->get_name() : '' ,
+									   	'sku'=> ! empty( $product ) ? $product->get_sku() : '' ,
+									    'category'=> ! empty( $product_categories ) ? $product_categories : '' ,
+									    'price'=> ! empty( $item_obj->get_total() ) ? $item_obj->get_total() : '' ,
+									    'quantity'=> ! empty( $item_obj->get_quantity() ) ? $item_obj->get_quantity() : '' 
+									);
+
+									array_push( $contents_array, $single_item_data );
+								}
+							}
+						}
+
+						if( 'pixel' == $track_type ) {
+
+							return 	$order_purchase_data = array(
+								'value'	=>	$order->get_total(),
+								'content'	=>	$contents_array,
+							);
+						} 
+
+						elseif ( 'google_analytics' == $track_type ) {
+
+							$transaction_data = array(
+								'id'	=> $order_id,                     	// Transaction ID. Required.
+								'affiliation'	=> get_bloginfo( 'name' ),   	// Affiliation or store name.
+								'revenue'	=> $order->get_total(),               	// Grand Total.
+								'shipping'	=> $order->get_shipping_total(),                  	// Shipping.
+								'tax'	=> $order->get_total_tax()                     	// Tax.
+							);
+
+							return 	$order_purchase_data = array(
+								'ga_transaction_data'	=>	$transaction_data,
+								'ga_single_item_data'	=>	$contents_array,
+							);
+						}
+					}
+				}
+			} // End Condition for thank you.
+		} 
+	}
+}
+
+if( ! function_exists( 'mwb_upsell_lite_get_upsell_purchase_data' ) ) {
+
+	/**
+	 * Get Purchase event data according to location.
+	 * Have to handle upsell orders items.
+	 *
+	 * @since    2.1.0
+	 */
+	function mwb_upsell_lite_get_upsell_purchase_data( $order_total='', $current_location='' ) {
+
+		if( ! empty( $order_id ) && ! empty( $current_location ) ) {
+
+			$order = wc_get_order( $order_id );
+
+			if( ! empty( $order ) ) {
+
+				$order_items = $order->get_items( 'line_item' );
+				$upsell_items = get_post_meta( $order_id, '_upsell_remove_items_on_fail', true );
+
+				if( ! empty( $order_items ) && is_array( $order_items ) && ! empty( $upsell_items ) && is_array( $upsell_items ) ) {
+
+					$upsell_contents_array = array();
+					$upsell_total = 0;
+					foreach ( $order_items as $item_key => $item_obj ) {
+						
+						// Upsell orders
+						if( ! empty( $item_key ) && ! empty( $upsell_items ) && in_array( $item_key, $upsell_items ) ) {
+
+							// Each Items purchased.
+							$single_item_data = array(
+								'id'	=> ! empty( $item_obj->get_variation_id() ) ? $item_obj->get_variation_id() : $item_obj->get_product_id(),
+								'quantity'	=> $item_obj->get_quantity(),
+							);
+
+							$upsell_total += $item_obj->get_total();
+							array_push( $upsell_contents_array, $single_item_data );
+						}
+					}
+
+					// Return Data.
+					return array(
+						'value'	=> ! empty( $upsell_total ) ? $upsell_total : '0',
+						'upsell_contents'	=> ! empty( $upsell_contents_array ) ? $upsell_contents_array : array(),
+					);
+				}
+			}
+
+		} 
+	}
+}

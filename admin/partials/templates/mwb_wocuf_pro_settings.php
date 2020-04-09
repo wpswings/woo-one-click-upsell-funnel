@@ -53,6 +53,9 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 	// Smart Skip.
 	$mwb_upsell_global_options['smart_skip_if_purchased'] = ! empty( $_POST['smart_skip_if_purchased'] ) ? 'yes' : 'no';
 
+	// Upsell action Message.
+	$mwb_upsell_global_options['upsell_actions_message'] = ! empty( $_POST['upsell_actions_message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['upsell_actions_message'] ) ) : '';
+
 	// Custom CSS.
 	$mwb_upsell_global_options['global_custom_css'] = ! empty( $_POST['global_custom_css'] ) ? sanitize_textarea_field( wp_unslash( $_POST['global_custom_css'] ) ) : '';
 
@@ -120,7 +123,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 						$attribute_description = esc_html__( 'Please set up and activate Upsell supported payment gateways as offers will only appear through them.', 'woocommerce_one_click_upsell_funnel' );
 						echo wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
-						<a target="_blank" href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=checkout' ) ); ?>"><?php esc_html_e( 'Manage Upsell supported payment gateways &rarr;', 'woocommerce_one_click_upsell_funnel' ); ?></a>		
+						<a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=checkout' ) ); ?>"><?php esc_html_e( 'Manage Upsell supported payment gateways &rarr;', 'woocommerce_one_click_upsell_funnel' ); ?></a>		
 					</td>
 				</tr>
 				<!-- Payment Gateways end -->
@@ -246,7 +249,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 					<td>
 
 						<?php
-						$attribut_description = esc_html__( '( Not for Live Offer ) Set Global Offer Product for Sandbox View of Custom Offer Page.', 'woocommerce_one_click_upsell_funnel' );
+						$attribut_description = esc_html__( '( Not for Live Offer ) Set Global Offer Product for Sandbox View of : 1) Offer page when no offer product is set. 2) Custom page for offer.', 'woocommerce_one_click_upsell_funnel' );
 						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 
@@ -283,7 +286,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 						<div class="mwb_upsell_attribute_description">
 
 							<?php
-							$attribut_description = esc_html__( '( Not for Live Offer ) Set Global Offer Discount in product price for Sandbox View of Custom Offer Page.', 'woocommerce_one_click_upsell_funnel' );
+							$attribut_description = esc_html__( '( Not for Live Offer ) Set Global Offer Discount in product price for Sandbox View of : 1) Custom page for offer.', 'woocommerce_one_click_upsell_funnel' );
 							echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							?>
 
@@ -296,6 +299,35 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 							<input type="text" name="global_product_discount" value="<?php echo esc_html( $global_product_discount ); ?>">
 						</div>
 						<span class="mwb_upsell_global_description"><?php esc_html_e( 'Specify new offer price or discount %', 'woocommerce_one_click_upsell_funnel' ); ?></span>
+					</td>
+				</tr>
+				<!-- Global Offer Discount end -->
+
+				<!-- Global Offer Discount start -->
+				<tr valign="top">
+
+					<th scope="row" class="titledesc">
+						<label><?php esc_html_e( 'Upsell Actions Message', 'woocommerce_one_click_upsell_funnel' ); ?></label>
+					</th>
+
+					<td>
+
+						<div class="mwb_upsell_attribute_description">
+
+							<?php
+							$attribut_description = esc_html__( '( For Live Offer only ) This message will be shown along with a loader on clicking upsell Accept / Reject message.', 'woocommerce_one_click_upsell_funnel' );
+							echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							?>
+
+							<?php
+
+							$upsell_actions_message = isset( $mwb_upsell_global_settings['upsell_actions_message'] ) ? $mwb_upsell_global_settings['upsell_actions_message'] : '';
+
+							?>
+
+							<textarea name="upsell_actions_message" rows="4" cols="50"><?php echo esc_html__( wp_unslash( $upsell_actions_message ) ); ?></textarea>
+						</div>
+						<span class="mwb_upsell_global_description"><?php esc_html_e( 'Add a custom message on after upsell accept or reject button.', 'woocommerce_one_click_upsell_funnel' ); ?></span>
 					</td>
 				</tr>
 				<!-- Global Offer Discount end -->
