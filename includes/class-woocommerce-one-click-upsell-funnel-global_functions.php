@@ -371,35 +371,15 @@ function mwb_upsell_lite_gutenberg_offer_content() {
 		return $post_content;
 }
 
-/**
- * Fetch upsell post id from url funnel and offer params.
- *
- * @since    2.1.0
- */
-function mwb_upsell_get_pid_from_url_params() {
 
-	$params['status'] = 'false';
-
-	if ( isset( $_GET['ocuf_ofd'] ) && isset( $_GET['ocuf_fid'] ) ) {	
-
-		$params['status'] = 'true';
-
-		$params['offer_id'] = sanitize_text_field( $_GET["ocuf_ofd"] );
-		$params['funnel_id'] = sanitize_text_field( $_GET["ocuf_fid"] );
-	}
-
-	return $params;
-}
-
-
-if( ! function_exists( 'get_order_id_from_live_param' ) ) {
+if( ! function_exists( 'mwb_upsell_lite_get_order_id_from_live_param' ) ) {
 
 	/**
 	 * Get Order id from key.
 	 *
-	 * @since    2.1.0
+	 * @since    3.0.0
 	 */
-	function get_order_id_from_live_param( $location='thank-you' ) {
+	function mwb_upsell_lite_get_order_id_from_live_param( $location ='thank-you' ) {
 
 		if( 'thank-you' == $location ) {
 
@@ -413,14 +393,14 @@ if( ! function_exists( 'get_order_id_from_live_param' ) ) {
 	}
 }
 
-if( ! function_exists( 'get_first_offer_after_redirect' ) ) {
+if( ! function_exists( 'mwb_upsell_lite_get_first_offer_after_redirect' ) ) {
 
 	/**
 	 * Get Order id from key.
 	 *
 	 * @since    2.1.0
 	 */
-	function get_first_offer_after_redirect( $url=false ) {
+	function mwb_upsell_lite_get_first_offer_after_redirect( $url = false ) {
 
 		if( ! empty( $url ) ) {
 
@@ -443,14 +423,14 @@ if( ! function_exists( 'get_first_offer_after_redirect' ) ) {
 }
 
 
-if( ! function_exists( 'mwb_upsell_get_tracking_location' ) ) {
+if( ! function_exists( 'mwb_upsell_lite_get_tracking_location' ) ) {
 
 	/**
 	 * Get Purchase event according to payment gateway.
 	 *
 	 * @since    2.1.0
 	 */
-	function mwb_upsell_get_tracking_location( $order_id='' ) {
+	function mwb_upsell_lite_get_tracking_location( $order_id='' ) {
 
 		if ( ! empty( $order_id ) ) {
 

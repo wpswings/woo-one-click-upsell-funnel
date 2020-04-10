@@ -1831,7 +1831,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		if ( $validate_shortcode ) {
 
-			$live_params_from_url = mwb_upsell_get_pid_from_url_params();
+			$live_params_from_url = mwb_upsell_lite_get_pid_from_url_params();
 
 			if( ! empty( $live_params_from_url[ 'status' ] ) && 'true' == $live_params_from_url[ 'status' ] ) {
 
@@ -3215,8 +3215,8 @@ class Woocommerce_one_click_upsell_funnel_Public {
 			 * Get order id from live params.
 			 * Check the payment method for same order and ensure tracking if required.
 			 */
-			$order_id = get_order_id_from_live_param( $current_location );
-			$where_to_trigger = mwb_upsell_get_tracking_location( $order_id );
+			$order_id = mwb_upsell_lite_get_order_id_from_live_param( $current_location );
+			$where_to_trigger = mwb_upsell_lite_get_tracking_location( $order_id );
 
 			if( $where_to_trigger == $current_location ) {
 
