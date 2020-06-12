@@ -9,8 +9,8 @@
  * @link       http://makewebbetter.com/
  * @since      1.0.0
  *
- * @package    Woocommerce_one_click_upsell_funnel
- * @subpackage Woocommerce_one_click_upsell_funnel/includes
+ * @package     woo_one_click_upsell_funnel
+ * @subpackage woo_one_click_upsell_funnel/includes
  */
 
 /**
@@ -20,8 +20,8 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Woocommerce_one_click_upsell_funnel
- * @subpackage Woocommerce_one_click_upsell_funnel/includes
+ * @package     woo_one_click_upsell_funnel
+ * @subpackage woo_one_click_upsell_funnel/includes
  * @author     makewebbetter <webmaster@makewebbetter.com>
  */
 class Woocommerce_one_click_upsell_funnel_i18n {
@@ -35,7 +35,7 @@ class Woocommerce_one_click_upsell_funnel_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'woocommerce_one_click_upsell_funnel',
+			'woo-one-click-upsell-funnel',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);

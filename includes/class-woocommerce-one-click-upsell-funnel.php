@@ -9,8 +9,8 @@
  * @link       http://makewebbetter.com/
  * @since      1.0.0
  *
- * @package    Woocommerce_one_click_upsell_funnel
- * @subpackage Woocommerce_one_click_upsell_funnel/includes
+ * @package     woo_one_click_upsell_funnel
+ * @subpackage woo_one_click_upsell_funnel/includes
  */
 
 /**
@@ -23,8 +23,8 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Woocommerce_one_click_upsell_funnel
- * @subpackage Woocommerce_one_click_upsell_funnel/includes
+ * @package     woo_one_click_upsell_funnel
+ * @subpackage woo_one_click_upsell_funnel/includes
  * @author     makewebbetter <webmaster@makewebbetter.com>
  */
 class Woocommerce_one_click_upsell_funnel {
@@ -67,7 +67,7 @@ class Woocommerce_one_click_upsell_funnel {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		
+
 		if ( defined( 'MWB_WOCUF_VERSION' ) ) {
 			$this->version = MWB_WOCUF_VERSION;
 		} else {
@@ -105,30 +105,29 @@ class Woocommerce_one_click_upsell_funnel {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce_one_click_upsell_funnel-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce-one-click-upsell-funnel-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce_one_click_upsell_funnel-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce-one-click-upsell-funnel-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-woocommerce_one_click_upsell_funnel-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-woocommerce-one-click-upsell-funnel-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-woocommerce_one_click_upsell_funnel-public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-woocommerce-one-click-upsell-funnel-public.php';
 
 		/**
 		 * The file responsible for defining global plugin functions.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce_one_click_upsell_funnel-global_functions.php';
-
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce-one-click-upsell-funnel-global_functions.php';
 
 		$this->loader = new Woocommerce_one_click_upsell_funnel_Loader();
 
@@ -162,12 +161,12 @@ class Woocommerce_one_click_upsell_funnel {
 
 		$plugin_admin = new Woocommerce_one_click_upsell_funnel_Admin( $this->get_plugin_name(), $this->get_version() );
 
-		$mwb_wocuf_enable_plugin = get_option( "mwb_wocuf_enable_plugin", "on" );
+		$mwb_wocuf_enable_plugin = get_option( 'mwb_wocuf_enable_plugin', 'on' );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-				
+
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'mwb_wocuf_pro_admin_menu' );
 
 		$this->loader->add_action( 'wp_ajax_seach_products_for_offers', $plugin_admin, 'seach_products_for_offers' );
@@ -180,8 +179,6 @@ class Woocommerce_one_click_upsell_funnel {
 		// Hide Upsell offer pages in admin panel 'Pages'.
 		$this->loader->add_action( 'pre_get_posts', $plugin_admin, 'hide_upsell_offer_pages_in_admin' );
 
-		
-
 		$this->loader->add_filter( 'page_template', $plugin_admin, 'mwb_wocuf_pro_page_template' );
 
 		// Create new offer - ajax handle function.
@@ -190,7 +187,7 @@ class Woocommerce_one_click_upsell_funnel {
 		// Insert and Activate respective template ajax handle function.
 		$this->loader->add_action( 'wp_ajax_mwb_upsell_activate_offer_template_ajax', $plugin_admin, 'activate_respective_offer_template' );
 
-		if( $mwb_wocuf_enable_plugin === "on" ) {
+		if ( 'on' === $mwb_wocuf_enable_plugin ) {
 
 			// Adding Upsell Orders column in Orders table in backend.
 			$this->loader->add_filter( 'manage_edit-shop_order_columns', $plugin_admin, 'mwb_wocuf_pro_add_columns_to_admin_orders', 11 );
@@ -206,7 +203,7 @@ class Woocommerce_one_click_upsell_funnel {
 
 			// Add 'Upsell Support' column on payment gateways page.
 			$this->loader->add_filter( 'woocommerce_payment_gateways_setting_columns', $plugin_admin, 'upsell_support_in_payment_gateway' );
-			
+
 			// 'Upsell Support' content on payment gateways page.
 			$this->loader->add_action( 'woocommerce_payment_gateways_setting_column_mwb_upsell', $plugin_admin, 'upsell_support_content_in_payment_gateway' );
 
@@ -242,28 +239,30 @@ class Woocommerce_one_click_upsell_funnel {
 		$this->loader->add_filter( 'wp_get_nav_menu_items', $plugin_public, 'exclude_pages_from_menu_list', 10, 3 );
 
 		$mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', array() );
-										
-		$remove_all_styles = !empty( $mwb_upsell_global_settings['remove_all_styles'] ) ? $mwb_upsell_global_settings['remove_all_styles'] : 'yes';
 
-		if( 'yes' == $remove_all_styles && mwb_upsell_lite_elementor_plugin_active() ) {
+		$remove_all_styles = ! empty( $mwb_upsell_global_settings['remove_all_styles'] ) ? $mwb_upsell_global_settings['remove_all_styles'] : 'yes';
+
+		if ( 'yes' == $remove_all_styles && mwb_upsell_lite_elementor_plugin_active() ) {
 
 			// Remove styles from offer pages.
 			$this->loader->add_action( 'wp_print_styles', $plugin_public, 'remove_styles_offer_pages' );
 		}
 
 		$this->loader->add_action( 'init', $plugin_public, 'upsell_shortcodes' );
-		
 
-		$mwb_wocuf_enable_plugin = get_option( "mwb_wocuf_enable_plugin", "on" );
+		// Remove http and https from Upsell Action shortcodes added by Page Builders.
+		$this->loader->add_filter( 'the_content', $plugin_public, 'filter_upsell_shortcodes_content' );
 
-		if( $mwb_wocuf_enable_plugin === "on" ) {
+		$mwb_wocuf_enable_plugin = get_option( 'mwb_wocuf_enable_plugin', 'on' );
+
+		if ( 'on' === $mwb_wocuf_enable_plugin ) {
 
 			// Initiate Upsell Orders before processing payment.
 			$this->loader->add_action( 'woocommerce_checkout_order_processed', $plugin_public, 'mwb_wocuf_initate_upsell_orders' );
 
 			// When user clicks on No thanks for Upsell offer.
 			! is_admin() && $this->loader->add_action( 'wp_loaded', $plugin_public, 'mwb_wocuf_pro_process_the_funnel' );
-			
+
 			// When user clicks on Add upsell product to my Order.
 			! is_admin() && $this->loader->add_action( 'wp_loaded', $plugin_public, 'mwb_wocuf_pro_charge_the_offer' );
 
@@ -319,13 +318,19 @@ class Woocommerce_one_click_upsell_funnel {
 		return $this->version;
 	}
 
+	/**
+	 * Retrieve the version number of the woocommerce plugin.
+	 *
+	 * @since     1.0.0
+	 * @return    string    The version number of the woocommerce plugin.
+	 */
 	public function mwb_wocuf_woocommerce_version_check() {
 
 		require_once( ABSPATH . 'wp-content/plugins/woocommerce/woocommerce.php' );
-		
+
 		global $woocommerce;
-	
+
 		return $woocommerce->version;
-		
+
 	}
 }

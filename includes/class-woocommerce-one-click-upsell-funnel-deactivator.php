@@ -6,8 +6,8 @@
  * @link       http://makewebbetter.com/
  * @since      1.0.0
  *
- * @package    Woocommerce_one_click_upsell_funnel
- * @subpackage Woocommerce_one_click_upsell_funnel/includes
+ * @package     woo_one_click_upsell_funnel
+ * @subpackage woo_one_click_upsell_funnel/includes
  */
 
 /**
@@ -16,8 +16,8 @@
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
- * @package    Woocommerce_one_click_upsell_funnel
- * @subpackage Woocommerce_one_click_upsell_funnel/includes
+ * @package     woo_one_click_upsell_funnel
+ * @subpackage woo_one_click_upsell_funnel/includes
  * @author     makewebbetter <webmaster@makewebbetter.com>
  */
 class woocommerce_one_click_upsell_funnel_Deactivator {
@@ -30,16 +30,16 @@ class woocommerce_one_click_upsell_funnel_Deactivator {
 	 * @since    1.0.0
 	 */
 
-	
-	
+
+
 	public static function deactivate() {
 
 		// Clear scheduled cron for User update.
-		if ( wp_next_scheduled ( 'mwb_wocuf_lite_order_cron_schedule' ) ) {
+		if ( wp_next_scheduled( 'mwb_wocuf_lite_order_cron_schedule' ) ) {
 
-            wp_clear_scheduled_hook( 'mwb_wocuf_lite_order_cron_schedule' );
-        }
-		
+			wp_clear_scheduled_hook( 'mwb_wocuf_lite_order_cron_schedule' );
+		}
+
 	}
 
 }
