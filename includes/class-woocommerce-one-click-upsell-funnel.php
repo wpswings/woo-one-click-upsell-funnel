@@ -250,6 +250,9 @@ class Woocommerce_one_click_upsell_funnel {
 
 		$this->loader->add_action( 'init', $plugin_public, 'upsell_shortcodes' );
 
+		// Remove http and https from Upsell Action shortcodes added by Page Builders.
+		$this->loader->add_filter( 'the_content', $plugin_public, 'filter_upsell_shortcodes_content' );
+
 		$mwb_wocuf_enable_plugin = get_option( 'mwb_wocuf_enable_plugin', 'on' );
 
 		if ( 'on' === $mwb_wocuf_enable_plugin ) {

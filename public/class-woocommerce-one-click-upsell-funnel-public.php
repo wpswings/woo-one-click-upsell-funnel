@@ -560,11 +560,11 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 					$mwb_wocuf_pro_all_funnels = get_option( 'mwb_wocuf_funnels_list', array() );
 
-					$mwb_wocuf_pro_buy_text = get_option( 'mwb_wocuf_pro_buy_text', esc_html__( 'Buy Now', 'woocommerce_one_click_upsell_funnel' ) );
+					$mwb_wocuf_pro_buy_text = get_option( 'mwb_wocuf_pro_buy_text', esc_html__( 'Buy Now', 'woo-one-click-upsell-funnel' ) );
 
-					$mwb_wocuf_pro_no_text = get_option( 'mwb_wocuf_pro_no_text', esc_html__( 'No,thanks', 'woocommerce_one_click_upsell_funnel' ) );
+					$mwb_wocuf_pro_no_text = get_option( 'mwb_wocuf_pro_no_text', esc_html__( 'No,thanks', 'woo-one-click-upsell-funnel' ) );
 
-					$mwb_wocuf_pro_before_offer_price_text = get_option( 'mwb_wocuf_pro_before_offer_price_text', esc_html__( 'Special Offer Price', 'woocommerce_one_click_upsell_funnel' ) );
+					$mwb_wocuf_pro_before_offer_price_text = get_option( 'mwb_wocuf_pro_before_offer_price_text', esc_html__( 'Special Offer Price', 'woo-one-click-upsell-funnel' ) );
 
 					$mwb_wocuf_pro_offered_products = isset( $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_products_in_offer'] ) ? $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_products_in_offer'] : array();
 
@@ -576,7 +576,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 					$result .= '<div style="display:none;" id="mwb_wocuf_pro_offer_loader"><img id="mwb-wocuf-loading-offer" src="' . MWB_WOCUF_URL . 'public/images/ajax-loader.gif"></div><div class="mwb_wocuf_pro_offer_container"><div class="woocommerce"><div class="mwb_wocuf_pro_special_offers_for_you">';
 
-					$mwb_wocuf_pro_offer_banner_text = get_option( 'mwb_wocuf_pro_offer_banner_text', esc_html__( 'Special Offer For You Only', 'woocommerce_one_click_upsell_funnel' ) );
+					$mwb_wocuf_pro_offer_banner_text = get_option( 'mwb_wocuf_pro_offer_banner_text', esc_html__( 'Special Offer For You Only', 'woo-one-click-upsell-funnel' ) );
 
 					$result .= '<div class="mwb_wocuf_pro_special_offer_banner">
 								<h1>' . trim( $mwb_wocuf_pro_offer_banner_text, '"' ) . '</h1></div>';
@@ -648,9 +648,9 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 					$result .= '</div></div></div>';
 				} else {
-					$error_msg = esc_html__( 'You ran out of the special offers session.', 'woocommerce_one_click_upsell_funnel' );
+					$error_msg = esc_html__( 'You ran out of the special offers session.', 'woo-one-click-upsell-funnel' );
 
-					$link_text = esc_html__( 'Go to the "Order details" page.', 'woocommerce_one_click_upsell_funnel' );
+					$link_text = esc_html__( 'Go to the "Order details" page.', 'woo-one-click-upsell-funnel' );
 
 					$error_msg = apply_filters( 'mwb_wocuf_pro_error_message', $error_msg );
 
@@ -663,9 +663,9 @@ class Woocommerce_one_click_upsell_funnel_Public {
 					$result .= $error_msg . '<a href="' . $order_received_url . '" class="button">' . $link_text . '</a>';
 				}
 			} else {
-				$error_msg = esc_html__( 'You ran out of the special offers session.', 'woocommerce_one_click_upsell_funnel' );
+				$error_msg = esc_html__( 'You ran out of the special offers session.', 'woo-one-click-upsell-funnel' );
 
-				$link_text = esc_html__( 'Go to the "Order details" page.', 'woocommerce_one_click_upsell_funnel' );
+				$link_text = esc_html__( 'Go to the "Order details" page.', 'woo-one-click-upsell-funnel' );
 
 				$error_msg = apply_filters( 'mwb_wocuf_pro_error_message', $error_msg );
 
@@ -680,11 +680,11 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		}
 
 		if ( ! isset( $_GET['ocuf_ok'] ) || ! isset( $_GET['ocuf_ofd'] ) || ! isset( $_GET['ocuf_fid'] ) ) {
-			$mwb_wocuf_pro_no_offer_text = get_option( 'mwb_wocuf_pro_no_offer_text', esc_html__( 'Sorry, you have no offers', 'woocommerce_one_click_upsell_funnel' ) );
+			$mwb_wocuf_pro_no_offer_text = get_option( 'mwb_wocuf_pro_no_offer_text', esc_html__( 'Sorry, you have no offers', 'woo-one-click-upsell-funnel' ) );
 
 			$result .= '<div class="mwb-wocuf_pro-no-offer"><h2>' . trim( $mwb_wocuf_pro_no_offer_text, '"' ) . '</h2>';
 
-			$result .= '<a class="button wc-backward" href="' . esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ) . '">' . esc_html__( 'Return to Shop', 'woocommerce_one_click_upsell_funnel' ) . '</a></div>';
+			$result .= '<a class="button wc-backward" href="' . esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ) . '">' . esc_html__( 'Return to Shop', 'woo-one-click-upsell-funnel' ) . '</a></div>';
 
 		}
 
@@ -974,7 +974,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 			$schedules['mwb_wocuf_twenty_minutes'] = array(
 				'interval' => 20 * 60,
-				'display' => esc_html__( 'Once every 20 minutes', 'woocommerce_one_click_upsell_funnel' ),
+				'display' => esc_html__( 'Once every 20 minutes', 'woo-one-click-upsell-funnel' ),
 			);
 		}
 
@@ -1129,7 +1129,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		$id                    = $args['id'] ? $args['id'] : sanitize_title( $attribute );
 		$class                 = $args['class'];
 		$show_option_none      = $args['show_option_none'] ? true : false;
-		$show_option_none_text = $args['show_option_none'] ? $args['show_option_none'] : esc_html__( 'Choose an option', 'woocommerce_one_click_upsell_funnel' );
+		$show_option_none_text = $args['show_option_none'] ? $args['show_option_none'] : esc_html__( 'Choose an option', 'woo-one-click-upsell-funnel' );
 
 		if ( empty( $options ) && ! empty( $product ) && ! empty( $attribute ) ) {
 			$attributes = $product->get_variation_attributes();
@@ -1216,6 +1216,23 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	}
 
 	/**
+	 * Remove http and https from Upsell Action shortcodes added by Page Builders.
+	 *
+	 * @since    2.0.3
+	 */
+	public function filter_upsell_shortcodes_content( $content = '' ) {
+
+		$upsell_yes_shortcode = array( 'http://[mwb_upsell_yes]', 'https://[mwb_upsell_yes]' );
+		$upsell_no_shortcode = array( 'http://[mwb_upsell_no]', 'https://[mwb_upsell_no]' );
+
+		$content = str_replace( $upsell_yes_shortcode, '[mwb_upsell_yes]', $content );
+
+		$content = str_replace( $upsell_no_shortcode, '[mwb_upsell_no]', $content );
+
+		return $content;
+	}
+
+	/**
 	 * Get upsell product id from offer page id.
 	 *
 	 * @since    3.0.0
@@ -1283,7 +1300,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		// Product not selected alert, will run one time in one reload.
 		if ( false === wp_cache_get( 'mwb_upsell_no_product_in_offer' ) ) {
 
-			$product_not_selected_text = esc_html__( 'Product not selected, please save a product in offer or save a global Offer product in Global settings.', 'woocommerce_one_click_upsell_funnel' );
+			$product_not_selected_text = esc_html__( 'Product not selected, please save a product in offer or save a global Offer product in Global settings.', 'woo-one-click-upsell-funnel' );
 
 			?>
 
@@ -1768,7 +1785,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		}
 
 		if ( empty( $content ) ) {
-			$content = esc_html__( 'Show Order Details', 'woocommerce_one_click_upsell_funnel' );
+			$content = esc_html__( 'Show Order Details', 'woo-one-click-upsell-funnel' );
 			$content = apply_filters( 'mwb_wocuf_pro_order_details_link_text', $content );
 		}
 
@@ -1815,7 +1832,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		$mwb_wocuf_pro_all_funnels = get_option( 'mwb_wocuf_funnels_list', array() );
 
-		$mwb_wocuf_pro_before_offer_price_text = get_option( 'mwb_wocuf_pro_before_offer_price_text', esc_html__( 'Special Offer Price', 'woocommerce_one_click_upsell_funnel' ) );
+		$mwb_wocuf_pro_before_offer_price_text = get_option( 'mwb_wocuf_pro_before_offer_price_text', esc_html__( 'Special Offer Price', 'woo-one-click-upsell-funnel' ) );
 
 		$mwb_wocuf_pro_offered_products = isset( $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_products_in_offer'] ) ? $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_products_in_offer'] : array();
 
@@ -1880,7 +1897,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		$mwb_wocuf_pro_all_funnels = get_option( 'mwb_wocuf_funnels_list', array() );
 
-		$mwb_wocuf_pro_buy_text = get_option( 'mwb_wocuf_pro_buy_text', esc_html__( 'Add to my order', 'woocommerce_one_click_upsell_funnel' ) );
+		$mwb_wocuf_pro_buy_text = get_option( 'mwb_wocuf_pro_buy_text', esc_html__( 'Add to my order', 'woo-one-click-upsell-funnel' ) );
 
 		if ( empty( $content ) ) {
 			$content = $mwb_wocuf_pro_buy_text;
@@ -2008,7 +2025,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		$th = 1;
 
-		$mwb_wocuf_pro_no_text = get_option( 'mwb_wocuf_pro_no_text', esc_html__( 'No,thanks', 'woocommerce_one_click_upsell_funnel' ) );
+		$mwb_wocuf_pro_no_text = get_option( 'mwb_wocuf_pro_no_text', esc_html__( 'No,thanks', 'woo-one-click-upsell-funnel' ) );
 
 		if ( empty( $content ) ) {
 			$content = $mwb_wocuf_pro_no_text;
@@ -2193,7 +2210,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		$shop_page_url = function_exists( 'wc_get_page_id' ) ? get_permalink( wc_get_page_id( 'shop' ) ) : get_permalink( woocommerce_get_page_id( 'shop' ) );
 
-		$result = '<div style="text-align: center;margin-top: 30px;" id="mwb_upsell_offer_expired"><h2 style="font-weight: 200;">' . esc_html__( 'Sorry, Offer expired.', 'woocommerce_one_click_upsell_funnel' ) . '</h2><a class="button wc-backward" href="' . esc_url( $shop_page_url ) . '">' . esc_html__( 'Return to Shop ', 'woocommerce_one_click_upsell_funnel' ) . '&rarr;</a></div>';
+		$result = '<div style="text-align: center;margin-top: 30px;" id="mwb_upsell_offer_expired"><h2 style="font-weight: 200;">' . esc_html__( 'Sorry, Offer expired.', 'woo-one-click-upsell-funnel' ) . '</h2><a class="button wc-backward" href="' . esc_url( $shop_page_url ) . '">' . esc_html__( 'Return to Shop ', 'woo-one-click-upsell-funnel' ) . '&rarr;</a></div>';
 
 		echo $result; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped It just displayes the html itself. Content in it is already escaped.
 

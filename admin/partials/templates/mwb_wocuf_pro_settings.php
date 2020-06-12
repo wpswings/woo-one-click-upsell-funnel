@@ -26,7 +26,7 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 
 	if ( empty( $mwb_wocuf_pro_create_nonce ) || ! wp_verify_nonce( $mwb_wocuf_pro_create_nonce, 'mwb_wocuf_pro_setting_nonce' ) ) {
 
-		esc_html_e( 'Sorry, due to some security issue, your settings could not be saved.', 'woocommerce_one_click_upsell_funnel' );
+		esc_html_e( 'Sorry, due to some security issue, your settings could not be saved.', 'woo-one-click-upsell-funnel' );
 		wp_die();
 	}
 
@@ -61,7 +61,7 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 
 	<!-- Settings saved notice. -->
 	<div class="notice notice-success is-dismissible"> 
-		<p><strong><?php esc_html_e( 'Settings saved', 'woocommerce_one_click_upsell_funnel' ); ?></strong></p>
+		<p><strong><?php esc_html_e( 'Settings saved', 'woo-one-click-upsell-funnel' ); ?></strong></p>
 	</div>
 	<?php
 }
@@ -85,12 +85,12 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 				<tr valign="top">
 
 					<th scope="row" class="titledesc">
-						<label for="mwb_wocuf_enable_plugin"><?php esc_html_e( 'Enable Upsell', 'woocommerce_one_click_upsell_funnel' ); ?></label>
+						<label for="mwb_wocuf_enable_plugin"><?php esc_html_e( 'Enable Upsell', 'woo-one-click-upsell-funnel' ); ?></label>
 					</th>
 
 					<td class="forminp forminp-text">
 						<?php
-						$attribut_description = esc_html__( 'Enable Upsell plugin.', 'woocommerce_one_click_upsell_funnel' );
+						$attribut_description = esc_html__( 'Enable Upsell plugin.', 'woo-one-click-upsell-funnel' );
 						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 
@@ -106,15 +106,15 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 				<tr valign="top">
 
 					<th scope="row" class="titledesc">
-						<label><?php esc_html_e( 'Payment Gateways', 'woocommerce_one_click_upsell_funnel' ); ?></label>
+						<label><?php esc_html_e( 'Payment Gateways', 'woo-one-click-upsell-funnel' ); ?></label>
 					</th>
 
 					<td class="forminp forminp-text">
 						<?php
-						$attribute_description = esc_html__( 'Please set up and activate Upsell supported payment gateways as offers will only appear through them.', 'woocommerce_one_click_upsell_funnel' );
+						$attribute_description = esc_html__( 'Please set up and activate Upsell supported payment gateways as offers will only appear through them.', 'woo-one-click-upsell-funnel' );
 						echo wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
-						<a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=checkout' ) ); ?>"><?php esc_html_e( 'Manage Upsell supported payment gateways &rarr;', 'woocommerce_one_click_upsell_funnel' ); ?></a>		
+						<a href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=checkout' ) ); ?>"><?php esc_html_e( 'Manage Upsell supported payment gateways &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>		
 					</td>
 				</tr>
 				<!-- Payment Gateways end -->
@@ -123,13 +123,13 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 				<tr valign="top">
 
 					<th scope="row" class="titledesc">
-						<label><?php esc_html_e( 'Skip Funnel for Same Offer', 'woocommerce_one_click_upsell_funnel' ); ?></label>
+						<label><?php esc_html_e( 'Skip Funnel for Same Offer', 'woo-one-click-upsell-funnel' ); ?></label>
 					</th>
 
 					<td>
 
 						<?php
-						$attribut_description = esc_html__( 'Skip funnel if any offer product in funnel is already present during checkout.', 'woocommerce_one_click_upsell_funnel' );
+						$attribut_description = esc_html__( 'Skip funnel if any offer product in funnel is already present during checkout.', 'woo-one-click-upsell-funnel' );
 						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 
@@ -141,8 +141,8 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 						<select class="mwb_upsell_skip_similar_offer_select" name="skip_similar_offer">
 						
-							<option value="yes" <?php selected( $skip_similar_offer, 'yes' ); ?> ><?php esc_html_e( 'Yes', 'woocommerce_one_click_upsell_funnel' ); ?></option>
-							<option value="no" <?php selected( $skip_similar_offer, 'no' ); ?> ><?php esc_html_e( 'No', 'woocommerce_one_click_upsell_funnel' ); ?></option>
+							<option value="yes" <?php selected( $skip_similar_offer, 'yes' ); ?> ><?php esc_html_e( 'Yes', 'woo-one-click-upsell-funnel' ); ?></option>
+							<option value="no" <?php selected( $skip_similar_offer, 'no' ); ?> ><?php esc_html_e( 'No', 'woo-one-click-upsell-funnel' ); ?></option>
 
 						</select>
 					</td>
@@ -153,13 +153,13 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 				<tr valign="top">
 
 					<th scope="row" class="titledesc">
-						<label><?php esc_html_e( 'Remove Styles from Offer Pages', 'woocommerce_one_click_upsell_funnel' ); ?></label>
+						<label><?php esc_html_e( 'Remove Styles from Offer Pages', 'woo-one-click-upsell-funnel' ); ?></label>
 					</th>
 
 					<td>
 
 						<?php
-						$attribut_description = esc_html__( 'Remove theme and other plugin styles from offer pages. (Not applicable for Custom Offer pages)', 'woocommerce_one_click_upsell_funnel' );
+						$attribut_description = esc_html__( 'Remove theme and other plugin styles from offer pages. (Not applicable for Custom Offer pages)', 'woo-one-click-upsell-funnel' );
 						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 
@@ -171,8 +171,8 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 						<select class="mwb_upsell_remove_all_styles_select" name="remove_all_styles">
 						
-							<option value="yes" <?php selected( $remove_all_styles, 'yes' ); ?> ><?php esc_html_e( 'Yes', 'woocommerce_one_click_upsell_funnel' ); ?></option>
-							<option value="no" <?php selected( $remove_all_styles, 'no' ); ?> ><?php esc_html_e( 'No', 'woocommerce_one_click_upsell_funnel' ); ?></option>
+							<option value="yes" <?php selected( $remove_all_styles, 'yes' ); ?> ><?php esc_html_e( 'Yes', 'woo-one-click-upsell-funnel' ); ?></option>
+							<option value="no" <?php selected( $remove_all_styles, 'no' ); ?> ><?php esc_html_e( 'No', 'woo-one-click-upsell-funnel' ); ?></option>
 
 						</select>
 					</td>
@@ -183,17 +183,17 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 				<tr valign="top">
 
 					<th scope="row" class="titledesc">
-						<label><?php esc_html_e( 'Global Offer Product', 'woocommerce_one_click_upsell_funnel' ); ?></label>
+						<label><?php esc_html_e( 'Global Offer Product', 'woo-one-click-upsell-funnel' ); ?></label>
 					</th>
 
 					<td>
 
 						<?php
-						$attribut_description = esc_html__( '( Not for Live Offer ) Set Global Offer Product for Sandbox View of : 1) Offer page when no offer product is set. 2) Custom page for offer.', 'woocommerce_one_click_upsell_funnel' );
+						$attribut_description = esc_html__( '( Not for Live Offer ) Set Global Offer Product for Sandbox View of : 1) Offer page when no offer product is set. 2) Custom page for offer.', 'woo-one-click-upsell-funnel' );
 						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 
-						<select class="wc-offer-product-search mwb_upsell_offer_product" name="global_product_id" data-placeholder="<?php esc_html_e( 'Search for a product&hellip;', 'woocommerce_one_click_upsell_funnel' ); ?>">
+						<select class="wc-offer-product-search mwb_upsell_offer_product" name="global_product_id" data-placeholder="<?php esc_html_e( 'Search for a product&hellip;', 'woo-one-click-upsell-funnel' ); ?>">
 						<?php
 
 							$global_product_id = ! empty( $mwb_upsell_global_settings['global_product_id'] ) ? $mwb_upsell_global_settings['global_product_id'] : '';
@@ -218,7 +218,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 				<tr valign="top">
 
 					<th scope="row" class="titledesc">
-						<label><?php esc_html_e( 'Global Offer Discount', 'woocommerce_one_click_upsell_funnel' ); ?></label>
+						<label><?php esc_html_e( 'Global Offer Discount', 'woo-one-click-upsell-funnel' ); ?></label>
 					</th>
 
 					<td>
@@ -226,7 +226,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 						<div class="mwb_upsell_attribute_description">
 
 							<?php
-							$attribut_description = esc_html__( '( Not for Live Offer ) Set Global Offer Discount in product price for Sandbox View of : 1) Custom page for offer.', 'woocommerce_one_click_upsell_funnel' );
+							$attribut_description = esc_html__( '( Not for Live Offer ) Set Global Offer Discount in product price for Sandbox View of : 1) Custom page for offer.', 'woo-one-click-upsell-funnel' );
 							echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							?>
 
@@ -238,7 +238,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 							<input type="text" name="global_product_discount" value="<?php echo esc_html( $global_product_discount ); ?>">
 						</div>
-						<span class="mwb_upsell_global_description"><?php esc_html_e( 'Specify new offer price or discount %', 'woocommerce_one_click_upsell_funnel' ); ?></span>
+						<span class="mwb_upsell_global_description"><?php esc_html_e( 'Specify new offer price or discount %', 'woo-one-click-upsell-funnel' ); ?></span>
 					</td>
 				</tr>
 				<!-- Global Offer Discount end -->
@@ -247,7 +247,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 				<tr valign="top">
 
 					<th scope="row" class="titledesc">
-						<label><?php esc_html_e( 'Global Custom CSS', 'woocommerce_one_click_upsell_funnel' ); ?></label>
+						<label><?php esc_html_e( 'Global Custom CSS', 'woo-one-click-upsell-funnel' ); ?></label>
 					</th>
 
 					<td>
@@ -255,7 +255,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 						<div class="mwb_upsell_attribute_description">
 
 							<?php
-							$attribut_description = esc_html__( 'Enter your Custom CSS without style tags.', 'woocommerce_one_click_upsell_funnel' );
+							$attribut_description = esc_html__( 'Enter your Custom CSS without style tags.', 'woo-one-click-upsell-funnel' );
 							echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							?>
 
@@ -275,7 +275,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 				<tr valign="top">
 
 					<th scope="row" class="titledesc">
-						<label><?php esc_html_e( 'Global Custom JS', 'woocommerce_one_click_upsell_funnel' ); ?></label>
+						<label><?php esc_html_e( 'Global Custom JS', 'woo-one-click-upsell-funnel' ); ?></label>
 					</th>
 
 					<td>
@@ -283,7 +283,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 						<div class="mwb_upsell_attribute_description">
 
 							<?php
-							$attribut_description = esc_html__( 'Enter your Custom JS without script tags.', 'woocommerce_one_click_upsell_funnel' );
+							$attribut_description = esc_html__( 'Enter your Custom JS without script tags.', 'woo-one-click-upsell-funnel' );
 							echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							?>
 							<?php
@@ -304,6 +304,6 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 	</div>
 
 	<p class="submit">
-	<input type="submit" value="<?php esc_html_e( 'Save Changes', 'woocommerce_one_click_upsell_funnel' ); ?>" class="button-primary woocommerce-save-button" name="mwb_wocuf_pro_common_settings_save" id="mwb_wocuf_pro_creation_setting_save" >
+	<input type="submit" value="<?php esc_html_e( 'Save Changes', 'woo-one-click-upsell-funnel' ); ?>" class="button-primary woocommerce-save-button" name="mwb_wocuf_pro_common_settings_save" id="mwb_wocuf_pro_creation_setting_save" >
 	</p>
 </form>
