@@ -1600,6 +1600,23 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	}
 
 	/**
+	 * Remove http and https from Upsell Action shortcodes added by Page Builders.
+	 *
+	 * @since    2.0.3
+	 */
+	public function filter_upsell_shortcodes_content( $content = '' ) {
+
+		$upsell_yes_shortcode = array( 'http://[mwb_upsell_yes]', 'https://[mwb_upsell_yes]' );
+		$upsell_no_shortcode = array( 'http://[mwb_upsell_no]', 'https://[mwb_upsell_no]' );
+
+		$content = str_replace( $upsell_yes_shortcode, '[mwb_upsell_yes]', $content );
+
+		$content = str_replace( $upsell_no_shortcode, '[mwb_upsell_no]', $content );
+
+		return $content;
+	}
+
+	/**
 	 * Get upsell product id from offer page id.
 	 *
 	 * @since    3.0.0
