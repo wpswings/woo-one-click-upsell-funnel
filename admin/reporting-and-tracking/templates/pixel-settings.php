@@ -24,7 +24,7 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 	if ( empty( $mwb_wocuf_pro_create_nonce ) || ! wp_verify_nonce( $mwb_wocuf_pro_create_nonce, 'mwb_wocuf_pro_setting_nonce' ) ) : ?>
 
 		<div class="notice notice-error is-dismissible mwb-noticee">
-	         <p><?php esc_html_e( 'Sorry, due to some security issue, your settings could not be saved. Please reload the page.', 'woocommerce_one_click_upsell_funnel' ); ?></p>
+	         <p><?php esc_html_e( 'Sorry, due to some security issue, your settings could not be saved. Please reload the page.', 'woo-one-click-upsell-funnel' ); ?></p>
 	    </div>
 		<?php return false;
 
@@ -64,7 +64,7 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 
 	<!-- Settings saved notice. -->
 	<div class="notice notice-success is-dismissible"> 
-		<p><strong><?php esc_html_e( 'Settings saved', 'woocommerce_one_click_upsell_funnel' ); ?></strong></p>
+		<p><strong><?php esc_html_e( 'Settings saved', 'woo-one-click-upsell-funnel' ); ?></strong></p>
 	</div>
 	<?php
 }
@@ -83,7 +83,7 @@ $google_analytics_fields = array(
 		'label'	=>	'Enable Pixel Tracking',
 		'type'	=>	'checkbox',
 		'required'	=>	false,
-		'attribute_description'	=>	esc_html__( 'Enable Facebook Pixel Tracking on the main site. <br>Adds pixel base code and Page View Event.', 'woocommerce_one_click_upsell_funnel' ),
+		'attribute_description'	=>	esc_html__( 'Enable Facebook Pixel Tracking on the main site. <br>Adds pixel base code and Page View Event.', 'woo-one-click-upsell-funnel' ),
 		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_tracking' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_tracking' ] ) ) : 'no',
 	),
 
@@ -92,7 +92,7 @@ $google_analytics_fields = array(
 		'label'	=>	'Fb Pixel ID',
 		'type'	=>	'text',
 		'required'	=>	true,
-		'attribute_description'	=>	esc_html__( 'Log into your Facebook Pixel account to find your ID. eg: 580XXXXXXXXX325.', 'woocommerce_one_click_upsell_funnel' ),
+		'attribute_description'	=>	esc_html__( 'Log into your Facebook Pixel account to find your ID. eg: 580XXXXXXXXX325.', 'woo-one-click-upsell-funnel' ),
 		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_account_id' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_account_id' ] ) ) : '',
 	),
 
@@ -101,7 +101,7 @@ $google_analytics_fields = array(
 		'label'	=>	'Product Catalog ID',
 		'type'	=>	'text',
 		'required'	=>	false,
-		'attribute_description'	=>	esc_html__( 'Go to your Catalog managment portal in your Pixel Account. eg: 344XXXXXXXXX325.', 'woocommerce_one_click_upsell_funnel' ),
+		'attribute_description'	=>	esc_html__( 'Go to your Catalog managment portal in your Pixel Account. eg: 344XXXXXXXXX325.', 'woo-one-click-upsell-funnel' ),
 		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_product_catalog_id' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_product_catalog_id' ] ) ) : '',
 	),
 
@@ -110,7 +110,7 @@ $google_analytics_fields = array(
 		'label'	=>	'Enable View Content Event',
 		'type'	=>	'checkbox',
 		'required'	=>	false,
-		'attribute_description'	=>	esc_html__( 'Enable Facebook Pixel Pageview Event.<br>A visit to a web page you care about. For example, a product or landing page. View content tells you if someone visits a web page\'s URL, but not what they do or see on that web page.', 'woocommerce_one_click_upsell_funnel' ),
+		'attribute_description'	=>	esc_html__( 'Enable Facebook Pixel Pageview Event.<br>A visit to a web page you care about. For example, a product or landing page. View content tells you if someone visits a web page\'s URL, but not what they do or see on that web page.', 'woo-one-click-upsell-funnel' ),
 		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_viewcontent_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_viewcontent_event' ] ) ) : 'no',
 	),
 
@@ -119,7 +119,7 @@ $google_analytics_fields = array(
 		'label'	=>	'Enable Add to Cart Event',
 		'type'	=>	'checkbox',
 		'required'	=>	false,
-		'attribute_description'	=>	esc_html__( 'Enable Facebook Pixel Add to cart Event.<br>The addition of an item to a shopping cart or basket. For example, clicking an Add to Cart button on a website.', 'woocommerce_one_click_upsell_funnel' ),
+		'attribute_description'	=>	esc_html__( 'Enable Facebook Pixel Add to cart Event.<br>The addition of an item to a shopping cart or basket. For example, clicking an Add to Cart button on a website.', 'woo-one-click-upsell-funnel' ),
 		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_add_to_cart_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_add_to_cart_event' ] ) ) : 'no',
 	),
 
@@ -128,7 +128,7 @@ $google_analytics_fields = array(
 		'label'	=>	'Enable Initiate Checkout Event',
 		'type'	=>	'checkbox',
 		'required'	=>	false,
-		'attribute_description'	=>	esc_html__( 'Enable Facebook Pixel Initiate checkout Event.<br>The start of a checkout process. For example, clicking a Checkout button.', 'woocommerce_one_click_upsell_funnel' ),
+		'attribute_description'	=>	esc_html__( 'Enable Facebook Pixel Initiate checkout Event.<br>The start of a checkout process. For example, clicking a Checkout button.', 'woo-one-click-upsell-funnel' ),
 		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_initiate_checkout_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_initiate_checkout_event' ] ) ) : 'no',
 	),
 
@@ -137,7 +137,7 @@ $google_analytics_fields = array(
 		'label'	=>	'Enable Purchase Event',
 		'type'	=>	'checkbox',
 		'required'	=>	false,
-		'attribute_description'	=>	esc_html__( 'Enable Facebook Pixel Purchase Event.<br>The completion of a purchase, usually signified by receiving order or purchase confirmation, or a transaction receipt. For example, landing on a Thank You or confirmation page.', 'woocommerce_one_click_upsell_funnel' ),
+		'attribute_description'	=>	esc_html__( 'Enable Facebook Pixel Purchase Event.<br>The completion of a purchase, usually signified by receiving order or purchase confirmation, or a transaction receipt. For example, landing on a Thank You or confirmation page.', 'woo-one-click-upsell-funnel' ),
 		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_purchase_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_purchase_event' ] ) ) : 'no',
 	),
 
@@ -146,7 +146,7 @@ $google_analytics_fields = array(
 		'label'	=>	'Enable Debug Mode',
 		'type'	=>	'checkbox',
 		'required'	=>	false,
-		'attribute_description'	=>	esc_html__( 'Enable Debug mode to see if data is processing correctly or not.', 'woocommerce_one_click_upsell_funnel' ),
+		'attribute_description'	=>	esc_html__( 'Enable Debug mode to see if data is processing correctly or not.', 'woo-one-click-upsell-funnel' ),
 		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_debug_mode' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_debug_mode' ] ) ) : 'no',
 	),
 );
@@ -196,6 +196,6 @@ $google_analytics_fields = array(
 	</div>
 
 	<p class="submit">
-	<input type="submit" value="<?php esc_html_e( 'Save Changes', 'woocommerce_one_click_upsell_funnel' ); ?>" class="button-primary woocommerce-save-button" name="mwb_wocuf_pro_common_settings_save" id="mwb_wocuf_pro_creation_setting_save" >
+	<input type="submit" value="<?php esc_html_e( 'Save Changes', 'woo-one-click-upsell-funnel' ); ?>" class="button-primary woocommerce-save-button" name="mwb_wocuf_pro_common_settings_save" id="mwb_wocuf_pro_creation_setting_save" >
 	</p>
 </form>

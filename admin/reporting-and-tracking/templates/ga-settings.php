@@ -23,7 +23,7 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 
 	if ( empty( $mwb_wocuf_pro_create_nonce ) || ! wp_verify_nonce( $mwb_wocuf_pro_create_nonce, 'mwb_wocuf_pro_setting_nonce' ) ) {
 
-		esc_html_e( 'Sorry, due to some security issue, your settings could not be saved.', 'woocommerce_one_click_upsell_funnel' );
+		esc_html_e( 'Sorry, due to some security issue, your settings could not be saved.', 'woo-one-click-upsell-funnel' );
 		wp_die();
 	}
 
@@ -58,7 +58,7 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 
 	<!-- Settings saved notice. -->
 	<div class="notice notice-success is-dismissible"> 
-		<p><strong><?php esc_html_e( 'Settings saved', 'woocommerce_one_click_upsell_funnel' ); ?></strong></p>
+		<p><strong><?php esc_html_e( 'Settings saved', 'woo-one-click-upsell-funnel' ); ?></strong></p>
 	</div>
 	<?php
 }
@@ -77,7 +77,7 @@ $google_analytics_fields = array(
 			'label'	=>	'Enable GA Tracking',
 			'type'	=>	'checkbox',
 			'required'	=>	false,
-			'attribute_description'	=>	esc_html__( 'Enable Google Analytics Tracking on the main site.', 'woocommerce_one_click_upsell_funnel' ),
+			'attribute_description'	=>	esc_html__( 'Enable Google Analytics Tracking on the main site.', 'woo-one-click-upsell-funnel' ),
 			'value'	=>	! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_tracking' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_tracking' ] ) ) : 'no',
 	),
 
@@ -86,7 +86,7 @@ $google_analytics_fields = array(
 			'label'	=>	'Google Analytics ID',
 			'type'	=>	'text',
 			'required'	=>	true,
-			'attribute_description'	=>	esc_html__( 'Log into your google analytics account to find your ID. eg: UA-XXXXXX-X.', 'woocommerce_one_click_upsell_funnel' ),
+			'attribute_description'	=>	esc_html__( 'Log into your google analytics account to find your ID. eg: UA-XXXXXX-X.', 'woo-one-click-upsell-funnel' ),
 			'value'	=>	! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_account_id' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_ga_account_id' ] ) ) : '',
 	),
 
@@ -95,7 +95,7 @@ $google_analytics_fields = array(
 			'label'	=>	'Enable Purchase Event',
 			'type'	=>	'checkbox',
 			'required'	=>	false,
-			'attribute_description'	=>	esc_html__( 'Enable Google Analytics Purchase Event.', 'woocommerce_one_click_upsell_funnel' ),
+			'attribute_description'	=>	esc_html__( 'Enable Google Analytics Purchase Event.', 'woo-one-click-upsell-funnel' ),
 			'value'	=>	! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_purchase_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_purchase_event' ] ) ) : 'no',
 	),
 
@@ -104,7 +104,7 @@ $google_analytics_fields = array(
 			'label'	=>	'Enable Pageview Event',
 			'type'	=>	'checkbox',
 			'required'	=>	false,
-			'attribute_description'	=>	esc_html__( 'Enable Google Analytics Pageview Event.', 'woocommerce_one_click_upsell_funnel' ),
+			'attribute_description'	=>	esc_html__( 'Enable Google Analytics Pageview Event.', 'woo-one-click-upsell-funnel' ),
 			'value'	=>	! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_pageview_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_pageview_event' ] ) ) : 'no',
 	),
 
@@ -113,7 +113,7 @@ $google_analytics_fields = array(
 		'label'	=>	'Enable Debug Mode',
 		'type'	=>	'checkbox',
 		'required'	=>	false,
-		'attribute_description'	=>	esc_html__( 'Enable Debug mode to see if data is processing correctly or not.', 'woocommerce_one_click_upsell_funnel' ),
+		'attribute_description'	=>	esc_html__( 'Enable Debug mode to see if data is processing correctly or not.', 'woo-one-click-upsell-funnel' ),
 		'value'	=>	! empty( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_debug_mode' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config[ 'mwb_upsell_enable_debug_mode' ] ) ) : 'no',
 	),
 );
@@ -163,6 +163,6 @@ $google_analytics_fields = array(
 	</div>
 
 	<p class="submit">
-	<input type="submit" value="<?php esc_html_e( 'Save Changes', 'woocommerce_one_click_upsell_funnel' ); ?>" class="button-primary woocommerce-save-button" name="mwb_wocuf_pro_common_settings_save" id="mwb_wocuf_pro_creation_setting_save" >
+	<input type="submit" value="<?php esc_html_e( 'Save Changes', 'woo-one-click-upsell-funnel' ); ?>" class="button-primary woocommerce-save-button" name="mwb_wocuf_pro_common_settings_save" id="mwb_wocuf_pro_creation_setting_save" >
 	</p>
 </form>

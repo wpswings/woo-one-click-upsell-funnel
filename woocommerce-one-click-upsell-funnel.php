@@ -26,7 +26,7 @@
  * Author URI:        https://makewebbetter.com/
  * License:           GNU General Public License v3.0
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.html
- * Text Domain:       woocommerce_one_click_upsell_funnel
+ * Text Domain:       woo-one-click-upsell-funnel
  * Domain Path:       /languages
  */
 
@@ -120,7 +120,7 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 		$plugin_links = array(
 			'<a href="' .
 						admin_url( 'admin.php?page=mwb-wocuf-setting&tab=overview' ) .
-						'">' . esc_html__( 'Settings', 'woocommerce_one_click_upsell_funnel' ) . '</a>',
+						'">' . esc_html__( 'Settings', 'woo-one-click-upsell-funnel' ) . '</a>',
 		);
 		return array_merge( $plugin_links, $links );
 	}
@@ -134,8 +134,8 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 		if ( false !== strpos( $file, 'woocommerce_one_click_upsell_funnel.php' ) ) {
 
 			$row_meta = array(
-				'docs'    => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://docs.makewebbetter.com/woocommerce-one-click-upsell-funnel/">' . esc_html__( 'Go to Docs', 'woocommerce_one_click_upsell_funnel' ) . '</a>',
-				'goPro' => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#45b649,#dce35b);padding:5px;border-radius:6px;" href="https://makewebbetter.com/product/woocommerce-one-click-upsell-funnel-pro/?utm_source=MWB-upsell-org&utm_medium=Pro-Row&utm_campaign=ORG"><strong>' . esc_html__( 'Go Premium', 'woocommerce_one_click_upsell_funnel' ) . '</strong></a>',
+				'docs'    => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://docs.makewebbetter.com/woocommerce-one-click-upsell-funnel/">' . esc_html__( 'Go to Docs', 'woo-one-click-upsell-funnel' ) . '</a>',
+				'goPro' => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#45b649,#dce35b);padding:5px;border-radius:6px;" href="https://makewebbetter.com/product/woocommerce-one-click-upsell-funnel-pro/?utm_source=MWB-upsell-org&utm_medium=Pro-Row&utm_campaign=ORG"><strong>' . esc_html__( 'Go Premium', 'woo-one-click-upsell-funnel' ) . '</strong></a>',
 			);
 
 			return array_merge( $links, $row_meta );

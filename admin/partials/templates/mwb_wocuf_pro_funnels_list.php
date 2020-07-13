@@ -80,18 +80,18 @@ else {
 
 	<?php if ( empty( $mwb_wocuf_pro_funnels_list ) ) : ?>
 
-		<p class="mwb_wocuf_pro_no_funnel"><?php esc_html_e( 'No funnels added', 'woocommerce_one_click_upsell_funnel' ); ?></p>
+		<p class="mwb_wocuf_pro_no_funnel"><?php esc_html_e( 'No funnels added', 'woo-one-click-upsell-funnel' ); ?></p>
 
 	<?php endif; ?>
 
 	<?php if ( ! empty( $mwb_wocuf_pro_funnels_list ) ) : ?>
 		<table>
 			<tr>
-				<th><?php esc_html_e( 'Funnel Name', 'woocommerce_one_click_upsell_funnel' ); ?></th>
-				<th><?php esc_html_e( 'Status', 'woocommerce_one_click_upsell_funnel' ); ?></th>
-				<th id="mwb_upsell_funnel_list_target_th"><?php esc_html_e( 'Target Product(s)', 'woocommerce_one_click_upsell_funnel' ); ?></th>
-				<th><?php esc_html_e( 'Offers', 'woocommerce_one_click_upsell_funnel' ); ?></th>
-				<th><?php esc_html_e( 'Action', 'woocommerce_one_click_upsell_funnel' ); ?></th>
+				<th><?php esc_html_e( 'Funnel Name', 'woo-one-click-upsell-funnel' ); ?></th>
+				<th><?php esc_html_e( 'Status', 'woo-one-click-upsell-funnel' ); ?></th>
+				<th id="mwb_upsell_funnel_list_target_th"><?php esc_html_e( 'Target Product(s)', 'woo-one-click-upsell-funnel' ); ?></th>
+				<th><?php esc_html_e( 'Offers', 'woo-one-click-upsell-funnel' ); ?></th>
+				<th><?php esc_html_e( 'Action', 'woo-one-click-upsell-funnel' ); ?></th>
 				<?php do_action( 'mwb_wocuf_pro_funnel_add_more_col_head' ); ?>
 			</tr>
 
@@ -121,10 +121,10 @@ else {
 
 						if ( 'yes' == $funnel_status ) {
 
-							echo '<span class="mwb_upsell_funnel_list_live"></span><span class="mwb_upsell_funnel_list_live_name">' . esc_html__( 'Live', 'woocommerce_one_click_upsell_funnel' ) . '</span>';
+							echo '<span class="mwb_upsell_funnel_list_live"></span><span class="mwb_upsell_funnel_list_live_name">' . esc_html__( 'Live', 'woo-one-click-upsell-funnel' ) . '</span>';
 						} else {
 
-							echo '<span class="mwb_upsell_funnel_list_sandbox"></span><span class="mwb_upsell_funnel_list_sandbox_name">' . esc_html__( 'Sandbox', 'woocommerce_one_click_upsell_funnel' ) . '</span>';
+							echo '<span class="mwb_upsell_funnel_list_sandbox"></span><span class="mwb_upsell_funnel_list_sandbox_name">' . esc_html__( 'Sandbox', 'woo-one-click-upsell-funnel' ) . '</span>';
 						}
 
 						?>
@@ -153,7 +153,7 @@ else {
 
 							?>
 
-							<p><?php esc_html_e( 'No product(s) added', 'woocommerce_one_click_upsell_funnel' ); ?></p>
+							<p><?php esc_html_e( 'No product(s) added', 'woo-one-click-upsell-funnel' ); ?></p>
 
 							<?php
 						}
@@ -202,10 +202,10 @@ else {
 					<td>
 
 						<!-- Funnel View/Edit link -->
-						<a class="mwb_wocuf_pro_funnel_links" href="?page=mwb-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $key ); ?>"><?php esc_html_e( 'View / Edit', 'woocommerce_one_click_upsell_funnel' ); ?></a>
+						<a class="mwb_wocuf_pro_funnel_links" href="?page=mwb-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $key ); ?>"><?php esc_html_e( 'View / Edit', 'woo-one-click-upsell-funnel' ); ?></a>
 
 						<!-- Funnel Delete link -->
-						<a class="mwb_wocuf_pro_funnel_links" href="?page=mwb-wocuf-setting&tab=funnels-list&del_funnel_id=<?php echo esc_html( $key ); ?>"><?php esc_html_e( 'Delete', 'woocommerce_one_click_upsell_funnel' ); ?></a>
+						<a class="mwb_wocuf_pro_funnel_links" href="?page=mwb-wocuf-setting&tab=funnels-list&del_funnel_id=<?php echo esc_html( $key ); ?>"><?php esc_html_e( 'Delete', 'woo-one-click-upsell-funnel' ); ?></a>
 					</td>
 
 					<?php do_action( 'mwb_wocuf_pro_funnel_add_more_col_data' ); ?>
@@ -221,7 +221,7 @@ else {
 <!-- Create New Funnel -->
 <div class="mwb_wocuf_pro_create_new_funnel">
 
-	<a href="?page=mwb-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $mwb_wocuf_pro_funnel_number + 1 ); ?>"><?php esc_html_e( '+Create New Funnel', 'woocommerce_one_click_upsell_funnel' ); ?></a>
+	<a href="?page=mwb-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $mwb_wocuf_pro_funnel_number + 1 ); ?>"><?php esc_html_e( '+Create New Funnel', 'woo-one-click-upsell-funnel' ); ?></a>
 </div>
 
 <?php do_action( 'mwb_wocuf_pro_extend_funnels_listing' ); ?>

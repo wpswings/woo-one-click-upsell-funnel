@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div id="mwb_upsell_lite_overview">
 	<div id="mwb_upsell_lite_overview_video">
-		<h2><strong><?php esc_html_e( 'How Upsell Works with eCommerce Tracking Tools', 'woocommerce_one_click_upsell_funnel' ); ?></strong></h2>
+		<h2><strong><?php esc_html_e( 'How Upsell Works with eCommerce Tracking Tools', 'woo-one-click-upsell-funnel' ); ?></strong></h2>
 		<hr>
 		<iframe width="100%" height="450px" src="https://www.youtube.com/embed/a4_LUYzFvxw" frameborder="0" allowfullscreen=""></iframe>
 	</div>
@@ -28,8 +28,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<div id="mwb_upsell_lite_overview_pro_version">
 
-		<h2><?php esc_html_e( 'eCommerce Analytics & Tracking', 'woocommerce_one_click_upsell_funnel' ); ?></h2>
-		<h3><?php esc_html_e( 'Supported Analytics Tools', 'woocommerce_one_click_upsell_funnel' ); ?></h3>
+		<h2><?php esc_html_e( 'eCommerce Analytics & Tracking', 'woo-one-click-upsell-funnel' ); ?></h2>
+		<h3><?php esc_html_e( 'Supported Analytics Tools', 'woo-one-click-upsell-funnel' ); ?></h3>
 
 		<div class="mwb_upsell_overview_supported_product">
 			<div class="mwb_upsell_overview_simple_product_icon">
@@ -47,7 +47,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 
 		<div class="mwb_upsell_overview_go_pro">
-			<a class="button mwb_upsell_overview_go_pro_button" target="_blank" href="https://makewebbetter.com/product/woocommerce-one-click-upsell-funnel-pro/?utm_source=MWB-upsell-org&utm_medium=Overview&utm_campaign=ORG"><?php echo esc_html__( 'Upgrade to Premium', 'woocommerce_one_click_upsell_funnel' ) . ' &rarr;'; ?></a>
+			<a class="button mwb_upsell_overview_go_pro_button" target="_blank" href="https://makewebbetter.com/product/woocommerce-one-click-upsell-funnel-pro/?utm_source=MWB-upsell-org&utm_medium=Overview&utm_campaign=ORG"><?php echo esc_html__( 'Upgrade to Premium', 'woo-one-click-upsell-funnel' ) . ' &rarr;'; ?></a>
 		</div>
 	</div>
 </div>
