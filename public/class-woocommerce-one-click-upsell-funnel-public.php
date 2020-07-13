@@ -597,7 +597,13 @@ class Woocommerce_one_click_upsell_funnel_Public {
 					);
 
 					// Redirect to upsell offer page.
+					 if ( ! is_ajax() ) {
+						wp_redirect( $upsell_result['redirect'] );
+						exit;
+					}
+					
 					wp_send_json( $upsell_result );
+
 				} else {
 
 					return;

@@ -13,6 +13,9 @@
 .mwb_wocuf_pro_funnels_list table{
   table-layout: fixed;
 }
+.mwb_wocuf_pro_funnels_list table tr:nth-child(2n+1) {
+    background-color: #daedf0;
+}
 .mwb_wocuf_pro_shortcodes p{
   display: inline-block;
 }
