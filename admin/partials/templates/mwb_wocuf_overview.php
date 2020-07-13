@@ -49,17 +49,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 		
 		<div class="mwb_upsell_overview_supported_product">
 
-			<div class="mwb_upsell_overview_simple_product_icon">
+			<div class="mwb_upsell_overview_product_icon simple">
 				<img src="<?php echo esc_url( MWB_WOCUF_URL . 'admin/resources/simple-products.png' ); ?>">
 				<h4><?php esc_html_e( 'Simple Products', 'woo-one-click-upsell-funnel' ); ?></h4>
 			</div>
 
-			<div class="mwb_upsell_overview_simple_product_icon">
+			<div class="mwb_upsell_overview_product_icon variable">
 				<img src="<?php echo esc_url( MWB_WOCUF_URL . 'admin/resources/variable-products.png' ); ?>">
 				<h4><?php esc_html_e( 'Variable Products', 'woo-one-click-upsell-funnel' ); ?></h4>
 			</div>
 
-			<div class="mwb_upsell_overview_subscription_product_icon">
+			<div class="mwb_upsell_overview_product_icon subscription">
 				<img src="<?php echo esc_url( MWB_WOCUF_URL . 'admin/resources/subscription-products.png' ); ?>">
 				<h4><?php esc_html_e( 'Subscription Products', 'woo-one-click-upsell-funnel' ); ?></h4>
 			</div>

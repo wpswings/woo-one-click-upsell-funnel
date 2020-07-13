@@ -644,26 +644,26 @@ span.mwb_wocuf_pro_span label::after {
   line-height: 1em;
 }
 
-#mwb_upsell_lite_overview .mwb_upsell_overview_supported_product .mwb_upsell_overview_simple_product_icon {
+.mwb_upsell_overview_product_icon.simple, 
+.mwb_upsell_overview_product_icon.variable {
   float: left;
-  width: 48%;
+  width: 50%;
   text-align: center;
   padding: 0px 15px;
   box-sizing: border-box;
 }
-.mwb_upsell_overview_subscription_product_icon {
+.mwb_upsell_overview_product_icon.subscription {
   max-width: 50%;
   margin: 30px auto;
   text-align: center;
   clear: both;
 }
-.mwb_upsell_overview_subscription_product_icon img,
-.mwb_upsell_overview_simple_product_icon img {
+.mwb_upsell_overview_product_icon img {
   opacity: 0.9;
 }
-#mwb_upsell_lite_overview .mwb_upsell_overview_supported_product .mwb_upsell_overview_simple_product_icon img{
+
+.mwb_upsell_overview_product_icon img{
   max-width: 100%;
-  width: 500px;
 }
 #mwb_upsell_lite_overview .mwb_upsell_overview_supported_product:after {
   display: block;
@@ -708,10 +708,10 @@ span.mwb_wocuf_pro_span label::after {
 }
 
 @media only screen and (max-width: 480px) {
-  #mwb_upsell_lite_overview .mwb_upsell_overview_supported_product .mwb_upsell_overview_simple_product_icon{
+  .mwb_upsell_overview_product_icon {
     width: 100%;
   }
-  #mwb_upsell_lite_overview .mwb_upsell_overview_supported_product .mwb_upsell_overview_simple_product_icon img{
+  .mwb_upsell_overview_product_icon img{
     width: 50%;
   }
   #mwb_upsell_lite_overview #mwb_upsell_lite_overview_pro_version .mwb_upsell_overview_go_pro a.button {
@@ -1346,13 +1346,7 @@ button.button-primary.mwb_upsell_activate_offer_template:focus {
 /**=========================================== 
               Version : 2.1.0
  ============================================*/
-.mwb_upsell_overview_simple_product_icon {
-  border: 2px double #c1bebe;
-  border-radius: 12px;
-  margin: 10px;
-  max-width: 100%;
-  height: 324px;
-}
+
 .mwb_upsell_lite_tool_ga {
   margin-top: 50px;
   width: 500px;
@@ -1361,7 +1355,7 @@ button.button-primary.mwb_upsell_activate_offer_template:focus {
   width: 439px !important;
   margin-top: 20px;
 }
-.mwb_upsell_overview_simple_product_icon a:focus {
+.mwb_upsell_overview_product_icon a:focus {
   color: #ffffff;
   box-shadow: none;
   outline: none;
@@ -1420,6 +1414,10 @@ button.button-primary.mwb_upsell_activate_offer_template:focus {
   #mwb_upsell_activate_elementor {
     font-size: 13px;
     padding: 8px 10px;
+  }
+  
+  #mwb_upsell_lite_overview #mwb_upsell_lite_overview_video h2 {
+    font-size: 21px;
   }
 
 }
