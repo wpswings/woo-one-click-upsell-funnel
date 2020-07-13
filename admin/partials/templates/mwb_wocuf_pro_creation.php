@@ -215,6 +215,9 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 
 		$funnel_stats_funnel = $mwb_wocuf_pro_created_funnels[$mwb_wocuf_pro_funnel_id];
 
+		// Not Post data, so no need to Sanitize and Strip slashes.
+
+		// Empty for this already checked above.
 		$mwb_wocuf_pro_funnel['funnel_triggered_count'] = $funnel_stats_funnel['funnel_triggered_count'];
 
 		$mwb_wocuf_pro_funnel['funnel_success_count'] = ! empty( $funnel_stats_funnel['funnel_success_count'] ) ? $funnel_stats_funnel['funnel_success_count'] : 0;

@@ -74,16 +74,22 @@ jQuery(document).ready(function($){
 
 
 	/**
-	 * Upsell Strings Scripts after v2.1.0
+	 * Adding Upsell Loader since v3.0.0
 	 */
 	if( 'undefined' !== typeof( mwb_upsell_public ) ) {
 
-		mwb_wocuf_custom_upsell_message = mwb_upsell_public.upsell_actions_message;
+		if( mwb_upsell_public.show_upsell_loader ) {
 
-		// Check if message is present.
-		if( mwb_wocuf_custom_upsell_message.length ) {
+			mwb_upsell_loader_message = mwb_upsell_public.upsell_actions_message;
 
-			jQuery( 'body' ).append( '<div class="mwb_upsell_loader"><p class="mwb_upsell_loader_text">' + mwb_wocuf_custom_upsell_message + '</p></div>' );
+			mwb_upsell_loader_message_html = '';
+
+			if( mwb_upsell_loader_message.length ) {
+
+				mwb_upsell_loader_message_html = '<p class="mwb_upsell_loader_text">' + mwb_upsell_loader_message + '</p>';
+			}
+
+			jQuery( 'body' ).append( '<div class="mwb_upsell_loader">' + mwb_upsell_loader_message_html + '</div>' );
 
 			jQuery( document ).on('click', 'a', function(e) {
 

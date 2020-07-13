@@ -78,17 +78,26 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		wp_enqueue_script( 'woocommerce-one-click-upsell-public-script', plugin_dir_url( __FILE__ ) . 'js/woocommerce-oneclick-upsell-funnel-public.js', array( 'jquery' ), $this->version, true );
 
-		$upsell_global_options = get_option( 'mwb_upsell_lite_global_options', array() );
+		$show_upsell_loader = false;
+
+		// Add Upsell loader only when Live Offer or admin view. 
+		if( $this->validate_shortcode() ) {
+
+			$show_upsell_loader = true;
+			$upsell_global_options = get_option( 'mwb_upsell_lite_global_options', array() );
+
+			$upsell_loader_message = ! empty( $upsell_global_options[ 'upsell_actions_message' ] ) ? sanitize_text_field( $upsell_global_options[ 'upsell_actions_message' ] ) : '';
+		}
+
+		
 
 		wp_localize_script( 'woocommerce-one-click-upsell-public-script', 'mwb_upsell_public', array(
 			
 			'alert_preview_title' => esc_html__( 'One Click Upsell', 'woocommerce_one_click_upsell_funnel' ),
-
 			'alert_preview_content' => esc_html__( 'This is Preview Mode, please checkout to see Live Offers.', 'woocommerce_one_click_upsell_funnel' ),
-
-			'upsell_actions_message'	=>	! empty( $upsell_global_options[ 'upsell_actions_message' ] ) ? sanitize_text_field( $upsell_global_options[ 'upsell_actions_message' ] ) : '',
+			'show_upsell_loader' => $show_upsell_loader,
+			'upsell_actions_message'	=>	! empty( $show_upsell_loader ) ? $upsell_loader_message : '',
 		) );
-
 		/**
 		 * Scripts used to implement Ecommerce Tracking.
 		 * After v2.1.0
@@ -2488,7 +2497,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 					if ( mb_strpos( $s->src, 'wp-content/' ) ) {
 
 						// Except for upsell and elementor plugins.
-						if ( mb_strpos( $s->src, 'elementor' ) || mb_strpos( $s->src, 'woocommerce-one-click-upsell-funnel' ) ) {
+						if ( mb_strpos( $s->src, 'elementor' ) || mb_strpos( $s->src, 'woo-one-click-upsell-funnel' ) ) {
 
 							continue;
 						}
