@@ -1,7 +1,7 @@
-*
-* All of the CSS for your admin-specific functionality should be
-* included in this file.
-*/
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
 #mwb_wocuf_pro_setting_wrapper *{
   box-sizing: border-box;
 }
@@ -14,7 +14,7 @@
   table-layout: fixed;
 }
 .mwb_wocuf_pro_funnels_list table tr:nth-child(2n+1) {
-    background-color: #daedf0;
+    background-color: #f7f5f5;
 }
 .mwb_wocuf_pro_shortcodes p{
   display: inline-block;
@@ -522,7 +522,7 @@ span.mwb_wocuf_pro_span label::after {
 }
 
 .mwb_upsell_funnel_list_targets {
-  background-color: #f1f1f1;
+  background-color: #eaeaea;
   border-radius: 10px 10px;
 }
 
