@@ -32,13 +32,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<h3><?php esc_html_e( 'Supported Analytics Tools', 'woo-one-click-upsell-funnel' ); ?></h3>
 
 		<div class="mwb_upsell_overview_supported_product">
-			<div class="mwb_upsell_overview_simple_product_icon">
+			<div class="mwb_upsell_overview_product_icon simple">
 				<a href="<?php echo esc_url( admin_url( 'admin.php?page=mwb-wocuf-setting-tracking&tab=pixel-setting' ) ); ?>">
 					<img class="mwb_upsell_lite_tool_fb" src="<?php echo esc_url( MWB_WOCUF_URL . 'admin/reporting-and-tracking/resources/icons/facebook-pixel.png' ); ?>">
 				</a>
 			</div>
 
-			<div class="mwb_upsell_overview_simple_product_icon">
+			<div class="mwb_upsell_overview_product_icon simple">
 				<a href="<?php echo esc_url( admin_url( 'admin.php?page=mwb-wocuf-setting-tracking&tab=ga-setting' ) ); ?>">
 					<img class="mwb_upsell_lite_tool_ga" src="<?php echo esc_url( MWB_WOCUF_URL . 'admin/reporting-and-tracking/resources/icons/google-analytics.svg' ); ?>">
 				</a>

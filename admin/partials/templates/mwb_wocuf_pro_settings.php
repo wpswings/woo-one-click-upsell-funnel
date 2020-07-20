@@ -303,7 +303,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 				</tr>
 				<!-- Global Offer Discount end -->
 
-				<!-- Global Offer Discount start -->
+				<!-- Upsell Actions Message start -->
 				<tr valign="top">
 
 					<th scope="row" class="titledesc">
@@ -330,7 +330,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 						<span class="mwb_upsell_global_description"><?php esc_html_e( 'Add a custom message on after upsell accept or reject button.', 'woo-one-click-upsell-funnel' ); ?></span>
 					</td>
 				</tr>
-				<!-- Global Offer Discount end -->
+				<!-- Upsell Actions Message end -->
 
 				<!-- Global Custom CSS start -->
 				<tr valign="top">

@@ -100,7 +100,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		) );
 		/**
 		 * Scripts used to implement Ecommerce Tracking.
-		 * After v2.1.0
+		 * since v3.0.0
 		 */
 		$mwb_upsell_analytics_options = get_option( 'mwb_upsell_analytics_configuration', array() );
 
@@ -229,7 +229,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 										/**
 										 * For Admin don't check this.
-										 * After v2.1.0
+										 * since v3.0.0
 										 */
 										if( ! current_user_can('administrator') ) {
 											
@@ -243,7 +243,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 									/**
 									 * Check for funnel schedule.
-									 * After v2.1.0 convert data in array first.
+									 * since v3.0.0 convert data in array first.
 									 */
 									$mwb_wocuf_pro_funnel_schedule = ! empty( $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_wocuf_pro_funnel_schedule'] ) ? $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_wocuf_pro_funnel_schedule'] : array( '7' );
 
@@ -387,7 +387,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 										/**
 										 * Smart Skip if already purchased.
-										 * after v2.1.0
+										 * since v3.0.0
 										 */
 										$smart_skip_if_purchased = ! empty( $mwb_upsell_global_settings['smart_skip_if_purchased'] ) ? $mwb_upsell_global_settings['smart_skip_if_purchased'] : '';
 
@@ -459,7 +459,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 										$funnel_offer_post_id_assigned = ! empty( $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_upsell_post_id_assigned'][ $ocuf_ofd ] ) ? $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_upsell_post_id_assigned'][ $ocuf_ofd ] : '';
 
-										// When funnel is saved after v3.0.0 and offer post id is assigned and elementor active.
+										// When funnel is saved since v3.0.0 and offer post id is assigned and elementor active.
 										if ( ! empty( $funnel_offer_post_id_assigned ) && 'true' == $funnel_saved_after_version_3 && mwb_upsell_lite_elementor_plugin_active() ) {
 
 											$redirect_to_upsell = false;
@@ -497,7 +497,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 												$mwb_wocuf_pro_nonce = wp_create_nonce( 'funnel_offers' );
 
 												/**
-												 * Updated after v2.1.0
+												 * Updated since v3.0.0
 												 * Do not append params manually.
 												 */
 												// $result = $redirect_to_url . '?ocuf_ns=' . $mwb_wocuf_pro_nonce . '&ocuf_fid=' . $mwb_wocuf_pro_single_funnel . '&ocuf_ok=' . $ocuf_ok . '&ocuf_ofd=' . $ocuf_ofd;
@@ -536,7 +536,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 											$mwb_wocuf_pro_nonce = wp_create_nonce( 'funnel_offers' );
 
 											/**
-											 * Updated after v2.1.0
+											 * Updated since v3.0.0
 											 * Do not append params manually.
 											 */
 											// $result .= '?ocuf_ns=' . $mwb_wocuf_pro_nonce . '&ocuf_fid=' . $mwb_wocuf_pro_single_funnel . '&ocuf_ok=' . $ocuf_ok . '&ocuf_ofd=' . $ocuf_ofd;
@@ -685,7 +685,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 				$funnel_offer_post_id_assigned = ! empty( $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_upsell_post_id_assigned'][ $offer_id ] ) ? $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_upsell_post_id_assigned'][ $offer_id ] : '';
 
-				// When funnel is saved after v3.0.0 and offer post id is assigned and elementor active.
+				// When funnel is saved since v3.0.0 and offer post id is assigned and elementor active.
 				if ( ! empty( $funnel_offer_post_id_assigned ) && 'true' == $funnel_saved_after_version_3 && mwb_upsell_lite_elementor_plugin_active() ) {
 
 					$redirect_to_upsell = false;
@@ -720,7 +720,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 
 						/**
-						* Updated after v2.1.0
+						* Updated since v3.0.0
 						* Do not append params manually.
 						*/
 						// $url = $redirect_to_url . '?ocuf_ns=' . $wp_nonce . '&ocuf_ofd=' . $offer_id . '&ocuf_ok=' . $order_key . '&ocuf_fid=' . $funnel_id;
@@ -755,7 +755,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 					}
 
 					/**
-					* Updated after v2.1.0
+					* Updated since v3.0.0
 					* Do not append params manually.
 					*/
 					// $mwb_wocuf_pro_next_offer_url = $mwb_wocuf_pro_next_offer_url . '?ocuf_ns=' . $wp_nonce . '&ocuf_ofd=' . $offer_id . '&ocuf_ok=' . $order_key . '&ocuf_fid=' . $funnel_id;
@@ -1011,7 +1011,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	/**
 	 * applying offer on product price
 	 *
-	 * @since    2.1.0
+	 * @since    3.0.0
 	 * @param    object     $temp_product    Object of product.
 	 * @param    string 	$price           Offer price.
 	 * @return   object   	$temp_product    Object of product with new offer price.
@@ -1249,7 +1249,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 							$funnel_offer_post_id_assigned = ! empty( $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_upsell_post_id_assigned'][ $offer_id ] ) ? $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_upsell_post_id_assigned'][ $offer_id ] : '';
 
-							// When funnel is saved after v3.0.0 and offer post id is assigned and elementor active.
+							// When funnel is saved since v3.0.0 and offer post id is assigned and elementor active.
 							if ( ! empty( $funnel_offer_post_id_assigned ) && 'true' == $funnel_saved_after_version_3 && mwb_upsell_lite_elementor_plugin_active() ) {
 
 								$redirect_to_upsell = false;
@@ -1282,7 +1282,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 								if ( true === $redirect_to_upsell ) {
 
-									/** Updated after v2.1.0
+									/** Updated since v3.0.0
 									 */
 									// $url = $redirect_to_url . '?ocuf_ns=' . $wp_nonce . '&ocuf_ofd=' . $offer_id . '&ocuf_ok=' . $order_key . '&ocuf_fid=' . $funnel_id;
 
@@ -1597,7 +1597,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		add_shortcode( 'mwb_upsell_default_offer_identification', array( $this, 'default_offer_identification' ) );
 
 		/**
-		 * Shortcodes after v2.1.0.
+		 * Shortcodes since v3.0.0.
 		 * Quantity Field and Timer Shortcode.
 		 */
 		add_shortcode( 'mwb_upsell_timer', array( $this, 'timer_shortcode_content' ) );
@@ -2735,8 +2735,6 @@ class Woocommerce_one_click_upsell_funnel_Public {
 			$Sales_By_Funnel->add_funnel_total_sales( $upsell_item_total );
 		}
 
-		
-
 		/**
 		 * Delete Funnel id so that this is processed only once and funnel id
 		 * might change so no need to associate the order with it.
@@ -2822,7 +2820,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 *
 	 * 
 	 *
-	 * @since       2.1.0
+	 * @since       3.0.0
 	 */
 	public function timer_shortcode_content( $atts, $content = '' ) {
 		
@@ -2939,9 +2937,9 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	}
 
 	/**
-	 * Global Custom JS.
+	 * Delete the Timer data in browser session for Timer shortcode.
 	 *
-	 * @since   2.1.0
+	 * @since   3.0.0
 	 */
 	public function reset_timer_session_data() {
 
@@ -2984,7 +2982,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 *
 	 * Shows woocommerce quantity field. 
 	 *
-	 * @since       2.1.0
+	 * @since       3.0.0
 	 */
 	public function quantity_shortcode_content( $atts, $content = '' ) {
 		
@@ -3034,7 +3032,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	/**
 	 * Hide upsell Items meta string. 
 	 *
-	 * @since       2.1.0
+	 * @since       3.0.0
 	 */
 	public function hide_order_item_formatted_meta_data( $formatted_meta ){
 
@@ -3054,7 +3052,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 *
 	 * @param      string $offer_product_id    The Offer product id to check.
 	 *
-	 * @since    2.1.0
+	 * @since    3.0.0
 	 */
 	public static function mwb_wocuf_skip_for_pre_order( $offer_product_id = '' ) {
 
@@ -3125,13 +3123,13 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	/**
 	 * Add tracking basecode for Google Analytics and Facebook Pixel.
 	 *
-	 * @since   2.1.0
+	 * @since   3.0.0
 	 */
 	public function add_tracking_base_code() {
 
 		/**
 		 * Scripts used to implement Ecommerce Tracking.
-		 * After v2.1.0
+		 * since v3.0.0
 		 */
 		$mwb_upsell_analytics_options = get_option( 'mwb_upsell_analytics_configuration', array() );
 

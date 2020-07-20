@@ -2,7 +2,7 @@
 /**
  * Provide a admin area view for the plugin
  *
- * This file is used for listing all the funnels of the plugin.
+ * This file is used for Upsell Reports and Upsell Sales by Funnel - Stats.
  *
  * @link       https://makewebbetter.com/
  * @since      1.0.0
@@ -18,14 +18,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
-/**
- * Funnels Listing Template.
- *
- * This template is used for listing all existing funnels with
- * view/edit and delete option.
- */
-
 
 // Get all funnels.
 $funnels_list = get_option( 'mwb_wocuf_funnels_list' );
@@ -66,10 +58,6 @@ $funnels_list = get_option( 'mwb_wocuf_funnels_list' );
 			<!-- Foreach Funnel start -->
 			<?php
 			foreach ( $funnels_list as $key => $value ) :
-
-				$offers_count = ! empty( $value['mwb_wocuf_products_in_offer'] ) ? $value['mwb_wocuf_products_in_offer'] : array();
-
-				$offers_count = count( $offers_count );
 
 				?>
 

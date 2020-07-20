@@ -372,7 +372,7 @@ background-color: #bf0000 !important;
   text-align: center;
 }
 
-/* Upsell Action loader */
+/* since v3.0.0 - Upsell Actions loader - Start */
 .mwb_upsell_loader {
   position: fixed;
   width: 100%;
@@ -424,6 +424,7 @@ p.mwb_upsell_loader_text {
   margin: 10px auto;
   color: #ffffff;
 }
+/* since v3.0.0 - Upsell Actions loader - End */
 
 /**=========================================
  *        Media query for here.  

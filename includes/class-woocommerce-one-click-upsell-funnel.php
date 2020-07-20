@@ -130,7 +130,7 @@ class Woocommerce_one_click_upsell_funnel {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce-one-click-upsell-funnel-global_functions.php';
 
 		/**
-		 * The file responsible for Upsell Sales by Funnel Data handling and Stats.
+		 * The file responsible for Upsell Sales by Funnel - Data handling and Stats.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'reporting/class-upsell-report-sales-by-funnel.php';
 
@@ -218,7 +218,7 @@ class Woocommerce_one_click_upsell_funnel {
 
 		}
 
-		$this->loader->add_filter( 'woocommerce_admin_reports', $plugin_admin, 'mwb_wocuf_woocommerce_admin_reports' );
+		$this->loader->add_filter( 'woocommerce_admin_reports', $plugin_admin, 'add_upsell_reporting' );
 	}
 
 	/**
@@ -285,10 +285,10 @@ class Woocommerce_one_click_upsell_funnel {
 			// Global custom JS.
 			$this->loader->add_action( 'wp_footer', $plugin_public, 'global_custom_js' );
 
-			// Reset Timer session.
+			// Reset Timer session for Timer shortcode.
 			$this->loader->add_action( 'wp_footer', $plugin_public, 'reset_timer_session_data' );
 
-			// Hide the upsell meta string.
+			// Hide the upsell meta for Upsell order item for Customers.
 			! is_admin() && $this->loader->add_filter( 'woocommerce_order_item_get_formatted_meta_data', $plugin_public, 'hide_order_item_formatted_meta_data' );
 
 			// Add tracking basecode.

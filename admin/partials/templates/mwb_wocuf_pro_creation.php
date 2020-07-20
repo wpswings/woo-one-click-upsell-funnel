@@ -210,7 +210,7 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 	// Get all funnels.
 	$mwb_wocuf_pro_created_funnels = get_option( 'mwb_wocuf_funnels_list', array() );
 
-	// If funnel already exists then save funnel stats if present.
+	// If funnel already exists then save Upsell Sales by Funnel - Stats if present.
 	if( ! empty( $mwb_wocuf_pro_created_funnels[$mwb_wocuf_pro_funnel_id] ) && ! empty( $mwb_wocuf_pro_created_funnels[$mwb_wocuf_pro_funnel_id]['funnel_triggered_count'] ) ) {
 
 		$funnel_stats_funnel = $mwb_wocuf_pro_created_funnels[$mwb_wocuf_pro_funnel_id];
@@ -462,8 +462,8 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 						echo wc_help_tip( $description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 						?>
-						<!-- Add multiselect after v2.1.0 -->
-						<select class="mwb_wocuf_pro_funnel_schedule wc-bump-schedule-search" name="mwb_wocuf_pro_funnel_schedule[]" multiple="multiple" data-placeholder="<?php esc_attr_e( 'Search for a specific days&hellip;', 'woo-one-click-upsell-funnel' ); ?>">
+						<!-- Add multiselect since v3.0.0 -->
+						<select class="mwb_wocuf_pro_funnel_schedule mwb-upsell-funnel-schedule-search" name="mwb_wocuf_pro_funnel_schedule[]" multiple="multiple" data-placeholder="<?php esc_attr_e( 'Search for a specific days&hellip;', 'woo-one-click-upsell-funnel' ); ?>">
 
 							<?php
 

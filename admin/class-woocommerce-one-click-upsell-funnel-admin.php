@@ -981,7 +981,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	/**
 	 * Add custom image upload.
 	 *
-	 * @since    	2.1.0
+	 * @since    	3.0.0
 	 */
 	public function mwb_wocuf_pro_image_uploader_field( $hidden_field_index, $image_post_id = '' ) {
 
@@ -1007,33 +1007,33 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	}
 
 	/**
-	 * Add custom report. tab.
+	 * Add Upsell Reporting in Woo Admin reports.
 	 *
-	 * @since    	2.1.0
+	 * @since    	3.0.0
 	 */
-	public function mwb_wocuf_woocommerce_admin_reports( $reports ) {
+	public function add_upsell_reporting( $reports ) {
 
 	    $reports['upsell'] = array(
 
-		    'title'  => '1 Click Upsell',
+		    'title'  => esc_html__( '1 Click Upsell', 'woo-one-click-upsell-funnel' ),
 		    'reports'  => array(
 
 	            'sales_by_date' => array(
-					'title' => 'Upsell Sales by date',
+					'title' => esc_html__( 'Upsell Sales by date', 'woo-one-click-upsell-funnel' ),
 					'description' => '',
 					'hide_title' => 1,
 					'callback' => array( 'Woocommerce_one_click_upsell_funnel_Admin', 'upsell_reporting_callback' ),
 				),
 
 				'sales_by_product' => array(
-					'title' => 'Upsell Sales by product',
+					'title' => esc_html__( 'Upsell Sales by product', 'woo-one-click-upsell-funnel' ),
 					'description' => '',
 					'hide_title' => 1,
 					'callback' => array( 'Woocommerce_one_click_upsell_funnel_Admin', 'upsell_reporting_callback' ),
 				),
 
 				'sales_by_category' => array(
-					'title' => 'Upsell Sales by category',
+					'title' => esc_html__( 'Upsell Sales by category', 'woo-one-click-upsell-funnel' ),
 					'description' => '',
 					'hide_title' => 1,
 					'callback' => array( 'Woocommerce_one_click_upsell_funnel_Admin', 'upsell_reporting_callback' ),
@@ -1047,7 +1047,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	/**
 	 * Add custom report. callback.
 	 *
-	 * @since    	2.1.0
+	 * @since    	3.0.0
 	 */
 	public static function upsell_reporting_callback( $report_type ) {
 	
@@ -1077,11 +1077,10 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 		}
 	}
 
-
 	/**
-	 * Add GA/FB tracking callback.
+	 * Reporting and Funnel Stats Sub menu callback.
 	 *
-	 * @since    	2.1.0
+	 * @since    	3.0.0
 	 */
 	public function add_submenu_page_reporting_callback() {
 

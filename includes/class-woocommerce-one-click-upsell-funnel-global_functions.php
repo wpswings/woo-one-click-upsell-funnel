@@ -398,7 +398,7 @@ if( ! function_exists( 'mwb_upsell_lite_get_first_offer_after_redirect' ) ) {
 	/**
 	 * Get Order id from key.
 	 *
-	 * @since    2.1.0
+	 * @since    3.0.0
 	 */
 	function mwb_upsell_lite_get_first_offer_after_redirect( $url = false ) {
 
@@ -428,7 +428,7 @@ if( ! function_exists( 'mwb_upsell_lite_get_tracking_location' ) ) {
 	/**
 	 * Get Purchase event according to payment gateway.
 	 *
-	 * @since    2.1.0
+	 * @since    3.0.0
 	 */
 	function mwb_upsell_lite_get_tracking_location( $order_id='' ) {
 
@@ -476,7 +476,7 @@ if( ! function_exists( 'mwb_upsell_lite_get_purchase_data' ) ) {
 	 * Get Purchase event data according to location.
 	 * Have to handle upsell and nonupsell orders.
 	 *
-	 * @since    2.1.0
+	 * @since    3.0.0
 	 */
 	function mwb_upsell_lite_get_purchase_data( $order_id='', $current_location='', $track_type='' ) {
 
@@ -617,7 +617,7 @@ if( ! function_exists( 'mwb_upsell_lite_get_upsell_purchase_data' ) ) {
 	 * Get Purchase event data according to location.
 	 * Have to handle upsell orders items.
 	 *
-	 * @since    2.1.0
+	 * @since    3.0.0
 	 */
 	function mwb_upsell_lite_get_upsell_purchase_data( $order_total='', $current_location='' ) {
 

@@ -23,7 +23,7 @@ jQuery(document).ready(function($){
 	});
 
 	/**
-	 * Shortcode Scripts after v2.1.0
+	 * Shortcode Scripts since v3.0.0
 	 */
 	jQuery( '.mwb_upsell_quantity_input' ).on( 'change',function(e) {
 
@@ -64,7 +64,10 @@ jQuery(document).ready(function($){
         });
 	});
 
-	// Sweet Alert when Upsell Action Buttons are clicked in Preview Mode.
+	/**
+	 * Sweet Alert when Upsell Action Buttons are clicked in Preview Mode. 
+	 * since v3.0.0
+	 */
 	$('a[href="#preview"]').on( 'click', function(e) {
 
 		e.preventDefault();
