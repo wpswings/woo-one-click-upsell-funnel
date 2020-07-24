@@ -6,7 +6,7 @@
  * @since      1.0.0
  *
  * @package     woo_one_click_upsell_funnel
- * @subpackage woo_one_click_upsell_funnel/public
+ * @subpackage  woo_one_click_upsell_funnel/public
  */
 
 /**
@@ -571,38 +571,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 					// For cron - Upsell is initialized. As just going to Redirect.
 					update_post_meta( $order_id, 'mwb_ocufp_upsell_initialized', time() );
 
-					/**
-					 * As just going to redirect, means upsell is initialized for this order.
-					 *
-					 * This can be used to track upsell orders in which browser window was closed
-					 * and other purposes.
-					 */
-					update_post_meta( $order_id, 'mwb_upsell_order_started', 'true' );
-
-					// Add Upsell Funnel Id to order meta for Sales by Funnel tracking.
-					update_post_meta( $order_id, 'mwb_upsell_funnel_id', $mwb_wocuf_pro_single_funnel );
-
-					// Add Funnel Triggered count and Offer View Count for the current Funnel.
-					$Sales_By_Funnel = new Mwb_Upsell_Report_Sales_By_Funnel( $mwb_wocuf_pro_single_funnel );
-					$Sales_By_Funnel->add_funnel_triggered_count();
-					$Sales_By_Funnel->add_offer_view_count();
-
-
-					// Store Order ID in session so it can be re-used after payment failure.
-					WC()->session->set( 'order_awaiting_payment', $order_id );
-
-					$upsell_result = array(
-						'result' => 'success',
-						'redirect' => $result,
-					);
-
-					// Redirect to upsell offer page.
-					 if ( ! is_ajax() ) {
-						wp_redirect( $upsell_result['redirect'] );
-						exit;
-					}
-					
-					wp_send_json( $upsell_result );
+					$this->initial_redirection_to_upsell_offer_and_triggers( $order_id, $mwb_wocuf_pro_single_funnel, $result );
 
 				} else {
 
@@ -615,6 +584,49 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		}
 
 	}
+
+	/**
+	 * Initial redirection to Upsell offers
+	 * and important Triggers.
+	 *
+	 * @since    3.0.0
+	 */
+	public function initial_redirection_to_upsell_offer_and_triggers( $order_id, $funnel_id, $upsell_offer_link, $safe_redirect = false ) {
+
+		/**
+		 * As just going to redirect, means upsell is initialized for this order.
+		 *
+		 * This can be used to track upsell orders in which browser window was closed
+		 * and other purposes.
+		 */
+		update_post_meta( $order_id, 'mwb_upsell_order_started', 'true' );
+
+		// Add Upsell Funnel Id to order meta for Sales by Funnel tracking.
+		update_post_meta( $order_id, 'mwb_upsell_funnel_id', $funnel_id );
+
+		// Add Funnel Triggered count and Offer View Count for the current Funnel.
+		$Sales_By_Funnel = new Mwb_Upsell_Report_Sales_By_Funnel( $funnel_id );
+		$Sales_By_Funnel->add_funnel_triggered_count();
+		$Sales_By_Funnel->add_offer_view_count();
+
+
+		// Store Order ID in session so it can be re-used after payment failure.
+		WC()->session->set( 'order_awaiting_payment', $order_id );
+
+		$upsell_result = array(
+			'result' => 'success',
+			'redirect' => $upsell_offer_link,
+		);
+
+		// Redirect to upsell offer page.
+		 if ( ! is_ajax() ) {
+			wp_redirect( $upsell_result['redirect'] );
+			exit;
+		}
+		
+		wp_send_json( $upsell_result );
+	}
+
 
 	/**
 	 * When user clicks on No thanks for Upsell offer.
@@ -648,7 +660,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 				);
 
 				// If order or payment is already processed.
-				if ( in_array( $order->get_status(), $already_processed_order_statuses ) ) {
+				if ( in_array( $order->get_status(), $already_processed_order_statuses ) || $this->expire_further_offers( $order_id ) ) {
 
 					$this->expire_offer();
 				}
@@ -1144,7 +1156,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 					);
 
 					// If order or payment is already processed.
-					if ( in_array( $order->get_status(), $already_processed_order_statuses ) ) {
+					if ( in_array( $order->get_status(), $already_processed_order_statuses ) || $this->expire_further_offers( $order_id ) ) {
 
 						$this->expire_offer();
 					}
@@ -1424,9 +1436,17 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 */
 	public function initiate_order_payment_and_redirect( $order_id ) {
 
-		$result = $this->upsell_order_final_payment( $order_id );
-
 		$order = new WC_Order( $order_id );
+
+		if( empty( $order ) ) {
+
+			return false;
+		}
+
+		// As Order Payment is initiated so Expire further Offers.
+		update_post_meta( $order_id, '_mwb_upsell_expire_further_offers', true );
+
+		$result = $this->upsell_order_final_payment( $order_id );
 
 		$url = $order->get_checkout_order_received_url();
 
@@ -2669,6 +2689,26 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		echo $result; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped It just displayes the html itself. Content in it is already escaped.
 
 		wp_die();
+	}
+
+	/**
+	 * Expire further Offers Order meta value.
+	 *
+	 * @since    3.0.0
+	 */
+	private function expire_further_offers( $order_id = 0 ) {
+
+		$expire_further_offers = get_post_meta( $order_id, '_mwb_upsell_expire_further_offers', true );
+
+		if( ! empty( $expire_further_offers ) ) {
+
+			return true;
+		}
+
+		else {
+
+			return false;
+		}
 	}
 
 	/**

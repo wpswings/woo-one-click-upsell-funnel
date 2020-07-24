@@ -224,6 +224,11 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
       )
     );
 
+    $this->report_data->total_tax_refunded          = 0;
+    $this->report_data->total_shipping_refunded     = 0;
+    $this->report_data->total_shipping_tax_refunded = 0;
+    $this->report_data->total_refunds               = 0;
+
     // Totals from all orders - including those refunded. Subtract refunded amounts.
     $this->report_data->total_tax          = wc_format_decimal( array_sum( wp_list_pluck( $this->report_data->orders, 'total_tax' ) ) - $this->report_data->total_tax_refunded, 2 );
     $this->report_data->total_shipping     = wc_format_decimal( array_sum( wp_list_pluck( $this->report_data->orders, 'total_shipping' ) ) - $this->report_data->total_shipping_refunded, 2 );
@@ -280,7 +285,7 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
         __( '%s net upsell sales in this period', 'woocommerce-one-click-upsell-funnel-pro' ),
         '<strong>' . wc_price( $data->total_sales ) . '</strong>'
       ),
-      'placeholder'      => __( 'This is the sum of the upsell item totals after any refunds and excluding shipping and taxes.', 'woocommerce-one-click-upsell-funnel-pro' ),
+      'placeholder'      => __( 'This is the sum of the upsell item totals after any refunds ( whole order refunds ) and excluding shipping and taxes.', 'woocommerce-one-click-upsell-funnel-pro' ),
       'color'            => $this->chart_colours['sales_amount'],
       'highlight_series' => 6,
     );
@@ -317,6 +322,8 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
         __( '%s upsell refunded items', 'woocommerce-one-click-upsell-funnel-pro' ),
         '<strong>' . $data->refunded_order_items . '</strong>'
       ),
+
+      'placeholder'      => __( 'Total upsell refunded items from fully refunded orders.', 'woocommerce-one-click-upsell-funnel-pro' ),
       'color' => $this->chart_colours['refund_amount'],
       'highlight_series' => 8,
     );
@@ -410,12 +417,12 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 
     foreach ( $data['order_amounts'] as $order_amount_key => $order_amount_value ) {
       $data['gross_order_amounts'][ $order_amount_key ]    = $order_amount_value;
-      $data['gross_order_amounts'][ $order_amount_key ][1] -= $data['refund_amounts'][ $order_amount_key ][1];
+      // $data['gross_order_amounts'][ $order_amount_key ][1] -= $data['refund_amounts'][ $order_amount_key ][1];
 
       $data['net_order_amounts'][ $order_amount_key ]    = $order_amount_value;
       // subtract the sum of the values from net order amounts
       $data['net_order_amounts'][ $order_amount_key ][1] -=
-        $data['refund_amounts'][ $order_amount_key ][1] +
+        // $data['refund_amounts'][ $order_amount_key ][1] +
         $data['shipping_amounts'][ $order_amount_key ][1] +
         $data['shipping_tax_amounts'][ $order_amount_key ][1] +
         $data['tax_amounts'][ $order_amount_key ][1];
@@ -481,16 +488,6 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
               lines: { show: true, lineWidth: 3, fill: false },
               shadowSize: 0,
               <?php echo $this->get_currency_tooltip(); ?>
-            },
-            {
-              label: "<?php echo esc_js( __( 'Refund amount', 'woocommerce-one-click-upsell-funnel-pro' ) ); ?>",
-              data: order_data.refund_amounts,
-              yaxis: 2,
-              color: '<?php echo $this->chart_colours['refund_amount']; ?>',
-              points: { show: true, radius: 5, lineWidth: 2, fillColor: '#fff', fill: true },
-              lines: { show: true, lineWidth: 2, fill: false },
-              shadowSize: 0,
-              prepend_tooltip: "<?php echo get_woocommerce_currency_symbol(); ?>"
             },
           ];
 
