@@ -254,6 +254,21 @@ function mwb_upsell_lite_supported_gateways() {
 }
 
 /**
+ * Upsell supported payment gateways for which Parent Order is secured.
+ * Either with Initial payment or via Cron. 
+ *
+ * @since    3.5.0
+ */
+function mwb_upsell_lite_payment_gateways_with_parent_secured() {
+
+	$gateways_with_parent_secured = array(
+		'cod', // Cash on delivery
+	);
+
+	return apply_filters( 'mwb_upsell_lite_pg_with_parent_secured', $gateways_with_parent_secured );
+}
+
+/**
  * Elementor Upsell offer template 1.
  *
  * ( Default Template ).

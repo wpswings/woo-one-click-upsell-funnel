@@ -16,7 +16,8 @@
 .mwb_wocuf_pro_funnels_list table tr:nth-child(2n+1) {
     background-color: #f7f5f5;
 }
-.mwb_wocuf_pro_shortcodes p{
+.mwb_wocuf_pro_shortcodes p,
+.mwb_upsell_slide_down p {
   display: inline-block;
 }
 #mwb_wocuf_pro_setting_wrapper h1{
@@ -311,10 +312,12 @@ h1.mwb_wocuf_pro_setting_title .mwb-wocuf-pro-wrap h1 {
 table.form-table.mwb_wocuf_pro_shortcodes .mwb_upsell_shortcode_div {
   margin: 10px 0px;
 }
-table.form-table.mwb_wocuf_pro_shortcodes tr td, table.form-table.mwb_wocuf_pro_shortcodes tr th {
+table.form-table.mwb_wocuf_pro_shortcodes tr td, table.form-table.mwb_wocuf_pro_shortcodes tr th,
+table.form-table.mwb_upsell_slide_down_table tr td, table.form-table.mwb_upsell_slide_down_table tr th {
   vertical-align: middle;
 }
-table.form-table.mwb_wocuf_pro_shortcodes {
+table.form-table.mwb_wocuf_pro_shortcodes,
+table.form-table.mwb_upsell_slide_down_table {
   margin-top: 20px;
 }
 .mwb_wocuf_pro_new_offer {
@@ -435,7 +438,7 @@ span.mwb_wocuf_pro_span label::after {
   border-radius: 10px;
 }
 
-.mwb_upsell_old_shortcodes_link {
+.mwb_upsell_slide_down_link {
   overflow: hidden;
   display: inline-block;
   width: 27px;
@@ -444,29 +447,29 @@ span.mwb_wocuf_pro_span label::after {
   position: absolute;
 }
 
-.mwb_upsell_old_shortcodes_title {
+.mwb_upsell_slide_down_title {
   position: relative;
   background-color: #f1f1f1;
   margin-top: 30px;
 }
-.mwb_upsell_old_shortcodes_title h2 {
+.mwb_upsell_slide_down_title h2 {
   color: #5f5555;
   padding-left: 20px;
 }
 
-.mwb_upsell_old_shortcodes {
+.mwb_upsell_slide_down_content {
   display: none;
 }
 
-.mwb_upsell_old_shortcodes_title h2 {
+.mwb_upsell_slide_down_title h2 {
   display: inline-block;
 }
 
-.mwb_upsell_old_shortcodes_link:focus {
+.mwb_upsell_slide_down_link:focus {
   box-shadow: 0px 0px 0px 0px;
 }
 
-.mwb_upsell_old_shortcodes_link img {
+.mwb_upsell_slide_down_link img {
   width: 100%;
 }
 
@@ -809,6 +812,17 @@ span.mwb_wocuf_pro_span label::after {
   font-style: italic;
   display: block;
 }
+#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_upsell_slide_down_table tr td .mwb_upsell_global_description {
+  font-size: 13.6px;
+}
+#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_upsell_slide_down_table .mwb_upsell_other_plugin_author_name {
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 500;
+}
+#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_upsell_slide_down_table .mwb_upsell_global_description b {
+  font-weight: 500;
+}
 .new_created_offers.mwb_upsell_single_offer .mwb_upsell_offer_templates_parent {
   display: flex;
   flex-wrap: wrap;
@@ -822,7 +836,7 @@ span.mwb_wocuf_pro_span label::after {
   width: 100%;
   max-width: 400px;
 }
-.mwb_upsell_old_shortcodes_title h2 {
+.mwb_upsell_slide_down_title h2 {
   font-size: 14px;
 }
 .mwb_wocuf_pro_header {
@@ -1205,7 +1219,8 @@ div#mwb_wocuf_pro_setting_wrapper .submit #mwb_wocuf_pro_creation_setting_save {
   height: auto;
   font-size: 14px;
 }
-table.form-table.mwb_wocuf_pro_shortcodes {
+table.form-table.mwb_wocuf_pro_shortcodes,
+table.form-table.mwb_upsell_slide_down_table {
   margin-top: 30px !important;
   border: solid 2px #ccc;
 }

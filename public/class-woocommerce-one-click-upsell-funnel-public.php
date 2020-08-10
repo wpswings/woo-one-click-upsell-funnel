@@ -2751,6 +2751,834 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	}
 
 	/**
+	 * Add Base Code for Google Analyics and Facebook Pixel.
+	 *
+	 * @since    3.5.0
+	 */
+	public function add_ga_and_fb_pixel_base_code() {
+
+		$upsell_analytics_options = get_option( 'mwb_upsell_analytics_configuration', array() );
+
+		$ga_analytics_config = ! empty( $upsell_analytics_options[ 'google-analytics' ] ) ? $upsell_analytics_options[ 'google-analytics' ] : array();
+		$fb_pixel_config = ! empty( $upsell_analytics_options[ 'facebook-pixel' ] ) ? $upsell_analytics_options[ 'facebook-pixel' ] : array();
+
+		$add_ga_base_code = false;
+		$add_fb_pixel_base_code = false;
+
+		if( ! empty( $ga_analytics_config['enable_ga_gst'] ) && 'yes' == $ga_analytics_config['enable_ga_gst'] && ! empty( $ga_analytics_config['ga_account_id'] ) ) {
+
+			$add_ga_base_code = true;
+
+			$ga_tracking_id = $ga_analytics_config['ga_account_id'];
+		}
+		
+		if( ! empty( $fb_pixel_config['enable_pixel_basecode'] ) && 'yes' == $fb_pixel_config['enable_pixel_basecode'] && ! empty( $fb_pixel_config['pixel_account_id'] ) ) {
+
+			$add_fb_pixel_base_code = true;
+
+			$pixel_id = $fb_pixel_config['pixel_account_id'];
+		}
+		
+		if( $add_ga_base_code ) :
+
+			?>
+			<!-- Global site tag (gtag.js) - Google Analytics - Start ( 1 Click Upsell Plugin ) -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_attr( $ga_tracking_id ); ?>"></script>
+	        <script>
+	            window.dataLayer = window.dataLayer || [];
+	            function gtag(){dataLayer.push(arguments)};
+	            gtag('js', new Date());
+
+	            gtag('config', '<?php echo esc_attr( $ga_tracking_id ); ?>');
+	        </script>
+	        <!-- Global site tag (gtag.js) - Google Analytics - End ( 1 Click Upsell Plugin ) -->
+			<?php
+
+		endif;
+
+		if( $add_fb_pixel_base_code ) :
+
+			?>
+			<!-- Facebook Pixel Code ( 1 Click Upsell Plugin ) -->
+			<script>
+				!function(f,b,e,v,n,t,s)
+				{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+				n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+				if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+				n.queue=[];t=b.createElement(e);t.async=!0;
+				t.src=v;s=b.getElementsByTagName(e)[0];
+				s.parentNode.insertBefore(t,s)}(window, document,'script',
+				'https://connect.facebook.net/en_US/fbevents.js');
+				fbq('init', '<?php echo( esc_html( $pixel_id ) ); ?>');
+				fbq('track', 'PageView');
+			</script>
+			<noscript>
+				<img height="1" width="1" style="display:none"
+			src="https://www.facebook.com/tr?id=<?php echo( esc_html( $pixel_id ) ); ?>&ev=PageView&noscript=1"
+			/>
+			</noscript>
+			<!-- End Facebook Pixel Code ( 1 Click Upsell Plugin ) -->
+			<?php
+
+		endif;
+	}
+
+	/**
+	 * GA and FB Pixel Purchase Event - Track Parent Order on 1st Upsell Offer Page.
+	 *
+	 * @since    3.5.0
+	 */
+	public function ga_and_fb_pixel_purchase_event_for_parent_order() {
+
+		$validate_shortcode = $this->validate_shortcode();
+
+		if ( 'live_offer' == $validate_shortcode ) {
+
+			$upsell_analytics_options = get_option( 'mwb_upsell_analytics_configuration', array() );
+
+			$ga_analytics_config = ! empty( $upsell_analytics_options[ 'google-analytics' ] ) ? $upsell_analytics_options[ 'google-analytics' ] : array();
+			$fb_pixel_config = ! empty( $upsell_analytics_options[ 'facebook-pixel' ] ) ? $upsell_analytics_options[ 'facebook-pixel' ] : array();
+
+			$add_ga_purchase_event = false;
+			$add_fb_pixel_purchase_event = false;
+
+			if( ! empty( $ga_analytics_config['enable_purchase_event'] ) && 'yes' == $ga_analytics_config['enable_purchase_event'] ) {
+
+				$add_ga_purchase_event = true;
+			}
+			
+			if( ! empty( $fb_pixel_config['enable_purchase_event'] ) && 'yes' == $fb_pixel_config['enable_purchase_event'] ) {
+
+				$add_fb_pixel_purchase_event = true;
+			}
+
+			if( $add_ga_purchase_event ) :
+
+				$this->add_ga_purchase_event_for_parent_order();
+
+			endif;
+
+			if( $add_fb_pixel_purchase_event ) :
+
+				$this->add_fb_pixel_purchase_event_for_parent_order();
+
+			endif;
+		}
+	}
+
+	/**
+	 * GA and FB Pixel Purchase Event - Track Order on Thankyou page.
+	 *
+	 * @since    3.5.0
+	 */
+	public function ga_and_fb_pixel_purchase_event( $order_id = '' ) {
+
+		$upsell_analytics_options = get_option( 'mwb_upsell_analytics_configuration', array() );
+
+		$ga_analytics_config = ! empty( $upsell_analytics_options[ 'google-analytics' ] ) ? $upsell_analytics_options[ 'google-analytics' ] : array();
+		$fb_pixel_config = ! empty( $upsell_analytics_options[ 'facebook-pixel' ] ) ? $upsell_analytics_options[ 'facebook-pixel' ] : array();
+
+		$add_ga_purchase_event = false;
+		$add_fb_pixel_purchase_event = false;
+
+		if( ! empty( $ga_analytics_config['enable_purchase_event'] ) && 'yes' == $ga_analytics_config['enable_purchase_event'] ) {
+
+			$add_ga_purchase_event = true;
+		}
+		
+		if( ! empty( $fb_pixel_config['enable_purchase_event'] ) && 'yes' == $fb_pixel_config['enable_purchase_event'] ) {
+
+			$add_fb_pixel_purchase_event = true;
+		}
+
+		if( $add_ga_purchase_event ) :
+
+			$this->add_ga_purchase_event( $order_id );
+
+		endif;
+
+		if( $add_fb_pixel_purchase_event ) :
+
+			$this->add_fb_pixel_purchase_event( $order_id );
+
+		endif;
+	}
+
+	/**
+	 * Google Analyics Purchase Event for Parent Order.
+	 *
+	 * @since    3.5.0
+	 */
+	public function add_ga_purchase_event_for_parent_order() {
+
+		$order_key = sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) );
+
+        $order_id = wc_get_order_id_by_order_key( $order_key );
+
+        // Process once and only for Upsells.
+        if( empty( $order_id ) || ! get_post_meta( $order_id, 'mwb_upsell_order_started', true ) == 1 || ! empty( get_post_meta( $order_id, '_mwb_upsell_ga_parent_tracked', true ) ) || get_post_meta( $order_id, '_mwb_upsell_ga_tracked', true ) == 1 ) {
+
+            return;
+        }
+
+        $order = wc_get_order( $order_id );
+
+        if( empty( $order ) ) {
+
+        	return;
+        }
+
+        // Only for those payment gateways with which Parent Order is Secured.
+        $payment_method = $order->get_payment_method();
+
+		$gateways_with_parent_secured = mwb_upsell_lite_payment_gateways_with_parent_secured();
+
+		if ( ! in_array( $payment_method, $gateways_with_parent_secured ) ) {
+
+			return;
+		}
+
+        // Start Tracking handling.
+
+        global $woocommerce;
+
+        // Get Coupon Codes.
+        $coupons_list = '';
+
+        if( version_compare( $woocommerce->version, '3.7', '>' ) ) {
+
+            if ( $order->get_coupon_codes() ) {
+
+                $coupons_count = count( $order->get_coupon_codes() );
+                $i = 1;
+
+                foreach ( $order->get_coupon_codes() as $coupon ) {
+
+                    $coupons_list .= $coupon;
+                    if ( $i < $coupons_count )
+                        $coupons_list .= ', ';
+                    $i++;
+                }
+            }
+        }
+
+        else {
+
+            if ( $order->get_used_coupons() ) {
+
+                $coupons_count = count( $order->get_used_coupons() );
+                $i = 1;
+
+                foreach ( $order->get_used_coupons() as $coupon ) {
+
+                    $coupons_list .= $coupon;
+                    if ( $i < $coupons_count )
+                        $coupons_list .= ', ';
+                    $i++;
+                }
+            }    
+        }
+
+        // All Order items.
+        $order_items = $order->get_items();
+
+		if( ! empty( $order_items ) && is_array( $order_items ) ) {
+
+            foreach ( $order_items as $item ) {
+
+                $_product = $item->get_product();
+
+                if ( isset( $_product->variation_data ) ) {
+
+                    $categories = esc_js( wc_get_formatted_variation( $_product->get_variation_attributes(), true) );
+                } 
+
+                else {
+
+                    $out = array();
+
+                    $categories = get_the_terms( $_product->get_id(), 'product_cat' );
+
+                    if ( $categories ) {
+
+                        foreach ( $categories as $category ) {
+
+                            $out[] = $category->name;
+                        }
+                    }
+
+                    $categories = esc_js( join( ',', $out ) );
+                }
+
+               $product_data[ get_permalink( $_product->get_id() ) ]=array(
+                    'p_id' => esc_html( $_product->get_id() ),
+                    'p_sku' => esc_js( $_product->get_sku() ? $_product->get_sku() : $_product->get_id() ),
+                    'p_name' => html_entity_decode( $_product->get_title() ),
+                    'p_price' => esc_js( $order->get_item_total( $item ) ),
+                    'p_cat' => $categories,
+                    'p_qty' => esc_js( $item['qty'] )
+                );
+            }
+            
+            // Add Product data json.
+            wc_enqueue_js( 'mwb_upsell_ga_pd=' . json_encode( $product_data ) . ';' );
+
+        }	
+
+        // Get Shipping total.
+        $total_shipping = $order->get_total_shipping();
+
+        $order_total = $order->get_total();
+        $order_total_tax = $order->get_total_tax();
+
+        $upsell_ga_parent_tracked_data = array(
+            'order_total' => $order_total,
+            'order_total_tax' => $order_total_tax,
+            'order_total_shipping' => $total_shipping,
+        );
+
+        $transaction_data = array(
+            'id' => esc_js( $order->get_order_number() ),
+            'affiliation' => esc_js( get_bloginfo( 'name' ) ),
+            'revenue' => esc_js( $order_total ),
+            'tax' => esc_js( $order_total_tax ),
+            'shipping' => esc_js( $total_shipping ),
+            'coupon' => $coupons_list,
+            'currency' => get_woocommerce_currency(),
+            'label' => 'Parent Purchase'
+        );
+
+        // Add Transaction data json.
+        wc_enqueue_js( 'mwb_upsell_ga_td=' . json_encode( $transaction_data ) . ';' );
+
+        $ga_purchase_js ='
+                 var items = [];
+                //set local currencies
+            gtag("set", {"currency": mwb_upsell_ga_td.currency});
+            for(var p_item in mwb_upsell_ga_pd){
+                items.push({
+                    "id": mwb_upsell_ga_pd[p_item].p_sku,
+                    "name": mwb_upsell_ga_pd[p_item].p_name, 
+                    "category": mwb_upsell_ga_pd[p_item].p_cat,
+                    "price": mwb_upsell_ga_pd[p_item].p_price,
+                    "quantity": mwb_upsell_ga_pd[p_item].p_qty,
+                });
+               
+            }
+            gtag("event", "purchase", {
+                "transaction_id":mwb_upsell_ga_td.id,
+                "affiliation": mwb_upsell_ga_td.affiliation,
+                "value":mwb_upsell_ga_td.revenue,
+                "tax": mwb_upsell_ga_td.tax,
+                "shipping": mwb_upsell_ga_td.shipping,
+                "coupon": mwb_upsell_ga_td.coupon,
+                "event_category": "ecommerce",
+                "event_label": mwb_upsell_ga_td.label,
+                "non_interaction": true,
+                "items":items
+            });
+        ';
+
+        wc_enqueue_js( $ga_purchase_js );
+
+        update_post_meta( $order_id, "_mwb_upsell_ga_parent_tracked", $upsell_ga_parent_tracked_data );
+	}
+
+	/**
+	 * Google Analyics Purchase Event for Parent Order.
+	 *
+	 * @since    3.5.0
+	 */
+	public function add_ga_purchase_event( $order_id = '' ) {
+
+		if( empty( $order_id ) || get_post_meta( $order_id, '_mwb_upsell_ga_tracked', true ) == 1 ) {
+
+            return;
+        }
+
+        $order = wc_get_order( $order_id );
+
+        if( empty( $order ) ) {
+
+        	return;
+        }
+
+        // Start Tracking handling.
+
+        global $woocommerce;
+
+        // Get Coupon Codes.
+        $coupons_list = '';
+
+        if( version_compare( $woocommerce->version, '3.7', '>' ) ) {
+
+            if ( $order->get_coupon_codes() ) {
+
+                $coupons_count = count( $order->get_coupon_codes() );
+                $i = 1;
+
+                foreach ( $order->get_coupon_codes() as $coupon ) {
+
+                    $coupons_list .= $coupon;
+                    if ( $i < $coupons_count )
+                        $coupons_list .= ', ';
+                    $i++;
+                }
+            }
+        }
+
+        else {
+
+            if ( $order->get_used_coupons() ) {
+
+                $coupons_count = count( $order->get_used_coupons() );
+                $i = 1;
+
+                foreach ( $order->get_used_coupons() as $coupon ) {
+
+                    $coupons_list .= $coupon;
+                    if ( $i < $coupons_count )
+                        $coupons_list .= ', ';
+                    $i++;
+                }
+            }    
+        }
+
+        $upsell_ga_parent_tracked = false;
+        $upsell_ga_parent_tracked_data = get_post_meta( $order_id, '_mwb_upsell_ga_parent_tracked', true );
+
+        if( ! empty( $upsell_ga_parent_tracked_data ) && is_array( $upsell_ga_parent_tracked_data ) ) {
+
+            $upsell_ga_parent_tracked = true;
+            $upsell_purchase = false;
+        }
+
+        // All Order items.
+        $order_items = $order->get_items();
+
+		if( ! empty( $order_items ) && is_array( $order_items ) ) {
+
+            foreach ( $order_items as $item_id => $item ) {
+
+            	// When Parent Order is already tracked.
+                if( $upsell_ga_parent_tracked ) {
+
+                    // If not Upsell Purchase Item then Continue. So this loop will only add Upsell items if Parent Order is already tracked. 
+                    if( empty( wc_get_order_item_meta( $item_id, 'is_upsell_purchase', true ) ) ) {
+
+                        continue;
+                    }
+
+                    // Did not continue means there is an Upsell item.
+                    $upsell_purchase = true;
+                }
+
+                $_product = $item->get_product();
+
+                if ( isset( $_product->variation_data ) ) {
+
+                    $categories = esc_js( wc_get_formatted_variation( $_product->get_variation_attributes(), true) );
+                } 
+
+                else {
+
+                    $out = array();
+
+                    $categories = get_the_terms( $_product->get_id(), 'product_cat' );
+
+                    if ( $categories ) {
+
+                        foreach ( $categories as $category ) {
+
+                            $out[] = $category->name;
+                        }
+                    }
+
+                    $categories = esc_js( join( ',', $out ) );
+                }
+
+               $product_data[ get_permalink( $_product->get_id() ) ]=array(
+                    'p_id' => esc_html( $_product->get_id() ),
+                    'p_sku' => esc_js( $_product->get_sku() ? $_product->get_sku() : $_product->get_id() ),
+                    'p_name' => html_entity_decode( $_product->get_title() ),
+                    'p_price' => esc_js( $order->get_item_total( $item ) ),
+                    'p_cat' => $categories,
+                    'p_qty' => esc_js( $item['qty'] )
+                );
+            }
+            
+            // Add Product data json.
+            wc_enqueue_js( 'mwb_upsell_ga_pd=' . json_encode( $product_data ) . ';' );
+
+        }
+
+        // When Parent Order is already tracked.
+        if( $upsell_ga_parent_tracked ) {
+
+            // No Upsell Items so return as no need to send any data to GA as it's already tracked.
+            if( false == $upsell_purchase ) {
+
+                update_post_meta( $order_id, "_mwb_upsell_ga_tracked", 1 );
+                return;
+            }
+        }	
+
+        // Get Shipping total.
+        $total_shipping = $order->get_total_shipping();
+
+        $order_total = $order->get_total();
+        $order_total_tax = $order->get_total_tax();
+
+        $transaction_data = array(
+            'id' => esc_js( $order->get_order_number() ),
+            'affiliation' => esc_js( get_bloginfo( 'name' ) ),
+            'revenue' => esc_js( $order_total ),
+            'tax' => esc_js( $order_total_tax ),
+            'shipping' => esc_js( $total_shipping ),
+            'coupon' => $coupons_list,
+            'currency' => get_woocommerce_currency(),
+            'label' => 'Purchase'
+
+        );
+
+        // When Parent Order is already tracked.
+        if( $upsell_ga_parent_tracked ) {
+
+            $parent_order_total = !empty( $upsell_ga_parent_tracked_data['order_total'] ) ? $upsell_ga_parent_tracked_data['order_total'] : 0;
+            $parent_order_total_tax = !empty( $upsell_ga_parent_tracked_data['order_total_tax'] ) ? $upsell_ga_parent_tracked_data['order_total_tax'] : 0;
+            $parent_order_total_shipping = !empty( $upsell_ga_parent_tracked_data['order_total_shipping'] ) ? $upsell_ga_parent_tracked_data['order_total_shipping'] : 0;
+
+            $current_order_total = $order_total - $parent_order_total;
+            $current_order_total_tax = $order_total_tax - $parent_order_total_tax;
+            $current_order_total_shipping = $total_shipping - $parent_order_total_shipping;
+
+            //orderpage transcation data json
+            $orderpage_trans_Array=array(
+                "id"=> esc_js($order->get_order_number()),      // Transaction ID. Required
+                "affiliation"=> esc_js(get_bloginfo('name')), // Affiliation or store name
+                "revenue"=>esc_js($current_order_total),        // Grand Total
+                "tax"=> esc_js($current_order_total_tax),        // Tax
+                "shipping"=> esc_js($current_order_total_shipping),    // Shipping
+            );
+
+            $transaction_data = array(
+	            'id' => esc_js( $order->get_order_number() ),
+	            'affiliation' => esc_js( get_bloginfo( 'name' ) ),
+	            'revenue' => esc_js( $current_order_total ),
+	            'tax' => esc_js( $current_order_total_tax ),
+	            'shipping' => esc_js( $current_order_total_shipping ),
+	            'currency' => get_woocommerce_currency(),
+	            'label' => 'Upsell Purchase'
+	        );
+        }
+
+        // Add Transaction data json.
+        wc_enqueue_js( 'mwb_upsell_ga_td=' . json_encode( $transaction_data ) . ';' );
+
+        $ga_purchase_js ='
+                 var items = [];
+                //set local currencies
+            gtag("set", {"currency": mwb_upsell_ga_td.currency});
+            for(var p_item in mwb_upsell_ga_pd){
+                items.push({
+                    "id": mwb_upsell_ga_pd[p_item].p_sku,
+                    "name": mwb_upsell_ga_pd[p_item].p_name, 
+                    "category": mwb_upsell_ga_pd[p_item].p_cat,
+                    "price": mwb_upsell_ga_pd[p_item].p_price,
+                    "quantity": mwb_upsell_ga_pd[p_item].p_qty,
+                });
+               
+            }
+            gtag("event", "purchase", {
+                "transaction_id":mwb_upsell_ga_td.id,
+                "affiliation": mwb_upsell_ga_td.affiliation,
+                "value":mwb_upsell_ga_td.revenue,
+                "tax": mwb_upsell_ga_td.tax,
+                "shipping": mwb_upsell_ga_td.shipping,
+                "coupon": mwb_upsell_ga_td.coupon,
+                "event_category": "ecommerce",
+                "event_label": mwb_upsell_ga_td.label,
+                "non_interaction": true,
+                "items":items
+            });
+        ';
+
+        wc_enqueue_js( $ga_purchase_js );
+
+        update_post_meta( $order_id, "_mwb_upsell_ga_tracked", 1 );
+	}
+
+	/**
+	 * Facebook Pixel Purchase Event for Parent Order.
+	 *
+	 * @since    3.5.0
+	 */
+	public function add_fb_pixel_purchase_event_for_parent_order() {
+
+		$order_key = sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) );
+
+        $order_id = wc_get_order_id_by_order_key( $order_key );
+
+        // Process once and only for Upsells.
+        if( empty( $order_id ) || ! get_post_meta( $order_id, 'mwb_upsell_order_started', true ) == 1 || ! empty( get_post_meta( $order_id, '_mwb_upsell_fbp_parent_tracked', true ) ) || get_post_meta( $order_id, '_mwb_upsell_fbp_tracked', true ) == 1 ) {
+
+            return;
+        }
+
+        $order = wc_get_order( $order_id );
+
+        if( empty( $order ) ) {
+
+        	return;
+        }
+
+        // Only for those payment gateways with which Parent Order is Secured.
+        $payment_method = $order->get_payment_method();
+
+		$gateways_with_parent_secured = mwb_upsell_lite_payment_gateways_with_parent_secured();
+
+		if ( ! in_array( $payment_method, $gateways_with_parent_secured ) ) {
+
+			return;
+		}
+
+        // Start Tracking handling.
+
+        $order_total = $order->get_total() ? $order->get_total() : 0;
+
+        $content_type = 'product';
+        $product_ids  = array();
+
+        foreach ( $order->get_items() as $item ) {
+            $product = wc_get_product( $item['product_id'] );
+
+            $product_ids[] = $product->get_id();
+
+            if ( $product->get_type() === 'variable' ) {
+                $content_type = 'product_group';
+            }
+        }
+
+        $params = array(
+            'content_ids'  => json_encode( $product_ids ),
+            'content_type' => $content_type,
+            'value'        => $order_total,
+            'currency'     => get_woocommerce_currency()
+        );
+
+        $fb_purchase_js = sprintf( "fbq('%s', '%s', %s);", 'track', 'Purchase', json_encode( $params, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT ) );
+
+        wc_enqueue_js( $fb_purchase_js );
+
+        $upsell_fb_pixel_parent_tracked_data = array(
+                'order_total' => $order_total,
+            );
+
+        update_post_meta( $order_id, "_mwb_upsell_fbp_parent_tracked", $upsell_fb_pixel_parent_tracked_data );
+	}
+
+	/**
+	 * Facebook Pixel Purchase Event.
+	 *
+	 * @since    3.5.0
+	 */
+	public function add_fb_pixel_purchase_event( $order_id = '' ) {
+
+		if( empty( $order_id ) || get_post_meta( $order_id, '_mwb_upsell_fbp_tracked', true ) == 1 ) {
+
+            return;
+        }
+
+        $order = wc_get_order( $order_id );
+
+        if( empty( $order ) ) {
+
+        	return;
+        }
+
+        // Start Tracking handling.
+
+        $order_total = $order->get_total() ? $order->get_total() : 0;
+
+        $content_type = 'product';
+        $product_ids  = array();
+
+        $upsell_fb_pixel_parent_tracked = false;
+        $upsell_fb_pixel_parent_tracked_data = get_post_meta( $order_id, '_mwb_upsell_fbp_parent_tracked', true );
+
+        if( ! empty( $upsell_fb_pixel_parent_tracked_data ) && is_array( $upsell_fb_pixel_parent_tracked_data ) ) {
+
+            $upsell_fb_pixel_parent_tracked = true;
+            $upsell_purchase = false;
+        }
+
+        foreach ( $order->get_items() as $item_id => $item ) {
+
+
+            // When Parent Order is already tracked.
+            if( $upsell_fb_pixel_parent_tracked ) {
+
+                // If not Upsell Purchase Item then Continue.
+                if( empty( wc_get_order_item_meta( $item_id, 'is_upsell_purchase', true ) ) ) {
+
+                    continue;
+                }
+
+                // Did not continue means there is an Upsell item.
+                $upsell_purchase = true;
+            }
+
+            $product = wc_get_product( $item['product_id'] );
+
+            $product_ids[] = $product->get_id();
+
+            if ( $product->get_type() === 'variable' ) {
+                $content_type = 'product_group';
+            }
+        }
+
+        // When Parent Order is already tracked.
+         if( $upsell_fb_pixel_parent_tracked ) {
+
+            // No Upsell Items so return as no need to send any data.
+            if( false == $upsell_purchase ) {
+
+                update_post_meta( $order_id, "_mwb_upsell_fbp_tracked", true );
+                return;
+            }
+        }
+
+        // When Parent Order is already tracked.
+        if( $upsell_fb_pixel_parent_tracked ) {
+
+            $parent_order_total = !empty( $upsell_fb_pixel_parent_tracked_data['order_total'] ) ? $upsell_fb_pixel_parent_tracked_data['order_total'] : 0;
+
+            $order_total = $order_total - $parent_order_total;
+
+            $params = array(
+	            'content_ids'  => json_encode( $product_ids ),
+	            'content_type' => $content_type,
+	            'value'        => $order_total,
+	            'currency'     => get_woocommerce_currency()
+	        );
+        }
+
+        else {
+
+            $params = array(
+	            'content_ids'  => json_encode( $product_ids ),
+	            'content_type' => $content_type,
+	            'value'        => $order_total,
+	            'currency'     => get_woocommerce_currency()
+	        );
+        }
+
+        $fb_purchase_js = sprintf( "fbq('%s', '%s', %s);", 'track', 'Purchase', json_encode( $params, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT ) );
+
+        wc_enqueue_js( $fb_purchase_js );
+
+        update_post_meta( $order_id, "_mwb_upsell_fbp_tracked", true );
+	}
+
+
+	/**
+	 * Compatibility for Enhanced Ecommerce Google Analytics Plugin by Tatvic.
+	 * Remove plugin's Purchase Event from Thankyou page when
+	 * Upsell Purchase is enabled.
+	 *
+	 * @since    3.5.0
+	 */
+	public function upsell_ga_compatibility_for_eega() {
+
+		if( ! class_exists( 'Enhanced_Ecommerce_Google_Analytics' ) ) {
+
+			return;
+		}
+
+		$upsell_analytics_options = get_option( 'mwb_upsell_analytics_configuration', array() );
+
+		$ga_analytics_config = ! empty( $upsell_analytics_options[ 'google-analytics' ] ) ? $upsell_analytics_options[ 'google-analytics' ] : array();
+
+		$add_ga_purchase_event = false;
+
+		if( ! empty( $ga_analytics_config['enable_purchase_event'] ) && 'yes' == $ga_analytics_config['enable_purchase_event'] ) {
+
+			$add_ga_purchase_event = true;
+		}
+
+		// Only when Upsell Purchase is enabled.
+		if ( $add_ga_purchase_event ) {
+
+			global $wp_filter;
+
+			foreach ( $wp_filter['woocommerce_thankyou']->callbacks as $key => $plugin_cbs ) {
+
+				// Only remove the one with default priority.
+				if ( 10 !== $key ) {
+
+					continue;
+				}
+
+				foreach ( $plugin_cbs as $cb_key => $cb_obj ) {
+
+					if ( isset( $cb_obj['function'] ) && is_array( $cb_obj['function'] ) ) {
+
+						// Check if the current object belongs to the class.
+						if ( is_a( $cb_obj['function']['0'], 'Enhanced_Ecommerce_Google_Analytics_Public' ) ) {
+
+							$Enhanced_Ecommerce_Google_Analytics = $cb_obj['function']['0'];
+
+							remove_action( 'woocommerce_thankyou', array( $Enhanced_Ecommerce_Google_Analytics, 'ecommerce_tracking_code' ) );
+
+							break 2;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Compatibility for Facebook for WooCommerce plugin.
+	 * Remove plugin's Purchase Event from Thankyou page when
+	 * Upsell Purchase is enabled.
+	 *
+	 * @since    3.5.0
+	 */
+	public function upsell_fbp_compatibility_for_ffw() {
+
+		if( ! class_exists( 'WC_Facebookcommerce_EventsTracker' ) ) {
+
+			return;
+		}
+
+		$wc_integrations = WC()->integrations->get_integrations();
+
+		if ( isset( $wc_integrations['facebookcommerce'] ) && $wc_integrations['facebookcommerce'] instanceof WC_Facebookcommerce_Integration ) {
+
+			$upsell_analytics_options = get_option( 'mwb_upsell_analytics_configuration', array() );
+
+			$fb_pixel_config = ! empty( $upsell_analytics_options[ 'facebook-pixel' ] ) ? $upsell_analytics_options[ 'facebook-pixel' ] : array();
+
+			$add_fb_pixel_purchase_event = false;
+
+			if( ! empty( $fb_pixel_config['enable_purchase_event'] ) && 'yes' == $fb_pixel_config['enable_purchase_event'] ) {
+
+				$add_fb_pixel_purchase_event = true;
+			}
+
+			if( $add_fb_pixel_purchase_event ) {
+
+				// For Facebook for WooCommerce plugin version < 1.1.0
+				remove_action( 'woocommerce_thankyou', [ $wc_integrations['facebookcommerce']->events_tracker, 'inject_gateway_purchase_event' ], $wc_integrations['facebookcommerce']->events_tracker::FB_PRIORITY_HIGH );
+
+				// For Facebook for WooCommerce plugin version >= 1.1.0
+				remove_action( 'woocommerce_thankyou', [ $wc_integrations['facebookcommerce']->events_tracker, 'inject_purchase_event' ], 40 );
+			}
+		}
+	}	
+
+	/**
 	 * Global Custom CSS.
 	 *
 	 * @since    3.0.0

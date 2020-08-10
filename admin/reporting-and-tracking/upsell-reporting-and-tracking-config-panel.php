@@ -48,8 +48,8 @@ do_action( 'mwb_wocuf_pro_setting_tab_active' ); ?>
 	<nav class="nav-tab-wrapper woo-nav-tab-wrapper">
 
 		<a class="nav-tab <?php echo 'reporting' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting-tracking&tab=reporting"><?php esc_html_e( 'Sales Reports', 'woo-one-click-upsell-funnel' ); ?></a>
-		<a class="nav-tab <?php echo 'pixel-setting' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting-tracking&tab=pixel-setting"><?php esc_html_e( 'FB Pixel', 'woo-one-click-upsell-funnel' ); ?></a>
 		<a class="nav-tab <?php echo 'ga-setting' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting-tracking&tab=ga-setting"><?php esc_html_e( 'Google Analytics', 'woo-one-click-upsell-funnel' ); ?></a>
+		<a class="nav-tab <?php echo 'pixel-setting' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting-tracking&tab=pixel-setting"><?php esc_html_e( 'FB Pixel', 'woo-one-click-upsell-funnel' ); ?></a>
 		<a class="nav-tab <?php echo 'overview' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting-tracking&tab=overview"><?php esc_html_e( 'Overview', 'woo-one-click-upsell-funnel' ); ?></a>
 
 		<?php do_action( 'mwb_wocuf_pro_setting_tab' ); ?>	

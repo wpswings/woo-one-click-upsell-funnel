@@ -293,6 +293,33 @@ class Woocommerce_one_click_upsell_funnel {
 
 			// Handle Upsell Orders on Thankyou for Success Rate and Stats.
 			$this->loader->add_action( 'woocommerce_thankyou', $plugin_public, 'upsell_sales_by_funnel_handling' );
+
+			// Google Analytics and Facebook Pixel Tracking - Start.
+
+			// GA and FB Pixel Base Code.
+			$this->loader->add_action( 'wp_head', $plugin_public, 'add_ga_and_fb_pixel_base_code' );
+
+			// GA and FB Pixel Purchase Event - Track Parent Order on 1st Upsell Offer Page.
+			$this->loader->add_action( 'wp_head', $plugin_public, 'ga_and_fb_pixel_purchase_event_for_parent_order', 100 );
+
+			// GA and FB Pixel Purchase Event - Track Order on Thankyou page.
+			$this->loader->add_action( 'woocommerce_thankyou', $plugin_public, 'ga_and_fb_pixel_purchase_event' );
+
+			/**
+			 * Compatibility for Enhanced Ecommerce Google Analytics Plugin by Tatvic.
+			 * Remove plugin's Purchase Event from Thankyou page when
+ 			 * Upsell Purchase is enabled.
+			 */
+			$this->loader->add_action( 'wp_loaded', $plugin_public, 'upsell_ga_compatibility_for_eega' );
+
+			/**
+			 * Compatibility for Facebook for WooCommerce plugin.
+			 * Remove plugin's Purchase Event from Thankyou page when
+ 			 * Upsell Purchase is enabled.
+			 */
+			$this->loader->add_action( 'woocommerce_init', $plugin_public, 'upsell_fbp_compatibility_for_ffw' );
+
+			// Google Analytics and Facebook Pixel Tracking - End.
 		}
 	}
 

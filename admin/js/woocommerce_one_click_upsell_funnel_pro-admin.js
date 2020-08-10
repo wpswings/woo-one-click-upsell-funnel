@@ -63,11 +63,11 @@ jQuery(document).ready( function($) {
 
 	});
 
-	$('.mwb_upsell_old_shortcodes_link').click(function(e) {
+	$('.mwb_upsell_slide_down_link').click(function(e) {
 
 		e.preventDefault();
 
-	    $('.mwb_upsell_old_shortcodes').slideToggle("fast");
+	    $('.mwb_upsell_slide_down_content').slideToggle("fast");
 
 	});
 

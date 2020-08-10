@@ -2,13 +2,13 @@
 /**
  * Provide a admin area view for the plugin
  *
- * This file is used to markup the admin-facing aspects of the plugin.
+ * Facebook Pixel Settings.
  *
  * @link       https://makewebbetter.com/
- * @since      1.0.0
+ * @since      3.0.0
  *
  * @package     woo_one_click_upsell_funnel
- * @subpackage  woo_one_click_upsell_funnel/tracking/templates
+ * @subpackage  woo_one_click_upsell_funnel/admin/reporting-and-tracking/templates/
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -39,14 +39,9 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 
 	// Handle Data is POST here.
 	$mwb_upsell_fb_pixel_config = array(
-		'mwb_upsell_enable_pixel_tracking' => ! empty( $_POST[ 'mwb_upsell_enable_pixel_tracking' ] ) ? 'yes' : 'no',
-		'mwb_upsell_enable_pixel_account_id' => ! empty( $_POST[ 'mwb_upsell_enable_pixel_account_id' ] ) ? sanitize_text_field( wp_unslash( $_POST[ 'mwb_upsell_enable_pixel_account_id' ] ) ) : '',
-		'mwb_upsell_enable_pixel_product_catalog_id' => ! empty( $_POST[ 'mwb_upsell_enable_pixel_product_catalog_id' ] ) ? sanitize_text_field( wp_unslash( $_POST[ 'mwb_upsell_enable_pixel_product_catalog_id' ] ) ) : '',
-		'mwb_upsell_enable_purchase_event' => ! empty( $_POST[ 'mwb_upsell_enable_purchase_event' ] ) ? 'yes' : 'no',
-		'mwb_upsell_enable_viewcontent_event' => ! empty( $_POST[ 'mwb_upsell_enable_viewcontent_event' ] ) ? 'yes' : 'no',
-		'mwb_upsell_enable_add_to_cart_event' => ! empty( $_POST[ 'mwb_upsell_enable_add_to_cart_event' ] ) ? 'yes' : 'no',
-		'mwb_upsell_enable_initiate_checkout_event' => ! empty( $_POST[ 'mwb_upsell_enable_initiate_checkout_event' ] ) ? 'yes' : 'no',
-		'mwb_upsell_enable_debug_mode' => ! empty( $_POST[ 'mwb_upsell_enable_debug_mode' ] ) ? 'yes' : 'no',
+		'pixel_account_id' => ! empty( $_POST[ 'pixel_account_id' ] ) ? sanitize_text_field( wp_unslash( $_POST[ 'pixel_account_id' ] ) ) : '',
+		'enable_pixel_basecode' => ! empty( $_POST[ 'enable_pixel_basecode' ] ) ? 'yes' : 'no',
+		'enable_purchase_event' => ! empty( $_POST[ 'enable_purchase_event' ] ) ? 'yes' : 'no',
 	);
 
 	if( ! empty( $mwb_upsell_fb_pixel_config ) || ! empty( $mwb_upsell_ga_analytics_config ) ) {
@@ -78,80 +73,186 @@ $mwb_upsell_ga_analytics_config = ! empty( $mwb_upsell_analytics_options[ 'googl
 // Form Fields Mapping.
 $google_analytics_fields = array(
 
-	'mwb_wocuf_enable_pixel_tracking'	=>	array(
-		'name'	=>	'mwb_upsell_enable_pixel_tracking',
-		'label'	=>	'Enable Pixel Tracking',
-		'type'	=>	'checkbox',
-		'required'	=>	false,
-		'attribute_description'	=>	esc_html__( 'Enable Facebook Pixel Tracking on the main site. <br>Adds pixel base code and Page View Event.', 'woo-one-click-upsell-funnel' ),
-		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_tracking' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_tracking' ] ) ) : 'no',
-	),
-
 	'mwb_wocuf_pixel_account_id'	=>	array(
-		'name'	=>	'mwb_upsell_enable_pixel_account_id',
+		'name'	=>	'pixel_account_id',
 		'label'	=>	'Fb Pixel ID',
 		'type'	=>	'text',
 		'required'	=>	true,
 		'attribute_description'	=>	esc_html__( 'Log into your Facebook Pixel account to find your ID. eg: 580XXXXXXXXX325.', 'woo-one-click-upsell-funnel' ),
-		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_account_id' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_account_id' ] ) ) : '',
+		'note' => esc_html__( 'You can fetch Pixel ID from', 'woo-one-click-upsell-funnel' ),
+		'note_html' => '<a href="https://www.facebook.com/ads/manager/pixel/facebook_pixel" target="_blank">' . esc_html__( 'here', 'woo-one-click-upsell-funnel' ) . '</a>',
+		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'pixel_account_id' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'pixel_account_id' ] ) ) : '',
 	),
 
-	'mwb_wocuf_pixel_product_catalog_id'	=>	array(
-		'name'	=>	'mwb_upsell_enable_pixel_product_catalog_id',
-		'label'	=>	'Product Catalog ID',
-		'type'	=>	'text',
-		'required'	=>	false,
-		'attribute_description'	=>	esc_html__( 'Go to your Catalog managment portal in your Pixel Account. eg: 344XXXXXXXXX325.', 'woo-one-click-upsell-funnel' ),
-		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_product_catalog_id' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_pixel_product_catalog_id' ] ) ) : '',
-	),
-
-	'mwb_wocuf_enable_viewcontent_event'	=>	array(
-		'name'	=>	'mwb_upsell_enable_viewcontent_event',
-		'label'	=>	'Enable View Content Event',
+	'mwb_wocuf_enable_pixel_basecode'	=>	array(
+		'name'	=>	'enable_pixel_basecode',
+		'label'	=>	'Enable Pixel Base code',
 		'type'	=>	'checkbox',
 		'required'	=>	false,
-		'attribute_description'	=>	esc_html__( 'Enable Facebook Pixel Pageview Event.<br>A visit to a web page you care about. For example, a product or landing page. View content tells you if someone visits a web page\'s URL, but not what they do or see on that web page.', 'woo-one-click-upsell-funnel' ),
-		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_viewcontent_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_viewcontent_event' ] ) ) : 'no',
-	),
-
-	'mwb_wocuf_enable_add_to_cart_event'	=>	array(
-		'name'	=>	'mwb_upsell_enable_add_to_cart_event',
-		'label'	=>	'Enable Add to Cart Event',
-		'type'	=>	'checkbox',
-		'required'	=>	false,
-		'attribute_description'	=>	esc_html__( 'Enable Facebook Pixel Add to cart Event.<br>The addition of an item to a shopping cart or basket. For example, clicking an Add to Cart button on a website.', 'woo-one-click-upsell-funnel' ),
-		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_add_to_cart_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_add_to_cart_event' ] ) ) : 'no',
-	),
-
-	'mwb_wocuf_enable_initiate_checkout_event'	=>	array(
-		'name'	=>	'mwb_upsell_enable_initiate_checkout_event',
-		'label'	=>	'Enable Initiate Checkout Event',
-		'type'	=>	'checkbox',
-		'required'	=>	false,
-		'attribute_description'	=>	esc_html__( 'Enable Facebook Pixel Initiate checkout Event.<br>The start of a checkout process. For example, clicking a Checkout button.', 'woo-one-click-upsell-funnel' ),
-		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_initiate_checkout_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_initiate_checkout_event' ] ) ) : 'no',
+		'attribute_description'	=>	esc_html__( 'Add Facebook Pixel Base Code to your website', 'woo-one-click-upsell-funnel' ),
+		'note'	=>	esc_html__( 'Only Enable this when you are not using any other Facebook Pixel tracking on your website.', 'woo-one-click-upsell-funnel' ),
+		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'enable_pixel_basecode' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'enable_pixel_basecode' ] ) ) : 'no',
 	),
 
 	'mwb_wocuf_enable_purchase_event'	=>	array(
-		'name'	=>	'mwb_upsell_enable_purchase_event',
+		'name'	=>	'enable_purchase_event',
 		'label'	=>	'Enable Purchase Event',
 		'type'	=>	'checkbox',
 		'required'	=>	false,
-		'attribute_description'	=>	esc_html__( 'Enable Facebook Pixel Purchase Event.<br>The completion of a purchase, usually signified by receiving order or purchase confirmation, or a transaction receipt. For example, landing on a Thank You or confirmation page.', 'woo-one-click-upsell-funnel' ),
-		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_purchase_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_purchase_event' ] ) ) : 'no',
-	),
-
-	'mwb_wocuf_enable_debug_mode'	=>	array(
-		'name'	=>	'mwb_upsell_enable_debug_mode',
-		'label'	=>	'Enable Debug Mode',
-		'type'	=>	'checkbox',
-		'required'	=>	false,
-		'attribute_description'	=>	esc_html__( 'Enable Debug mode to see if data is processing correctly or not.', 'woo-one-click-upsell-funnel' ),
-		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_debug_mode' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'mwb_upsell_enable_debug_mode' ] ) ) : 'no',
+		'attribute_description'	=>	esc_html__( 'This will trigger Facebook Pixel Purchase Event for Parent Order and for Upsells accordingly with respect to payment gateways.', 'woo-one-click-upsell-funnel' ),
+		'note'	=>	esc_html__( 'Make sure you disable your Purchase event if you are using any other Facebook Pixel tracking on your website else it will track data twice.', 'woo-one-click-upsell-funnel' ),
+		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'enable_purchase_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'enable_purchase_event' ] ) ) : 'no',
 	),
 );
 
 ?>
+
+<!-- Other Tracking Plugins Compatibilities - Start -->
+<div class="mwb_upsell_slide_down_title">
+	<h2><?php esc_html_e( 'Other Tracking Plugins Compatibilities', 'woo-one-click-upsell-funnel' ); ?></h2>
+	<a href="#" class="mwb_upsell_slide_down_link"><img src="<?php echo esc_url( MWB_WOCUF_URL . 'admin/resources/down.png' ); ?>"></a>
+</div>
+
+<div class="mwb_upsell_table mwb_upsell_slide_down_content">
+	<table class="form-table mwb_wocuf_pro_creation_setting mwb_upsell_slide_down_table">
+		<tbody>
+			<tr valign="top">
+				<th scope="row" class="titledesc">
+					<label><a target="_blank" href="https://wordpress.org/plugins/facebook-for-woocommerce/"><?php esc_html_e( 'Facebook for WooCommerce', 'woo-one-click-upsell-funnel' ); ?></a></label>
+					<span class="mwb_upsell_other_plugin_author_name"><?php esc_html_e( 'By Facebook', 'woo-one-click-upsell-funnel' ); ?></span>
+				</th>
+				<td class="forminp forminp-text">
+					<span class="mwb_upsell_global_description">
+						<?php esc_html_e( 'We have added inbuilt Compatibility with Facebook for WooCommerce plugin so it\'s Facebook Pixel Purchase Event will be automatically disabled as soon as you Enable Facebook Pixel Purchase Event by Upsell.', 'woo-one-click-upsell-funnel' ); ?>
+					</span>		
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row" class="titledesc">
+					<label><a target="_blank" href="https://wordpress.org/plugins/pixelyoursite/"><?php esc_html_e( 'PixelYourSite', 'woo-one-click-upsell-funnel' ); ?></a> 
+					</label>
+					<label><a target="_blank" href="https://www.pixelyoursite.com/"><?php esc_html_e( 'PixelYourSite PRO', 'woo-one-click-upsell-funnel' ); ?></a></label>
+					<span class="mwb_upsell_other_plugin_author_name light"><?php esc_html_e( 'By PixelYourSite', 'woo-one-click-upsell-funnel' ); ?></span>
+				</th>
+				<td class="forminp forminp-text">
+					<span class="mwb_upsell_global_description">
+						<?php 
+						printf( '%s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s', 
+							esc_html__( 'Please Go to', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Wordpress Admin Dashboard', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'PixelYourSite', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'WooCommerce tab', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Scroll down to', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Default E-Commerce events', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'and click on', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Track Purchases', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'settings icon and Toggle Off the', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Enable the Purchase event on Facebook (required for DPA)', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'and', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Save', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( '.', 'woo-one-click-upsell-funnel' )
+						); ?>
+					</span>		
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row" class="titledesc">
+					<label><a target="_blank" href="https://wordpress.org/plugins/pixel-caffeine/"><?php esc_html_e( 'Pixel Caffeine', 'woo-one-click-upsell-funnel' ); ?></a></label>
+					<span class="mwb_upsell_other_plugin_author_name light"><?php esc_html_e( 'By AdEspresso', 'woo-one-click-upsell-funnel' ); ?></span>
+				</th>
+				<td class="forminp forminp-text">
+					<span class="mwb_upsell_global_description">
+						<?php 
+						printf( '%s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b>%s', 
+							esc_html__( 'Please Go to', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Wordpress Admin Dashboard', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Pixel Caffeine', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'General Settings tab', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Track this eCommerce Conversions', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'and Uncheck the', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Purchase', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Event and', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Save', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( '.', 'woo-one-click-upsell-funnel' ) 
+						); ?>
+					</span>		
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row" class="titledesc">
+					<label><a target="_blank" href="https://wordpress.org/plugins/woocommerce-conversion-tracking/"><?php esc_html_e( 'WooCommerce Conversion Tracking', 'woo-one-click-upsell-funnel' ); ?></a></label>
+					<span class="mwb_upsell_other_plugin_author_name light"><?php esc_html_e( 'By weDevs', 'woo-one-click-upsell-funnel' ); ?></span>
+				</th>
+				<td class="forminp forminp-text">
+					<span class="mwb_upsell_global_description">
+						<?php 
+						printf( '%s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b>%s', 
+							esc_html__( 'Please Go to', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Wordpress Admin Dashboard', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'WooCommerce', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Conversion Tracking', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Facebook', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'and Uncheck the', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Purchase', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Event and', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Save', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( '.', 'woo-one-click-upsell-funnel' ) 
+						); ?>
+					</span>		
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row" class="titledesc">
+					<label><a target="_blank" href="https://wordpress.org/plugins/wp-facebook-pixel/"><?php esc_html_e( 'remarketable ( formerly - WP Facebook Pixel Plugin )', 'woo-one-click-upsell-funnel' ); ?></a></label>
+					<span class="mwb_upsell_other_plugin_author_name light"><?php esc_html_e( 'By Night Shift Apps', 'woo-one-click-upsell-funnel' ); ?></span>
+				</th>
+				<td class="forminp forminp-text">
+					<span class="mwb_upsell_global_description">
+						<?php 
+						printf( '%s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b>%s', 
+							esc_html__( 'Please Go to', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Wordpress Admin Dashboard', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Settings', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'remarketable / WP Facebook Pixel', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Woocommerce Options tab', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Order Received Events', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'and set the', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Purchase', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Event option to', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'No', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'and', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( 'Save', 'woo-one-click-upsell-funnel' ), 
+							esc_html__( '.', 'woo-one-click-upsell-funnel' ) 
+						); ?>
+					</span>		
+				</td>
+			</tr>
+			<tr valign="top">
+				<th scope="row" class="titledesc">
+					<label><?php esc_html_e( 'Other Facebook Pixel Tracking Plugins', 'woo-one-click-upsell-funnel' ); ?></label>
+				</th>
+				<td class="forminp forminp-text">
+					<span class="mwb_upsell_global_description">
+						<?php esc_html_e( 'Please make sure to Disable the Purchase Event from your plugin\'s settings before you Enable Facebook Pixel Purchase Event by Upsell. If you can\'t find the settings or in case of any confusion please contact our support', 'woo-one-click-upsell-funnel' ); ?> <a target="_blank" href="https://makewebbetter.com/contact-us/"><?php esc_html_e( 'here', 'woo-one-click-upsell-funnel' ); ?></a><?php esc_html_e( '.', 'woo-one-click-upsell-funnel' ); ?>
+					</span>		
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<!-- Other Tracking Plugins Compatibilities - End -->
 
 <form action="" method="POST">
 	<div class="mwb_upsell_table">
@@ -184,6 +285,10 @@ $google_analytics_fields = array(
 									</label>
 
 								<?php endif; ?>
+
+								<span class="mwb_upsell_global_description"><?php echo ! empty( $field_data[ 'note' ] ) ? esc_html( $field_data[ 'note' ] ) : '';
+								echo ! empty( $field_data[ 'note_html' ] ) ? ' ' . $field_data[ 'note_html' ] : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+								 ?></span>
 							</td>
 						</tr>
 
