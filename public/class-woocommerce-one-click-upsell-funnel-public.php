@@ -1676,8 +1676,11 @@ class Woocommerce_one_click_upsell_funnel_Public {
 			}
 		}
 
-		// Product not selected alert, will run one time in one reload.
-		if ( false === wp_cache_get( 'mwb_upsell_no_product_in_offer' ) ) {
+		/**
+		 * Product not selected? show alert! Will run one time in one reload.
+		 * Run this alert only on a page.
+		 */
+		if ( is_page() && false === wp_cache_get( 'mwb_upsell_no_product_in_offer' ) ) {
 
 			$product_not_selected_alert = esc_html__( 'One Click Upsell', 'woo-one-click-upsell-funnel' );
 

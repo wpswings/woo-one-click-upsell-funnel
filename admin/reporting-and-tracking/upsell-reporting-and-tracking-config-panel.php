@@ -7,7 +7,7 @@
  * @link       https://makewebbetter.com/
  * @since      1.0.0
  *
- * @package     woo_one_click_upsell_funnel
+ * @package    woo_one_click_upsell_funnel
  * @subpackage woo_one_click_upsell_funnel/tracking
  */
 

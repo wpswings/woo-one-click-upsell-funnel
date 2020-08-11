@@ -290,5 +290,24 @@ jQuery(document).ready( function($) {
 		    	} 
 			 }
 	   });		
+	});
+
+	    // Show hide clear button.
+	jQuery( '.wc-offer-product-search' ).on( 'change', function(e) {
+
+		if ( jQuery( this ).val() ) {
+
+			jQuery( '.mwb-upsell-offer-product-clear' ).show();
+		}
+
+		else {
+
+			jQuery( '.mwb-upsell-offer-product-clear' ).hide();
+		}
+	});
+
+    // Clear values.
+	jQuery( '.mwb-upsell-offer-product-clear' ).on( 'click', function(e) {
+		jQuery( this ).parent().find( '.wc-offer-product-search' ).empty();
 	}); 
 });
