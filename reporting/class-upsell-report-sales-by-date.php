@@ -265,7 +265,7 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
       case 'day':
         /* translators: %s: average total sales */
         $average_total_sales_title = sprintf(
-          __( '%s average net daily upsell sales', 'woocommerce-one-click-upsell-funnel-pro' ),
+          __( '%s average net daily upsell sales', 'woo-one-click-upsell-funnel' ),
           '<strong>' . wc_price( $data->average_total_sales ) . '</strong>'
         );
         break;
@@ -273,7 +273,7 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
       default:
         /* translators: %s: average total sales */
         $average_total_sales_title = sprintf(
-          __( '%s average net monthly upsell sales', 'woocommerce-one-click-upsell-funnel-pro' ),
+          __( '%s average net monthly upsell sales', 'woo-one-click-upsell-funnel' ),
           '<strong>' . wc_price( $data->average_total_sales ) . '</strong>'
         );
         break;
@@ -282,10 +282,10 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
     $legend[] = array(
       /* translators: %s: total sales */
       'title' => sprintf(
-        __( '%s net upsell sales in this period', 'woocommerce-one-click-upsell-funnel-pro' ),
+        __( '%s net upsell sales in this period', 'woo-one-click-upsell-funnel' ),
         '<strong>' . wc_price( $data->total_sales ) . '</strong>'
       ),
-      'placeholder'      => __( 'This is the sum of the upsell item totals after any refunds ( whole order refunds ) and excluding shipping and taxes.', 'woocommerce-one-click-upsell-funnel-pro' ),
+      'placeholder'      => __( 'This is the sum of the upsell item totals after any refunds ( whole order refunds ) and excluding shipping and taxes.', 'woo-one-click-upsell-funnel' ),
       'color'            => $this->chart_colours['sales_amount'],
       'highlight_series' => 6,
     );
@@ -300,7 +300,7 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
     $legend[] = array(
       /* translators: %s: total orders */
       'title' => sprintf(
-        __( '%s upsell orders placed', 'woocommerce-one-click-upsell-funnel-pro' ),
+        __( '%s upsell orders placed', 'woo-one-click-upsell-funnel' ),
         '<strong>' . $data->total_orders . '</strong>'
       ),
       'color' => $this->chart_colours['order_count'],
@@ -310,7 +310,7 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
     $legend[] = array(
       /* translators: %s: total items */
       'title' => sprintf(
-        __( '%s upsell items purchased', 'woocommerce-one-click-upsell-funnel-pro' ),
+        __( '%s upsell items purchased', 'woo-one-click-upsell-funnel' ),
         '<strong>' . $data->total_items . '</strong>'
       ),
       'color' => $this->chart_colours['item_count'],
@@ -319,11 +319,11 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
     $legend[] = array(
       /* translators: 1: total refunds 2: total refunded orders 3: refunded items */
       'title' => sprintf(
-        __( '%s upsell refunded items', 'woocommerce-one-click-upsell-funnel-pro' ),
+        __( '%s upsell refunded items', 'woo-one-click-upsell-funnel' ),
         '<strong>' . $data->refunded_order_items . '</strong>'
       ),
 
-      'placeholder'      => __( 'Total upsell refunded items from fully refunded orders.', 'woocommerce-one-click-upsell-funnel-pro' ),
+      'placeholder'      => __( 'Total upsell refunded items from fully refunded orders.', 'woo-one-click-upsell-funnel' ),
       'color' => $this->chart_colours['refund_amount'],
       'highlight_series' => 8,
     );
@@ -336,10 +336,10 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
    */
   public function output_report() {
     $ranges = array(
-      'year'         => __( 'Year', 'woocommerce-one-click-upsell-funnel-pro' ),
-      'last_month'   => __( 'Last month', 'woocommerce-one-click-upsell-funnel-pro' ),
-      'month'        => __( 'This month', 'woocommerce-one-click-upsell-funnel-pro' ),
-      '7day'         => __( 'Last 7 days', 'woocommerce-one-click-upsell-funnel-pro' ),
+      'year'         => __( 'Year', 'woo-one-click-upsell-funnel' ),
+      'last_month'   => __( 'Last month', 'woo-one-click-upsell-funnel' ),
+      'month'        => __( 'This month', 'woo-one-click-upsell-funnel' ),
+      '7day'         => __( 'Last 7 days', 'woo-one-click-upsell-funnel' ),
     );
 
     $this->chart_colours = array(
@@ -373,11 +373,11 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
       download="report-<?php echo esc_attr( $current_range ); ?>-<?php echo date_i18n( 'Y-m-d', current_time( 'timestamp' ) ); ?>.csv"
       class="export_csv"
       data-export="chart"
-      data-xaxes="<?php esc_attr_e( 'Date', 'woocommerce-one-click-upsell-funnel-pro' ); ?>"
+      data-xaxes="<?php esc_attr_e( 'Date', 'woo-one-click-upsell-funnel' ); ?>"
       data-exclude_series="2"
       data-groupby="<?php echo $this->chart_groupby; ?>"
     >
-      <?php _e( 'Export CSV', 'woocommerce-one-click-upsell-funnel-pro' ); ?>
+      <?php _e( 'Export CSV', 'woo-one-click-upsell-funnel' ); ?>
     </a>
     <?php
   }
@@ -454,7 +454,7 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
         var drawGraph = function( highlight ) {
           var series = [
             {
-              label: "<?php echo esc_js( __( 'Number of items sold', 'woocommerce-one-click-upsell-funnel-pro' ) ); ?>",
+              label: "<?php echo esc_js( __( 'Number of items sold', 'woo-one-click-upsell-funnel' ) ); ?>",
               data: order_data.order_item_counts,
               color: '<?php echo $this->chart_colours['item_count']; ?>',
               bars: { fillColor: '<?php echo $this->chart_colours['item_count']; ?>', fill: true, show: true, lineWidth: 1, barWidth: <?php echo $this->barwidth; ?> * 0.5, align: 'center' },
@@ -462,7 +462,7 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
               hoverable: false
             },
             {
-              label: "<?php echo esc_js( __( 'Number of orders', 'woocommerce-one-click-upsell-funnel-pro' ) ); ?>",
+              label: "<?php echo esc_js( __( 'Number of orders', 'woo-one-click-upsell-funnel' ) ); ?>",
               data: order_data.order_counts,
               color: '<?php echo $this->chart_colours['order_count']; ?>',
               bars: { fillColor: '<?php echo $this->chart_colours['order_count']; ?>', fill: true, show: true, lineWidth: 0, barWidth: <?php echo $this->barwidth; ?> * 0.5, align: 'center' },
@@ -470,7 +470,7 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
               hoverable: false
             },
             {
-              label: "<?php echo esc_js( __( 'Average net sales amount', 'woocommerce-one-click-upsell-funnel-pro' ) ); ?>",
+              label: "<?php echo esc_js( __( 'Average net sales amount', 'woo-one-click-upsell-funnel' ) ); ?>",
               data: [ [ <?php echo min( array_keys( $data['order_amounts'] ) ); ?>, <?php echo $this->report_data->average_total_sales; ?> ], [ <?php echo max( array_keys( $data['order_amounts'] ) ); ?>, <?php echo $this->report_data->average_total_sales; ?> ] ],
               yaxis: 2,
               color: '<?php echo $this->chart_colours['average']; ?>',
@@ -480,7 +480,7 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
               hoverable: false
             },
             {
-              label: "<?php echo esc_js( __( 'Net sales amount', 'woocommerce-one-click-upsell-funnel-pro' ) ); ?>",
+              label: "<?php echo esc_js( __( 'Net sales amount', 'woo-one-click-upsell-funnel' ) ); ?>",
               data: order_data.gross_order_amounts,
               yaxis: 2,
               color: '<?php echo $this->chart_colours['sales_amount']; ?>',

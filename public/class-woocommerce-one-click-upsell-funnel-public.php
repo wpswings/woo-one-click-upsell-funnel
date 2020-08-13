@@ -196,7 +196,8 @@ class Woocommerce_one_click_upsell_funnel_Public {
 										$funnel_status = ! empty( $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_upsell_funnel_status'] ) ? $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_upsell_funnel_status'] : '';
 
 										/**
-										 * For Admin don't check this.
+										 * For Admin Funnel Will trigger for both Live and Sandbox statuses.
+										 *
 										 * since v3.0.0
 										 */
 										if( ! current_user_can('administrator') ) {
@@ -211,7 +212,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 									/**
 									 * Check for funnel schedule.
-									 * since v3.0.0 convert data in array first.
+									 * Since v3.0.0 convert data into array first.
 									 */
 									$mwb_wocuf_pro_funnel_schedule = ! empty( $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_wocuf_pro_funnel_schedule'] ) ? $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_wocuf_pro_funnel_schedule'] : array( '7' );
 
@@ -2756,7 +2757,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	/**
 	 * Add Base Code for Google Analyics and Facebook Pixel.
 	 *
-	 * @since    3.5.0
+	 * @since    3.0.0
 	 */
 	public function add_ga_and_fb_pixel_base_code() {
 
@@ -2829,7 +2830,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	/**
 	 * GA and FB Pixel Purchase Event - Track Parent Order on 1st Upsell Offer Page.
 	 *
-	 * @since    3.5.0
+	 * @since    3.0.0
 	 */
 	public function ga_and_fb_pixel_purchase_event_for_parent_order() {
 
@@ -2872,7 +2873,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	/**
 	 * GA and FB Pixel Purchase Event - Track Order on Thankyou page.
 	 *
-	 * @since    3.5.0
+	 * @since    3.0.0
 	 */
 	public function ga_and_fb_pixel_purchase_event( $order_id = '' ) {
 
@@ -2910,7 +2911,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	/**
 	 * Google Analyics Purchase Event for Parent Order.
 	 *
-	 * @since    3.5.0
+	 * @since    3.0.0
 	 */
 	public function add_ga_purchase_event_for_parent_order() {
 
@@ -3090,7 +3091,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	/**
 	 * Google Analyics Purchase Event for Parent Order.
 	 *
-	 * @since    3.5.0
+	 * @since    3.0.0
 	 */
 	public function add_ga_purchase_event( $order_id = '' ) {
 
@@ -3314,7 +3315,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	/**
 	 * Facebook Pixel Purchase Event for Parent Order.
 	 *
-	 * @since    3.5.0
+	 * @since    3.0.0
 	 */
 	public function add_fb_pixel_purchase_event_for_parent_order() {
 
@@ -3383,7 +3384,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	/**
 	 * Facebook Pixel Purchase Event.
 	 *
-	 * @since    3.5.0
+	 * @since    3.0.0
 	 */
 	public function add_fb_pixel_purchase_event( $order_id = '' ) {
 
@@ -3489,7 +3490,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 * Remove plugin's Purchase Event from Thankyou page when
 	 * Upsell Purchase is enabled.
 	 *
-	 * @since    3.5.0
+	 * @since    3.0.0
 	 */
 	public function upsell_ga_compatibility_for_eega() {
 
@@ -3546,7 +3547,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 * Remove plugin's Purchase Event from Thankyou page when
 	 * Upsell Purchase is enabled.
 	 *
-	 * @since    3.5.0
+	 * @since    3.0.0
 	 */
 	public function upsell_fbp_compatibility_for_ffw() {
 
@@ -3672,7 +3673,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 			if( empty( $expiration ) || ! is_numeric( $expiration ) ) {
 
-				return esc_html__( 'Time is not specified correctly.', 'woocommerce-one-click-upsell-funnel-pro' ); 
+				return esc_html__( 'Time is not specified correctly.', 'woo-one-click-upsell-funnel' ); 
 			}
 
 			?>
@@ -3755,14 +3756,14 @@ class Woocommerce_one_click_upsell_funnel_Public {
 			<span class="mwb_upsell_lite_display_timer_wrap">
 				<span class="mwb_upsell_lite_timer_digit">
 					<span class="mwb_upsell_lite_display_minutes mwb_upsell_lite_display_timer">00</span>
-					<span class="mwb_upsell_lite_text"><?php esc_html_e( 'minutes', 'woocommerce-one-click-upsell-funnel-pro' ); ?></span>
+					<span class="mwb_upsell_lite_text"><?php esc_html_e( 'minutes', 'woo-one-click-upsell-funnel' ); ?></span>
 				</span>
 				<span class="mwb_upsell_lite_timer_digit">
 					<span class="mwb_upsell_lite_display_timer_col">:</span>
 				</span>
 				<span class="mwb_upsell_lite_timer_digit">
 					<span class="mwb_upsell_lite_display_seconds mwb_upsell_lite_display_timer">00</span>
-					<span class="mwb_upsell_lite_text"><?php esc_html_e( 'seconds', 'woocommerce-one-click-upsell-funnel-pro' ); ?></span>
+					<span class="mwb_upsell_lite_text"><?php esc_html_e( 'seconds', 'woo-one-click-upsell-funnel' ); ?></span>
 				</span>
 			</span>
 

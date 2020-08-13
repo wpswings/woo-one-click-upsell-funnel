@@ -399,21 +399,21 @@ background-color: #bf0000 !important;
   left: 0;
   right: 0;
   top: 40%;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-style: solid;
   border-color: white;
   border-top-color: transparent;
-  border-width: 7px;
+  border-width: 6px;
   border-radius: 50%;
   -webkit-animation: spin .8s linear infinite;
   animation: spin .8s linear infinite;
   margin: 0 auto;
 }
-p.mwb_upsell_loader_text {
+.mwb_upsell_loader .mwb_upsell_loader_text {
   font-size: 22px;
   position: absolute;
-  top: 60%;
+  top: 58%;
   right: 0;
   left: 0;
   text-align: center;
@@ -429,20 +429,20 @@ p.mwb_upsell_loader_text {
 /**=========================================
  *        Media query for here.  
 ==========================================*/
-@media only screen and (max-width: 550px){
-  .mwb_wocuf_pro_product_price h4{
-    font-size: 20px !important;
-  }
-  .mwb_wocuf_pro_special_offers_for_you .mwb_wocuf_pro_special_offer_banner{
-    margin-bottom: 20px !important;
-  }
- .mwb_wocuf_pro_special_offers_for_you .mwb_wocuf_pro_special_offer_banner h1 {
-    font-size: 20px;
-  }
-}
 @media only screen and (max-width: 1200px){
   .mwb_wocuf_pro_offer_container {
     padding: 50px 50px;
+  }
+}
+@media only screen and (max-width: 1024px){
+  .mwb_upsell_loader::after {
+    width: 50px;
+    height: 50px;
+    border-width: 5px;
+  }
+  .mwb_upsell_loader .mwb_upsell_loader_text {
+    font-size: 19px;
+    top: 54%;
   }
 }
 @media only screen and (max-width: 768px){
@@ -471,5 +471,16 @@ p.mwb_upsell_loader_text {
   }
   .mwb_wocuf_pro_variations .mwb_wocuf_offer_variation_select {
     width: 100%;
+  }
+}
+@media only screen and (max-width: 550px){
+  .mwb_wocuf_pro_product_price h4{
+    font-size: 20px !important;
+  }
+  .mwb_wocuf_pro_special_offers_for_you .mwb_wocuf_pro_special_offer_banner{
+    margin-bottom: 20px !important;
+  }
+ .mwb_wocuf_pro_special_offers_for_you .mwb_wocuf_pro_special_offer_banner h1 {
+    font-size: 20px;
   }
 }

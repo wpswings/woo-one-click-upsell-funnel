@@ -115,6 +115,9 @@ else {
 						<?php
 
 						$funnel_status = ! empty( $value['mwb_upsell_funnel_status'] ) ? $value['mwb_upsell_funnel_status'] : 'no';
+						$global_funnel = ! empty( $value['mwb_wocuf_global_funnel'] ) ? $value['mwb_wocuf_global_funnel'] : 'no';
+						$exclusive_offer = ! empty( $value['mwb_wocuf_exclusive_offer'] ) ? $value['mwb_wocuf_exclusive_offer'] : 'no';
+						$smart_offer_upgrade = ! empty( $value['mwb_wocuf_smart_offer_upgrade'] ) ? $value['mwb_wocuf_smart_offer_upgrade'] : 'no';
 
 						// Pre v3.0.0 Funnels will be live.
 						$funnel_status = ! empty( $value['mwb_upsell_fsav3'] ) ? $funnel_status : 'yes';
@@ -126,6 +129,25 @@ else {
 
 							echo '<span class="mwb_upsell_funnel_list_sandbox"></span><span class="mwb_upsell_funnel_list_sandbox_name">' . esc_html__( 'Sandbox', 'woo-one-click-upsell-funnel' ) . '</span>';
 						}
+
+						echo "<div class='mwb-upsell-funnel-attributes $funnel_status'>";
+
+						if ( 'yes' == $global_funnel ) {
+
+							echo '<p>' . esc_html__( 'Global Funnel', 'woo-one-click-upsell-funnel' ) . '</p>';
+						}
+
+						if ( 'yes' == $exclusive_offer ) {
+
+							echo '<p>' . esc_html__( 'Exclusive Offer', 'woo-one-click-upsell-funnel' ) . '</p>';
+						}
+
+						if ( 'yes' == $smart_offer_upgrade ) {
+
+							echo '<p>' . esc_html__( 'Smart Offer Upgrade', 'woo-one-click-upsell-funnel' ) . '</p>';
+						}
+
+						echo "</div>";
 
 						?>
 					
@@ -169,7 +191,7 @@ else {
 
 							echo '<div class="mwb_upsell_funnel_list_targets">';
 
-							echo '<p><i>' . esc_html__( 'Offers Count', 'woocommerce-one-click-upsell-funnel-pro' ) . ' - ' . esc_html( $offers_count ) . '</i></p>';
+							echo '<p><i>' . esc_html__( 'Offers Count', 'woo-one-click-upsell-funnel' ) . ' - ' . esc_html( $offers_count ) . '</i></p>';
 
 							foreach ( $value['mwb_wocuf_products_in_offer'] as $offer_key => $single_offer_product ) :
 
@@ -181,7 +203,7 @@ else {
 								}
 								// phpcs:disable
 								?>
-								<p><?php echo '<strong>' . esc_html__( 'Offer', 'woocommerce-one-click-upsell-funnel-pro' ) . ' #' . esc_html( $offer_key ) . '</strong> &rarr; ' . esc_html( $product->get_title() ) . '( #' . esc_html( $single_offer_product ) . ' )'; ?></p>
+								<p><?php echo '<strong>' . esc_html__( 'Offer', 'woo-one-click-upsell-funnel' ) . ' #' . esc_html( $offer_key ) . '</strong> &rarr; ' . esc_html( $product->get_title() ) . '( #' . esc_html( $single_offer_product ) . ' )'; ?></p>
 								<?php
 								// phpcs:enable
 
@@ -191,7 +213,7 @@ else {
 						} else {
 
 							?>
-							<p><i><?php esc_html_e( 'No Offers added', 'woocommerce-one-click-upsell-funnel-pro' ); ?></i></p>
+							<p><i><?php esc_html_e( 'No Offers added', 'woo-one-click-upsell-funnel' ); ?></i></p>
 							<?php
 						}
 

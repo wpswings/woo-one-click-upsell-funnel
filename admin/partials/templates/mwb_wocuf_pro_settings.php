@@ -271,7 +271,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 						?>
 						</select>
 						<?php $display_class = ! empty( $global_product_id ) ? 'shown' : 'hidden'; ?>
-						<input type="button" class="button button-small mwb-upsell-offer-product-clear <?php echo( esc_html( $display_class ) ); ?>" value="<?php esc_html_e( 'Clear', 'woocommerce-one-click-upsell-funnel-pro' ); ?>" aria-label="<?php esc_html_e( 'Clear Offer Product', 'woocommerce-one-click-upsell-funnel-pro' ); ?>">
+						<input type="button" class="button button-small mwb-upsell-offer-product-clear <?php echo( esc_html( $display_class ) ); ?>" value="<?php esc_html_e( 'Clear', 'woo-one-click-upsell-funnel' ); ?>" aria-label="<?php esc_html_e( 'Clear Offer Product', 'woo-one-click-upsell-funnel' ); ?>">
 					</td>
 				</tr>
 				<!-- Global product end -->

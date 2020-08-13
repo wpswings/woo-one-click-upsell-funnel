@@ -418,9 +418,8 @@ span.mwb_wocuf_pro_span label::after {
   display: none;
 }
 
-#mwb_upsell_funnel_status span.woocommerce-help-tip {
-  top: 5px;
-  left: 5px;
+#mwb_upsell_funnel_status .woocommerce-help-tip {
+  bottom: 2px;
 }
 
 /*since v2.0.0 - Funnel status - End*/
@@ -566,6 +565,18 @@ span.mwb_wocuf_pro_span label::after {
 
 #mwb_upsell_funnel_list_target_th {
   width: 25%;
+}
+
+.mwb-upsell-funnel-attributes p {
+  font-style: italic;
+}
+
+.mwb-upsell-funnel-attributes.yes p {
+  color: #72b750 !important;
+}
+
+.mwb-upsell-funnel-attributes.no p {
+  color: #ffa500 !important;
 }
 
 /*since v2.0.0 - Funnel list - End*/
@@ -1359,6 +1370,13 @@ button.button-primary.mwb_upsell_activate_offer_template:focus {
 }
 .mwb_upsell_overview_go_pro {
   margin: 40px 0;
+}
+
+/**
+ * Notice Cross button fix. 
+ */
+#mwb_wocuf_pro_setting_wrapper .notice-dismiss {
+  top: 4px;
 }
 
 /**

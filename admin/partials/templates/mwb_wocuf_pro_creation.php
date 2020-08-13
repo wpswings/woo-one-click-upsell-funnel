@@ -342,7 +342,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 						<?php
 
-						$attribute_description = sprintf( '<p class="mwb_upsell_tip_tip">%s</p><p class="mwb_upsell_tip_tip">%s</p><p class="mwb_upsell_tip_tip">%s</p>', esc_html__( 'After Checkout Offers will be displayed :', 'woo-one-click-upsell-funnel' ), esc_html__( 'Sandbox Mode &rarr; For Admin only', 'woo-one-click-upsell-funnel' ), esc_html__( 'Live Mode &rarr; For All', 'woo-one-click-upsell-funnel' ) );
+						$attribute_description = sprintf( '<p class="mwb_upsell_tip_tip">%s</p><p class="mwb_upsell_tip_tip">%s</p><p class="mwb_upsell_tip_tip">%s</p>', esc_html__( 'Post Checkout Offers will be displayed :', 'woo-one-click-upsell-funnel' ), esc_html__( 'Sandbox Mode &rarr; For Admin only', 'woo-one-click-upsell-funnel' ), esc_html__( 'Live Mode &rarr; For All', 'woo-one-click-upsell-funnel' ) );
 
 						echo wc_help_tip( $attribute_description );
 
@@ -553,9 +553,9 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 					<td class="forminp forminp-text">
 						<?php
 
-						$attribut_description = esc_html__( 'This Feature replaces the target product with offer product instead of adding it as an extra order item. ( This will not work for Global Funnel )', 'woo-one-click-upsell-funnel' );
+						$attribute_description = sprintf( '<p class="mwb_upsell_tip_tip">%s</p><p class="mwb_upsell_tip_tip">%s</p><p class="mwb_upsell_tip_tip">%s</p>', esc_html__( 'This feature replaces the target product with the Offer product as an Upgrade.', 'woo-one-click-upsell-funnel' ), esc_html__( 'Please keep this Funnel limited to One Offer as other Offers won\'t show up if this feature is on.', 'woo-one-click-upsell-funnel' ), esc_html__( 'This feature will not work if Global Funnel feature is on for this funnel.', 'woo-one-click-upsell-funnel' ) );
 
-						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped.
+						echo wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped.
 
 						$mwb_wocuf_smoff_upgrade = ! empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_smart_offer_upgrade'] ) ? $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_smart_offer_upgrade'] : 'no';
 						?>
@@ -789,7 +789,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 							<!-- Offer custom image start -->
 							<tr>
-							    <th><label><h4><?php esc_html_e( 'Offer Image', 'woocommerce-one-click-upsell-funnel-pro' )?></h4></label>
+							    <th><label><h4><?php esc_html_e( 'Offer Image', 'woo-one-click-upsell-funnel' )?></h4></label>
 							    </th>
 
 							    <td>

@@ -121,6 +121,8 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 
 				wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/select2.min.js', array( 'jquery' ), $this->version, false );
 
+				wp_enqueue_media();
+
 				wp_enqueue_script( 'mwb_wocuf_pro_admin_script', plugin_dir_url( __FILE__ ) . 'js/woocommerce_one_click_upsell_funnel_pro-admin.js', array( 'jquery' ), $this->version, false );
 
 				wp_register_script( 'woocommerce_admin', WC()->plugin_url() . '/assets/js/admin/woocommerce_admin.js', array( 'jquery', 'jquery-blockui', 'jquery-ui-sortable', 'jquery-ui-widget', 'jquery-ui-core', 'jquery-tiptip', 'wc-enhanced-select' ), WC_VERSION );
@@ -368,7 +370,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 			<span class="mwb_upsell_offer_description" >' . esc_html__( 'Specify new offer price or discount %', 'woo-one-click-upsell-funnel' ) . '</span>
 			</td>
 			<tr>
-			    <th><label><h4>' . esc_html__( 'Offer Image', 'woocommerce-one-click-upsell-funnel-pro' ) . '</h4></label>
+			    <th><label><h4>' . esc_html__( 'Offer Image', 'woo-one-click-upsell-funnel' ) . '</h4></label>
 			    </th>
 			    <td>' . $this->mwb_wocuf_pro_image_uploader_field( $offer_index )  . '</td>
 			</tr>
@@ -985,7 +987,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	 */
 	public function mwb_wocuf_pro_image_uploader_field( $hidden_field_index, $image_post_id = '' ) {
 
-		$image = ' button">Upload image';
+		$image = ' button">' . esc_html__( 'Upload image', 'woo-one-click-upsell-funnel' );
 		$display = 'none'; // Display state ot the "Remove image" button.
 
 		if( ! empty( $image_post_id ) ) {

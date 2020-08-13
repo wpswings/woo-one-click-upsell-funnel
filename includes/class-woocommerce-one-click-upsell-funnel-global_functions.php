@@ -250,14 +250,14 @@ function mwb_upsell_lite_supported_gateways() {
 		'cod', // Cash on delivery
 	);
 
-	return $supported_gateways;
+	return apply_filters( 'mwb_upsell_lite_supported_gateways', $supported_gateways );
 }
 
 /**
  * Upsell supported payment gateways for which Parent Order is secured.
  * Either with Initial payment or via Cron. 
  *
- * @since    3.5.0
+ * @since    3.0.0
  */
 function mwb_upsell_lite_payment_gateways_with_parent_secured() {
 
@@ -271,7 +271,7 @@ function mwb_upsell_lite_payment_gateways_with_parent_secured() {
 /**
  * Elementor Upsell offer template 1.
  *
- * ( Default Template ).
+ * Standard Template ( Default ).
  *
  * @since    2.0.0
  */
@@ -287,6 +287,8 @@ function mwb_upsell_lite_elementor_offer_template_1() {
 /**
  * Elementor Upsell offer template 2.
  *
+ * Creative Template.
+ *
  * @since    2.0.0
  */
 function mwb_upsell_lite_elementor_offer_template_2() {
@@ -301,7 +303,7 @@ function mwb_upsell_lite_elementor_offer_template_2() {
 /**
  * Elementor Upsell offer template 3.
  *
- * Video Offer Template.
+ * Video Template.
  *
  * @since    2.0.0
  */
@@ -315,9 +317,7 @@ function mwb_upsell_lite_lite_elementor_offer_template_3() {
 }
 
 /**
- * Elementor Upsell offer template 3.
- *
- * Video Offer Template.
+ * Gutenberg Offer Page content.
  *
  * @since    2.0.0
  */
