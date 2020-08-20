@@ -101,6 +101,7 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
         'query_type'   => 'get_var',
         'filter_range' => true,
         'order_status' => array( 'completed', 'processing', 'on-hold', 'refunded' ),
+        'nocache'      => true, // Using these as it was not updating latest orders data.
       )
     );
 
@@ -139,6 +140,7 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
           'query_type'   => 'get_var',
           'filter_range' => true,
           'order_status' => array( 'completed', 'processing', 'on-hold', 'refunded' ),
+          'nocache'      => true, // Using these as it was not updating latest orders data.
         )
       )
     );
@@ -293,6 +295,7 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
             'query_type'   => 'get_results',
             'filter_range' => true,
             'order_status' => array( 'completed', 'processing', 'on-hold', 'refunded' ),
+            'nocache'      => true, // Using these as it was not updating latest orders data.
           )
         );
 
@@ -351,6 +354,7 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
             'limit'        => 12,
             'query_type'   => 'get_results',
             'filter_range' => true,
+            'nocache'      => true, // Using these as it was not updating latest orders data.
           )
         );
 
@@ -405,6 +409,7 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
             'query_type'   => 'get_results',
             'filter_range' => true,
             'order_status' => array( 'completed', 'processing', 'on-hold', 'refunded' ),
+            'nocache'      => true, // Using these as it was not updating latest orders data.
           )
         );
 
@@ -515,6 +520,7 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
           'query_type'   => 'get_results',
           'filter_range' => true,
           'order_status' => array( 'completed', 'processing', 'on-hold', 'refunded' ),
+          'nocache'      => true, // Using these as it was not updating latest orders data.
         )
       );
 
@@ -553,6 +559,7 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
           'query_type'   => 'get_results',
           'filter_range' => true,
           'order_status' => array( 'completed', 'processing', 'on-hold', 'refunded' ),
+          'nocache'      => true, // Using these as it was not updating latest orders data.
         )
       );
 

@@ -172,6 +172,7 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
           'group_by'     => 'ID, product_id, post_date',
           'query_type'   => 'get_results',
           'filter_range' => true,
+          'nocache'      => true, // Using these as it was not updating latest orders data.
         )
       );
 
