@@ -1857,6 +1857,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 			$live_params_from_url = mwb_upsell_lite_get_pid_from_url_params();
 
+			// When Live Offer.
 			if( ! empty( $live_params_from_url[ 'status' ] ) && 'true' == $live_params_from_url[ 'status' ] ) {
 
 				$offer_id = ! empty( $live_params_from_url[ 'offer_id' ] ) ? wc_clean( $live_params_from_url[ 'offer_id' ] ) : '';
@@ -1894,6 +1895,57 @@ class Woocommerce_one_click_upsell_funnel_Public {
 							</div>";
 						
 						return $upsell_product_image_src_div;
+					}
+				}
+			}
+
+			// When not Live Offer.
+			else{
+
+				global $post;
+				$offer_page_id = $post->ID;
+
+				// Means this is Upsell offer template. 
+				$funnel_data = get_post_meta( $offer_page_id, 'mwb_upsell_funnel_data', true );
+
+				if ( ! empty( $funnel_data ) && is_array( $funnel_data ) ) {
+
+					$funnel_id = $funnel_data['funnel_id'];
+					$offer_id = $funnel_data['offer_id'];
+
+					if( ! empty( $funnel_id ) && ! empty( $offer_id ) ) {
+
+						$all_funnels = get_option( 'mwb_wocuf_funnels_list', array() );
+
+						$upsell_product_image_post_id = !empty( $all_funnels[$funnel_id]['mwb_upsell_offer_image'][$offer_id] ) ? $all_funnels[$funnel_id]['mwb_upsell_offer_image'][$offer_id] : '';
+
+						if( ! empty( $upsell_product_image_post_id ) ) {
+
+							$image_attributes = wp_get_attachment_image_src( $upsell_product_image_post_id, 'full' );
+
+							$upsell_product_image_src = ! empty( $image_attributes[0] ) && filter_var( $image_attributes[0], FILTER_VALIDATE_URL ) ? $image_attributes[0] : false;
+						}
+
+						if( ! empty( $upsell_product_image_src ) && getimagesize( $upsell_product_image_src ) ) {
+
+							// Shortcode attributes.
+							$atts = shortcode_atts( array(
+								'id' 	=> '',
+								'class' => '',
+								'style' => '',
+							), $atts );
+
+							$id = $atts['id'];
+							$class = $atts['class'];
+							$style = $atts['style'];
+
+							$upsell_product_image_src_div = 
+								"<div id='$id' class='mwb_upsell_offer_product_image $class' style='$style'>
+									<img src='$upsell_product_image_src'>
+								</div>";
+							
+							return $upsell_product_image_src_div;
+						}
 					}
 				}
 			}
@@ -3023,10 +3075,12 @@ class Woocommerce_one_click_upsell_funnel_Public {
                     'p_qty' => esc_js( $item['qty'] )
                 );
             }
-            
-            // Add Product data json.
-            wc_enqueue_js( 'mwb_upsell_ga_pd=' . json_encode( $product_data ) . ';' );
 
+            if( ! empty( $product_data ) ) {
+
+            	// Add Product data json.
+            	wc_enqueue_js( 'mwb_upsell_ga_pd=' . json_encode( $product_data ) . ';' );	
+            }
         }	
 
         // Get Shipping total.
@@ -3211,8 +3265,11 @@ class Woocommerce_one_click_upsell_funnel_Public {
                 );
             }
             
-            // Add Product data json.
-            wc_enqueue_js( 'mwb_upsell_ga_pd=' . json_encode( $product_data ) . ';' );
+            if( ! empty( $product_data ) ) {
+
+            	// Add Product data json.
+            	wc_enqueue_js( 'mwb_upsell_ga_pd=' . json_encode( $product_data ) . ';' );	
+            }
 
         }
 
