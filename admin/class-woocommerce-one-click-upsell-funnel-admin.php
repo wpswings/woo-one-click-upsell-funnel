@@ -377,11 +377,11 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 			</tr>
 		    <tr>
 		    <th><label><h4>' . esc_html__( 'After \'Buy Now\' go to', 'woo-one-click-upsell-funnel' ) . '</h4></label></th>
-		    <td>' . $buy_now_action_select_html . '<span class="mwb_upsell_offer_description">' . esc_html__( 'Select where the customer will be redirected after accepting this offer', 'woocommerce-one-click-upsell-funnel-pro ' ) . '</span></td>
+		    <td>' . $buy_now_action_select_html . '<span class="mwb_upsell_offer_description">' . esc_html__( 'Select where the customer will be redirected after accepting this offer', 'woo-one-click-upsell-funnel' ) . '</span></td>
 		    </tr>
 		    <tr>
 		    <th><label><h4>' . esc_html__( 'After \'No thanks\' go to', 'woo-one-click-upsell-funnel' ) . '</h4></label></th>
-		    <td>' . $no_thanks_action_select_html . '<span class="mwb_upsell_offer_description">' . esc_html__( 'Select where the customer will be redirected after rejecting this offer', 'woocommerce-one-click-upsell-funnel-pro ' ) . '</td>
+		    <td>' . $no_thanks_action_select_html . '<span class="mwb_upsell_offer_description">' . esc_html__( 'Select where the customer will be redirected after rejecting this offer', 'woo-one-click-upsell-funnel' ) . '</td>
 		    </tr>' . $funnel_offer_template_section_html . '
 		    <tr>
 		    <th><label><h4>' . esc_html__( 'Offer Custom Page Link', 'woo-one-click-upsell-funnel' ) . '</h4></label></th>

@@ -1389,6 +1389,14 @@ button.button-primary.mwb_upsell_activate_offer_template:focus {
   width: auto !important;
   height: auto !important;
 }
+
+/**
+ * Custom Offer Image.
+ */
+.mwb_wocuf_saved_custom_image a:focus{
+  box-shadow: unset !important;
+}
+
 /**=========================================== 
               Version : 3.0.0
  ============================================*/
