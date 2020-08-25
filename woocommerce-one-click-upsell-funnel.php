@@ -91,6 +91,9 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 
 	define( 'MWB_WOCUF_VERSION', '3.0.0' );
 
+	define( 'YOUR_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
+	define( 'YOUR_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+
 
 	/**
 	 * The code that runs during plugin activation.

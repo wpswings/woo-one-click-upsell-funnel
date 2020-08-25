@@ -213,6 +213,38 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	}
 
 	/**
+	 * Include Upsell screen for Onboarding pop-up.
+	 *
+	 * @since    3.0.0
+	 */
+	public function add_mwb_frontend_screens( $valid_screens = array() ) {
+
+		if ( is_array( $valid_screens ) ) {
+			
+			// Push your screen here.
+			array_push( $valid_screens, 'toplevel_page_mwb-wocuf-setting' );
+		}
+
+		return $valid_screens;	
+	}
+
+	/**
+	 * Include Upsell plugin for Deactivation pop-up.
+	 *
+	 * @since    3.0.0
+	 */
+	public function add_mwb_deactivation_screens( $valid_screens = array() ) {
+
+		if ( is_array( $valid_screens ) ) {
+			
+			// Push your screen here.
+			array_push( $valid_screens, 'woo-one-click-upsell-funnel' );
+		}
+
+		return $valid_screens;
+	}
+
+	/**
 	 * Adding upsell menu page.
 	 *
 	 * @since    1.0.0

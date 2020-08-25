@@ -130,6 +130,20 @@ class Woocommerce_one_click_upsell_funnel {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce-one-click-upsell-funnel-global_functions.php';
 
 		/**
+		 * The class responsible for defining all actions that occur in the onboarding the site data
+		 * in the admin side of the site.
+		 */
+		if( ! class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
+
+			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-makewebbetter-onboarding-helper.php';
+		}
+
+		if( class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
+
+			$this->onboard = new Makewebbetter_Onboarding_Helper();
+		}
+
+		/**
 		 * The file responsible for Upsell Sales by Funnel - Data handling and Stats.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'reporting/class-upsell-report-sales-by-funnel.php';
@@ -195,6 +209,12 @@ class Woocommerce_one_click_upsell_funnel {
 
 		// Support Plugin Development handle.
 		$this->loader->add_action( 'wp_ajax_mwb_upsell_lite_support_plugin_development_handle', $plugin_admin, 'support_plugin_development_handle' );
+
+		// Include Upsell screen for Onboarding pop-up.
+		$this->loader->add_filter( 'mwb_helper_valid_frontend_screens', $plugin_admin, 'add_mwb_frontend_screens' );
+
+		// Include Upsell plugin for Deactivation pop-up.
+		$this->loader->add_filter( 'mwb_deactivation_supported_slug', $plugin_admin, 'add_mwb_deactivation_screens' );
 
 		if ( 'on' === $mwb_wocuf_enable_plugin ) {
 
