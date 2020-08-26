@@ -207,9 +207,6 @@ class Woocommerce_one_click_upsell_funnel {
 		// Insert and Activate respective template ajax handle function.
 		$this->loader->add_action( 'wp_ajax_mwb_upsell_activate_offer_template_ajax', $plugin_admin, 'activate_respective_offer_template' );
 
-		// Support Plugin Development handle.
-		$this->loader->add_action( 'wp_ajax_mwb_upsell_lite_support_plugin_development_handle', $plugin_admin, 'support_plugin_development_handle' );
-
 		// Include Upsell screen for Onboarding pop-up.
 		$this->loader->add_filter( 'mwb_helper_valid_frontend_screens', $plugin_admin, 'add_mwb_frontend_screens' );
 

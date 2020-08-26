@@ -41,7 +41,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<div id="mwb_upsell_lite_overview_pro_version">
 
-		<h2><?php esc_html_e( 'Premium Plugin Additional Features', 'woo-one-click-upsell-funnel' ); ?></h2>
+		<h2><?php esc_html_e( 'Premium Plugin Features', 'woo-one-click-upsell-funnel' ); ?></h2>
 
 		
 

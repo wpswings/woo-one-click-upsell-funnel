@@ -28,13 +28,13 @@ jQuery(document).ready( function($) {
 
 	jQuery('.wc-funnel-product-search').select2({
   		ajax:{
-    			url :mwb.ajaxurl,
+    			url :mwb_upsell_lite_js_obj.ajaxurl,
     			dataType: 'json',
     			delay: 200,
     			data: function (params) {
       				return {
         				q: params.term,
-        				nonce : mwb.auth_nonce,
+        				nonce : mwb_upsell_lite_js_obj.auth_nonce,
         				action: 'seach_products_for_funnel'
       				};
     			},
@@ -59,13 +59,13 @@ jQuery(document).ready( function($) {
 
 	jQuery('.wc-offer-product-search').select2({
   		ajax:{
-    			url :mwb.ajaxurl,
+    			url :mwb_upsell_lite_js_obj.ajaxurl,
     			dataType: 'json',
     			delay: 200,
     			data: function (params) {
       				return {
         				q: params.term,
-        				nonce : mwb.auth_nonce,
+        				nonce : mwb_upsell_lite_js_obj.auth_nonce,
         				action: 'seach_products_for_offers'
       				};
     			},
@@ -106,20 +106,6 @@ jQuery(document).ready( function($) {
 		upsell_create_new_offer_post_request( index, funnel );		
 	});
 
-	function upsell_support_plugin_development( value ) {
-
-		$.ajax({
-		    type:'POST',
-		    url :mwb.ajaxurl,
-		    data:{
-		    	action: 'mwb_upsell_lite_support_plugin_development_handle',
-		    	nonce : mwb.auth_nonce,
-		    	upsell_support: value, 
-		    },
-	   });
-    }
-
-
 	function upsell_create_new_offer_post_request( index, funnel ) {
 
 		// Increase offer id.
@@ -127,10 +113,10 @@ jQuery(document).ready( function($) {
 
 		$.ajax({
 		    type:'POST',
-		    url :mwb.ajaxurl,
+		    url :mwb_upsell_lite_js_obj.ajaxurl,
 		    data:{
 		    	action: 'mwb_wocuf_pro_return_offer_content',
-		    	nonce : mwb.auth_nonce,
+		    	nonce : mwb_upsell_lite_js_obj.auth_nonce,
 		    	mwb_wocuf_pro_flag: index,
 		    	mwb_wocuf_pro_funnel: funnel
 		    },
@@ -161,13 +147,13 @@ jQuery(document).ready( function($) {
 		    	// Reinitialize product search in new offer.
 		    	jQuery('.wc-offer-product-search').select2({
 			  		ajax:{
-			    			url :mwb.ajaxurl,
+			    			url :mwb_upsell_lite_js_obj.ajaxurl,
 			    			dataType: 'json',
 			    			delay: 200,
 			    			data: function (params) {
 			      				return {
 			        				q: params.term,
-			        				nonce : mwb.auth_nonce,
+			        				nonce : mwb_upsell_lite_js_obj.auth_nonce,
 			        				action: 'seach_products_for_offers'
 			      				};
 			    			},
@@ -190,43 +176,6 @@ jQuery(document).ready( function($) {
 					minimumInputLength: 3 // the minimum of symbols to input before perform a search
 				});
 
-				setTimeout( function() {
-
-					if( mwb.show_support_popup ) {
-
-						// Once shown so set it to false, so that the popup doesn't show again before reload.
-						mwb.show_support_popup = false;
-
-						// Show Support Pop up When adding 1st new offer in 2nd or greater funnel.
-						if( '1' == index && '2' <= funnel ) {
-
-							swal( mwb.support_popup_texts.main_title, mwb.support_popup_texts.main_text, 'info', {
-								buttons: {
-									never: mwb.support_popup_texts.button_text_3,
-									cancel: mwb.support_popup_texts.button_text_2,
-									support: mwb.support_popup_texts.button_text_1,
-								},
-							})
-							.then((value) => {
-
-
-								switch (value) {
-
-									case "support":
-										swal( {text: mwb.support_popup_texts.support_text, icon: 'success'} );
-										upsell_support_plugin_development(value);
-										break;
-
-									case "never":
-										swal( {text: mwb.support_popup_texts.never_text, icon: 'info'} );
-										upsell_support_plugin_development(value);
-										break;
-								}
-							});
-						}
-					}
-
-				}, 1000);
 			}
 	   });
     }
@@ -254,10 +203,10 @@ jQuery(document).ready( function($) {
 
 		$.ajax({
 		    type:'POST',
-		    url :mwb.ajaxurl,
+		    url :mwb_upsell_lite_js_obj.ajaxurl,
 		    data:{
 		    	action: 'mwb_upsell_activate_offer_template_ajax',
-				nonce : mwb.auth_nonce,
+				nonce : mwb_upsell_lite_js_obj.auth_nonce,
 		    	funnel_id: funnel_id,
 		    	offer_id: offer_id,
 		    	template_id: template_id,

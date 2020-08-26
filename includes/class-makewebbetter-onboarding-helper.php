@@ -71,10 +71,10 @@ class Makewebbetter_Onboarding_Helper {
 		 */
 		if ( $this->is_valid_page_screen() ) {
 
-			wp_enqueue_style( 'makewebbetter-onboarding-style',YOUR_PLUGIN_URL . 'admin/css/makewebbetter-onboarding-admin.css', array(), '1.0.0', 'all' );
+			wp_enqueue_style( 'makewebbetter-onboarding-style', MWB_WOCUF_URL . 'admin/css/makewebbetter-onboarding-admin.css', array(), '1.0.0', 'all' );
 
 			// Uncomment Only when your plugin doesn't uses the Select2
-			wp_enqueue_style( 'makewebbetter-onboarding-select2-style', YOUR_PLUGIN_URL . 'admin/css/select2.min.css', array(), '1.0.0', 'all' );
+			wp_enqueue_style( 'makewebbetter-onboarding-select2-style', MWB_WOCUF_URL . 'admin/css/select2.min.css', array(), '1.0.0', 'all' );
 		}
 	}
 
@@ -98,13 +98,13 @@ class Makewebbetter_Onboarding_Helper {
 		 */
 		if ( $this->is_valid_page_screen() ) {
 
-			wp_enqueue_script( 'makewebbetter-onboarding-scripts', YOUR_PLUGIN_URL . 'admin/js/makewebbetter-onboarding-admin.js', array( 'jquery' ), '1.0.0', true );
+			wp_enqueue_script( 'makewebbetter-onboarding-scripts', MWB_WOCUF_URL . 'admin/js/makewebbetter-onboarding-admin.js', array( 'jquery' ), '1.0.0', true );
 
 			global $pagenow;
 			$current_slug = ! empty( explode( '/', plugin_basename( __FILE__ ) ) ) ? explode( '/', plugin_basename( __FILE__ ) )[0] : '';
 			wp_localize_script(
 				'makewebbetter-onboarding-scripts',
-				'mwb',
+				'mwb_onboarding',
 				array(
 					'ajaxurl'       => admin_url( 'admin-ajax.php' ),
 					'auth_nonce'    => wp_create_nonce( 'mwb_onboarding_nonce' ),
@@ -114,7 +114,7 @@ class Makewebbetter_Onboarding_Helper {
 			);
 
 			// Uncomment Only when your plugin doesn't uses the Select2
-			wp_enqueue_script( 'makewebbetter-onboarding-select2-script', YOUR_PLUGIN_URL . 'admin/js/select2.min.js', array( 'jquery' ), '1.0.0', false );
+			wp_enqueue_script( 'makewebbetter-onboarding-select2-script', MWB_WOCUF_URL . 'admin/js/select2.min.js', array( 'jquery' ), '1.0.0', false );
 		}
 	}
 
@@ -126,7 +126,7 @@ class Makewebbetter_Onboarding_Helper {
 	public function add_onboarding_popup_screen() {
 
 		if ( $this->is_valid_page_screen() && $this->can_show_onboarding_popup() ) {
-			require_once YOUR_PLUGIN_DIR_PATH . 'extra-templates/makewebbetter-onboarding-template-display.php';
+			require_once MWB_WOCUF_DIRPATH . 'extra-templates/makewebbetter-onboarding-template-display.php';
 		}
 	}
 
@@ -140,7 +140,7 @@ class Makewebbetter_Onboarding_Helper {
 
 		global $pagenow;
 		if ( ! empty( $pagenow ) && 'plugins.php' == $pagenow ) {
-			require_once YOUR_PLUGIN_DIR_PATH . 'extra-templates/makewebbetter-deactivation-template-display.php';
+			require_once MWB_WOCUF_DIRPATH . 'extra-templates/makewebbetter-deactivation-template-display.php';
 		}
 	}
 

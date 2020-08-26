@@ -161,36 +161,15 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 
 					wp_enqueue_script( 'woocommerce_admin' );
 
-					// Manage Support Pop up.
-					$show_support_popup = false;
-
-					if( ! mwb_upsell_lite_is_upsell_pro_active() && false == get_option( 'mwb_upsell_lite_hide_support_popup' ) ) {
-
-						$show_support_popup = true;
-
-						// Enqueue Sweet Alert js.
-						wp_enqueue_script( 'mwb-upsell-sweet-alert-js', MWB_WOCUF_URL . 'public/js/sweet-alert.js', array(), '2.1.2', true );
-					}
-
 					$wocuf_js_data = array(
 						'ajaxurl'       	=> admin_url( 'admin-ajax.php' ),
 						'auth_nonce'    	=> wp_create_nonce( 'mwb_wocuf_nonce' ),
-						'current_version'   => MWB_WOCUF_VERSION,
-						'show_support_popup' => $show_support_popup,
-						'support_popup_texts' => array(
-								'main_title' => esc_html__( 'Support Us', 'woo-one-click-upsell-funnel' ),
-								'main_text' => esc_html__( 'Support Plugin Development and send tracking data to us. You will receive exclusive information content and offers from us. We only need your email and website URL and that too only once.', 'woo-one-click-upsell-funnel' ),
-								'button_text_1' => esc_html__( 'Yes Support!', 'woo-one-click-upsell-funnel' ),
-								'button_text_2' => esc_html__( 'Decide Later..', 'woo-one-click-upsell-funnel' ),
-								'button_text_3' => esc_html__( 'Never', 'woo-one-click-upsell-funnel' ),
-								'support_text' => esc_html__( 'Thanks!', 'woo-one-click-upsell-funnel' ),
-								'never_text' => __( 'Noted! We won\'t bother you again.', 'woo-one-click-upsell-funnel' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped As we are localizing this we cannot escape html here as it contains ' in content.
-							)
+						'current_version'   => MWB_WOCUF_VERSION
 					);
 
 					wp_enqueue_script( 'mwb-wocuf-pro-add_new-offer-script', plugin_dir_url( __FILE__ ) . 'js/mwb_wocuf_pro_add_new_offer_script.js', array( 'woocommerce_admin', 'wc-enhanced-select' ), $this->version, false );
 
-					wp_localize_script( 'mwb-wocuf-pro-add_new-offer-script', 'mwb', $wocuf_js_data );
+					wp_localize_script( 'mwb-wocuf-pro-add_new-offer-script', 'mwb_upsell_lite_js_obj', $wocuf_js_data );
 
 					if ( ! empty( $_GET['mwb-upsell-offer-section'] ) ) {
 
@@ -606,40 +585,6 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 		}
 
 		echo wp_json_encode( array( 'status' => true ) );
-
-		wp_die();
-	}
-
-	/**
-	 * Support Plugin Development handle.
-	 *
-	 * @since    3.0.0
-	 */
-	public function support_plugin_development_handle() {
-
-		check_ajax_referer( 'mwb_wocuf_nonce', 'nonce' );
-
-		$upsell_support = ! empty( $_POST['upsell_support'] ) ? sanitize_text_field( wp_unslash( $_POST['upsell_support'] ) ) : '';
-
-		if( ! empty( $upsell_support ) && 'support' == $upsell_support ) {
-
-			$to = 'integrations@makewebbetter.com';
-
-			$subject = 'Support Plugin Development Request [Upsell]';
-
-			$content = 'Support Plugin Development Request for One Click Upsell' . PHP_EOL;
-			$content .= 'Site Url : ' . site_url() . PHP_EOL;
-			$content .= 'Admin Email : ' . get_option( 'admin_email' ) . PHP_EOL;
-
-			$sent = wp_mail( $to, $subject, $content );
-
-			update_option( 'mwb_upsell_lite_hide_support_popup', 'true' );
-		}
-
-		elseif( ! empty( $upsell_support ) && 'never' == $upsell_support ) {
-
-			update_option( 'mwb_upsell_lite_hide_support_popup', 'true' );
-		}
 
 		wp_die();
 	}

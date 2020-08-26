@@ -79,9 +79,27 @@ $mwb_upsell_lite_plugin_activation = mwb_upsell_lite_plugin_activation();
 
 if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 
-	// If pro plugin active, load nothing.
+	// If pro plugin active, show notice and load nothing.
 	if ( mwb_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
 
+		// Add admin info notice on plugins page.
+		add_action( 'admin_notices', 'mwb_upsell_lite_deactivate_org_notice' );
+
+		function mwb_upsell_lite_deactivate_org_notice() {
+
+			global $pagenow;
+
+			if ( ! empty( $pagenow ) && 'plugins.php' == $pagenow ) : ?>
+
+			<div class="notice notice-info is-dismissible">
+				<p><?php esc_html_e( 'Please deactivate the free plugin', 'woo-one-click-upsell-funnel' ); ?><strong> <?php esc_html_e( 'One Click Upsell Funnel for Woocommerce', 'woo-one-click-upsell-funnel' ); ?></strong> <?php esc_html_e( 'as the Pro plugin', 'woo-one-click-upsell-funnel' ); ?><strong> <?php esc_html_e( 'WooCommerce One Click Upsell Funnel Pro', 'woo-one-click-upsell-funnel' ); ?></strong> <?php esc_html_e( 'is already activated.', 'woo-one-click-upsell-funnel' ); ?></p>
+			</div>
+
+			<?php endif;
+			
+		}
+
+		// Return and Load nothing.
 		return;
 	}
 
@@ -90,9 +108,6 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 	define( 'MWB_WOCUF_DIRPATH', plugin_dir_path( __FILE__ ) );
 
 	define( 'MWB_WOCUF_VERSION', '3.0.0' );
-
-	define( 'YOUR_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
-	define( 'YOUR_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 
 	/**
