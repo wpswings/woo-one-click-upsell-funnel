@@ -74,6 +74,12 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
             'function' => '',
             'name'     => 'mwb_wocuf_pro_upsell_meta',
           ),
+          'is_upsell_purchase' => array(
+            'type'     => 'order_item_meta',
+            'order_item_type' => 'line_item',
+            'function' => '',
+            'name'     => 'mwb_wocuf_pro_upsell_item_meta',
+          ),
         ),
         'group_by'            => $this->group_by_query,
         'order_by'            => 'post_date ASC',
