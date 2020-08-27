@@ -82,15 +82,15 @@ do_action( 'mwb_wocuf_pro_setting_tab_active' );
 	<?php
 
 	if ( 'creation-setting' == $active_tab ) {
-		include_once 'templates/mwb_wocuf_pro_creation.php';
+		include_once 'templates/mwb-wocuf-pro-creation.php';
 	} elseif ( 'funnels-list' == $active_tab ) {
-		include_once 'templates/mwb_wocuf_pro_funnels_list.php';
+		include_once 'templates/mwb-wocuf-pro-funnels-list.php';
 	} elseif ( 'shortcodes' == $active_tab ) {
-		include_once 'templates/mwb_wocuf_pro_shortcodes.php';
+		include_once 'templates/mwb-wocuf-pro-shortcodes.php';
 	} elseif ( 'settings' == $active_tab ) {
-		include_once 'templates/mwb_wocuf_pro_settings.php';
+		include_once 'templates/mwb-wocuf-pro-settings.php';
 	} elseif ( 'overview' == $active_tab ) {
-		include_once 'templates/mwb_wocuf_overview.php';
+		include_once 'templates/mwb-wocuf-overview.php';
 	}
 
 		do_action( 'mwb_wocuf_pro_setting_tab_html' );

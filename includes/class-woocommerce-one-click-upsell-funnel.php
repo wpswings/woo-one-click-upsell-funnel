@@ -127,7 +127,7 @@ class Woocommerce_one_click_upsell_funnel {
 		/**
 		 * The file responsible for defining global plugin functions.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce-one-click-upsell-funnel-global_functions.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce-one-click-upsell-funnel-global-functions.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the onboarding the site data
@@ -146,7 +146,7 @@ class Woocommerce_one_click_upsell_funnel {
 		/**
 		 * The file responsible for Upsell Sales by Funnel - Data handling and Stats.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'reporting/class-upsell-report-sales-by-funnel.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'reporting/class-mwb-upsell-report-sales-by-funnel.php';
 
 		$this->loader = new Woocommerce_one_click_upsell_funnel_Loader();
 

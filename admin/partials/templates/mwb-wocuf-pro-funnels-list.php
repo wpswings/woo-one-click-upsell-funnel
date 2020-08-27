@@ -130,7 +130,7 @@ else {
 							echo '<span class="mwb_upsell_funnel_list_sandbox"></span><span class="mwb_upsell_funnel_list_sandbox_name">' . esc_html__( 'Sandbox', 'woo-one-click-upsell-funnel' ) . '</span>';
 						}
 
-						echo "<div class='mwb-upsell-funnel-attributes $funnel_status'>";
+						echo "<div class='mwb-upsell-funnel-attributes $funnel_status'>"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 						if ( 'yes' == $global_funnel ) {
 

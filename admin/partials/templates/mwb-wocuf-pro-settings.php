@@ -327,7 +327,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 							?>
 
-							<textarea name="upsell_actions_message" rows="4" cols="50"><?php echo esc_html__( wp_unslash( $upsell_actions_message ) ); ?></textarea>
+							<textarea name="upsell_actions_message" rows="4" cols="50"><?php echo esc_html( wp_unslash( $upsell_actions_message ) ); ?></textarea>
 						</div>
 						<span class="mwb_upsell_global_description"><?php esc_html_e( 'Add a custom message on after upsell accept or reject button.', 'woo-one-click-upsell-funnel' ); ?></span>
 					</td>
@@ -356,7 +356,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 							?>
 
-							<textarea name="global_custom_css" rows="4" cols="50"><?php echo esc_html__( wp_unslash( $global_custom_css ) ); ?></textarea>
+							<textarea name="global_custom_css" rows="4" cols="50"><?php echo esc_html( wp_unslash( $global_custom_css ) ); ?></textarea>
 						</div>
 					</td>
 				</tr>
@@ -383,7 +383,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 							?>
 
-							<textarea name="global_custom_js" rows="4" cols="50"><?php echo esc_html__( wp_unslash( $global_custom_js ) ); ?></textarea>
+							<textarea name="global_custom_js" rows="4" cols="50"><?php echo esc_html( wp_unslash( $global_custom_js ) ); ?></textarea>
 						</div>
 					</td>
 				</tr>

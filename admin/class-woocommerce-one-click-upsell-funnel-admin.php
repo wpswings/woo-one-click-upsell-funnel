@@ -261,7 +261,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	 */
 	public function upsell_menu_html() {
 
-		require_once plugin_dir_path( __FILE__ ) . '/partials/woocommerce_one_click_upsell_funnel_pro-admin-display.php';
+		require_once plugin_dir_path( __FILE__ ) . '/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php';
 	}
 
 	/**
@@ -413,7 +413,8 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 
 			$new_data = apply_filters( 'mwb_wocuf_pro_add_more_to_offers', $data );
 
-			echo $new_data; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped It just displayes the html itself. Content in it is already escaped if required.
+			echo $new_data; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			// It just displayes the html itself. Content in it is already escaped if required.
 		}
 
 		wp_die();
@@ -471,7 +472,8 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 							?>
 							<!-- Offer templates foreach start-->
 
-							<div class="mwb_upsell_offer_template <?php echo $template_key == $offer_template_active ? 'active' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped It just displayes the html itself. Content in it is already escaped if required. ?>">
+							<div class="mwb_upsell_offer_template <?php echo $template_key == $offer_template_active ? 'active' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							// It just displayes the html itself. Content in it is already escaped if required. ?>">
 
 
 								<div class="mwb_upsell_offer_template_sub_div"> 
@@ -743,7 +745,8 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 					$data .= esc_html__( 'Single Order', 'woo-one-click-upsell-funnel' );
 				}
 
-				echo $data; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped It just displayes the html itself. Content in it is already escaped if required.
+				echo $data; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				// It just displayes the html itself. Content in it is already escaped if required.
 
 				break;
 		}
@@ -850,29 +853,6 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 		}
 
 		return $page_template;
-	}
-
-	/**
-	 * Adding new tab for upsell sales report in admin reports section
-	 *
-	 * @since       1.0.0
-	 * @param       $tabs       tabs of the report section
-	 */
-	public function mwb_wocuf_pro_maintain_report( $tabs ) {
-
-		$tabs['mwb_wocuf_reports'] = array(
-			'title'         => esc_html__( 'One Click Upsell Funnel for WooCommerce', 'woo-one-click-upsell-funnel' ),
-			'reports'       => array(
-				'mwb_wocuf_report_by_date' => array(
-					'title'       => esc_html__( 'Upsell Funnel Revenue By Date', 'woo-one-click-upsell-funnel' ),
-					'description' => '',
-					'hide_title'  => false,
-					'callback'    => array( $this, 'mwb_wocuf_pro_get_upsell_report' ),
-				),
-			),
-		);
-
-		return $tabs;
 	}
 
 	/**
@@ -1038,7 +1018,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 		/**
 		 * The file responsible for defining reporting.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'reporting/class-upsell-report-' . $report_file . '.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'reporting/class-mwb-upsell-report-' . $report_file . '.php';
 
 		if ( class_exists( $class_name ) ) {
 

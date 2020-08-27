@@ -117,7 +117,8 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 		}
 	} elseif ( ! is_array( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ) {
 
-		$_POST['mwb_wocuf_pro_funnel_schedule'] = array( $_POST['mwb_wocuf_pro_funnel_schedule'] );
+		$_POST['mwb_wocuf_pro_funnel_schedule'] = array( $_POST['mwb_wocuf_pro_funnel_schedule'] ); // phpcs:ignore
+		// Sanitized and unslashed below.
 	}
 
 	$mwb_wocuf_pro_funnel = array();
@@ -343,7 +344,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 						$attribute_description = sprintf( '<p class="mwb_upsell_tip_tip">%s</p><p class="mwb_upsell_tip_tip">%s</p><p class="mwb_upsell_tip_tip">%s</p>', esc_html__( 'Post Checkout Offers will be displayed :', 'woo-one-click-upsell-funnel' ), esc_html__( 'Sandbox Mode &rarr; For Admin only', 'woo-one-click-upsell-funnel' ), esc_html__( 'Live Mode &rarr; For All', 'woo-one-click-upsell-funnel' ) );
 
-						echo wc_help_tip( $attribute_description );
+						echo wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 						?>
 
@@ -794,7 +795,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 										$image_post_id = ! empty( $mwb_wocuf_custom_offer_images[ $current_offer_id ] ) ? $mwb_wocuf_custom_offer_images[ $current_offer_id ] : '';
 
-										echo $this->mwb_wocuf_pro_image_uploader_field( $current_offer_id, $image_post_id );
+										echo $this->mwb_wocuf_pro_image_uploader_field( $current_offer_id, $image_post_id ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 									?>
 								</td>
 							</tr>
@@ -806,7 +807,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 								</th>
 
 								<td>
-									<?php echo $mwb_wocuf_pro_buy_now_action_html; ?>
+									<?php echo $mwb_wocuf_pro_buy_now_action_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
 									<span class="mwb_upsell_offer_description"><?php esc_html_e( 'Select where the customer will be redirected after accepting this offer', 'woo-one-click-upsell-funnel' ); ?></span>
 								</td>
@@ -819,7 +820,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 								</th>
 
 								<td>
-									<?php echo $mwb_wocuf_pro_no_thanks_action_html; ?>
+									<?php echo $mwb_wocuf_pro_no_thanks_action_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 									<span class="mwb_upsell_offer_description"><?php esc_html_e( 'Select where the customer will be redirected after rejecting this offer', 'woo-one-click-upsell-funnel' ); ?></span>
 								</td>
 							</tr>

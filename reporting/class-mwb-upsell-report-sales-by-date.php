@@ -356,7 +356,7 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 			'refund_amount'    => '#e74c3c',
 		);
 
-		$current_range = ! empty( $_GET['range'] ) ? sanitize_text_field( $_GET['range'] ) : '7day';
+		$current_range = ! empty( $_GET['range'] ) ? sanitize_text_field( wp_unslash( $_GET['range'] ) ) : '7day'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		if ( ! in_array( $current_range, array( 'custom', 'year', 'last_month', 'month', '7day' ) ) ) {
 			$current_range = '7day';
@@ -372,18 +372,18 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 	 * Output an export link.
 	 */
 	public function get_export_button() {
-		$current_range = ! empty( $_GET['range'] ) ? sanitize_text_field( $_GET['range'] ) : '7day';
+		$current_range = ! empty( $_GET['range'] ) ? sanitize_text_field( wp_unslash( $_GET['range'] ) ) : '7day'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		?>
 	<a
 	  href="#"
-	  download="report-<?php echo esc_attr( $current_range ); ?>-<?php echo date_i18n( 'Y-m-d', current_time( 'timestamp' ) ); ?>.csv"
+	  download="report-<?php echo esc_attr( $current_range ); ?>-<?php echo esc_attr( date_i18n( 'Y-m-d', current_time( 'timestamp' ) ) ); ?>.csv"
 	  class="export_csv"
 	  data-export="chart"
 	  data-xaxes="<?php esc_attr_e( 'Date', 'woo-one-click-upsell-funnel' ); ?>"
 	  data-exclude_series="2"
-	  data-groupby="<?php echo $this->chart_groupby; ?>"
+	  data-groupby="<?php echo esc_attr( $this->chart_groupby ); ?>"
 	>
-		<?php _e( 'Export CSV', 'woo-one-click-upsell-funnel' ); ?>
+		<?php esc_html_e( 'Export CSV', 'woo-one-click-upsell-funnel' ); ?>
 	</a>
 		<?php
 	}
@@ -456,30 +456,30 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 	  var main_chart;
 
 	  jQuery(function(){
-		var order_data = jQuery.parseJSON( '<?php echo $chart_data; ?>' );
+		var order_data = JSON.parse( decodeURIComponent( '<?php echo rawurlencode( $chart_data ); ?>' ) );
 		var drawGraph = function( highlight ) {
 		  var series = [
 			{
 			  label: "<?php echo esc_js( __( 'Number of items sold', 'woo-one-click-upsell-funnel' ) ); ?>",
 			  data: order_data.order_item_counts,
-			  color: '<?php echo $this->chart_colours['item_count']; ?>',
-			  bars: { fillColor: '<?php echo $this->chart_colours['item_count']; ?>', fill: true, show: true, lineWidth: 1, barWidth: <?php echo $this->barwidth; ?> * 0.5, align: 'center' },
+			  color: '<?php echo esc_js( $this->chart_colours['item_count'] ); ?>',
+			  bars: { fillColor: '<?php echo esc_js( $this->chart_colours['item_count'] ); ?>', fill: true, show: true, lineWidth: 1, barWidth: <?php echo esc_js( $this->barwidth ); ?> * 0.5, align: 'center' },
 			  shadowSize: 0,
 			  hoverable: false
 			},
 			{
 			  label: "<?php echo esc_js( __( 'Number of orders', 'woo-one-click-upsell-funnel' ) ); ?>",
 			  data: order_data.order_counts,
-			  color: '<?php echo $this->chart_colours['order_count']; ?>',
-			  bars: { fillColor: '<?php echo $this->chart_colours['order_count']; ?>', fill: true, show: true, lineWidth: 0, barWidth: <?php echo $this->barwidth; ?> * 0.5, align: 'center' },
+			  color: '<?php echo esc_js( $this->chart_colours['order_count'] ); ?>',
+			  bars: { fillColor: '<?php echo esc_js( $this->chart_colours['order_count'] ); ?>', fill: true, show: true, lineWidth: 0, barWidth: <?php echo esc_js( $this->barwidth ); ?> * 0.5, align: 'center' },
 			  shadowSize: 0,
 			  hoverable: false
 			},
 			{
 			  label: "<?php echo esc_js( __( 'Average net sales amount', 'woo-one-click-upsell-funnel' ) ); ?>",
-			  data: [ [ <?php echo min( array_keys( $data['order_amounts'] ) ); ?>, <?php echo $this->report_data->average_total_sales; ?> ], [ <?php echo max( array_keys( $data['order_amounts'] ) ); ?>, <?php echo $this->report_data->average_total_sales; ?> ] ],
+			  data: [ [ <?php echo esc_js( min( array_keys( $data['order_amounts'] ) ) ); ?>, <?php echo esc_js( $this->report_data->average_total_sales ); ?> ], [ <?php echo esc_js( max( array_keys( $data['order_amounts'] ) ) ); ?>, <?php echo esc_js( $this->report_data->average_total_sales ); ?> ] ],
 			  yaxis: 2,
-			  color: '<?php echo $this->chart_colours['average']; ?>',
+			  color: '<?php echo esc_js( $this->chart_colours['average'] ); ?>',
 			  points: { show: false },
 			  lines: { show: true, lineWidth: 3, fill: false },
 			  shadowSize: 0,
@@ -489,11 +489,11 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 			  label: "<?php echo esc_js( __( 'Net sales amount', 'woo-one-click-upsell-funnel' ) ); ?>",
 			  data: order_data.gross_order_amounts,
 			  yaxis: 2,
-			  color: '<?php echo $this->chart_colours['sales_amount']; ?>',
+			  color: '<?php echo esc_js( $this->chart_colours['sales_amount'] ); ?>',
 			  points: { show: true, radius: 5, lineWidth: 2, fillColor: '#fff', fill: true },
 			  lines: { show: true, lineWidth: 3, fill: false },
 			  shadowSize: 0,
-			  <?php echo $this->get_currency_tooltip(); ?>
+			  <?php echo $this->get_currency_tooltip(); // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped ?>
 			},
 		  ];
 
@@ -530,9 +530,9 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 				tickColor: 'transparent',
 				mode: "time",
 				timeformat: "<?php echo ( 'day' === $this->chart_groupby ) ? '%d %b' : '%b'; ?>",
-				monthNames: <?php echo json_encode( array_values( $wp_locale->month_abbrev ) ); ?>,
+				monthNames: JSON.parse( decodeURIComponent( '<?php echo rawurlencode( wp_json_encode( array_values( $wp_locale->month_abbrev ) ) ); ?>' ) ),
 				tickLength: 1,
-				minTickSize: [1, "<?php echo $this->chart_groupby; ?>"],
+				minTickSize: [1, "<?php echo esc_js( $this->chart_groupby ); ?>"],
 				font: {
 				  color: "#aaa"
 				}

@@ -577,9 +577,9 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		update_post_meta( $order_id, 'mwb_upsell_funnel_id', $funnel_id );
 
 		// Add Funnel Triggered count and Offer View Count for the current Funnel.
-		$Sales_By_Funnel = new Mwb_Upsell_Report_Sales_By_Funnel( $funnel_id );
-		$Sales_By_Funnel->add_funnel_triggered_count();
-		$Sales_By_Funnel->add_offer_view_count();
+		$sales_by_funnel = new Mwb_Upsell_Report_Sales_By_Funnel( $funnel_id );
+		$sales_by_funnel->add_funnel_triggered_count();
+		$sales_by_funnel->add_offer_view_count();
 
 		// Store Order ID in session so it can be re-used after payment failure.
 		WC()->session->set( 'order_awaiting_payment', $order_id );
@@ -638,8 +638,8 @@ class Woocommerce_one_click_upsell_funnel_Public {
 			}
 
 			// Add Offer Reject Count for the current Funnel.
-			$Sales_By_Funnel = new Mwb_Upsell_Report_Sales_By_Funnel( $funnel_id );
-			$Sales_By_Funnel->add_offer_reject_count();
+			$sales_by_funnel = new Mwb_Upsell_Report_Sales_By_Funnel( $funnel_id );
+			$sales_by_funnel->add_offer_reject_count();
 
 			$mwb_wocuf_pro_all_funnels = get_option( 'mwb_wocuf_funnels_list', array() );
 
@@ -759,8 +759,8 @@ class Woocommerce_one_click_upsell_funnel_Public {
 				}
 
 				// Add Offer View Count for the current Funnel.
-				$Sales_By_Funnel = new Mwb_Upsell_Report_Sales_By_Funnel( $funnel_id );
-				$Sales_By_Funnel->add_offer_view_count();
+				$sales_by_funnel = new Mwb_Upsell_Report_Sales_By_Funnel( $funnel_id );
+				$sales_by_funnel->add_offer_view_count();
 
 				wp_safe_redirect( $url );
 				exit();
@@ -1091,8 +1091,8 @@ class Woocommerce_one_click_upsell_funnel_Public {
 						$upsell_item_id = $order->add_product( $upsell_product, $offer_quantity );
 
 						// Add Offer Accept Count for the current Funnel.
-						$Sales_By_Funnel = new Mwb_Upsell_Report_Sales_By_Funnel( $funnel_id );
-						$Sales_By_Funnel->add_offer_accept_count();
+						$sales_by_funnel = new Mwb_Upsell_Report_Sales_By_Funnel( $funnel_id );
+						$sales_by_funnel->add_offer_accept_count();
 
 						$target_item_id = get_post_meta( $order_id, '__smart_offer_upgrade_target_key', true );
 
@@ -1243,8 +1243,8 @@ class Woocommerce_one_click_upsell_funnel_Public {
 						}
 
 						// Add Offer View Count for the current Funnel.
-						$Sales_By_Funnel = new Mwb_Upsell_Report_Sales_By_Funnel( $funnel_id );
-						$Sales_By_Funnel->add_offer_view_count();
+						$sales_by_funnel = new Mwb_Upsell_Report_Sales_By_Funnel( $funnel_id );
+						$sales_by_funnel->add_offer_view_count();
 
 						wp_safe_redirect( $url );
 						exit;
@@ -1399,71 +1399,6 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		return $result;
 
-	}
-
-	/**
-	 * Product Variations dropdown content.
-	 *
-	 * @since    1.0.0
-	 * @param    $count             count of items
-	 * @param    $args              args for variable product dropdown
-	 * @return   $html              html for variable product dropdown
-	 */
-	public function mwb_wocuf_pro_variation_attribute_options( $args = array() ) {
-
-		$args = wp_parse_args(
-			apply_filters( 'woocommerce_dropdown_variation_attribute_options_args', $args ),
-			array(
-				'options'          => false,
-				'attribute'        => false,
-				'product'          => false,
-				'selected'         => false,
-				'name'             => '',
-				'id'               => '',
-				'class'            => '',
-				'show_option_none' => false,
-			)
-		);
-
-		$options               = $args['options'];
-		$product               = $args['product'];
-		$attribute             = $args['attribute'];
-		$name                  = $args['name'] ? $args['name'] : 'attribute_' . sanitize_title( $attribute );
-		$id                    = $args['id'] ? $args['id'] : sanitize_title( $attribute );
-		$class                 = $args['class'];
-		$show_option_none      = $args['show_option_none'] ? true : false;
-		$show_option_none_text = $args['show_option_none'] ? $args['show_option_none'] : esc_html__( 'Choose an option', 'woo-one-click-upsell-funnel' );
-
-		if ( empty( $options ) && ! empty( $product ) && ! empty( $attribute ) ) {
-			$attributes = $product->get_variation_attributes();
-			$options    = $attributes[ $attribute ];
-		}
-
-		$html = '<select id="' . esc_attr( $id ) . '" class="' . esc_attr( $class ) . '" name="' . esc_attr( $name ) . '" data-attribute_name="attribute_' . esc_attr( sanitize_title( $attribute ) ) . '" data-show_option_none="' . ( $show_option_none ? 'yes' : 'no' ) . '">';
-		$html .= '<option value="">' . esc_html( $show_option_none_text ) . '</option>';
-
-		if ( ! empty( $options ) ) {
-			if ( $product && taxonomy_exists( $attribute ) ) {
-				// Get terms if this is a taxonomy - ordered. We need the names too.
-				$terms = wc_get_product_terms( $product->get_id(), $attribute, array( 'fields' => 'all' ) );
-
-				foreach ( $terms as $term ) {
-					if ( in_array( $term->slug, $options ) ) {
-						$html .= '<option value="' . esc_attr( $term->slug ) . '" ' . selected( sanitize_title( $args['selected'] ), $term->slug, false ) . '>' . esc_html__( apply_filters( 'woocommerce_variation_option_name', $term->name ) ) . '</option>';
-					}
-				}
-			} else {
-				foreach ( $options as $option ) {
-					// This handles < 2.4.0 bw compatibility where text attributes were not sanitized.
-					$selected = sanitize_title( $args['selected'] ) === $args['selected'] ? selected( $args['selected'], sanitize_title( $option ), false ) : selected( $args['selected'], $option, false );
-					$html .= '<option value="' . esc_attr( $option ) . '" ' . $selected . '>' . esc_html__( apply_filters( 'woocommerce_variation_option_name', $option ) ) . '</option>';
-				}
-			}
-		}
-
-		$html .= '</select>';
-
-		return $html;
 	}
 
 	/**
@@ -1635,9 +1570,11 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 			<script type="text/javascript">
 
-				var product_not_selected_alert = '<?php echo esc_html( $product_not_selected_alert ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped It just displayes message that is already escaped above. ?>';
+				var product_not_selected_alert = '<?php echo esc_html( $product_not_selected_alert ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				// It just displayes message that is already escaped above. ?>';
 
-				var product_not_selected_content = '<?php echo esc_html( $product_not_selected_content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped It just displayes message that is already escaped above. ?>';
+				var product_not_selected_content = '<?php echo esc_html( $product_not_selected_content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				// It just displayes message that is already escaped above. ?>';
 
 				swal( product_not_selected_alert , product_not_selected_content, 'warning' )
 				
@@ -2645,7 +2582,8 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		$result = '<div style="text-align: center;margin-top: 30px;" id="mwb_upsell_offer_expired"><h2 style="font-weight: 200;">' . esc_html__( 'Sorry, Offer expired.', 'woo-one-click-upsell-funnel' ) . '</h2><a class="button wc-backward" href="' . esc_url( $shop_page_url ) . '">' . esc_html__( 'Return to Shop ', 'woo-one-click-upsell-funnel' ) . '&rarr;</a></div>';
 
-		echo $result; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped It just displayes the html itself. Content in it is already escaped.
+		echo $result; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+		// It just displayes the html itself. Content in it is already escaped.
 
 		wp_die();
 	}
@@ -2726,10 +2664,10 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		if ( $upsell_purchased ) {
 
 			// Add Funnel Success count and Total Sales for the current Funnel.
-			$Sales_By_Funnel = new Mwb_Upsell_Report_Sales_By_Funnel( $funnel_id );
+			$sales_by_funnel = new Mwb_Upsell_Report_Sales_By_Funnel( $funnel_id );
 
-			$Sales_By_Funnel->add_funnel_success_count();
-			$Sales_By_Funnel->add_funnel_total_sales( $upsell_item_total );
+			$sales_by_funnel->add_funnel_success_count();
+			$sales_by_funnel->add_funnel_total_sales( $upsell_item_total );
 		}
 
 		/**
@@ -2900,7 +2838,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 */
 	public function add_ga_purchase_event_for_parent_order() {
 
-		$order_key = sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) );
+		$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) ) : '';
 
 		$order_id = wc_get_order_id_by_order_key( $order_key );
 
@@ -3241,15 +3179,6 @@ class Woocommerce_one_click_upsell_funnel_Public {
 			$current_order_total_tax = $order_total_tax - $parent_order_total_tax;
 			$current_order_total_shipping = $total_shipping - $parent_order_total_shipping;
 
-			// orderpage transcation data json
-			$orderpage_trans_Array = array(
-				'id' => esc_js( $order->get_order_number() ),      // Transaction ID. Required
-				'affiliation' => esc_js( get_bloginfo( 'name' ) ), // Affiliation or store name
-				'revenue' => esc_js( $current_order_total ),        // Grand Total
-				'tax' => esc_js( $current_order_total_tax ),        // Tax
-				'shipping' => esc_js( $current_order_total_shipping ),    // Shipping
-			);
-
 			$transaction_data = array(
 				'id' => esc_js( $order->get_order_number() ),
 				'affiliation' => esc_js( get_bloginfo( 'name' ) ),
@@ -3304,7 +3233,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 */
 	public function add_fb_pixel_purchase_event_for_parent_order() {
 
-		$order_key = sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) );
+		$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) ) : '';
 
 		$order_id = wc_get_order_id_by_order_key( $order_key );
 
@@ -3512,9 +3441,9 @@ class Woocommerce_one_click_upsell_funnel_Public {
 						// Check if the current object belongs to the class.
 						if ( is_a( $cb_obj['function']['0'], 'Enhanced_Ecommerce_Google_Analytics_Public' ) ) {
 
-							$Enhanced_Ecommerce_Google_Analytics = $cb_obj['function']['0'];
+							$enhanced_ecommerce_google_analytics = $cb_obj['function']['0'];
 
-							remove_action( 'woocommerce_thankyou', array( $Enhanced_Ecommerce_Google_Analytics, 'ecommerce_tracking_code' ) );
+							remove_action( 'woocommerce_thankyou', array( $enhanced_ecommerce_google_analytics, 'ecommerce_tracking_code' ) );
 
 							break 2;
 						}
@@ -3591,7 +3520,8 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		<style type="text/css">
 
 			<?php
-			echo wp_unslash( $global_custom_css ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped It just displayes the html itself. Content in it is already escaped if required.
+			echo wp_unslash( $global_custom_css ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			// It just displayes the html itself. Content in it is already escaped if required.
 
 			?>
 
@@ -3627,7 +3557,8 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		<script type="text/javascript">
 
 			<?php
-				echo wp_unslash( $global_custom_js ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped It just displayes the html itself. Content in it is already escaped if required.
+				echo wp_unslash( $global_custom_js ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+				// It just displayes the html itself. Content in it is already escaped if required.
 			?>
 
 		</script>
@@ -3670,8 +3601,8 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 						// Set the date we're counting down to.
 						var current = new Date();
-						var expiration = parseFloat( <?php echo( esc_html__( $expiration ) ); ?> ); // Digit in seconds.
-						var offer_id = <?php echo ! empty( $_GET['ocuf_ofd'] ) ? $_GET['ocuf_ofd'] : 'null'; ?>;
+						var expiration = parseFloat( <?php echo( esc_html( $expiration ) ); ?> ); // Digit in seconds.
+						var offer_id = <?php echo ! empty( $_GET['ocuf_ofd'] ) ? esc_html( wp_unslash( $_GET['ocuf_ofd'] ) ) : null; ?>;
 
 						var timer_limit = sessionStorage.getItem( 'timerlimit_' + offer_id );
 						var countDowntime = null != offer_id && null != timer_limit ? timer_limit : current.setSeconds( current.getSeconds()+expiration );

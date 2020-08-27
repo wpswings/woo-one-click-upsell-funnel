@@ -173,7 +173,7 @@ $funnels_list = get_option( 'mwb_wocuf_funnels_list' );
 
 						$funnel_total_sales = number_format( (float) $funnel_total_sales, 2 );
 
-						echo '<div class="mwb_upsell_stats_total_sales"><p>' . get_woocommerce_currency_symbol() . esc_html( $funnel_total_sales ) . '</p><div>';
+						echo '<div class="mwb_upsell_stats_total_sales"><p>' . get_woocommerce_currency_symbol() . esc_html( $funnel_total_sales ) . '</p><div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 						?>
 					

@@ -280,7 +280,7 @@ $google_analytics_fields = array(
 							</th>
 
 							<td class="forminp forminp-text">
-								<?php echo wc_help_tip( $field_data['attribute_description'] ); ?>
+								<?php echo wc_help_tip( $field_data['attribute_description'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
 								<?php if ( 'text' == $field_data['type'] ) : ?>
 
