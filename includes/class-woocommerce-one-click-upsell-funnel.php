@@ -133,12 +133,12 @@ class Woocommerce_one_click_upsell_funnel {
 		 * The class responsible for defining all actions that occur in the onboarding the site data
 		 * in the admin side of the site.
 		 */
-		if( ! class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
+		if ( ! class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
 
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-makewebbetter-onboarding-helper.php';
 		}
 
-		if( class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
+		if ( class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
 
 			$this->onboard = new Makewebbetter_Onboarding_Helper();
 		}
@@ -147,7 +147,6 @@ class Woocommerce_one_click_upsell_funnel {
 		 * The file responsible for Upsell Sales by Funnel - Data handling and Stats.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'reporting/class-upsell-report-sales-by-funnel.php';
-
 
 		$this->loader = new Woocommerce_one_click_upsell_funnel_Loader();
 
@@ -286,7 +285,7 @@ class Woocommerce_one_click_upsell_funnel {
 
 			// Initiate Upsell Orders before processing payment.
 			$this->loader->add_action( 'woocommerce_checkout_order_processed', $plugin_public, 'mwb_wocuf_initiate_upsell_orders' );
-			
+
 			// When user clicks on No thanks for Upsell offer.
 			! is_admin() && $this->loader->add_action( 'wp_loaded', $plugin_public, 'mwb_wocuf_pro_process_the_funnel' );
 
@@ -325,14 +324,14 @@ class Woocommerce_one_click_upsell_funnel {
 			/**
 			 * Compatibility for Enhanced Ecommerce Google Analytics Plugin by Tatvic.
 			 * Remove plugin's Purchase Event from Thankyou page when
- 			 * Upsell Purchase is enabled.
+			 * Upsell Purchase is enabled.
 			 */
 			$this->loader->add_action( 'wp_loaded', $plugin_public, 'upsell_ga_compatibility_for_eega' );
 
 			/**
 			 * Compatibility for Facebook for WooCommerce plugin.
 			 * Remove plugin's Purchase Event from Thankyou page when
- 			 * Upsell Purchase is enabled.
+			 * Upsell Purchase is enabled.
 			 */
 			$this->loader->add_action( 'woocommerce_init', $plugin_public, 'upsell_fbp_compatibility_for_ffw' );
 

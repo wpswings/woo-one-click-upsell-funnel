@@ -24,35 +24,36 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 	if ( empty( $mwb_wocuf_pro_create_nonce ) || ! wp_verify_nonce( $mwb_wocuf_pro_create_nonce, 'mwb_wocuf_pro_setting_nonce' ) ) : ?>
 
 		<div class="notice notice-error is-dismissible mwb-noticee">
-	         <p><?php esc_html_e( 'Sorry, due to some security issue, your settings could not be saved. Please reload the page.', 'woo-one-click-upsell-funnel' ); ?></p>
-	    </div>
-		<?php return false;
+			 <p><?php esc_html_e( 'Sorry, due to some security issue, your settings could not be saved. Please reload the page.', 'woo-one-click-upsell-funnel' ); ?></p>
+		</div>
+		<?php
+		return false;
 
 	endif;
 
 	$mwb_upsell_analytics_options = get_option( 'mwb_upsell_analytics_configuration', array() );
 
-	$mwb_upsell_fb_pixel_config = ! empty( $mwb_upsell_analytics_options[ 'facebook-pixel' ] ) ? $mwb_upsell_analytics_options[ 'facebook-pixel' ] : array();
+	$mwb_upsell_fb_pixel_config = ! empty( $mwb_upsell_analytics_options['facebook-pixel'] ) ? $mwb_upsell_analytics_options['facebook-pixel'] : array();
 
-	$mwb_upsell_ga_analytics_config = ! empty( $mwb_upsell_analytics_options[ 'google-analytics' ] ) ? $mwb_upsell_analytics_options[ 'google-analytics' ] : array();
+	$mwb_upsell_ga_analytics_config = ! empty( $mwb_upsell_analytics_options['google-analytics'] ) ? $mwb_upsell_analytics_options['google-analytics'] : array();
 
 
 	// Handle Data is POST here.
 	$mwb_upsell_fb_pixel_config = array(
-		'pixel_account_id' => ! empty( $_POST[ 'pixel_account_id' ] ) ? sanitize_text_field( wp_unslash( $_POST[ 'pixel_account_id' ] ) ) : '',
-		'enable_pixel_basecode' => ! empty( $_POST[ 'enable_pixel_basecode' ] ) ? 'yes' : 'no',
-		'enable_purchase_event' => ! empty( $_POST[ 'enable_purchase_event' ] ) ? 'yes' : 'no',
+		'pixel_account_id' => ! empty( $_POST['pixel_account_id'] ) ? sanitize_text_field( wp_unslash( $_POST['pixel_account_id'] ) ) : '',
+		'enable_pixel_basecode' => ! empty( $_POST['enable_pixel_basecode'] ) ? 'yes' : 'no',
+		'enable_purchase_event' => ! empty( $_POST['enable_purchase_event'] ) ? 'yes' : 'no',
 	);
 
-	if( ! empty( $mwb_upsell_fb_pixel_config ) || ! empty( $mwb_upsell_ga_analytics_config ) ) {
+	if ( ! empty( $mwb_upsell_fb_pixel_config ) || ! empty( $mwb_upsell_ga_analytics_config ) ) {
 
 		$mwb_upsell_analytics_options = array(
-			'facebook-pixel'	=>	$mwb_upsell_fb_pixel_config,
-			'google-analytics'	=>	$mwb_upsell_ga_analytics_config,
+			'facebook-pixel'    => $mwb_upsell_fb_pixel_config,
+			'google-analytics'  => $mwb_upsell_ga_analytics_config,
 		);
 
 		// Save.
-		update_option( 'mwb_upsell_analytics_configuration' , $mwb_upsell_analytics_options );
+		update_option( 'mwb_upsell_analytics_configuration', $mwb_upsell_analytics_options );
 	}
 
 	?>
@@ -66,42 +67,42 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 
 $mwb_upsell_analytics_options = get_option( 'mwb_upsell_analytics_configuration', array() );
 
-$mwb_upsell_fb_pixel_config = ! empty( $mwb_upsell_analytics_options[ 'facebook-pixel' ] ) ? $mwb_upsell_analytics_options[ 'facebook-pixel' ] : array();
+$mwb_upsell_fb_pixel_config = ! empty( $mwb_upsell_analytics_options['facebook-pixel'] ) ? $mwb_upsell_analytics_options['facebook-pixel'] : array();
 
-$mwb_upsell_ga_analytics_config = ! empty( $mwb_upsell_analytics_options[ 'google-analytics' ] ) ? $mwb_upsell_analytics_options[ 'google-analytics' ] : array();
+$mwb_upsell_ga_analytics_config = ! empty( $mwb_upsell_analytics_options['google-analytics'] ) ? $mwb_upsell_analytics_options['google-analytics'] : array();
 
 // Form Fields Mapping.
 $google_analytics_fields = array(
 
-	'mwb_wocuf_pixel_account_id'	=>	array(
-		'name'	=>	'pixel_account_id',
-		'label'	=>	'Fb Pixel ID',
-		'type'	=>	'text',
-		'required'	=>	true,
-		'attribute_description'	=>	esc_html__( 'Log into your Facebook Pixel account to find your ID. eg: 580XXXXXXXXX325.', 'woo-one-click-upsell-funnel' ),
+	'mwb_wocuf_pixel_account_id'    => array(
+		'name'  => 'pixel_account_id',
+		'label' => 'Fb Pixel ID',
+		'type'  => 'text',
+		'required'  => true,
+		'attribute_description' => esc_html__( 'Log into your Facebook Pixel account to find your ID. eg: 580XXXXXXXXX325.', 'woo-one-click-upsell-funnel' ),
 		'note' => esc_html__( 'You can fetch Pixel ID from', 'woo-one-click-upsell-funnel' ),
 		'note_html' => '<a href="https://www.facebook.com/ads/manager/pixel/facebook_pixel" target="_blank">' . esc_html__( 'here', 'woo-one-click-upsell-funnel' ) . '</a>',
-		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'pixel_account_id' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'pixel_account_id' ] ) ) : '',
+		'value' => ! empty( $mwb_upsell_fb_pixel_config['pixel_account_id'] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config['pixel_account_id'] ) ) : '',
 	),
 
-	'mwb_wocuf_enable_pixel_basecode'	=>	array(
-		'name'	=>	'enable_pixel_basecode',
-		'label'	=>	'Enable Pixel Base code',
-		'type'	=>	'checkbox',
-		'required'	=>	false,
-		'attribute_description'	=>	esc_html__( 'Add Facebook Pixel Base Code to your website', 'woo-one-click-upsell-funnel' ),
-		'note'	=>	esc_html__( 'Only Enable this when you are not using any other Facebook Pixel tracking on your website.', 'woo-one-click-upsell-funnel' ),
-		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'enable_pixel_basecode' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'enable_pixel_basecode' ] ) ) : 'no',
+	'mwb_wocuf_enable_pixel_basecode'   => array(
+		'name'  => 'enable_pixel_basecode',
+		'label' => 'Enable Pixel Base code',
+		'type'  => 'checkbox',
+		'required'  => false,
+		'attribute_description' => esc_html__( 'Add Facebook Pixel Base Code to your website', 'woo-one-click-upsell-funnel' ),
+		'note'  => esc_html__( 'Only Enable this when you are not using any other Facebook Pixel tracking on your website.', 'woo-one-click-upsell-funnel' ),
+		'value' => ! empty( $mwb_upsell_fb_pixel_config['enable_pixel_basecode'] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config['enable_pixel_basecode'] ) ) : 'no',
 	),
 
-	'mwb_wocuf_enable_purchase_event'	=>	array(
-		'name'	=>	'enable_purchase_event',
-		'label'	=>	'Enable Purchase Event',
-		'type'	=>	'checkbox',
-		'required'	=>	false,
-		'attribute_description'	=>	esc_html__( 'This will trigger Facebook Pixel Purchase Event for Parent Order and for Upsells accordingly with respect to payment gateways.', 'woo-one-click-upsell-funnel' ),
-		'note'	=>	esc_html__( 'Make sure you disable your Purchase event if you are using any other Facebook Pixel tracking on your website else it will track data twice.', 'woo-one-click-upsell-funnel' ),
-		'value'	=>	! empty( $mwb_upsell_fb_pixel_config[ 'enable_purchase_event' ] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config[ 'enable_purchase_event' ] ) ) : 'no',
+	'mwb_wocuf_enable_purchase_event'   => array(
+		'name'  => 'enable_purchase_event',
+		'label' => 'Enable Purchase Event',
+		'type'  => 'checkbox',
+		'required'  => false,
+		'attribute_description' => esc_html__( 'This will trigger Facebook Pixel Purchase Event for Parent Order and for Upsells accordingly with respect to payment gateways.', 'woo-one-click-upsell-funnel' ),
+		'note'  => esc_html__( 'Make sure you disable your Purchase event if you are using any other Facebook Pixel tracking on your website else it will track data twice.', 'woo-one-click-upsell-funnel' ),
+		'value' => ! empty( $mwb_upsell_fb_pixel_config['enable_purchase_event'] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_fb_pixel_config['enable_purchase_event'] ) ) : 'no',
 	),
 );
 
@@ -136,24 +137,26 @@ $google_analytics_fields = array(
 				</th>
 				<td class="forminp forminp-text">
 					<span class="mwb_upsell_global_description">
-						<?php 
-						printf( '%s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s', 
-							esc_html__( 'Please Go to', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Wordpress Admin Dashboard', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'PixelYourSite', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'WooCommerce tab', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Scroll down to', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Default E-Commerce events', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'and click on', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Track Purchases', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'settings icon and Toggle Off the', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Enable the Purchase event on Facebook (required for DPA)', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'and', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Save', 'woo-one-click-upsell-funnel' ), 
+						<?php
+						printf(
+							'%s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s',
+							esc_html__( 'Please Go to', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Wordpress Admin Dashboard', 'woo-one-click-upsell-funnel' ),
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'PixelYourSite', 'woo-one-click-upsell-funnel' ),
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'WooCommerce tab', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Scroll down to', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Default E-Commerce events', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'and click on', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Track Purchases', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'settings icon and Toggle Off the', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Enable the Purchase event on Facebook (required for DPA)', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'and', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Save', 'woo-one-click-upsell-funnel' ),
 							esc_html__( '.', 'woo-one-click-upsell-funnel' )
-						); ?>
+						);
+						?>
 					</span>		
 				</td>
 			</tr>
@@ -164,22 +167,24 @@ $google_analytics_fields = array(
 				</th>
 				<td class="forminp forminp-text">
 					<span class="mwb_upsell_global_description">
-						<?php 
-						printf( '%s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b>%s', 
-							esc_html__( 'Please Go to', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Wordpress Admin Dashboard', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Pixel Caffeine', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'General Settings tab', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Track this eCommerce Conversions', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'and Uncheck the', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Purchase', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Event and', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Save', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( '.', 'woo-one-click-upsell-funnel' ) 
-						); ?>
+						<?php
+						printf(
+							'%s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b>%s',
+							esc_html__( 'Please Go to', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Wordpress Admin Dashboard', 'woo-one-click-upsell-funnel' ),
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Pixel Caffeine', 'woo-one-click-upsell-funnel' ),
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'General Settings tab', 'woo-one-click-upsell-funnel' ),
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Track this eCommerce Conversions', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'and Uncheck the', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Purchase', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Event and', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Save', 'woo-one-click-upsell-funnel' ),
+							esc_html__( '.', 'woo-one-click-upsell-funnel' )
+						);
+						?>
 					</span>		
 				</td>
 			</tr>
@@ -190,22 +195,24 @@ $google_analytics_fields = array(
 				</th>
 				<td class="forminp forminp-text">
 					<span class="mwb_upsell_global_description">
-						<?php 
-						printf( '%s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b>%s', 
-							esc_html__( 'Please Go to', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Wordpress Admin Dashboard', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'WooCommerce', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Conversion Tracking', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Facebook', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'and Uncheck the', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Purchase', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Event and', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Save', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( '.', 'woo-one-click-upsell-funnel' ) 
-						); ?>
+						<?php
+						printf(
+							'%s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b>%s',
+							esc_html__( 'Please Go to', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Wordpress Admin Dashboard', 'woo-one-click-upsell-funnel' ),
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'WooCommerce', 'woo-one-click-upsell-funnel' ),
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Conversion Tracking', 'woo-one-click-upsell-funnel' ),
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Facebook', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'and Uncheck the', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Purchase', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Event and', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Save', 'woo-one-click-upsell-funnel' ),
+							esc_html__( '.', 'woo-one-click-upsell-funnel' )
+						);
+						?>
 					</span>		
 				</td>
 			</tr>
@@ -216,26 +223,28 @@ $google_analytics_fields = array(
 				</th>
 				<td class="forminp forminp-text">
 					<span class="mwb_upsell_global_description">
-						<?php 
-						printf( '%s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b>%s', 
-							esc_html__( 'Please Go to', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Wordpress Admin Dashboard', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Settings', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'remarketable / WP Facebook Pixel', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Woocommerce Options tab', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( '>', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Order Received Events', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'and set the', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Purchase', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Event option to', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'No', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'and', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( 'Save', 'woo-one-click-upsell-funnel' ), 
-							esc_html__( '.', 'woo-one-click-upsell-funnel' ) 
-						); ?>
+						<?php
+						printf(
+							'%s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b>%s',
+							esc_html__( 'Please Go to', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Wordpress Admin Dashboard', 'woo-one-click-upsell-funnel' ),
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Settings', 'woo-one-click-upsell-funnel' ),
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'remarketable / WP Facebook Pixel', 'woo-one-click-upsell-funnel' ),
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Woocommerce Options tab', 'woo-one-click-upsell-funnel' ),
+							esc_html__( '>', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Order Received Events', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'and set the', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Purchase', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Event option to', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'No', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'and', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'Save', 'woo-one-click-upsell-funnel' ),
+							esc_html__( '.', 'woo-one-click-upsell-funnel' )
+						);
+						?>
 					</span>		
 				</td>
 			</tr>
@@ -262,33 +271,36 @@ $google_analytics_fields = array(
 				<!-- Nonce field here. -->
 				<?php wp_nonce_field( 'mwb_wocuf_pro_setting_nonce', 'mwb_wocuf_pro_nonce' ); ?>
 
-				<?php if( ! empty( $google_analytics_fields ) && is_array( $google_analytics_fields ) ) : ?>
+				<?php if ( ! empty( $google_analytics_fields ) && is_array( $google_analytics_fields ) ) : ?>
 					<?php foreach ( $google_analytics_fields as $field_id => $field_data ) : ?>
 						
 						<tr valign="top">
 							<th scope="row" class="titledesc">
-								<label for="<?php echo esc_html( $field_id ); ?>"><?php echo esc_html( $field_data[ 'label' ] ); ?></label>
+								<label for="<?php echo esc_html( $field_id ); ?>"><?php echo esc_html( $field_data['label'] ); ?></label>
 							</th>
 
 							<td class="forminp forminp-text">
-								<?php echo wc_help_tip( $field_data[ 'attribute_description' ] ); ?>
+								<?php echo wc_help_tip( $field_data['attribute_description'] ); ?>
 
-								<?php if( 'text' == $field_data[ 'type' ] ) : ?>
+								<?php if ( 'text' == $field_data['type'] ) : ?>
 
-									<input <?php echo( ! empty( $field_data[ 'required' ] ) ? esc_html( 'required' ) : '' ); ?> class="mwb_wocuf_pro_enable_plugin_input" type="text"  name="<?php echo esc_html( $field_data[ 'name' ] ); ?>" value="<?php echo esc_html( $field_data[ 'value' ] ); ?>" id="<?php echo esc_html( $field_id ); ?>">
+									<input <?php echo( ! empty( $field_data['required'] ) ? esc_html( 'required' ) : '' ); ?> class="mwb_wocuf_pro_enable_plugin_input" type="text"  name="<?php echo esc_html( $field_data['name'] ); ?>" value="<?php echo esc_html( $field_data['value'] ); ?>" id="<?php echo esc_html( $field_id ); ?>">
 
 								<?php else : ?>
 
 									<label class="mwb_wocuf_pro_enable_plugin_label">
-										<input <?php echo( ! empty( $field_data[ 'required' ] ) ? esc_html( 'required' ) : '' ); ?> class="mwb_wocuf_pro_enable_plugin_input" type="checkbox" name="<?php echo esc_html( $field_data[ 'name' ] ); ?>" id="<?php echo esc_html( $field_id ); ?>" <?php checked( 'yes', $field_data[ 'value' ] ); ?>>
+										<input <?php echo( ! empty( $field_data['required'] ) ? esc_html( 'required' ) : '' ); ?> class="mwb_wocuf_pro_enable_plugin_input" type="checkbox" name="<?php echo esc_html( $field_data['name'] ); ?>" id="<?php echo esc_html( $field_id ); ?>" <?php checked( 'yes', $field_data['value'] ); ?>>
 										<span class="mwb_wocuf_pro_enable_plugin_span"></span>
 									</label>
 
 								<?php endif; ?>
 
-								<span class="mwb_upsell_global_description"><?php echo ! empty( $field_data[ 'note' ] ) ? esc_html( $field_data[ 'note' ] ) : '';
-								echo ! empty( $field_data[ 'note_html' ] ) ? ' ' . $field_data[ 'note_html' ] : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-								 ?></span>
+								<span class="mwb_upsell_global_description">
+								<?php
+								echo ! empty( $field_data['note'] ) ? esc_html( $field_data['note'] ) : '';
+								echo ! empty( $field_data['note_html'] ) ? ' ' . $field_data['note_html'] : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+								?>
+								 </span>
 							</td>
 						</tr>
 

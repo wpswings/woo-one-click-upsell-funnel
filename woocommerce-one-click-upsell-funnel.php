@@ -95,8 +95,9 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 				<p><?php esc_html_e( 'Please deactivate the free plugin', 'woo-one-click-upsell-funnel' ); ?><strong> <?php esc_html_e( 'One Click Upsell Funnel for Woocommerce', 'woo-one-click-upsell-funnel' ); ?></strong> <?php esc_html_e( 'as the Pro plugin', 'woo-one-click-upsell-funnel' ); ?><strong> <?php esc_html_e( 'WooCommerce One Click Upsell Funnel Pro', 'woo-one-click-upsell-funnel' ); ?></strong> <?php esc_html_e( 'is already activated.', 'woo-one-click-upsell-funnel' ); ?></p>
 			</div>
 
-			<?php endif;
-			
+				<?php
+			endif;
+
 		}
 
 		// Return and Load nothing.

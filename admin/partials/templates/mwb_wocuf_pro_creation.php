@@ -103,9 +103,9 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 	/**
 	 * Handle the schedule here.
 	 */
-	if( empty( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ) {
+	if ( empty( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ) {
 
-		if( '0' == $_POST['mwb_wocuf_pro_funnel_schedule'] ) {
+		if ( '0' == $_POST['mwb_wocuf_pro_funnel_schedule'] ) {
 
 			// Zero is marked as sunday.
 			$_POST['mwb_wocuf_pro_funnel_schedule'] = array( '0' );
@@ -115,7 +115,6 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 			// Empty is marked as daily.
 			$_POST['mwb_wocuf_pro_funnel_schedule'] = array( '7' );
 		}
-
 	} elseif ( ! is_array( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ) {
 
 		$_POST['mwb_wocuf_pro_funnel_schedule'] = array( $_POST['mwb_wocuf_pro_funnel_schedule'] );
@@ -201,19 +200,19 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 
 	$mwb_wocuf_pro_funnel['mwb_upsell_offer_image'] = ! empty( $custom_image_ids_array ) ? $custom_image_ids_array : array();
 
-	$mwb_wocuf_pro_funnel['mwb_wocuf_global_funnel'] = ! empty( $_POST[ 'mwb_wocuf_global_funnel' ] ) ? 'yes' : 'no';
+	$mwb_wocuf_pro_funnel['mwb_wocuf_global_funnel'] = ! empty( $_POST['mwb_wocuf_global_funnel'] ) ? 'yes' : 'no';
 
-	$mwb_wocuf_pro_funnel['mwb_wocuf_exclusive_offer'] = ! empty( $_POST[ 'mwb_wocuf_exclusive_offer' ] ) ? 'yes' : 'no';
+	$mwb_wocuf_pro_funnel['mwb_wocuf_exclusive_offer'] = ! empty( $_POST['mwb_wocuf_exclusive_offer'] ) ? 'yes' : 'no';
 
-	$mwb_wocuf_pro_funnel['mwb_wocuf_smart_offer_upgrade'] = ! empty( $_POST[ 'mwb_wocuf_smart_offer_upgrade' ] ) ? 'yes' : 'no';
+	$mwb_wocuf_pro_funnel['mwb_wocuf_smart_offer_upgrade'] = ! empty( $_POST['mwb_wocuf_smart_offer_upgrade'] ) ? 'yes' : 'no';
 
 	// Get all funnels.
 	$mwb_wocuf_pro_created_funnels = get_option( 'mwb_wocuf_funnels_list', array() );
 
 	// If funnel already exists then save Upsell Sales by Funnel - Stats if present.
-	if( ! empty( $mwb_wocuf_pro_created_funnels[$mwb_wocuf_pro_funnel_id] ) && ! empty( $mwb_wocuf_pro_created_funnels[$mwb_wocuf_pro_funnel_id]['funnel_triggered_count'] ) ) {
+	if ( ! empty( $mwb_wocuf_pro_created_funnels[ $mwb_wocuf_pro_funnel_id ] ) && ! empty( $mwb_wocuf_pro_created_funnels[ $mwb_wocuf_pro_funnel_id ]['funnel_triggered_count'] ) ) {
 
-		$funnel_stats_funnel = $mwb_wocuf_pro_created_funnels[$mwb_wocuf_pro_funnel_id];
+		$funnel_stats_funnel = $mwb_wocuf_pro_created_funnels[ $mwb_wocuf_pro_funnel_id ];
 
 		// Not Post data, so no need to Sanitize and Strip slashes.
 
@@ -236,7 +235,7 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 	// POST funnel as array at funnel id key.
 	$mwb_wocuf_pro_funnel_series[ $mwb_wocuf_pro_funnel_id ] = ! empty( $mwb_wocuf_pro_funnel ) && is_array( $mwb_wocuf_pro_funnel ) ? $mwb_wocuf_pro_funnel : array();
 
-	
+
 
 	// If there are other funnels.
 	if ( is_array( $mwb_wocuf_pro_created_funnels ) && count( $mwb_wocuf_pro_created_funnels ) ) {
@@ -471,12 +470,10 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 							 * After v1.0.0 schedule value will be array.
 							 * Hence, convert earlier version data in array.
 							 */
-							if( empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) || ! is_array( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) ) {
+							if ( empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) || ! is_array( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) ) {
 
 								$selected_week = ! empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) ? array( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) : array( '7' );
-							}
-
-							else {
+							} else {
 
 								$selected_week = ! empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) ? $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] : array( '7' );
 							}
@@ -484,7 +481,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 							<?php foreach ( $mwb_wocuf_pro_funnel_schedule_options as $key => $day ) : ?>
 
-								<option <?php echo in_array( $key, $selected_week ) ? 'selected' : '' ?> value="<?php echo esc_html( $key ); ?>"><?php echo esc_html( $day ); ?></option>
+								<option <?php echo in_array( $key, $selected_week ) ? 'selected' : ''; ?> value="<?php echo esc_html( $key ); ?>"><?php echo esc_html( $day ); ?></option>
 
 							<?php endforeach; ?>
 
@@ -789,17 +786,17 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 							<!-- Offer custom image start -->
 							<tr>
-							    <th><label><h4><?php esc_html_e( 'Offer Image', 'woo-one-click-upsell-funnel' )?></h4></label>
-							    </th>
+								<th><label><h4><?php esc_html_e( 'Offer Image', 'woo-one-click-upsell-funnel' ); ?></h4></label>
+								</th>
 
-							    <td>
-								    <?php
+								<td>
+									<?php
 
-								    	$image_post_id = ! empty( $mwb_wocuf_custom_offer_images[ $current_offer_id ] ) ? $mwb_wocuf_custom_offer_images[ $current_offer_id ] : '';
+										$image_post_id = ! empty( $mwb_wocuf_custom_offer_images[ $current_offer_id ] ) ? $mwb_wocuf_custom_offer_images[ $current_offer_id ] : '';
 
-								    	echo $this->mwb_wocuf_pro_image_uploader_field( $current_offer_id, $image_post_id ); 
-								    ?>
-							    </td>
+										echo $this->mwb_wocuf_pro_image_uploader_field( $current_offer_id, $image_post_id );
+									?>
+								</td>
 							</tr>
 							<!-- Offer custom image end -->
 

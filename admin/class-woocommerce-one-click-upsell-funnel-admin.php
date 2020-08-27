@@ -77,7 +77,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 			$pagescreen = $screen->id;
 
 			if ( 'toplevel_page_mwb-wocuf-setting' == $pagescreen || '1-click-upsell_page_mwb-wocuf-setting-tracking' == $pagescreen ) {
-				
+
 				wp_register_style( 'mwb_wocuf_pro_admin_style', plugin_dir_url( __FILE__ ) . 'css/woocommerce_one_click_upsell_funnel_pro-admin.css', array(), $this->version, 'all' );
 
 				wp_enqueue_style( 'mwb_wocuf_pro_admin_style' );
@@ -162,9 +162,9 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 					wp_enqueue_script( 'woocommerce_admin' );
 
 					$wocuf_js_data = array(
-						'ajaxurl'       	=> admin_url( 'admin-ajax.php' ),
-						'auth_nonce'    	=> wp_create_nonce( 'mwb_wocuf_nonce' ),
-						'current_version'   => MWB_WOCUF_VERSION
+						'ajaxurl'           => admin_url( 'admin-ajax.php' ),
+						'auth_nonce'        => wp_create_nonce( 'mwb_wocuf_nonce' ),
+						'current_version'   => MWB_WOCUF_VERSION,
 					);
 
 					wp_enqueue_script( 'mwb-wocuf-pro-add_new-offer-script', plugin_dir_url( __FILE__ ) . 'js/mwb_wocuf_pro_add_new_offer_script.js', array( 'woocommerce_admin', 'wc-enhanced-select' ), $this->version, false );
@@ -199,12 +199,12 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	public function add_mwb_frontend_screens( $valid_screens = array() ) {
 
 		if ( is_array( $valid_screens ) ) {
-			
+
 			// Push your screen here.
 			array_push( $valid_screens, 'toplevel_page_mwb-wocuf-setting' );
 		}
 
-		return $valid_screens;	
+		return $valid_screens;
 	}
 
 	/**
@@ -215,7 +215,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	public function add_mwb_deactivation_screens( $valid_screens = array() ) {
 
 		if ( is_array( $valid_screens ) ) {
-			
+
 			// Push your screen here.
 			array_push( $valid_screens, 'woo-one-click-upsell-funnel' );
 		}
@@ -246,12 +246,12 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 		/**
 		 * Add sub-menu for funnel settings.
 		 */
-	    add_submenu_page( 'mwb-wocuf-setting', esc_html__( 'Funnels & Settings', 'woo-one-click-upsell-funnel' ), esc_html__( 'Funnels & Settings', 'woo-one-click-upsell-funnel' ), 'manage_options', 'mwb-wocuf-setting' );
+		add_submenu_page( 'mwb-wocuf-setting', esc_html__( 'Funnels & Settings', 'woo-one-click-upsell-funnel' ), esc_html__( 'Funnels & Settings', 'woo-one-click-upsell-funnel' ), 'manage_options', 'mwb-wocuf-setting' );
 
-	   	/**
-	   	 * Add sub-menu for reportings settings.
-	   	 */
-	    add_submenu_page( 'mwb-wocuf-setting', esc_html__( 'Sales Reports & Tracking', 'woo-one-click-upsell-funnel' ), esc_html__( 'Sales Reports & Tracking', 'woo-one-click-upsell-funnel' ), 'manage_options', 'mwb-wocuf-setting-tracking', array( $this, 'add_submenu_page_reporting_callback' ) );
+		/**
+		 * Add sub-menu for reportings settings.
+		 */
+		add_submenu_page( 'mwb-wocuf-setting', esc_html__( 'Sales Reports & Tracking', 'woo-one-click-upsell-funnel' ), esc_html__( 'Sales Reports & Tracking', 'woo-one-click-upsell-funnel' ), 'manage_options', 'mwb-wocuf-setting-tracking', array( $this, 'add_submenu_page_reporting_callback' ) );
 	}
 
 	/**
@@ -383,7 +383,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 			<tr>
 			    <th><label><h4>' . esc_html__( 'Offer Image', 'woo-one-click-upsell-funnel' ) . '</h4></label>
 			    </th>
-			    <td>' . $this->mwb_wocuf_pro_image_uploader_field( $offer_index )  . '</td>
+			    <td>' . $this->mwb_wocuf_pro_image_uploader_field( $offer_index ) . '</td>
 			</tr>
 			</tr>
 		    <tr>
@@ -776,7 +776,8 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 					<option value="no_upsells"><?php esc_html_e( 'No Upsell Orders', 'woo-one-click-upsell-funnel' ); ?></option>
 					<option value="all_upsells"><?php esc_html_e( 'Only Upsell Orders', 'woo-one-click-upsell-funnel' ); ?></option>
 				</select>
-			<?php endif;
+				<?php
+			endif;
 		}
 	}
 
@@ -960,14 +961,14 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	/**
 	 * Add custom image upload.
 	 *
-	 * @since    	3.0.0
+	 * @since       3.0.0
 	 */
 	public function mwb_wocuf_pro_image_uploader_field( $hidden_field_index, $image_post_id = '' ) {
 
 		$image = ' button">' . esc_html__( 'Upload image', 'woo-one-click-upsell-funnel' );
 		$display = 'none'; // Display state ot the "Remove image" button.
 
-		if( ! empty( $image_post_id ) ) {
+		if ( ! empty( $image_post_id ) ) {
 
 			// $image_attributes[0] - Image URL.
 			// $image_attributes[1] - Image width.
@@ -980,7 +981,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 
 		return '<div class="mwb_wocuf_saved_custom_image">
 		<a href="#" class="mwb_wocuf_pro_upload_image_button' . $image . '</a>
-		<input type="hidden" name="mwb_upsell_offer_image['. $hidden_field_index .']" id="mwb_upsell_offer_image_for_' . $hidden_field_index . '" value="' . esc_attr( $image_post_id ) . '" />
+		<input type="hidden" name="mwb_upsell_offer_image[' . $hidden_field_index . ']" id="mwb_upsell_offer_image_for_' . $hidden_field_index . '" value="' . esc_attr( $image_post_id ) . '" />
 		<a href="#" class="mwb_wocuf_pro_remove_image_button button" style="display:inline-block;margin-top: 10px;display:' . $display . '">Remove image</a>
 		</div>';
 	}
@@ -988,16 +989,16 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	/**
 	 * Add Upsell Reporting in Woo Admin reports.
 	 *
-	 * @since    	3.0.0
+	 * @since       3.0.0
 	 */
 	public function add_upsell_reporting( $reports ) {
 
-	    $reports['upsell'] = array(
+		$reports['upsell'] = array(
 
-		    'title'  => esc_html__( '1 Click Upsell', 'woo-one-click-upsell-funnel' ),
-		    'reports'  => array(
+			'title'  => esc_html__( '1 Click Upsell', 'woo-one-click-upsell-funnel' ),
+			'reports'  => array(
 
-	            'sales_by_date' => array(
+				'sales_by_date' => array(
 					'title' => esc_html__( 'Upsell Sales by date', 'woo-one-click-upsell-funnel' ),
 					'description' => '',
 					'hide_title' => 1,
@@ -1017,19 +1018,19 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 					'hide_title' => 1,
 					'callback' => array( 'Woocommerce_one_click_upsell_funnel_Admin', 'upsell_reporting_callback' ),
 				),
-			)
+			),
 		);
 
-	    return $reports;
+		return $reports;
 	}
 
 	/**
 	 * Add custom report. callback.
 	 *
-	 * @since    	3.0.0
+	 * @since       3.0.0
 	 */
 	public static function upsell_reporting_callback( $report_type ) {
-	
+
 		$report_file = ! empty( $report_type ) ? str_replace( '_', '-', $report_type ) : '';
 		$preformat_string = ! empty( $report_type ) ? ucwords( str_replace( '_', ' ', $report_type ) ) : '';
 		$class_name = ! empty( $preformat_string ) ? 'Mwb_Upsell_Report_' . str_replace( ' ', '_', $preformat_string ) : '';
@@ -1039,10 +1040,10 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'reporting/class-upsell-report-' . $report_file . '.php';
 
-		if( class_exists( $class_name ) ) {
+		if ( class_exists( $class_name ) ) {
 
-		    $report = new $class_name();
-		    $report->output_report();
+			$report = new $class_name();
+			$report->output_report();
 
 		} else {
 
@@ -1059,13 +1060,13 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	/**
 	 * Reporting and Funnel Stats Sub menu callback.
 	 *
-	 * @since    	3.0.0
+	 * @since       3.0.0
 	 */
 	public function add_submenu_page_reporting_callback() {
 
 		require_once MWB_WOCUF_DIRPATH . 'admin/reporting-and-tracking/upsell-reporting-and-tracking-config-panel.php';
 	}
 
-// End of class.
+	// End of class.
 }
 ?>

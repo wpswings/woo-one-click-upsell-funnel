@@ -37,7 +37,7 @@ function mwb_upsell_lite_is_upsell_pro_active() {
 	if ( mwb_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
 
 		return true;
-		
+
 	} else {
 
 		return false;
@@ -255,7 +255,7 @@ function mwb_upsell_lite_supported_gateways() {
 
 /**
  * Upsell supported payment gateways for which Parent Order is secured.
- * Either with Initial payment or via Cron. 
+ * Either with Initial payment or via Cron.
  *
  * @since    3.0.0
  */
@@ -386,7 +386,7 @@ function mwb_upsell_lite_gutenberg_offer_content() {
 		return $post_content;
 }
 
-if( ! function_exists( 'mwb_upsell_lite_get_first_offer_after_redirect' ) ) {
+if ( ! function_exists( 'mwb_upsell_lite_get_first_offer_after_redirect' ) ) {
 
 	/**
 	 * Get Order id from key.
@@ -395,20 +395,20 @@ if( ! function_exists( 'mwb_upsell_lite_get_first_offer_after_redirect' ) ) {
 	 */
 	function mwb_upsell_lite_get_first_offer_after_redirect( $url = false ) {
 
-		if( ! empty( $url ) ) {
+		if ( ! empty( $url ) ) {
 
-			$url_components = parse_url( $url ); 
+			$url_components = parse_url( $url );
 
-			// Extract Query Params. 
-			if( ! empty( $url_components[ 'query' ] ) ) {
-				parse_str( $url_components['query'], $params ); 
+			// Extract Query Params.
+			if ( ! empty( $url_components['query'] ) ) {
+				parse_str( $url_components['query'], $params );
 			}
-			
-			if( ! empty( $params[ 'ocuf_ofd' ] ) ) {
-				
+
+			if ( ! empty( $params['ocuf_ofd'] ) ) {
+
 				$first_offer = ! empty( $params['ocuf_ofd'] ) ? sanitize_text_field( wp_unslash( $params['ocuf_ofd'] ) ) : '';
 				return $first_offer;
-			}	
+			}
 		}
 
 		return false;

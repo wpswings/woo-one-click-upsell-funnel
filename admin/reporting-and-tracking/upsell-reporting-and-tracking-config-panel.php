@@ -58,19 +58,14 @@ do_action( 'mwb_wocuf_pro_setting_tab_active' ); ?>
 
 	if ( 'reporting' == $active_tab ) {
 		include_once 'templates/reporting.php';
-	}
-
-	elseif ( 'ga-setting' == $active_tab ) {
+	} elseif ( 'ga-setting' == $active_tab ) {
 		include_once 'templates/ga-settings.php';
-	}
-
-	elseif ( 'pixel-setting' == $active_tab ) {
+	} elseif ( 'pixel-setting' == $active_tab ) {
 		include_once 'templates/pixel-settings.php';
-	}
-
-	elseif ( 'overview' == $active_tab ) {
+	} elseif ( 'overview' == $active_tab ) {
 		include_once 'templates/tracking-overview.php';
 	}
 
-	do_action( 'mwb_wocuf_pro_setting_tab_html' ); ?>
+	do_action( 'mwb_wocuf_pro_setting_tab_html' );
+	?>
 </div>

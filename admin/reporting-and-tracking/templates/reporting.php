@@ -148,17 +148,15 @@ $funnels_list = get_option( 'mwb_wocuf_funnels_list' );
 
 						<?php
 
-						if( ! empty( $funnel_triggered_count ) ) {
+						if ( ! empty( $funnel_triggered_count ) ) {
 
 							$conversion_rate = ( $funnel_success_count * 100 ) / $funnel_triggered_count;
-						}
-
-						else {
+						} else {
 
 							$conversion_rate = 0;
 						}
 
-						$conversion_rate = number_format( (float)$conversion_rate, 2 );
+						$conversion_rate = number_format( (float) $conversion_rate, 2 );
 
 						echo '<div class="mwb_upsell_stats_conversion_rate"><p>' . esc_html( $conversion_rate . esc_html__( '%', 'woo-one-click-upsell-funnel' ) ) . '</p><div>';
 
@@ -173,9 +171,9 @@ $funnels_list = get_option( 'mwb_wocuf_funnels_list' );
 
 						$funnel_total_sales = ! empty( $value['funnel_total_sales'] ) ? $value['funnel_total_sales'] : 0;
 
-						$funnel_total_sales = number_format( (float)$funnel_total_sales, 2 );
+						$funnel_total_sales = number_format( (float) $funnel_total_sales, 2 );
 
-						echo '<div class="mwb_upsell_stats_total_sales"><p>' .  get_woocommerce_currency_symbol() . esc_html( $funnel_total_sales ) . '</p><div>';
+						echo '<div class="mwb_upsell_stats_total_sales"><p>' . get_woocommerce_currency_symbol() . esc_html( $funnel_total_sales ) . '</p><div>';
 
 						?>
 					

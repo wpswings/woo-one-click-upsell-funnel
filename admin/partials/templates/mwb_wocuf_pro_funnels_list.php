@@ -147,7 +147,7 @@ else {
 							echo '<p>' . esc_html__( 'Smart Offer Upgrade', 'woo-one-click-upsell-funnel' ) . '</p>';
 						}
 
-						echo "</div>";
+						echo '</div>';
 
 						?>
 					
