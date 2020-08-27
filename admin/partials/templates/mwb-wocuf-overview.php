@@ -81,7 +81,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="mwb_upsell_overview_supported_woo_addons">
 
 			<div class="mwb_upsell_overview_supported_woo_addons_banner">
-				<img src="<?php echo esc_url( MWB_WOCUF_URL . 'admin/resources/woo-subscription-compatibility.png' ); ?>">
+				<img src="<?php echo esc_url( MWB_WOCUF_URL . 'admin/resources/woo-subscription-compatibility.jpg' ); ?>">
 			</div>
 
 		</div>
