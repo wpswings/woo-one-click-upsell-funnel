@@ -195,7 +195,7 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 
 	$mwb_wocuf_pro_funnel['mwb_upsell_post_id_assigned'] = $post_id_assigned;
 
-	// After v3.2.0.
+	// Since v3.0.0.
 	// Sanitize and strip slashes for Funnel offer custom image.
 	$custom_image_ids_array = ! empty( $_POST['mwb_upsell_offer_image'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_upsell_offer_image'] ) ) : array();
 
@@ -210,8 +210,19 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 	// Get all funnels.
 	$mwb_wocuf_pro_created_funnels = get_option( 'mwb_wocuf_funnels_list', array() );
 
+	// If funnel already exists then save Exclusive offer email data.
+	if ( ! empty( $mwb_wocuf_pro_created_funnels[ $mwb_wocuf_pro_funnel_id ]['offer_already_shown_to_users'] ) && is_array( $mwb_wocuf_pro_created_funnels[ $mwb_wocuf_pro_funnel_id ]['offer_already_shown_to_users'] ) ) {
+
+		$already_saved_funnel = $mwb_wocuf_pro_created_funnels[ $mwb_wocuf_pro_funnel_id ];
+
+		// Not Post data, so no need to Sanitize and Strip slashes.
+
+		// Empty and array already checked above.
+		$mwb_wocuf_pro_funnel['offer_already_shown_to_users'] = $already_saved_funnel['offer_already_shown_to_users'];
+	}
+
 	// If funnel already exists then save Upsell Sales by Funnel - Stats if present.
-	if ( ! empty( $mwb_wocuf_pro_created_funnels[ $mwb_wocuf_pro_funnel_id ] ) && ! empty( $mwb_wocuf_pro_created_funnels[ $mwb_wocuf_pro_funnel_id ]['funnel_triggered_count'] ) ) {
+	if ( ! empty( $mwb_wocuf_pro_created_funnels[ $mwb_wocuf_pro_funnel_id ]['funnel_triggered_count'] ) ) {
 
 		$funnel_stats_funnel = $mwb_wocuf_pro_created_funnels[ $mwb_wocuf_pro_funnel_id ];
 
