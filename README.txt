@@ -20,6 +20,8 @@ Give your revenue a hike by offering post checkout upsells at your WooCommerce s
 
 One Click Upsell Funnel For WooCommerce plugin offers post-purchase upsell offers, i.e. after the checkout is done. Customers can buy these upsell products in just one click with no hassle of re-entering the payment details or adding the product to cart again.
 
+[youtube https://www.youtube.com/watch?v=Wa3NL4oy-tE]
+
 **With the One Click Upsell Funnel For WooCommerce plugin you can:**
 
 * Create unlimited funnels with unlimited number of offers.
@@ -66,9 +68,9 @@ This plugin provides various shortcodes to create different offer page elements.
 **9) Ability to Simplify The Buying Process**
 As the name suggests, it is one click upsell, which means the customers can purchase the upsell product in a single click without re-entering the payment details again. This simplifies the buying process of the customers and also engages the customer at your store which lifts the customer success & reduces your churn rate.
 
-[Free demo of One Click Upsell Funnel for WooCommerce](https://demo.makewebbetter.com/woocommerce-one-click-upsell-funnel/?utm_source=MWB-upsell-org&utm_medium=MWB-ORG&utm_campaign=MWB-upsell-org)
+[**Free demo of One Click Upsell Funnel for WooCommerce**](https://demo.makewebbetter.com/woocommerce-one-click-upsell-funnel/?utm_source=MWB-upsell-org&utm_medium=MWB-ORG&utm_campaign=MWB-upsell-org)
 
-Visit [One Click Upsell Funnel for WooCommerce Documentation](https://docs.makewebbetter.com/woocommerce-one-click-upsell-funnel/?utm_source=MWB-upsell-org&utm_medium=MWB-ORG&utm_campaign=MWB-upsell-org) and learn more about the features and working of the plugin.
+Visit [**One Click Upsell Funnel for WooCommerce Documentation**](https://docs.makewebbetter.com/woocommerce-one-click-upsell-funnel/?utm_source=MWB-upsell-org&utm_medium=MWB-ORG&utm_campaign=MWB-upsell-org) and learn more about the features and working of the plugin.
 
 
 == WHAT PREMIUM VERSION OF ONE CLICK UPSELL FUNNEL FOR WOOCOMMERCE OFFERS ==
@@ -79,7 +81,7 @@ Visit [One Click Upsell Funnel for WooCommerce Documentation](https://docs.makew
 * Multiple Payment Gateways
 * Premium Support
 
-[Get WooCommerce One Click Upsell Funnel Pro](https://makewebbetter.com/product/woocommerce-one-click-upsell-funnel-pro/?utm_source=MWB-upsell-org&utm_medium=MWB-ORG&utm_campaign=MWB-upsell-org)
+> Note:  Get [**WooCommerce One Click Upsell Funnel Pro**](https://makewebbetter.com/product/woocommerce-one-click-upsell-funnel-pro/?utm_source=MWB-upsell-org&utm_medium=MWB-ORG&utm_campaign=MWB-upsell-org)
 
  
 == Support ==
@@ -89,15 +91,19 @@ If you need support or have questions, kindly use our online chat window [here](
 
 == Screenshots ==
 
-1. Create new Funnel
-2. Add Offer in the funnel
-3. Make Funnel Live
-4. Template-1
-5. Template-2
-6. Template-3
-7. Funnels List
-8. Shortcodes
-9. Global Settings 
+1. Create new Funnel: Create a new upsell funnel by clicking on Create New Funnel button
+2. Add Offer in the funnel: Add an offer product in your upsell funnel
+3. Make Funnel Live: Save your funnel and click on the toggle button to publish it
+4. Template-1: Upsell offer page template #1
+5. Template-2: Upsell offer page template #2
+6. Template-3: Upsell offer page template #3
+7. Funnels List: View all your funnels in the Funnel List tab
+8. Shortcodes: Shortcodes tab provide you several shortcodes to add different elements
+9. Global Settings: Global settings that take effect on all funnels
+10. Upsell Report: Check the performance of each upsell funnel
+11. Upsell Report by date: Check the upsell performance for a set time period
+12. Google Analytics tracking: Track upsell sales through Google Analytics
+13. FB Pixel tracking: Track upsell sales through Facebook Pixel 
 
 
 == Frequently Asked Questions ==
