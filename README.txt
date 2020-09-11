@@ -4,10 +4,10 @@ Contributors: MakeWebBetter
 Donate link: http://makewebbetter.com/
 Tags: Boost sales, Cross sells, post-purchase, upsell, woocommerce
 Requires at least: 4.0
-Tested up to: 5.5
+Tested up to: 5.5.1
 WC requires at least: 3.0.0
-WC tested up to: 4.4.1
-Stable tag: 2.0.3
+WC tested up to: 4.5.1
+Stable tag: 3.0.1
 Requires PHP: 5.6
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -159,7 +159,7 @@ Yes, you can. Our plugin is compatible with Elementor that lets you customize yo
 
 Yes. Depending on what kind of product a customer has purchased, you can offer them a relevant Upsell product.
 
-=Can I offer an upgrade product to my customers after checkout?=
+=Can I offer an upgrade to my customers after checkout?=
 
 Yes. Just set the Target and Offer Product and Enable Smart Offer Upgrade Feature in Funnel settings. As soon as the customer accepts the offer, the target product will be replaced by the offer product.
 
@@ -185,10 +185,13 @@ Yes. One Click Upsell lets you add multiple products in a single funnel. So if y
 
 Most of the major WordPress page builders like Elementor, WPBakery, Divibuilders, Thrivearchitect, and other WordPress page builders are supported.	
 
-== Changelog ==
+== Changelog =
+
+= 3.0.1 =
+* Other: Issues and Bugs Fixed.
 
 = 3.0.0 =
-* New: Funnel features - Global Funnel, Exclusive Offer, Smart Offer Upgrade.
+* New: Funnel features - Global Funnel, Exclusive Offer, and Smart Offer Upgrade.
 * New: Global feature - Smart Skip If Already Purchased.
 * New: Offer feature - Offer Image.
 * New: Shortcodes - Offer Quantity and Urgency Timer.
@@ -234,12 +237,5 @@ Most of the major WordPress page builders like Elementor, WPBakery, Divibuilders
 
 == Upgrade Notice ==
 
-= 3.0.0 =
-* New: Funnel features - Global Funnel, Exclusive Offer, Smart Offer Upgrade.
-* New: Global feature - Smart Skip If Already Purchased.
-* New: Offer feature - Offer Image.
-* New: Shortcodes - Offer Quantity and Urgency Timer.
-* New: Upsell Sales - Reports and Upsell Sales by Funnel - Stats.
-* New: Google Analytics and Facebook Pixel compatibility.
-* Improved: Alert Messages and Upsell Action Buttons Loader. 
+= 3.0.1 =
 * Other: Issues and Bugs Fixed.
