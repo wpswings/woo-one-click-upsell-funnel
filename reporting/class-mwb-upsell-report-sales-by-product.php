@@ -505,6 +505,12 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 							'function'        => '',
 							'name'            => 'product_id',
 						),
+						'is_upsell_purchase' => array(
+							'type'     => 'order_item_meta',
+							'order_item_type' => 'line_item',
+							'function' => '',
+							'name'     => 'mwb_wocuf_pro_upsell_item_meta',
+						),
 					),
 					'where_meta'   => array(
 						'relation' => 'OR',
@@ -543,6 +549,12 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 							'order_item_type' => 'line_item',
 							'function'        => '',
 							'name'            => 'product_id',
+						),
+						'is_upsell_purchase' => array(
+							'type'     => 'order_item_meta',
+							'order_item_type' => 'line_item',
+							'function' => '',
+							'name'     => 'mwb_wocuf_pro_upsell_item_meta',
 						),
 					),
 					'where_meta'   => array(

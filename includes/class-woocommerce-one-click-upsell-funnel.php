@@ -130,8 +130,7 @@ class Woocommerce_one_click_upsell_funnel {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce-one-click-upsell-funnel-global-functions.php';
 
 		/**
-		 * The class responsible for defining all actions that occur in the onboarding the site data
-		 * in the admin side of the site.
+		 * The class responsible for the Onboarding functionality.
 		 */
 		if ( ! class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
 

@@ -240,7 +240,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 			'mwb-wocuf-setting',
 			array( $this, 'upsell_menu_html' ),
 			'dashicons-chart-area',
-			56
+			57
 		);
 
 		/**
@@ -251,7 +251,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 		/**
 		 * Add sub-menu for reportings settings.
 		 */
-		add_submenu_page( 'mwb-wocuf-setting', esc_html__( 'Sales Reports & Tracking', 'woo-one-click-upsell-funnel' ), esc_html__( 'Sales Reports & Tracking', 'woo-one-click-upsell-funnel' ), 'manage_options', 'mwb-wocuf-setting-tracking', array( $this, 'add_submenu_page_reporting_callback' ) );
+		add_submenu_page( 'mwb-wocuf-setting', esc_html__( 'Reports, Analytics & Tracking', 'woo-one-click-upsell-funnel' ), esc_html__( 'Reports, Analytics & Tracking', 'woo-one-click-upsell-funnel' ), 'manage_options', 'mwb-wocuf-setting-tracking', array( $this, 'add_submenu_page_reporting_callback' ) );
 	}
 
 	/**

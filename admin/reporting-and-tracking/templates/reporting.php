@@ -33,11 +33,11 @@ $funnels_list = get_option( 'mwb_wocuf_funnels_list' );
 
 	<hr class="mwb_uspell_reporting_funnel_stats_hr">
 
-	<div class="mwb_uspell_stats_heading" ><h2><?php esc_html_e( 'Upsell Sales by Funnel - Stats', 'woo-one-click-upsell-funnel' ); ?></h2></div>
+	<div class="mwb_uspell_stats_heading" ><h2><?php esc_html_e( 'Upsell - Behavioral Analytics', 'woo-one-click-upsell-funnel' ); ?></h2></div>
 
 	<?php if ( empty( $funnels_list ) ) : ?>
 
-		<p class="mwb_wocuf_pro_no_funnel"><?php esc_html_e( 'No Upsell Funnel Data found', 'woo-one-click-upsell-funnel' ); ?></p>
+		<p class="mwb_wocuf_pro_no_funnel"><?php esc_html_e( 'No Upsell Data found', 'woo-one-click-upsell-funnel' ); ?></p>
 
 	<?php endif; ?>
 
@@ -158,7 +158,7 @@ $funnels_list = get_option( 'mwb_wocuf_funnels_list' );
 
 						$conversion_rate = number_format( (float) $conversion_rate, 2 );
 
-						echo '<div class="mwb_upsell_stats_conversion_rate"><p>' . esc_html( $conversion_rate . esc_html__( '%', 'woo-one-click-upsell-funnel' ) ) . '</p><div>';
+						echo '<div class="mwb_upsell_stats_conversion_rate"><p>' . esc_html( $conversion_rate ) . esc_html__( '%', 'woo-one-click-upsell-funnel' ) . '</p><div>';
 
 						?>
 					
