@@ -491,9 +491,9 @@ class Woocommerce_one_click_upsell_funnel_Public {
 											$mwb_wocuf_pro_offer_page_id = get_option( 'mwb_wocuf_pro_funnel_default_offer_page', '' );
 
 											if ( isset( $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_wocuf_offer_custom_page_url'][ $ocuf_ofd ] ) && ! empty( $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_wocuf_offer_custom_page_url'][ $ocuf_ofd ] ) ) {
-												$result = $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_wocuf_offer_custom_page_url'][ $ocuf_ofd ];
+												$redirect_to_url = $mwb_wocuf_pro_all_funnels[ $mwb_wocuf_pro_single_funnel ]['mwb_wocuf_offer_custom_page_url'][ $ocuf_ofd ];
 											} elseif ( ! empty( $mwb_wocuf_pro_offer_page_id ) && 'publish' == get_post_status( $mwb_wocuf_pro_offer_page_id ) ) {
-												$result = get_page_link( $mwb_wocuf_pro_offer_page_id );
+												$redirect_to_url = get_page_link( $mwb_wocuf_pro_offer_page_id );
 											} else {
 
 												// Break from placed order items loop and move to next funnel.
@@ -517,7 +517,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 													'ocuf_ok' => $ocuf_ok,
 													'ocuf_ofd' => $ocuf_ofd,
 												),
-												$result
+												$redirect_to_url
 											);
 
 											$mwb_wocuf_pro_flag = 1;
@@ -635,6 +635,10 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 					$this->expire_offer();
 				}
+
+				// Check for offers processed.
+				$current_offer_id = $offer_id;
+				$this->validate_offers_processed_on_upsell_action( $order_id, $current_offer_id );
 			}
 
 			// Add Offer Reject Count for the current Funnel.
@@ -716,6 +720,9 @@ class Woocommerce_one_click_upsell_funnel_Public {
 							),
 							$redirect_to_url
 						);
+
+						// Set offers processed when there is another offer to come up means when not last offer.
+						$this->set_offers_processed_on_upsell_action( $order_id, $current_offer_id, $url );
 
 					} else {
 
@@ -1058,6 +1065,10 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 						$this->expire_offer();
 					}
+
+					// Check for offers processed.
+					$current_offer_id = $offer_id;
+					$this->validate_offers_processed_on_upsell_action( $order_id, $current_offer_id );
 				}
 
 				if ( ! empty( $order ) ) {
@@ -1204,6 +1215,9 @@ class Woocommerce_one_click_upsell_funnel_Public {
 										$redirect_to_url
 									);
 
+									// Set offers processed when there is another offer to come up means when not last offer.
+									$this->set_offers_processed_on_upsell_action( $order_id, $current_offer_id, $url );
+
 								} else {
 
 									$this->initiate_order_payment_and_redirect( $order_id );
@@ -1346,6 +1360,9 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		// As Order Payment is initiated so Expire further Offers.
 		update_post_meta( $order_id, '_mwb_upsell_expire_further_offers', true );
+
+		// Delete Offers Processed data as now we don't need it.
+		delete_post_meta( $order_id, '_mwb_upsell_offers_processed' );
 
 		$result = $this->upsell_order_final_payment( $order_id );
 
@@ -1743,7 +1760,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 						$upsell_product_image_src = ! empty( $image_attributes[0] ) && filter_var( $image_attributes[0], FILTER_VALIDATE_URL ) ? $image_attributes[0] : false;
 					}
 
-					if ( ! empty( $upsell_product_image_src ) && getimagesize( $upsell_product_image_src ) ) {
+					if ( ! empty( $upsell_product_image_src ) ) {
 
 						// Shortcode attributes.
 						$atts = shortcode_atts(
@@ -1796,7 +1813,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 							$upsell_product_image_src = ! empty( $image_attributes[0] ) && filter_var( $image_attributes[0], FILTER_VALIDATE_URL ) ? $image_attributes[0] : false;
 						}
 
-						if ( ! empty( $upsell_product_image_src ) && getimagesize( $upsell_product_image_src ) ) {
+						if ( ! empty( $upsell_product_image_src ) ) {
 
 							// Shortcode attributes.
 							$atts = shortcode_atts(
@@ -3870,6 +3887,56 @@ class Woocommerce_one_click_upsell_funnel_Public {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Set Offers Processed for Order on Upsell Action.
+	 * Except for last offer.
+	 *
+	 * @since    3.0.1
+	 */
+	public function set_offers_processed_on_upsell_action( $order_id, $current_offer_id, $url ) {
+
+		if( empty( $order_id ) || empty( $current_offer_id ) || empty( $url ) ) {
+
+			return;
+		}
+
+		$offers_processed = get_post_meta( $order_id, '_mwb_upsell_offers_processed', true );
+
+		$offers_processed = ! empty( $offers_processed ) ? $offers_processed : array();
+
+		$offers_processed[$current_offer_id] = $url;
+
+		update_post_meta( $order_id, '_mwb_upsell_offers_processed', $offers_processed );
+	}
+
+	/**
+	 * Validate if current offer is already processed on Upsell Action.
+	 *
+	 * @since    3.0.1
+	 */
+	public function validate_offers_processed_on_upsell_action( $order_id, $current_offer_id ) {
+
+		if( empty( $order_id ) || empty( $current_offer_id ) ) {
+
+			return;
+		}
+
+		$offers_processed = get_post_meta( $order_id, '_mwb_upsell_offers_processed', true );
+
+		if( ! empty( $offers_processed ) && is_array( $offers_processed ) ) {
+
+			foreach ( $offers_processed as $offer_id => $url ) {
+				
+				// When offer is already processed, redirect to previous result of action that was taken.
+				if( $current_offer_id == $offer_id ) {
+
+					wp_safe_redirect( $url );
+					exit;
+				}
+			}
+		}
 	}
 
 } // End of class.
