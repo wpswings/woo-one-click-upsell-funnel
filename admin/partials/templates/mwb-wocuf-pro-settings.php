@@ -225,7 +225,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 					<td class="forminp forminp-text">
 						<?php
-						$attribut_description = esc_html__( 'This feature skip the funnel if the offer product is already purchased in past orders.', 'woo-one-click-upsell-funnel' );
+						$attribut_description = esc_html__( 'The upsell funnel will be skipped if any of the offer product is already been purchased in previous orders. This will only work for logged in users.', 'woo-one-click-upsell-funnel' );
 						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped.
 
 						$skip_similar_offer = ! empty( $mwb_upsell_global_settings['smart_skip_if_purchased'] ) ? $mwb_upsell_global_settings['smart_skip_if_purchased'] : '';

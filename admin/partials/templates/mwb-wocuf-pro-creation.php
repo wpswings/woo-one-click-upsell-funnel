@@ -537,7 +537,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 					<td class="forminp forminp-text">
 						<?php
 
-						$attribut_description = esc_html__( 'This Feature shows the funnel one time offer per user. This works upon the order billing email.', 'woo-one-click-upsell-funnel' );
+						$attribut_description = esc_html__( 'This feature makes the upsell funnel to be shown to the customers only once, whether they accept or reject it. This works with respect to the order billing email.', 'woo-one-click-upsell-funnel' );
 
 						echo wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped.
 
