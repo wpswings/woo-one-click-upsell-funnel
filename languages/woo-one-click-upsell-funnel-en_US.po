@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: One Click Upsell Funnel for WooCommerce 3.0.1\n"
-"POT-Creation-Date: 2020-10-17 20:43+0530\n"
-"PO-Revision-Date: 2020-10-17 20:43+0530\n"
+"POT-Creation-Date: 2020-11-10 18:51+0530\n"
+"PO-Revision-Date: 2020-11-10 18:52+0530\n"
 "Last-Translator: \n"
 "Language-Team: makewebbetter <webmaster@makewebbetter.com>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-KeywordsList: __;_e;esc_attr_e;esc_html__;esc_html_e\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
@@ -1299,19 +1299,19 @@ msgstr ""
 msgid "Skip For Now"
 msgstr ""
 
-#: includes/class-makewebbetter-onboarding-helper.php:240
+#: includes/class-makewebbetter-onboarding-helper.php:304
 msgid "What is your monthly revenue?"
 msgstr ""
 
-#: includes/class-makewebbetter-onboarding-helper.php:257
+#: includes/class-makewebbetter-onboarding-helper.php:321
 msgid "What industry defines your business?"
 msgstr ""
 
-#: includes/class-makewebbetter-onboarding-helper.php:292
+#: includes/class-makewebbetter-onboarding-helper.php:356
 msgid "What is the best email address to contact you?"
 msgstr ""
 
-#: includes/class-makewebbetter-onboarding-helper.php:302
+#: includes/class-makewebbetter-onboarding-helper.php:366
 msgid "What is your contact number?"
 msgstr ""
 

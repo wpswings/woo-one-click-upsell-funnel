@@ -301,7 +301,7 @@ class Makewebbetter_Onboarding_Helper {
 
 			rand() => array(
 				'id' => 'monthly-revenue',
-				'label' => esc_html__( 'What is your monthly revenue?', 'makewebbetter-onboarding' ),
+				'label' => esc_html__( 'What is your monthly revenue?', 'woo-one-click-upsell-funnel' ),
 				'type' => 'radio',
 				'name' => 'monthly_revenue_',
 				'value' => '',
@@ -318,7 +318,7 @@ class Makewebbetter_Onboarding_Helper {
 
 			rand() => array(
 				'id' => 'industry_type',
-				'label' => esc_html__( 'What industry defines your business?', 'makewebbetter-onboarding' ),
+				'label' => esc_html__( 'What industry defines your business?', 'woo-one-click-upsell-funnel' ),
 				'type' => 'select',
 				'name' => 'industry_type_',
 				'value' => '',

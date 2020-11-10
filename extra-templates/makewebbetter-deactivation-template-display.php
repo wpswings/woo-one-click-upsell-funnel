@@ -41,7 +41,7 @@ if ( empty( $pagenow ) || 'plugins.php' != $pagenow ) {
 					<input type="submit" class="mwb-on-boarding-submit mwb-on-boarding-verify " value="Send Us">
 				</div>
 				<div class="mwb-on-boarding-form-no_thanks">
-					<a href="#" class="mwb-deactivation-no_thanks"><?php esc_html_e( 'Skip and Deactivate Now', 'makewebbetter-onboarding' ); ?></a>
+					<a href="#" class="mwb-deactivation-no_thanks"><?php esc_html_e( 'Skip and Deactivate Now', 'woo-one-click-upsell-funnel' ); ?></a>
 				</div>
 				</div>
 			</form>
