@@ -66,7 +66,7 @@ class Makewebbetter_Onboarding_Helper {
 	 *
 	 * @since 1.0.0
 	 */
-	private static $plugin_name = 'Woo One Click Upsell';
+	private static $plugin_name = 'One Click Upsell Funnel for Woocommerce';
 	
 	private static $plugin_url;
 
@@ -278,7 +278,7 @@ class Makewebbetter_Onboarding_Helper {
 		}
 
 		$currency_symbol = get_woocommerce_currency_symbol();
-		$store_name = get_the_title( wc_get_page_id( 'shop' ) );
+		$store_name = get_bloginfo('name ');
 		$store_url = get_home_url();
 
 		/**
@@ -418,7 +418,7 @@ class Makewebbetter_Onboarding_Helper {
 			$current_user_email = $current_user->user_email ? $current_user->user_email : '';
 		}
 
-		$store_name = get_the_title( wc_get_page_id( 'shop' ) );
+		$store_name = get_bloginfo('name ');
 		$store_url = get_home_url();
 
 		/**
