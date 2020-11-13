@@ -18,9 +18,9 @@
  * Version:           3.0.1
  *
  * Requires at least:     4.4
- * Tested up to:          5.5.3
+ * Tested up to:          5.5.1
  * WC requires at least:  3.0
- * WC tested up to:       4.7.0
+ * WC tested up to:       4.5.1
  *
  * Author:            MakeWebBetter
  * Author URI:        https://makewebbetter.com/

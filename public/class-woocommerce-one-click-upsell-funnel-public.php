@@ -1587,19 +1587,11 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 			<script type="text/javascript">
 
-				var product_not_selected_alert = '
-				<?php
-				echo esc_html( $product_not_selected_alert ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				// It just displayes message that is already escaped above.
-				?>
-				';
+				var product_not_selected_alert = '<?php echo esc_html( $product_not_selected_alert ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				// It just displayes message that is already escaped above. ?>';
 
-				var product_not_selected_content = '
-				<?php
-				echo esc_html( $product_not_selected_content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				// It just displayes message that is already escaped above.
-				?>
-				';
+				var product_not_selected_content = '<?php echo esc_html( $product_not_selected_content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				// It just displayes message that is already escaped above. ?>';
 
 				swal( product_not_selected_alert , product_not_selected_content, 'warning' )
 				
@@ -3510,7 +3502,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 			if ( $add_fb_pixel_purchase_event ) {
 
 				// For Facebook for WooCommerce plugin version < 1.1.0
-				// remove_action( 'woocommerce_thankyou', array( $wc_integrations['facebookcommerce']->events_tracker, 'inject_gateway_purchase_event' ), $wc_integrations['facebookcommerce']->events_tracker::FB_PRIORITY_HIGH ); // Causing Error.
+				remove_action( 'woocommerce_thankyou', array( $wc_integrations['facebookcommerce']->events_tracker, 'inject_gateway_purchase_event' ), $wc_integrations['facebookcommerce']->events_tracker::FB_PRIORITY_HIGH );
 
 				// For Facebook for WooCommerce plugin version >= 1.1.0
 				remove_action( 'woocommerce_thankyou', array( $wc_integrations['facebookcommerce']->events_tracker, 'inject_purchase_event' ), 40 );
@@ -3627,7 +3619,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 						// Set the date we're counting down to.
 						var current = new Date();
 						var expiration = parseFloat( <?php echo( esc_html( $expiration ) ); ?> ); // Digit in seconds.
-						var offer_id = <?php echo ! empty( $_GET['ocuf_ofd'] ) ? esc_html( sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) ) ) : 'null'; ?>;
+						var offer_id = <?php echo ! empty( $_GET['ocuf_ofd'] ) ? esc_html( wp_unslash( $_GET['ocuf_ofd'] ) ) : 'null'; ?>;
 
 						var timer_limit = sessionStorage.getItem( 'timerlimit_' + offer_id );
 						var countDowntime = null != offer_id && null != timer_limit ? timer_limit : current.setSeconds( current.getSeconds()+expiration );
@@ -3905,7 +3897,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 */
 	public function set_offers_processed_on_upsell_action( $order_id, $current_offer_id, $url ) {
 
-		if ( empty( $order_id ) || empty( $current_offer_id ) || empty( $url ) ) {
+		if( empty( $order_id ) || empty( $current_offer_id ) || empty( $url ) ) {
 
 			return;
 		}
@@ -3914,7 +3906,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 
 		$offers_processed = ! empty( $offers_processed ) ? $offers_processed : array();
 
-		$offers_processed[ $current_offer_id ] = $url;
+		$offers_processed[$current_offer_id] = $url;
 
 		update_post_meta( $order_id, '_mwb_upsell_offers_processed', $offers_processed );
 	}
@@ -3926,19 +3918,19 @@ class Woocommerce_one_click_upsell_funnel_Public {
 	 */
 	public function validate_offers_processed_on_upsell_action( $order_id, $current_offer_id ) {
 
-		if ( empty( $order_id ) || empty( $current_offer_id ) ) {
+		if( empty( $order_id ) || empty( $current_offer_id ) ) {
 
 			return;
 		}
 
 		$offers_processed = get_post_meta( $order_id, '_mwb_upsell_offers_processed', true );
 
-		if ( ! empty( $offers_processed ) && is_array( $offers_processed ) ) {
+		if( ! empty( $offers_processed ) && is_array( $offers_processed ) ) {
 
 			foreach ( $offers_processed as $offer_id => $url ) {
-
+				
 				// When offer is already processed, redirect to previous result of action that was taken.
-				if ( $current_offer_id == $offer_id ) {
+				if( $current_offer_id == $offer_id ) {
 
 					wp_safe_redirect( $url );
 					exit;

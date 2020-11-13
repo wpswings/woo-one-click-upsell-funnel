@@ -472,12 +472,8 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 							?>
 							<!-- Offer templates foreach start-->
 
-							<div class="mwb_upsell_offer_template 
-							<?php
-							echo $template_key == $offer_template_active ? 'active' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-							// It just displayes the html itself. Content in it is already escaped if required.
-							?>
-							">
+							<div class="mwb_upsell_offer_template <?php echo $template_key == $offer_template_active ? 'active' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							// It just displayes the html itself. Content in it is already escaped if required. ?>">
 
 
 								<div class="mwb_upsell_offer_template_sub_div"> 

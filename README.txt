@@ -4,9 +4,9 @@ Contributors: MakeWebBetter
 Donate link: http://makewebbetter.com/
 Tags: Boost sales, Cross sells, post-purchase, upsell, woocommerce
 Requires at least: 4.0
-Tested up to: 5.5.3
+Tested up to: 5.5.1
 WC requires at least: 3.0.0
-WC tested up to: 4.7.0
+WC tested up to: 4.5.1
 Stable tag: 3.0.1
 Requires PHP: 5.6
 License: GPLv3 or later 
@@ -188,7 +188,6 @@ Most of the major WordPress page builders like Elementor, WPBakery, Divibuilders
 == Changelog =
 
 = 3.0.1 =
-* Improved: Better Security.
 * Other: Issues and Bugs Fixed.
 
 = 3.0.0 =
@@ -239,5 +238,4 @@ Most of the major WordPress page builders like Elementor, WPBakery, Divibuilders
 == Upgrade Notice ==
 
 = 3.0.1 =
-* Improved: Better Security.
 * Other: Issues and Bugs Fixed.
