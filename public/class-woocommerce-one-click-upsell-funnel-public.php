@@ -3502,7 +3502,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 			if ( $add_fb_pixel_purchase_event ) {
 
 				// For Facebook for WooCommerce plugin version < 1.1.0
-				remove_action( 'woocommerce_thankyou', array( $wc_integrations['facebookcommerce']->events_tracker, 'inject_gateway_purchase_event' ), $wc_integrations['facebookcommerce']->events_tracker::FB_PRIORITY_HIGH );
+				// remove_action( 'woocommerce_thankyou', array( $wc_integrations['facebookcommerce']->events_tracker, 'inject_gateway_purchase_event' ), $wc_integrations['facebookcommerce']->events_tracker::FB_PRIORITY_HIGH ); // Causing error.
 
 				// For Facebook for WooCommerce plugin version >= 1.1.0
 				remove_action( 'woocommerce_thankyou', array( $wc_integrations['facebookcommerce']->events_tracker, 'inject_purchase_event' ), 40 );
@@ -3619,7 +3619,7 @@ class Woocommerce_one_click_upsell_funnel_Public {
 						// Set the date we're counting down to.
 						var current = new Date();
 						var expiration = parseFloat( <?php echo( esc_html( $expiration ) ); ?> ); // Digit in seconds.
-						var offer_id = <?php echo ! empty( $_GET['ocuf_ofd'] ) ? esc_html( wp_unslash( $_GET['ocuf_ofd'] ) ) : 'null'; ?>;
+						var offer_id = <?php echo ! empty( $_GET['ocuf_ofd'] ) ? esc_html( sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) ) ) : 'null'; ?>;
 
 						var timer_limit = sessionStorage.getItem( 'timerlimit_' + offer_id );
 						var countDowntime = null != offer_id && null != timer_limit ? timer_limit : current.setSeconds( current.getSeconds()+expiration );
