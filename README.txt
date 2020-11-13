@@ -188,6 +188,7 @@ Most of the major WordPress page builders like Elementor, WPBakery, Divibuilders
 == Changelog =
 
 = 3.0.1 =
+* Improved: Better Security.
 * Other: Issues and Bugs Fixed.
 
 = 3.0.0 =
@@ -238,4 +239,5 @@ Most of the major WordPress page builders like Elementor, WPBakery, Divibuilders
 == Upgrade Notice ==
 
 = 3.0.1 =
+* Improved: Better Security.
 * Other: Issues and Bugs Fixed.
