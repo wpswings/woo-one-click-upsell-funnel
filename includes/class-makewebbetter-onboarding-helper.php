@@ -3,21 +3,18 @@
  * The admin-specific functionality of the plugin.
  *
  * @link       https://makewebbetter.com
- * @since      1.0.0
+ * @since      3.0.0
  *
- * @package    Makewebbetter_Onboarding_Helper
- * @subpackage Makewebbetter_Onboarding_Helper/includes/
+ * @package     woo_one_click_upsell_funnel
+ * @subpackage 	woo_one_click_upsell_funnel/includes
  */
 
 /**
  * The Onboarding-specific functionality of the plugin admin side.
  *
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the admin-specific stylesheet and JavaScript.
- *
- * @package    Makewebbetter_Onboarding_Helper
- * @subpackage Makewebbetter_Onboarding_Helper/admin
- * @author     Make Web Better <dev@mwb.com>
+ * @package     woo_one_click_upsell_funnel
+ * @subpackage 	woo_one_click_upsell_funnel/includes
+ * @author     	makewebbetter <webmaster@makewebbetter.com>
  */
 if ( class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
 	return;
@@ -31,14 +28,14 @@ class Makewebbetter_Onboarding_Helper {
 	/**
 	 * The single instance of the class.
 	 *
-	 * @since   1.0.0
+	 * @since   3.0.0
 	 */
 	protected static $_instance = null;
 
 	/**
 	 * Base url of hubspot api.
 	 *
-	 * @since 1.0.0
+	 * @since 3.0.0
 	 * @var string base url of API.
 	 */
 	private $base_url = 'https://api.hsforms.com/';
@@ -46,7 +43,7 @@ class Makewebbetter_Onboarding_Helper {
 	/**
 	 * Portal id of hubspot api.
 	 *
-	 * @since 1.0.0
+	 * @since 3.0.0
 	 * @var string Portal id.
 	 */
 	private static $portal_id = '6493626';
@@ -54,7 +51,7 @@ class Makewebbetter_Onboarding_Helper {
 	/**
 	 * Form id of hubspot api.
 	 *
-	 * @since 1.0.0
+	 * @since 3.0.0
 	 * @var string Form id.
 	 */
 	private static $onboarding_form_id = 'd94dcb10-c9c1-4155-a9ad-35354f2c3b52';
@@ -64,21 +61,25 @@ class Makewebbetter_Onboarding_Helper {
 	/**
 	 * Plugin Name.
 	 *
-	 * @since 1.0.0
+	 * @since 3.0.0
 	 */
-	private static $plugin_name = 'One Click Upsell Funnel for Woocommerce';
-	
-	private static $plugin_url;
+	private static $plugin_name;
+	private static $store_name;
+	private static $store_url;
 
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.0
+	 * @since    3.0.0
 	 */
 	public function __construct() {
 
-		global $wp;
-		self::$plugin_url = home_url();
+		self::$store_name = get_bloginfo( 'name' );
+		self::$store_url = home_url();
+
+		if ( defined( 'ONBOARD_PLUGIN_NAME' ) ) {
+			self::$plugin_name = ONBOARD_PLUGIN_NAME;
+		}
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
@@ -101,7 +102,7 @@ class Makewebbetter_Onboarding_Helper {
 	 *
 	 * Ensures only one instance of HubWooConnectionMananager is loaded or can be loaded.
 	 *
-	 * @since 1.0.0
+	 * @since 3.0.0
 	 * @static
 	 * @return HubWooConnectionMananager - Main instance.
 	 */
@@ -118,7 +119,7 @@ class Makewebbetter_Onboarding_Helper {
 	/**
 	 * Register the stylesheets for the admin area.
 	 *
-	 * @since    1.0.0
+	 * @since    3.0.0
 	 */
 	public function enqueue_styles() {
 
@@ -135,17 +136,17 @@ class Makewebbetter_Onboarding_Helper {
 		 */
 		if ( $this->is_valid_page_screen() ) {
 
-			wp_enqueue_style( 'makewebbetter-onboarding-style', MWB_WOCUF_URL . 'admin/css/makewebbetter-onboarding-admin.css', array(), '1.0.0', 'all' );
+			wp_enqueue_style( 'makewebbetter-onboarding-style', MWB_WOCUF_URL . 'admin/css/makewebbetter-onboarding-admin.css', array(), '3.0.0', 'all' );
 
 			// Uncomment Only when your plugin doesn't uses the Select2
-			wp_enqueue_style( 'makewebbetter-onboarding-select2-style', MWB_WOCUF_URL . 'admin/css/select2.min.css', array(), '1.0.0', 'all' );
+			wp_enqueue_style( 'makewebbetter-onboarding-select2-style', MWB_WOCUF_URL . 'admin/css/select2.min.css', array(), '3.0.0', 'all' );
 		}
 	}
 
 	/**
 	 * Register the JavaScript for the admin area.
 	 *
-	 * @since    1.0.0
+	 * @since    3.0.0
 	 */
 	public function enqueue_scripts() {
 
@@ -162,7 +163,7 @@ class Makewebbetter_Onboarding_Helper {
 		 */
 		if ( $this->is_valid_page_screen() ) {
 
-			wp_enqueue_script( 'makewebbetter-onboarding-scripts', MWB_WOCUF_URL . 'admin/js/makewebbetter-onboarding-admin.js', array( 'jquery' ), '1.0.0', true );
+			wp_enqueue_script( 'makewebbetter-onboarding-scripts', MWB_WOCUF_URL . 'admin/js/makewebbetter-onboarding-admin.js', array( 'jquery' ), '3.0.0', true );
 
 			global $pagenow;
 			$current_slug = ! empty( explode( '/', plugin_basename( __FILE__ ) ) ) ? explode( '/', plugin_basename( __FILE__ ) )[0] : '';
@@ -178,14 +179,14 @@ class Makewebbetter_Onboarding_Helper {
 			);
 
 			// Uncomment Only when your plugin doesn't uses the Select2
-			wp_enqueue_script( 'makewebbetter-onboarding-select2-script', MWB_WOCUF_URL . 'admin/js/select2.min.js', array( 'jquery' ), '1.0.0', false );
+			wp_enqueue_script( 'makewebbetter-onboarding-select2-script', MWB_WOCUF_URL . 'admin/js/select2.min.js', array( 'jquery' ), '3.0.0', false );
 		}
 	}
 
 	/**
 	 * Get all valid screens to add scripts and templates.
 	 *
-	 * @since    1.0.0
+	 * @since    3.0.0
 	 */
 	public function add_onboarding_popup_screen() {
 
@@ -198,7 +199,7 @@ class Makewebbetter_Onboarding_Helper {
 	/**
 	 * Get all valid screens to add scripts and templates.
 	 *
-	 * @since    1.0.0
+	 * @since    3.0.0
 	 */
 	public function add_deactivation_popup_screen() {
 
@@ -212,7 +213,7 @@ class Makewebbetter_Onboarding_Helper {
 	/**
 	 * Validate current screen.
 	 *
-	 * @since    1.0.0
+	 * @since    3.0.0
 	 */
 	public function is_valid_page_screen() {
 
@@ -236,7 +237,7 @@ class Makewebbetter_Onboarding_Helper {
 	/**
 	 * Validate the popup to be shown on screen.
 	 *
-	 * @since    1.0.0
+	 * @since    3.0.0
 	 */
 	public function can_show_onboarding_popup() {
 
@@ -268,7 +269,7 @@ class Makewebbetter_Onboarding_Helper {
 	/**
 	 * Add your onboarding form fields.
 	 *
-	 * @since    1.0.0
+	 * @since    3.0.0
 	 */
 	public function add_on_boarding_form_fields() {
 
@@ -400,6 +401,16 @@ class Makewebbetter_Onboarding_Helper {
 				'required' => '',
 				'extra-class' => '',
 			),
+
+			rand() => array(
+				'id' => 'plugin-name',
+				'label' => '',
+				'type' => 'hidden',
+				'name' => 'org_plugin_name',
+				'value' => self::$plugin_name,
+				'required' => '',
+				'extra-class' => '',
+			),
 		);
 
 		return $fields;
@@ -409,7 +420,7 @@ class Makewebbetter_Onboarding_Helper {
 	/**
 	 * Add your deactivation form fields.
 	 *
-	 * @since    1.0.0
+	 * @since    3.0.0
 	 */
 	public function add_deactivation_form_fields() {
 
@@ -515,7 +526,7 @@ class Makewebbetter_Onboarding_Helper {
 	/**
 	 * Returns form fields html.
 	 *
-	 * @since       1.0.0
+	 * @since       3.0.0
 	 * @param       array  $attr               The attributes of this field.
 	 * @param       string $base_class         The basic class for the label.
 	 */
@@ -651,7 +662,7 @@ class Makewebbetter_Onboarding_Helper {
 	/**
 	 * Send the data to MWB server.
 	 *
-	 * @since    1.0.0
+	 * @since    3.0.0
 	 */
 	public function send_onboarding_data() {
 
@@ -730,7 +741,7 @@ class Makewebbetter_Onboarding_Helper {
 	 * Covert array to html.
 	 *
 	 * @param      array $formatted_data       The parsed data submitted vai form.
-	 * @since      1.0.0
+	 * @since      3.0.0
 	 */
 	public function render_form_data_into_table( $formatted_data = array() ) {
 
@@ -763,7 +774,7 @@ class Makewebbetter_Onboarding_Helper {
 	/**
 	 * Skip the popup for some days.
 	 *
-	 * @since    1.0.0
+	 * @since    3.0.0
 	 */
 	public function skip_onboarding_popup() {
 
@@ -776,7 +787,7 @@ class Makewebbetter_Onboarding_Helper {
 	 * Add additional validations to onboard screen.
 	 *
 	 * @param      string $result       The result of this validation.
-	 * @since    1.0.0
+	 * @since    3.0.0
 	 */
 	public function add_mwb_additional_validation( $result = true ) {
 
@@ -792,7 +803,7 @@ class Makewebbetter_Onboarding_Helper {
 	 * Handle Hubspot form submission.
 	 *
 	 * @param      string $result       The result of this validation.
-	 * @since    1.0.0
+	 * @since    3.0.1
 	 */
 	protected function handle_form_submission_for_hubspot( $submission = false, $action_type="onboarding" ) {
 
@@ -817,7 +828,7 @@ class Makewebbetter_Onboarding_Helper {
 	/**
 	 * Handle Hubspot GET api calls.
 	 *
-	 * @since    1.0.0
+	 * @since    3.0.1
 	 */
 	private function hic_get( $endpoint, $headers ){
 
@@ -842,7 +853,7 @@ class Makewebbetter_Onboarding_Helper {
 	/**
 	 * Handle Hubspot POST api calls.
 	 *
-	 * @since    1.0.0
+	 * @since    3.0.1
 	 */
 	private function hic_post( $endpoint, $post_params, $headers ){
 		
@@ -868,7 +879,7 @@ class Makewebbetter_Onboarding_Helper {
 	 *  Hubwoo Onboarding Submission :: Get a form.
 	 *
 	 * @param      		$form_id   	form ID.
-	 * @since      	1.0.0
+	 * @since      	3.0.1
 	 */
 	protected function hubwoo_submit_form( $form_data=array(), $action_type ="onboarding" ) {
 
@@ -888,8 +899,8 @@ class Makewebbetter_Onboarding_Helper {
 		$form_data = json_encode( array( 
 				"fields" => $form_data,
 				"context"  => array(
-					"pageUri" => self::$plugin_url,
-					"pageName" => self::$plugin_name,
+					"pageUri" => self::$store_url,
+					"pageName" => self::$store_name,
 					"ipAddress"	=> $this->get_client_ip()
 				),
 			)

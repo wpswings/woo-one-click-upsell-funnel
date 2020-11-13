@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: One Click Upsell Funnel for WooCommerce 3.0.1\n"
-"POT-Creation-Date: 2020-11-10 18:51+0530\n"
-"PO-Revision-Date: 2020-11-10 18:52+0530\n"
+"POT-Creation-Date: 2020-11-13 13:44+0530\n"
+"PO-Revision-Date: 2020-11-13 13:44+0530\n"
 "Last-Translator: \n"
 "Language-Team: makewebbetter <webmaster@makewebbetter.com>\n"
 "Language: en\n"
@@ -808,85 +808,85 @@ msgstr ""
 msgid "[mwb_upsell_timer]"
 msgstr ""
 
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:32
+#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:38
 msgid "We have integrated with Elementor"
 msgstr ""
 
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:32
+#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:38
 msgid ""
 " – now the most advanced Wordpress page builder can be used to completely "
 "customize Upsell Offer pages. Moreover we provide three stunning and "
 "beautiful offer templates."
 msgstr ""
 
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:34
+#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:40
 msgid ""
 "To completely utilize all features of this plugin please activate Elementor."
 msgstr ""
 
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:36
+#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:42
 msgid "Elementor is FREE and available on ORG "
 msgstr ""
 
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:36
+#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:42
 #: admin/reporting-and-tracking/templates/ga-settings.php:165
 #: admin/reporting-and-tracking/templates/pixel-settings.php:84
 #: admin/reporting-and-tracking/templates/pixel-settings.php:257
 msgid "here"
 msgstr ""
 
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:38
+#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:44
 msgid ""
 "You don't need to worry about Elementor as it works independently and won't "
 "conflict with other page builders or Wordpress new editor."
 msgstr ""
 
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:42
+#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:48
 msgid "Install and activate Elementor now &rarr;"
 msgstr ""
 
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:44
+#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:50
 msgid "Dismiss this notice"
 msgstr ""
 
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:61
+#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:67
 #: admin/reporting-and-tracking/upsell-reporting-and-tracking-config-panel.php:37
 #: woocommerce-one-click-upsell-funnel.php:224
 msgid "One Click Upsell Funnel for WooCommerce"
 msgstr ""
 
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:64
+#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:70
 #: admin/reporting-and-tracking/upsell-reporting-and-tracking-config-panel.php:40
 msgid "Connect with Us in one click"
 msgstr ""
 
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:66
+#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:72
 #: admin/reporting-and-tracking/upsell-reporting-and-tracking-config-panel.php:42
 msgid "Connect"
 msgstr ""
 
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:68
+#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:74
 #: admin/reporting-and-tracking/upsell-reporting-and-tracking-config-panel.php:44
 msgid "Regarding any issue, query or feature request for Upsell"
 msgstr ""
 
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:73
+#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:79
 msgid "Save Funnel"
 msgstr ""
 
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:74
+#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:80
 msgid "Funnels List"
 msgstr ""
 
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:75
+#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:81
 msgid "Shortcodes"
 msgstr ""
 
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:76
+#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:82
 msgid "Global Settings"
 msgstr ""
 
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:77
+#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:83
 #: admin/reporting-and-tracking/upsell-reporting-and-tracking-config-panel.php:53
 msgid "Overview"
 msgstr ""
@@ -1299,19 +1299,19 @@ msgstr ""
 msgid "Skip For Now"
 msgstr ""
 
-#: includes/class-makewebbetter-onboarding-helper.php:304
+#: includes/class-makewebbetter-onboarding-helper.php:305
 msgid "What is your monthly revenue?"
 msgstr ""
 
-#: includes/class-makewebbetter-onboarding-helper.php:321
+#: includes/class-makewebbetter-onboarding-helper.php:322
 msgid "What industry defines your business?"
 msgstr ""
 
-#: includes/class-makewebbetter-onboarding-helper.php:356
+#: includes/class-makewebbetter-onboarding-helper.php:357
 msgid "What is the best email address to contact you?"
 msgstr ""
 
-#: includes/class-makewebbetter-onboarding-helper.php:366
+#: includes/class-makewebbetter-onboarding-helper.php:367
 msgid "What is your contact number?"
 msgstr ""
 

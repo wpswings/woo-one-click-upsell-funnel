@@ -15,6 +15,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+define( 'ONBOARD_PLUGIN_NAME', 'One Click Upsell Funnel for Woocommerce' );
+
+if ( class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
+	$this->onboard = new Makewebbetter_Onboarding_Helper();
+}
+
 $active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'funnels-list';
 
 if ( 'overview' === get_transient( 'mwb_upsell_default_settings_tab' ) ) {
