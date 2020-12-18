@@ -105,7 +105,7 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 	 */
 	if ( empty( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ) {
 
-		if ( '0' == $_POST['mwb_wocuf_pro_funnel_schedule'] ) {
+		if ( isset( $_POST['mwb_wocuf_pro_funnel_schedule'] ) && '0' == $_POST['mwb_wocuf_pro_funnel_schedule'] ) {
 
 			// Zero is marked as sunday.
 			$_POST['mwb_wocuf_pro_funnel_schedule'] = array( '0' );
