@@ -2,7 +2,7 @@
 
 Contributors: MakeWebBetter
 Donate link: https://makewebbetter.com/
-Tags: Boost sales, Cross sells, post-purchase, upsell, woocommerce
+Tags: boost sales, cross sells, post-purchase, upsell, woocommerce
 Requires at least: 4.0
 Tested up to: 5.6
 WC requires at least: 3.0.0
