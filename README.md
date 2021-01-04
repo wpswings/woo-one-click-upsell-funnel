@@ -1,7 +1,7 @@
 ![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg) ![Active installs](https://img.shields.io/badge/Active-1000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-5.6-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-4.8-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-5.6-blue)
 # One Click Upsell Funnel for WooCommerce
 ![One Click Upsell Funnel for WooCommerce](https://ps.w.org/woo-one-click-upsell-funnel/assets/banner-772x250.png)
-* Contributors: MakeWebBetter
+* Contributor: MakeWebBetter
 * Author URI: https://makewebbetter.com/
 * Tags: boost sales, cross sells, post-purchase, upsell, woocommerce
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
