@@ -1,6 +1,6 @@
 ![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg) ![Active installs](https://img.shields.io/badge/Active-1000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-5.6-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-4.8-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-5.6-blue)
 # One Click Upsell Funnel for WooCommerce
-![One Click Upsell Funnel for WooCommerce](https://ps.w.org/woo-one-click-upsell-funnel/assets/banner-772x250.png?uhvjhgjh)
+![One Click Upsell Funnel for WooCommerce](https://ps.w.org/woo-one-click-upsell-funnel/assets/banner-772x250.png)
 * Contributor: MakeWebBetter
 * Author URI: https://makewebbetter.com/
 * Tags: boost sales, cross sells, post-purchase, upsell, woocommerce
@@ -13,8 +13,8 @@
 
 [One Click Upsell Funnel For WooCommerce](https://wordpress.org/plugins/woo-one-click-upsell-funnel/) plugin offers post-purchase upsell offers, i.e. after the checkout is done. Customers can buy these upsell products in just one click with no hassle of re-entering the payment details or adding the product to cart again.
 
-[One Click Upsell Funnel For WooCommerce Tutorial 2020 Part 2: How to Create One-Click Offers Funnel?
-](https://youtu.be/Wa3NL4oy-tE)
+[One Click Upsell Funnel For WooCommerce Tutorial 2021 Part 2: How to Create One-Click Offers Funnel?
+](https://youtu.be/J2pCSEPCFMI)
 
 **With the One Click Upsell Funnel For WooCommerce plugin you can:**
 
@@ -89,4 +89,5 @@ If you need support or have questions, kindly use our online chat window [here](
 - [**Visit our LinkedIn Account**](https://www.linkedin.com/company/makewebbetter)
 - [**Subscribe To Our YouTube Channel**](https://www.youtube.com/channel/UC7nYNf0JETOwW3GOD_EW2Ag)
 - [**Follow Our SlideShare**](https://www.slideshare.net/MakeWebBetter)
+
 
