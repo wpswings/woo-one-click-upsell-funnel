@@ -14,7 +14,7 @@
 [One Click Upsell Funnel For WooCommerce](https://wordpress.org/plugins/woo-one-click-upsell-funnel/) plugin offers post-purchase upsell offers, i.e. after the checkout is done. Customers can buy these upsell products in just one click with no hassle of re-entering the payment details or adding the product to cart again.
 
 [One Click Upsell Funnel For WooCommerce Tutorial 2021 Part 2: How to Create One-Click Offers Funnel?
-](https://youtu.be/J2pCSEPCFMI)
+](https://youtu.be/PvyKF8WEkAk)
 
 **With the One Click Upsell Funnel For WooCommerce plugin you can:**
 
