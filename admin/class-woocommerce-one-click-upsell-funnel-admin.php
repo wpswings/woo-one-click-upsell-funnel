@@ -634,7 +634,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 				$downloadable = $product->is_downloadable();
 				$stock = $product->get_stock_status();
 
-				if ( $product->is_type( 'variable' ) || $product->is_type( 'grouped' ) || $product->is_type( 'external' ) || 'outofstock' === $stock ) {
+				if ( $product->is_type( 'variable' ) || $product->is_type( 'subscription' ) || $product->is_type( 'grouped' ) || $product->is_type( 'external' ) || 'outofstock' === $stock ) {
 					continue;
 				}
 
@@ -692,7 +692,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 				$downloadable = $product->is_downloadable();
 				$stock = $product->get_stock_status();
 
-				if ( $product->is_type( 'variable' ) || $product->is_type( 'grouped' ) || $product->is_type( 'external' ) || 'outofstock' === $stock ) {
+				if ( $product->is_type( 'variable' ) || $product->is_type( 'subscription' ) || $product->is_type( 'grouped' ) || $product->is_type( 'external' ) || 'outofstock' === $stock ) {
 					continue;
 				}
 
