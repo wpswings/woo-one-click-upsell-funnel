@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Upsell Sales by Category Report.
  *
@@ -19,6 +18,9 @@ if ( class_exists( 'Mwb_Upsell_Report_Sales_By_Category' ) ) {
 	return;
 }
 
+/**
+ * Mwb_Upsell_Report_Sales_By_Category.
+ */
 class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 
 	/**
@@ -185,11 +187,11 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 
 					switch ( $this->chart_groupby ) {
 						case 'day':
-							$time = strtotime( date( 'Ymd', strtotime( $order_item->post_date ) ) ) * 1000;
+							$time = strtotime( gmdate( 'Ymd', strtotime( $order_item->post_date ) ) ) * 1000;
 							break;
 						case 'month':
 						default:
-							$time = strtotime( date( 'Ym', strtotime( $order_item->post_date ) ) . '01' ) * 1000;
+							$time = strtotime( gmdate( 'Ym', strtotime( $order_item->post_date ) ) . '01' ) * 1000;
 							break;
 					}
 
@@ -226,9 +228,9 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 		$categories = get_terms( 'product_cat', array( 'orderby' => 'name' ) );
 		?>
 	<form method="GET">
-	  <div>
+	<div>
 		<select multiple="multiple" data-placeholder="<?php esc_attr_e( 'Select categories&hellip;', 'woocommerce' ); ?>" class="wc-enhanced-select" id="show_categories" name="show_categories[]" style="width: 205px;">
-		  <?php
+		<?php
 			$r                 = array();
 			$r['pad_counts']   = 1;
 			$r['hierarchical'] = 1;
@@ -252,10 +254,10 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 		<input type="hidden" name="tab" value="<?php echo ( ! empty( $_GET['tab'] ) ) ? esc_attr( wp_unslash( $_GET['tab'] ) ) : ''; ?>" />
 		<input type="hidden" name="report" value="<?php echo ( ! empty( $_GET['report'] ) ) ? esc_attr( wp_unslash( $_GET['report'] ) ) : ''; ?>" />
 		  <?php // @codingStandardsIgnoreEnd ?>
-	  </div>
-	  <script type="text/javascript">
+	</div>
+	<script type="text/javascript">
 		jQuery(function(){
-		  // Select all/None
+		// Select all/None
 		  jQuery( '.chart-widget' ).on( 'click', '.select_all', function() {
 			jQuery(this).closest( 'div' ).find( 'select option' ).attr( 'selected', 'selected' );
 			jQuery(this).closest( 'div' ).find('select').change();
@@ -321,11 +323,11 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 
 					switch ( $this->chart_groupby ) {
 						case 'day':
-							  $time = strtotime( date( 'Ymd', strtotime( "+{$i} DAY", $this->start_date ) ) ) * 1000;
+							$time = strtotime( gmdate( 'Ymd', strtotime( "+{$i} DAY", $this->start_date ) ) ) * 1000;
 							break;
 						case 'month':
 						default:
-							$time = strtotime( date( 'Ym', strtotime( "+{$i} MONTH", $this->start_date ) ) . '01' ) * 1000;
+							$time = strtotime( gmdate( 'Ym', strtotime( "+{$i} MONTH", $this->start_date ) ) . '01' ) * 1000;
 							break;
 					}
 

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Upsell Sales by Product Report.
  *
@@ -19,6 +18,9 @@ if ( class_exists( 'Mwb_Upsell_Report_Sales_By_Product' ) ) {
 	return;
 }
 
+/**
+ * Mwb_Upsell_Report_Sales_By_Product.
+ */
 class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 
 	/**

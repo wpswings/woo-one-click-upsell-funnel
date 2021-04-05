@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Upsell Sales by Date Report.
  *
@@ -19,6 +18,9 @@ if ( class_exists( 'Mwb_Upsell_Report_Sales_By_Date' ) ) {
 	return;
 }
 
+/**
+ * Mwb_Upsell_Report_Sales_By_Date.
+ */
 class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 
 	/**
@@ -244,7 +246,7 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 		$this->report_data->total_sales = wc_format_decimal( array_sum( wp_list_pluck( $this->report_data->orders, 'total_sales' ) ) - $this->report_data->total_refunds, 2 );
 		$this->report_data->net_sales   = wc_format_decimal( $this->report_data->total_sales - $this->report_data->total_shipping - max( 0, $this->report_data->total_tax ) - max( 0, $this->report_data->total_shipping_tax ), 2 );
 
-		// Calculate average based on net
+		// Calculate average based on net.
 		$this->report_data->average_sales       = wc_format_decimal( $this->report_data->net_sales / ( $this->chart_interval + 1 ), 2 );
 		$this->report_data->average_total_sales = wc_format_decimal( $this->report_data->total_sales / ( $this->chart_interval + 1 ), 2 );
 
@@ -288,7 +290,7 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 		$legend[] = array(
 			/* translators: %s: total sales */
 			'title' => sprintf(
-				__( '%s net upsell sales in this period', 'woo-one-click-upsell-funnel' ),
+				__( '%s net upsell sales in this period', 'woo-one-click-upsell-funnel' ), // phpcs:ignore
 				'<strong>' . wc_price( $data->total_sales ) . '</strong>'
 			),
 			'placeholder'      => __( 'This is the sum of the upsell item totals after any refunds ( whole order refunds ) and excluding shipping and taxes.', 'woo-one-click-upsell-funnel' ),
@@ -306,7 +308,7 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 		$legend[] = array(
 			/* translators: %s: total orders */
 			'title' => sprintf(
-				__( '%s upsell orders placed', 'woo-one-click-upsell-funnel' ),
+				__( '%s upsell orders placed', 'woo-one-click-upsell-funnel' ), // phpcs:ignore
 				'<strong>' . $data->total_orders . '</strong>'
 			),
 			'color' => $this->chart_colours['order_count'],
@@ -316,7 +318,7 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 		$legend[] = array(
 			/* translators: %s: total items */
 			'title' => sprintf(
-				__( '%s upsell items purchased', 'woo-one-click-upsell-funnel' ),
+				__( '%s upsell items purchased', 'woo-one-click-upsell-funnel' ), // phpcs:ignore
 				'<strong>' . $data->total_items . '</strong>'
 			),
 			'color' => $this->chart_colours['item_count'],
@@ -325,7 +327,7 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 		$legend[] = array(
 			/* translators: 1: total refunds 2: total refunded orders 3: refunded items */
 			'title' => sprintf(
-				__( '%s upsell refunded items', 'woo-one-click-upsell-funnel' ),
+				__( '%s upsell refunded items', 'woo-one-click-upsell-funnel' ), // phpcs:ignore
 				'<strong>' . $data->refunded_order_items . '</strong>'
 			),
 
@@ -391,7 +393,7 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 	/**
 	 * Round our totals correctly.
 	 *
-	 * @param array|string $amount
+	 * @param array|string $amount amount.
 	 *
 	 * @return array|string
 	 */
@@ -409,7 +411,7 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 	public function get_main_chart() {
 		global $wp_locale;
 
-		// Prepare data for report
+		// Prepare data for report.
 		$data = array(
 			'order_counts'         => $this->prepare_chart_data( $this->report_data->order_counts, 'post_date', 'count', $this->chart_interval, $this->start_date, $this->chart_groupby ),
 			'order_item_counts'    => $this->prepare_chart_data( $this->report_data->order_items, 'post_date', 'order_item_count', $this->chart_interval, $this->start_date, $this->chart_groupby ),

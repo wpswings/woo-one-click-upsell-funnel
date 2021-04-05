@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Provide a admin area view for the plugin
  *
@@ -11,6 +10,7 @@
  * @package    Makewebbetter_Onboarding
  * @subpackage Makewebbetter_Onboarding/admin/onboarding
  */
+
 ?>
 <?php
 
@@ -31,7 +31,7 @@ if ( empty( $pagenow ) || 'plugins.php' != $pagenow ) {
 				</a>
 			</div>
 			<h3 class="mwb-on-boarding-heading"></h3>
-			<p class="mwb-on-boarding-desc"><?php esc_html_e( 'May we have a little info about why you are deactivating?', 'text-domain' ); ?></p>
+			<p class="mwb-on-boarding-desc"><?php esc_html_e( 'May we have a little info about why you are deactivating?', 'woo-one-click-upsell-funnel' ); ?></p>
 			<form action="#" method="post" class="mwb-on-boarding-form">
 				<?php foreach ( $form_fields as $key => $field_attr ) : ?>
 					<?php $this->render_field_html( $field_attr, 'deactivating' ); ?>

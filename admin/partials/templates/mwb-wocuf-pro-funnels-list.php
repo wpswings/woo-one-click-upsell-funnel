@@ -44,7 +44,7 @@ if ( isset( $_GET['del_funnel_id'] ) ) {
 	}
 
 	// Remove array values so that the funnel id keys doesn't change.
-	// $mwb_wocuf_pro_funnels = array_values($mwb_wocuf_pro_funnels);
+	// $mwb_wocuf_pro_funnels = array_values($mwb_wocuf_pro_funnels);.
 
 	update_option( 'mwb_wocuf_funnels_list', $mwb_wocuf_pro_funnels );
 
@@ -66,7 +66,7 @@ if ( ! empty( $mwb_wocuf_pro_funnels_list ) ) {
 
 	// Now key function will return last funnel key.
 	$mwb_wocuf_pro_funnel_number = key( $mwb_wocuf_pro_funnel_duplicate );
-}
+} // phpcs:ignore
 
 // When no funnel is there then new funnel id will be 1 (0+1).
 else {

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Fired during plugin activation
  *
@@ -29,9 +28,6 @@ class Woocommerce_one_click_upsell_funnel_Activator {
 	 *
 	 * @since    1.0.0
 	 */
-
-
-
 	public static function activate() {
 
 		/**
@@ -39,7 +35,7 @@ class Woocommerce_one_click_upsell_funnel_Activator {
 		 */
 		$mwb_wocuf_pro_offer_default_page_id = get_option( 'mwb_wocuf_pro_funnel_default_offer_page', '' );
 
-		// For Wordpress 5 and + versions, Guttenberg content will be used for default offer page.
+		// For WordPress 5 and + versions, Guttenberg content will be used for default offer page.
 		$post_content = '5' <= get_bloginfo( 'version' ) ? mwb_upsell_lite_gutenberg_offer_content() : '[mwb_wocuf_pro_funnel_default_offer_page]';
 
 		if ( empty( $mwb_wocuf_pro_offer_default_page_id ) || 'publish' !== get_post_status( $mwb_wocuf_pro_offer_default_page_id ) ) {
@@ -64,7 +60,7 @@ class Woocommerce_one_click_upsell_funnel_Activator {
 			wp_schedule_event( time(), 'mwb_wocuf_twenty_minutes', 'mwb_wocuf_lite_order_cron_schedule' );
 		}
 
-		// Set default settings tab to Overview for five minutes
+		// Set default settings tab to Overview for five minutes.
 		set_transient( 'mwb_upsell_default_settings_tab', 'overview', 300 );
 	}
 }

@@ -273,7 +273,7 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 		}
 
 		update_option( 'mwb_wocuf_funnels_list', $mwb_wocuf_pro_created_funnels );
-	}
+	} // phpcs:ignore
 
 	// If there are no other funnels.
 	else {
@@ -446,7 +446,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 									$product_name = get_the_title( $mwb_wocuf_pro_single_target_product_id );
 
-									echo '<option value="' . esc_html( $mwb_wocuf_pro_single_target_product_id ) . '" selected="selected" >' . esc_html( $product_name ) . '(#' . esc_html( $mwb_wocuf_pro_single_target_product_id ) . ')' . '</option>';
+									echo '<option value="' . esc_html( $mwb_wocuf_pro_single_target_product_id ) . '" selected="selected" >' . esc_html( $product_name ) . '(#' . esc_html( $mwb_wocuf_pro_single_target_product_id ) . ')</option>';
 								}
 							}
 						}
@@ -661,7 +661,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 						if ( 'thanks' == $mwb_wocuf_pro_offers_buy_now_offers[ $current_offer_id ] ) {
 
 							$mwb_wocuf_pro_buy_now_action_html = '<select name="mwb_wocuf_attached_offers_on_buy[' . $current_offer_id . ']"><option value="thanks" selected="">' . esc_html__( 'Order ThankYou Page', 'woo-one-click-upsell-funnel' ) . '</option>' . $mwb_wocuf_pro_buy_attached_offers;
-						}
+						} //phpcs:ignore
 
 						// If link is set to other offer.
 						elseif ( $mwb_wocuf_pro_offers_buy_now_offers[ $current_offer_id ] > 0 ) {
@@ -697,7 +697,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 						if ( 'thanks' == $mwb_wocuf_pro_offers_no_thanks_offers[ $current_offer_id ] ) {
 
 							$mwb_wocuf_pro_no_thanks_action_html = '<select name="mwb_wocuf_attached_offers_on_no[' . $current_offer_id . ']"><option value="thanks" selected="">' . esc_html__( 'Order ThankYou Page', 'woo-one-click-upsell-funnel' ) . '</option>' . $mwb_wocuf_pro_no_attached_offers;
-						}
+						} //phpcs:ignore
 
 						// If link is set to other offer.
 						elseif ( $mwb_wocuf_pro_offers_no_thanks_offers[ $current_offer_id ] > 0 ) {

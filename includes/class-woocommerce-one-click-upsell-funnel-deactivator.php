@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Fired during plugin deactivation
  *
@@ -29,9 +28,6 @@ class woocommerce_one_click_upsell_funnel_Deactivator {
 	 *
 	 * @since    1.0.0
 	 */
-
-
-
 	public static function deactivate() {
 
 		// Clear scheduled cron for User update.

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Upsell Sales by Funnel Data handling and Stats.
  *
@@ -19,6 +18,9 @@ if ( class_exists( 'Mwb_Upsell_Report_Sales_By_Funnel' ) ) {
 	return;
 }
 
+/**
+ * Mwb_Upsell_Report_Sales_By_Funnel.
+ */
 class Mwb_Upsell_Report_Sales_By_Funnel {
 
 	/**
@@ -42,6 +44,7 @@ class Mwb_Upsell_Report_Sales_By_Funnel {
 	/**
 	 * Initialize the Class.
 	 *
+	 * @param mixed $funnel_id funnel id.
 	 * @since    3.0.0
 	 */
 	public function __construct( $funnel_id = 0 ) {
@@ -82,6 +85,7 @@ class Mwb_Upsell_Report_Sales_By_Funnel {
 	/**
 	 * Save the Upsell series with the Updated data.
 	 *
+	 * @param mixed $funnel_series funnel series.
 	 * @since    3.0.0
 	 * @access   protected
 	 */
@@ -204,6 +208,7 @@ class Mwb_Upsell_Report_Sales_By_Funnel {
 	/**
 	 * Add Funnel Total Sales ( Upsell items ) without tax.
 	 *
+	 * @param mixed $upsell_item_total upsell_item_total.
 	 * @since    3.0.0
 	 * @access   public
 	 */

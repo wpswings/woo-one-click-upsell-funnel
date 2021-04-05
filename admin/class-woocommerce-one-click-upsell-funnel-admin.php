@@ -78,6 +78,15 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 
 			if ( 'toplevel_page_mwb-wocuf-setting' == $pagescreen || '1-click-upsell_page_mwb-wocuf-setting-tracking' == $pagescreen ) {
 
+				add_filter(
+					'doing_it_wrong_trigger_error',
+					function () {
+						return false;
+					},
+					10,
+					0
+				);
+
 				wp_register_style( 'mwb_wocuf_pro_admin_style', plugin_dir_url( __FILE__ ) . 'css/woocommerce_one_click_upsell_funnel_pro-admin.css', array(), $this->version, 'all' );
 
 				wp_enqueue_style( 'mwb_wocuf_pro_admin_style' );
@@ -194,6 +203,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	/**
 	 * Include Upsell screen for Onboarding pop-up.
 	 *
+	 * @param mixed $valid_screens valid screens.
 	 * @since    3.0.0
 	 */
 	public function add_mwb_frontend_screens( $valid_screens = array() ) {
@@ -210,6 +220,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	/**
 	 * Include Upsell plugin for Deactivation pop-up.
 	 *
+	 * @param mixed $valid_screens valid screens.
 	 * @since    3.0.0
 	 */
 	public function add_mwb_deactivation_screens( $valid_screens = array() ) {
@@ -330,7 +341,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 					update_option( 'mwb_upsell_lite_offer_post_ids', $upsell_offer_post_ids );
 
 				}
-			}
+			} // phpcs:ignore
 
 			// When Elementor is not active.
 			else {
@@ -423,6 +434,9 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	/**
 	 * Returns Funnel Offer Template section html.
 	 *
+	 * @param mixed $funnel_offer_post_id funnel offer post id.
+	 * @param mixed $offer_index offer index.
+	 * @param mixed $funnel_id funnel id.
 	 * @since    2.0.0
 	 */
 	public function get_funnel_offer_template_section_html( $funnel_offer_post_id, $offer_index, $funnel_id ) {
@@ -472,8 +486,12 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 							?>
 							<!-- Offer templates foreach start-->
 
-							<div class="mwb_upsell_offer_template <?php echo $template_key == $offer_template_active ? 'active' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-							// It just displayes the html itself. Content in it is already escaped if required. ?>">
+							<div class="mwb_upsell_offer_template 
+							<?php
+							echo $template_key == $offer_template_active ? 'active' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							// It just displayes the html itself. Content in it is already escaped if required.
+							?>
+							">
 
 
 								<div class="mwb_upsell_offer_template_sub_div"> 
@@ -650,7 +668,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	}
 
 	/**
-	 * select2 search for adding offer products
+	 * Select2 search for adding offer products.
 	 *
 	 * @since    1.0.0
 	 */
@@ -711,7 +729,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	 * Adding custom column in orders table at backend
 	 *
 	 * @since    1.0.0
-	 * @param    array $columns    array of columns on orders table
+	 * @param    array $columns    array of columns on orders table.
 	 * @return   array    $columns    array of columns on orders table alongwith upsell column
 	 */
 	public function mwb_wocuf_pro_add_columns_to_admin_orders( $columns ) {
@@ -788,7 +806,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	 * Modifying query vars for filtering Upsell Orders.
 	 *
 	 * @since    1.0.0
-	 * @param    array $vars    array of queries
+	 * @param    array $vars    array of queries.
 	 * @return   array    $vars    array of queries alongwith select dropdown query for upsell
 	 */
 	public function mwb_wocuf_pro_request_query( $vars ) {
@@ -812,10 +830,10 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	}
 
 	/**
-	 * adding distraction free mode to the offers page.
+	 * Adding distraction free mode to the offers page.
 	 *
 	 * @since       1.0.0
-	 * @param       $page_template      default template for the page
+	 * @param mixed $page_template default template for the page.
 	 */
 	public function mwb_wocuf_pro_page_template( $page_template ) {
 
@@ -858,6 +876,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	/**
 	 * Hide Upsell offer pages in admin panel 'Pages'.
 	 *
+	 * @param mixed $query query.
 	 * @since       2.0.0
 	 */
 	public function hide_upsell_offer_pages_in_admin( $query ) {
@@ -889,6 +908,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	/**
 	 * Add 'Upsell Support' column on payment gateways page.
 	 *
+	 * @param mixed $default_columns default columns.
 	 * @since       2.0.0
 	 */
 	public function upsell_support_in_payment_gateway( $default_columns ) {
@@ -906,6 +926,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	/**
 	 * 'Upsell Support' content on payment gateways page.
 	 *
+	 * @param mixed $gateway gateway.
 	 * @since       2.0.0
 	 */
 	public function upsell_support_content_in_payment_gateway( $gateway ) {
@@ -941,6 +962,8 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	/**
 	 * Add custom image upload.
 	 *
+	 * @param mixed $hidden_field_index hidden field index.
+	 * @param mixed $image_post_id image post id.
 	 * @since       3.0.0
 	 */
 	public function mwb_wocuf_pro_image_uploader_field( $hidden_field_index, $image_post_id = '' ) {
@@ -969,6 +992,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	/**
 	 * Add Upsell Reporting in Woo Admin reports.
 	 *
+	 * @param mixed $reports reports.
 	 * @since       3.0.0
 	 */
 	public function add_upsell_reporting( $reports ) {
@@ -1007,6 +1031,7 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 	/**
 	 * Add custom report. callback.
 	 *
+	 * @param mixed $report_type report type.
 	 * @since       3.0.0
 	 */
 	public static function upsell_reporting_callback( $report_type ) {

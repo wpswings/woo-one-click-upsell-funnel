@@ -15,12 +15,12 @@
  * Plugin Name:       One Click Upsell Funnel for Woocommerce
  * Plugin URI:        https://wordpress.org/plugins/woo-one-click-upsell-funnel/
  * Description:       Show exclusive post-checkout offers to your customers. Create dedicated Upsell offer pages. Offers that are relevant and benefits your customers on the existing purchase and so increase Average Order Value and your Revenue.
- * Version:           3.0.2
+ * Version:           3.0.3
  *
  * Requires at least:     4.4
- * Tested up to:          5.6
+ * Tested up to:          5.7
  * WC requires at least:  3.0
- * WC tested up to:       4.8.0
+ * WC tested up to:       5.1.0
  *
  * Author:            MakeWebBetter
  * Author URI:        https://makewebbetter.com/
@@ -37,6 +37,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Plugin Active Detection.
+ *
+ * @param mixed $plugin_slug plugin slug.
  */
 function mwb_upsell_lite_is_plugin_active( $plugin_slug ) {
 
@@ -84,7 +86,9 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 
 		// Add admin info notice on plugins page.
 		add_action( 'admin_notices', 'mwb_upsell_lite_deactivate_org_notice' );
-
+		/**
+		 * Mwb_upsell_lite_deactivate_org_notice.
+		 */
 		function mwb_upsell_lite_deactivate_org_notice() {
 
 			global $pagenow;
@@ -108,7 +112,7 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 
 	define( 'MWB_WOCUF_DIRPATH', plugin_dir_path( __FILE__ ) );
 
-	define( 'MWB_WOCUF_VERSION', '3.0.2' );
+	define( 'MWB_WOCUF_VERSION', '3.0.3' );
 
 
 	/**
@@ -133,6 +137,8 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 
 	/**
 	 * This action is for woocommerce dependency check.
+	 * 
+	 * @param mixed $links links.
 	 */
 	function mwb_wocuf_plugin_settings_link( $links ) {
 
@@ -148,6 +154,9 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 
 	/**
 	 * This action is for add premium version link.
+	 *
+	 * @param mixed $links links.
+	 * @param mixed $file file.
 	 */
 	function mwb_upsell_lite_add_doc_and_premium_link( $links, $file ) {
 		if ( false !== strpos( $file, 'woocommerce_one_click_upsell_funnel.php' ) ) {

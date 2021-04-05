@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Define the internationalization functionality
  *
@@ -24,7 +23,7 @@
  * @subpackage woo_one_click_upsell_funnel/includes
  * @author     makewebbetter <webmaster@makewebbetter.com>
  */
-class Woocommerce_one_click_upsell_funnel_i18n {
+class Woocommerce_one_click_upsell_funnel_i18n { // phpcs:ignore
 
 
 	/**

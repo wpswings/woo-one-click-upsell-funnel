@@ -6,15 +6,15 @@
  * @since      3.0.0
  *
  * @package     woo_one_click_upsell_funnel
- * @subpackage 	woo_one_click_upsell_funnel/includes
+ * @subpackage  woo_one_click_upsell_funnel/includes
  */
 
 /**
  * The Onboarding-specific functionality of the plugin admin side.
  *
  * @package     woo_one_click_upsell_funnel
- * @subpackage 	woo_one_click_upsell_funnel/includes
- * @author     	makewebbetter <webmaster@makewebbetter.com>
+ * @subpackage  woo_one_click_upsell_funnel/includes
+ * @author      makewebbetter <webmaster@makewebbetter.com>
  */
 if ( class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
 	return;
@@ -28,6 +28,7 @@ class Makewebbetter_Onboarding_Helper {
 	/**
 	 * The single instance of the class.
 	 *
+	 * @var mixed $_instance instance.
 	 * @since   3.0.0
 	 */
 	protected static $_instance = null;
@@ -55,16 +56,35 @@ class Makewebbetter_Onboarding_Helper {
 	 * @var string Form id.
 	 */
 	private static $onboarding_form_id = 'd94dcb10-c9c1-4155-a9ad-35354f2c3b52';
+	/**
+	 * Form id of hubspot api.
+	 *
+	 * @since 3.0.0
+	 * @var string deactivation Form id.
+	 */
 	private static $deactivation_form_id = '329ffc7a-0e8c-4e11-8b41-960815c31f8d';
 
 
 	/**
 	 * Plugin Name.
 	 *
+	 * @var mixed plugin_name.
 	 * @since 3.0.0
 	 */
 	private static $plugin_name;
+	/**
+	 * Plugin Name.
+	 *
+	 * @var mixed store_name.
+	 * @since 3.0.0
+	 */
 	private static $store_name;
+	/**
+	 * Plugin Name.
+	 *
+	 * @var mixed store_url.
+	 * @since 3.0.0
+	 */
 	private static $store_url;
 
 	/**
@@ -138,7 +158,7 @@ class Makewebbetter_Onboarding_Helper {
 
 			wp_enqueue_style( 'makewebbetter-onboarding-style', MWB_WOCUF_URL . 'admin/css/makewebbetter-onboarding-admin.css', array(), '3.0.0', 'all' );
 
-			// Uncomment Only when your plugin doesn't uses the Select2
+			// Uncomment Only when your plugin doesn't uses the Select2.
 			wp_enqueue_style( 'makewebbetter-onboarding-select2-style', MWB_WOCUF_URL . 'admin/css/select2.min.css', array(), '3.0.0', 'all' );
 		}
 	}
@@ -178,7 +198,7 @@ class Makewebbetter_Onboarding_Helper {
 				)
 			);
 
-			// Uncomment Only when your plugin doesn't uses the Select2
+			// Uncomment Only when your plugin doesn't uses the Select2.
 			wp_enqueue_script( 'makewebbetter-onboarding-select2-script', MWB_WOCUF_URL . 'admin/js/select2.min.js', array( 'jquery' ), '3.0.0', false );
 		}
 	}
@@ -279,7 +299,7 @@ class Makewebbetter_Onboarding_Helper {
 		}
 
 		$currency_symbol = get_woocommerce_currency_symbol();
-		$store_name = get_bloginfo('name ');
+		$store_name = get_bloginfo( 'name ' );
 		$store_url = get_home_url();
 
 		/**
@@ -429,7 +449,7 @@ class Makewebbetter_Onboarding_Helper {
 			$current_user_email = $current_user->user_email ? $current_user->user_email : '';
 		}
 
-		$store_name = get_bloginfo('name ');
+		$store_name = get_bloginfo( 'name ' );
 		$store_url = get_home_url();
 
 		/**
@@ -569,14 +589,15 @@ class Makewebbetter_Onboarding_Helper {
 						</div>
 					<?php endforeach; ?>
 
-				 <?php endif; 
+					<?php
+				 endif;
 
 				break;
 
 			case 'checkbox':
-			   
-			   // If field requires multiple answers.
-				if ( ! empty( $options ) && is_array( $options ) ) : ?>
+				// If field requires multiple answers.
+				if ( ! empty( $options ) && is_array( $options ) ) :
+					?>
 
 					<label class="on-boarding-label" for="<?php echo esc_attr( $id ); ?>'"><?php echo esc_attr( $label ); ?></label>
 					
@@ -676,52 +697,61 @@ class Makewebbetter_Onboarding_Helper {
 
 			foreach ( $form_data as $key => $input ) {
 
-				if( 'show-counter' == $input->name ) {
+				if ( 'show-counter' == $input->name ) {
 					continue;
 				}
-			
+
 				if ( false !== strrpos( $input->name, '[]' ) ) {
 
 					$new_key = str_replace( '[]', '', $input->name );
 					$new_key = str_replace( '"', '', $new_key );
-					
-					array_push( $formatted_data, array(
-						'name'	=>	$new_key,
-						'value'	=>	$input->value,	
-					));
+
+					array_push(
+						$formatted_data,
+						array(
+							'name'  => $new_key,
+							'value' => $input->value,
+						)
+					);
 
 				} else {
 
 					$input->name = str_replace( '"', '', $input->name );
 
-					array_push( $formatted_data, array(
-						'name'	=>	$input->name,
-						'value'	=>	$input->value,	
-					));
+					array_push(
+						$formatted_data,
+						array(
+							'name'  => $input->name,
+							'value' => $input->value,
+						)
+					);
 				}
 			}
 		}
 
 		try {
 
-			$found = current(array_filter($formatted_data, function($item) {
-				return isset($item['name']) && 'plugin_deactivation_reason' == $item['name'];
-			}));
-			
-			if( ! empty( $found ) ) {
+			$found = current(
+				array_filter(
+					$formatted_data,
+					function( $item ) {
+						return isset( $item['name'] ) && 'plugin_deactivation_reason' == $item['name'];
+					}
+				)
+			);
+
+			if ( ! empty( $found ) ) {
 				$action_type = 'deactivation';
-			}
-			else {
-				$action_type =  'onboarding';
+			} else {
+				$action_type = 'onboarding';
 			}
 
 			if ( ! empty( $formatted_data ) && is_array( $formatted_data ) ) {
 
 				unset( $formatted_data['show-counter'] );
-				
+
 				$this->handle_form_submission_for_hubspot( $formatted_data, $action_type );
 			}
-
 		} catch ( Exception $e ) {
 
 			echo json_encode( $e->getMessage() );
@@ -802,24 +832,27 @@ class Makewebbetter_Onboarding_Helper {
 	/**
 	 * Handle Hubspot form submission.
 	 *
-	 * @param      string $result       The result of this validation.
+	 * @param mixed $submission submition.
+	 * @param mixed $action_type action_type.
 	 * @since    3.0.1
 	 */
-	protected function handle_form_submission_for_hubspot( $submission = false, $action_type="onboarding" ) {
+	protected function handle_form_submission_for_hubspot( $submission = false, $action_type = 'onboarding' ) {
 
-		if( 'onboarding' ==  $action_type ) {
-			array_push( $submission, array(
-				'name'	=>	'currency',
-				'value'	=>	get_woocommerce_currency(),	
-			));
+		if ( 'onboarding' == $action_type ) {
+			array_push(
+				$submission,
+				array(
+					'name'  => 'currency',
+					'value' => get_woocommerce_currency(),
+				)
+			);
 		}
 
 		$result = $this->hubwoo_submit_form( $submission, $action_type );
 
-		if ( true == $result[ 'success' ] ) {
+		if ( true == $result['success'] ) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -828,119 +861,136 @@ class Makewebbetter_Onboarding_Helper {
 	/**
 	 * Handle Hubspot GET api calls.
 	 *
+	 * @param mixed $endpoint endpoint.
+	 * @param mixed $headers headers.
 	 * @since    3.0.1
 	 */
-	private function hic_get( $endpoint, $headers ){
+	private function hic_get( $endpoint, $headers ) {
 
-		$url = $this->base_url.$endpoint;
+		$url = $this->base_url . $endpoint;
 
 		$ch = @curl_init();
-		@curl_setopt($ch, CURLOPT_POST, false);
-		@curl_setopt($ch, CURLOPT_URL, $url);
-		@curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-		@curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		@curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		@curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-		$response = @curl_exec($ch);
-		$status_code = @curl_getinfo($ch, CURLINFO_HTTP_CODE);
-		$curl_errors = curl_error($ch);
-		@curl_close($ch);
+		@curl_setopt( $ch, CURLOPT_POST, false );
+		@curl_setopt( $ch, CURLOPT_URL, $url );
+		@curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
+		@curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+		@curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
+		@curl_setopt( $ch, CURLOPT_SSL_VERIFYHOST, false );
+		$response = @curl_exec( $ch );
+		$status_code = @curl_getinfo( $ch, CURLINFO_HTTP_CODE );
+		$curl_errors = curl_error( $ch );
+		@curl_close( $ch );
 
-		return array( 'status_code' => $status_code, 'response' => $response, 'errors' => $curl_errors );
+		return array(
+			'status_code' => $status_code,
+			'response' => $response,
+			'errors' => $curl_errors,
+		);
 	}
 
 
 	/**
 	 * Handle Hubspot POST api calls.
 	 *
+	 * @param mixed $endpoint endpoint.
+	 * @param mixed $post_params post params.
+	 * @param mixed $headers headers.
 	 * @since    3.0.1
 	 */
-	private function hic_post( $endpoint, $post_params, $headers ){
-		
+	private function hic_post( $endpoint, $post_params, $headers ) {
+
 		$url = $this->base_url . $endpoint;
 
 		$ch = @curl_init();
-		@curl_setopt($ch, CURLOPT_POST, true);
-		@curl_setopt($ch, CURLOPT_URL, $url);
-		@curl_setopt($ch, CURLOPT_POSTFIELDS,  $post_params  );
-		@curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-		@curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		@curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		@curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-		$response = @curl_exec($ch);
-		$status_code = @curl_getinfo($ch, CURLINFO_HTTP_CODE);
-		$curl_errors = curl_error($ch);
-		@curl_close($ch);
+		@curl_setopt( $ch, CURLOPT_POST, true );
+		@curl_setopt( $ch, CURLOPT_URL, $url );
+		@curl_setopt( $ch, CURLOPT_POSTFIELDS, $post_params );
+		@curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
+		@curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+		@curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
+		@curl_setopt( $ch, CURLOPT_SSL_VERIFYHOST, false );
+		$response = @curl_exec( $ch );
+		$status_code = @curl_getinfo( $ch, CURLINFO_HTTP_CODE );
+		$curl_errors = curl_error( $ch );
+		@curl_close( $ch );
 
-		return array( 'status_code' => $status_code, 'response' => $response, 'errors' => $curl_errors );
+		return array(
+			'status_code' => $status_code,
+			'response' => $response,
+			'errors' => $curl_errors,
+		);
 	}
 
 	/**
 	 *  Hubwoo Onboarding Submission :: Get a form.
 	 *
-	 * @param      		$form_id   	form ID.
-	 * @since      	3.0.1
+	 * @param array $form_data form data.
+	 * @param mixed $action_type action type.
+	 * @since       3.0.1
 	 */
-	protected function hubwoo_submit_form( $form_data=array(), $action_type ="onboarding" ) {
+	protected function hubwoo_submit_form( $form_data = array(), $action_type = 'onboarding' ) {
 
-		if( 'onboarding' == $action_type ) {
+		if ( 'onboarding' == $action_type ) {
 			$form_id = self::$onboarding_form_id;
-		}
-		else {
+		} else {
 			$form_id = self::$deactivation_form_id;
 		}
-			
+
 		$url = 'submissions/v3/integration/submit/' . self::$portal_id . '/' . $form_id;
 
 		$headers = array(
 			'Content-Type: application/json',
 		);
 
-		$form_data = json_encode( array( 
-				"fields" => $form_data,
-				"context"  => array(
-					"pageUri" => self::$store_url,
-					"pageName" => self::$store_name,
-					"ipAddress"	=> $this->get_client_ip()
+		$form_data = json_encode(
+			array(
+				'fields' => $form_data,
+				'context'  => array(
+					'pageUri' => self::$store_url,
+					'pageName' => self::$store_name,
+					'ipAddress' => $this->get_client_ip(),
 				),
 			)
 		);
 
 		$response = $this->hic_post( $url, $form_data, $headers );
 
-		if( $response['status_code'] == 200 ) {
-			$result = json_decode($response['response'], true);  
-			$result['success'] = true;  
-		}
+		if ( 200 === $response['status_code'] ) {
+			$result = json_decode( $response['response'], true );
+			$result['success'] = true;
+		} else {
 
-		else {
-
-			$result = $response; 
+			$result = $response;
 		}
 
 		return $result;
 	}
 
 
-	// Function to get the client IP address
-	function get_client_ip() {
+	/**
+	 * Function to get the client IP address.
+	 *
+	 * @return $ipaddress
+	 */
+	public function get_client_ip() {
 		$ipaddress = '';
-		if (getenv('HTTP_CLIENT_IP'))
-			$ipaddress = getenv('HTTP_CLIENT_IP');
-		else if(getenv('HTTP_X_FORWARDED_FOR'))
-			$ipaddress = getenv('HTTP_X_FORWARDED_FOR');
-		else if(getenv('HTTP_X_FORWARDED'))
-			$ipaddress = getenv('HTTP_X_FORWARDED');
-		else if(getenv('HTTP_FORWARDED_FOR'))
-			$ipaddress = getenv('HTTP_FORWARDED_FOR');
-		else if(getenv('HTTP_FORWARDED'))
-		$ipaddress = getenv('HTTP_FORWARDED');
-		else if(getenv('REMOTE_ADDR'))
-			$ipaddress = getenv('REMOTE_ADDR');
-		else
+		if ( getenv( 'HTTP_CLIENT_IP' ) ) {
+			$ipaddress = getenv( 'HTTP_CLIENT_IP' );
+		} else if ( getenv( 'HTTP_X_FORWARDED_FOR' ) ) {
+			$ipaddress = getenv( 'HTTP_X_FORWARDED_FOR' );
+		} else if ( getenv( 'HTTP_X_FORWARDED' ) ) {
+			$ipaddress = getenv( 'HTTP_X_FORWARDED' );
+		} else if ( getenv( 'HTTP_FORWARDED_FOR' ) ) {
+			$ipaddress = getenv( 'HTTP_FORWARDED_FOR' );
+		} else if ( getenv( 'HTTP_FORWARDED' ) ) {
+			$ipaddress = getenv( 'HTTP_FORWARDED' );
+		} else if ( getenv( 'REMOTE_ADDR' ) ) {
+			$ipaddress = getenv( 'REMOTE_ADDR' );
+		} else {
 			$ipaddress = 'UNKNOWN';
+		}
 		return $ipaddress;
 	}
 
-// End of Class.
+	// End of Class.
 }

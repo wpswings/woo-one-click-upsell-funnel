@@ -80,7 +80,7 @@ function mwb_upsell_lite_get_product_discount() {
 		$mwb_wocuf_pro_offered_discount = $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ];
 
 		$mwb_wocuf_pro_offered_discount = ! empty( $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] ) ? $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] : '';
-	}
+	} // phpcs:ignore
 
 	// When not live and only for admin view.
 	elseif ( current_user_can( 'manage_options' ) ) {
@@ -107,7 +107,7 @@ function mwb_upsell_lite_get_product_discount() {
 
 				$mwb_wocuf_pro_offered_discount = ! empty( $mwb_wocuf_pro_offered_discount ) ? $mwb_wocuf_pro_offered_discount : '';
 			}
-		}
+		} // phpcs:ignore
 
 		// For Custom Page for Offer.
 		else {
@@ -247,7 +247,7 @@ function mwb_upsell_lite_offer_page_posts_deletion() {
 function mwb_upsell_lite_supported_gateways() {
 
 	$supported_gateways = array(
-		'cod', // Cash on delivery
+		'cod', // Cash on delivery.
 	);
 
 	return apply_filters( 'mwb_upsell_lite_supported_gateways', $supported_gateways );
@@ -262,7 +262,7 @@ function mwb_upsell_lite_supported_gateways() {
 function mwb_upsell_lite_payment_gateways_with_parent_secured() {
 
 	$gateways_with_parent_secured = array(
-		'cod', // Cash on delivery
+		'cod', // Cash on delivery.
 	);
 
 	return apply_filters( 'mwb_upsell_lite_pg_with_parent_secured', $gateways_with_parent_secured );
@@ -391,6 +391,7 @@ if ( ! function_exists( 'mwb_upsell_lite_get_first_offer_after_redirect' ) ) {
 	/**
 	 * Get Order id from key.
 	 *
+	 * @param mixed $url url.
 	 * @since    3.0.0
 	 */
 	function mwb_upsell_lite_get_first_offer_after_redirect( $url = false ) {
