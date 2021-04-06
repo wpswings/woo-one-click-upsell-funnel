@@ -315,6 +315,7 @@
 .mwb_upsell_default_offer_buy_now,
 .mwb_upsell_default_offer_no_thanks {
   margin: inherit !important;
+  text-align:center;
 }
 .mwb_upsell_default_offer_no_thanks a {
   width: calc(100% - 55%);
