@@ -1,22 +1,21 @@
 ![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg) ![Active installs](https://img.shields.io/badge/Active-1000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-5.6-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-4.8-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-5.6-blue)
 # One Click Upsell Funnel for WooCommerce
 ![One Click Upsell Funnel for WooCommerce](https://ps.w.org/woo-one-click-upsell-funnel/assets/banner-772x250.png)
-* Contributor: MakeWebBetter
-* Author URI: https://makewebbetter.com/
+* Contributors: MakeWebBetter
+* Author URI: [https://makewebbetter.com/](https://makewebbetter.com/?utm_source=MWB-upsell-git&utm_medium=MWB-git&utm_campaign=git)
 * Tags: boost sales, cross sells, post-purchase, upsell, woocommerce
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
-
 
 # Description
 
 **TOP RATED POST-PURCHASE UPSELL PLUGIN ON WORDPRESS**
 
-[One Click Upsell Funnel For WooCommerce](https://wordpress.org/plugins/woo-one-click-upsell-funnel/) plugin offers post-purchase upsell offers, i.e. after the checkout is done. Customers can buy these upsell products in just one click with no hassle of re-entering the payment details or adding the product to cart again.
+[One Click Upsell Funnel for WooCommerce](https://wordpress.org/plugins/woo-one-click-upsell-funnel/) plugin offers post-purchase upsell offers, i.e. after the checkout is done. Customers can buy these upsell products in just one click with no hassle of re-entering the payment details or adding the product to cart again.
 
-[One Click Upsell Funnel For WooCommerce Tutorial 2021 Part 2: How to Create One-Click Offers Funnel?
+[One Click Upsell Funnel for WooCommerce Tutorial 2021 Part 2: How to Create One-Click Offers Funnel?
 ](https://youtu.be/PvyKF8WEkAk)
 
-**With the One Click Upsell Funnel For WooCommerce plugin you can:**
+**With the One Click Upsell Funnel for WooCommerce plugin you can:**
 
 * Create unlimited funnels with unlimited number of offers.
 * Get a comprehensive track report for every single funnel.
@@ -63,10 +62,9 @@ As the name suggests, it is one click upsell, which means the customers can purc
 
 [**Free demo of One Click Upsell Funnel for WooCommerce**](https://demo.makewebbetter.com/woocommerce-one-click-upsell-funnel/?utm_source=MWB-upsell-git&utm_medium=MWB-git&utm_campaign=MWB-upsell-git)
 
-Visit [**One Click Upsell Funnel for WooCommerce Documentation**](https://docs.makewebbetter.com/woocommerce-one-click-upsell-funnel/?utm_source=MWB-upsell-git&utm_medium=MWB-git&utm_campaign=MWB-upsell-git) and learn more about the features and working of the plugin.
+Visit [**One Click Upsell Funnel for WooCommerce Documentation**](https://docs.makewebbetter.com/woocommerce-one-click-upsell-funnel/?utm_source=MWB-upsell-git&utm_medium=MWB-git&utm_campaign=MWB-upsell-git) and learn more about the features and working of the plugin. Check out [One Click Upsell knowledge base](https://support.makewebbetter.com/wordpress-plugins-knowledge-base/category/woocommerce-one-click-upsell-funnel-pro-kb/?utm_source=MWB-upsell-git&utm_medium=MWB-git&utm_campaign=MWB-upsell-git) for some deep insights and FAQs on the plugin.
 
 ## WHAT PREMIUM VERSION OF ONE CLICK UPSELL FUNNEL FOR WOOCOMMERCE OFFERS
-
 
 * Variable Products
 * Subscription Products
@@ -76,10 +74,9 @@ Visit [**One Click Upsell Funnel for WooCommerce Documentation**](https://docs.m
 
 > Note:  Get [**WooCommerce One Click Upsell Funnel Pro**](https://makewebbetter.com/product/woocommerce-one-click-upsell-funnel-pro/?utm_source=MWB-upsell-git&utm_medium=MWB-git&utm_campaign=MWB-upsell-git)
 
-
 ### **SUPPORT**
 
-If you need support or have questions, kindly use our online chat window [here](https://makewebbetter.com/?utm_source=MWB-upsell-git&utm_medium=MWB-git-page&utm_campaign=MWB-upsell-git) or connect with us then [Generate a ticket](https://makewebbetter.com/submit-query/?utm_source=MWB-upsell-git&utm_medium=MWB-git-page&utm_campaign=MWB-upsell-git)
+If you need support or have questions, kindly use our online chat window [**here**](https://makewebbetter.com/?utm_source=MWB-upsell-git&utm_medium=MWB-git-page&utm_campaign=MWB-upsell-git) or connect with us then [**Generate a ticket**](https://makewebbetter.com/submit-query/?utm_source=MWB-upsell-git&utm_medium=MWB-git-page&utm_campaign=MWB-upsell-git)
 
 ### **MORE ABOUT MAKEWEBBETTER**
 
