@@ -1286,7 +1286,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				'numberposts' => -1,
 				'post_status' => 'wc-pending',
 				'fields'      => 'ids', // return only ids.
-				'meta_key'    => 'mwb_ocufp_upsell_initialized',// phpcs:ignore
+				'meta_key'    => 'mwb_ocufp_upsell_initialized', // phpcs:ignore
 				'post_type'   => 'shop_order',
 				'order'       => 'ASC',
 			)
@@ -1570,11 +1570,19 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 			<script type="text/javascript">
 
-				var product_not_selected_alert = '<?php echo esc_html( $product_not_selected_alert ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				// It just displayes message that is already escaped above. ?>';
+				var product_not_selected_alert = '
+				<?php
+				echo esc_html( $product_not_selected_alert ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				// It just displayes message that is already escaped above.
+				?>
+				';
 
-				var product_not_selected_content = '<?php echo esc_html( $product_not_selected_content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				// It just displayes message that is already escaped above. ?>';
+				var product_not_selected_content = '
+				<?php
+				echo esc_html( $product_not_selected_content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				// It just displayes message that is already escaped above.
+				?>
+				';
 
 				swal( product_not_selected_alert , product_not_selected_content, 'warning' )	
 			</script>
@@ -3889,7 +3897,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 */
 	public function set_offers_processed_on_upsell_action( $order_id, $current_offer_id, $url ) {
 
-		if( empty( $order_id ) || empty( $current_offer_id ) || empty( $url ) ) {
+		if ( empty( $order_id ) || empty( $current_offer_id ) || empty( $url ) ) {
 
 			return;
 		}
@@ -3922,7 +3930,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		if ( ! empty( $offers_processed ) && is_array( $offers_processed ) ) {
 
 			foreach ( $offers_processed as $offer_id => $url ) {
-				
+
 				// When offer is already processed, redirect to previous result of action that was taken.
 				if ( $current_offer_id == $offer_id ) {
 

@@ -23,7 +23,8 @@
  * @subpackage woo_one_click_upsell_funnel/includes
  * @author     makewebbetter <webmaster@makewebbetter.com>
  */
-class Woocommerce_One_Click_Upsell_Funnel_i18n { // phpcs:ignore
+class Woocommerce_One_Click_Upsell_Funnel_i18n {
+	// phpcs:ignore
 
 
 	/**

@@ -241,7 +241,7 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 			include_once WC()->plugin_path() . '/includes/walkers/class-wc-product-cat-dropdown-walker.php';
 
 			echo wc_walk_category_dropdown_tree( $categories, 0, $r ); // @codingStandardsIgnoreLine
-			?>
+		?>
 		</select>
 		  <?php // @codingStandardsIgnoreStart ?>
 		<a href="#" class="select_none"><?php esc_html_e( 'None', 'woocommerce' ); ?></a>

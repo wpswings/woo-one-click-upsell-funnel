@@ -73,7 +73,7 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 		$total_sales = $this->get_order_report_data(
 			array(
 				'data'         => array(
-					'_line_total' => array(
+					'_line_total'            => array(
 						'type'            => 'order_item_meta',
 						'order_item_type' => 'line_item',
 						'function'        => 'SUM',
@@ -84,11 +84,11 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 						'function' => '',
 						'name'     => 'mwb_wocuf_pro_upsell_meta',
 					),
-					'is_upsell_purchase' => array(
-						'type'     => 'order_item_meta',
+					'is_upsell_purchase'     => array(
+						'type'            => 'order_item_meta',
 						'order_item_type' => 'line_item',
-						'function' => '',
-						'name'     => 'mwb_wocuf_pro_upsell_item_meta',
+						'function'        => '',
+						'name'            => 'mwb_wocuf_pro_upsell_item_meta',
 					),
 				),
 				'where_meta'   => array(
@@ -96,8 +96,8 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 					array(
 						'type'       => 'order_item_meta',
 						'meta_key'   => array( '_product_id', '_variation_id' ), // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
-					  'meta_value' => $this->product_ids, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
-					  'operator'   => 'IN',
+						'meta_value' => $this->product_ids, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
+						'operator'   => 'IN',
 					),
 				),
 				'query_type'   => 'get_var',
@@ -111,7 +111,7 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 			$this->get_order_report_data(
 				array(
 					'data'         => array(
-						'_qty' => array(
+						'_qty'                   => array(
 							'type'            => 'order_item_meta',
 							'order_item_type' => 'line_item',
 							'function'        => 'SUM',
@@ -122,11 +122,11 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 							'function' => '',
 							'name'     => 'mwb_wocuf_pro_upsell_meta',
 						),
-						'is_upsell_purchase' => array(
-							'type'     => 'order_item_meta',
+						'is_upsell_purchase'     => array(
+							'type'            => 'order_item_meta',
 							'order_item_type' => 'line_item',
-							'function' => '',
-							'name'     => 'mwb_wocuf_pro_upsell_item_meta',
+							'function'        => '',
+							'name'            => 'mwb_wocuf_pro_upsell_item_meta',
 						),
 
 					),
@@ -135,8 +135,8 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 						array(
 							'type'       => 'order_item_meta',
 							'meta_key'   => array( '_product_id', '_variation_id' ), // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
-						  'meta_value' => $this->product_ids, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
-						  'operator'   => 'IN',
+							'meta_value' => $this->product_ids, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
+							'operator'   => 'IN',
 						),
 					),
 					'query_type'   => 'get_var',
@@ -246,7 +246,7 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 		?>
 	<h4 class="section_title"><span><?php esc_html_e( 'Product search', 'woocommerce' ); ?></span></h4>
 	<div class="section">
-	  <form method="GET">
+		<form method="GET">
 		<div>
 		  <?php // @codingStandardsIgnoreStart ?>
 		  <select class="wc-product-search" style="width:203px;" multiple="multiple" id="product_ids" name="product_ids[]" data-placeholder="<?php esc_attr_e( 'Search for a product&hellip;', 'woocommerce' ); ?>" data-action="woocommerce_json_search_products_and_variations"></select>
@@ -260,11 +260,11 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 		  <?php wp_nonce_field( 'custom_range', 'wc_reports_nonce', false ); ?>
 		  <?php // @codingStandardsIgnoreEnd ?>
 		</div>
-	  </form>
+		</form>
 	</div>
 	<h4 class="section_title"><span><?php esc_html_e( 'Top sellers', 'woocommerce' ); ?></span></h4>
 	<div class="section">
-	  <table cellspacing="0">
+	<table cellspacing="0">
 		<?php
 		$top_sellers = $this->get_order_report_data(
 			array(
@@ -287,8 +287,8 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 					array(
 						'type'       => 'order_item_meta',
 						'meta_key'   => 'is_upsell_purchase', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
-					  'meta_value' => 'true', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
-					  'operator'   => 'IN',
+						'meta_value' => 'true', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
+						'operator'   => 'IN',
 					),
 				),
 				'order_by'     => 'order_item_qty DESC',
@@ -315,11 +315,11 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 			echo '<tr><td colspan="3">' . esc_html__( 'No products found in range', 'woocommerce' ) . '</td></tr>';
 		}
 		?>
-	  </table>
+	</table>
 	</div>
 	<h4 class="section_title"><span><?php esc_html_e( 'Top freebies', 'woocommerce' ); ?></span></h4>
 	<div class="section">
-	  <table cellspacing="0">
+		<table cellspacing="0">
 		<?php
 		$top_freebies = $this->get_order_report_data(
 			array(
@@ -341,14 +341,14 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 					array(
 						'type'       => 'order_item_meta',
 						'meta_key'   => '_line_subtotal', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
-					  'meta_value' => '0', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
-					  'operator'   => '=',
+						'meta_value' => '0', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
+						'operator'   => '=',
 					),
 					array(
 						'type'       => 'order_item_meta',
 						'meta_key'   => 'is_upsell_purchase', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
-					  'meta_value' => 'true', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
-					  'operator'   => 'IN',
+						'meta_value' => 'true', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
+						'operator'   => 'IN',
 					),
 				),
 				'order_by'     => 'order_item_qty DESC',
@@ -374,11 +374,11 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 			echo '<tr><td colspan="3">' . esc_html__( 'No products found in range', 'woocommerce' ) . '</td></tr>';
 		}
 		?>
-	  </table>
+	</table>
 	</div>
 	<h4 class="section_title"><span><?php esc_html_e( 'Top earners', 'woocommerce' ); ?></span></h4>
 	<div class="section">
-	  <table cellspacing="0">
+	<table cellspacing="0">
 		<?php
 		$top_earners = $this->get_order_report_data(
 			array(
@@ -401,8 +401,8 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 					array(
 						'type'       => 'order_item_meta',
 						'meta_key'   => 'is_upsell_purchase', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
-					  'meta_value' => 'true', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
-					  'operator'   => 'IN',
+						'meta_value' => 'true', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
+						'operator'   => 'IN',
 					),
 				),
 				'order_by'     => 'order_item_total DESC',
@@ -429,26 +429,27 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 			echo '<tr><td colspan="3">' . esc_html__( 'No products found in range', 'woocommerce' ) . '</td></tr>';
 		}
 		?>
-	  </table>
+	</table>
 	</div>
 	<script type="text/javascript">
-	  jQuery('.section_title').click(function(){
+	jQuery('.section_title').click(function(){
 		var next_section = jQuery(this).next('.section');
 
-		if ( jQuery(next_section).is(':visible') )
-		  return false;
+		if ( jQuery(next_section).is(':visible') ) {
+			return false;
+		}
 
 		jQuery('.section:visible').slideUp();
 		jQuery('.section_title').removeClass('open');
 		jQuery(this).addClass('open').next('.section').slideDown();
 
 		return false;
-	  });
-	  jQuery('.section').slideUp( 100, function() {
+	});
+	jQuery('.section').slideUp( 100, function() {
 		<?php if ( empty( $this->product_ids ) ) : ?>
-		  jQuery('.section_title:eq(1)').click();
-		<?php endif; ?>
-	  });
+		jQuery('.section_title:eq(1)').click();
+	<?php endif; ?>
+	});
 	</script>
 		<?php
 	}
@@ -460,13 +461,12 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 
 		$current_range = ! empty( $_GET['range'] ) ? sanitize_text_field( wp_unslash( $_GET['range'] ) ) : '7day'; //phpcs:ignore WordPress.Security.NonceVerification.NoNonceVerification
 		?>
-	<a
-	  href="#"
-	  download="report-<?php echo esc_attr( $current_range ); ?>-<?php echo esc_html( date_i18n( 'Y-m-d', current_time( 'timestamp' ) ) ); ?>.csv"
-	  class="export_csv"
-	  data-export="chart"
-	  data-xaxes="<?php esc_attr_e( 'Date', 'woocommerce' ); ?>"
-	  data-groupby="<?php echo $this->chart_groupby; ?>"<?php // @codingStandardsIgnoreLine ?>
+	<a href="#"
+		download="report-<?php echo esc_attr( $current_range ); ?>-<?php echo esc_html( date_i18n( 'Y-m-d', current_time( 'timestamp' ) ) ); ?>.csv"
+		class="export_csv"
+		data-export="chart"
+		data-xaxes="<?php esc_attr_e( 'Date', 'woocommerce' ); ?>"
+		  data-groupby="<?php echo $this->chart_groupby; ?>"<?php // @codingStandardsIgnoreLine ?>
 	>
 		<?php esc_html_e( 'Export CSV', 'woocommerce' ); ?>
 	</a>
@@ -481,37 +481,37 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 
 		if ( empty( $this->product_ids ) ) {
 			?>
-	  <div class="chart-container">
+		<div class="chart-container">
 		<p class="chart-prompt"><?php esc_html_e( 'Choose a product to view stats', 'woocommerce' ); ?></p>
-	  </div>
+		</div>
 			<?php
 		} else {
 			// Get orders and dates in range - we want the SUM of order totals, COUNT of order items, COUNT of orders, and the date.
 			$order_item_counts = $this->get_order_report_data(
 				array(
 					'data'         => array(
-						'_qty'        => array(
+						'_qty'               => array(
 							'type'            => 'order_item_meta',
 							'order_item_type' => 'line_item',
 							'function'        => 'SUM',
 							'name'            => 'order_item_count',
 						),
-						'post_date'   => array(
+						'post_date'          => array(
 							'type'     => 'post_data',
 							'function' => '',
 							'name'     => 'post_date',
 						),
-						'_product_id' => array(
+						'_product_id'        => array(
 							'type'            => 'order_item_meta',
 							'order_item_type' => 'line_item',
 							'function'        => '',
 							'name'            => 'product_id',
 						),
 						'is_upsell_purchase' => array(
-							'type'     => 'order_item_meta',
+							'type'            => 'order_item_meta',
 							'order_item_type' => 'line_item',
-							'function' => '',
-							'name'     => 'mwb_wocuf_pro_upsell_item_meta',
+							'function'        => '',
+							'name'            => 'mwb_wocuf_pro_upsell_item_meta',
 						),
 					),
 					'where_meta'   => array(
@@ -519,8 +519,8 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 						array(
 							'type'       => 'order_item_meta',
 							'meta_key'   => array( '_product_id', '_variation_id' ), // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
-						  'meta_value' => $this->product_ids, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
-						  'operator'   => 'IN',
+							'meta_value' => $this->product_ids, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
+							'operator'   => 'IN',
 						),
 					),
 					'group_by'     => 'product_id,' . $this->group_by_query,
@@ -535,37 +535,37 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 			$order_item_amounts = $this->get_order_report_data(
 				array(
 					'data'         => array(
-						'_line_total' => array(
+						'_line_total'        => array(
 							'type'            => 'order_item_meta',
 							'order_item_type' => 'line_item',
 							'function'        => 'SUM',
 							'name'            => 'order_item_amount',
 						),
-						'post_date'   => array(
+						'post_date'          => array(
 							'type'     => 'post_data',
 							'function' => '',
 							'name'     => 'post_date',
 						),
-						'_product_id' => array(
+						'_product_id'        => array(
 							'type'            => 'order_item_meta',
 							'order_item_type' => 'line_item',
 							'function'        => '',
 							'name'            => 'product_id',
 						),
 						'is_upsell_purchase' => array(
-							'type'     => 'order_item_meta',
+							'type'            => 'order_item_meta',
 							'order_item_type' => 'line_item',
-							'function' => '',
-							'name'     => 'mwb_wocuf_pro_upsell_item_meta',
+							'function'        => '',
+							'name'            => 'mwb_wocuf_pro_upsell_item_meta',
 						),
 					),
 					'where_meta'   => array(
 						'relation' => 'OR',
 						array(
-							'type'       => 'order_item_meta',
-							'meta_key'   => array( '_product_id', '_variation_id' ), // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
-						  'meta_value' => $this->product_ids, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
-						  'operator'   => 'IN',
+							'type'     => 'order_item_meta',
+							'meta_key' => array( '_product_id', '_variation_id' ), // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+							'meta_value' => $this->product_ids, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
+							'operator'   => 'IN',
 						),
 					),
 					'group_by'     => 'product_id, ' . $this->group_by_query,
@@ -589,9 +589,9 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 				)
 			);
 			?>
-	  <div class="chart-container">
+	<div class="chart-container">
 		<div class="chart-placeholder main"></div>
-	  </div>
+	</div>
 			<?php // @codingStandardsIgnoreStart ?>
 	  <script type="text/javascript">
 		var main_chart;
