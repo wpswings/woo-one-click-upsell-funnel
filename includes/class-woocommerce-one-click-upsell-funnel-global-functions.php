@@ -80,10 +80,7 @@ function mwb_upsell_lite_get_product_discount() {
 		$mwb_wocuf_pro_offered_discount = $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ];
 
 		$mwb_wocuf_pro_offered_discount = ! empty( $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] ) ? $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] : '';
-	} // phpcs:ignore
-
-	// When not live and only for admin view.
-	elseif ( current_user_can( 'manage_options' ) ) {
+	} elseif ( current_user_can( 'manage_options' ) ) {
 
 		// Get funnel and offer id from current offer page post id.
 		global $post;
@@ -107,10 +104,7 @@ function mwb_upsell_lite_get_product_discount() {
 
 				$mwb_wocuf_pro_offered_discount = ! empty( $mwb_wocuf_pro_offered_discount ) ? $mwb_wocuf_pro_offered_discount : '';
 			}
-		} // phpcs:ignore
-
-		// For Custom Page for Offer.
-		else {
+		} else {
 
 			// Get global product discount.
 

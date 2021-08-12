@@ -249,14 +249,14 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 		<form method="GET">
 		<div>
 		  <?php // @codingStandardsIgnoreStart ?>
-		  <select class="wc-product-search" style="width:203px;" multiple="multiple" id="product_ids" name="product_ids[]" data-placeholder="<?php esc_attr_e( 'Search for a product&hellip;', 'woocommerce' ); ?>" data-action="woocommerce_json_search_products_and_variations"></select>
-		  <button type="submit" class="submit button" value="<?php esc_attr_e( 'Show', 'woocommerce' ); ?>"><?php esc_html_e( 'Show', 'woocommerce' ); ?></button>
-		  <input type="hidden" name="range" value="<?php echo ( ! empty( $_GET['range'] ) ) ? esc_attr( $_GET['range'] ) : ''; ?>" />
-		  <input type="hidden" name="start_date" value="<?php echo ( ! empty( $_GET['start_date'] ) ) ? esc_attr( $_GET['start_date'] ) : ''; ?>" />
-		  <input type="hidden" name="end_date" value="<?php echo ( ! empty( $_GET['end_date'] ) ) ? esc_attr( $_GET['end_date'] ) : ''; ?>" />
-		  <input type="hidden" name="page" value="<?php echo ( ! empty( $_GET['page'] ) ) ? esc_attr( $_GET['page'] ) : ''; ?>" />
-		  <input type="hidden" name="tab" value="<?php echo ( ! empty( $_GET['tab'] ) ) ? esc_attr( $_GET['tab'] ) : ''; ?>" />
-		  <input type="hidden" name="report" value="<?php echo ( ! empty( $_GET['report'] ) ) ? esc_attr( $_GET['report'] ) : ''; ?>" />
+			<select class="wc-product-search" style="width:203px;" multiple="multiple" id="product_ids" name="product_ids[]" data-placeholder="<?php esc_attr_e( 'Search for a product&hellip;', 'woocommerce' ); ?>" data-action="woocommerce_json_search_products_and_variations"></select>
+			<button type="submit" class="submit button" value="<?php esc_attr_e( 'Show', 'woocommerce' ); ?>"><?php esc_html_e( 'Show', 'woocommerce' ); ?></button>
+			<input type="hidden" name="range" value="<?php echo ( ! empty( $_GET['range'] ) ) ? esc_attr( sanitize_text_field( wp_unslash( $_GET['range'] ) ) ) : ''; ?>" />
+			<input type="hidden" name="start_date" value="<?php echo ( ! empty( $_GET['start_date'] ) ) ? esc_attr( sanitize_text_field( wp_unslash( $_GET['start_date'] ) ) ) : ''; ?>" />
+			<input type="hidden" name="end_date" value="<?php echo ( ! empty( $_GET['end_date'] ) ) ? esc_attr( sanitize_text_field( wp_unslash( $_GET['end_date'] ) ) ) : ''; ?>" />
+			<input type="hidden" name="page" value="<?php echo ( ! empty( $_GET['page'] ) ) ? esc_attr( sanitize_text_field( wp_unslash( $_GET['page'] ) ) ) : ''; ?>" />
+			<input type="hidden" name="tab" value="<?php echo ( ! empty( $_GET['tab'] ) ) ? esc_attr( sanitize_text_field( wp_unslash( $_GET['tab'] ) ) ): ''; ?>" />
+			<input type="hidden" name="report" value="<?php echo ( ! empty( $_GET['report'] ) ) ? esc_attr( sanitize_text_field( wp_unslash( $_GET['report'] ) ) ) : ''; ?>" />
 		  <?php wp_nonce_field( 'custom_range', 'wc_reports_nonce', false ); ?>
 		  <?php // @codingStandardsIgnoreEnd ?>
 		</div>
@@ -301,19 +301,21 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 			)
 		);
 
-		if ( $top_sellers ) {
+		if ( $top_sellers ) :
 			// @codingStandardsIgnoreStart
-			foreach ( $top_sellers as $product ) {
-				echo '<tr class="' . ( in_array( $product->product_id, $this->product_ids ) ? 'active' : '' ) . '">
-              <td class="count">' . esc_html( $product->order_item_qty ) . '</td>
-              <td class="name"><a href="' . esc_url( add_query_arg( 'product_ids', $product->product_id ) ) . '">' . esc_html( get_the_title( $product->product_id ) ) . '</a></td>
-              <td class="sparkline">' . $this->sales_sparkline( $product->product_id, 7, 'count' ) . '</td>
-            </tr>';
-			}
+			foreach ( $top_sellers as $product ) : ?>
+			<tr class="<?php echo esc_html( in_array( $product->product_id, $this->product_ids ) ? 'active' : '' ); ?>">
+				<td class="count"><?php echo esc_html( $product->order_item_qty ); ?></td>
+				<td class="name"><a href="<?php echo esc_url( add_query_arg( 'product_ids', $product->product_id ) ); ?>"><?php echo esc_html( get_the_title( $product->product_id ) ); ?></a></td>
+				<td class="sparkline"><?php $this->sales_sparkline( $product->product_id, 7, 'count' ); ?></td>
+			</tr>
+			<?php endforeach;
 			// @codingStandardsIgnoreEnd
-		} else {
-			echo '<tr><td colspan="3">' . esc_html__( 'No products found in range', 'woocommerce' ) . '</td></tr>';
-		}
+		else :
+			?>
+			<tr><td colspan="3"><?php echo esc_html__( 'No products found in range', 'woocommerce' ); ?></td></tr>
+			<?php
+		endif;
 		?>
 	</table>
 	</div>
@@ -360,20 +362,20 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 			)
 		);
 
-		if ( $top_freebies ) {
+		if ( $top_freebies ) :
 			// @codingStandardsIgnoreStart
-			foreach ( $top_freebies as $product ) {
-				echo '<tr class="' . ( in_array( $product->product_id, $this->product_ids ) ? 'active' : '' ) . '">
-              <td class="count">' . esc_html( $product->order_item_qty ) . '</td>
-              <td class="name"><a href="' . esc_url( add_query_arg( 'product_ids', $product->product_id ) ) . '">' . esc_html( get_the_title( $product->product_id ) ) . '</a></td>
-              <td class="sparkline">' . $this->sales_sparkline( $product->product_id, 7, 'count' ) . '</td>
-            </tr>';
-			}
+			foreach ( $top_freebies as $product ) : ?>
+			<tr class="<?php echo esc_html( in_array( $product->product_id, $this->product_ids ) ? 'active' : '' ); ?>">
+				<td class="count"><?php echo esc_html( $product->order_item_qty ); ?></td>
+				<td class="name"><a href="<?php echo esc_url( add_query_arg( 'product_ids', $product->product_id ) ); ?>"><?php echo esc_html( get_the_title( $product->product_id ) ); ?></a></td>
+				<td class="sparkline"><?php $this->sales_sparkline( $product->product_id, 7, 'count' ); ?></td>
+			</tr>
+			<?php endforeach;
 			// @codingStandardsIgnoreEnd
-		} else {
-			echo '<tr><td colspan="3">' . esc_html__( 'No products found in range', 'woocommerce' ) . '</td></tr>';
-		}
-		?>
+		else :
+			?>
+			<tr><td colspan="3"><?php echo esc_html__( 'No products found in range', 'woocommerce' ); ?></td></tr>
+		<?php endif; ?>
 	</table>
 	</div>
 	<h4 class="section_title"><span><?php esc_html_e( 'Top earners', 'woocommerce' ); ?></span></h4>
@@ -415,20 +417,20 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 			)
 		);
 
-		if ( $top_earners ) {
+		if ( $top_earners ) :
 			// @codingStandardsIgnoreStart
-			foreach ( $top_earners as $product ) {
-				echo '<tr class="' . ( in_array( $product->product_id, $this->product_ids ) ? 'active' : '' ) . '">
-              <td class="count">' . wc_price( $product->order_item_total ) . '</td>
-              <td class="name"><a href="' . esc_url( add_query_arg( 'product_ids', $product->product_id ) ) . '">' . esc_html( get_the_title( $product->product_id ) ) . '</a></td>
-              <td class="sparkline">' . $this->sales_sparkline( $product->product_id, 7, 'sales' ) . '</td>
-            </tr>';
-			}
+			foreach ( $top_earners as $product ) : ?>
+			<tr class="<?php echo esc_html( in_array( $product->product_id, $this->product_ids ) ? 'active' : '' ); ?>">
+				<td class="count"><?php echo esc_html( $product->order_item_qty ); ?></td>
+				<td class="name"><a href="<?php echo esc_url( add_query_arg( 'product_ids', $product->product_id ) ); ?>"><?php echo esc_html( get_the_title( $product->product_id ) ); ?></a></td>
+				<td class="sparkline"><?php $this->sales_sparkline( $product->product_id, 7, 'count' ); ?></td>
+			</tr>
+			<?php endforeach;
 			// @codingStandardsIgnoreEnd
-		} else {
-			echo '<tr><td colspan="3">' . esc_html__( 'No products found in range', 'woocommerce' ) . '</td></tr>';
-		}
-		?>
+		else :
+			?>
+			<tr><td colspan="3"><?php echo esc_html__( 'No products found in range', 'woocommerce' ); ?></td></tr>
+		<?php endif; ?>
 	</table>
 	</div>
 	<script type="text/javascript">
@@ -461,15 +463,13 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 
 		$current_range = ! empty( $_GET['range'] ) ? sanitize_text_field( wp_unslash( $_GET['range'] ) ) : '7day'; //phpcs:ignore WordPress.Security.NonceVerification.NoNonceVerification
 		?>
-	<a href="#"
-		download="report-<?php echo esc_attr( $current_range ); ?>-<?php echo esc_html( date_i18n( 'Y-m-d', current_time( 'timestamp' ) ) ); ?>.csv"
-		class="export_csv"
-		data-export="chart"
-		data-xaxes="<?php esc_attr_e( 'Date', 'woocommerce' ); ?>"
-		  data-groupby="<?php echo $this->chart_groupby; ?>"<?php // @codingStandardsIgnoreLine ?>
-	>
-		<?php esc_html_e( 'Export CSV', 'woocommerce' ); ?>
-	</a>
+		<a href="#"
+			download="report-<?php echo esc_attr( $current_range ); ?>-<?php echo esc_html( date_i18n( 'Y-m-d', current_time( 'timestamp' ) ) ); ?>.csv"
+			class="export_csv"
+			data-export="chart"
+			data-xaxes="<?php esc_attr_e( 'Date', 'woocommerce' ); ?>"
+			data-groupby="<?php echo $this->chart_groupby; ?>"<?php // @codingStandardsIgnoreLine ?>
+		><?php esc_html_e( 'Export CSV', 'woocommerce' ); ?></a>
 		<?php
 	}
 
@@ -562,8 +562,8 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 					'where_meta'   => array(
 						'relation' => 'OR',
 						array(
-							'type'     => 'order_item_meta',
-							'meta_key' => array( '_product_id', '_variation_id' ), // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+							'type'       => 'order_item_meta',
+							'meta_key'   => array( '_product_id', '_variation_id' ), // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
 							'meta_value' => $this->product_ids, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 							'operator'   => 'IN',
 						),

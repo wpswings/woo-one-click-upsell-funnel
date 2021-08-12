@@ -142,19 +142,19 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 			$order_items = $this->get_order_report_data(
 				array(
 					'data'         => array(
-						'_product_id' => array(
+						'_product_id'            => array(
 							'type'            => 'order_item_meta',
 							'order_item_type' => 'line_item',
 							'function'        => '',
 							'name'            => 'product_id',
 						),
-						'_line_total' => array(
+						'_line_total'            => array(
 							'type'            => 'order_item_meta',
 							'order_item_type' => 'line_item',
 							'function'        => 'SUM',
 							'name'            => 'order_item_amount',
 						),
-						'post_date'   => array(
+						'post_date'              => array(
 							'type'     => 'post_data',
 							'function' => '',
 							'name'     => 'post_date',
@@ -164,11 +164,11 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 							'function' => '',
 							'name'     => 'mwb_wocuf_pro_upsell_meta',
 						),
-						'is_upsell_purchase' => array(
-							'type'     => 'order_item_meta',
+						'is_upsell_purchase'     => array(
+							'type'            => 'order_item_meta',
 							'order_item_type' => 'line_item',
-							'function' => '',
-							'name'     => 'mwb_wocuf_pro_upsell_item_meta',
+							'function'        => '',
+							'name'            => 'mwb_wocuf_pro_upsell_item_meta',
 						),
 					),
 					'group_by'     => 'ID, product_id, post_date',
@@ -258,19 +258,19 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 	<script type="text/javascript">
 		jQuery(function(){
 		// Select all/None
-		  jQuery( '.chart-widget' ).on( 'click', '.select_all', function() {
-			jQuery(this).closest( 'div' ).find( 'select option' ).attr( 'selected', 'selected' );
-			jQuery(this).closest( 'div' ).find('select').change();
-			return false;
-		  });
+			jQuery( '.chart-widget' ).on( 'click', '.select_all', function() {
+				jQuery(this).closest( 'div' ).find( 'select option' ).attr( 'selected', 'selected' );
+				jQuery(this).closest( 'div' ).find('select').change();
+				return false;
+			});
 
-		  jQuery( '.chart-widget').on( 'click', '.select_none', function() {
-			jQuery(this).closest( 'div' ).find( 'select option' ).removeAttr( 'selected' );
-			jQuery(this).closest( 'div' ).find('select').change();
-			return false;
-		  });
+			jQuery( '.chart-widget').on( 'click', '.select_none', function() {
+				jQuery(this).closest( 'div' ).find( 'select option' ).removeAttr( 'selected' );
+				jQuery(this).closest( 'div' ).find('select').change();
+				return false;
+			});
 		});
-	  </script>
+	</script>
 	</form>
 		<?php
 	}
@@ -283,12 +283,12 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 		$current_range = ! empty( $_GET['range'] ) ? sanitize_text_field( wp_unslash( $_GET['range'] ) ) : '7day';
 		?>
 	<a
-	  href="#"
-	  download="report-<?php echo esc_attr( $current_range ); ?>-<?php echo esc_attr( date_i18n( 'Y-m-d', current_time( 'timestamp' ) ) ); ?>.csv"
-	  class="export_csv"
-	  data-export="chart"
-	  data-xaxes="<?php esc_attr_e( 'Date', 'woocommerce' ); ?>"
-	  data-groupby="<?php echo esc_attr( $this->chart_groupby ); ?>"
+		href="#"
+		download="report-<?php echo esc_attr( $current_range ); ?>-<?php echo esc_attr( date_i18n( 'Y-m-d', current_time( 'timestamp' ) ) ); ?>.csv"
+		class="export_csv"
+		data-export="chart"
+		data-xaxes="<?php esc_attr_e( 'Date', 'woocommerce' ); ?>"
+		data-groupby="<?php echo esc_attr( $this->chart_groupby ); ?>"
 	>
 		<?php esc_html_e( 'Export CSV', 'woocommerce' ); ?>
 	</a>
@@ -303,9 +303,9 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 
 		if ( empty( $this->show_categories ) ) {
 			?>
-	  <div class="chart-container">
-		<p class="chart-prompt"><?php esc_html_e( 'Choose a category to view stats', 'woocommerce' ); ?></p>
-	  </div>
+		<div class="chart-container">
+			<p class="chart-prompt"><?php esc_html_e( 'Choose a category to view stats', 'woocommerce' ); ?></p>
+		</div>
 			<?php
 		} else {
 			$chart_data = array();
@@ -347,9 +347,9 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 				$index++;
 			}
 			?>
-	  <div class="chart-container">
-		<div class="chart-placeholder main"></div>
-	  </div>
+		<div class="chart-container">
+			<div class="chart-placeholder main"></div>
+		</div>
 			<?php // @codingStandardsIgnoreStart ?>
 	  <script type="text/javascript">
 		var main_chart;
