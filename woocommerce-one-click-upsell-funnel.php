@@ -55,7 +55,7 @@ function mwb_upsell_lite_is_plugin_active( $plugin_slug ) {
 
 	}
 
-	return in_array( $plugin_slug, $active_plugins ) || array_key_exists( $plugin_slug, $active_plugins );
+	return in_array( $plugin_slug, $active_plugins, true ) || array_key_exists( $plugin_slug, $active_plugins );
 
 }
 
@@ -64,13 +64,13 @@ function mwb_upsell_lite_is_plugin_active( $plugin_slug ) {
  * This action is for woocommerce dependency check.
  */
 function mwb_upsell_lite_plugin_activation() {
-	$activation['status'] = true;
+	$activation['status']  = true;
 	$activation['message'] = '';
 
 	// Dependant plugin.
 	if ( ! mwb_upsell_lite_is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
 
-		$activation['status'] = false;
+		$activation['status']  = false;
 		$activation['message'] = 'woo_inactive';
 	}
 
@@ -93,7 +93,7 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 
 			global $pagenow;
 
-			if ( ! empty( $pagenow ) && 'plugins.php' == $pagenow ) : ?>
+			if ( ! empty( $pagenow ) && 'plugins.php' === $pagenow ) : ?>
 
 			<div class="notice notice-info is-dismissible">
 				<p><?php esc_html_e( 'Please deactivate the free plugin', 'woo-one-click-upsell-funnel' ); ?><strong> <?php esc_html_e( 'One Click Upsell Funnel for Woocommerce', 'woo-one-click-upsell-funnel' ); ?></strong> <?php esc_html_e( 'as the Pro plugin', 'woo-one-click-upsell-funnel' ); ?><strong> <?php esc_html_e( 'WooCommerce One Click Upsell Funnel Pro', 'woo-one-click-upsell-funnel' ); ?></strong> <?php esc_html_e( 'is already activated.', 'woo-one-click-upsell-funnel' ); ?></p>
@@ -121,7 +121,7 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 	 */
 	function activate_woocommerce_one_click_upsell_funnel() {
 		include_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-one-click-upsell-funnel-activator.php';
-		Woocommerce_one_click_upsell_funnel_Activator::activate();
+		Woocommerce_One_Click_Upsell_Funnel_Activator::activate();
 	}
 
 	/**
@@ -130,14 +130,14 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 	 */
 	function deactivate_woocommerce_one_click_upsell_funnel() {
 		include_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-one-click-upsell-funnel-deactivator.php';
-		woocommerce_one_click_upsell_funnel_Deactivator::deactivate();
+		Woocommerce_One_Click_Upsell_Funnel_Deactivator::deactivate();
 	}
 
 	add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'mwb_wocuf_plugin_settings_link' );
 
 	/**
 	 * This action is for woocommerce dependency check.
-	 * 
+	 *
 	 * @param mixed $links links.
 	 */
 	function mwb_wocuf_plugin_settings_link( $links ) {
@@ -162,7 +162,7 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 		if ( false !== strpos( $file, 'woocommerce_one_click_upsell_funnel.php' ) ) {
 
 			$row_meta = array(
-				'docs'    => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://docs.makewebbetter.com/woocommerce-one-click-upsell-funnel/">' . esc_html__( 'Go to Docs', 'woo-one-click-upsell-funnel' ) . '</a>',
+				'docs'  => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://docs.makewebbetter.com/woocommerce-one-click-upsell-funnel/">' . esc_html__( 'Go to Docs', 'woo-one-click-upsell-funnel' ) . '</a>',
 				'goPro' => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#45b649,#dce35b);padding:5px;border-radius:6px;" href="https://makewebbetter.com/product/woocommerce-one-click-upsell-funnel-pro/?utm_source=MWB-upsell-org&utm_medium=Pro-Row&utm_campaign=ORG"><strong>' . esc_html__( 'Go Premium', 'woo-one-click-upsell-funnel' ) . '</strong></a>',
 			);
 
@@ -193,7 +193,7 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 	 */
 	function run_woocommerce_one_click_upsell_funnel() {
 
-		$plugin = new Woocommerce_one_click_upsell_funnel();
+		$plugin = new Woocommerce_One_Click_Upsell_Funnel();
 		$plugin->run();
 
 	}
@@ -227,7 +227,7 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 
 		?>
 
-		<?php if ( 'woo_inactive' == $mwb_upsell_lite_plugin_activation['message'] ) : ?>
+		<?php if ( 'woo_inactive' === $mwb_upsell_lite_plugin_activation['message'] ) : ?>
 
 			<div class="notice notice-error is-dismissible">
 				<p><strong><?php esc_html_e( 'WooCommerce' ); ?></strong><?php esc_html_e( ' is not activated, Please activate WooCommerce first to activate ' ); ?><strong><?php esc_html_e( 'One Click Upsell Funnel for WooCommerce' ); ?></strong><?php esc_html_e( '.' ); ?></p>

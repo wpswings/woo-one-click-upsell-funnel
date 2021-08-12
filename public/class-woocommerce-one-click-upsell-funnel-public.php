@@ -19,7 +19,7 @@
  * @subpackage woo_one_click_upsell_funnel/public
  * @author     makewebbetter <webmaster@makewebbetter.com>
  */
-class Woocommerce_one_click_upsell_funnel_Public {
+class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 	/**
 	 * The ID of this plugin.

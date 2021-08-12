@@ -70,7 +70,7 @@ function mwb_upsell_lite_get_product_discount() {
 	$mwb_wocuf_pro_offered_discount = '';
 
 	$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) ) : 'not_set';
-	$offer_id = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) ) : 'not_set';
+	$offer_id  = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) ) : 'not_set';
 
 	// If Live offer.
 	if ( 'not_set' !== $funnel_id && 'not_set' !== $offer_id ) {
@@ -96,7 +96,7 @@ function mwb_upsell_lite_get_product_discount() {
 		if ( ! empty( $funnel_data ) && is_array( $funnel_data ) && count( $funnel_data ) ) {
 
 			$funnel_id = $funnel_data['funnel_id'];
-			$offer_id = $funnel_data['offer_id'];
+			$offer_id  = $funnel_data['offer_id'];
 
 			if ( isset( $funnel_id ) && isset( $offer_id ) ) {
 
@@ -138,7 +138,7 @@ function mwb_upsell_lite_get_pid_from_url_params() {
 
 		$params['status'] = 'true';
 
-		$params['offer_id'] = sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) );
+		$params['offer_id']  = sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) );
 		$params['funnel_id'] = sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) );
 	}
 
@@ -223,7 +223,7 @@ function mwb_upsell_lite_offer_page_posts_deletion() {
 		// Now delete save posts which are not present in funnel.
 		foreach ( $saved_offer_post_ids as $saved_offer_post_key => $saved_offer_post_id ) {
 
-			if ( ! in_array( $saved_offer_post_id, $funnel_offer_post_ids ) ) {
+			if ( ! in_array( $saved_offer_post_id, $funnel_offer_post_ids, true ) ) {
 
 				unset( $saved_offer_post_ids[ $saved_offer_post_key ] );
 
@@ -398,7 +398,7 @@ if ( ! function_exists( 'mwb_upsell_lite_get_first_offer_after_redirect' ) ) {
 
 		if ( ! empty( $url ) ) {
 
-			$url_components = parse_url( $url );
+			$url_components = wp_parse_url( $url );
 
 			// Extract Query Params.
 			if ( ! empty( $url_components['query'] ) ) {

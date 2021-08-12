@@ -19,7 +19,7 @@
  * @subpackage woo_one_click_upsell_funnel/includes
  * @author     makewebbetter <webmaster@makewebbetter.com>
  */
-class Woocommerce_one_click_upsell_funnel_Activator {
+class Woocommerce_One_Click_Upsell_Funnel_Activator {
 
 	/**
 	 * Short Description. (use period)

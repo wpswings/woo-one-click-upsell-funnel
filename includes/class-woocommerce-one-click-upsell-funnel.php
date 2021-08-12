@@ -26,7 +26,7 @@
  * @subpackage woo_one_click_upsell_funnel/includes
  * @author     makewebbetter <webmaster@makewebbetter.com>
  */
-class Woocommerce_one_click_upsell_funnel {
+class Woocommerce_One_Click_Upsell_Funnel {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -34,7 +34,7 @@ class Woocommerce_one_click_upsell_funnel {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Woocommerce_one_click_upsell_funnel_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Woocommerce_One_Click_Upsell_Funnel_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -87,10 +87,10 @@ class Woocommerce_one_click_upsell_funnel {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Woocommerce_one_click_upsell_funnel_Loader. Orchestrates the hooks of the plugin.
-	 * - Woocommerce_one_click_upsell_funnel_i18n. Defines internationalization functionality.
-	 * - Woocommerce_one_click_upsell_funnel_Admin. Defines all hooks for the admin area.
-	 * - Woocommerce_one_click_upsell_funnel_Public. Defines all hooks for the public side of the site.
+	 * - Woocommerce_One_Click_Upsell_Funnel_Loader. Orchestrates the hooks of the plugin.
+	 * - Woocommerce_One_Click_Upsell_Funnel_i18n. Defines internationalization functionality.
+	 * - Woocommerce_One_Click_Upsell_Funnel_Admin. Defines all hooks for the admin area.
+	 * - Woocommerce_One_Click_Upsell_Funnel_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -146,14 +146,14 @@ class Woocommerce_one_click_upsell_funnel {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'reporting/class-mwb-upsell-report-sales-by-funnel.php';
 
-		$this->loader = new Woocommerce_one_click_upsell_funnel_Loader();
+		$this->loader = new Woocommerce_One_Click_Upsell_Funnel_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Woocommerce_one_click_upsell_funnel_i18n class in order to set the domain and to register the hook
+	 * Uses the Woocommerce_One_Click_Upsell_Funnel_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -161,7 +161,7 @@ class Woocommerce_one_click_upsell_funnel {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Woocommerce_one_click_upsell_funnel_i18n();
+		$plugin_i18n = new Woocommerce_One_Click_Upsell_Funnel_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -176,7 +176,7 @@ class Woocommerce_one_click_upsell_funnel {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Woocommerce_one_click_upsell_funnel_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Woocommerce_One_Click_Upsell_Funnel_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$mwb_wocuf_enable_plugin = get_option( 'mwb_wocuf_enable_plugin', 'on' );
 
@@ -244,7 +244,7 @@ class Woocommerce_one_click_upsell_funnel {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Woocommerce_one_click_upsell_funnel_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Woocommerce_One_Click_Upsell_Funnel_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 
@@ -266,7 +266,7 @@ class Woocommerce_one_click_upsell_funnel {
 
 		$remove_all_styles = ! empty( $mwb_upsell_global_settings['remove_all_styles'] ) ? $mwb_upsell_global_settings['remove_all_styles'] : 'yes';
 
-		if ( 'yes' == $remove_all_styles && mwb_upsell_lite_elementor_plugin_active() ) {
+		if ( 'yes' === $remove_all_styles && mwb_upsell_lite_elementor_plugin_active() ) {
 
 			// Remove styles from offer pages.
 			$this->loader->add_action( 'wp_print_styles', $plugin_public, 'remove_styles_offer_pages' );
@@ -361,7 +361,7 @@ class Woocommerce_one_click_upsell_funnel {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Woocommerce_one_click_upsell_funnel_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Woocommerce_One_Click_Upsell_Funnel_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;
@@ -385,7 +385,7 @@ class Woocommerce_one_click_upsell_funnel {
 	 */
 	public function mwb_wocuf_woocommerce_version_check() {
 
-		require_once( ABSPATH . 'wp-content/plugins/woocommerce/woocommerce.php' );
+		require ABSPATH . 'wp-content/plugins/woocommerce/woocommerce.php';
 
 		global $woocommerce;
 

@@ -19,7 +19,7 @@
  * @subpackage woo_one_click_upsell_funnel/admin
  * @author     makewebbetter <webmaster@makewebbetter.com>
  */
-class Woocommerce_one_click_upsell_funnel_Admin {
+class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -1006,21 +1006,21 @@ class Woocommerce_one_click_upsell_funnel_Admin {
 					'title' => esc_html__( 'Upsell Sales by date', 'woo-one-click-upsell-funnel' ),
 					'description' => '',
 					'hide_title' => 1,
-					'callback' => array( 'Woocommerce_one_click_upsell_funnel_Admin', 'upsell_reporting_callback' ),
+					'callback' => array( 'Woocommerce_One_Click_Upsell_Funnel_Admin', 'upsell_reporting_callback' ),
 				),
 
 				'sales_by_product' => array(
 					'title' => esc_html__( 'Upsell Sales by product', 'woo-one-click-upsell-funnel' ),
 					'description' => '',
 					'hide_title' => 1,
-					'callback' => array( 'Woocommerce_one_click_upsell_funnel_Admin', 'upsell_reporting_callback' ),
+					'callback' => array( 'Woocommerce_One_Click_Upsell_Funnel_Admin', 'upsell_reporting_callback' ),
 				),
 
 				'sales_by_category' => array(
 					'title' => esc_html__( 'Upsell Sales by category', 'woo-one-click-upsell-funnel' ),
 					'description' => '',
 					'hide_title' => 1,
-					'callback' => array( 'Woocommerce_one_click_upsell_funnel_Admin', 'upsell_reporting_callback' ),
+					'callback' => array( 'Woocommerce_One_Click_Upsell_Funnel_Admin', 'upsell_reporting_callback' ),
 				),
 			),
 		);
