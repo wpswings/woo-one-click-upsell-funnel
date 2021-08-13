@@ -26,32 +26,34 @@ if ( ! defined( 'ABSPATH' ) ) {
  * view/edit and delete option.
  */
 
-// Delete funnel.
-if ( isset( $_GET['del_funnel_id'] ) ) {
+if ( ! empty( $_GET['del_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['del_nonce'] ) ), 'del_funnel' ) ) {
 
-	$funnel_id = sanitize_text_field( wp_unslash( $_GET['del_funnel_id'] ) );
+	// Delete funnel.
+	if ( isset( $_GET['del_funnel_id'] ) ) {
 
-	// Get all funnels.
-	$mwb_wocuf_pro_funnels = get_option( 'mwb_wocuf_funnels_list' );
+		$funnel_id = sanitize_text_field( wp_unslash( $_GET['del_funnel_id'] ) );
 
-	foreach ( $mwb_wocuf_pro_funnels as $single_funnel => $data ) {
+		// Get all funnels.
+		$mwb_wocuf_pro_funnels = get_option( 'mwb_wocuf_funnels_list' );
 
-		if ( (int) $funnel_id === (int) $single_funnel ) {
+		foreach ( $mwb_wocuf_pro_funnels as $single_funnel => $data ) {
 
-			unset( $mwb_wocuf_pro_funnels[ $single_funnel ] );
-			break;
+			if ( (int) $funnel_id === (int) $single_funnel ) {
+
+				unset( $mwb_wocuf_pro_funnels[ $single_funnel ] );
+				break;
+			}
 		}
+
+		// Remove array values so that the funnel id keys doesn't change.
+		// $mwb_wocuf_pro_funnels = array_values($mwb_wocuf_pro_funnels);.
+
+		update_option( 'mwb_wocuf_funnels_list', $mwb_wocuf_pro_funnels );
+
+		wp_safe_redirect( esc_url( admin_url( 'admin.php?page=mwb-wocuf-setting&tab=funnels-list' ) ) );
+		exit();
 	}
-
-	// Remove array values so that the funnel id keys doesn't change.
-	// $mwb_wocuf_pro_funnels = array_values($mwb_wocuf_pro_funnels);.
-
-	update_option( 'mwb_wocuf_funnels_list', $mwb_wocuf_pro_funnels );
-
-	wp_safe_redirect( esc_url( admin_url( 'admin.php' ) . '?page=mwb-wocuf-setting&tab=funnels-list' ) );
-	exit();
 }
-
 
 // Get all funnels.
 $mwb_wocuf_pro_funnels_list = get_option( 'mwb_wocuf_funnels_list' );
