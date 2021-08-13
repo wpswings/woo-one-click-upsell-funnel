@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
- // Save settings on Save changes.
+// Save settings on Save changes.
 if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 
 	// Nonce verification.
@@ -104,7 +104,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 						?>
 
 						<label class="mwb_wocuf_pro_enable_plugin_label">
-							<input class="mwb_wocuf_pro_enable_plugin_input" type="checkbox" <?php echo ( 'on' == $mwb_wocuf_enable_plugin ) ? "checked='checked'" : ''; ?> name="mwb_wocuf_enable_plugin" >	
+							<input class="mwb_wocuf_pro_enable_plugin_input" type="checkbox" <?php echo ( 'on' === $mwb_wocuf_enable_plugin ) ? "checked='checked'" : ''; ?> name="mwb_wocuf_enable_plugin" >	
 							<span class="mwb_wocuf_pro_enable_plugin_span"></span>
 						</label>		
 					</td>
@@ -149,7 +149,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 						?>
 
 						<select class="mwb_upsell_skip_similar_offer_select" name="skip_similar_offer">
-						
+
 							<option value="yes" <?php selected( $skip_similar_offer, 'yes' ); ?> ><?php esc_html_e( 'Yes', 'woo-one-click-upsell-funnel' ); ?></option>
 							<option value="no" <?php selected( $skip_similar_offer, 'no' ); ?> ><?php esc_html_e( 'No', 'woo-one-click-upsell-funnel' ); ?></option>
 
@@ -179,7 +179,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 						?>
 
 						<select class="mwb_upsell_remove_all_styles_select" name="remove_all_styles">
-						
+
 							<option value="yes" <?php selected( $remove_all_styles, 'yes' ); ?> ><?php esc_html_e( 'Yes', 'woo-one-click-upsell-funnel' ); ?></option>
 							<option value="no" <?php selected( $remove_all_styles, 'no' ); ?> ><?php esc_html_e( 'No', 'woo-one-click-upsell-funnel' ); ?></option>
 
@@ -232,7 +232,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 						?>
 
 						<label class="mwb_wocuf_pro_enable_plugin_label">
-							<input class="mwb_wocuf_pro_enable_plugin_input" type="checkbox" <?php echo ( 'yes' == $skip_similar_offer ) ? "checked='checked'" : ''; ?> name="smart_skip_if_purchased" >	
+							<input class="mwb_wocuf_pro_enable_plugin_input" type="checkbox" <?php echo ( 'yes' === $skip_similar_offer ) ? "checked='checked'" : ''; ?> name="smart_skip_if_purchased" >	
 							<span class="mwb_wocuf_pro_enable_plugin_span"></span>
 						</label>		
 					</td>
@@ -387,8 +387,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 						</div>
 					</td>
 				</tr>
-				<!-- Global Custom JS end -->
-				
+				<!-- Global Custom JS end -->	
 				<?php do_action( 'mwb_wocuf_pro_create_more_settings' ); ?>
 			</tbody>
 		</table>
