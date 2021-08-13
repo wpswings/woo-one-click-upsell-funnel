@@ -36,7 +36,7 @@ if ( isset( $_GET['del_funnel_id'] ) ) {
 
 	foreach ( $mwb_wocuf_pro_funnels as $single_funnel => $data ) {
 
-		if ( $funnel_id == $single_funnel ) {
+		if ( (int) $funnel_id === (int) $single_funnel ) {
 
 			unset( $mwb_wocuf_pro_funnels[ $single_funnel ] );
 			break;
@@ -48,7 +48,7 @@ if ( isset( $_GET['del_funnel_id'] ) ) {
 
 	update_option( 'mwb_wocuf_funnels_list', $mwb_wocuf_pro_funnels );
 
-	wp_redirect( esc_url( admin_url( 'admin.php' ) . '?page=mwb-wocuf-setting&tab=funnels-list' ) );
+	wp_safe_redirect( esc_url( admin_url( 'admin.php' ) . '?page=mwb-wocuf-setting&tab=funnels-list' ) );
 	exit();
 }
 
@@ -114,15 +114,15 @@ else {
 
 						<?php
 
-						$funnel_status = ! empty( $value['mwb_upsell_funnel_status'] ) ? $value['mwb_upsell_funnel_status'] : 'no';
-						$global_funnel = ! empty( $value['mwb_wocuf_global_funnel'] ) ? $value['mwb_wocuf_global_funnel'] : 'no';
-						$exclusive_offer = ! empty( $value['mwb_wocuf_exclusive_offer'] ) ? $value['mwb_wocuf_exclusive_offer'] : 'no';
+						$funnel_status       = ! empty( $value['mwb_upsell_funnel_status'] ) ? $value['mwb_upsell_funnel_status'] : 'no';
+						$global_funnel       = ! empty( $value['mwb_wocuf_global_funnel'] ) ? $value['mwb_wocuf_global_funnel'] : 'no';
+						$exclusive_offer     = ! empty( $value['mwb_wocuf_exclusive_offer'] ) ? $value['mwb_wocuf_exclusive_offer'] : 'no';
 						$smart_offer_upgrade = ! empty( $value['mwb_wocuf_smart_offer_upgrade'] ) ? $value['mwb_wocuf_smart_offer_upgrade'] : 'no';
 
 						// Pre v3.0.0 Funnels will be live.
 						$funnel_status = ! empty( $value['mwb_upsell_fsav3'] ) ? $funnel_status : 'yes';
 
-						if ( 'yes' == $funnel_status ) {
+						if ( 'yes' === $funnel_status ) {
 
 							echo '<span class="mwb_upsell_funnel_list_live"></span><span class="mwb_upsell_funnel_list_live_name">' . esc_html__( 'Live', 'woo-one-click-upsell-funnel' ) . '</span>';
 						} else {
@@ -132,17 +132,17 @@ else {
 
 						echo "<div class='mwb-upsell-funnel-attributes $funnel_status'>"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
-						if ( 'yes' == $global_funnel ) {
+						if ( 'yes' === $global_funnel ) {
 
 							echo '<p>' . esc_html__( 'Global Funnel', 'woo-one-click-upsell-funnel' ) . '</p>';
 						}
 
-						if ( 'yes' == $exclusive_offer ) {
+						if ( 'yes' === $exclusive_offer ) {
 
 							echo '<p>' . esc_html__( 'Exclusive Offer', 'woo-one-click-upsell-funnel' ) . '</p>';
 						}
 
-						if ( 'yes' == $smart_offer_upgrade ) {
+						if ( 'yes' === $smart_offer_upgrade ) {
 
 							echo '<p>' . esc_html__( 'Smart Offer Upgrade', 'woo-one-click-upsell-funnel' ) . '</p>';
 						}
@@ -150,7 +150,6 @@ else {
 						echo '</div>';
 
 						?>
-					
 					</td>
 
 					<!-- Funnel Target products. -->
@@ -224,10 +223,10 @@ else {
 					<td>
 
 						<!-- Funnel View/Edit link -->
-						<a class="mwb_wocuf_pro_funnel_links" href="?page=mwb-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $key ); ?>"><?php esc_html_e( 'View / Edit', 'woo-one-click-upsell-funnel' ); ?></a>
+						<a class="mwb_wocuf_pro_funnel_links" href="?page=mwb-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $key ); ?>&manage_nonce=<?php echo esc_html( wp_create_nonce( 'manage_funnel' ) ); ?>"><?php esc_html_e( 'View / Edit', 'woo-one-click-upsell-funnel' ); ?></a>
 
 						<!-- Funnel Delete link -->
-						<a class="mwb_wocuf_pro_funnel_links" href="?page=mwb-wocuf-setting&tab=funnels-list&del_funnel_id=<?php echo esc_html( $key ); ?>"><?php esc_html_e( 'Delete', 'woo-one-click-upsell-funnel' ); ?></a>
+						<a class="mwb_wocuf_pro_funnel_links" href="?page=mwb-wocuf-setting&tab=funnels-list&del_funnel_id=<?php echo esc_html( $key ); ?>&del_nonce=<?php echo esc_html( wp_create_nonce( 'del_funnel' ) ); ?>"><?php esc_html_e( 'Delete', 'woo-one-click-upsell-funnel' ); ?></a>
 					</td>
 
 					<?php do_action( 'mwb_wocuf_pro_funnel_add_more_col_data' ); ?>
@@ -242,8 +241,7 @@ else {
 
 <!-- Create New Funnel -->
 <div class="mwb_wocuf_pro_create_new_funnel">
-
-	<a href="?page=mwb-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $mwb_wocuf_pro_funnel_number + 1 ); ?>"><?php esc_html_e( '+Create New Funnel', 'woo-one-click-upsell-funnel' ); ?></a>
+	<a href="?page=mwb-wocuf-setting&manage_nonce=<?php echo esc_html( wp_create_nonce( 'manage_funnel' ) ); ?>&tab=creation-setting&funnel_id=<?php echo esc_html( $mwb_wocuf_pro_funnel_number + 1 ); ?>"><?php esc_html_e( '+Create New Funnel', 'woo-one-click-upsell-funnel' ); ?></a>
 </div>
 
 <?php do_action( 'mwb_wocuf_pro_extend_funnels_listing' ); ?>
