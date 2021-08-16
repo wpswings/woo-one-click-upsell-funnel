@@ -30,6 +30,12 @@
 * Use pre-defined shortcodes to create offer page elements.
 * Create fully customizable upsell offer pages without any coding skill.
 * Build responsive and product specific offer pages.
+* It’s compatible with our [**Upsell Order Bump Offer for WooCommerce**](https://wordpress.org/plugins/upsell-order-bump-offer-for-woocommerce/)
+
+### PLUGIN MEETS YOUR REQUIREMENT, SO 
+[**Download Now !!**](https://downloads.wordpress.org/plugin/woo-one-click-upsell-funnel.zip) 
+
+Visit [**One Click Upsell Funnel for WooCommerce Documentation**](https://docs.makewebbetter.com/woocommerce-one-click-upsell-funnel/?utm_source=MWB-upsell-git&utm_medium=MWB-git&utm_campaign=MWB-upsell-git) 
 
 ## WHAT’S INCLUDED IN OUR FREE ONE CLICK UPSELL FUNNEL WORDPRESS PLUGIN
 
@@ -64,6 +70,8 @@ As the name suggests, it is one click upsell, which means the customers can purc
 
 Visit [**One Click Upsell Funnel for WooCommerce Documentation**](https://docs.makewebbetter.com/woocommerce-one-click-upsell-funnel/?utm_source=MWB-upsell-git&utm_medium=MWB-git&utm_campaign=MWB-upsell-git) and learn more about the features and working of the plugin. Check out [One Click Upsell knowledge base](https://support.makewebbetter.com/wordpress-plugins-knowledge-base/category/woocommerce-one-click-upsell-funnel-pro-kb/?utm_source=MWB-upsell-git&utm_medium=MWB-git&utm_campaign=MWB-upsell-git) for some deep insights and FAQs on the plugin.
 
+If our documentation doesn’t contain the solution to your problem, you can visit the [**MakeWebBetter Forums**](https://forums.makewebbetter.com/?utm_source=MWB-upsell-git&utm_medium=MWB-git&utm_campaign=MWB-upsell-git) with your question.
+
 ## WHAT PREMIUM VERSION OF ONE CLICK UPSELL FUNNEL FOR WOOCOMMERCE OFFERS
 
 * Variable Products
@@ -86,5 +94,6 @@ If you need support or have questions, kindly use our online chat window [**here
 - [**Visit our LinkedIn Account**](https://www.linkedin.com/company/makewebbetter)
 - [**Subscribe To Our YouTube Channel**](https://www.youtube.com/channel/UC7nYNf0JETOwW3GOD_EW2Ag)
 - [**Follow Our SlideShare**](https://www.slideshare.net/MakeWebBetter)
+
 
 
