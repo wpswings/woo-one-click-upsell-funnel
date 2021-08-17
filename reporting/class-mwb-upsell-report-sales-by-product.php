@@ -255,7 +255,7 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 			<input type="hidden" name="start_date" value="<?php echo ( ! empty( $_GET['start_date'] ) ) ? esc_attr( sanitize_text_field( wp_unslash( $_GET['start_date'] ) ) ) : ''; ?>" />
 			<input type="hidden" name="end_date" value="<?php echo ( ! empty( $_GET['end_date'] ) ) ? esc_attr( sanitize_text_field( wp_unslash( $_GET['end_date'] ) ) ) : ''; ?>" />
 			<input type="hidden" name="page" value="<?php echo ( ! empty( $_GET['page'] ) ) ? esc_attr( sanitize_text_field( wp_unslash( $_GET['page'] ) ) ) : ''; ?>" />
-			<input type="hidden" name="tab" value="<?php echo ( ! empty( $_GET['tab'] ) ) ? esc_attr( sanitize_text_field( wp_unslash( $_GET['tab'] ) ) ): ''; ?>" />
+			<input type="hidden" name="tab" value="<?php echo ( ! empty( $_GET['tab'] ) ) ? esc_attr( sanitize_text_field( wp_unslash( $_GET['tab'] ) ) ) : ''; ?>" />
 			<input type="hidden" name="report" value="<?php echo ( ! empty( $_GET['report'] ) ) ? esc_attr( sanitize_text_field( wp_unslash( $_GET['report'] ) ) ) : ''; ?>" />
 		  <?php wp_nonce_field( 'custom_range', 'wc_reports_nonce', false ); ?>
 		  <?php // @codingStandardsIgnoreEnd ?>
@@ -303,13 +303,15 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 
 		if ( $top_sellers ) :
 			// @codingStandardsIgnoreStart
-			foreach ( $top_sellers as $product ) : ?>
+			foreach ( $top_sellers as $product ) :
+				?>
 			<tr class="<?php echo esc_html( in_array( $product->product_id, $this->product_ids ) ? 'active' : '' ); ?>">
 				<td class="count"><?php echo esc_html( $product->order_item_qty ); ?></td>
 				<td class="name"><a href="<?php echo esc_url( add_query_arg( 'product_ids', $product->product_id ) ); ?>"><?php echo esc_html( get_the_title( $product->product_id ) ); ?></a></td>
 				<td class="sparkline"><?php $this->sales_sparkline( $product->product_id, 7, 'count' ); ?></td>
 			</tr>
-			<?php endforeach;
+				<?php
+			endforeach;
 			// @codingStandardsIgnoreEnd
 		else :
 			?>
@@ -364,13 +366,15 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 
 		if ( $top_freebies ) :
 			// @codingStandardsIgnoreStart
-			foreach ( $top_freebies as $product ) : ?>
+			foreach ( $top_freebies as $product ) :
+				?>
 			<tr class="<?php echo esc_html( in_array( $product->product_id, $this->product_ids ) ? 'active' : '' ); ?>">
 				<td class="count"><?php echo esc_html( $product->order_item_qty ); ?></td>
 				<td class="name"><a href="<?php echo esc_url( add_query_arg( 'product_ids', $product->product_id ) ); ?>"><?php echo esc_html( get_the_title( $product->product_id ) ); ?></a></td>
 				<td class="sparkline"><?php $this->sales_sparkline( $product->product_id, 7, 'count' ); ?></td>
 			</tr>
-			<?php endforeach;
+				<?php
+			endforeach;
 			// @codingStandardsIgnoreEnd
 		else :
 			?>
@@ -419,13 +423,15 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 
 		if ( $top_earners ) :
 			// @codingStandardsIgnoreStart
-			foreach ( $top_earners as $product ) : ?>
+			foreach ( $top_earners as $product ) :
+				?>
 			<tr class="<?php echo esc_html( in_array( $product->product_id, $this->product_ids ) ? 'active' : '' ); ?>">
 				<td class="count"><?php echo esc_html( $product->order_item_qty ); ?></td>
 				<td class="name"><a href="<?php echo esc_url( add_query_arg( 'product_ids', $product->product_id ) ); ?>"><?php echo esc_html( get_the_title( $product->product_id ) ); ?></a></td>
 				<td class="sparkline"><?php $this->sales_sparkline( $product->product_id, 7, 'count' ); ?></td>
 			</tr>
-			<?php endforeach;
+				<?php
+			endforeach;
 			// @codingStandardsIgnoreEnd
 		else :
 			?>
