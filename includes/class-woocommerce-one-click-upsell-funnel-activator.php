@@ -40,13 +40,13 @@ class Woocommerce_One_Click_Upsell_Funnel_Activator {
 
 		if ( empty( $mwb_wocuf_pro_offer_default_page_id ) || 'publish' !== get_post_status( $mwb_wocuf_pro_offer_default_page_id ) ) {
 			$mwb_wocuf_pro_funnel_page = array(
-				'comment_status'        => 'closed',
-				'ping_status'           => 'closed',
-				'post_content'          => $post_content,
-				'post_name'             => 'special-offer',
-				'post_status'           => 'publish',
-				'post_title'            => 'Special Offer',
-				'post_type'             => 'page',
+				'comment_status' => 'closed',
+				'ping_status'    => 'closed',
+				'post_content'   => $post_content,
+				'post_name'      => 'special-offer',
+				'post_status'    => 'publish',
+				'post_title'     => 'Special Offer',
+				'post_type'      => 'page',
 			);
 
 			$mwb_wocuf_pro_post = wp_insert_post( $mwb_wocuf_pro_funnel_page );
