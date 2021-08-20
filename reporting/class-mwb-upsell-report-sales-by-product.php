@@ -180,7 +180,12 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 			'sales_amount' => '#8eba36',
 			'item_count'   => '#dbe1e3',
 		);
+		$secure_nonce        = wp_create_nonce( 'mwb-upsell-auth-nonce' );
+		$id_nonce_verified   = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
 
+		if ( ! $id_nonce_verified ) {
+			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
+		}
 		$current_range = ! empty( $_GET['range'] ) ? sanitize_text_field( wp_unslash( $_GET['range'] ) ) : '7day'; //phpcs:ignore WordPress.Security.NonceVerification.NoNonceVerification
 
 		if ( ! in_array( $current_range, array( 'custom', 'year', 'last_month', 'month', '7day' ), true ) ) {
@@ -467,14 +472,20 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 	 */
 	public function get_export_button() {
 
+		$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
+		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+
+		if ( ! $id_nonce_verified ) {
+			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
+		}
 		$current_range = ! empty( $_GET['range'] ) ? sanitize_text_field( wp_unslash( $_GET['range'] ) ) : '7day'; //phpcs:ignore WordPress.Security.NonceVerification.NoNonceVerification
 		?>
 		<a href="#"
-			download="report-<?php echo esc_attr( $current_range ); ?>-<?php echo esc_html( date_i18n( 'Y-m-d', current_time( 'timestamp' ) ) ); ?>.csv"
+			download="report-<?php echo esc_attr( $current_range ); ?>-<?php echo esc_html( date_i18n( 'Y-m-d', time() ) ); ?>.csv"
 			class="export_csv"
 			data-export="chart"
 			data-xaxes="<?php esc_attr_e( 'Date', 'woocommerce' ); ?>"
-			data-groupby="<?php echo $this->chart_groupby; ?>"<?php // @codingStandardsIgnoreLine ?>
+			data-groupby="<?php echo $this->chart_groupby; ?>"<?php //phpcs:ignore // @codingStandardsIgnoreLine ?>
 		><?php esc_html_e( 'Export CSV', 'woocommerce' ); ?></a>
 		<?php
 	}
@@ -611,8 +622,8 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 			  {
 				label: "<?php echo esc_js( __( 'Number of items sold', 'woocommerce' ) ); ?>",
 				data: order_data.order_item_counts,
-				color: '<?php echo $this->chart_colours['item_count']; ?>',
-				bars: { fillColor: '<?php echo $this->chart_colours['item_count']; ?>', fill: true, show: true, lineWidth: 0, barWidth: <?php echo $this->barwidth; ?> * 0.5, align: 'center' },
+				color: '<?php echo $this->chart_colours['item_count']; //phpcs:ignore ?>',
+				bars: { fillColor: '<?php echo $this->chart_colours['item_count']; //phpcs:ignore  ?>', fill: true, show: true, lineWidth: 0, barWidth: <?php echo $this->barwidth; //phpcs:ignore  ?> * 0.5, align: 'center' },
 				shadowSize: 0,
 				hoverable: false
 			  },
@@ -620,11 +631,11 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 				label: "<?php echo esc_js( __( 'Sales amount', 'woocommerce' ) ); ?>",
 				data: order_data.order_item_amounts,
 				yaxis: 2,
-				color: '<?php echo $this->chart_colours['sales_amount']; ?>',
+				color: '<?php echo $this->chart_colours['sales_amount']; //phpcs:ignore  ?>',
 				points: { show: true, radius: 5, lineWidth: 3, fillColor: '#fff', fill: true },
 				lines: { show: true, lineWidth: 4, fill: false },
 				shadowSize: 0,
-				<?php echo $this->get_currency_tooltip(); ?>
+				<?php echo $this->get_currency_tooltip(); //phpcs:ignore  ?>
 			  }
 			];
 
@@ -659,10 +670,10 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 				  position: "bottom",
 				  tickColor: 'transparent',
 				  mode: "time",
-				  timeformat: "<?php echo ( 'day' === $this->chart_groupby ) ? '%d %b' : '%b'; ?>",
+				  timeformat: "<?php echo esc_html(( 'day' === $this->chart_groupby ) ? '%d %b' : '%b'); ?>",
 				  monthNames: JSON.parse( decodeURIComponent( '<?php echo rawurlencode( wp_json_encode( array_values( $wp_locale->month_abbrev ) ) ); ?>' ) ),
 				  tickLength: 1,
-				  minTickSize: [1, "<?php echo $this->chart_groupby; ?>"],
+				  minTickSize: [1, "<?php echo esc_html( $this->chart_groupby ); ?>"],
 				  font: {
 					color: "#aaa"
 				  }

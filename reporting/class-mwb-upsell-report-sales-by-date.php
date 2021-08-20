@@ -271,8 +271,8 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 
 		switch ( $this->chart_groupby ) {
 			case 'day':
-				/* translators: %s: average total sales */
 				$average_total_sales_title = sprintf(
+					/* translators: %s: average total sales */
 					'<strong>%s</strong> %s',
 					wc_price( $data->average_total_sales ),
 					esc_html__( 'average net daily upsell sales', 'woo-one-click-upsell-funnel' )
@@ -291,9 +291,9 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 		}
 
 		$legend[] = array(
-			/* translators: %s: total sales */
 			'title'            => sprintf(
-				__( '%s net upsell sales in this period', 'woo-one-click-upsell-funnel' ), // phpcs:ignore
+				/* translators: %s: total sales */
+				__( '%s net upsell sales in this period', 'woo-one-click-upsell-funnel' ),
 				'<strong>' . wc_price( $data->total_sales ) . '</strong>'
 			),
 			'placeholder'      => __( 'This is the sum of the upsell item totals after any refunds ( whole order refunds ) and excluding shipping and taxes.', 'woo-one-click-upsell-funnel' ),
@@ -309,9 +309,9 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 		}
 
 		$legend[] = array(
-			/* translators: %s: total orders */
 			'title'            => sprintf(
-				__( '%s upsell orders placed', 'woo-one-click-upsell-funnel' ), // phpcs:ignore
+				/* translators: %s: upsell sales */
+				__( '%s upsell orders placed', 'woo-one-click-upsell-funnel' ),
 				'<strong>' . $data->total_orders . '</strong>'
 			),
 			'color'            => $this->chart_colours['order_count'],
@@ -319,21 +319,20 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 		);
 
 		$legend[] = array(
-			/* translators: %s: total items */
 			'title'            => sprintf(
-				__( '%s upsell items purchased', 'woo-one-click-upsell-funnel' ), // phpcs:ignore
+				/* translators: %s: purchased sales */
+				__( '%s upsell items purchased', 'woo-one-click-upsell-funnel' ),
 				'<strong>' . $data->total_items . '</strong>'
 			),
 			'color'            => $this->chart_colours['item_count'],
 			'highlight_series' => 0,
 		);
 		$legend[] = array(
-			/* translators: 1: total refunds 2: total refunded orders 3: refunded items */
 			'title'            => sprintf(
-				__( '%s upsell refunded items', 'woo-one-click-upsell-funnel' ), // phpcs:ignore
+			/* translators: %s: refunded sales */
+				__( '%s upsell refunded items', 'woo-one-click-upsell-funnel' ),
 				'<strong>' . $data->refunded_order_items . '</strong>'
 			),
-
 			'placeholder'      => __( 'Total upsell refunded items from fully refunded orders.', 'woo-one-click-upsell-funnel' ),
 			'color'            => $this->chart_colours['refund_amount'],
 			'highlight_series' => 8,
@@ -381,7 +380,7 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 		?>
 		<a
 			href="#"
-			download="report-<?php echo esc_attr( $current_range ); ?>-<?php echo esc_attr( date_i18n( 'Y-m-d', current_time( 'timestamp' ) ) ); ?>.csv"
+			download="report-<?php echo esc_attr( $current_range ); ?>-<?php echo esc_attr( date_i18n( 'Y-m-d', time() ) ); ?>.csv"
 			class="export_csv"
 			data-export="chart"
 			data-xaxes="<?php esc_attr_e( 'Date', 'woo-one-click-upsell-funnel' ); ?>"
@@ -430,6 +429,7 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 			$data['gross_order_amounts'][ $order_amount_key ] = $order_amount_value;
 
 			$data['net_order_amounts'][ $order_amount_key ] = $order_amount_value;
+
 			// subtract the sum of the values from net order amounts.
 			$data['net_order_amounts'][ $order_amount_key ][1] -=
 			$data['shipping_amounts'][ $order_amount_key ][1] +
@@ -478,24 +478,24 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 				hoverable: false
 			},
 			{
-			label: "<?php echo esc_js( __( 'Average net sales amount', 'woo-one-click-upsell-funnel' ) ); ?>",
-			data: [ [ <?php echo esc_js( min( array_keys( $data['order_amounts'] ) ) ); ?>, <?php echo esc_js( $this->report_data->average_total_sales ); ?> ], [ <?php echo esc_js( max( array_keys( $data['order_amounts'] ) ) ); ?>, <?php echo esc_js( $this->report_data->average_total_sales ); ?> ] ],
+				label: "<?php echo esc_js( __( 'Average net sales amount', 'woo-one-click-upsell-funnel' ) ); ?>",
+				data: [ [ <?php echo esc_js( min( array_keys( $data['order_amounts'] ) ) ); ?>, <?php echo esc_js( $this->report_data->average_total_sales ); ?> ], [ <?php echo esc_js( max( array_keys( $data['order_amounts'] ) ) ); ?>, <?php echo esc_js( $this->report_data->average_total_sales ); ?> ] ],
 				yaxis: 2,
 				color: '<?php echo esc_js( $this->chart_colours['average'] ); ?>',
 				points: { show: false },
 				lines: { show: true, lineWidth: 3, fill: false },
 				shadowSize: 0,
-			hoverable: false
+				hoverable: false
 			},
 			{
-			label: "<?php echo esc_js( __( 'Net sales amount', 'woo-one-click-upsell-funnel' ) ); ?>",
-			data: order_data.gross_order_amounts,
-			yaxis: 2,
-			color: '<?php echo esc_js( $this->chart_colours['sales_amount'] ); ?>',
-			points: { show: true, radius: 5, lineWidth: 2, fillColor: '#fff', fill: true },
-			lines: { show: true, lineWidth: 3, fill: false },
-			shadowSize: 0,
-				<?php echo $this->get_currency_tooltip(); // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped ?>
+				label: "<?php echo esc_js( __( 'Net sales amount', 'woo-one-click-upsell-funnel' ) ); ?>",
+				data: order_data.gross_order_amounts,
+				yaxis: 2,
+				color: '<?php echo esc_js( $this->chart_colours['sales_amount'] ); ?>',
+				points: { show: true, radius: 5, lineWidth: 2, fillColor: '#fff', fill: true },
+				lines: { show: true, lineWidth: 3, fill: false },
+				shadowSize: 0,
+				<?php echo esc_html( $this->get_currency_tooltip() ); // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped ?>
 			},
 		];
 
@@ -531,7 +531,7 @@ class Mwb_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 				position: "bottom",
 				tickColor: 'transparent',
 				mode: "time",
-				timeformat: "<?php echo ( 'day' === $this->chart_groupby ) ? '%d %b' : '%b'; ?>",
+				timeformat: "<?php echo esc_html( ( 'day' === $this->chart_groupby ) ? '%d %b' : '%b' ); ?>",
 				monthNames: JSON.parse( decodeURIComponent( '<?php echo rawurlencode( wp_json_encode( array_values( $wp_locale->month_abbrev ) ) ); ?>' ) ),
 				tickLength: 1,
 				minTickSize: [1, "<?php echo esc_js( $this->chart_groupby ); ?>"],

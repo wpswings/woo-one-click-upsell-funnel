@@ -35,13 +35,13 @@ do_action( 'mwb_wocuf_pro_setting_tab_active' );
 <?php if ( ! mwb_upsell_lite_elementor_plugin_active() && false === get_transient( 'mwb_upsell_elementor_inactive_notice' ) ) : ?>
 
 <div id="mwb_upsell_elementor_notice" class="notice notice-info is-dismissible">
-	<p><span class="mwb_upsell_heading_span"><?php esc_html_e( 'We have integrated with Elementor', 'woo-one-click-upsell-funnel' ); ?></span><?php esc_html_e( ' – now the most advanced Wordpress page builder can be used to completely customize Upsell Offer pages. Moreover we provide three stunning and beautiful offer templates.', 'woo-one-click-upsell-funnel' ); ?></p>
+	<p><span class="mwb_upsell_heading_span"><?php esc_html_e( 'We have integrated with Elementor', 'woo-one-click-upsell-funnel' ); ?></span><?php esc_html_e( ' – now the most advanced WordPress page builder can be used to completely customize Upsell Offer pages. Moreover we provide three stunning and beautiful offer templates.', 'woo-one-click-upsell-funnel' ); ?></p>
 
 	<p><?php esc_html_e( 'To completely utilize all features of this plugin please activate Elementor.', 'woo-one-click-upsell-funnel' ); ?></p>
 
 	<p><?php esc_html_e( 'Elementor is FREE and available on ORG ', 'woo-one-click-upsell-funnel' ); ?><a href="https://wordpress.org/plugins/elementor/" target="_blank"><?php esc_html_e( 'here', 'woo-one-click-upsell-funnel' ); ?></a></p>
 
-	<p><?php esc_html_e( 'You don\'t need to worry about Elementor as it works independently and won\'t conflict with other page builders or Wordpress new editor.', 'woo-one-click-upsell-funnel' ); ?></p>
+	<p><?php esc_html_e( 'You don\'t need to worry about Elementor as it works independently and won\'t conflict with other page builders or WordPress new editor.', 'woo-one-click-upsell-funnel' ); ?></p>
 
 	<p class="submit">
 
@@ -56,7 +56,7 @@ do_action( 'mwb_wocuf_pro_setting_tab_active' );
 
 <div class="wrap woocommerce" id="mwb_wocuf_pro_setting_wrapper">
 
-	<!-- To make Wordpress notice appear at this place. As it searchs from top and appears at the 1st heading tag-->
+	<!-- To make WordPress notice appear at this place. As it searchs from top and appears at the 1st heading tag-->
 	<h1></h1>
 
 	<div class="hide"  id="mwb_wocuf_pro_loader">	

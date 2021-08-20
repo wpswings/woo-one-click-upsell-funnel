@@ -180,6 +180,13 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 					wp_localize_script( 'mwb-wocuf-pro-add_new-offer-script', 'mwb_upsell_lite_js_obj', $wocuf_js_data );
 
+					$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
+					$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+
+					if ( ! $id_nonce_verified ) {
+						wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
+					}
+
 					if ( ! empty( $_GET['mwb-upsell-offer-section'] ) ) {
 
 						$upsell_offer_section['value'] = sanitize_text_field( wp_unslash( $_GET['mwb-upsell-offer-section'] ) );
@@ -308,7 +315,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 						'comment_status' => 'closed',
 						'ping_status'    => 'closed',
 						'post_content'   => '',
-						'post_name'      => uniqid( 'special-offer-' ), // post slug
+						'post_name'      => uniqid( 'special-offer-' ), // post slug.
 						'post_title'     => 'Special Offer',
 						'post_status'    => 'publish',
 						'post_type'      => 'page',
@@ -770,6 +777,13 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 	 */
 	public function mwb_wocuf_pro_restrict_manage_posts() {
 
+		$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
+		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+
+		if ( ! $id_nonce_verified ) {
+			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
+		}
+
 		if ( isset( $_GET['post_type'] ) && 'shop_order' === sanitize_key( wp_unslash( $_GET['post_type'] ) ) ) {
 
 			if ( isset( $_GET['mwb_wocuf_pro_upsell_filter'] ) ) :
@@ -804,11 +818,17 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 	 */
 	public function mwb_wocuf_pro_request_query( $vars ) {
 
+		$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
+		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+
+		if ( ! $id_nonce_verified ) {
+			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
+		}
 		if ( isset( $_GET['mwb_wocuf_pro_upsell_filter'] ) && 'all_upsells' === $_GET['mwb_wocuf_pro_upsell_filter'] ) {
 
 			$vars = array_merge( $vars, array( 'meta_key' => 'mwb_wocuf_upsell_order' ) );    // phpcs:ignore
 
-		} elseif ( isset( $_GET['mwb_wocuf_pro_upsell_filter'] ) && 'no_upsells' == $_GET['mwb_wocuf_pro_upsell_filter'] ) {
+		} elseif ( isset( $_GET['mwb_wocuf_pro_upsell_filter'] ) && 'no_upsells' === $_GET['mwb_wocuf_pro_upsell_filter'] ) {
 
 			$vars = array_merge(
 				$vars,

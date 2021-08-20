@@ -15,7 +15,7 @@
 <?php
 
 	global $pagenow;
-if ( empty( $pagenow ) || 'plugins.php' != $pagenow ) {
+if ( empty( $pagenow ) || 'plugins.php' !== $pagenow ) {
 	return false;
 }
 

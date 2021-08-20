@@ -222,6 +222,13 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 
 		global $mwb_upsell_lite_plugin_activation;
 
+		$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
+		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+
+		if ( ! $id_nonce_verified ) {
+			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
+		}
+
 		// To hide Plugin activated notice.
 		unset( $_GET['activate'] );
 

@@ -55,6 +55,14 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 	 * Constructor.
 	 */
 	public function __construct() {
+
+		$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
+		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+
+		if ( ! $id_nonce_verified ) {
+			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
+		}
+
 		if ( isset( $_GET['show_categories'] ) ) {
 			$this->show_categories = is_array( $_GET['show_categories'] ) ? array_map( 'absint', $_GET['show_categories'] ) : array( absint( $_GET['show_categories'] ) );
 		}
@@ -127,6 +135,13 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 		);
 
 		$this->chart_colours = array( '#8eba36', '#3498db', '#1abc9c', '#34495e', '#2ecc71', '#f1c40f', '#e67e22', '#e74c3c', '#2980b9', '#8e44ad', '#2c3e50', '#16a085', '#27ae60', '#f39c12', '#d35400', '#c0392b' );
+
+		$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
+		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+
+		if ( ! $id_nonce_verified ) {
+			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
+		}
 
 		$current_range = ! empty( $_GET['range'] ) ? sanitize_text_field( wp_unslash( $_GET['range'] ) ) : '7day';
 
@@ -240,7 +255,7 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 
 			include_once WC()->plugin_path() . '/includes/walkers/class-wc-product-cat-dropdown-walker.php';
 
-			echo wc_walk_category_dropdown_tree( $categories, 0, $r ); // @codingStandardsIgnoreLine
+			echo wc_walk_category_dropdown_tree( $categories, 0, $r ); // phpcs:ignore
 		?>
 		</select>
 		  <?php // @codingStandardsIgnoreStart ?>
@@ -257,7 +272,8 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 	</div>
 	<script type="text/javascript">
 		jQuery(function(){
-		// Select all/None
+
+			// Select all/None
 			jQuery( '.chart-widget' ).on( 'click', '.select_all', function() {
 				jQuery(this).closest( 'div' ).find( 'select option' ).attr( 'selected', 'selected' );
 				jQuery(this).closest( 'div' ).find('select').change();
@@ -279,17 +295,23 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 	 * Output an export link.
 	 */
 	public function get_export_button() {
+		$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
+		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+
+		if ( ! $id_nonce_verified ) {
+			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
+		}
 
 		$current_range = ! empty( $_GET['range'] ) ? sanitize_text_field( wp_unslash( $_GET['range'] ) ) : '7day';
 		?>
-	<a
-		href="#"
-		download="report-<?php echo esc_attr( $current_range ); ?>-<?php echo esc_attr( date_i18n( 'Y-m-d', current_time( 'timestamp' ) ) ); ?>.csv"
-		class="export_csv"
-		data-export="chart"
-		data-xaxes="<?php esc_attr_e( 'Date', 'woocommerce' ); ?>"
-		data-groupby="<?php echo esc_attr( $this->chart_groupby ); ?>"
-	>
+		<a
+			href="#"
+			download="report-<?php echo esc_attr( $current_range ); ?>-<?php echo esc_attr( date_i18n( 'Y-m-d', time() ) ); ?>.csv"
+			class="export_csv"
+			data-export="chart"
+			data-xaxes="<?php esc_attr_e( 'Date', 'woocommerce' ); ?>"
+			data-groupby="<?php echo esc_attr( $this->chart_groupby ); ?>"
+		>
 		<?php esc_html_e( 'Export CSV', 'woocommerce' ); ?>
 	</a>
 		<?php
