@@ -465,6 +465,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 						$description = esc_html__( 'Schedule your funnel for specific weekdays.', 'woo-one-click-upsell-funnel' );
 
 						mwb_wc_help_tip( $description );
+
 						?>
 						<!-- Add multiselect since v3.0.0 -->
 						<select class="mwb_wocuf_pro_funnel_schedule mwb-upsell-funnel-schedule-search" name="mwb_wocuf_pro_funnel_schedule[]" multiple="multiple" data-placeholder="<?php esc_attr_e( 'Search for a specific days&hellip;', 'woo-one-click-upsell-funnel' ); ?>">
@@ -487,7 +488,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 							<?php foreach ( $mwb_wocuf_pro_funnel_schedule_options as $key => $day ) : ?>
 
-								<option <?php echo in_array( (int) $key, $selected_week, true ) ? 'selected' : ''; ?> value="<?php echo esc_html( $key ); ?>"><?php echo esc_html( $day ); ?></option>
+								<option <?php echo in_array( (string) $key, $selected_week, true ) ? 'selected' : ''; ?> value="<?php echo esc_html( $key ); ?>"><?php echo esc_html( $day ); ?></option>
 
 							<?php endforeach; ?>
 
@@ -663,9 +664,9 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 								// Loop through offers and set the saved one as selected.
 								foreach ( $mwb_wocuf_pro_existing_offers_2 as $current_offer_id_2 ) {
 
-									if ( (int) $current_offer_id_2 !== (int) $current_offer_id ) {
+									if ( (string) $current_offer_id_2 !== (string) $current_offer_id ) {
 
-										if ( (int) $mwb_wocuf_pro_offers_buy_now_offers[ $current_offer_id ] === (int) $current_offer_id_2 ) {
+										if ( (string) $mwb_wocuf_pro_offers_buy_now_offers[ $current_offer_id ] === (string) $current_offer_id_2 ) {
 
 											$mwb_wocuf_pro_buy_now_action_html .= '<option value=' . $current_offer_id_2 . ' selected="">' . esc_html__( 'Offer #', 'woo-one-click-upsell-funnel' ) . $current_offer_id_2 . '</option>';
 										} else {
@@ -809,7 +810,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 								<td>
 									<?php echo $mwb_wocuf_pro_buy_now_action_html; // phpcs:ignore ?>
-1
+
 									<span class="mwb_upsell_offer_description"><?php esc_html_e( 'Select where the customer will be redirected after accepting this offer', 'woo-one-click-upsell-funnel' ); ?></span>
 								</td>
 							</tr>
@@ -835,7 +836,6 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 								<?php
 
 								$assigned_post_id = ! empty( $post_id_assigned_array[ $current_offer_id ] ) ? $post_id_assigned_array[ $current_offer_id ] : '';
-
 								?>
 
 								<td>
@@ -861,7 +861,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 											<?php foreach ( $offer_templates_array as $template_key => $template_name ) : ?>
 												<!-- Offer templates foreach start-->
-												<div class="mwb_upsell_offer_template <?php echo esc_html( (int) $template_key === (int) $offer_template_active ? 'active' : '' ); ?>">
+												<div class="mwb_upsell_offer_template <?php echo esc_html( (string) $template_key === (string) $offer_template_active ? 'active' : '' ); ?>">
 
 													<div class="mwb_upsell_offer_template_sub_div"> 
 
@@ -874,7 +874,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 														<div class="mwb_upsell_offer_action">
 
-															<?php if ( (int) $template_key !== (int) $offer_template_active ) : ?>
+															<?php if ( (string) $template_key !== (string) $offer_template_active ) : ?>
 
 															<button class="button-primary mwb_upsell_activate_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" data-offer-id="<?php echo esc_html( $current_offer_id ); ?>" data-funnel-id="<?php echo esc_html( $mwb_wocuf_pro_funnel_id ); ?>" data-offer-post-id="<?php echo esc_html( $assigned_post_id ); ?>" ><?php esc_html_e( 'Insert and Activate', 'woo-one-click-upsell-funnel' ); ?></button>
 
