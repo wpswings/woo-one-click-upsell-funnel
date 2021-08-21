@@ -348,10 +348,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 					update_option( 'mwb_upsell_lite_offer_post_ids', $upsell_offer_post_ids );
 
 				}
-			} // phpcs:ignore
-
-			// When Elementor is not active.
-			else {
+			} else { // When Elementor is not active.
 
 				// Will return 'Feature not supported' part as $funnel_offer_post_id is empty.
 				$funnel_offer_template_section_html = $this->get_funnel_offer_template_section_html( $funnel_offer_post_id, $offer_index, $funnel_id );
