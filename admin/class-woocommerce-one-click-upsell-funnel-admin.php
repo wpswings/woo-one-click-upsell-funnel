@@ -422,9 +422,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 		    </tr>
 		    </table>
 		    <input type="hidden" name="mwb_wocuf_applied_offer_number[' . $offer_index . ']" value="' . $offer_index . '">
-		    ' . $funnel_offer_post_html . '
-
-		    </div>';
+		    ' . $funnel_offer_post_html . '</div>';
 
 			$new_data = apply_filters( 'mwb_wocuf_pro_add_more_to_offers', $data );
 
@@ -585,7 +583,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 		$offer_templates_array = array(
 			'one'   => 'mwb_upsell_lite_elementor_offer_template_1',
 			'two'   => 'mwb_upsell_lite_elementor_offer_template_2',
-			'three' => 'mwb_upsell_lite_lite_elementor_offer_template_3',
+			'three' => 'mwb_upsell_lite_elementor_offer_template_3',
 		);
 
 		foreach ( $offer_templates_array as $template_key => $callback_function ) {
@@ -821,6 +819,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 		if ( ! $id_nonce_verified ) {
 			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
 		}
+
 		if ( isset( $_GET['mwb_wocuf_pro_upsell_filter'] ) && 'all_upsells' === $_GET['mwb_wocuf_pro_upsell_filter'] ) {
 
 			$vars = array_merge( $vars, array( 'meta_key' => 'mwb_wocuf_upsell_order' ) );    // phpcs:ignore

@@ -228,14 +228,14 @@ function mwb_upsell_lite_offer_page_posts_deletion() {
 		}
 
 		// Now delete save posts which are not present in funnel.
-		foreach ( $saved_offer_post_ids as $saved_offer_post_key => $saved_offer_post_id ) {
 
-			if ( ! in_array( $saved_offer_post_id, $funnel_offer_post_ids, true ) ) {
+		foreach ( $saved_offer_post_ids as $saved_offer_post_key => $saved_offer_post_id ) {
+			if ( ! in_array( (string) $saved_offer_post_id, $funnel_offer_post_ids, true ) ) {
 
 				unset( $saved_offer_post_ids[ $saved_offer_post_key ] );
 
 				// Delete post permanently.
-				wp_delete_post( $saved_offer_post_id, true );
+				// wp_delete_post( $saved_offer_post_id, true );.
 			}
 		}
 
@@ -314,7 +314,7 @@ function mwb_upsell_lite_elementor_offer_template_2() {
  *
  * @since    2.0.0
  */
-function mwb_upsell_lite_lite_elementor_offer_template_3() {
+function mwb_upsell_lite_elementor_offer_template_3() {
 
 	// phpcs:disable
 	$elementor_data = file_get_contents( MWB_WOCUF_DIRPATH . 'json/offer-template-3.json' );

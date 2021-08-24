@@ -26,13 +26,13 @@ do_action( 'mwb_wocuf_pro_setting_tab_active' ); ?>
 
 <div class="wrap woocommerce" id="mwb_wocuf_pro_setting_wrapper">
 
-	<!-- To make Wordpress notice appear at this place. As it searchs from top and appears at the 1st heading tag-->
+	<!-- To make WordPress notice appear at this place. As it searchs from top and appears at the 1st heading tag-->
 	<h1></h1>
 
 	<div class="hide"  id="mwb_wocuf_pro_loader">	
 		<img id="mwb-wocuf-loading-image" src="<?php echo 'images/spinner-2x.gif'; ?>" >
 	</div>
-	
+
 	<div class="mwb_wocuf_pro_header">
 		<div class="mwb_wocuf_pro_setting_title"><?php esc_html_e( 'One Click Upsell Funnel for WooCommerce', 'woo-one-click-upsell-funnel' ); ?></div>
 
@@ -44,25 +44,25 @@ do_action( 'mwb_wocuf_pro_setting_tab_active' ); ?>
 			<p><?php esc_html_e( 'Regarding any issue, query or feature request for Upsell', 'woo-one-click-upsell-funnel' ); ?></p>
 		</div>
 	</div>
-	
+
 	<nav class="nav-tab-wrapper woo-nav-tab-wrapper">
 
-		<a class="nav-tab <?php echo 'reporting' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting-tracking&tab=reporting"><?php esc_html_e( 'Sales Reports', 'woo-one-click-upsell-funnel' ); ?></a>
-		<a class="nav-tab <?php echo 'ga-setting' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting-tracking&tab=ga-setting"><?php esc_html_e( 'Google Analytics', 'woo-one-click-upsell-funnel' ); ?></a>
-		<a class="nav-tab <?php echo 'pixel-setting' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting-tracking&tab=pixel-setting"><?php esc_html_e( 'FB Pixel', 'woo-one-click-upsell-funnel' ); ?></a>
-		<a class="nav-tab <?php echo 'overview' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting-tracking&tab=overview"><?php esc_html_e( 'Overview', 'woo-one-click-upsell-funnel' ); ?></a>
+		<a class="nav-tab <?php echo 'reporting' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting-tracking&tab=reporting"><?php esc_html_e( 'Sales Reports', 'woo-one-click-upsell-funnel' ); ?></a>
+		<a class="nav-tab <?php echo 'ga-setting' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting-tracking&tab=ga-setting"><?php esc_html_e( 'Google Analytics', 'woo-one-click-upsell-funnel' ); ?></a>
+		<a class="nav-tab <?php echo 'pixel-setting' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting-tracking&tab=pixel-setting"><?php esc_html_e( 'FB Pixel', 'woo-one-click-upsell-funnel' ); ?></a>
+		<a class="nav-tab <?php echo 'overview' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting-tracking&tab=overview"><?php esc_html_e( 'Overview', 'woo-one-click-upsell-funnel' ); ?></a>
 
 		<?php do_action( 'mwb_wocuf_pro_setting_tab' ); ?>	
 	</nav>
 	<?php
 
-	if ( 'reporting' == $active_tab ) {
+	if ( 'reporting' === $active_tab ) {
 		include_once 'templates/reporting.php';
-	} elseif ( 'ga-setting' == $active_tab ) {
+	} elseif ( 'ga-setting' === $active_tab ) {
 		include_once 'templates/ga-settings.php';
-	} elseif ( 'pixel-setting' == $active_tab ) {
+	} elseif ( 'pixel-setting' === $active_tab ) {
 		include_once 'templates/pixel-settings.php';
-	} elseif ( 'overview' == $active_tab ) {
+	} elseif ( 'overview' === $active_tab ) {
 		include_once 'templates/tracking-overview.php';
 	}
 

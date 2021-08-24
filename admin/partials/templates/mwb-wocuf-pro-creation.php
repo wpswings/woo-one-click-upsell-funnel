@@ -117,8 +117,7 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 		}
 	} elseif ( ! is_array( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ) {
 
-		$_POST['mwb_wocuf_pro_funnel_schedule'] = array( $_POST['mwb_wocuf_pro_funnel_schedule'] ); // phpcs:ignore
-		// Sanitized and unslashed below.
+		$_POST['mwb_wocuf_pro_funnel_schedule'] = array( sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ) );
 	}
 
 	$mwb_wocuf_pro_funnel        = array();
@@ -189,7 +188,6 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 
 	$mwb_wocuf_pro_funnel['mwb_wocuf_applied_offer_number'] = $applied_offer_number;
 
-
 	// Sanitize and strip slashes for page id assigned.
 	$post_id_assigned = ! empty( $_POST['mwb_upsell_post_id_assigned'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_upsell_post_id_assigned'] ) ) : '';
 
@@ -247,8 +245,6 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 	// POST funnel as array at funnel id key.
 	$mwb_wocuf_pro_funnel_series[ $mwb_wocuf_pro_funnel_id ] = ! empty( $mwb_wocuf_pro_funnel ) && is_array( $mwb_wocuf_pro_funnel ) ? $mwb_wocuf_pro_funnel : array();
 
-
-
 	// If there are other funnels.
 	if ( is_array( $mwb_wocuf_pro_created_funnels ) && count( $mwb_wocuf_pro_created_funnels ) ) {
 
@@ -273,6 +269,7 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 		}
 
 		update_option( 'mwb_wocuf_funnels_list', $mwb_wocuf_pro_created_funnels );
+
 	} else { // If there are no other funnels.
 
 		update_option( 'mwb_wocuf_funnels_list', $mwb_wocuf_pro_funnel_series );

@@ -1715,7 +1715,6 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	public function product_image_shortcode_content( $atts ) {
 
 		$validate_shortcode = $this->validate_shortcode();
-
 		if ( $validate_shortcode ) {
 
 			$live_params_from_url = mwb_upsell_lite_get_pid_from_url_params();
@@ -1763,10 +1762,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 						return $upsell_product_image_src_div;
 					}
 				}
-			} // phpcs:ignore
-
-			// When not Live Offer.
-			else {
+			} else { // When not Live Offer.
 
 				global $post;
 				$offer_page_id = $post->ID;
