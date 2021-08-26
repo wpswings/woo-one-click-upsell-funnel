@@ -431,7 +431,7 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 			foreach ( $top_earners as $product ) :
 				?>
 			<tr class="<?php echo esc_html( in_array( $product->product_id, $this->product_ids ) ? 'active' : '' ); ?>">
-				<td class="count"><?php echo esc_html( $product->order_item_qty ); ?></td>
+				<td class="count"><?php echo esc_html( ! empty( $product->order_item_qty ) ? $product->order_item_qty : 0 ); ?></td>
 				<td class="name"><a href="<?php echo esc_url( add_query_arg( 'product_ids', $product->product_id ) ); ?>"><?php echo esc_html( get_the_title( $product->product_id ) ); ?></a></td>
 				<td class="sparkline"><?php $this->sales_sparkline( $product->product_id, 7, 'count' ); ?></td>
 			</tr>
