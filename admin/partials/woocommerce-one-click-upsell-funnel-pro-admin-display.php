@@ -35,7 +35,7 @@ do_action( 'mwb_wocuf_pro_setting_tab_active' );
 <?php if ( ! mwb_upsell_lite_elementor_plugin_active() && false === get_transient( 'mwb_upsell_elementor_inactive_notice' ) ) : ?>
 
 <div id="mwb_upsell_elementor_notice" class="notice notice-info is-dismissible">
-	<p><span class="mwb_upsell_heading_span"><?php esc_html_e( 'We have integrated with Elementor', 'woo-one-click-upsell-funnel' ); ?></span><?php esc_html_e( ' – now the most advanced WordPress page builder can be used to completely customize Upsell Offer pages. Moreover we provide three stunning and beautiful offer templates.', 'woo-one-click-upsell-funnel' ); ?></p>
+	<p><span class="mwb_upsell_heading_span"><?php esc_html_e( 'We have integrated with Elementor', 'woo-one-click-upsell-funnel' ); ?></span><?php esc_html_e( ' – now the most advanced WordPress page builder can be used to completely customize Upsell Offer pages. Moreover, we provide three stunning and beautiful offer templates.', 'woo-one-click-upsell-funnel' ); ?></p>
 
 	<p><?php esc_html_e( 'To completely utilize all features of this plugin please activate Elementor.', 'woo-one-click-upsell-funnel' ); ?></p>
 

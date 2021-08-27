@@ -423,7 +423,7 @@ if ( ! function_exists( 'mwb_upsell_lite_get_first_offer_after_redirect' ) ) {
 	}
 }
 
-if ( ! function_exists( 'mwb_wc_help_tip' ) ) {
+if ( ! function_exists( 'mwb_upsell_lite_wc_help_tip' ) ) {
 
 	/**
 	 * Get tooltip.
@@ -431,7 +431,7 @@ if ( ! function_exists( 'mwb_wc_help_tip' ) ) {
 	 * @param mixed $tip message.
 	 * @since    3.0.4
 	 */
-	function mwb_wc_help_tip( $tip = '' ) {
+	function mwb_upsell_lite_wc_help_tip( $tip = '' ) {
 		?>
 		<span class="woocommerce-help-tip" data-tip="<?php echo esc_html( $tip ); ?>"></span>
 		<?php

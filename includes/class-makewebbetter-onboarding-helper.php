@@ -374,7 +374,7 @@ class Makewebbetter_Onboarding_Helper {
 
 			wp_rand() => array(
 				'id'          => 'onboard-email',
-				'label'       => esc_html__( 'What is the best email address to contact you?' ),
+				'label'       => esc_html__( 'What is the best email address to contact you?', 'woo-one-click-upsell-funnel' ),
 				'type'        => 'email',
 				'name'        => 'email',
 				'value'       => $current_user_email,
@@ -384,7 +384,7 @@ class Makewebbetter_Onboarding_Helper {
 
 			wp_rand() => array(
 				'id'          => 'onboard-number',
-				'label'       => esc_html__( 'What is your contact number?' ),
+				'label'       => esc_html__( 'What is your contact number?', 'woo-one-click-upsell-funnel' ),
 				'type'        => 'text',
 				'name'        => 'phone',
 				'value'       => '',

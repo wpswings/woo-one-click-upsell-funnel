@@ -360,10 +360,6 @@ input#s2id_autogen1 {
 	.on-boarding-email-field {
 		width: 99% !important;
 	}
-  /* .mwb-on-boarding-wrapper-background.onboard-popup-show {
-    top: 2% !important;
-    transition: 0.5s linear all;
-    } */
 }
 @media only screen and (max-width: 453px) {
 	.mwb-on-boarding-form-verify  {

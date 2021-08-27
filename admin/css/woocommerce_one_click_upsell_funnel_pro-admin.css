@@ -920,11 +920,6 @@ span.mwb_wocuf_pro_span label::after {
   height: auto;
   font-size: 14px;
 }
-/*.new_created_offers.mwb_upsell_single_offer .mwb_upsell_offer_title {
-    background-color: #23282d;
-    font-weight: 400;
-    color: #fff;
-    }*/
     #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .new_offers .mwb_upsell_offer_title {
       display: inline-block;
       border-radius: 10px 0px;
@@ -1086,10 +1081,6 @@ div#mwb_upsell_funnel_status .mwb_upsell_funnel_span {
 #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading 
 div#mwb_upsell_funnel_status .mwb_upsell_funnel_span:before {
   border-radius: 50%;
-}
-
-
-.slider.round:before {
 }
 #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading div#mwb_upsell_funnel_status .mwb_upsell_funnel_span{
  position: absolute;

@@ -36,16 +36,16 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 
 	// Handle Data is POST here.
 	$mwb_upsell_ga_analytics_config = array(
-		'ga_account_id' => ! empty( $_POST['ga_account_id'] ) ? sanitize_text_field( wp_unslash( $_POST['ga_account_id'] ) ) : '',
-		'enable_ga_gst' => ! empty( $_POST['enable_ga_gst'] ) ? 'yes' : 'no',
+		'ga_account_id'         => ! empty( $_POST['ga_account_id'] ) ? sanitize_text_field( wp_unslash( $_POST['ga_account_id'] ) ) : '',
+		'enable_ga_gst'         => ! empty( $_POST['enable_ga_gst'] ) ? 'yes' : 'no',
 		'enable_purchase_event' => ! empty( $_POST['enable_purchase_event'] ) ? 'yes' : 'no',
 	);
 
 	if ( ! empty( $mwb_upsell_fb_pixel_config ) || ! empty( $mwb_upsell_ga_analytics_config ) ) {
 
 		$mwb_upsell_analytics_options = array(
-			'facebook-pixel'    => $mwb_upsell_fb_pixel_config,
-			'google-analytics'  => $mwb_upsell_ga_analytics_config,
+			'facebook-pixel'   => $mwb_upsell_fb_pixel_config,
+			'google-analytics' => $mwb_upsell_ga_analytics_config,
 		);
 
 		// Save.
@@ -70,36 +70,36 @@ $mwb_upsell_ga_analytics_config = ! empty( $mwb_upsell_analytics_options['google
 // Form Fields Mapping.
 $google_analytics_fields = array(
 
-	'mwb_wocuf_ga_account_id'   => array(
-		'name'  => 'ga_account_id',
-		'label' => 'Google Analytics ID',
-		'type'  => 'text',
-		'required'  => true,
+	'mwb_wocuf_ga_account_id'         => array(
+		'name'                  => 'ga_account_id',
+		'label'                 => 'Google Analytics ID',
+		'type'                  => 'text',
+		'required'              => true,
 		'attribute_description' => esc_html__( 'Log into your google analytics account to find your ID. eg: UA-XXXXXX-X', 'woo-one-click-upsell-funnel' ),
-		'placeholder'   => esc_html__( 'UA-XXXXXX-X', 'woo-one-click-upsell-funnel' ),
-		'value' => ! empty( $mwb_upsell_ga_analytics_config['ga_account_id'] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config['ga_account_id'] ) ) : '',
+		'placeholder'           => esc_html__( 'UA-XXXXXX-X', 'woo-one-click-upsell-funnel' ),
+		'value'                 => ! empty( $mwb_upsell_ga_analytics_config['ga_account_id'] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config['ga_account_id'] ) ) : '',
 	),
 
 
 
-	'mwb_wocuf_enable_basecode' => array(
-		'name'  => 'enable_ga_gst',
-		'label' => 'Enable Global Site Tag',
-		'type'  => 'checkbox',
-		'required'  => false,
+	'mwb_wocuf_enable_basecode'       => array(
+		'name'                  => 'enable_ga_gst',
+		'label'                 => 'Enable Global Site Tag',
+		'type'                  => 'checkbox',
+		'required'              => false,
 		'attribute_description' => esc_html__( 'Add Global Site Tag \'gtag.js\' to your website', 'woo-one-click-upsell-funnel' ),
-		'note'  => esc_html__( 'Only Enable this when you are not using any other Google analytics tracking on your website.', 'woo-one-click-upsell-funnel' ),
-		'value' => ! empty( $mwb_upsell_ga_analytics_config['enable_ga_gst'] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config['enable_ga_gst'] ) ) : 'no',
+		'note'                  => esc_html__( 'Only Enable this when you are not using any other Google analytics tracking on your website.', 'woo-one-click-upsell-funnel' ),
+		'value'                 => ! empty( $mwb_upsell_ga_analytics_config['enable_ga_gst'] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config['enable_ga_gst'] ) ) : 'no',
 	),
 
-	'mwb_wocuf_enable_purchase_event'   => array(
-		'name'  => 'enable_purchase_event',
-		'label' => 'Enable Purchase Event',
-		'type'  => 'checkbox',
-		'required'  => false,
+	'mwb_wocuf_enable_purchase_event' => array(
+		'name'                  => 'enable_purchase_event',
+		'label'                 => 'Enable Purchase Event',
+		'type'                  => 'checkbox',
+		'required'              => false,
 		'attribute_description' => esc_html__( 'This will trigger Google Analytics Purchase Event for Parent Order and for Upsells accordingly with respect to payment gateways.', 'woo-one-click-upsell-funnel' ),
-		'note'  => esc_html__( 'Make sure you disable your Purchase event if you are using any other Google analytics tracking on your website else it will track data twice.', 'woo-one-click-upsell-funnel' ),
-		'value' => ! empty( $mwb_upsell_ga_analytics_config['enable_purchase_event'] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config['enable_purchase_event'] ) ) : 'no',
+		'note'                  => esc_html__( 'Make sure you disable your Purchase event if you are using any other Google analytics tracking on your website else it will track data twice.', 'woo-one-click-upsell-funnel' ),
+		'value'                 => ! empty( $mwb_upsell_ga_analytics_config['enable_purchase_event'] ) ? sanitize_text_field( wp_unslash( $mwb_upsell_ga_analytics_config['enable_purchase_event'] ) ) : 'no',
 	),
 );
 
@@ -137,7 +137,7 @@ $google_analytics_fields = array(
 						printf(
 							'%s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s <b>%s</b> %s',
 							esc_html__( 'Please Go to', 'woo-one-click-upsell-funnel' ),
-							esc_html__( 'Wordpress Admin Dashboard', 'woo-one-click-upsell-funnel' ),
+							esc_html__( 'WordPress Admin Dashboard', 'woo-one-click-upsell-funnel' ),
 							esc_html__( '>', 'woo-one-click-upsell-funnel' ),
 							esc_html__( 'PixelYourSite', 'woo-one-click-upsell-funnel' ),
 							esc_html__( '>', 'woo-one-click-upsell-funnel' ),
@@ -181,14 +181,14 @@ $google_analytics_fields = array(
 
 				<?php if ( ! empty( $google_analytics_fields ) && is_array( $google_analytics_fields ) ) : ?>
 					<?php foreach ( $google_analytics_fields as $field_id => $field_data ) : ?>
-						
+
 						<tr valign="top">
 							<th scope="row" class="titledesc">
 								<label for="<?php echo esc_html( $field_id ); ?>"><?php echo esc_html( $field_data['label'] ); ?></label>
 							</th>
 
 							<td class="forminp forminp-text">
-								<?php mwb_wc_help_tip( $field_data['attribute_description'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+								<?php mwb_upsell_lite_wc_help_tip( $field_data['attribute_description'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
 								<?php if ( 'text' == $field_data['type'] ) : ?>
 
@@ -210,7 +210,6 @@ $google_analytics_fields = array(
 
 					<?php endforeach; ?>
 				<?php endif; ?>
-				
 				<?php do_action( 'mwb_wocuf_pro_create_more_settings' ); ?>
 			</tbody>
 		</table>

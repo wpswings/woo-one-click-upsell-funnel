@@ -18,9 +18,9 @@
  * Version:           3.0.4
  *
  * Requires at least:     4.4
- * Tested up to:          5.7
+ * Tested up to:          5.8
  * WC requires at least:  3.0
- * WC tested up to:       5.1.0
+ * WC tested up to:       5.6.0
  *
  * Author:            MakeWebBetter
  * Author URI:        https://makewebbetter.com/
@@ -112,7 +112,7 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 
 	define( 'MWB_WOCUF_DIRPATH', plugin_dir_path( __FILE__ ) );
 
-	define( 'MWB_WOCUF_VERSION', '3.0.3' );
+	define( 'MWB_WOCUF_VERSION', 'v3.0.4' );
 
 
 	/**
@@ -133,19 +133,17 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 		Woocommerce_One_Click_Upsell_Funnel_Deactivator::deactivate();
 	}
 
-	add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'mwb_wocuf_plugin_settings_link' );
+	add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'mwb_upsell_lite_plugin_settings_link' );
 
 	/**
 	 * This action is for woocommerce dependency check.
 	 *
 	 * @param mixed $links links.
 	 */
-	function mwb_wocuf_plugin_settings_link( $links ) {
+	function mwb_upsell_lite_plugin_settings_link( $links ) {
 
 		$plugin_links = array(
-			'<a href="' .
-						admin_url( 'admin.php?page=mwb-wocuf-setting&tab=overview' ) .
-						'">' . esc_html__( 'Settings', 'woo-one-click-upsell-funnel' ) . '</a>',
+			'<a href="' . admin_url( 'admin.php?page=mwb-wocuf-setting&tab=overview' ) . '">' . esc_html__( 'Settings', 'woo-one-click-upsell-funnel' ) . '</a>',
 		);
 		return array_merge( $plugin_links, $links );
 	}
@@ -237,7 +235,7 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 		<?php if ( 'woo_inactive' === $mwb_upsell_lite_plugin_activation['message'] ) : ?>
 
 			<div class="notice notice-error is-dismissible">
-				<p><strong><?php esc_html_e( 'WooCommerce' ); ?></strong><?php esc_html_e( ' is not activated, Please activate WooCommerce first to activate ' ); ?><strong><?php esc_html_e( 'One Click Upsell Funnel for WooCommerce' ); ?></strong><?php esc_html_e( '.' ); ?></p>
+				<p><strong><?php esc_html_e( 'WooCommerce', 'woo-one-click-upsell-funnel' ); ?></strong><?php esc_html_e( ' is not activated, Please activate WooCommerce first to activate ', 'woo-one-click-upsell-funnel' ); ?><strong><?php esc_html_e( 'One Click Upsell Funnel for WooCommerce', 'woo-one-click-upsell-funnel' ); ?></strong><?php esc_html_e( '.', 'woo-one-click-upsell-funnel' ); ?></p>
 			</div>
 
 		<?php endif;
