@@ -21,6 +21,13 @@ if ( class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
 	$this->onboard = new Makewebbetter_Onboarding_Helper();
 }
 
+$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
+$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+
+if ( ! $id_nonce_verified ) {
+	wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
+}
+
 $active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'funnels-list';
 
 if ( 'overview' === get_transient( 'mwb_upsell_default_settings_tab' ) ) {
@@ -62,7 +69,6 @@ do_action( 'mwb_wocuf_pro_setting_tab_active' );
 	<div class="hide"  id="mwb_wocuf_pro_loader">	
 		<img id="mwb-wocuf-loading-image" src="<?php echo 'images/spinner-2x.gif'; ?>" >
 	</div>
-	
 	<div class="mwb_wocuf_pro_header">
 		<div class="mwb_wocuf_pro_setting_title"><?php esc_html_e( 'One Click Upsell Funnel for WooCommerce', 'woo-one-click-upsell-funnel' ); ?></div>
 
@@ -74,28 +80,26 @@ do_action( 'mwb_wocuf_pro_setting_tab_active' );
 			<p><?php esc_html_e( 'Regarding any issue, query or feature request for Upsell', 'woo-one-click-upsell-funnel' ); ?></p>
 		</div>
 	</div>
-	
 	<nav class="nav-tab-wrapper woo-nav-tab-wrapper">
-		<a class="nav-tab <?php echo 'creation-setting' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting&tab=creation-setting"><?php esc_html_e( 'Save Funnel', 'woo-one-click-upsell-funnel' ); ?></a>
-		<a class="nav-tab <?php echo 'funnels-list' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting&tab=funnels-list"><?php esc_html_e( 'Funnels List', 'woo-one-click-upsell-funnel' ); ?></a>
-		<a class="nav-tab <?php echo 'shortcodes' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting&tab=shortcodes"><?php esc_html_e( 'Shortcodes', 'woo-one-click-upsell-funnel' ); ?></a>
-		<a class="nav-tab <?php echo 'settings' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting&tab=settings"><?php esc_html_e( 'Global Settings', 'woo-one-click-upsell-funnel' ); ?></a>
-		<a class="nav-tab <?php echo 'overview' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting&tab=overview"><?php esc_html_e( 'Overview', 'woo-one-click-upsell-funnel' ); ?></a>
-
+		<a class="nav-tab <?php echo 'creation-setting' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting&tab=creation-setting"><?php esc_html_e( 'Save Funnel', 'woo-one-click-upsell-funnel' ); ?></a>
+		<a class="nav-tab <?php echo 'funnels-list' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting&tab=funnels-list"><?php esc_html_e( 'Funnels List', 'woo-one-click-upsell-funnel' ); ?></a>
+		<a class="nav-tab <?php echo 'shortcodes' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting&tab=shortcodes"><?php esc_html_e( 'Shortcodes', 'woo-one-click-upsell-funnel' ); ?></a>
+		<a class="nav-tab <?php echo 'settings' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting&tab=settings"><?php esc_html_e( 'Global Settings', 'woo-one-click-upsell-funnel' ); ?></a>
+		<a class="nav-tab <?php echo 'overview' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting&tab=overview"><?php esc_html_e( 'Overview', 'woo-one-click-upsell-funnel' ); ?></a>
 
 		<?php do_action( 'mwb_wocuf_pro_setting_tab' ); ?>	
 	</nav>
 	<?php
 
-	if ( 'creation-setting' == $active_tab ) {
+	if ( 'creation-setting' === $active_tab ) {
 		include_once 'templates/mwb-wocuf-pro-creation.php';
-	} elseif ( 'funnels-list' == $active_tab ) {
+	} elseif ( 'funnels-list' === $active_tab ) {
 		include_once 'templates/mwb-wocuf-pro-funnels-list.php';
-	} elseif ( 'shortcodes' == $active_tab ) {
+	} elseif ( 'shortcodes' === $active_tab ) {
 		include_once 'templates/mwb-wocuf-pro-shortcodes.php';
-	} elseif ( 'settings' == $active_tab ) {
+	} elseif ( 'settings' === $active_tab ) {
 		include_once 'templates/mwb-wocuf-pro-settings.php';
-	} elseif ( 'overview' == $active_tab ) {
+	} elseif ( 'overview' === $active_tab ) {
 		include_once 'templates/mwb-wocuf-overview.php';
 	}
 
