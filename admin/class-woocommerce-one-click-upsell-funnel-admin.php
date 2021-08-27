@@ -264,12 +264,12 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 		/**
 		 * Add sub-menu for funnel settings.
 		 */
-		add_submenu_page( 'mwb-wocuf-setting', esc_html__( 'Funnels & Settings', 'woo-one-click-upsell-funnel' ), esc_html__( 'Funnels & Settings', 'woo-one-click-upsell-funnel' ), 'manage_options', 'mwb-wocuf-setting' );
+		add_submenu_page( 'mwb-wocuf-setting', 'Funnels & Settings', 'Funnels & Settings', 'manage_options', 'mwb-wocuf-setting' );
 
 		/**
 		 * Add sub-menu for reportings settings.
 		 */
-		add_submenu_page( 'mwb-wocuf-setting', esc_html__( 'Reports, Analytics & Tracking', 'woo-one-click-upsell-funnel' ), esc_html__( 'Reports, Analytics & Tracking', 'woo-one-click-upsell-funnel' ), 'manage_options', 'mwb-wocuf-setting-tracking', array( $this, 'add_submenu_page_reporting_callback' ) );
+		add_submenu_page( 'mwb-wocuf-setting', 'Reports, Analytics & Tracking', 'Reports, Analytics & Tracking', 'manage_options', 'mwb-wocuf-setting-tracking', array( $this, 'add_submenu_page_reporting_callback' ) );
 	}
 
 	/**
