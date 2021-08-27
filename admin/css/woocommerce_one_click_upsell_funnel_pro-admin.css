@@ -164,7 +164,7 @@
 }
 .show
 {
-  display: inline; !important;
+  display: inline !important;
 }
 .mwb_wocuf_pro_create_new_funnel{
   margin:0 auto;
@@ -1487,7 +1487,7 @@ button.button-primary.mwb_upsell_activate_offer_template:focus {
   table.form-table.mwb_wocuf_pro_creation_setting span.select2.select2-container.select2-container--default.select2-container--focus.select2-container--below {
     width: 100% !important;
   }
-  table.form-table.mwb_wocuf_pro_creation_setting {}
+  table.form-table.mwb_wocuf_pro_creation_sett
   .new_created_offers {
     overflow-x: auto;
     width: 100%;

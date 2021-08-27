@@ -485,7 +485,7 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 			class="export_csv"
 			data-export="chart"
 			data-xaxes="<?php esc_attr_e( 'Date', 'woocommerce' ); ?>"
-			data-groupby="<?php echo $this->chart_groupby; ?>"<?php //phpcs:ignore // @codingStandardsIgnoreLine ?>
+			data-groupby="<?php echo $this->chart_groupby; ?>"<?php // phpcs:ignore // @codingStandardsIgnoreLine ?>
 		><?php esc_html_e( 'Export CSV', 'woocommerce' ); ?></a>
 		<?php
 	}
@@ -623,7 +623,7 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 				label: "<?php echo esc_js( __( 'Number of items sold', 'woocommerce' ) ); ?>",
 				data: order_data.order_item_counts,
 				color: '<?php echo $this->chart_colours['item_count']; //phpcs:ignore ?>',
-				bars: { fillColor: '<?php echo $this->chart_colours['item_count']; //phpcs:ignore  ?>', fill: true, show: true, lineWidth: 0, barWidth: <?php echo $this->barwidth; //phpcs:ignore  ?> * 0.5, align: 'center' },
+				bars: { fillColor: '<?php echo $this->chart_colours['item_count']; //phpcs:ignore ?>', fill: true, show: true, lineWidth: 0, barWidth: <?php echo $this->barwidth; //phpcs:ignore ?> * 0.5, align: 'center' },
 				shadowSize: 0,
 				hoverable: false
 			  },
@@ -631,11 +631,11 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 				label: "<?php echo esc_js( __( 'Sales amount', 'woocommerce' ) ); ?>",
 				data: order_data.order_item_amounts,
 				yaxis: 2,
-				color: '<?php echo $this->chart_colours['sales_amount']; //phpcs:ignore  ?>',
+				color: '<?php echo $this->chart_colours['sales_amount']; //phpcs:ignore ?>',
 				points: { show: true, radius: 5, lineWidth: 3, fillColor: '#fff', fill: true },
 				lines: { show: true, lineWidth: 4, fill: false },
 				shadowSize: 0,
-				<?php echo $this->get_currency_tooltip(); //phpcs:ignore  ?>
+				<?php echo $this->get_currency_tooltip(); //phpcs:ignore ?>
 			  }
 			];
 
@@ -670,7 +670,7 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 				  position: "bottom",
 				  tickColor: 'transparent',
 				  mode: "time",
-				  timeformat: "<?php echo esc_html(( 'day' === $this->chart_groupby ) ? '%d %b' : '%b'); ?>",
+				  timeformat: "<?php echo esc_html( ( 'day' === $this->chart_groupby ) ? '%d %b' : '%b' ); ?>",
 				  monthNames: JSON.parse( decodeURIComponent( '<?php echo rawurlencode( wp_json_encode( array_values( $wp_locale->month_abbrev ) ) ); ?>' ) ),
 				  tickLength: 1,
 				  minTickSize: [1, "<?php echo esc_html( $this->chart_groupby ); ?>"],

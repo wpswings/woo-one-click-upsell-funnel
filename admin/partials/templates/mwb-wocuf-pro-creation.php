@@ -819,7 +819,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 								</th>
 
 								<td>
-									<?php echo $mwb_wocuf_pro_no_thanks_action_html;  // phpcs:ignore  ?>
+									<?php echo $mwb_wocuf_pro_no_thanks_action_html;  // phpcs:ignore ?>
 									<span class="mwb_upsell_offer_description"><?php esc_html_e( 'Select where the customer will be redirected after rejecting this offer', 'woo-one-click-upsell-funnel' ); ?></span>
 								</td>
 							</tr>
