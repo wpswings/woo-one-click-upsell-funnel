@@ -685,10 +685,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 						if ( 'thanks' === $mwb_wocuf_pro_offers_no_thanks_offers[ $current_offer_id ] ) {
 
 							$mwb_wocuf_pro_no_thanks_action_html = '<select name="mwb_wocuf_attached_offers_on_no[' . $current_offer_id . ']"><option value="thanks" selected="">' . esc_html__( 'Order ThankYou Page', 'woo-one-click-upsell-funnel' ) . '</option>' . $mwb_wocuf_pro_no_attached_offers;
-						} //phpcs:ignore
-
-						// If link is set to other offer.
-						elseif ( $mwb_wocuf_pro_offers_no_thanks_offers[ $current_offer_id ] > 0 ) {
+						} elseif ( $mwb_wocuf_pro_offers_no_thanks_offers[ $current_offer_id ] > 0 ) { // If link is set to other offer.
 
 							$mwb_wocuf_pro_no_thanks_action_html = '<select name="mwb_wocuf_attached_offers_on_no[' . $current_offer_id . ']"><option value="thanks">' . esc_html__( 'Order ThankYou Page', 'woo-one-click-upsell-funnel' ) . '</option>';
 

@@ -75,7 +75,7 @@ $funnels_list = get_option( 'mwb_wocuf_funnels_list' );
 						echo esc_html( $funnel_triggered_count );
 
 						?>
-					
+
 					</td>
 
 					<!-- Success Count -->
@@ -88,7 +88,7 @@ $funnels_list = get_option( 'mwb_wocuf_funnels_list' );
 						echo esc_html( $funnel_success_count );
 
 						?>
-					
+
 					</td>
 
 					<!-- Offers Viewed -->
@@ -101,7 +101,7 @@ $funnels_list = get_option( 'mwb_wocuf_funnels_list' );
 						echo esc_html( $offers_view_count );
 
 						?>
-					
+
 					</td>
 
 					<!-- Offers Accepted -->
@@ -114,7 +114,7 @@ $funnels_list = get_option( 'mwb_wocuf_funnels_list' );
 						echo esc_html( $offers_accept_count );
 
 						?>
-					
+
 					</td>
 
 					<!-- Offers Rejected -->
@@ -127,7 +127,7 @@ $funnels_list = get_option( 'mwb_wocuf_funnels_list' );
 						echo esc_html( $offers_reject_count );
 
 						?>
-					
+
 					</td>
 
 					<!-- Offers Pending -->
@@ -140,7 +140,7 @@ $funnels_list = get_option( 'mwb_wocuf_funnels_list' );
 						echo esc_html( $offers_pending_count );
 
 						?>
-					
+
 					</td>
 
 					<!-- Conversion Rate -->
@@ -161,7 +161,7 @@ $funnels_list = get_option( 'mwb_wocuf_funnels_list' );
 						echo '<div class="mwb_upsell_stats_conversion_rate"><p>' . esc_html( $conversion_rate ) . esc_html__( '%', 'woo-one-click-upsell-funnel' ) . '</p><div>';
 
 						?>
-					
+
 					</td>
 
 					<!-- Total Sales -->
@@ -173,13 +173,12 @@ $funnels_list = get_option( 'mwb_wocuf_funnels_list' );
 
 						$funnel_total_sales = number_format( (float) $funnel_total_sales, 2 );
 
-						echo '<div class="mwb_upsell_stats_total_sales"><p>' . get_woocommerce_currency_symbol() . esc_html( $funnel_total_sales ) . '</p><div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo '<div class="mwb_upsell_stats_total_sales"><p>' . esc_html( get_woocommerce_currency_symbol() ) . esc_html( $funnel_total_sales ) . '</p><div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 						?>
-					
+
 					</td>
 
-					
 				</tr>
 			<?php endforeach; ?>
 			<!-- Foreach Funnel end -->

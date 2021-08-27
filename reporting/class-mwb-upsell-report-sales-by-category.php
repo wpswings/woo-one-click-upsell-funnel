@@ -240,6 +240,13 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 	 */
 	public function category_widget() {
 
+		$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
+		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+
+		if ( ! $id_nonce_verified ) {
+			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
+		}
+
 		$categories = get_terms( 'product_cat', array( 'orderby' => 'name' ) );
 		?>
 	<form method="GET">
@@ -258,17 +265,15 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 			echo wc_walk_category_dropdown_tree( $categories, 0, $r ); // phpcs:ignore
 		?>
 		</select>
-		  <?php // @codingStandardsIgnoreStart ?>
 		<a href="#" class="select_none"><?php esc_html_e( 'None', 'woocommerce' ); ?></a>
 		<a href="#" class="select_all"><?php esc_html_e( 'All', 'woocommerce' ); ?></a>
 		<button type="submit" class="submit button" value="<?php esc_attr_e( 'Show', 'woocommerce' ); ?>"><?php esc_html_e( 'Show', 'woocommerce' ); ?></button>
-		<input type="hidden" name="range" value="<?php echo ( ! empty( $_GET['range'] ) ) ? esc_attr( wp_unslash( $_GET['range'] ) ) : ''; ?>" />
-		<input type="hidden" name="start_date" value="<?php echo ( ! empty( $_GET['start_date'] ) ) ? esc_attr( wp_unslash( $_GET['start_date'] ) ) : ''; ?>" />
-		<input type="hidden" name="end_date" value="<?php echo ( ! empty( $_GET['end_date'] ) ) ? esc_attr( wp_unslash( $_GET['end_date'] ) ) : ''; ?>" />
-		<input type="hidden" name="page" value="<?php echo ( ! empty( $_GET['page'] ) ) ? esc_attr( wp_unslash( $_GET['page'] ) ) : ''; ?>" />
-		<input type="hidden" name="tab" value="<?php echo ( ! empty( $_GET['tab'] ) ) ? esc_attr( wp_unslash( $_GET['tab'] ) ) : ''; ?>" />
-		<input type="hidden" name="report" value="<?php echo ( ! empty( $_GET['report'] ) ) ? esc_attr( wp_unslash( $_GET['report'] ) ) : ''; ?>" />
-		  <?php // @codingStandardsIgnoreEnd ?>
+		<input type="hidden" name="range" value="<?php echo ( ! empty( $_GET['range'] ) ) ? esc_attr( sanitize_text_field( wp_unslash( $_GET['range'] ) ) ) : ''; ?>" />
+		<input type="hidden" name="start_date" value="<?php echo ( ! empty( $_GET['start_date'] ) ) ? esc_attr( sanitize_text_field( wp_unslash( $_GET['start_date'] ) ) ) : ''; ?>" />
+		<input type="hidden" name="end_date" value="<?php echo ( ! empty( $_GET['end_date'] ) ) ? esc_attr( sanitize_text_field( wp_unslash( $_GET['end_date'] ) ) ) : ''; ?>" />
+		<input type="hidden" name="page" value="<?php echo ( ! empty( $_GET['page'] ) ) ? esc_attr( sanitize_text_field( wp_unslash( $_GET['page'] ) ) ) : ''; ?>" />
+		<input type="hidden" name="tab" value="<?php echo ( ! empty( $_GET['tab'] ) ) ? esc_attr( sanitize_text_field( wp_unslash( $_GET['tab'] ) ) ) : ''; ?>" />
+		<input type="hidden" name="report" value="<?php echo ( ! empty( $_GET['report'] ) ) ? esc_attr( sanitize_text_field( wp_unslash( $_GET['report'] ) ) ) : ''; ?>" />
 	</div>
 	<script type="text/javascript">
 		jQuery(function(){
@@ -383,7 +388,7 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 				$index = 0;
 				foreach ( $chart_data as $data ) {
 					$color  = isset( $this->chart_colours[ $index ] ) ? $this->chart_colours[ $index ] : $this->chart_colours[0];
-					$width  = $this->barwidth / sizeof( $chart_data );
+					$width  = $this->barwidth / count( $chart_data );
 					$offset = ( $width * $index );
 					$series = $data['data'];
 
@@ -396,14 +401,14 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 					echo '{
                       label: "' . esc_js( $data['category'] ) . '",
                       data: JSON.parse( decodeURIComponent( "' . rawurlencode( $series ) . '" ) ),
-                      color: "' . $color . '",
+                      color: "' . esc_html( $color ) . '",
                       bars: {
-                        fillColor: "' . $color . '",
+                        fillColor: "' . esc_html( $color ) . '",
                         fill: true,
                         show: true,
                         lineWidth: 1,
                         align: "center",
-                        barWidth: ' . $width * 0.75 . ',
+                        barWidth: ' . esc_html( $width ) * 0.75 . ',
                         stack: false
                       },
                       ' . $this->get_currency_tooltip() . ',
@@ -451,8 +456,8 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 				  timeformat: "<?php echo ( 'day' === $this->chart_groupby ) ? '%d %b' : '%b'; ?>",
 				  monthNames: JSON.parse( decodeURIComponent( '<?php echo rawurlencode( wp_json_encode( array_values( $wp_locale->month_abbrev ) ) ); ?>' ) ),
 				  tickLength: 1,
-				  minTickSize: [1, "<?php echo $this->chart_groupby; ?>"],
-				  tickSize: [1, "<?php echo $this->chart_groupby; ?>"],
+				  minTickSize: [1, "<?php echo esc_html( $this->chart_groupby ); ?>"],
+				  tickSize: [1, "<?php echo esc_html( $this->chart_groupby ); ?>"],
 				  font: {
 					color: "#aaa"
 				  }

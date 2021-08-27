@@ -68,11 +68,8 @@ if ( ! empty( $mwb_wocuf_pro_funnels_list ) ) {
 
 	// Now key function will return last funnel key.
 	$mwb_wocuf_pro_funnel_number = key( $mwb_wocuf_pro_funnel_duplicate );
-} // phpcs:ignore
-
-// When no funnel is there then new funnel id will be 1 (0+1).
-else {
-
+} else {
+	// When no funnel is there then new funnel id will be 1 (0+1).
 	$mwb_wocuf_pro_funnel_number = 0;
 }
 
@@ -132,7 +129,7 @@ else {
 							echo '<span class="mwb_upsell_funnel_list_sandbox"></span><span class="mwb_upsell_funnel_list_sandbox_name">' . esc_html__( 'Sandbox', 'woo-one-click-upsell-funnel' ) . '</span>';
 						}
 
-						echo "<div class='mwb-upsell-funnel-attributes $funnel_status'>"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo "<div class='mwb-upsell-funnel-attributes " . esc_html( $funnel_status ) . "'>"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 						if ( 'yes' === $global_funnel ) {
 

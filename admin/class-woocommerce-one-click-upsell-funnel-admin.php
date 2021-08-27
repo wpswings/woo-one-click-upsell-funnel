@@ -748,19 +748,13 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 		switch ( $column ) {
 
 			case 'mwb-upsell-orders':
-				$data = '';
-
-				if ( 'true' === $upsell_order ) {
-
-					$data .= sprintf( '<a href="%s" >%s</a>', get_edit_post_link( $post_id ), esc_html__( 'Upsell Order', 'woo-one-click-upsell-funnel' ) );
-				} else {
-
-					$data .= esc_html__( 'Single Order', 'woo-one-click-upsell-funnel' );
-				}
-
-				echo $data; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				// It just displayes the html itself. Content in it is already escaped if required.
-
+				if ( 'true' === $upsell_order ) :
+					?>
+					<a href="<?php echo esc_url( get_edit_post_link( $post_id ) ); ?>" ><?php esc_html_e( 'Upsell Order', 'woocommerce-one-click-upsell-funnel-pro' ); ?></a>
+				<?php else : ?>
+					<?php esc_html_e( 'Single Order', 'woocommerce-one-click-upsell-funnel-pro' ); ?>
+					<?php
+				endif;
 				break;
 		}
 	}

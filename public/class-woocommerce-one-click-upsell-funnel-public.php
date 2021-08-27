@@ -79,7 +79,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 */
 	public function enqueue_scripts() {
 
-		wp_enqueue_script( 'mwb-upsell-sweet-alert-js', plugin_dir_url( __FILE__ ) . 'js/sweet-alert.js', array(), '2.1.2', true );
+		wp_enqueue_script( 'mwb-upsell-sweet-alert-js', plugin_dir_url( __FILE__ ) . 'js/sweet-alert.js', array(), '2.1.2', false );
 
 		wp_enqueue_script( 'woocommerce-one-click-upsell-public-script', plugin_dir_url( __FILE__ ) . 'js/woocommerce-oneclick-upsell-funnel-public.js', array( 'jquery' ), $this->version, true );
 
@@ -98,7 +98,6 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			'woocommerce-one-click-upsell-public-script',
 			'mwb_upsell_public',
 			array(
-
 				'alert_preview_title'    => esc_html__( 'One Click Upsell', 'woo-one-click-upsell-funnel' ),
 				'alert_preview_content'  => esc_html__( 'This is Preview Mode, please checkout to see Live Offers.', 'woo-one-click-upsell-funnel' ),
 				'show_upsell_loader'     => $show_upsell_loader,
@@ -966,10 +965,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 					// No sale price is present.
 					$temp_product->set_sale_price( $offer_price );
 				}
-			} // phpcs:ignore
-
-			// ̶R̶e̶g̶u̶l̶a̶r̶ ̶P̶r̶i̶c̶e̶ Offer Price.
-			else {
+			} else { // ̶R̶e̶g̶u̶l̶a̶r̶ ̶P̶r̶i̶c̶e̶ Offer Price.
 
 				// In this case set the regular price as sale.
 				$temp_product->set_sale_price( $offer_price );
@@ -1547,25 +1543,13 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 			?>
 
-			<script src="<?php echo esc_url( plugin_dir_url( __FILE__ ) . 'js/sweet-alert.js' ); ?>"></script><?php //phpcs:ignore ?>
-
 			<script type="text/javascript">
 
-				var product_not_selected_alert = '
-				<?php
-				echo esc_html( $product_not_selected_alert );
-				// It just displayes message that is already escaped above.
-				?>
-				';
+				var product_not_selected_alert = '<?php echo esc_html( $product_not_selected_alert ); ?>';
 
-				var product_not_selected_content = '
-				<?php
-				echo esc_html( $product_not_selected_content );
-				// It just displayes message that is already escaped above.
-				?>
-				';
+				var product_not_selected_content = '<?php echo esc_html( $product_not_selected_content ); ?> ';
 
-				swal( product_not_selected_alert , product_not_selected_content, 'warning' )	
+				swal( product_not_selected_alert , product_not_selected_content, 'warning' );
 			</script>
 
 			<?php
@@ -2740,11 +2724,12 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			$pixel_id = $fb_pixel_config['pixel_account_id'];
 		}
 
-		if ( $add_ga_base_code ) :
+		if ( true === $add_ga_base_code ) :
+
+			// Global site tag (gtag.js) - Google Analytics - Start ( 1 Click Upsell Plugin ).
+			wp_enqueue_script( $this->plugin_name . '-googletagmanager', 'https://www.googletagmanager.com/gtag/js?id=' . $ga_tracking_id, array( 'jquery' ), '1.0.0', false );
 
 			?>
-			<!-- Global site tag (gtag.js) - Google Analytics - Start ( 1 Click Upsell Plugin ) -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_attr( $ga_tracking_id ); ?>"></script> <?php //phpcs:ignore ?>	
 			<script>
 				window.dataLayer = window.dataLayer || [];
 				function gtag(){dataLayer.push(arguments)};
@@ -2757,7 +2742,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 		endif;
 
-		if ( $add_fb_pixel_base_code ) :
+		if ( true === $add_fb_pixel_base_code ) :
 
 			?>
 			<!-- Facebook Pixel Code ( 1 Click Upsell Plugin ) -->
@@ -3597,7 +3582,6 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		$global_custom_js = ! empty( $mwb_upsell_global_settings['global_custom_js'] ) ? $mwb_upsell_global_settings['global_custom_js'] : '';
 
 		if ( empty( $global_custom_js ) ) {
-
 			return;
 		}
 
@@ -3644,7 +3628,6 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 			<?php if ( false === wp_cache_get( 'mwb_upsell_countdown_timer' ) ) : ?>
 
-				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <?php //phpcs:ignore. ?>
 				<script type="text/javascript">
 
 					jQuery(document).ready(function($) {
