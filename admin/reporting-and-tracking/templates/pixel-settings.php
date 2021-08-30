@@ -303,7 +303,7 @@ $google_analytics_fields = array(
 								<?php
 								if ( ! empty( $field_data['note_html'] ) ) :
 									?>
-									<a href="<?php echo esc_url( $field_data['note_html'] ); ?>" target="_blank"><?php esc_html_e( 'here', 'woocommerce-one-click-upsell-funnel-pro' ); ?></a>
+									<a href="<?php echo esc_url( $field_data['note_html'] ); ?>" target="_blank"><?php esc_html_e( 'here', 'woo-one-click-upsell-funnel' ); ?></a>
 								<?php endif; ?>
 								</span>
 							</td>

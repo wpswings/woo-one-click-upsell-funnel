@@ -11,23 +11,23 @@
  * @link    https://makewebbetter.com/
  * @since   1.0.0
  *
- * @wordpress-plugin
- * Plugin Name:       One Click Upsell Funnel for Woocommerce
- * Plugin URI:        https://wordpress.org/plugins/woo-one-click-upsell-funnel/
- * Description:       Show exclusive post-checkout offers to your customers. Create dedicated Upsell offer pages. Offers that are relevant and benefits your customers on the existing purchase and so increase Average Order Value and your Revenue.
- * Version:           3.0.4
+ * @wordpress-plugin   
+ * Plugin Name:           One Click Upsell Funnel for Woocommerce
+ * Plugin URI:            https://wordpress.org/plugins/woo-one-click-upsell-funnel/
+ * Description:           Show exclusive post-checkout offers to your customers. Create dedicated Upsell offer pages. Offers that are relevant and benefits your customers on the existing purchase and so increase Average Order Value and your Revenue.
+ * Version:               3.0.4
  *
  * Requires at least:     4.4
  * Tested up to:          5.8
  * WC requires at least:  3.0
  * WC tested up to:       5.6.0
  *
- * Author:            MakeWebBetter
- * Author URI:        https://makewebbetter.com/
- * License:           GNU General Public License v3.0
- * License URI:       http://www.gnu.org/licenses/gpl-3.0.html
- * Text Domain:       woo-one-click-upsell-funnel
- * Domain Path:       /languages
+ * Author:                MakeWebBetter
+ * Author URI:            https://makewebbetter.com/
+ * License:               GNU General Public License v3.0
+ * License URI:           http://www.gnu.org/licenses/gpl-3.0.html
+ * Text Domain:           woo-one-click-upsell-funnel
+ * Domain Path:           /languages
  */
 
 // If this file is called directly, abort.

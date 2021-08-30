@@ -252,8 +252,8 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 		 * Add main menu.
 		 */
 		add_menu_page(
-			__( '1 Click Upsell', 'woo-one-click-upsell-funnel' ),
-			__( '1 Click Upsell', 'woo-one-click-upsell-funnel' ),
+			'1 Click Upsell',
+			'1 Click Upsell',
 			'manage_woocommerce',
 			'mwb-wocuf-setting',
 			array( $this, 'upsell_menu_html' ),
@@ -750,9 +750,9 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 			case 'mwb-upsell-orders':
 				if ( 'true' === $upsell_order ) :
 					?>
-					<a href="<?php echo esc_url( get_edit_post_link( $post_id ) ); ?>" ><?php esc_html_e( 'Upsell Order', 'woocommerce-one-click-upsell-funnel-pro' ); ?></a>
+					<a href="<?php echo esc_url( get_edit_post_link( $post_id ) ); ?>" ><?php esc_html_e( 'Upsell Order', 'woo-one-click-upsell-funnel' ); ?></a>
 				<?php else : ?>
-					<?php esc_html_e( 'Single Order', 'woocommerce-one-click-upsell-funnel-pro' ); ?>
+					<?php esc_html_e( 'Single Order', 'woo-one-click-upsell-funnel' ); ?>
 					<?php
 				endif;
 				break;
