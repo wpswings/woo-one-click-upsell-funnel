@@ -50,7 +50,7 @@ if ( ! empty( $_GET['del_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_u
 
 		update_option( 'mwb_wocuf_funnels_list', $mwb_wocuf_pro_funnels );
 
-		wp_safe_redirect( esc_url( admin_url( 'admin.php?page=mwb-wocuf-setting&tab=funnels-list' ) ) );
+		wp_redirect( esc_url( admin_url( 'admin.php?page=mwb-wocuf-setting&tab=funnels-list' ) ) ); //phpcs:ignore
 		exit();
 	}
 }

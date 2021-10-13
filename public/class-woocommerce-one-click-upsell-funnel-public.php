@@ -578,7 +578,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 		// Redirect to upsell offer page.
 		if ( ! is_ajax() ) {
-			wp_safe_redirect( $upsell_result['redirect'] );
+			wp_redirect( $upsell_result['redirect'] ); //phpcs:ignore
 			exit;
 		}
 
@@ -744,7 +744,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				$sales_by_funnel = new Mwb_Upsell_Report_Sales_By_Funnel( $funnel_id );
 				$sales_by_funnel->add_offer_view_count();
 
-				wp_safe_redirect( $url );
+				wp_redirect( $url ); //phpcs:ignore
 				exit();
 			}
 		}
@@ -1220,7 +1220,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 						$sales_by_funnel = new Mwb_Upsell_Report_Sales_By_Funnel( $funnel_id );
 						$sales_by_funnel->add_offer_view_count();
 
-						wp_safe_redirect( $url );
+						wp_redirect( $url ); //phpcs:ignore
 						exit;
 					}
 				} else {
@@ -1330,7 +1330,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 		if ( isset( $result['result'] ) && 'success' === $result['result'] ) {
 
-			wp_safe_redirect( $result['redirect'] );
+			wp_redirect( $result['redirect'] ); //phpcs:ignore
 			exit;
 		}
 
@@ -1339,11 +1339,11 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			global $woocommerce;
 			$cart_page_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : $woocommerce->cart->get_cart_url();
 
-			wp_safe_redirect( $cart_page_url );
+			wp_redirect( $cart_page_url ); //phpcs:ignore
 			exit;
 		} else {
 
-			wp_safe_redirect( $url );
+			wp_redirect( $url ); //phpcs:ignore
 			exit;
 		}
 	}
@@ -3964,7 +3964,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				// When offer is already processed, redirect to previous result of action that was taken.
 				if ( (int) $current_offer_id === (int) $offer_id ) {
 
-					wp_safe_redirect( $url );
+					wp_redirect( $url ); //phpcs:ignore
 					exit;
 				}
 			}
