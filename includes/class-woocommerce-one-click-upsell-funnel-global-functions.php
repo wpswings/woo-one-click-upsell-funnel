@@ -51,7 +51,14 @@ function mwb_upsell_lite_is_upsell_pro_active() {
  */
 function mwb_upsell_lite_validate_upsell_nonce() {
 
-	if ( isset( $_GET['ocuf_ns'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) ), 'funnel_offers' ) ) {
+	$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
+	$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+
+	if ( ! $id_nonce_verified ) {
+		wp_die( esc_html__( 'Nonce Not verified', 'woo-one-click-upsell-funnel' ) );
+	}
+
+	if ( isset( $_GET['ocuf_ns'] ) ) {
 
 		return true;
 	} else {
