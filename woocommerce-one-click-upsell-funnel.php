@@ -81,125 +81,103 @@ $mwb_upsell_lite_plugin_activation = mwb_upsell_lite_plugin_activation();
 
 if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 
-	// If pro plugin active, show notice and load nothing.
-	if ( mwb_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
+	// If pro plugin not active, then load Org Plugin else Don't.
+	if ( ! mwb_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
 
-		// Add admin info notice on plugins page.
-		add_action( 'admin_notices', 'mwb_upsell_lite_deactivate_org_notice' );
+		define( 'MWB_WOCUF_URL', plugin_dir_url( __FILE__ ) );
+
+		define( 'MWB_WOCUF_DIRPATH', plugin_dir_path( __FILE__ ) );
+
+		define( 'MWB_WOCUF_VERSION', 'v3.0.4' );
+
 		/**
-		 * Mwb_upsell_lite_deactivate_org_notice.
+		 * The code that runs during plugin activation.
+		 * This action is documented in includes/class-woocommerce_one_click_upsell_funnel_pro-activator.php
 		 */
-		function mwb_upsell_lite_deactivate_org_notice() {
+		function activate_woocommerce_one_click_upsell_funnel() {
+			include_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-one-click-upsell-funnel-activator.php';
+			Woocommerce_One_Click_Upsell_Funnel_Activator::activate();
+		}
 
-			global $pagenow;
+		/**
+		 * The code that runs during plugin deactivation.
+		 * This action is documented in includes/class-woocommerce_one_click_upsell_funnel_pro-deactivator.php
+		 */
+		function deactivate_woocommerce_one_click_upsell_funnel() {
+			include_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-one-click-upsell-funnel-deactivator.php';
+			Woocommerce_One_Click_Upsell_Funnel_Deactivator::deactivate();
+		}
 
-			if ( ! empty( $pagenow ) && 'plugins.php' === $pagenow ) : ?>
+		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'mwb_upsell_lite_plugin_settings_link' );
 
-			<div class="notice notice-info is-dismissible">
-				<p><?php esc_html_e( 'Please deactivate the free plugin', 'woo-one-click-upsell-funnel' ); ?><strong> <?php esc_html_e( 'One Click Upsell Funnel for Woocommerce', 'woo-one-click-upsell-funnel' ); ?></strong> <?php esc_html_e( 'as the Pro plugin', 'woo-one-click-upsell-funnel' ); ?><strong> <?php esc_html_e( 'WooCommerce One Click Upsell Funnel Pro', 'woo-one-click-upsell-funnel' ); ?></strong> <?php esc_html_e( 'is already activated.', 'woo-one-click-upsell-funnel' ); ?></p>
-			</div>
+		/**
+		 * This action is for woocommerce dependency check.
+		 *
+		 * @param mixed $links links.
+		 */
+		function mwb_upsell_lite_plugin_settings_link( $links ) {
 
-				<?php
-			endif;
+			$plugin_links = array(
+				'<a href="' . admin_url( 'admin.php?page=mwb-wocuf-setting&tab=overview' ) . '">' . esc_html__( 'Settings', 'woo-one-click-upsell-funnel' ) . '</a>',
+			);
+			return array_merge( $plugin_links, $links );
+		}
+
+		add_filter( 'plugin_row_meta', 'mwb_upsell_lite_add_doc_and_premium_link', 10, 2 );
+
+		/**
+		 * This action is for add premium version link.
+		 *
+		 * @param mixed $links links.
+		 * @param mixed $file file.
+		 */
+		function mwb_upsell_lite_add_doc_and_premium_link( $links, $file ) {
+
+			if ( false !== strpos( $file, 'woocommerce-one-click-upsell-funnel.php' ) ) {
+
+				$row_meta = array(
+					'docs'    => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://docs.makewebbetter.com/woocommerce-one-click-upsell-funnel/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend">' . esc_html__( 'Go to Docs', 'woo-one-click-upsell-funnel' ) . '</a>',
+					'goPro'   => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#45b649,#dce35b);padding:5px;border-radius:6px;" href="https://makewebbetter.com/product/woocommerce-one-click-upsell-funnel-pro/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend"><strong>' . esc_html__( 'Go Premium', 'woo-one-click-upsell-funnel' ) . '</strong></a>',
+					'demo'    => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://demo.makewebbetter.com/woocommerce-one-click-upsell-funnel/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend"><strong>' . esc_html__( 'See Demo', 'woo-one-click-upsell-funnel' ) . '</strong></a>',
+					'support' => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://support.makewebbetter.com/wordpress-plugins-knowledge-base/category/woocommerce-one-click-upsell-funnel-pro-kb/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend"><strong>' . esc_html__( 'Support', 'woo-one-click-upsell-funnel' ) . '</strong></a>',
+				);
+
+				return array_merge( $links, $row_meta );
+			}
+
+			return (array) $links;
+		}
+
+		register_activation_hook( __FILE__, 'activate_woocommerce_one_click_upsell_funnel' );
+
+		register_deactivation_hook( __FILE__, 'deactivate_woocommerce_one_click_upsell_funnel' );
+
+		/**
+		 * The core plugin class that is used to define internationalization,
+		 * admin-specific hooks, and public-facing site hooks.
+		 */
+		include plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-one-click-upsell-funnel.php';
+
+		/**
+		 * Begins execution of the plugin.
+		 *
+		 * Since everything within the plugin is registered via hooks,
+		 * then kicking off the plugin from this point in the file does
+		 * not affect the page life cycle.
+		 *
+		 * @since 1.0.0
+		 */
+		function run_woocommerce_one_click_upsell_funnel() {
+
+			$plugin = new Woocommerce_One_Click_Upsell_Funnel();
+			$plugin->run();
 
 		}
 
 		// Return and Load nothing.
-		return;
-	}
-
-	define( 'MWB_WOCUF_URL', plugin_dir_url( __FILE__ ) );
-
-	define( 'MWB_WOCUF_DIRPATH', plugin_dir_path( __FILE__ ) );
-
-	define( 'MWB_WOCUF_VERSION', 'v3.0.4' );
-
-
-	/**
-	 * The code that runs during plugin activation.
-	 * This action is documented in includes/class-woocommerce_one_click_upsell_funnel_pro-activator.php
-	 */
-	function activate_woocommerce_one_click_upsell_funnel() {
-		include_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-one-click-upsell-funnel-activator.php';
-		Woocommerce_One_Click_Upsell_Funnel_Activator::activate();
-	}
-
-	/**
-	 * The code that runs during plugin deactivation.
-	 * This action is documented in includes/class-woocommerce_one_click_upsell_funnel_pro-deactivator.php
-	 */
-	function deactivate_woocommerce_one_click_upsell_funnel() {
-		include_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-one-click-upsell-funnel-deactivator.php';
-		Woocommerce_One_Click_Upsell_Funnel_Deactivator::deactivate();
-	}
-
-	add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'mwb_upsell_lite_plugin_settings_link' );
-
-	/**
-	 * This action is for woocommerce dependency check.
-	 *
-	 * @param mixed $links links.
-	 */
-	function mwb_upsell_lite_plugin_settings_link( $links ) {
-
-		$plugin_links = array(
-			'<a href="' . admin_url( 'admin.php?page=mwb-wocuf-setting&tab=overview' ) . '">' . esc_html__( 'Settings', 'woo-one-click-upsell-funnel' ) . '</a>',
-		);
-		return array_merge( $plugin_links, $links );
-	}
-
-	add_filter( 'plugin_row_meta', 'mwb_upsell_lite_add_doc_and_premium_link', 10, 2 );
-
-	/**
-	 * This action is for add premium version link.
-	 *
-	 * @param mixed $links links.
-	 * @param mixed $file file.
-	 */
-	function mwb_upsell_lite_add_doc_and_premium_link( $links, $file ) {
-
-		if ( false !== strpos( $file, 'woocommerce-one-click-upsell-funnel.php' ) ) {
-
-			$row_meta = array(
-				'docs'    => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://docs.makewebbetter.com/woocommerce-one-click-upsell-funnel/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend">' . esc_html__( 'Go to Docs', 'woo-one-click-upsell-funnel' ) . '</a>',
-				'goPro'   => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#45b649,#dce35b);padding:5px;border-radius:6px;" href="https://makewebbetter.com/product/woocommerce-one-click-upsell-funnel-pro/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend"><strong>' . esc_html__( 'Go Premium', 'woo-one-click-upsell-funnel' ) . '</strong></a>',
-				'demo'    => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://demo.makewebbetter.com/woocommerce-one-click-upsell-funnel/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend"><strong>' . esc_html__( 'See Demo', 'woo-one-click-upsell-funnel' ) . '</strong></a>',
-				'support' => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://support.makewebbetter.com/wordpress-plugins-knowledge-base/category/woocommerce-one-click-upsell-funnel-pro-kb/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend"><strong>' . esc_html__( 'Support', 'woo-one-click-upsell-funnel' ) . '</strong></a>',
-			);
-
-			return array_merge( $links, $row_meta );
-		}
-
-		return (array) $links;
-	}
-
-	register_activation_hook( __FILE__, 'activate_woocommerce_one_click_upsell_funnel' );
-
-	register_deactivation_hook( __FILE__, 'deactivate_woocommerce_one_click_upsell_funnel' );
-
-	/**
-	 * The core plugin class that is used to define internationalization,
-	 * admin-specific hooks, and public-facing site hooks.
-	 */
-	include plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-one-click-upsell-funnel.php';
-
-	/**
-	 * Begins execution of the plugin.
-	 *
-	 * Since everything within the plugin is registered via hooks,
-	 * then kicking off the plugin from this point in the file does
-	 * not affect the page life cycle.
-	 *
-	 * @since 1.0.0
-	 */
-	function run_woocommerce_one_click_upsell_funnel() {
-
-		$plugin = new Woocommerce_One_Click_Upsell_Funnel();
-		$plugin->run();
+		run_woocommerce_one_click_upsell_funnel();
 
 	}
-
-	run_woocommerce_one_click_upsell_funnel();
 } else {
 
 	// Deactivation of plugin at dependency failed.
