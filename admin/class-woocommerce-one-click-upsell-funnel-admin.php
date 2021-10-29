@@ -158,11 +158,23 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 						),
 					);
 
-					wp_localize_script( 'mwb_wocuf_pro_admin_script', 'mwb_wocuf_pro_ajaxurl', admin_url( 'admin-ajax.php' ) );
+					wp_localize_script(
+						'mwb_wocuf_pro_admin_script',
+						'mwb_wocuf_pro_ajaxurl',
+						array(
+							'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+						)
+					);
 
-					wp_localize_script( 'mwb_wocuf_pro_admin_script', 'mwb_wocuf_pro_location', admin_url( 'admin.php' ) . '?page=mwb-wocuf-setting&tab=settings' );
+					// wp_localize_script(
+					// 	'mwb_wocuf_pro_admin_script',
+					// 	'mwb_wocuf_pro_location',
+					// 	array(
+					// 		'location' => admin_url( 'admin.php' ) . '?page=mwb-wocuf-setting&tab=settings',
+					// 	)
+					// );
 
-					wp_localize_script( 'mwb_wocuf_pro_admin_script', 'mwb_wocuf_pro_offer_deletion', esc_html__( 'Are you sure to delete this offer', 'woo-one-click-upsell-funnel' ) );
+					// wp_localize_script( 'mwb_wocuf_pro_admin_script', 'mwb_wocuf_pro_offer_deletion', esc_html__( 'Are you sure to delete this offer', 'woo-one-click-upsell-funnel' ) );
 
 					wp_enqueue_script( 'mwb_wocuf_pro_admin_script' );
 

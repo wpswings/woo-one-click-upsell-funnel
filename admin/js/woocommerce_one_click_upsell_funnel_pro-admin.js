@@ -78,7 +78,7 @@ jQuery(document).ready( function($) {
 
 		$.ajax({
 		    type:'POST',
-		    url :mwb_wocuf_pro_ajaxurl,
+		    url :mwb_wocuf_pro_ajaxurl.ajaxUrl,
 		    data:{
 		    	action: 'mwb_upsell_dismiss_elementor_inactive_notice',
 		    },
