@@ -95,7 +95,32 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 		$_POST['mwb_upsell_funnel_status'] = 'no';
 	}
 
-	$mwb_wocuf_pro_funnel = array();
+	if ( empty( $_POST['mwb_upsell_offer_image'] ) ) {
+
+		$_POST['mwb_upsell_offer_image'] = array();
+	}
+
+	/**
+	 * Handle the schedule here.
+	 */
+	if ( empty( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ) {
+
+		if ( isset( $_POST['mwb_wocuf_pro_funnel_schedule'] ) && (int) '0' === (int) $_POST['mwb_wocuf_pro_funnel_schedule'] ) {
+
+			// Zero is marked as sunday.
+			$_POST['mwb_wocuf_pro_funnel_schedule'] = array( '0' );
+
+		} else {
+
+			// Empty is marked as daily.
+			$_POST['mwb_wocuf_pro_funnel_schedule'] = array( '7' );
+		}
+	} elseif ( ! is_array( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ) {
+
+		$_POST['mwb_wocuf_pro_funnel_schedule'] = array( sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ) );
+	}
+
+	$mwb_wocuf_pro_funnel        = array();
 	$offer_custom_page_url_array = array();
 
 	/**
@@ -104,10 +129,15 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 
 	// Sanitize and strip slashes for normal single value feilds.
 	$mwb_wocuf_pro_funnel['mwb_upsell_funnel_status'] = ! empty( $_POST['mwb_upsell_funnel_status'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_upsell_funnel_status'] ) ) : '';
-	$mwb_wocuf_pro_funnel['mwb_wocuf_funnel_id'] = ! empty( $_POST['mwb_wocuf_funnel_id'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_funnel_id'] ) ) : '';
-	$mwb_wocuf_pro_funnel['mwb_upsell_fsav3'] = ! empty( $_POST['mwb_upsell_fsav3'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_upsell_fsav3'] ) ) : '';
-	$mwb_wocuf_pro_funnel['mwb_wocuf_funnel_name'] = ! empty( $_POST['mwb_wocuf_funnel_name'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_funnel_name'] ) ) : '';
-	$mwb_wocuf_pro_funnel['mwb_wocuf_pro_funnel_schedule'] = ! empty( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ) : '';
+	$mwb_wocuf_pro_funnel['mwb_wocuf_funnel_id']      = ! empty( $_POST['mwb_wocuf_funnel_id'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_funnel_id'] ) ) : '';
+	$mwb_wocuf_pro_funnel['mwb_upsell_fsav3']         = ! empty( $_POST['mwb_upsell_fsav3'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_upsell_fsav3'] ) ) : '';
+	$mwb_wocuf_pro_funnel['mwb_wocuf_funnel_name']    = ! empty( $_POST['mwb_wocuf_funnel_name'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_funnel_name'] ) ) : '';
+
+	// Sanitize and strip slashes for Funnel Target products.
+	$target_pro_schedule_array = ! empty( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ) : array();
+
+	$mwb_wocuf_pro_funnel['mwb_wocuf_pro_funnel_schedule'] = ! empty( $target_pro_schedule_array ) ? $target_pro_schedule_array : array();
+
 
 	// Sanitize and strip slashes for Funnel Target products.
 	$target_pro_ids_array = ! empty( $_POST['mwb_wocuf_target_pro_ids'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_target_pro_ids'] ) ) : array();
@@ -158,48 +188,89 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 
 	$mwb_wocuf_pro_funnel['mwb_wocuf_applied_offer_number'] = $applied_offer_number;
 
-
 	// Sanitize and strip slashes for page id assigned.
 	$post_id_assigned = ! empty( $_POST['mwb_upsell_post_id_assigned'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_upsell_post_id_assigned'] ) ) : '';
 
 	$mwb_wocuf_pro_funnel['mwb_upsell_post_id_assigned'] = $post_id_assigned;
+
+	// Since v3.0.0.
+	// Sanitize and strip slashes for Funnel offer custom image.
+	$custom_image_ids_array = ! empty( $_POST['mwb_upsell_offer_image'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_upsell_offer_image'] ) ) : array();
+
+	$mwb_wocuf_pro_funnel['mwb_upsell_offer_image'] = ! empty( $custom_image_ids_array ) ? $custom_image_ids_array : array();
+
+	$mwb_wocuf_pro_funnel['mwb_wocuf_global_funnel'] = ! empty( $_POST['mwb_wocuf_global_funnel'] ) ? 'yes' : 'no';
+
+	$mwb_wocuf_pro_funnel['mwb_wocuf_exclusive_offer'] = ! empty( $_POST['mwb_wocuf_exclusive_offer'] ) ? 'yes' : 'no';
+
+	$mwb_wocuf_pro_funnel['mwb_wocuf_smart_offer_upgrade'] = ! empty( $_POST['mwb_wocuf_smart_offer_upgrade'] ) ? 'yes' : 'no';
+
+	// Get all funnels.
+	$mwb_wocuf_pro_created_funnels = get_option( 'mwb_wocuf_funnels_list', array() );
+
+	// If funnel already exists then save Exclusive offer email data.
+	if ( ! empty( $mwb_wocuf_pro_created_funnels[ $mwb_wocuf_pro_funnel_id ]['offer_already_shown_to_users'] ) && is_array( $mwb_wocuf_pro_created_funnels[ $mwb_wocuf_pro_funnel_id ]['offer_already_shown_to_users'] ) ) {
+
+		$already_saved_funnel = $mwb_wocuf_pro_created_funnels[ $mwb_wocuf_pro_funnel_id ];
+
+		// Not Post data, so no need to Sanitize and Strip slashes.
+
+		// Empty and array already checked above.
+		$mwb_wocuf_pro_funnel['offer_already_shown_to_users'] = $already_saved_funnel['offer_already_shown_to_users'];
+	}
+
+	// If funnel already exists then save Upsell Sales by Funnel - Stats if present.
+	if ( ! empty( $mwb_wocuf_pro_created_funnels[ $mwb_wocuf_pro_funnel_id ]['funnel_triggered_count'] ) ) {
+
+		$funnel_stats_funnel = $mwb_wocuf_pro_created_funnels[ $mwb_wocuf_pro_funnel_id ];
+
+		// Not Post data, so no need to Sanitize and Strip slashes.
+
+		// Empty for this already checked above.
+		$mwb_wocuf_pro_funnel['funnel_triggered_count'] = $funnel_stats_funnel['funnel_triggered_count'];
+
+		$mwb_wocuf_pro_funnel['funnel_success_count'] = ! empty( $funnel_stats_funnel['funnel_success_count'] ) ? $funnel_stats_funnel['funnel_success_count'] : 0;
+
+		$mwb_wocuf_pro_funnel['offers_view_count'] = ! empty( $funnel_stats_funnel['offers_view_count'] ) ? $funnel_stats_funnel['offers_view_count'] : 0;
+
+		$mwb_wocuf_pro_funnel['offers_accept_count'] = ! empty( $funnel_stats_funnel['offers_accept_count'] ) ? $funnel_stats_funnel['offers_accept_count'] : 0;
+
+		$mwb_wocuf_pro_funnel['offers_reject_count'] = ! empty( $funnel_stats_funnel['offers_reject_count'] ) ? $funnel_stats_funnel['offers_reject_count'] : 0;
+
+		$mwb_wocuf_pro_funnel['funnel_total_sales'] = ! empty( $funnel_stats_funnel['funnel_total_sales'] ) ? $funnel_stats_funnel['funnel_total_sales'] : 0;
+	}
 
 	$mwb_wocuf_pro_funnel_series = array();
 
 	// POST funnel as array at funnel id key.
 	$mwb_wocuf_pro_funnel_series[ $mwb_wocuf_pro_funnel_id ] = ! empty( $mwb_wocuf_pro_funnel ) && is_array( $mwb_wocuf_pro_funnel ) ? $mwb_wocuf_pro_funnel : array();
 
-	// Get all funnels.
-	$mwb_wocuf_pro_created_funnels = get_option( 'mwb_wocuf_funnels_list', array() );
-
 	// If there are other funnels.
 	if ( is_array( $mwb_wocuf_pro_created_funnels ) && count( $mwb_wocuf_pro_created_funnels ) ) {
 
-		$flag = 0;
+		$flag = false;
 
 		foreach ( $mwb_wocuf_pro_created_funnels as $key => $data ) {
 
 			// If funnel id key is already present, then replace that key in array.
-			if ( $key == $mwb_wocuf_pro_funnel_id ) {
+			if ( (int) $key === (int) $mwb_wocuf_pro_funnel_id ) {
 
 				$mwb_wocuf_pro_created_funnels[ $key ] = $mwb_wocuf_pro_funnel_series[ $mwb_wocuf_pro_funnel_id ];
-				$flag = 1;
+				$flag                                  = true;
 				break;
 			}
 		}
 
 		// If funnel id key not present then merge array.
-		if ( 1 != $flag ) {
+		if ( true !== $flag ) {
 
 			// Array merge was reindexing keys so using array union operator.
 			$mwb_wocuf_pro_created_funnels = $mwb_wocuf_pro_created_funnels + $mwb_wocuf_pro_funnel_series;
 		}
 
 		update_option( 'mwb_wocuf_funnels_list', $mwb_wocuf_pro_created_funnels );
-	}
 
-	// If there are no other funnels.
-	else {
+	} else { // If there are no other funnels.
 
 		update_option( 'mwb_wocuf_funnels_list', $mwb_wocuf_pro_funnel_series );
 	}
@@ -209,14 +280,11 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 	mwb_upsell_lite_offer_page_posts_deletion();
 
 	?>
-
 	<!-- Settings saved notice -->
 	<div class="notice notice-success is-dismissible"> 
 		<p><strong><?php esc_html_e( 'Settings saved', 'woo-one-click-upsell-funnel' ); ?></strong></p>
 	</div>
-
 	<?php
-
 }
 
 // Get all funnels.
@@ -226,14 +294,14 @@ $mwb_wocuf_pro_funnel_data = get_option( 'mwb_wocuf_funnels_list', array() );
 $mwb_wocuf_pro_custom_th_page = ! empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_custom_th_page'] ) ? $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_custom_th_page'] : 'off';
 
 $mwb_wocuf_pro_funnel_schedule_options = array(
-	'0'     => esc_html__( 'on every Sunday', 'woo-one-click-upsell-funnel' ),
-	'1'     => esc_html__( 'on every Monday', 'woo-one-click-upsell-funnel' ),
-	'2'     => esc_html__( 'on every Tuesday', 'woo-one-click-upsell-funnel' ),
-	'3'     => esc_html__( 'on every Wednesday', 'woo-one-click-upsell-funnel' ),
-	'4'     => esc_html__( 'on every Thursday', 'woo-one-click-upsell-funnel' ),
-	'5'     => esc_html__( 'on every Friday', 'woo-one-click-upsell-funnel' ),
-	'6'     => esc_html__( 'on every Saturday', 'woo-one-click-upsell-funnel' ),
-	'7'     => esc_html__( 'Daily', 'woo-one-click-upsell-funnel' ),
+	'0' => esc_html__( 'Sunday', 'woo-one-click-upsell-funnel' ),
+	'1' => esc_html__( 'Monday', 'woo-one-click-upsell-funnel' ),
+	'2' => esc_html__( 'Tuesday', 'woo-one-click-upsell-funnel' ),
+	'3' => esc_html__( 'Wednesday', 'woo-one-click-upsell-funnel' ),
+	'4' => esc_html__( 'Thursday', 'woo-one-click-upsell-funnel' ),
+	'5' => esc_html__( 'Friday', 'woo-one-click-upsell-funnel' ),
+	'6' => esc_html__( 'Saturday', 'woo-one-click-upsell-funnel' ),
+	'7' => esc_html__( 'Daily', 'woo-one-click-upsell-funnel' ),
 );
 
 ?>
@@ -246,7 +314,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 		<table class="form-table mwb_wocuf_pro_creation_setting">
 
 			<tbody>
-				
+
 				<!-- Nonce field here. -->
 				<?php wp_nonce_field( 'mwb_wocuf_pro_creation_nonce', 'mwb_wocuf_pro_nonce' ); ?>
 
@@ -276,13 +344,21 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 					<h2><?php echo esc_attr( $funnel_name ); ?></h2>
 
 					<div id="mwb_upsell_funnel_status" >
+
+						<?php
+
+						$attribute_description = sprintf( '<p class="mwb_upsell_tip_tip">%s</p><p class="mwb_upsell_tip_tip">%s</p><p class="mwb_upsell_tip_tip">%s</p>', esc_html__( 'Post Checkout Offers will be displayed :', 'woo-one-click-upsell-funnel' ), esc_html__( 'Sandbox Mode &rarr; For Admin only', 'woo-one-click-upsell-funnel' ), esc_html__( 'Live Mode &rarr; For All', 'woo-one-click-upsell-funnel' ) );
+
+						mwb_upsell_lite_wc_help_tip( $attribute_description );
+						?>
+
 						<label>
 							<input type="checkbox" id="mwb_upsell_funnel_status_input" name="mwb_upsell_funnel_status" value="yes" <?php checked( 'yes', $funnel_status ); ?> >
 							<span class="mwb_upsell_funnel_span"></span>
 						</label>
 
-						<span class="mwb_upsell_funnel_status_on <?php echo 'yes' == $funnel_status ? 'active' : ''; ?>"><?php esc_html_e( 'Live', 'woo-one-click-upsell-funnel' ); ?></span>
-						<span class="mwb_upsell_funnel_status_off <?php echo 'no' == $funnel_status ? 'active' : ''; ?>"><?php esc_html_e( 'Sandbox', 'woo-one-click-upsell-funnel' ); ?></span>
+						<span class="mwb_upsell_funnel_status_on <?php echo 'yes' === $funnel_status ? 'active' : ''; ?>"><?php esc_html_e( 'Live', 'woo-one-click-upsell-funnel' ); ?></span>
+						<span class="mwb_upsell_funnel_status_off <?php echo 'no' === $funnel_status ? 'active' : ''; ?>"><?php esc_html_e( 'Sandbox', 'woo-one-click-upsell-funnel' ); ?></span>
 					</div>
 
 				</div>
@@ -320,8 +396,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 						<?php
 
 						$description = esc_html__( 'Provide the name of your funnel', 'woo-one-click-upsell-funnel' );
-						echo wc_help_tip( $description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-
+						mwb_upsell_lite_wc_help_tip( $description );
 						?>
 
 						<input type="text" id="mwb_upsell_funnel_name" name="mwb_wocuf_funnel_name" value="<?php echo esc_html( $funnel_name ); ?>" id="mwb_wocuf_pro_funnel_name" class="input-text mwb_wocuf_pro_commone_class" required="" maxlength="30">
@@ -342,8 +417,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 						$description = esc_html__( 'If any one of these Target Products is checked out then the this funnel will be triggered and the below offers will be shown.', 'woo-one-click-upsell-funnel' );
 
-						echo wc_help_tip( $description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-
+						mwb_upsell_lite_wc_help_tip( $description );
 						?>
 
 						<select class="wc-funnel-product-search" multiple="multiple" style="" name="mwb_wocuf_target_pro_ids[]" data-placeholder="<?php esc_attr_e( 'Search for a product&hellip;', 'woo-one-click-upsell-funnel' ); ?>">
@@ -363,7 +437,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 									$product_name = get_the_title( $mwb_wocuf_pro_single_target_product_id );
 
-									echo '<option value="' . esc_html( $mwb_wocuf_pro_single_target_product_id ) . '" selected="selected" >' . esc_html( $product_name ) . '(#' . esc_html( $mwb_wocuf_pro_single_target_product_id ) . ')' . '</option>';
+									echo '<option value="' . esc_html( $mwb_wocuf_pro_single_target_product_id ) . '" selected="selected" >' . esc_html( $product_name ) . '(#' . esc_html( $mwb_wocuf_pro_single_target_product_id ) . ')</option>';
 								}
 							}
 						}
@@ -387,34 +461,115 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 						$description = esc_html__( 'Schedule your funnel for specific weekdays.', 'woo-one-click-upsell-funnel' );
 
-						echo wc_help_tip( $description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						mwb_upsell_lite_wc_help_tip( $description );
 
 						?>
-
-						<select class="mwb_wocuf_pro_funnel_schedule" name="mwb_wocuf_pro_funnel_schedule">
+						<!-- Add multiselect since v3.0.0 -->
+						<select class="mwb_wocuf_pro_funnel_schedule mwb-upsell-funnel-schedule-search" name="mwb_wocuf_pro_funnel_schedule[]" multiple="multiple" data-placeholder="<?php esc_attr_e( 'Search for a specific days&hellip;', 'woo-one-click-upsell-funnel' ); ?>">
 
 							<?php
 
-							$selected_week = ! empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) ? $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] : 7;
+							/**
+							 * After v1.0.0 schedule value will be array.
+							 * Hence, convert earlier version data in array.
+							 */
+							if ( empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) || ! is_array( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) ) {
 
-							foreach ( $mwb_wocuf_pro_funnel_schedule_options as $key => $value ) {
+								$selected_week = ! empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) ? array( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) : array( '7' );
+							} else {
 
-								?>
-
-								<option <?php echo esc_html( $selected_week == $key ? 'selected=""' : '' ); ?> value="<?php echo esc_html( $key ); ?>"><?php echo esc_html( $value ); ?></option>
-
-								<?php
+								$selected_week = ! empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) ? $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] : array( '7' );
 							}
 
 							?>
-						</select>			
+
+							<?php foreach ( $mwb_wocuf_pro_funnel_schedule_options as $key => $day ) : ?>
+
+								<option <?php echo in_array( (string) $key, $selected_week, true ) ? 'selected' : ''; ?> value="<?php echo esc_html( $key ); ?>"><?php echo esc_html( $day ); ?></option>
+
+							<?php endforeach; ?>
+
+						</select>
 					</td>	
 				</tr>
 				<!-- Schedule your Funnel end -->
-				
+
+				<!-- Global Funnel start -->
+				<tr valign="top">
+
+					<th scope="row" class="titledesc">
+						<label for="mwb_wocuf_global_funnel"><?php esc_html_e( 'Global Funnel', 'woo-one-click-upsell-funnel' ); ?></label>
+					</th>
+
+					<td class="forminp forminp-text">
+						<?php
+
+						$attribut_description = esc_html__( 'Global Funnel will always trigger independent of the target products and categories. Global Funnel has the highest priority so this will execute at last when no other funnel triggers.', 'woo-one-click-upsell-funnel' );
+
+						mwb_upsell_lite_wc_help_tip( $attribut_description );
+
+						$mwb_wocuf_is_global = ! empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_global_funnel'] ) ? $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_global_funnel'] : 'no';
+						?>
+
+						<label class="mwb_wocuf_pro_enable_plugin_label">
+							<input class="mwb_wocuf_pro_enable_plugin_input" type="checkbox" <?php echo ( 'yes' === $mwb_wocuf_is_global ) ? "checked='checked'" : ''; ?> name="mwb_wocuf_global_funnel" >	
+							<span class="mwb_wocuf_pro_enable_plugin_span"></span>
+						</label>		
+					</td>
+				</tr>
+				<!-- Global Funnel end -->
+
+				<!-- Exclusive Offer start -->
+				<tr valign="top">
+
+					<th scope="row" class="titledesc">
+						<label for="mwb_wocuf_is_exclusive"><?php esc_html_e( 'Exclusive Offer', 'woo-one-click-upsell-funnel' ); ?></label>
+					</th>
+
+					<td class="forminp forminp-text">
+						<?php
+
+						$attribut_description = esc_html__( 'This feature makes the upsell funnel to be shown to the customers only once, whether they accept or reject it. This works with respect to the order billing email.', 'woo-one-click-upsell-funnel' );
+
+						mwb_upsell_lite_wc_help_tip( $attribut_description );
+
+						$mwb_wocuf_is_exclusive = ! empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_exclusive_offer'] ) ? $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_exclusive_offer'] : 'no';
+						?>
+
+						<label class="mwb_wocuf_pro_enable_plugin_label">
+							<input class="mwb_wocuf_pro_enable_plugin_input" type="checkbox" <?php echo ( 'yes' === $mwb_wocuf_is_exclusive ) ? "checked='checked'" : ''; ?> name="mwb_wocuf_exclusive_offer" >	
+							<span class="mwb_wocuf_pro_enable_plugin_span"></span>
+						</label>		
+					</td>
+				</tr>
+				<!-- Exclusive Offer end -->
+
+				<!-- Smart Offer Upgrade start -->
+				<tr valign="top">
+
+					<th scope="row" class="titledesc">
+						<label for="mwb_wocuf_smart_offer_upgrade"><?php esc_html_e( 'Smart Offer Upgrade', 'woo-one-click-upsell-funnel' ); ?></label>
+					</th>
+
+					<td class="forminp forminp-text">
+						<?php
+
+						$attribute_description = sprintf( '<p class="mwb_upsell_tip_tip">%s</p><p class="mwb_upsell_tip_tip">%s</p><p class="mwb_upsell_tip_tip">%s</p>', esc_html__( 'This feature replaces the target product with the Offer product as an Upgrade.', 'woo-one-click-upsell-funnel' ), esc_html__( 'Please keep this Funnel limited to One Offer as other Offers won\'t show up if this feature is on.', 'woo-one-click-upsell-funnel' ), esc_html__( 'This feature will not work if Global Funnel feature is on for this funnel.', 'woo-one-click-upsell-funnel' ) );
+
+						mwb_upsell_lite_wc_help_tip( $attribute_description );
+
+						$mwb_wocuf_smoff_upgrade = ! empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_smart_offer_upgrade'] ) ? $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_smart_offer_upgrade'] : 'no';
+						?>
+
+						<label class="mwb_wocuf_pro_enable_plugin_label">
+							<input class="mwb_wocuf_pro_enable_plugin_input" type="checkbox" <?php echo ( 'yes' === $mwb_wocuf_smoff_upgrade ) ? "checked='checked'" : ''; ?> name="mwb_wocuf_smart_offer_upgrade" >	
+							<span class="mwb_wocuf_pro_enable_plugin_span"></span>
+						</label>
+					</td>
+				</tr>
+				<!-- Smart Offer Upgrade end -->
 			</tbody>
 		</table>
-		
 
 		<div class="mwb_wocuf_pro_offers"><h1><?php esc_html_e( 'Funnel Offers', 'woo-one-click-upsell-funnel' ); ?></h1>
 		</div>
@@ -446,6 +601,9 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 		$post_id_assigned_array = ! empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_upsell_post_id_assigned'] ) ? $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_upsell_post_id_assigned'] : '';
 
 		// Funnel Offers array.
+		$mwb_wocuf_custom_offer_images = ! empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_upsell_offer_image'] ) ? $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_upsell_offer_image'] : array();
+
+		// Funnel Offers array.
 		// To be used for showing other offers except for itself in 'buy now' and 'no thanks' go to link.
 		$mwb_wocuf_pro_existing_offers_2 = $mwb_wocuf_pro_existing_offers;
 
@@ -475,7 +633,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 						foreach ( $mwb_wocuf_pro_existing_offers_2 as $current_offer_id_2 ) :
 
-							if ( $current_offer_id_2 != $current_offer_id ) {
+							if ( (int) $current_offer_id_2 !== (int) $current_offer_id ) {
 
 								$mwb_wocuf_pro_buy_attached_offers .= '<option value=' . esc_html( $current_offer_id_2 ) . '>' . esc_html__( 'Offer #', 'woo-one-click-upsell-funnel' ) . esc_html( $current_offer_id_2 ) . '</option>';
 
@@ -491,13 +649,10 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 					if ( ! empty( $mwb_wocuf_pro_offers_buy_now_offers ) ) {
 
 						// If link is set to No thanks.
-						if ( 'thanks' == $mwb_wocuf_pro_offers_buy_now_offers[ $current_offer_id ] ) {
+						if ( 'thanks' === $mwb_wocuf_pro_offers_buy_now_offers[ $current_offer_id ] ) {
 
 							$mwb_wocuf_pro_buy_now_action_html = '<select name="mwb_wocuf_attached_offers_on_buy[' . $current_offer_id . ']"><option value="thanks" selected="">' . esc_html__( 'Order ThankYou Page', 'woo-one-click-upsell-funnel' ) . '</option>' . $mwb_wocuf_pro_buy_attached_offers;
-						}
-
-						// If link is set to other offer.
-						elseif ( $mwb_wocuf_pro_offers_buy_now_offers[ $current_offer_id ] > 0 ) {
+						} elseif ( $mwb_wocuf_pro_offers_buy_now_offers[ $current_offer_id ] > 0 ) {
 
 							$mwb_wocuf_pro_buy_now_action_html = '<select name="mwb_wocuf_attached_offers_on_buy[' . $current_offer_id . ']"><option value="thanks">' . esc_html__( 'Order ThankYou Page', 'woo-one-click-upsell-funnel' ) . '</option>';
 
@@ -506,9 +661,9 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 								// Loop through offers and set the saved one as selected.
 								foreach ( $mwb_wocuf_pro_existing_offers_2 as $current_offer_id_2 ) {
 
-									if ( $current_offer_id_2 != $current_offer_id ) {
+									if ( (string) $current_offer_id_2 !== (string) $current_offer_id ) {
 
-										if ( $mwb_wocuf_pro_offers_buy_now_offers[ $current_offer_id ] == $current_offer_id_2 ) {
+										if ( (string) $mwb_wocuf_pro_offers_buy_now_offers[ $current_offer_id ] === (string) $current_offer_id_2 ) {
 
 											$mwb_wocuf_pro_buy_now_action_html .= '<option value=' . $current_offer_id_2 . ' selected="">' . esc_html__( 'Offer #', 'woo-one-click-upsell-funnel' ) . $current_offer_id_2 . '</option>';
 										} else {
@@ -527,13 +682,10 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 					if ( ! empty( $mwb_wocuf_pro_offers_no_thanks_offers ) ) {
 
 						// If link is set to No thanks.
-						if ( 'thanks' == $mwb_wocuf_pro_offers_no_thanks_offers[ $current_offer_id ] ) {
+						if ( 'thanks' === $mwb_wocuf_pro_offers_no_thanks_offers[ $current_offer_id ] ) {
 
 							$mwb_wocuf_pro_no_thanks_action_html = '<select name="mwb_wocuf_attached_offers_on_no[' . $current_offer_id . ']"><option value="thanks" selected="">' . esc_html__( 'Order ThankYou Page', 'woo-one-click-upsell-funnel' ) . '</option>' . $mwb_wocuf_pro_no_attached_offers;
-						}
-
-						// If link is set to other offer.
-						elseif ( $mwb_wocuf_pro_offers_no_thanks_offers[ $current_offer_id ] > 0 ) {
+						} elseif ( $mwb_wocuf_pro_offers_no_thanks_offers[ $current_offer_id ] > 0 ) { // If link is set to other offer.
 
 							$mwb_wocuf_pro_no_thanks_action_html = '<select name="mwb_wocuf_attached_offers_on_no[' . $current_offer_id . ']"><option value="thanks">' . esc_html__( 'Order ThankYou Page', 'woo-one-click-upsell-funnel' ) . '</option>';
 
@@ -542,9 +694,9 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 								// Loop through offers and set the saved one as selected.
 								foreach ( $mwb_wocuf_pro_existing_offers_2 as $current_offer_id_2 ) {
 
-									if ( $current_offer_id != $current_offer_id_2 ) {
+									if ( (int) $current_offer_id !== (int) $current_offer_id_2 ) {
 
-										if ( $mwb_wocuf_pro_offers_no_thanks_offers[ $current_offer_id ] == $current_offer_id_2 ) {
+										if ( (int) $mwb_wocuf_pro_offers_no_thanks_offers[ $current_offer_id ] === (int) $current_offer_id_2 ) {
 
 											$mwb_wocuf_pro_no_thanks_action_html .= '<option value=' . $current_offer_id_2 . ' selected="">' . esc_html__( 'Offer #', 'woo-one-click-upsell-funnel' ) . $current_offer_id_2 . '</option>';
 										} else {
@@ -615,7 +767,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 								</td>
 							</tr>
 							<!-- Offer product end -->
-							
+
 							<!-- Offer price start -->
 							<tr>
 								<th><label><h4><?php esc_html_e( 'Offer Price / Discount', 'woo-one-click-upsell-funnel' ); ?></h4></label>
@@ -629,13 +781,29 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 							</tr>
 							<!-- Offer price end -->
 
+							<!-- Offer custom image start -->
+							<tr>
+								<th><label><h4><?php esc_html_e( 'Offer Image', 'woo-one-click-upsell-funnel' ); ?></h4></label>
+								</th>
+
+								<td>
+									<?php
+
+										$image_post_id = ! empty( $mwb_wocuf_custom_offer_images[ $current_offer_id ] ) ? $mwb_wocuf_custom_offer_images[ $current_offer_id ] : '';
+
+										echo $this->mwb_wocuf_pro_image_uploader_field( $current_offer_id, $image_post_id );  // phpcs:ignore 
+									?>
+								</td>
+							</tr>
+							<!-- Offer custom image end -->
+
 							<!-- Buy now go to link start -->
 							<tr>
 								<th><label><h4><?php esc_html_e( 'After \'Buy Now\' go to', 'woo-one-click-upsell-funnel' ); ?></h4></label>
 								</th>
 
 								<td>
-									<?php echo $mwb_wocuf_pro_buy_now_action_html; ?>
+									<?php echo $mwb_wocuf_pro_buy_now_action_html; // phpcs:ignore ?>
 
 									<span class="mwb_upsell_offer_description"><?php esc_html_e( 'Select where the customer will be redirected after accepting this offer', 'woo-one-click-upsell-funnel' ); ?></span>
 								</td>
@@ -648,13 +816,13 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 								</th>
 
 								<td>
-									<?php echo $mwb_wocuf_pro_no_thanks_action_html; ?>
+									<?php echo $mwb_wocuf_pro_no_thanks_action_html;  // phpcs:ignore ?>
 									<span class="mwb_upsell_offer_description"><?php esc_html_e( 'Select where the customer will be redirected after rejecting this offer', 'woo-one-click-upsell-funnel' ); ?></span>
 								</td>
 							</tr>
-						   <!-- Buy now no thanks link end -->
+							<!-- Buy now no thanks link end -->
 
-						   <!-- Section : Offer template start -->
+							<!-- Section : Offer template start -->
 							<tr>
 								<th><label><h4><?php esc_html_e( 'Offer Template', 'woo-one-click-upsell-funnel' ); ?></h4></label>
 								</th>
@@ -662,7 +830,6 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 								<?php
 
 								$assigned_post_id = ! empty( $post_id_assigned_array[ $current_offer_id ] ) ? $post_id_assigned_array[ $current_offer_id ] : '';
-
 								?>
 
 								<td>
@@ -674,8 +841,8 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 										$offer_template_active = ! empty( $mwb_wocuf_pro_offer_active_template[ $current_offer_id ] ) ? $mwb_wocuf_pro_offer_active_template[ $current_offer_id ] : 'one';
 
 										$offer_templates_array = array(
-											'one' => esc_html__( 'STANDARD TEMPLATE', 'woo-one-click-upsell-funnel' ),
-											'two' => esc_html__( 'CREATIVE TEMPLATE', 'woo-one-click-upsell-funnel' ),
+											'one'   => esc_html__( 'STANDARD TEMPLATE', 'woo-one-click-upsell-funnel' ),
+											'two'   => esc_html__( 'CREATIVE TEMPLATE', 'woo-one-click-upsell-funnel' ),
 											'three' => esc_html__( 'VIDEO TEMPLATE', 'woo-one-click-upsell-funnel' ),
 										);
 
@@ -688,7 +855,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 											<?php foreach ( $offer_templates_array as $template_key => $template_name ) : ?>
 												<!-- Offer templates foreach start-->
-												<div class="mwb_upsell_offer_template <?php echo esc_html( $template_key == $offer_template_active ? 'active' : '' ); ?>">
+												<div class="mwb_upsell_offer_template <?php echo esc_html( (string) $template_key === (string) $offer_template_active ? 'active' : '' ); ?>">
 
 													<div class="mwb_upsell_offer_template_sub_div"> 
 
@@ -701,7 +868,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 														<div class="mwb_upsell_offer_action">
 
-															<?php if ( $template_key != $offer_template_active ) : ?>
+															<?php if ( (string) $template_key !== (string) $offer_template_active ) : ?>
 
 															<button class="button-primary mwb_upsell_activate_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" data-offer-id="<?php echo esc_html( $current_offer_id ); ?>" data-funnel-id="<?php echo esc_html( $mwb_wocuf_pro_funnel_id ); ?>" data-offer-post-id="<?php echo esc_html( $assigned_post_id ); ?>" ><?php esc_html_e( 'Insert and Activate', 'woo-one-click-upsell-funnel' ); ?></button>
 
@@ -715,19 +882,19 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 														</div>
 
 													</div>
-													
+
 												</div>
 												<!-- Offer templates foreach end-->
 											<?php endforeach; ?>
-												
+
 											<!-- Offer link to custom page start-->
-											<div class="mwb_upsell_offer_template mwb_upsell_custom_page_link_div <?php echo esc_url( 'custom' == $offer_template_active ? 'active' : '' ); ?>">
+											<div class="mwb_upsell_offer_template mwb_upsell_custom_page_link_div <?php echo esc_html( 'custom' === $offer_template_active ? 'active' : '' ); ?>">
 
 												<div class="mwb_upsell_offer_template_sub_div">
 
 													<h5><?php esc_html_e( 'LINK TO CUSTOM PAGE', 'woo-one-click-upsell-funnel' ); ?></h5>
 
-													<?php if ( 'custom' != $offer_template_active ) : ?>
+													<?php if ( 'custom' !== $offer_template_active ) : ?>
 
 														<button class="button-primary mwb_upsell_activate_offer_template" data-template-id="custom" data-offer-id="<?php echo esc_html( $current_offer_id ); ?>" data-funnel-id="<?php echo esc_html( $mwb_wocuf_pro_funnel_id ); ?>" data-offer-post-id="<?php echo esc_html( $assigned_post_id ); ?>" ><?php esc_html_e( 'Activate', 'woo-one-click-upsell-funnel' ); ?></button>
 
@@ -739,18 +906,17 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 													<?php endif; ?>
 
 												</div>
-												
+
 											</div>
 											<!-- Offer link to custom page end-->
-											
+
 										</div>
 										<!-- Offer templates parent div end -->
-									
 
 									<?php else : ?>
 
 										<div class="mwb_upsell_offer_template_unsupported">
-											
+
 										<h4><?php esc_html_e( 'Feature not supported for this Offer, please add a new Offer with Elementor active.', 'woo-one-click-upsell-funnel' ); ?></h4>
 										</div>
 
@@ -759,7 +925,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 							</tr>
 							<!-- Section : Offer template end -->
 
-						   <!-- Custom offer page url start -->
+							<!-- Custom offer page url start -->
 							<tr>
 								<th><label><h4><?php esc_html_e( 'Offer Custom Page Link', 'woo-one-click-upsell-funnel' ); ?></h4></label>
 								</th>
@@ -777,7 +943,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 								</td>
 							</tr>
 							<!-- Delete current offer ( Saved one ) -->
-							
+
 						</table>
 
 						<input type="hidden" name="mwb_wocuf_applied_offer_number[<?php echo esc_html( $current_offer_id ); ?>]" value="<?php echo esc_html( $current_offer_id ); ?>">
@@ -800,7 +966,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 			<?php esc_html_e( 'Add New Offer', 'woo-one-click-upsell-funnel' ); ?>
 			</button>
 		</div>
-		
+
 		<!-- Save Changes for whole funnel -->
 		<p class="submit">
 			<input type="submit" value="<?php esc_html_e( 'Save Changes', 'woo-one-click-upsell-funnel' ); ?>" class="button-primary woocommerce-save-button" name="mwb_wocuf_pro_creation_setting_save" id="mwb_wocuf_pro_creation_setting_save" >

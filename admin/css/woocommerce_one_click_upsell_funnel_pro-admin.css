@@ -1,7 +1,7 @@
 /**
-* All of the CSS for your admin-specific functionality should be
-* included in this file.
-*/
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
 #mwb_wocuf_pro_setting_wrapper *{
   box-sizing: border-box;
 }
@@ -13,7 +13,11 @@
 .mwb_wocuf_pro_funnels_list table{
   table-layout: fixed;
 }
-.mwb_wocuf_pro_shortcodes p{
+.mwb_wocuf_pro_funnels_list table tr:nth-child(2n+1) {
+    background-color: #f7f5f5;
+}
+.mwb_wocuf_pro_shortcodes p,
+.mwb_upsell_slide_down p {
   display: inline-block;
 }
 #mwb_wocuf_pro_setting_wrapper h1{
@@ -85,7 +89,7 @@
 }
 .mwb_wocuf_pro_funnels_list table th, .mwb_upsell_table table th, .mwb_upsell_table table th label h4{
   color: #000;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 500;
   padding: 15px!important;
   text-align: left;
@@ -160,7 +164,7 @@
 }
 .show
 {
-  display: inline; !important;
+  display: inline !important;
 }
 .mwb_wocuf_pro_create_new_funnel{
   margin:0 auto;
@@ -308,10 +312,12 @@ h1.mwb_wocuf_pro_setting_title .mwb-wocuf-pro-wrap h1 {
 table.form-table.mwb_wocuf_pro_shortcodes .mwb_upsell_shortcode_div {
   margin: 10px 0px;
 }
-table.form-table.mwb_wocuf_pro_shortcodes tr td, table.form-table.mwb_wocuf_pro_shortcodes tr th {
+table.form-table.mwb_wocuf_pro_shortcodes tr td, table.form-table.mwb_wocuf_pro_shortcodes tr th,
+table.form-table.mwb_upsell_slide_down_table tr td, table.form-table.mwb_upsell_slide_down_table tr th {
   vertical-align: middle;
 }
-table.form-table.mwb_wocuf_pro_shortcodes {
+table.form-table.mwb_wocuf_pro_shortcodes,
+table.form-table.mwb_upsell_slide_down_table {
   margin-top: 20px;
 }
 .mwb_wocuf_pro_new_offer {
@@ -388,19 +394,19 @@ span.mwb_wocuf_pro_span label::after {
 
 
 /**
- * V3.0.0 CSS Starts HERE ------------>>>>>>>>>>>>>>>>>>>
+ * v2.0.0 CSS Starts HERE ------------>>>>>>>>>>>>>>>>>>>
  * 
  */
 
- /*since v3.0.0 - Global Settings - Start*/
+ /*since v2.0.0 - Global Settings - Start*/
 
  .mwb_wocuf_pro_creation_setting textarea {
   max-width: 100% !important;
 }
 
-/*since v3.0.0 - Global Settings - Start*/
+/*since v2.0.0 - Global Settings - End*/
 
-/*since v3.0.0 - Funnel status - Start*/
+/*since v2.0.0 - Funnel status - Start*/
 
 .mwb_upsell_funnel_status_on.active,
 .mwb_upsell_funnel_status_off.active {
@@ -412,9 +418,13 @@ span.mwb_wocuf_pro_span label::after {
   display: none;
 }
 
-/*since v3.0.0 - Funnel status - End*/
+#mwb_upsell_funnel_status .woocommerce-help-tip {
+  bottom: 2px;
+}
 
-/*since v3.0.0 - Shortcodes - Start*/
+/*since v2.0.0 - Funnel status - End*/
+
+/*since v2.0.0 - Shortcodes - Start*/
 
 .mwb_upsell_tip_tip {
   font-size: 11px;
@@ -427,7 +437,7 @@ span.mwb_wocuf_pro_span label::after {
   border-radius: 10px;
 }
 
-.mwb_upsell_old_shortcodes_link {
+.mwb_upsell_slide_down_link {
   overflow: hidden;
   display: inline-block;
   width: 27px;
@@ -436,29 +446,29 @@ span.mwb_wocuf_pro_span label::after {
   position: absolute;
 }
 
-.mwb_upsell_old_shortcodes_title {
+.mwb_upsell_slide_down_title {
   position: relative;
   background-color: #f1f1f1;
   margin-top: 30px;
 }
-.mwb_upsell_old_shortcodes_title h2 {
+.mwb_upsell_slide_down_title h2 {
   color: #5f5555;
   padding-left: 20px;
 }
 
-.mwb_upsell_old_shortcodes {
+.mwb_upsell_slide_down_content {
   display: none;
 }
 
-.mwb_upsell_old_shortcodes_title h2 {
+.mwb_upsell_slide_down_title h2 {
   display: inline-block;
 }
 
-.mwb_upsell_old_shortcodes_link:focus {
+.mwb_upsell_slide_down_link:focus {
   box-shadow: 0px 0px 0px 0px;
 }
 
-.mwb_upsell_old_shortcodes_link img {
+.mwb_upsell_slide_down_link img {
   width: 100%;
 }
 
@@ -472,9 +482,9 @@ span.mwb_wocuf_pro_span label::after {
 }
 
 
-/*since v3.0.0 - Old shortcodes - End*/
+/*since v2.0.0 - Old shortcodes - End*/
 
-/*since v3.0.0 - Offer preview - Start*/
+/*since v2.0.0 - Offer preview - Start*/
 
 .mwb_upsell_offer_template_preview_one,
 .mwb_upsell_offer_template_preview_two,
@@ -490,18 +500,18 @@ span.mwb_wocuf_pro_span label::after {
   display: none;
 }
 
-/*since v3.0.0 - Offer preview - End*/
+/*since v2.0.0 - Offer preview - End*/
 
-/*since v3.0.0 - Offer template not supported - End*/
+/*since v2.0.0 - Offer template not supported - End*/
 
 .mwb_upsell_offer_template_unsupported h4 {
   font-weight: 400;
   font-size: 17px;
 }
 
-/*since v3.0.0 - Offer template not supported - End*/
+/*since v2.0.0 - Offer template not supported - End*/
 
-/*since v3.0.0 - Funnel list - Start*/
+/*since v2.0.0 - Funnel list - Start*/
 
 .mwb_upsell_funnel_list_name {
   font-size: 16px !important;
@@ -514,7 +524,7 @@ span.mwb_wocuf_pro_span label::after {
 }
 
 .mwb_upsell_funnel_list_targets {
-  background-color: #f1f1f1;
+  background-color: #eaeaea;
   border-radius: 10px 10px;
 }
 
@@ -557,9 +567,21 @@ span.mwb_wocuf_pro_span label::after {
   width: 25%;
 }
 
-/*since v3.0.0 - Funnel list - End*/
+.mwb-upsell-funnel-attributes p {
+  font-style: italic;
+}
 
-/*since v3.0.0 - Buton focus- Start*/
+.mwb-upsell-funnel-attributes.yes p {
+  color: #72b750 !important;
+}
+
+.mwb-upsell-funnel-attributes.no p {
+  color: #ffa500 !important;
+}
+
+/*since v2.0.0 - Funnel list - End*/
+
+/*since v2.0.0 - Buton focus- Start*/
 
 .mwb_wocuf_pro_create_new_offer:focus, .mwb_wocuf_pro_create_new_funnel a:focus {
  border: 0;
@@ -576,9 +598,9 @@ span.mwb_wocuf_pro_span label::after {
   color: #fff;
 }
 
-/*since v3.0.0 - Buton focus- End*/
+/*since v2.0.0 - Buton focus- End*/
 
-/*since v3.0.0 - Elementor notice - Start*/
+/*since v2.0.0 - Elementor notice - Start*/
 
 #mwb_upsell_elementor_notice p {
   font-size: 15px;
@@ -620,13 +642,13 @@ span.mwb_wocuf_pro_span label::after {
   height: auto;
 }
 
-/*since v3.0.0 - Elementor notice - End*/
+/*since v2.0.0 - Elementor notice - End*/
 
-/*since v3.0.0 - Overview - Start*/
+/*since v2.0.0 - Overview - Start*/
 
 #mwb_upsell_lite_overview #mwb_upsell_lite_overview_video h2 {
   text-align: center;
-  font-size: 21px;
+  font-size: 30px;
   color: #76807e;
   font-weight: 400;
   margin-top: 30px;
@@ -639,24 +661,25 @@ span.mwb_wocuf_pro_span label::after {
   line-height: 1em;
 }
 
-#mwb_upsell_lite_overview .mwb_upsell_overview_supported_product .mwb_upsell_overview_simple_product_icon {
+.mwb_upsell_overview_product_icon.simple, 
+.mwb_upsell_overview_product_icon.variable {
   float: left;
   width: 50%;
   text-align: center;
   padding: 0px 15px;
   box-sizing: border-box;
 }
-.mwb_upsell_overview_subscription_product_icon {
+.mwb_upsell_overview_product_icon.subscription {
   max-width: 50%;
   margin: 30px auto;
   text-align: center;
   clear: both;
 }
-.mwb_upsell_overview_subscription_product_icon img,
-.mwb_upsell_overview_simple_product_icon img {
+.mwb_upsell_overview_product_icon img {
   opacity: 0.9;
 }
-#mwb_upsell_lite_overview .mwb_upsell_overview_supported_product .mwb_upsell_overview_simple_product_icon img{
+
+.mwb_upsell_overview_product_icon img{
   max-width: 100%;
 }
 #mwb_upsell_lite_overview .mwb_upsell_overview_supported_product:after {
@@ -702,10 +725,10 @@ span.mwb_wocuf_pro_span label::after {
 }
 
 @media only screen and (max-width: 480px) {
-  #mwb_upsell_lite_overview .mwb_upsell_overview_supported_product .mwb_upsell_overview_simple_product_icon{
+  .mwb_upsell_overview_product_icon {
     width: 100%;
   }
-  #mwb_upsell_lite_overview .mwb_upsell_overview_supported_product .mwb_upsell_overview_simple_product_icon img{
+  .mwb_upsell_overview_product_icon img{
     width: 50%;
   }
   #mwb_upsell_lite_overview #mwb_upsell_lite_overview_pro_version .mwb_upsell_overview_go_pro a.button {
@@ -718,9 +741,32 @@ span.mwb_wocuf_pro_span label::after {
   }
 }
 
-/*since v3.0.0 - Overview - End*/
+/*since v2.0.0 - Overview - End*/
 
-/*since v3.0.0 - Designer CSS - Start*/
+/*since v3.0.0 - Upsell Funnel Reporting - Start*/
+
+.mwb_uspell_reporting_funnel_stats_hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.mwb_upsell_stats_conversion_rate {
+  background-color: #b4db65;
+  border-radius: 10px 10px;
+}
+
+.mwb_upsell_stats_total_sales {
+  background-color: #8eba36;
+  border-radius: 10px 10px;
+}
+
+.mwb_upsell_stats_conversion_rate p, .mwb_upsell_stats_total_sales p {
+  color: #ffffff !important;
+}
+
+/*since v3.0.0 - Upsell Funnel Reporting - End*/
+
+/*since v2.0.0 - Designer CSS - Start*/
 
 #mwb_wocuf_pro_setting_wrapper .mwb_wocuf_pro_setting_title {
   color: #23282d;
@@ -777,6 +823,17 @@ span.mwb_wocuf_pro_span label::after {
   font-style: italic;
   display: block;
 }
+#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_upsell_slide_down_table tr td .mwb_upsell_global_description {
+  font-size: 13.6px;
+}
+#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_upsell_slide_down_table .mwb_upsell_other_plugin_author_name {
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 500;
+}
+#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_upsell_slide_down_table .mwb_upsell_global_description b {
+  font-weight: 500;
+}
 .new_created_offers.mwb_upsell_single_offer .mwb_upsell_offer_templates_parent {
   display: flex;
   flex-wrap: wrap;
@@ -790,7 +847,7 @@ span.mwb_wocuf_pro_span label::after {
   width: 100%;
   max-width: 400px;
 }
-.mwb_upsell_old_shortcodes_title h2 {
+.mwb_upsell_slide_down_title h2 {
   font-size: 14px;
 }
 .mwb_wocuf_pro_header {
@@ -863,11 +920,6 @@ span.mwb_wocuf_pro_span label::after {
   height: auto;
   font-size: 14px;
 }
-/*.new_created_offers.mwb_upsell_single_offer .mwb_upsell_offer_title {
-    background-color: #23282d;
-    font-weight: 400;
-    color: #fff;
-    }*/
     #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .new_offers .mwb_upsell_offer_title {
       display: inline-block;
       border-radius: 10px 0px;
@@ -986,7 +1038,7 @@ span.mwb_wocuf_pro_span label::after {
 #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading div#mwb_upsell_funnel_status {
   float: right;
   padding: 40px 10px;
-  width: 180px;
+  width: 200px;
 }
 #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading div#mwb_upsell_funnel_status span {
   padding: 7px 10px;
@@ -1029,10 +1081,6 @@ div#mwb_upsell_funnel_status .mwb_upsell_funnel_span {
 #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading 
 div#mwb_upsell_funnel_status .mwb_upsell_funnel_span:before {
   border-radius: 50%;
-}
-
-
-.slider.round:before {
 }
 #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading div#mwb_upsell_funnel_status .mwb_upsell_funnel_span{
  position: absolute;
@@ -1173,7 +1221,8 @@ div#mwb_wocuf_pro_setting_wrapper .submit #mwb_wocuf_pro_creation_setting_save {
   height: auto;
   font-size: 14px;
 }
-table.form-table.mwb_wocuf_pro_shortcodes {
+table.form-table.mwb_wocuf_pro_shortcodes,
+table.form-table.mwb_upsell_slide_down_table {
   margin-top: 30px !important;
   border: solid 2px #ccc;
 }
@@ -1313,9 +1362,61 @@ button.button-primary.mwb_upsell_activate_offer_template:focus {
 .mwb_upsell_overview_go_pro {
   margin: 40px 0;
 }
+
+/**
+ * Notice Cross button fix. 
+ */
+#mwb_wocuf_pro_setting_wrapper .notice-dismiss {
+  top: 4px;
+}
+
+/**
+ * Offer Clear button.
+ */
+.mwb-upsell-offer-product-clear.hidden {
+  display: none;
+}
+.mwb-upsell-offer-product-clear {
+  width: auto !important;
+  height: auto !important;
+}
+
+/**
+ * Custom Offer Image.
+ */
+.mwb_wocuf_saved_custom_image a:focus{
+  box-shadow: unset !important;
+}
+
+/**=========================================== 
+              Version : 3.0.0
+ ============================================*/
+
+.mwb_upsell_lite_tool_ga {
+  margin-top: 50px;
+  width: 500px;
+}
+.mwb_upsell_lite_tool_fb {
+  width: 439px !important;
+  margin-top: 20px;
+}
+.mwb_upsell_overview_product_icon a:focus {
+  color: #ffffff;
+  box-shadow: none;
+  outline: none;
+}
 /*===================================
 =            media query            =
 ===================================*/
+
+
+
+@media only screen and (max-width:1024px)  {
+  .mwb_wocuf_pro_funnels_list table {
+    width: 1024px;
+  }
+}
+
 @media only screen and (max-width:867px)  {
   #mwb_wocuf_pro_setting_wrapper .nav-tab {
     padding: 10px 35px 10px 35px;
@@ -1346,9 +1447,6 @@ button.button-primary.mwb_upsell_activate_offer_template:focus {
   }
 }
 @media only screen and (max-width:767px)  {
-  .mwb_wocuf_pro_funnels_list table {
-    width: 710px;
-  }
   .mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text table.mwb-wocuf-pro-form-table tr td{
     width: 100%;
     display: block;
@@ -1361,6 +1459,10 @@ button.button-primary.mwb_upsell_activate_offer_template:focus {
   #mwb_upsell_activate_elementor {
     font-size: 13px;
     padding: 8px 10px;
+  }
+  
+  #mwb_upsell_lite_overview #mwb_upsell_lite_overview_video h2 {
+    font-size: 21px;
   }
 
 }
@@ -1376,7 +1478,7 @@ button.button-primary.mwb_upsell_activate_offer_template:focus {
   table.form-table.mwb_wocuf_pro_creation_setting span.select2.select2-container.select2-container--default.select2-container--focus.select2-container--below {
     width: 100% !important;
   }
-  table.form-table.mwb_wocuf_pro_creation_setting {}
+  table.form-table.mwb_wocuf_pro_creation_sett
   .new_created_offers {
     overflow-x: auto;
     width: 100%;
@@ -1482,9 +1584,9 @@ button.button-primary.mwb_upsell_activate_offer_template:focus {
     }
   }
 
-  /*since v3.0.0 - Designer CSS - End*/
+  /*since v2.0.0 - Designer CSS - End*/
 
 /**
- * V3.0.0 CSS Ends HERE ------------>>>>>>>>>>>>>>>>>>>
+ * v2.0.0 CSS Ends HERE ------------>>>>>>>>>>>>>>>>>>>
  * 
- */
+ 

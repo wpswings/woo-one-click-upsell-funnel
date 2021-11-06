@@ -15,6 +15,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+define( 'ONBOARD_PLUGIN_NAME', 'One Click Upsell Funnel for Woocommerce' );
+
+if ( class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
+	$this->onboard = new Makewebbetter_Onboarding_Helper();
+}
+
+$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
+$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+
+if ( ! $id_nonce_verified ) {
+	wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
+}
+
 $active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'funnels-list';
 
 if ( 'overview' === get_transient( 'mwb_upsell_default_settings_tab' ) ) {
@@ -29,13 +42,13 @@ do_action( 'mwb_wocuf_pro_setting_tab_active' );
 <?php if ( ! mwb_upsell_lite_elementor_plugin_active() && false === get_transient( 'mwb_upsell_elementor_inactive_notice' ) ) : ?>
 
 <div id="mwb_upsell_elementor_notice" class="notice notice-info is-dismissible">
-	<p><span class="mwb_upsell_heading_span"><?php esc_html_e( 'We have integrated with Elementor', 'woo-one-click-upsell-funnel' ); ?></span><?php esc_html_e( ' – now the most advanced Wordpress page builder can be used to completely customize Upsell Offer pages. Moreover we provide three stunning and beautiful offer templates.', 'woo-one-click-upsell-funnel' ); ?></p>
+	<p><span class="mwb_upsell_heading_span"><?php esc_html_e( 'We have integrated with Elementor', 'woo-one-click-upsell-funnel' ); ?></span><?php esc_html_e( ' – now the most advanced WordPress page builder can be used to completely customize Upsell Offer pages. Moreover, we provide three stunning and beautiful offer templates.', 'woo-one-click-upsell-funnel' ); ?></p>
 
 	<p><?php esc_html_e( 'To completely utilize all features of this plugin please activate Elementor.', 'woo-one-click-upsell-funnel' ); ?></p>
 
 	<p><?php esc_html_e( 'Elementor is FREE and available on ORG ', 'woo-one-click-upsell-funnel' ); ?><a href="https://wordpress.org/plugins/elementor/" target="_blank"><?php esc_html_e( 'here', 'woo-one-click-upsell-funnel' ); ?></a></p>
 
-	<p><?php esc_html_e( 'You don\'t need to worry about Elementor as it works independently and won\'t conflict with other page builders or Wordpress new editor.', 'woo-one-click-upsell-funnel' ); ?></p>
+	<p><?php esc_html_e( 'You don\'t need to worry about Elementor as it works independently and won\'t conflict with other page builders or WordPress new editor.', 'woo-one-click-upsell-funnel' ); ?></p>
 
 	<p class="submit">
 
@@ -50,10 +63,12 @@ do_action( 'mwb_wocuf_pro_setting_tab_active' );
 
 <div class="wrap woocommerce" id="mwb_wocuf_pro_setting_wrapper">
 
+	<!-- To make WordPress notice appear at this place. As it searchs from top and appears at the 1st heading tag-->
+	<h1></h1>
+
 	<div class="hide"  id="mwb_wocuf_pro_loader">	
 		<img id="mwb-wocuf-loading-image" src="<?php echo 'images/spinner-2x.gif'; ?>" >
 	</div>
-	
 	<div class="mwb_wocuf_pro_header">
 		<div class="mwb_wocuf_pro_setting_title"><?php esc_html_e( 'One Click Upsell Funnel for WooCommerce', 'woo-one-click-upsell-funnel' ); ?></div>
 
@@ -65,32 +80,27 @@ do_action( 'mwb_wocuf_pro_setting_tab_active' );
 			<p><?php esc_html_e( 'Regarding any issue, query or feature request for Upsell', 'woo-one-click-upsell-funnel' ); ?></p>
 		</div>
 	</div>
-	
-	<!-- To make Wordpress notice appear at this place. As it searchs from top and appears at the 1st heading tag-->
-	<h1></h1>
-	
 	<nav class="nav-tab-wrapper woo-nav-tab-wrapper">
-		<a class="nav-tab <?php echo 'creation-setting' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting&tab=creation-setting"><?php esc_html_e( 'Save Funnel', 'woo-one-click-upsell-funnel' ); ?></a>
-		<a class="nav-tab <?php echo 'funnels-list' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting&tab=funnels-list"><?php esc_html_e( 'Funnels List', 'woo-one-click-upsell-funnel' ); ?></a>
-		<a class="nav-tab <?php echo 'shortcodes' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting&tab=shortcodes"><?php esc_html_e( 'Shortcodes', 'woo-one-click-upsell-funnel' ); ?></a>
-		<a class="nav-tab <?php echo 'settings' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting&tab=settings"><?php esc_html_e( 'Global Settings', 'woo-one-click-upsell-funnel' ); ?></a>
-		<a class="nav-tab <?php echo 'overview' == $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting&tab=overview"><?php esc_html_e( 'Overview', 'woo-one-click-upsell-funnel' ); ?></a>
-
+		<a class="nav-tab <?php echo 'creation-setting' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting&tab=creation-setting"><?php esc_html_e( 'Save Funnel', 'woo-one-click-upsell-funnel' ); ?></a>
+		<a class="nav-tab <?php echo 'funnels-list' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting&tab=funnels-list"><?php esc_html_e( 'Funnels List', 'woo-one-click-upsell-funnel' ); ?></a>
+		<a class="nav-tab <?php echo 'shortcodes' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting&tab=shortcodes"><?php esc_html_e( 'Shortcodes', 'woo-one-click-upsell-funnel' ); ?></a>
+		<a class="nav-tab <?php echo 'settings' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting&tab=settings"><?php esc_html_e( 'Global Settings', 'woo-one-click-upsell-funnel' ); ?></a>
+		<a class="nav-tab <?php echo 'overview' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=mwb-wocuf-setting&tab=overview"><?php esc_html_e( 'Overview', 'woo-one-click-upsell-funnel' ); ?></a>
 
 		<?php do_action( 'mwb_wocuf_pro_setting_tab' ); ?>	
 	</nav>
 	<?php
 
-	if ( 'creation-setting' == $active_tab ) {
-		include_once 'templates/mwb_wocuf_pro_creation.php';
-	} elseif ( 'funnels-list' == $active_tab ) {
-		include_once 'templates/mwb_wocuf_pro_funnels_list.php';
-	} elseif ( 'shortcodes' == $active_tab ) {
-		include_once 'templates/mwb_wocuf_pro_shortcodes.php';
-	} elseif ( 'settings' == $active_tab ) {
-		include_once 'templates/mwb_wocuf_pro_settings.php';
-	} elseif ( 'overview' == $active_tab ) {
-		include_once 'templates/mwb_wocuf_overview.php';
+	if ( 'creation-setting' === $active_tab ) {
+		include_once 'templates/mwb-wocuf-pro-creation.php';
+	} elseif ( 'funnels-list' === $active_tab ) {
+		include_once 'templates/mwb-wocuf-pro-funnels-list.php';
+	} elseif ( 'shortcodes' === $active_tab ) {
+		include_once 'templates/mwb-wocuf-pro-shortcodes.php';
+	} elseif ( 'settings' === $active_tab ) {
+		include_once 'templates/mwb-wocuf-pro-settings.php';
+	} elseif ( 'overview' === $active_tab ) {
+		include_once 'templates/mwb-wocuf-overview.php';
 	}
 
 		do_action( 'mwb_wocuf_pro_setting_tab_html' );

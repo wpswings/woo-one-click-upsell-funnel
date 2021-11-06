@@ -14,7 +14,7 @@
 /**
  * Check if Elementor plugin is active or not.
  *
- * @since    3.0.0
+ * @since    2.0.0
  */
 function mwb_upsell_lite_elementor_plugin_active() {
 
@@ -28,13 +28,37 @@ function mwb_upsell_lite_elementor_plugin_active() {
 }
 
 /**
- * Validate upsell nonce.
+ * Check if Upsell Pro plugin is active or not.
  *
  * @since    3.0.0
  */
+function mwb_upsell_lite_is_upsell_pro_active() {
+
+	if ( mwb_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
+
+		return true;
+
+	} else {
+
+		return false;
+	}
+}
+
+/**
+ * Validate upsell nonce.
+ *
+ * @since    2.0.0
+ */
 function mwb_upsell_lite_validate_upsell_nonce() {
 
-	if ( isset( $_GET['ocuf_ns'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) ), 'funnel_offers' ) ) {
+	$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
+	$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+
+	if ( ! $id_nonce_verified ) {
+		wp_die( esc_html__( 'Nonce Not verified', 'woo-one-click-upsell-funnel' ) );
+	}
+
+	if ( isset( $_GET['ocuf_ns'] ) ) {
 
 		return true;
 	} else {
@@ -46,14 +70,21 @@ function mwb_upsell_lite_validate_upsell_nonce() {
 /**
  * Get product discount.
  *
- * @since    3.0.0
+ * @since    2.0.0
  */
 function mwb_upsell_lite_get_product_discount() {
 
 	$mwb_wocuf_pro_offered_discount = '';
 
+	$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
+	$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+
+	if ( ! $id_nonce_verified ) {
+		wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
+	}
+
 	$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) ) : 'not_set';
-	$offer_id = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) ) : 'not_set';
+	$offer_id  = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) ) : 'not_set';
 
 	// If Live offer.
 	if ( 'not_set' !== $funnel_id && 'not_set' !== $offer_id ) {
@@ -63,10 +94,7 @@ function mwb_upsell_lite_get_product_discount() {
 		$mwb_wocuf_pro_offered_discount = $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ];
 
 		$mwb_wocuf_pro_offered_discount = ! empty( $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] ) ? $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] : '';
-	}
-
-	// When not live and only for admin view.
-	elseif ( current_user_can( 'manage_options' ) ) {
+	} elseif ( current_user_can( 'manage_options' ) ) {
 
 		// Get funnel and offer id from current offer page post id.
 		global $post;
@@ -79,7 +107,7 @@ function mwb_upsell_lite_get_product_discount() {
 		if ( ! empty( $funnel_data ) && is_array( $funnel_data ) && count( $funnel_data ) ) {
 
 			$funnel_id = $funnel_data['funnel_id'];
-			$offer_id = $funnel_data['offer_id'];
+			$offer_id  = $funnel_data['offer_id'];
 
 			if ( isset( $funnel_id ) && isset( $offer_id ) ) {
 
@@ -90,10 +118,7 @@ function mwb_upsell_lite_get_product_discount() {
 
 				$mwb_wocuf_pro_offered_discount = ! empty( $mwb_wocuf_pro_offered_discount ) ? $mwb_wocuf_pro_offered_discount : '';
 			}
-		}
-
-		// For Custom Page for Offer.
-		else {
+		} else {
 
 			// Get global product discount.
 
@@ -111,17 +136,23 @@ function mwb_upsell_lite_get_product_discount() {
 /**
  * Upsell product id from url funnel and offer params.
  *
- * @since    3.0.0
+ * @since    2.0.0
  */
 function mwb_upsell_lite_get_pid_from_url_params() {
 
-	$params['status'] = 'false';
+	$params['status']  = 'false';
+	$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
+	$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+
+	if ( ! $id_nonce_verified ) {
+		wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
+	}
 
 	if ( isset( $_GET['ocuf_ofd'] ) && isset( $_GET['ocuf_fid'] ) ) {
 
 		$params['status'] = 'true';
 
-		$params['offer_id'] = sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) );
+		$params['offer_id']  = sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) );
 		$params['funnel_id'] = sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) );
 	}
 
@@ -131,7 +162,7 @@ function mwb_upsell_lite_get_pid_from_url_params() {
 /**
  * Upsell Live Offer URL parameters.
  *
- * @since    3.0.0
+ * @since    2.0.0
  */
 function mwb_upsell_lite_live_offer_url_params() {
 
@@ -151,6 +182,7 @@ function mwb_upsell_lite_live_offer_url_params() {
 		$params['offer_id'] = sanitize_text_field( wp_unslash( $_POST['ocuf_ofd'] ) );
 		$params['funnel_id'] = sanitize_text_field( wp_unslash( $_POST['ocuf_fid'] ) );
 		$params['product_id'] = sanitize_text_field( wp_unslash( $_POST['product_id'] ) );
+		$params['quantity'] = ! empty( $_POST['fetch'] ) ? sanitize_text_field( wp_unslash( $_POST['fetch'] ) ) : '';
 
 	} elseif ( isset( $_GET['ocuf_ns'] ) && isset( $_GET['ocuf_ok'] ) && isset( $_GET['ocuf_ofd'] ) && isset( $_GET['ocuf_fid'] ) && isset( $_GET['product_id'] ) ) {
 
@@ -161,6 +193,7 @@ function mwb_upsell_lite_live_offer_url_params() {
 		$params['offer_id'] = sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) );
 		$params['funnel_id'] = sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) );
 		$params['product_id'] = sanitize_text_field( wp_unslash( $_GET['product_id'] ) );
+		$params['quantity'] = ! empty( $_GET['fetch'] ) ? sanitize_text_field( wp_unslash( $_GET['fetch'] ) ) : '';
 	}
 	// phpcs:enable
 	return $params;
@@ -169,7 +202,7 @@ function mwb_upsell_lite_live_offer_url_params() {
 /**
  * Handling Funnel offer-page posts deletion which are dynamically assigned.
  *
- * @since    3.0.0
+ * @since    2.0.0
  */
 function mwb_upsell_lite_offer_page_posts_deletion() {
 
@@ -202,14 +235,14 @@ function mwb_upsell_lite_offer_page_posts_deletion() {
 		}
 
 		// Now delete save posts which are not present in funnel.
-		foreach ( $saved_offer_post_ids as $saved_offer_post_key => $saved_offer_post_id ) {
 
-			if ( ! in_array( $saved_offer_post_id, $funnel_offer_post_ids ) ) {
+		foreach ( $saved_offer_post_ids as $saved_offer_post_key => $saved_offer_post_id ) {
+			if ( ! in_array( (string) $saved_offer_post_id, $funnel_offer_post_ids, true ) ) {
 
 				unset( $saved_offer_post_ids[ $saved_offer_post_key ] );
 
 				// Delete post permanently.
-				wp_delete_post( $saved_offer_post_id, true );
+				// wp_delete_post( $saved_offer_post_id, true );.
 			}
 		}
 
@@ -223,23 +256,38 @@ function mwb_upsell_lite_offer_page_posts_deletion() {
 /**
  * Upsell supported payment gateways.
  *
- * @since    3.0.0
+ * @since    2.0.0
  */
 function mwb_upsell_lite_supported_gateways() {
 
 	$supported_gateways = array(
-		'cod', // Cash on delivery
+		'cod', // Cash on delivery.
 	);
 
-	return $supported_gateways;
+	return apply_filters( 'mwb_upsell_lite_supported_gateways', $supported_gateways );
+}
+
+/**
+ * Upsell supported payment gateways for which Parent Order is secured.
+ * Either with Initial payment or via Cron.
+ *
+ * @since    3.0.0
+ */
+function mwb_upsell_lite_payment_gateways_with_parent_secured() {
+
+	$gateways_with_parent_secured = array(
+		'cod', // Cash on delivery.
+	);
+
+	return apply_filters( 'mwb_upsell_lite_pg_with_parent_secured', $gateways_with_parent_secured );
 }
 
 /**
  * Elementor Upsell offer template 1.
  *
- * ( Default Template ).
+ * Standard Template ( Default ).
  *
- * @since    3.0.0
+ * @since    2.0.0
  */
 function mwb_upsell_lite_elementor_offer_template_1() {
 
@@ -253,7 +301,9 @@ function mwb_upsell_lite_elementor_offer_template_1() {
 /**
  * Elementor Upsell offer template 2.
  *
- * @since    3.0.0
+ * Creative Template.
+ *
+ * @since    2.0.0
  */
 function mwb_upsell_lite_elementor_offer_template_2() {
 
@@ -267,11 +317,11 @@ function mwb_upsell_lite_elementor_offer_template_2() {
 /**
  * Elementor Upsell offer template 3.
  *
- * Video Offer Template.
+ * Video Template.
  *
- * @since    3.0.0
+ * @since    2.0.0
  */
-function mwb_upsell_lite_lite_elementor_offer_template_3() {
+function mwb_upsell_lite_elementor_offer_template_3() {
 
 	// phpcs:disable
 	$elementor_data = file_get_contents( MWB_WOCUF_DIRPATH . 'json/offer-template-3.json' );
@@ -281,11 +331,9 @@ function mwb_upsell_lite_lite_elementor_offer_template_3() {
 }
 
 /**
- * Elementor Upsell offer template 3.
+ * Gutenberg Offer Page content.
  *
- * Video Offer Template.
- *
- * @since    3.0.0
+ * @since    2.0.0
  */
 function mwb_upsell_lite_gutenberg_offer_content() {
 
@@ -350,4 +398,49 @@ function mwb_upsell_lite_gutenberg_offer_content() {
 		<!-- /wp:spacer -->';
 
 		return $post_content;
+}
+
+if ( ! function_exists( 'mwb_upsell_lite_get_first_offer_after_redirect' ) ) {
+
+	/**
+	 * Get Order id from key.
+	 *
+	 * @param mixed $url url.
+	 * @since    3.0.0
+	 */
+	function mwb_upsell_lite_get_first_offer_after_redirect( $url = false ) {
+
+		if ( ! empty( $url ) ) {
+
+			$url_components = wp_parse_url( $url );
+
+			// Extract Query Params.
+			if ( ! empty( $url_components['query'] ) ) {
+				parse_str( $url_components['query'], $params );
+			}
+
+			if ( ! empty( $params['ocuf_ofd'] ) ) {
+
+				$first_offer = ! empty( $params['ocuf_ofd'] ) ? sanitize_text_field( wp_unslash( $params['ocuf_ofd'] ) ) : '';
+				return $first_offer;
+			}
+		}
+
+		return false;
+	}
+}
+
+if ( ! function_exists( 'mwb_upsell_lite_wc_help_tip' ) ) {
+
+	/**
+	 * Get tooltip.
+	 *
+	 * @param mixed $tip message.
+	 * @since    3.0.4
+	 */
+	function mwb_upsell_lite_wc_help_tip( $tip = '' ) {
+		?>
+		<span class="woocommerce-help-tip" data-tip="<?php echo esc_html( $tip ); ?>"></span>
+		<?php
+	}
 }

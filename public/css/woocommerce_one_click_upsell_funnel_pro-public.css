@@ -158,51 +158,6 @@
  right: 0;
  top: 40%;
 }
-@media only screen and (max-width: 550px){
-  .mwb_wocuf_pro_product_price h4{
-    font-size: 20px !important;
-  }
-  .mwb_wocuf_pro_special_offers_for_you .mwb_wocuf_pro_special_offer_banner{
-   margin-bottom: 20px !important;
- }
- .mwb_wocuf_pro_special_offers_for_you .mwb_wocuf_pro_special_offer_banner h1 {
-  font-size: 20px;
-}
-}
-@media only screen and (max-width: 1200px){
-  .mwb_wocuf_pro_offer_container {
-    padding: 50px 50px;
-  }
-}
-
-@media only screen and (max-width: 768px){
-  .mwb_wocuf_pro_special_offers_for_you .mwb_wocuf_pro_main_wrapper .mwb_wocuf_pro_product_image {
-    float: none;
-    max-width: 100%;
-  }
-  .mwb_wocuf_pro_special_offers_for_you .mwb_wocuf_pro_main_wrapper .mwb_wocuf_pro_offered_product {
-    float: none;
-    padding: 15px;
-    width: 100%;
-  }
-  .mwb_wocuf_pro_variations .mwb_wocuf_pro_variations_select {
-    height: 44px;
-    width: 100%;
-  }
-  .mwb_wocuf_pro_offer_container {
-    padding: 10px;
-  }
-  /****** Responsive CSS ******/
-  .mwb_wocuf_pro_special_offers_for_you * {
-    box-sizing: border-box;
-  }
-  .mwb_wocuf_pro_special_offers_for_you .mwb_wocuf_pro_main_wrapper .mwb_wocuf_pro_offered_product {
-    padding: 15px 0;
-  }
-  .mwb_wocuf_pro_variations .mwb_wocuf_offer_variation_select {
-    width: 100%;
-  }
-}
 
 .woocommerce-info.mwb-wocuf-stripe-test-mode {
   margin-top: -14px;
@@ -229,10 +184,6 @@
 .mwb_wocuf_pro_skip.mwb_wocuf_pro_no {
     margin-top: 20px;
 }
-
-
-
-
 
 /**
  * V3.0.0 CSS STARTS HERE ------------>>>>>>>>>>>>>>>>>>>
@@ -364,6 +315,7 @@
 .mwb_upsell_default_offer_buy_now,
 .mwb_upsell_default_offer_no_thanks {
   margin: inherit !important;
+  text-align:center;
 }
 .mwb_upsell_default_offer_no_thanks a {
   width: calc(100% - 55%);
@@ -404,15 +356,132 @@ background-color: #bf0000 !important;
 /*since v3.0.0 - Stripe cc icons - Start */
 
 .woocommerce-checkout #payment ul.payment_methods li img.stripe-icon, #add_payment_method #payment ul.payment_methods li img.stripe-icon {
-    float: right;
-    max-width: 40px;
-    padding-left: 3px;
-    margin: 0;
+  float: right;
+  max-width: 40px;
+  padding-left: 3px;
+  margin: 0;
+}
+/* since v3.0.0 - Stripe cc icons - End */
+
+/**==================
+ * Version 3.0.0 CSS
+ * Updates CSS.
+ ====================*/
+
+ /* Quantity Shortcode */
+.mwb_upsell_quantity {
+  text-align: center;
 }
 
-/*since v3.0.0 - Stripe cc icons - End */
+/* since v3.0.0 - Upsell Actions loader - Start */
+.mwb_upsell_loader {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(21, 21, 21, 0.7);
+  z-index: 9999;
+  display: none;
+}
+@-webkit-keyframes spin {
+  from {-webkit-transform:rotate(0deg);}
+  to {-webkit-transform:rotate(360deg);}
+}
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+.mwb_upsell_loader::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40%;
+  width: 80px;
+  height: 80px;
+  border-style: solid;
+  border-color: white;
+  border-top-color: transparent;
+  border-width: 6px;
+  border-radius: 50%;
+  -webkit-animation: spin .8s linear infinite;
+  animation: spin .8s linear infinite;
+  margin: 0 auto;
+}
+.mwb_upsell_loader .mwb_upsell_loader_text {
+  font-size: 22px;
+  position: absolute;
+  top: 58%;
+  right: 0;
+  left: 0;
+  text-align: center;
+  z-index: 999999;
+  transform: translateY(-50%);
+  width: 100%;
+  max-width: 600px;
+  margin: 10px auto;
+  color: #ffffff;
+}
+/* since v3.0.0 - Upsell Actions loader - End */
 
-/**
- * V3.0.0 CSS Ends HERE ------------>>>>>>>>>>>>>>>>>>>
- * 
- */
+/**=========================================
+ *        Media query for here.  
+==========================================*/
+@media only screen and (max-width: 1200px){
+  .mwb_wocuf_pro_offer_container {
+    padding: 50px 50px;
+  }
+}
+@media only screen and (max-width: 1024px){
+  .mwb_upsell_loader::after {
+    width: 50px;
+    height: 50px;
+    border-width: 5px;
+  }
+  .mwb_upsell_loader .mwb_upsell_loader_text {
+    font-size: 19px;
+    top: 54%;
+  }
+}
+@media only screen and (max-width: 768px){
+  .mwb_wocuf_pro_special_offers_for_you .mwb_wocuf_pro_main_wrapper .mwb_wocuf_pro_product_image {
+    float: none;
+    max-width: 100%;
+  }
+  .mwb_wocuf_pro_special_offers_for_you .mwb_wocuf_pro_main_wrapper .mwb_wocuf_pro_offered_product {
+    float: none;
+    padding: 15px;
+    width: 100%;
+  }
+  .mwb_wocuf_pro_variations .mwb_wocuf_pro_variations_select {
+    height: 44px;
+    width: 100%;
+  }
+  .mwb_wocuf_pro_offer_container {
+    padding: 10px;
+  }
+  /****** Responsive CSS ******/
+  .mwb_wocuf_pro_special_offers_for_you * {
+    box-sizing: border-box;
+  }
+  .mwb_wocuf_pro_special_offers_for_you .mwb_wocuf_pro_main_wrapper .mwb_wocuf_pro_offered_product {
+    padding: 15px 0;
+  }
+  .mwb_wocuf_pro_variations .mwb_wocuf_offer_variation_select {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 550px){
+  .mwb_wocuf_pro_product_price h4{
+    font-size: 20px !important;
+  }
+  .mwb_wocuf_pro_special_offers_for_you .mwb_wocuf_pro_special_offer_banner{
+    margin-bottom: 20px !important;
+  }
+ .mwb_wocuf_pro_special_offers_for_you .mwb_wocuf_pro_special_offer_banner h1 {
+    font-size: 20px;
+  }
+}

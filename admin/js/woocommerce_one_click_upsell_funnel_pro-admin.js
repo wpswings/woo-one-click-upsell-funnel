@@ -2,6 +2,13 @@
 	'use strict';
 	$(document).ready(function(){
 		$('#mwb_wocuf_pro_target_pro_ids').select2();
+
+		//  Add multiselect to Funnel Schedule since v3.0.0
+		if ( $( '.mwb-upsell-funnel-schedule-search' ).length ) {
+
+			$( '.mwb-upsell-funnel-schedule-search' ).select2();
+
+		}
 	});
 })( jQuery );
 
@@ -56,11 +63,11 @@ jQuery(document).ready( function($) {
 
 	});
 
-	$('.mwb_upsell_old_shortcodes_link').click(function(e) {
+	$('.mwb_upsell_slide_down_link').click(function(e) {
 
 		e.preventDefault();
 
-	    $('.mwb_upsell_old_shortcodes').slideToggle("fast");
+	    $('.mwb_upsell_slide_down_content').slideToggle("fast");
 
 	});
 
@@ -71,7 +78,7 @@ jQuery(document).ready( function($) {
 
 		$.ajax({
 		    type:'POST',
-		    url :mwb_wocuf_pro_ajaxurl,
+		    url :mwb_wocuf_pro_ajaxurl.ajaxUrl,
 		    data:{
 		    	action: 'mwb_upsell_dismiss_elementor_inactive_notice',
 		    },
@@ -83,4 +90,42 @@ jQuery(document).ready( function($) {
 	   });		
 	});
 
+	/**
+	 * Custom Image setup.
+	 * Wordpress image upload.
+	 */
+	jQuery(function($){
+		/*
+		 * Select/Upload image(s) event.
+		 */
+		jQuery('body').on('click', '.mwb_wocuf_pro_upload_image_button', function(e){
+
+			e.preventDefault();
+    		var button = jQuery(this),
+    		custom_uploader = wp.media({
+				title: 'Insert image',
+				library : {
+					type : 'image'
+				},
+				button: {
+					text: 'Use this image' 
+				},
+				multiple: false
+			}).on('select', function() {
+				var attachment = custom_uploader.state().get('selection').first().toJSON();
+				jQuery(button).removeClass('button').html('<img class="true_pre_image" src="' + attachment.url + '" style="max-width:150px;display:block;" />').next().val(attachment.id).next().show();
+			}).open();
+		});
+	 
+		/*
+		 * Remove image event.
+		 */
+		jQuery('body').on('click', '.mwb_wocuf_pro_remove_image_button', function(e){
+			e.preventDefault();
+			jQuery(this).hide().prev().val('').prev().addClass('button').html('Upload image');
+			return false;
+		});
+	});
+
+// END OF SCRIPT,
 });

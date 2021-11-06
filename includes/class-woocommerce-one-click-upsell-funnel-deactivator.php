@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Fired during plugin deactivation
  *
@@ -20,7 +19,7 @@
  * @subpackage woo_one_click_upsell_funnel/includes
  * @author     makewebbetter <webmaster@makewebbetter.com>
  */
-class woocommerce_one_click_upsell_funnel_Deactivator {
+class Woocommerce_One_Click_Upsell_Funnel_Deactivator {
 
 	/**
 	 * Short Description. (use period)
@@ -29,9 +28,6 @@ class woocommerce_one_click_upsell_funnel_Deactivator {
 	 *
 	 * @since    1.0.0
 	 */
-
-
-
 	public static function deactivate() {
 
 		// Clear scheduled cron for User update.
