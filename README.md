@@ -1,4 +1,4 @@
-![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg) ![Active installs](https://img.shields.io/badge/Active-1000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-5.8-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-5.6.0-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-5.6-blue)
+![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg) ![Active installs](https://img.shields.io/badge/Active-1000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-5.8.1-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-5.8.0-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-5.6-blue)
 # One Click Upsell Funnel for WooCommerce
 ![One Click Upsell Funnel for WooCommerce](https://ps.w.org/woo-one-click-upsell-funnel/assets/banner-772x250.jpg)
 * Contributors: MakeWebBetter
@@ -94,6 +94,7 @@ If you need support or have questions, kindly use our online chat window [**here
 - [**Visit our LinkedIn Account**](https://www.linkedin.com/company/makewebbetter)
 - [**Subscribe To Our YouTube Channel**](https://www.youtube.com/channel/UC7nYNf0JETOwW3GOD_EW2Ag)
 - [**Follow Our SlideShare**](https://www.slideshare.net/MakeWebBetter)
+
 
 
 
