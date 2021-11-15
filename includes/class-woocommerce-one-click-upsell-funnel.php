@@ -274,6 +274,9 @@ class Woocommerce_One_Click_Upsell_Funnel {
 
 		$this->loader->add_action( 'init', $plugin_public, 'upsell_shortcodes' );
 
+		// Hide currency switcher on any page.
+		$this->loader->add_filter( 'mwb_currency_switcher_side_switcher_after_html', $plugin_public, 'hide_switcher_on_upsell_page' );
+
 		// Remove http and https from Upsell Action shortcodes added by Page Builders.
 		$this->loader->add_filter( 'the_content', $plugin_public, 'filter_upsell_shortcodes_content' );
 
