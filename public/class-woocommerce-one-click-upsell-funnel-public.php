@@ -908,7 +908,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	}
 
 	/**
-	 * Applying offer discount on product price
+	 * Applying offer discount on product price.
 	 *
 	 * @since    3.0.0
 	 * @param    object $temp_product    Object of product.
@@ -992,6 +992,11 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			}
 
 			$temp_product->set_price( $offer_price );
+		} else {
+			/**
+			 * If the discount is 0 and fixed.
+			 */
+			$temp_product->set_price( 0 );
 		}
 
 		return $temp_product;
@@ -1900,7 +1905,19 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 					// In case of fixed custom price in currency switcher.
 					if ( ! empty( $_regular_price ) || ! empty( $_sale_price ) ) {
-						$upsell_product_price_html = wc_format_sale_price( $_regular_price, $upsell_product->get_price() );
+						/**
+						 * Upsell offer will be zero then the offer price will not be changed.
+						 * In that case add sale price as the payable price.
+						 */
+						if ( empty( $upsell_offered_discount ) ) {
+							if ( ! empty( $_sale_price ) ) {
+								$upsell_product_price_html = wc_format_sale_price( $_regular_price, $_sale_price );
+							} else {
+								$upsell_product_price_html = wc_price( $_regular_price );
+							}
+						} else {
+							$upsell_product_price_html = wc_format_sale_price( $_regular_price, $upsell_product->get_price() );
+						}
 					}
 				}
 
