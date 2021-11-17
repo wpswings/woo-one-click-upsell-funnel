@@ -4046,5 +4046,21 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		}
 	}
 
+	/**
+	 * Remove Currency switcher in session on deactivate.
+	 *
+	 * @since 3.6.3
+	 */
+	public function check_compatibltiy_instance_cs(){
+		if ( function_exists( 'mwb_upsell_lite_is_plugin_active' ) ) {
+			$cs_exists = mwb_upsell_lite_is_plugin_active( 'mwb-multi-currency-switcher-for-woocommerce/mwb-multi-currency-switcher-for-woocommerce.php' );
+			if ( false === $cs_exists ) {
+				if ( ! empty( WC()->session ) && WC()->session->__isset( 's_selected_currency' ) ) {
+					WC()->session->__unset( 's_selected_currency' );
+				}
+			}
+		}
+	}
+
 } // End of class.
 ?>

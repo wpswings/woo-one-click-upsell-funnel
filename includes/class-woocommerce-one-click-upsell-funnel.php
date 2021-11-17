@@ -250,6 +250,8 @@ class Woocommerce_One_Click_Upsell_Funnel {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
+		$this->loader->add_action( 'woocommerce_init', $plugin_public, 'check_compatibltiy_instance_cs' );
+
 		// Set cron recurrence time for 'mwb_wocuf_twenty_minutes' schedule.
 		$this->loader->add_filter( 'cron_schedules', $plugin_public, 'set_cron_schedule_time' );
 
