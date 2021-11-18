@@ -1901,9 +1901,16 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				$upsell_product_price_html = $upsell_product->get_price_html();
 				$upsell_product_price_html = ! empty( $upsell_product_price_html ) ? $upsell_product_price_html : '';
 
+				/**
+				 * Replaces the currency switcher fixed price.
+				 */
 				if ( ! empty( WC()->session ) && WC()->session->__isset( 's_selected_currency' ) && function_exists( 'mwb_wmcs_fixed_price_for_simple_sales_price' ) ) {
 					$_regular_price = mwb_wmcs_fixed_price_for_simple_regular_price( $upsell_product->get_id() );
 					$_sale_price    = mwb_wmcs_fixed_price_for_simple_sales_price( $upsell_product->get_id() );
+
+					if ( empty( $upsell_offered_discount ) ) {
+						$_sale_price = 'full_disc';
+					}
 
 					// In case of fixed custom price in currency switcher.
 					if ( ! empty( $_regular_price ) || ! empty( $_sale_price ) ) {
@@ -1912,8 +1919,10 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 						 * In that case add sale price as the payable price.
 						 */
 						if ( empty( $upsell_offered_discount ) ) {
-							if ( ! empty( $_sale_price ) ) {
+							if ( ! empty( $_sale_price ) && 'full_disc' !== $_sale_price ) {
 								$upsell_product_price_html = wc_format_sale_price( $_regular_price, $_sale_price );
+							} elseif ( 'full_disc' === $_sale_price ) {
+								$upsell_product_price_html = wc_format_sale_price( $_regular_price, 0 );
 							} else {
 								$upsell_product_price_html = wc_price( $_regular_price );
 							}
@@ -1943,6 +1952,9 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				$upsell_product_price_html_div = "<div id='$id' class='mwb_upsell_offer_product_price $class' style='$style'>
 						$upsell_product_price_html</div>";
 
+				/**
+				 * Replaces the currrency symbol.
+				 */
 				if ( ! empty( WC()->session ) && WC()->session->__isset( 's_selected_currency' ) ) {
 
 					$selected_currency = WC()->session->get( 's_selected_currency' );
