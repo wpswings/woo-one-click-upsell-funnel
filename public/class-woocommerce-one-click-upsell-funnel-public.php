@@ -1894,6 +1894,8 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				if ( ! empty( $upsell_offered_discount ) ) {
 
 					$upsell_product = $this->mwb_wocuf_pro_change_offered_product_price( $upsell_product, $upsell_offered_discount );
+				} else {
+					$upsell_product->set_price( 0 );
 				}
 
 				$upsell_product_price_html = $upsell_product->get_price_html();
