@@ -1904,9 +1904,15 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				/**
 				 * Replaces the currency switcher fixed price.
 				 */
-				if ( ! empty( WC()->session ) && WC()->session->__isset( 's_selected_currency' ) && function_exists( 'mwb_wmcs_fixed_price_for_simple_sales_price' ) ) {
-					$_regular_price = mwb_wmcs_fixed_price_for_simple_regular_price( $upsell_product->get_id() );
-					$_sale_price    = mwb_wmcs_fixed_price_for_simple_sales_price( $upsell_product->get_id() );
+				if ( ! empty( WC()->session ) && WC()->session->__isset( 's_selected_currency' ) ) {
+
+					if ( function_exists( 'mwb_wmcs_fixed_price_for_simple_sales_price' ) ) {
+						$_regular_price = mwb_wmcs_fixed_price_for_simple_regular_price( $upsell_product->get_id() );
+						$_sale_price    = mwb_wmcs_fixed_price_for_simple_sales_price( $upsell_product->get_id() );
+					} else {
+						$_regular_price = $upsell_product->get_regular_price();
+						$_sale_price    = $upsell_product->get_price();
+					}
 
 					if ( empty( $upsell_offered_discount ) ) {
 						$_sale_price = 'full_disc';
