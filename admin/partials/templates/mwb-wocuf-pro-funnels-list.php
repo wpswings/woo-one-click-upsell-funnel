@@ -45,9 +45,6 @@ if ( ! empty( $_GET['del_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_u
 			}
 		}
 
-		// Remove array values so that the funnel id keys doesn't change.
-		// $mwb_wocuf_pro_funnels = array_values($mwb_wocuf_pro_funnels);.
-
 		update_option( 'mwb_wocuf_funnels_list', $mwb_wocuf_pro_funnels );
 
 		wp_redirect( esc_url( admin_url( 'admin.php?page=mwb-wocuf-setting&tab=funnels-list' ) ) ); //phpcs:ignore

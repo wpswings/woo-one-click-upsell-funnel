@@ -6,7 +6,7 @@
  * @since      1.0.0
  *
  * @package     woo_one_click_upsell_funnel
- * @subpackage  woo_one_click_upsell_funnel/admin
+ * @subpackage  woo_one_click_upsell_funnel/admin/partials/templates
  */
 
 /**

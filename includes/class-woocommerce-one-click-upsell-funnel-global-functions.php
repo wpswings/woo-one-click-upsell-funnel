@@ -241,8 +241,6 @@ function mwb_upsell_lite_offer_page_posts_deletion() {
 
 				unset( $saved_offer_post_ids[ $saved_offer_post_key ] );
 
-				// Delete post permanently.
-				// wp_delete_post( $saved_offer_post_id, true );.
 			}
 		}
 
