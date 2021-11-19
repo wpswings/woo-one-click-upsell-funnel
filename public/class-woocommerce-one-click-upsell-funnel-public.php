@@ -1971,7 +1971,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 						$selected_currency_symbol = get_option( 'mwb_mmcsfw_symbol_' . $selected_currency );
 
 						// Remove default currency into selected currency.
-						$upsell_product_price_html_div = str_replace( $store_currency_symbol, $selected_currency_symbol, $upsell_product_price_html_div);
+						$upsell_product_price_html_div = str_replace( $store_currency_symbol, $selected_currency_symbol, $upsell_product_price_html_div );
 					}
 				}
 
@@ -4059,7 +4059,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	public function hide_switcher_on_upsell_page( $content = '' ) {
 
 		$validate_shortcode = $this->validate_shortcode();
-		if( 'live_offer' === $validate_shortcode ) {
+		if ( 'live_offer' === $validate_shortcode ) {
 			return '';
 		} else {
 			return $content;
@@ -4071,7 +4071,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 *
 	 * @since 3.6.3
 	 */
-	public function check_compatibltiy_instance_cs(){
+	public function check_compatibltiy_instance_cs() {
 		if ( function_exists( 'mwb_upsell_lite_is_plugin_active' ) ) {
 			$cs_exists = mwb_upsell_lite_is_plugin_active( 'mwb-multi-currency-switcher-for-woocommerce/mwb-multi-currency-switcher-for-woocommerce.php' );
 			if ( false === $cs_exists ) {
