@@ -4,11 +4,11 @@
  *
  * This file is used to markup the admin-facing aspects of the plugin.
  *
- * @link       https://makewebbetter.com/
+ * @link       https://makewebbetter.com/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend
  * @since      1.0.0
  *
  * @package    woo_one_click_upsell_funnel
- * @subpackage woo_one_click_upsell_funnel/tracking
+ * @subpackage woo_one_click_upsell_funnel/admin/reporting-and-tracking
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

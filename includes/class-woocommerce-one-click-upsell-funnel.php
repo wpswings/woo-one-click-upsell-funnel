@@ -250,6 +250,8 @@ class Woocommerce_One_Click_Upsell_Funnel {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
+		$this->loader->add_action( 'woocommerce_init', $plugin_public, 'check_compatibltiy_instance_cs' );
+
 		// Set cron recurrence time for 'mwb_wocuf_twenty_minutes' schedule.
 		$this->loader->add_filter( 'cron_schedules', $plugin_public, 'set_cron_schedule_time' );
 
@@ -273,6 +275,9 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		}
 
 		$this->loader->add_action( 'init', $plugin_public, 'upsell_shortcodes' );
+
+		// Hide currency switcher on any page.
+		$this->loader->add_filter( 'mwb_currency_switcher_side_switcher_after_html', $plugin_public, 'hide_switcher_on_upsell_page' );
 
 		// Remove http and https from Upsell Action shortcodes added by Page Builders.
 		$this->loader->add_filter( 'the_content', $plugin_public, 'filter_upsell_shortcodes_content' );

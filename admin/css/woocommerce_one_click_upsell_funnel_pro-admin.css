@@ -1552,10 +1552,6 @@ button.button-primary.mwb_upsell_activate_offer_template:focus {
     width: 100% !important;
   }
 
-/*  .mwb_upsell_table table th {
-    width: 100%;
-    }*/
-
     .form-table.mwb_wocuf_pro_creation_setting .select2.select2-container.select2-container--default {
       min-width: 100% !important;
       width: 100% !important;

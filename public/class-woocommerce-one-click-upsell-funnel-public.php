@@ -2,7 +2,7 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * @link       https://makewebbetter.com/
+ * @link       https://makewebbetter.com/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend
  * @since      1.0.0
  *
  * @package     woo_one_click_upsell_funnel
@@ -908,7 +908,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	}
 
 	/**
-	 * Applying offer discount on product price
+	 * Applying offer discount on product price.
 	 *
 	 * @since    3.0.0
 	 * @param    object $temp_product    Object of product.
@@ -922,6 +922,20 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			$payable_price = $temp_product->get_price();
 			$sale_price    = $temp_product->get_sale_price();
 			$regular_price = $temp_product->get_regular_price();
+			$is_fixed      = false;
+
+			// Change amount in case of chargeable currency is different.
+			if ( ! empty( WC()->session ) && WC()->session->__isset( 's_selected_currency' ) && function_exists( 'mwb_wmcs_fixed_price_for_simple_sales_price' ) ) {
+				$_regular_price = mwb_wmcs_fixed_price_for_simple_regular_price( $temp_product->get_id() );
+				$_sale_price    = mwb_wmcs_fixed_price_for_simple_sales_price( $temp_product->get_id() );
+
+				$sale_price    = ! empty( $_sale_price ) ? $_sale_price : $sale_price;
+				$regular_price = ! empty( $_regular_price ) ? $_regular_price : $regular_price;
+				$payable_price = ! empty( $sale_price ) ? $sale_price : $regular_price;
+				if ( ! empty( $_regular_price ) || ! empty( $_sale_price ) ) {
+					$is_fixed = true;
+				}
+			}
 
 			// Discount is in %.
 			if ( false !== strpos( $price, '%' ) ) {
@@ -971,7 +985,18 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				$temp_product->set_sale_price( $offer_price );
 			}
 
+			// Change amount in case of chargeable currency is different.
+			if ( false === $is_fixed && ! empty( WC()->session ) && WC()->session->__isset( 's_selected_currency' ) && class_exists( 'Mwb_Multi_Currency_Switcher_For_Woocommerce_Public' ) ) {
+				$currency_switcher_obj = new Mwb_Multi_Currency_Switcher_For_Woocommerce_Public( 'MWB Multi Currency Switcher For WooCommerce', '1.2.0' );
+				$offer_price           = $currency_switcher_obj->mwb_mmcsfw_get_price_of_product( $offer_price, $temp_product->get_id() );
+			}
+
 			$temp_product->set_price( $offer_price );
+		} else {
+			/**
+			 * If the discount is 0 and fixed.
+			 */
+			$temp_product->set_price( 0 );
 		}
 
 		return $temp_product;
@@ -1857,7 +1882,6 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				$post_type = get_post_type( $product_id );
 
 				if ( 'product' !== $post_type && 'product_variation' !== $post_type ) {
-
 					return '';
 				}
 
@@ -1870,10 +1894,49 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				if ( ! empty( $upsell_offered_discount ) ) {
 
 					$upsell_product = $this->mwb_wocuf_pro_change_offered_product_price( $upsell_product, $upsell_offered_discount );
+				} else {
+					$upsell_product->set_price( 0 );
 				}
 
 				$upsell_product_price_html = $upsell_product->get_price_html();
 				$upsell_product_price_html = ! empty( $upsell_product_price_html ) ? $upsell_product_price_html : '';
+
+				/**
+				 * Replaces the currency switcher fixed price.
+				 */
+				if ( ! empty( WC()->session ) && WC()->session->__isset( 's_selected_currency' ) ) {
+
+					if ( function_exists( 'mwb_wmcs_fixed_price_for_simple_sales_price' ) ) {
+						$_regular_price = mwb_wmcs_fixed_price_for_simple_regular_price( $upsell_product->get_id() );
+						$_sale_price    = mwb_wmcs_fixed_price_for_simple_sales_price( $upsell_product->get_id() );
+					} else {
+						$_regular_price = $upsell_product->get_regular_price();
+						$_sale_price    = $upsell_product->get_price();
+					}
+
+					if ( empty( $upsell_offered_discount ) ) {
+						$_sale_price = 'full_disc';
+					}
+
+					// In case of fixed custom price in currency switcher.
+					if ( ! empty( $_regular_price ) || ! empty( $_sale_price ) ) {
+						/**
+						 * Upsell offer will be zero then the offer price will not be changed.
+						 * In that case add sale price as the payable price.
+						 */
+						if ( empty( $upsell_offered_discount ) ) {
+							if ( ! empty( $_sale_price ) && 'full_disc' !== $_sale_price ) {
+								$upsell_product_price_html = wc_format_sale_price( $_regular_price, $_sale_price );
+							} elseif ( 'full_disc' === $_sale_price ) {
+								$upsell_product_price_html = wc_format_sale_price( $_regular_price, 0 );
+							} else {
+								$upsell_product_price_html = wc_price( $_regular_price );
+							}
+						} else {
+							$upsell_product_price_html = wc_format_sale_price( $_regular_price, $upsell_product->get_price() );
+						}
+					}
+				}
 
 				// Remove amount class, as it changes price css wrt theme change.
 				$upsell_product_price_html = str_replace( ' amount', ' mwb-upsell-amount', $upsell_product_price_html );
@@ -1892,9 +1955,25 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				$class = $atts['class'];
 				$style = $atts['style'];
 
-				$upsell_product_price_html_div =
-					"<div id='$id' class='mwb_upsell_offer_product_price $class' style='$style'>
+				$upsell_product_price_html_div = "<div id='$id' class='mwb_upsell_offer_product_price $class' style='$style'>
 						$upsell_product_price_html</div>";
+
+				/**
+				 * Replaces the currrency symbol.
+				 */
+				if ( ! empty( WC()->session ) && WC()->session->__isset( 's_selected_currency' ) ) {
+
+					$selected_currency = WC()->session->get( 's_selected_currency' );
+					$store_currency    = get_woocommerce_currency();
+
+					if ( $selected_currency !== $store_currency ) {
+						$store_currency_symbol    = get_option( 'mwb_mmcsfw_symbol_' . $store_currency );
+						$selected_currency_symbol = get_option( 'mwb_mmcsfw_symbol_' . $selected_currency );
+
+						// Remove default currency into selected currency.
+						$upsell_product_price_html_div = str_replace( $store_currency_symbol, $selected_currency_symbol, $upsell_product_price_html_div );
+					}
+				}
 
 				return $upsell_product_price_html_div;
 			}
@@ -3966,6 +4045,38 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 					wp_redirect( $url ); //phpcs:ignore
 					exit;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Remove Currency switcher on upsell page.
+	 *
+	 * @param mixed $content content.
+	 * @since 3.6.3
+	 */
+	public function hide_switcher_on_upsell_page( $content = '' ) {
+
+		$validate_shortcode = $this->validate_shortcode();
+		if ( 'live_offer' === $validate_shortcode ) {
+			return '';
+		} else {
+			return $content;
+		}
+	}
+
+	/**
+	 * Remove Currency switcher in session on deactivate.
+	 *
+	 * @since 3.6.3
+	 */
+	public function check_compatibltiy_instance_cs() {
+		if ( function_exists( 'mwb_upsell_lite_is_plugin_active' ) ) {
+			$cs_exists = mwb_upsell_lite_is_plugin_active( 'mwb-multi-currency-switcher-for-woocommerce/mwb-multi-currency-switcher-for-woocommerce.php' );
+			if ( false === $cs_exists ) {
+				if ( ! empty( WC()->session ) && WC()->session->__isset( 's_selected_currency' ) ) {
+					WC()->session->__unset( 's_selected_currency' );
 				}
 			}
 		}

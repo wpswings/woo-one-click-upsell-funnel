@@ -2,7 +2,7 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       https://makewebbetter.com/
+ * @link       https://makewebbetter.com/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend
  * @since      1.0.0
  *
  * @package     woo_one_click_upsell_funnel
@@ -165,16 +165,6 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 							'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 						)
 					);
-
-					// wp_localize_script(
-					// 	'mwb_wocuf_pro_admin_script',
-					// 	'mwb_wocuf_pro_location',
-					// 	array(
-					// 		'location' => admin_url( 'admin.php' ) . '?page=mwb-wocuf-setting&tab=settings',
-					// 	)
-					// );
-
-					// wp_localize_script( 'mwb_wocuf_pro_admin_script', 'mwb_wocuf_pro_offer_deletion', esc_html__( 'Are you sure to delete this offer', 'woo-one-click-upsell-funnel' ) );
 
 					wp_enqueue_script( 'mwb_wocuf_pro_admin_script' );
 

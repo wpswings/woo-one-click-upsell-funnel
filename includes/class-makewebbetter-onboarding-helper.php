@@ -852,37 +852,6 @@ class Makewebbetter_Onboarding_Helper {
 		}
 	}
 
-
-	/**
-	 * Handle Hubspot GET api calls.
-	 *
-	 * @param mixed $endpoint endpoint.
-	 * @param mixed $headers headers.
-	 * @since    3.0.1
-	 */
-	private function hic_get( $endpoint, $headers ) {
-
-		$url = $this->base_url . $endpoint;
-
-		$ch = @curl_init();
-		@curl_setopt( $ch, CURLOPT_POST, false );
-		@curl_setopt( $ch, CURLOPT_URL, $url );
-		@curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
-		@curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-		@curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-		@curl_setopt( $ch, CURLOPT_SSL_VERIFYHOST, false );
-		$response    = @curl_exec( $ch );
-		$status_code = @curl_getinfo( $ch, CURLINFO_HTTP_CODE );
-		$curl_errors = curl_error( $ch );
-		@curl_close( $ch );
-
-		return array(
-			'status_code' => $status_code,
-			'response'    => $response,
-			'errors'      => $curl_errors,
-		);
-	}
-
 	/**
 	 * Handle Hubspot POST api calls.
 	 *
@@ -895,24 +864,37 @@ class Makewebbetter_Onboarding_Helper {
 
 		$url = $this->base_url . $endpoint;
 
-		$ch = @curl_init();
-		@curl_setopt( $ch, CURLOPT_POST, true );
-		@curl_setopt( $ch, CURLOPT_URL, $url );
-		@curl_setopt( $ch, CURLOPT_POSTFIELDS, $post_params );
-		@curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
-		@curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-		@curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-		@curl_setopt( $ch, CURLOPT_SSL_VERIFYHOST, false );
-		$response    = @curl_exec( $ch );
-		$status_code = @curl_getinfo( $ch, CURLINFO_HTTP_CODE );
-		$curl_errors = curl_error( $ch );
-		@curl_close( $ch );
+		$request = array(
+			'httpversion' => '1.0',
+			'sslverify'   => false,
+			'method'      => 'POST',
+			'timeout'     => 45,
+			'headers'     => $headers,
+			'body'        => $post_params,
+			'cookies'     => array(),
+		);
+
+		$response = wp_remote_post( $url, $request );
+
+		if ( is_wp_error( $response ) ) {
+
+			$status_code = 500;
+			$_response   = esc_html__( 'Unexpected Error Occured', 'woo-one-click-upsell-funnel' );
+			$errors      = $response;
+
+		} else {
+
+			$_response   = json_decode( wp_remote_retrieve_body( $response ) );
+			$status_code = wp_remote_retrieve_response_code( $response );
+			$errors      = $response;
+		}
 
 		return array(
 			'status_code' => $status_code,
-			'response'    => $response,
-			'errors'      => $curl_errors,
+			'response'    => $_response,
+			'errors'      => $errors,
 		);
+
 	}
 
 	/**

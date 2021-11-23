@@ -8,7 +8,7 @@
  * @since      1.0.0
  *
  * @package    Makewebbetter_Onboarding
- * @subpackage Makewebbetter_Onboarding/admin/onboarding
+ * @subpackage Makewebbetter_Onboarding/extra-templates
  */
 
 	$screen   = get_current_screen();

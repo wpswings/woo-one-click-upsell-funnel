@@ -4,7 +4,7 @@
  *
  * All Global functions that are used through out the plugin.
  *
- * @link       https://makewebbetter.com/
+ * @link       https://makewebbetter.com/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend
  * @since      2.0.0
  *
  * @package     woo_one_click_upsell_funnel
@@ -241,8 +241,6 @@ function mwb_upsell_lite_offer_page_posts_deletion() {
 
 				unset( $saved_offer_post_ids[ $saved_offer_post_key ] );
 
-				// Delete post permanently.
-				// wp_delete_post( $saved_offer_post_id, true );.
 			}
 		}
 

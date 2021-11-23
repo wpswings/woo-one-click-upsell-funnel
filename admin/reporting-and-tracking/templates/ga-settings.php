@@ -4,7 +4,7 @@
  *
  * Google Analytics Settings.
  *
- * @link       https://makewebbetter.com/
+ * @link       https://makewebbetter.com/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend
  * @since      3.0.0
  *
  * @package     woo_one_click_upsell_funnel

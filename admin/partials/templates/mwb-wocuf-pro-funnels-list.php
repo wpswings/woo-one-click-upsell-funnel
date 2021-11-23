@@ -4,7 +4,7 @@
  *
  * This file is used for listing all the funnels of the plugin.
  *
- * @link       https://makewebbetter.com/
+ * @link       https://makewebbetter.com/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend
  * @since      1.0.0
  *
  * @package     woo_one_click_upsell_funnel
@@ -44,9 +44,6 @@ if ( ! empty( $_GET['del_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_u
 				break;
 			}
 		}
-
-		// Remove array values so that the funnel id keys doesn't change.
-		// $mwb_wocuf_pro_funnels = array_values($mwb_wocuf_pro_funnels);.
 
 		update_option( 'mwb_wocuf_funnels_list', $mwb_wocuf_pro_funnels );
 
