@@ -3,7 +3,7 @@
  * Upsell elementor widgets collection loader file.
  *
  * @link       https://makewebbetter.com/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend
- * @since      3.0.0
+ * @since      3.1.2
  *
  * @package    woo-one-click-upsell-funnel
  * @subpackage woo-one-click-upsell-funnel/widgets
@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || die();
 /**
  * Awesomesauce widget class.
  *
- * @since 1.0.0
+ * @since 3.1.2
  */
 class Upsell_Accept extends Widget_Base {
 
@@ -32,47 +32,46 @@ class Upsell_Accept extends Widget_Base {
 	 */
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
-
-		wp_register_style( 'awesomesauce', plugins_url( '/assets/css/awesomesauce.css', ELEMENTOR_AWESOMESAUCE ), array(), '1.0.0' );
+		wp_register_style( 'upsell-yes-button-design', plugins_url( 'woo-one-click-upsell-funnel/page-builders/elementor/elementor-widget/assets/css/upsell-widgets.css', MWB_WOCUF_DIRPATH ), array(), '3.1.2' );
 	}
 
 	/**
 	 * Retrieve the widget name.
 	 *
-	 * @since 1.0.0
+	 * @since 3.1.2
 	 *
 	 * @access public
 	 *
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'awesomesauce';
+		return 'upsell-yes-button';
 	}
 
 	/**
 	 * Retrieve the widget title.
 	 *
-	 * @since 1.0.0
+	 * @since 3.1.2
 	 *
 	 * @access public
 	 *
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Awesdfdsfdfdsfdsfsomesauce', 'elementor-awesomesauce' );
+		return __( 'Upsell Yes Button', 'woo-one-click-upsell-funnel' );
 	}
 
 	/**
 	 * Retrieve the widget icon.
 	 *
-	 * @since 1.0.0
+	 * @since 3.1.2
 	 *
 	 * @access public
 	 *
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'fa fa-pencil';
+		return 'eicon-button';
 	}
 
 	/**
@@ -83,7 +82,7 @@ class Upsell_Accept extends Widget_Base {
 	 * Note that currently Elementor supports only one category.
 	 * When multiple categories passed, Elementor uses the first one.
 	 *
-	 * @since 1.0.0
+	 * @since 3.1.2
 	 *
 	 * @access public
 	 *
@@ -97,7 +96,7 @@ class Upsell_Accept extends Widget_Base {
 	 * Enqueue styles.
 	 */
 	public function get_style_depends() {
-		return array( 'awesomesauce' );
+		return array( 'upsell-yes-button-design' );
 	}
 
 	/**
@@ -105,42 +104,42 @@ class Upsell_Accept extends Widget_Base {
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
-	 * @since 1.0.0
+	 * @since 3.1.2
 	 *
 	 * @access protected
 	 */
-	protected function _register_controls() {
+	protected function _register_controls() { //phpcs:ignore
 		$this->start_controls_section(
 			'section_content',
 			array(
-				'label' => __( 'Condfdsfdsftent', 'elementor-awesomesauce' ),
+				'label' => __( 'Upsell Accept Button', 'woo-one-click-upsell-funnel' ),
 			)
 		);
 
 		$this->add_control(
 			'title',
 			array(
-				'label'   => __( 'Tidsfdsftle', 'elementor-awesomesauce' ),
+				'label'   => __( 'Button', 'woo-one-click-upsell-funnel' ),
 				'type'    => Controls_Manager::TEXT,
-				'default' => __( 'Titdsfdsfsdle', 'elementor-awesomesauce' ),
+				'default' => __( 'Title', 'woo-one-click-upsell-funnel' ),
 			)
 		);
 
 		$this->add_control(
 			'description',
 			array(
-				'label'   => __( 'Descsdfdsfsdription', 'elementor-awesomesauce' ),
+				'label'   => __( 'Description', 'woo-one-click-upsell-funnel' ),
 				'type'    => Controls_Manager::TEXTAREA,
-				'default' => __( 'Descrdsfsdfsdfiption', 'elementor-awesomesauce' ),
+				'default' => __( 'Description', 'woo-one-click-upsell-funnel' ),
 			)
 		);
 
 		$this->add_control(
 			'content',
 			array(
-				'label'   => __( 'Contedsdsfnt', 'elementor-awesomesauce' ),
+				'label'   => __( 'Content', 'woo-one-click-upsell-funnel' ),
 				'type'    => Controls_Manager::WYSIWYG,
-				'default' => __( 'Contdsfsdfent', 'elementor-awesomesauce' ),
+				'default' => __( 'Content', 'woo-one-click-upsell-funnel' ),
 			)
 		);
 
@@ -152,7 +151,7 @@ class Upsell_Accept extends Widget_Base {
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
-	 * @since 1.0.0
+	 * @since 3.1.2
 	 *
 	 * @access protected
 	 */
@@ -163,9 +162,9 @@ class Upsell_Accept extends Widget_Base {
 		$this->add_inline_editing_attributes( 'description', 'basic' );
 		$this->add_inline_editing_attributes( 'content', 'advanced' );
 		?>
-		<h2 <?php echo $this->get_render_attribute_string( 'title' ); ?><?php echo wp_kses( $settings['title'], array() ); ?></h2>
-		<div <?php echo $this->get_render_attribute_string( 'description' ); ?><?php echo wp_kses( $settings['description'], array() ); ?></div>
-		<div <?php echo $this->get_render_attribute_string( 'content' ); ?><?php echo wp_kses( $settings['content'], array() ); ?></div>
+		<h2> <?php echo esc_html( $this->get_render_attribute_string( 'title' ) ); ?><?php echo wp_kses( $settings['title'], array() ); ?></h2>
+		<div> <?php echo esc_html( $this->get_render_attribute_string( 'description' ) ); ?><?php echo wp_kses( $settings['description'], array() ); ?></div>
+		<div> <?php echo esc_html( $this->get_render_attribute_string( 'content' ) ); ?><?php echo wp_kses( $settings['content'], array() ); ?></div>
 		<?php
 	}
 
@@ -174,7 +173,7 @@ class Upsell_Accept extends Widget_Base {
 	 *
 	 * Written as a Backbone JavaScript template and used to generate the live preview.
 	 *
-	 * @since 1.0.0
+	 * @since 3.1.2
 	 *
 	 * @access protected
 	 */
