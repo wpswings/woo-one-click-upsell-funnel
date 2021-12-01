@@ -13,6 +13,9 @@ namespace ElementorUpsellWidgets\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
+use Elementor\Widget_Button;
+use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 
 // Security Note: Blocks direct access to the plugin PHP files.
 defined( 'ABSPATH' ) || die();
@@ -22,7 +25,7 @@ defined( 'ABSPATH' ) || die();
  *
  * @since 3.1.2
  */
-class Upsell_Accept extends Widget_Base {
+class Upsell_Accept extends Widget_Button {
 
 	/**
 	 * Class constructor.
@@ -32,7 +35,9 @@ class Upsell_Accept extends Widget_Base {
 	 */
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
-		wp_register_style( 'upsell-yes-button-design', plugins_url( 'woo-one-click-upsell-funnel/page-builders/elementor/elementor-widget/assets/css/upsell-widgets.css', MWB_WOCUF_DIRPATH ), array(), '3.1.2' );
+		wp_register_style( 'upsell-widgets-css', plugins_url( 'woo-one-click-upsell-funnel/page-builders/elementor/elementor-widget/assets/css/upsell-widgets.css', MWB_WOCUF_DIRPATH ), array(), '3.1.2' );
+		wp_register_script( 'upsell-widgets-js', plugins_url( 'woo-one-click-upsell-funnel/page-builders/elementor/elementor-widget/assets/js/upsell-widgets.js', MWB_WOCUF_DIRPATH ), array( 'elementor-frontend' ), '3.1.2', true );
+
 	}
 
 	/**
@@ -96,97 +101,292 @@ class Upsell_Accept extends Widget_Base {
 	 * Enqueue styles.
 	 */
 	public function get_style_depends() {
-		return array( 'upsell-yes-button-design' );
+		return array( 'upsell-widgets-css' );
 	}
 
 	/**
-	 * Register the widget controls.
+	 * Enqueue scripts.
+	 */
+	public function get_script_depends() {
+		return array( 'upsell-widgets-js' );
+	}
+
+	/**
+	 * Register button widget controls.
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
-	 * @since 3.1.2
-	 *
+	 * @since 3.1.0
 	 * @access protected
 	 */
-	protected function _register_controls() { //phpcs:ignore
+	protected function register_controls() {
 		$this->start_controls_section(
-			'section_content',
+			'section_button',
 			array(
-				'label' => __( 'Upsell Accept Button', 'woo-one-click-upsell-funnel' ),
+				'label' => esc_html__( 'Button', 'elementor' ),
 			)
 		);
 
 		$this->add_control(
-			'title',
+			'button_type',
 			array(
-				'label'   => __( 'Button', 'woo-one-click-upsell-funnel' ),
-				'type'    => Controls_Manager::TEXT,
-				'default' => __( 'Title', 'woo-one-click-upsell-funnel' ),
+				'label'        => esc_html__( 'Type', 'elementor' ),
+				'type'         => Controls_Manager::SELECT,
+				'default'      => 'success',
+				'options'      => array(
+					''        => esc_html__( 'Default', 'elementor' ),
+					'info'    => esc_html__( 'Info', 'elementor' ),
+					'success' => esc_html__( 'Success', 'elementor' ),
+					'warning' => esc_html__( 'Warning', 'elementor' ),
+					'danger'  => esc_html__( 'Danger', 'elementor' ),
+				),
+				'prefix_class' => 'elementor-button-',
 			)
 		);
 
 		$this->add_control(
-			'description',
+			'text',
 			array(
-				'label'   => __( 'Description', 'woo-one-click-upsell-funnel' ),
-				'type'    => Controls_Manager::TEXTAREA,
-				'default' => __( 'Description', 'woo-one-click-upsell-funnel' ),
+				'label'       => esc_html__( 'Text', 'elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'dynamic'     => array(
+					'active' => true,
+				),
+				'default'     => esc_html__( 'Add this to my order', 'elementor' ),
+				'placeholder' => esc_html__( 'Accept button text', 'elementor' ),
 			)
 		);
 
 		$this->add_control(
-			'content',
+			'link',
 			array(
-				'label'   => __( 'Content', 'woo-one-click-upsell-funnel' ),
-				'type'    => Controls_Manager::WYSIWYG,
-				'default' => __( 'Content', 'woo-one-click-upsell-funnel' ),
+				'label'       => esc_html__( 'Link', 'elementor' ),
+				'type'        => Controls_Manager::URL,
+				'dynamic'     => array(
+					'active' => true,
+				),
+				'placeholder' => esc_html__( 'Add Upsell yes shortcode here', 'elementor' ),
+				'default'     => array(
+					'url' => '[mwb_upsell_yes]',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'align',
+			array(
+				'label'        => esc_html__( 'Alignment', 'elementor' ),
+				'type'         => Controls_Manager::CHOOSE,
+				'options'      => array(
+					'left'    => array(
+						'title' => esc_html__( 'Left', 'elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center'  => array(
+						'title' => esc_html__( 'Center', 'elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'   => array(
+						'title' => esc_html__( 'Right', 'elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+					'justify' => array(
+						'title' => esc_html__( 'Justified', 'elementor' ),
+						'icon'  => 'eicon-text-align-justify',
+					),
+				),
+				'prefix_class' => 'elementor%s-align-',
+				'default'      => 'center',
+			)
+		);
+
+		$this->add_control(
+			'size',
+			array(
+				'label'          => esc_html__( 'Size', 'elementor' ),
+				'type'           => Controls_Manager::SELECT,
+				'default'        => 'sm',
+				'options'        => self::get_button_sizes(),
+				'style_transfer' => true,
+			)
+		);
+
+		$this->add_control(
+			'selected_icon',
+			array(
+				'label'            => esc_html__( 'Icon', 'elementor' ),
+				'type'             => Controls_Manager::ICONS,
+				'fa4compatibility' => 'icon',
+				'skin'             => 'inline',
+				'label_block'      => false,
+			)
+		);
+
+		$this->add_control(
+			'icon_align',
+			array(
+				'label'     => esc_html__( 'Icon Position', 'elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'left',
+				'options'   => array(
+					'left'  => esc_html__( 'Before', 'elementor' ),
+					'right' => esc_html__( 'After', 'elementor' ),
+				),
+				'condition' => array(
+					'selected_icon[value]!' => '',
+				),
+			)
+		);
+
+		$this->add_control(
+			'icon_indent',
+			array(
+				'label'     => esc_html__( 'Icon Spacing', 'elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
+						'max' => 50,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-button .elementor-align-icon-right' => 'margin-left: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .elementor-button .elementor-align-icon-left' => 'margin-right: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'view',
+			array(
+				'label'   => esc_html__( 'View', 'elementor' ),
+				'type'    => Controls_Manager::HIDDEN,
+				'default' => 'traditional',
+			)
+		);
+
+		$this->add_control(
+			'button_css_id',
+			array(
+				'label'       => esc_html__( 'Button ID', 'elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'dynamic'     => array(
+					'active' => true,
+				),
+				'default'     => '',
+				'title'       => esc_html__( 'Add your custom id WITHOUT the Pound key. e.g: my-id', 'elementor' ),
+				'description' => sprintf(
+					/* translators: 1: Code open tag, 2: Code close tag. */
+					esc_html__( 'Please make sure the ID is unique and not used elsewhere on the page this form is displayed. This field allows %1$sA-z 0-9%2$s & underscore chars without spaces.', 'elementor' ),
+					'<code>',
+					'</code>'
+				),
+				'separator'   => 'before',
+
+			)
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_style',
+			array(
+				'label' => esc_html__( 'Button', 'elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->start_controls_tabs( 'tabs_button_style' );
+
+		$this->start_controls_tab(
+			'tab_button_normal',
+			array(
+				'label' => esc_html__( 'Normal', 'elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'button_text_color',
+			array(
+				'label'     => esc_html__( 'Text Color', 'elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-button' => 'fill: {{VALUE}}; color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'tab_button_hover',
+			array(
+				'label' => esc_html__( 'Hover', 'elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'hover_color',
+			array(
+				'label'     => esc_html__( 'Text Color', 'elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-button:hover, {{WRAPPER}} .elementor-button:focus' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-button:hover svg, {{WRAPPER}} .elementor-button:focus svg' => 'fill: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'button_hover_border_color',
+			array(
+				'label'     => esc_html__( 'Border Color', 'elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'condition' => array(
+					'border_border!' => '',
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-button:hover, {{WRAPPER}} .elementor-button:focus' => 'border-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'hover_animation',
+			array(
+				'label' => esc_html__( 'Hover Animation', 'elementor' ),
+				'type'  => Controls_Manager::HOVER_ANIMATION,
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->add_control(
+			'border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .elementor-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'text_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .elementor-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'separator'  => 'before',
 			)
 		);
 
 		$this->end_controls_section();
 	}
 
-	/**
-	 * Render the widget output on the frontend.
-	 *
-	 * Written in PHP and used to generate the final HTML.
-	 *
-	 * @since 3.1.2
-	 *
-	 * @access protected
-	 */
-	protected function render() {
-		$settings = $this->get_settings_for_display();
-
-		$this->add_inline_editing_attributes( 'title', 'none' );
-		$this->add_inline_editing_attributes( 'description', 'basic' );
-		$this->add_inline_editing_attributes( 'content', 'advanced' );
-		?>
-		<h2> <?php echo esc_html( $this->get_render_attribute_string( 'title' ) ); ?><?php echo wp_kses( $settings['title'], array() ); ?></h2>
-		<div> <?php echo esc_html( $this->get_render_attribute_string( 'description' ) ); ?><?php echo wp_kses( $settings['description'], array() ); ?></div>
-		<div> <?php echo esc_html( $this->get_render_attribute_string( 'content' ) ); ?><?php echo wp_kses( $settings['content'], array() ); ?></div>
-		<?php
-	}
-
-	/**
-	 * Render the widget output in the editor.
-	 *
-	 * Written as a Backbone JavaScript template and used to generate the live preview.
-	 *
-	 * @since 3.1.2
-	 *
-	 * @access protected
-	 */
-	protected function _content_template() {
-		?>
-		<#
-		view.addInlineEditingAttributes( 'title', 'none' );
-		view.addInlineEditingAttributes( 'description', 'basic' );
-		view.addInlineEditingAttributes( 'content', 'advanced' );
-		#>
-		<h2 {{{ view.getRenderAttributeString( 'title' ) }}}>{{{ settings.title }}}</h2>
-		<div {{{ view.getRenderAttributeString( 'description' ) }}}>{{{ settings.description }}}</div>
-		<div {{{ view.getRenderAttributeString( 'content' ) }}}>{{{ settings.content }}}</div>
-		<?php
-	}
 }
