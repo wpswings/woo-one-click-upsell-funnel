@@ -64,6 +64,8 @@ class Elementor_Widget {
 			'upsell-reject',
 			'upsell-image',
 			'upsell-variations',
+			'upsell-desc',
+			'upsell-short-desc',
 		);
 
 		foreach ( $widget_files as $key => $file_name ) {
@@ -89,6 +91,8 @@ class Elementor_Widget {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Reject() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Image() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Variations() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Desc() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Short_Desc() );
 	}
 
 	/**
