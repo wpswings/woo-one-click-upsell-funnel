@@ -62,6 +62,8 @@ class Elementor_Widget {
 		$widget_files = array(
 			'upsell-accept',
 			'upsell-reject',
+			'upsell-image',
+			'upsell-variations',
 		);
 
 		foreach ( $widget_files as $key => $file_name ) {
@@ -78,12 +80,15 @@ class Elementor_Widget {
 	 * @access public
 	 */
 	public function register_widgets() {
+
 		// It's now safe to include Widgets files.
 		$this->include_widgets_files();
 
 		// Register the plugin widget classes.
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Accept() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Reject() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Image() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Variations() );
 	}
 
 	/**
