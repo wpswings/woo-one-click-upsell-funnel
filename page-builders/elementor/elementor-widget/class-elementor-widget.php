@@ -61,6 +61,7 @@ class Elementor_Widget {
 
 		$widget_files = array(
 			'upsell-accept',
+			'upsell-reject',
 		);
 
 		foreach ( $widget_files as $key => $file_name ) {
@@ -82,6 +83,7 @@ class Elementor_Widget {
 
 		// Register the plugin widget classes.
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Accept() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Reject() );
 	}
 
 	/**

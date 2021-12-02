@@ -25,7 +25,7 @@ defined( 'ABSPATH' ) || die();
  *
  * @since 3.1.2
  */
-class Upsell_Accept extends Widget_Button {
+class Upsell_Reject extends Widget_Button {
 
 	/**
 	 * Class constructor.
@@ -50,7 +50,7 @@ class Upsell_Accept extends Widget_Button {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'upsell-yes-button';
+		return 'upsell-no-button';
 	}
 
 	/**
@@ -63,7 +63,7 @@ class Upsell_Accept extends Widget_Button {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Upsell Yes Button', 'woo-one-click-upsell-funnel' );
+		return __( 'Upsell No Button', 'woo-one-click-upsell-funnel' );
 	}
 
 	/**
@@ -132,7 +132,7 @@ class Upsell_Accept extends Widget_Button {
 			array(
 				'label'        => esc_html__( 'Type', 'woo-one-click-upsell-funnel' ),
 				'type'         => Controls_Manager::SELECT,
-				'default'      => 'success',
+				'default'      => 'danger',
 				'options'      => array(
 					''        => esc_html__( 'Default', 'woo-one-click-upsell-funnel' ),
 					'info'    => esc_html__( 'Info', 'woo-one-click-upsell-funnel' ),
@@ -152,8 +152,8 @@ class Upsell_Accept extends Widget_Button {
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'default'     => esc_html__( 'Add this to my order', 'woo-one-click-upsell-funnel' ),
-				'placeholder' => esc_html__( 'Accept button text', 'woo-one-click-upsell-funnel' ),
+				'default'     => esc_html__( 'Reject this offer', 'woo-one-click-upsell-funnel' ),
+				'placeholder' => esc_html__( 'Reject button text', 'woo-one-click-upsell-funnel' ),
 			)
 		);
 
@@ -165,9 +165,9 @@ class Upsell_Accept extends Widget_Button {
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'placeholder' => esc_html__( 'Add Upsell yes shortcode here', 'woo-one-click-upsell-funnel' ),
+				'placeholder' => esc_html__( 'Add Upsell no shortcode here', 'woo-one-click-upsell-funnel' ),
 				'default'     => array(
-					'url' => '[mwb_upsell_yes]',
+					'url' => '[mwb_upsell_no]',
 				),
 			)
 		);
