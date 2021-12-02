@@ -64,6 +64,7 @@ class Elementor_Widget {
 			'upsell-reject',
 			'upsell-image',
 			'upsell-title',
+			'upsell-price',
 			'upsell-variations',
 			'upsell-desc',
 			'upsell-short-desc',
@@ -92,6 +93,7 @@ class Elementor_Widget {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Reject() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Title() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Image() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Price() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Variations() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Desc() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Short_Desc() );
