@@ -68,6 +68,9 @@ class Elementor_Widget {
 			'upsell-variations',
 			'upsell-desc',
 			'upsell-short-desc',
+			'upsell-star-review',
+			'upsell-timer',
+			'upsell-quantity',
 		);
 
 		foreach ( $widget_files as $key => $file_name ) {
@@ -97,6 +100,9 @@ class Elementor_Widget {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Variations() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Desc() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Short_Desc() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Star_Review() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Timer() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Quantity() );
 	}
 
 	/**
