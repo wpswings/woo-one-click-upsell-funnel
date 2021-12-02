@@ -63,6 +63,7 @@ class Elementor_Widget {
 			'upsell-accept',
 			'upsell-reject',
 			'upsell-image',
+			'upsell-title',
 			'upsell-variations',
 			'upsell-desc',
 			'upsell-short-desc',
@@ -89,6 +90,7 @@ class Elementor_Widget {
 		// Register the plugin widget classes.
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Accept() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Reject() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Title() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Image() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Variations() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Desc() );
