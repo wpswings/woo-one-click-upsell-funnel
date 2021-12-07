@@ -17,7 +17,7 @@
  * Description:           Show exclusive post-checkout offers to your customers. Create dedicated Upsell offer pages. Offers that are relevant and benefits your customers on the existing purchase and so increase Average Order Value and your Revenue.
  * Version:               3.1.2
  *
- * Requires at least:     4.0
+ * Requires at least:     4.4
  * Tested up to:          5.8.2
  * WC requires at least:  3.0
  * WC tested up to:       5.9.0

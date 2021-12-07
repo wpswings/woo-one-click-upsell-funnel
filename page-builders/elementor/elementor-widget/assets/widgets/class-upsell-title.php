@@ -60,7 +60,7 @@ class Upsell_Title extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Upsell Title', 'elementor' );
+		return esc_html__( 'Upsell Title', 'woo-one-click-upsell-funnel' );
 	}
 
 	/**
@@ -119,27 +119,27 @@ class Upsell_Title extends Widget_Base {
 		$this->start_controls_section(
 			'section_title',
 			array(
-				'label' => esc_html__( 'Title', 'elementor' ),
+				'label' => esc_html__( 'Title', 'woo-one-click-upsell-funnel' ),
 			)
 		);
 
 		$this->add_control(
 			'title',
 			array(
-				'label'       => esc_html__( 'Title', 'elementor' ),
+				'label'       => esc_html__( 'Title', 'woo-one-click-upsell-funnel' ),
 				'type'        => Controls_Manager::TEXTAREA,
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'placeholder' => esc_html__( 'Enter your title', 'elementor' ),
-				'default'     => esc_html__( '[mwb_upsell_title]', 'elementor' ),
+				'placeholder' => esc_html__( 'Enter your title', 'woo-one-click-upsell-funnel' ),
+				'default'     => esc_html__( '[mwb_upsell_title]', 'woo-one-click-upsell-funnel' ),
 			)
 		);
 
 		$this->add_control(
 			'link',
 			array(
-				'label'     => esc_html__( 'Link', 'elementor' ),
+				'label'     => esc_html__( 'Link', 'woo-one-click-upsell-funnel' ),
 				'type'      => Controls_Manager::URL,
 				'dynamic'   => array(
 					'active' => true,
@@ -154,16 +154,16 @@ class Upsell_Title extends Widget_Base {
 		$this->add_control(
 			'size',
 			array(
-				'label'   => esc_html__( 'Size', 'elementor' ),
+				'label'   => esc_html__( 'Size', 'woo-one-click-upsell-funnel' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'default',
 				'options' => array(
-					'default' => esc_html__( 'Default', 'elementor' ),
-					'small'   => esc_html__( 'Small', 'elementor' ),
-					'medium'  => esc_html__( 'Medium', 'elementor' ),
-					'large'   => esc_html__( 'Large', 'elementor' ),
-					'xl'      => esc_html__( 'XL', 'elementor' ),
-					'xxl'     => esc_html__( 'XXL', 'elementor' ),
+					'default' => esc_html__( 'Default', 'woo-one-click-upsell-funnel' ),
+					'small'   => esc_html__( 'Small', 'woo-one-click-upsell-funnel' ),
+					'medium'  => esc_html__( 'Medium', 'woo-one-click-upsell-funnel' ),
+					'large'   => esc_html__( 'Large', 'woo-one-click-upsell-funnel' ),
+					'xl'      => esc_html__( 'XL', 'woo-one-click-upsell-funnel' ),
+					'xxl'     => esc_html__( 'XXL', 'woo-one-click-upsell-funnel' ),
 				),
 			)
 		);
@@ -171,7 +171,7 @@ class Upsell_Title extends Widget_Base {
 		$this->add_control(
 			'header_size',
 			array(
-				'label'   => esc_html__( 'HTML Tag', 'elementor' ),
+				'label'   => esc_html__( 'HTML Tag', 'woo-one-click-upsell-funnel' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
 					'h1'   => 'H1',
@@ -191,23 +191,23 @@ class Upsell_Title extends Widget_Base {
 		$this->add_responsive_control(
 			'align',
 			array(
-				'label'     => esc_html__( 'Alignment', 'elementor' ),
+				'label'     => esc_html__( 'Alignment', 'woo-one-click-upsell-funnel' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'    => array(
-						'title' => esc_html__( 'Left', 'elementor' ),
+						'title' => esc_html__( 'Left', 'woo-one-click-upsell-funnel' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center'  => array(
-						'title' => esc_html__( 'Center', 'elementor' ),
+						'title' => esc_html__( 'Center', 'woo-one-click-upsell-funnel' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'   => array(
-						'title' => esc_html__( 'Right', 'elementor' ),
+						'title' => esc_html__( 'Right', 'woo-one-click-upsell-funnel' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 					'justify' => array(
-						'title' => esc_html__( 'Justified', 'elementor' ),
+						'title' => esc_html__( 'Justified', 'woo-one-click-upsell-funnel' ),
 						'icon'  => 'eicon-text-align-justify',
 					),
 				),
@@ -221,7 +221,7 @@ class Upsell_Title extends Widget_Base {
 		$this->add_control(
 			'view',
 			array(
-				'label'   => esc_html__( 'View', 'elementor' ),
+				'label'   => esc_html__( 'View', 'woo-one-click-upsell-funnel' ),
 				'type'    => Controls_Manager::HIDDEN,
 				'default' => 'traditional',
 			)
@@ -232,7 +232,7 @@ class Upsell_Title extends Widget_Base {
 		$this->start_controls_section(
 			'section_title_style',
 			array(
-				'label' => esc_html__( 'Title', 'elementor' ),
+				'label' => esc_html__( 'Title', 'woo-one-click-upsell-funnel' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -240,7 +240,7 @@ class Upsell_Title extends Widget_Base {
 		$this->add_control(
 			'title_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'elementor' ),
+				'label'     => esc_html__( 'Text Color', 'woo-one-click-upsell-funnel' ),
 				'type'      => Controls_Manager::COLOR,
 				'global'    => array(
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -273,10 +273,10 @@ class Upsell_Title extends Widget_Base {
 		$this->add_control(
 			'blend_mode',
 			array(
-				'label'     => esc_html__( 'Blend Mode', 'elementor' ),
+				'label'     => esc_html__( 'Blend Mode', 'woo-one-click-upsell-funnel' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => array(
-					''            => esc_html__( 'Normal', 'elementor' ),
+					''            => esc_html__( 'Normal', 'woo-one-click-upsell-funnel' ),
 					'multiply'    => 'Multiply',
 					'screen'      => 'Screen',
 					'overlay'     => 'Overlay',

@@ -6,7 +6,7 @@
  * @since      3.0.0
  *
  * @package    woo-one-click-upsell-funnel
- * @subpackage woo-one-click-upsell-funnel/widgets
+ * @subpackage woo-one-click-upsell-funnel/page-builders
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
