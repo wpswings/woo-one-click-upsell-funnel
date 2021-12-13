@@ -71,6 +71,7 @@ class Elementor_Widget {
 			'upsell-star-review',
 			'upsell-timer',
 			'upsell-quantity',
+			'upsell-forms',
 		);
 
 		foreach ( $widget_files as $key => $file_name ) {
@@ -103,6 +104,7 @@ class Elementor_Widget {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Star_Review() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Timer() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Quantity() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Forms() );
 	}
 
 	/**
