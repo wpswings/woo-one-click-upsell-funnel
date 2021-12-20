@@ -1,4 +1,4 @@
-![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg) ![Active installs](https://img.shields.io/badge/Active-1000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-5.8.1-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-5.8.0-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-5.6-blue)
+![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg) ![Active installs](https://img.shields.io/badge/Active-1000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-5.8.2-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-5.9.0-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-7.0.0-blue)
 # One Click Upsell Funnel for WooCommerce
 ![One Click Upsell Funnel for WooCommerce](https://ps.w.org/woo-one-click-upsell-funnel/assets/banner-772x250.jpg)
 * Contributors: MakeWebBetter
@@ -36,6 +36,23 @@
 [**Download Now !!**](https://downloads.wordpress.org/plugin/woo-one-click-upsell-funnel.zip) 
 
 Visit [**One Click Upsell Funnel for WooCommerce Documentation**](https://docs.makewebbetter.com/woocommerce-one-click-upsell-funnel/?utm_source=MWB-upsell-git&utm_medium=MWB-git&utm_campaign=MWB-upsell-git) 
+
+## PLUGIN COMPATIBILITY WITH ONE CLICK UPSELL FUNNEL FOR WOOCOMMERCE
+
+**1.Subscriptions for WooCommerce**
+We made the One Click Upsell Funnel plugin compatible with the [Subscriptions for WooCommerce](https://wordpress.org/plugins/subscriptions-for-woocommerce/) plugin. As a result, the WooCommerce merchants can create one-click upsell offers for subscription-based products too. As a result, if a customer purchases a subscription plan from the store the one-click upsell funnel will trigger as soon as he/she checks out. The compatibility feature is available for both the free and premium versions of the plugin.
+
+**2.Compatible With MWB Currency Switcher**
+The [MWB currency switcher](https://wordpress.org/plugins/mwb-multi-currency-switcher-for-woocommerce/) is a WooCommerce extension that provides seamless currency conversions on your store. The One-Click Upsell Funnel plugin has been made compatible with the MWB Multi-Currency Switcher which means, all your upselling offers will be shown to the customers in a currency chosen by them. The compatibility feature is available for both the free and premium versions of the plugin.
+
+**3.WooCommerce PDF Invoice**
+The [compatibility with WooCommerce PDF Invoice](https://wordpress.org/plugins/invoice-system-for-woocommerce/) allows the merchants to send the purchased items and upsell items within the same invoicing email. The process is carried out through WooCommerce PDF Invoice’s automated and robust invoice and packing slip generator.
+
+**2.Payment Gateways Compatibilities**
+One-Click Upsell Funnel plugin has been made compatible with a wide range of payment gateways. We made our extension compatible with [WooCommerce Stripe Payment Gateway](https://wordpress.org/plugins/woocommerce-gateway-stripe/), WooCommerce PayPal Standard, [WooCommerce PayPal Payments](https://wordpress.org/plugins/woocommerce-paypal-payments/), and [Authorize.net](https://woocommerce.com/products/authorize-net/)
+
+Also, we can do customization for our users to add other payment gateways. 
+
 
 ## WHAT’S INCLUDED IN OUR FREE ONE CLICK UPSELL FUNNEL WORDPRESS PLUGIN
 
@@ -94,7 +111,3 @@ If you need support or have questions, kindly use our online chat window [**here
 - [**Visit our LinkedIn Account**](https://www.linkedin.com/company/makewebbetter)
 - [**Subscribe To Our YouTube Channel**](https://www.youtube.com/channel/UC7nYNf0JETOwW3GOD_EW2Ag)
 - [**Follow Our SlideShare**](https://www.slideshare.net/MakeWebBetter)
-
-
-
-
