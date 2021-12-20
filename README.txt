@@ -5,8 +5,8 @@ Tags: boost sales, cross-sells, post-purchase, upsell, woocommerce
 Requires at least: 4.4
 Tested up to: 5.8.2
 WC requires at least: 3.0
-WC tested up to: 5.9.0
-Stable tag: 3.1.1
+WC tested up to: 6.0.0
+Stable tag: 3.1.2
 Requires PHP: 7.0.0
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -39,18 +39,15 @@ One-Click Upsell Funnel for WooCommerce plugin offers post-purchase upsell offer
 
 == PLUGIN COMPATIBILITY WITH ONE CLICK UPSELL FUNNEL FOR WOOCOMMERCE ==
 
-**1.Subscriptions for WooCommerce**
-We made the One Click Upsell Funnel plugin compatible with the [Subscriptions for WooCommerce](https://wordpress.org/plugins/subscriptions-for-woocommerce/) plugin. As a result, the WooCommerce merchants can create one-click upsell offers for subscription-based products too. As a result, if a customer purchases a subscription plan from the store the one-click upsell funnel will trigger as soon as he/she checks out. The compatibility feature is available for both the free and premium versions of the plugin.
-
-**2.Compatible With MWB Currency Switcher**
+**1.Compatible With MWB Currency Switcher**
 The [MWB currency switcher](https://wordpress.org/plugins/mwb-multi-currency-switcher-for-woocommerce/) is a WooCommerce extension that provides seamless currency conversions on your store. The One-Click Upsell Funnel plugin has been made compatible with the MWB Multi-Currency Switcher which means, all your upselling offers will be shown to the customers in a currency chosen by them. The compatibility feature is available for both the free and premium versions of the plugin.
 
 
-**3.WooCommerce PDF Invoice**
+**2.WooCommerce PDF Invoice**
 The [compatibility with WooCommerce PDF Invoice](https://wordpress.org/plugins/invoice-system-for-woocommerce/) allows the merchants to send the purchased items and upsell items within the same invoicing email. The process is carried out through WooCommerce PDF Invoice’s automated and robust invoice and packing slip generator.
 
 
-**2.Payment Gateways Compatibilities**
+**3.Payment Gateways Compatibilities(Pro Version)**
 One-Click Upsell Funnel plugin has been made compatible with a wide range of payment gateways. We made our extension compatible with [WooCommerce Stripe Payment Gateway](https://wordpress.org/plugins/woocommerce-gateway-stripe/), WooCommerce PayPal Standard, [WooCommerce PayPal Payments](https://wordpress.org/plugins/woocommerce-paypal-payments/), and [Authorize.net](https://woocommerce.com/products/authorize-net/)
 
 Also, we can do customization for our users to add other payment gateways. 
@@ -105,8 +102,6 @@ Visit [**One Click Upsell Funnel for WooCommerce Documentation**](https://docs.m
 > Note:  Get [**WooCommerce One Click Upsell Funnel Pro**](https://makewebbetter.com/product/woocommerce-one-click-upsell-funnel-pro/?utm_source=MWB-upsell-org&utm_medium=MWB-ORG&utm_campaign=MWB-upsell-org)
 
 If our documentation doesn't contain the solution to your problem, you can visit the [**MakeWebBetter Forums**](https://forums.makewebbetter.com/?utm_source=MWB-upsell-org&utm_medium=MWB-ORG&utm_campaign=MWB-upsell-org) with your question.
-
-
 
 == Installation ==
 
@@ -228,6 +223,12 @@ Most of the major WordPress page builders like Elementor, WPBakery, Divibuilders
 
 == Changelog =
 
+= 3.1.2 - Released on 16 Dec 2021 =
+
+* Bug Fixes 
+* New : Elementor Widgets with shortcodes
+* Compatibility with WooCommerce (6.0.0)
+
 = 3.1.1 - Released on 22 Nov 2021 =
 
 * Bug Fixes 
@@ -304,9 +305,8 @@ Most of the major WordPress page builders like Elementor, WPBakery, Divibuilders
 
 == Upgrade Notice ==
 
-= 3.1.1 - Released on 22 Nov 2021 =
+= 3.1.2 - Released on 16 Dec 2021 =
 
-* Bug Fixes 
-* Compatibility with MWB Currency switcher.
-* Compatibility with MWB Currency switcher pro.
-* Compatibility with Invoice System for WooCommerce.
+* Bug Fixes
+* New : Elementor Widgets with shortcodes
+* Compatibility with WooCommerce (6.0.0)

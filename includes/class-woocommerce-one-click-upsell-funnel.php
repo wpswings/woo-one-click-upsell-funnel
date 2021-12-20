@@ -148,6 +148,14 @@ class Woocommerce_One_Click_Upsell_Funnel {
 
 		$this->loader = new Woocommerce_One_Click_Upsell_Funnel_Loader();
 
+		/**
+		 * The file responsible for Upsell Widgets added within every page builder.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'page-builders/class-mwb-upsell-widget-loader.php';
+		if ( class_exists( 'Mwb_Upsell_Widget_Loader' ) ) {
+			Mwb_Upsell_Widget_Loader::get_instance();
+		}
+
 	}
 
 	/**

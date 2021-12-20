@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: One Click Upsell Funnel for Woocommerce 3.0.4\n"
-"POT-Creation-Date: 2021-11-19 18:33+0530\n"
+"POT-Creation-Date: 2021-12-15 16:18+0530\n"
 "PO-Revision-Date: 2021-08-30 16:40+0530\n"
 "Last-Translator: \n"
 "Language-Team: MakeWebBetter\n"
@@ -727,6 +727,7 @@ msgid "Product Title &rarr;"
 msgstr ""
 
 #: admin/partials/templates/mwb-wocuf-pro-shortcodes.php:72
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:135
 msgid "[mwb_upsell_title]"
 msgstr ""
 
@@ -1358,6 +1359,459 @@ msgstr ""
 
 #: includes/class-makewebbetter-onboarding-helper.php:882
 msgid "Unexpected Error Occured"
+msgstr ""
+
+#: page-builders/elementor/class-elementor-widget-loader.php:93
+#: page-builders/elementor/class-elementor-widget-loader.php:107
+msgid "Elementor Widgets "
+msgstr ""
+
+#: page-builders/elementor/class-elementor-widget-loader.php:93
+#: page-builders/elementor/class-elementor-widget-loader.php:107
+msgid "requires "
+msgstr ""
+
+#: page-builders/elementor/class-elementor-widget-loader.php:93
+msgid "Elementor "
+msgstr ""
+
+#: page-builders/elementor/class-elementor-widget-loader.php:93
+#: page-builders/elementor/class-elementor-widget-loader.php:107
+msgid " version "
+msgstr ""
+
+#: page-builders/elementor/class-elementor-widget-loader.php:93
+#: page-builders/elementor/class-elementor-widget-loader.php:107
+msgid " or greater."
+msgstr ""
+
+#: page-builders/elementor/class-elementor-widget-loader.php:107
+msgid "PHP "
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:66
+msgid "Upsell Yes Button"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:126
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:293
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:126
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:293
+msgid "Button"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:133
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:133
+msgid "Type"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:137
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:145
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:280
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:149
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:284
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:137
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:145
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:280
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:161
+msgid "Default"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:138
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:138
+msgid "Info"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:139
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:139
+msgid "Success"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:140
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:140
+msgid "Warning"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:141
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:141
+msgid "Danger"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:150
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:150
+msgid "Text"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:155
+msgid "Add this to my order"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:156
+msgid "Accept button text"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:163
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:163
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:142
+msgid "Link"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:168
+msgid "Add Upsell yes shortcode here"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:178
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:202
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:206
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:178
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:202
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:194
+msgid "Alignment"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:182
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:206
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:210
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:182
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:206
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:198
+msgid "Left"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:186
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:210
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:214
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:186
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:210
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:202
+msgid "Center"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:190
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:214
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:218
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:190
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:214
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:206
+msgid "Right"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:194
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:218
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:222
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:194
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:218
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:210
+msgid "Justified"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:206
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:330
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:334
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:206
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:330
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:157
+msgid "Size"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:217
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:217
+msgid "Icon"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:228
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:228
+msgid "Icon Position"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:232
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:232
+msgid "Before"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:233
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:233
+msgid "After"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:244
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:244
+msgid "Icon Spacing"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:261
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:277
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:281
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:261
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:277
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:224
+msgid "View"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:270
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:270
+msgid "Button ID"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:276
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:276
+msgid "Add your custom id WITHOUT the Pound key. e.g: my-id"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:279
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:279
+#, php-format
+msgid ""
+"Please make sure the ID is unique and not used elsewhere on the page this "
+"form is displayed. This field allows %1$sA-z 0-9%2$s & underscore chars "
+"without spaces."
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:303
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:303
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:279
+msgid "Normal"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:310
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:331
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:231
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:235
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:310
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:331
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:231
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:243
+msgid "Text Color"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:324
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:324
+msgid "Hover"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:343
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:343
+msgid "Border Color"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:357
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:357
+msgid "Hover Animation"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:367
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:372
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:376
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:367
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:372
+msgid "Border Radius"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-accept.php:379
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:379
+msgid "Padding"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:59
+msgid "Upsell Description"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:118
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:194
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:122
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:198
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:118
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:194
+msgid "Text Editor"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:134
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:266
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:138
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:270
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:134
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:266
+msgid "Drop Cap"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:136
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:140
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:136
+msgid "Off"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:137
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:141
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:137
+msgid "On"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:150
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:154
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:150
+msgid "Columns"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:163
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:167
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:163
+msgid "Columns Gap"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:281
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:285
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:281
+msgid "Stacked"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:282
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:286
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:282
+msgid "Framed"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:292
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:296
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:292
+msgid "Primary Color"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:307
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:311
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:307
+msgid "Secondary Color"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:352
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:356
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:352
+msgid "Space"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-desc.php:392
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:396
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:392
+msgid "Border Width"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-forms.php:55
+msgid "Upsell Meta Forms"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-forms.php:112
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-image.php:112
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-quantity.php:112
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-star-review.php:112
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-timer.php:112
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-variations.php:112
+msgid "Shortcode"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-forms.php:119
+msgid "Enter upsell meta forms shortcode"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-image.php:55
+msgid "Upsell_image"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-image.php:119
+msgid "Enter upsell image shortcode"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-price.php:63
+msgid "Upsell Price"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-quantity.php:55
+msgid "Upsell Quantity"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-quantity.php:119
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-star-review.php:119
+msgid "Enter upsell star review shortcode"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:66
+msgid "Upsell No Button"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:155
+msgid "Reject this offer"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:156
+msgid "Reject button text"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-reject.php:168
+msgid "Add Upsell no shortcode here"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-short-desc.php:59
+msgid "Upsell Short Description"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-star-review.php:55
+msgid "Upsell Star Ratings"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-timer.php:55
+msgid "Upsell Timer"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-timer.php:119
+msgid "Enter upsell timer shortcode"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:63
+msgid "Upsell Title"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:122
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:129
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:235
+msgid "Title"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:134
+msgid "Enter your title"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:162
+msgid "Small"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:163
+msgid "Medium"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:164
+msgid "Large"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:165
+msgid "XL"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:166
+msgid "XXL"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:174
+msgid "HTML Tag"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:276
+msgid "Blend Mode"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-variations.php:55
+msgid "Upsell Variations"
+msgstr ""
+
+#: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-variations.php:119
+msgid "Enter upsell variation shortcode"
 msgstr ""
 
 #: public/class-woocommerce-one-click-upsell-funnel-public.php:101
