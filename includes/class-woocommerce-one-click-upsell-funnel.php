@@ -79,7 +79,6 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-
 	}
 
 	/**

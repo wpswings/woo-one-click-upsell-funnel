@@ -108,6 +108,21 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 			Woocommerce_One_Click_Upsell_Funnel_Deactivator::deactivate();
 		}
 
+		// Upgrade notice.
+		add_action( 'after_plugin_row_' . plugin_basename( __FILE__ ), 'mwb_wocuf_add_owner_notice', 0, 3 );
+
+		/**
+		 * Begins execution of the plugin.
+		 *
+		 * @param mixed $plugin_file The plugin file name.
+		 * @param mixed $plugin_data The plugin file data.
+		 * @param mixed $status      The plugin file status.
+		 * @since 1.0.0
+		 */
+		function mwb_wocuf_add_owner_notice( $plugin_file, $plugin_data, $status ) {
+			include_once plugin_dir_path( __FILE__ ) . 'extra-templates/woocommerce-one-click-upsell-funnel-owner-notice.html';
+		}
+
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'mwb_upsell_lite_plugin_settings_link' );
 
 		/**
