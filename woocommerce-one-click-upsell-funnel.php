@@ -110,6 +110,7 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 
 		// Upgrade notice.
 		add_action( 'after_plugin_row_' . plugin_basename( __FILE__ ), 'mwb_wocuf_add_owner_notice', 0, 3 );
+		add_action( 'mwb_wocuf_pro_setting_tab_active', 'mwb_wocuf_add_owner_notice', 0, 3 );
 
 		/**
 		 * Begins execution of the plugin.
