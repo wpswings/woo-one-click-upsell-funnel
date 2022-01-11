@@ -1,5 +1,5 @@
 === One Click Upsell Funnel for WooCommerce - Post-Purchase Upsell & Cross-Sell Offers, Boost Sales ===
-Contributors: MakeWebBetter
+Contributors: WP Swings
 Donate link: https://makewebbetter.com/
 Tags: boost sales, cross-sells, post-purchase, upsell, woocommerce
 Requires at least: 4.4
@@ -101,7 +101,7 @@ Visit [**One Click Upsell Funnel for WooCommerce Documentation**](https://docs.m
 
 > Note:  Get [**WooCommerce One Click Upsell Funnel Pro**](https://makewebbetter.com/product/woocommerce-one-click-upsell-funnel-pro/?utm_source=MWB-upsell-org&utm_medium=MWB-ORG&utm_campaign=MWB-upsell-org)
 
-If our documentation doesn't contain the solution to your problem, you can visit the [**MakeWebBetter Forums**](https://forums.makewebbetter.com/?utm_source=MWB-upsell-org&utm_medium=MWB-ORG&utm_campaign=MWB-upsell-org) with your question.
+If our documentation doesn't contain the solution to your problem, you can visit the [**WP Swings Forums**](https://forums.makewebbetter.com/?utm_source=MWB-upsell-org&utm_medium=MWB-ORG&utm_campaign=MWB-upsell-org) with your question.
 
 == Installation ==
 

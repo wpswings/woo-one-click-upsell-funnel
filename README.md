@@ -1,7 +1,7 @@
 ![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg) ![Active installs](https://img.shields.io/badge/Active-1000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-5.8.2-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-5.9.0-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-7.0.0-blue)
 # One Click Upsell Funnel for WooCommerce
 ![One Click Upsell Funnel for WooCommerce](https://ps.w.org/woo-one-click-upsell-funnel/assets/banner-772x250.jpg)
-* Contributors: MakeWebBetter
+* Contributors: WP Swings
 * Author URI: [https://makewebbetter.com/](https://makewebbetter.com/?utm_source=MWB-upsell-git&utm_medium=MWB-git&utm_campaign=git)
 * Tags: boost sales, cross sells, post-purchase, upsell, woocommerce
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -87,7 +87,7 @@ As the name suggests, it is one click upsell, which means the customers can purc
 
 Visit [**One Click Upsell Funnel for WooCommerce Documentation**](https://docs.makewebbetter.com/woocommerce-one-click-upsell-funnel/?utm_source=MWB-upsell-git&utm_medium=MWB-git&utm_campaign=MWB-upsell-git) and learn more about the features and working of the plugin. Check out [One Click Upsell knowledge base](https://support.makewebbetter.com/wordpress-plugins-knowledge-base/category/woocommerce-one-click-upsell-funnel-pro-kb/?utm_source=MWB-upsell-git&utm_medium=MWB-git&utm_campaign=MWB-upsell-git) for some deep insights and FAQs on the plugin.
 
-If our documentation doesn’t contain the solution to your problem, you can visit the [**MakeWebBetter Forums**](https://forums.makewebbetter.com/?utm_source=MWB-upsell-git&utm_medium=MWB-git&utm_campaign=MWB-upsell-git) with your question.
+If our documentation doesn’t contain the solution to your problem, you can visit the [**WP Swings Forums**](https://forums.makewebbetter.com/?utm_source=MWB-upsell-git&utm_medium=MWB-git&utm_campaign=MWB-upsell-git) with your question.
 
 ## WHAT PREMIUM VERSION OF ONE CLICK UPSELL FUNNEL FOR WOOCOMMERCE OFFERS
 
@@ -107,7 +107,7 @@ If you need support or have questions, kindly use our online chat window [**here
 
 - [**Our Official Website**](https://makewebbetter.com/?utm_source=MWB-upsell-git&utm_medium=MWB-git&utm_campaign=git)
 - [**Follow us on Facebook Page**](https://www.facebook.com/makewebbetter)
-- [**Tweet us on @MakeWebBetter**](https://twitter.com/makewebbetter)
+- [**Tweet us on @WP Swings**](https://twitter.com/makewebbetter)
 - [**Visit our LinkedIn Account**](https://www.linkedin.com/company/makewebbetter)
 - [**Subscribe To Our YouTube Channel**](https://www.youtube.com/channel/UC7nYNf0JETOwW3GOD_EW2Ag)
-- [**Follow Our SlideShare**](https://www.slideshare.net/MakeWebBetter)
+- [**Follow Our SlideShare**](https://www.slideshare.net/WP Swings)

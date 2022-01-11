@@ -21,7 +21,7 @@ if ( class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
 }
 
 /**
- * Helper module for MakeWebBetter plugins.
+ * Helper module for WP Swings plugins.
  */
 class Makewebbetter_Onboarding_Helper {
 
