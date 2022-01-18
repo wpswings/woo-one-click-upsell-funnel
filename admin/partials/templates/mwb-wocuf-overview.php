@@ -4,7 +4,7 @@
  *
  * This file is used to markup the overview of the plugin.
  *
- * @link       https://makewebbetter.com/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend
+ * @link       https://wpswings.com/
  * @since      1.0.0
  *
  * @package     woo_one_click_upsell_funnel
@@ -64,7 +64,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 		</div>
 		<div class="mwb_upsell_overview_go_pro">
-			<a class="button mwb_upsell_overview_go_pro_button" target="_blank" href="https://makewebbetter.com/product/woocommerce-one-click-upsell-funnel-pro/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend"><?php echo esc_html__( 'Upgrade to Premium', 'woo-one-click-upsell-funnel' ) . ' &rarr;'; ?></a>
+			<a class="button mwb_upsell_overview_go_pro_button" target="_blank" href="https://wpswings.com/product/woocommerce-one-click-upsell-funnel-pro/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend"><?php echo esc_html__( 'Upgrade to Premium', 'woo-one-click-upsell-funnel' ) . ' &rarr;'; ?></a>
 		</div>
 	</div>
 </div>
