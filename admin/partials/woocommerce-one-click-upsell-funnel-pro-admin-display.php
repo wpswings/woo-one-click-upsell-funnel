@@ -35,9 +35,11 @@ if ( 'overview' === get_transient( 'mwb_upsell_default_settings_tab' ) ) {
 	$active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'overview';
 }
 
-do_action( 'mwb_wocuf_pro_setting_tab_active', '', '', '' );
-
 ?>
+
+<div class="mwb-notice-wrapper">
+<?php do_action( 'mwb_wocuf_pro_setting_tab_active', '', '', '' ); ?>
+</div>
 
 <?php if ( ! mwb_upsell_lite_elementor_plugin_active() && false === get_transient( 'mwb_upsell_elementor_inactive_notice' ) ) : ?>
 
