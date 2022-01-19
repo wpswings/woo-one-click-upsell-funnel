@@ -462,7 +462,7 @@ class Upsell_Price extends Widget_Base {
 	 * @access public
 	 */
 	public function render_plain_content() {
-		// In plain mode, render without shortcode
+		// In plain mode, render without shortcode.
 		$this->print_unescaped_setting( 'editor' );
 	}
 
