@@ -64,7 +64,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 		</div>
 		<div class="mwb_upsell_overview_go_pro">
-			<a class="button mwb_upsell_overview_go_pro_button" target="_blank" href="http://wpswings.com/product/one-click-upsell-funnel-for-woocommerce-pro/"><?php echo esc_html__( 'Upgrade to Premium', 'woo-one-click-upsell-funnel' ) . ' &rarr;'; ?></a>
+			<a class="button mwb_upsell_overview_go_pro_button" target="_blank" href="https://wpswings.com/product/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=wpswings-upsell-pro&utm_medium=upsell-org-backend&utm_campaign=upsell-pro"><?php echo esc_html__( 'Upgrade to Premium', 'woo-one-click-upsell-funnel' ) . ' &rarr;'; ?></a>
 		</div>
 	</div>
 </div>
