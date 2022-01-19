@@ -8,7 +8,7 @@
  * that starts the plugin.
  *
  * @package woo_one_click_upsell_funnel
- * @link    https://wpswings.com/
+ * @link    https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-org-backend&utm_campaign=official
  * @since   1.0.0
  *
  * @wordpress-plugin
@@ -23,7 +23,7 @@
  * WC tested up to:       5.9.0
  *
  * Author:                WP Swings
- * Author URI:            https://wpswings.com/
+ * Author URI:            https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-org-backend&utm_campaign=official
  * License:               GNU General Public License v3.0
  * License URI:           http://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain:           woo-one-click-upsell-funnel

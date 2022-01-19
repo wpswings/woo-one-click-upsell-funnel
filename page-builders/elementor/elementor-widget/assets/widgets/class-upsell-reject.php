@@ -2,7 +2,7 @@
 /**
  * Upsell elementor widgets collection loader file.
  *
- * @link       https://wpswings.com/
+ * @link       https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-org-backend&utm_campaign=official
  * @since      3.1.2
  *
  * @package    woo-one-click-upsell-funnel

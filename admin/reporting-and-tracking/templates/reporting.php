@@ -4,7 +4,7 @@
  *
  * This file is used for Upsell Reports and Upsell Sales by Funnel - Stats.
  *
- * @link       https://wpswings.com/
+ * @link       https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-org-backend&utm_campaign=official
  * @since      1.0.0
  *
  * @package     woo_one_click_upsell_funnel

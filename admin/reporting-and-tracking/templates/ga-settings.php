@@ -4,7 +4,7 @@
  *
  * Google Analytics Settings.
  *
- * @link       https://wpswings.com/
+ * @link       https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-org-backend&utm_campaign=official
  * @since      3.0.0
  *
  * @package     woo_one_click_upsell_funnel
@@ -162,7 +162,7 @@ $google_analytics_fields = array(
 				</th>
 				<td class="forminp forminp-text">
 					<span class="mwb_upsell_global_description">
-						<?php esc_html_e( 'Please make sure to Disable the Purchase Event from your plugin\'s settings before you Enable Google Analytics Purchase Event by Upsell. If you can\'t find the settings or in case of any confusion please contact our support', 'woo-one-click-upsell-funnel' ); ?> <a target="_blank" href="https://wpswings.com/contact-us/"><?php esc_html_e( 'here', 'woo-one-click-upsell-funnel' ); ?></a><?php esc_html_e( '.', 'woo-one-click-upsell-funnel' ); ?>
+						<?php esc_html_e( 'Please make sure to Disable the Purchase Event from your plugin\'s settings before you Enable Google Analytics Purchase Event by Upsell. If you can\'t find the settings or in case of any confusion please contact our support', 'woo-one-click-upsell-funnel' ); ?> <a target="_blank" href="https://wpswings.com/contact-us/?utm_source=wpswings-official&utm_medium=upsell-org-backend&utm_campaign=official"><?php esc_html_e( 'here', 'woo-one-click-upsell-funnel' ); ?></a><?php esc_html_e( '.', 'woo-one-click-upsell-funnel' ); ?>
 					</span>		
 				</td>
 			</tr>
