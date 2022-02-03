@@ -2,7 +2,7 @@
 /**
  * Upsell elementor widgets collection loader file.
  *
- * @link       https://makewebbetter.com/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend
+ * @link       https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-org-backend&utm_campaign=official
  * @since      3.1.2
  *
  * @package    woo-one-click-upsell-funnel
@@ -462,7 +462,7 @@ class Upsell_Price extends Widget_Base {
 	 * @access public
 	 */
 	public function render_plain_content() {
-		// In plain mode, render without shortcode
+		// In plain mode, render without shortcode.
 		$this->print_unescaped_setting( 'editor' );
 	}
 

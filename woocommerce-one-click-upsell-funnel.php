@@ -8,22 +8,22 @@
  * that starts the plugin.
  *
  * @package woo_one_click_upsell_funnel
- * @link    https://makewebbetter.com/
+ * @link    https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-org-backend&utm_campaign=official
  * @since   1.0.0
  *
  * @wordpress-plugin
  * Plugin Name:           One Click Upsell Funnel for Woocommerce
  * Plugin URI:            https://wordpress.org/plugins/woo-one-click-upsell-funnel/
  * Description:           Show exclusive post-checkout offers to your customers. Create dedicated Upsell offer pages. Offers that are relevant and benefits your customers on the existing purchase and so increase Average Order Value and your Revenue.
- * Version:               3.1.2
+ * Version:               3.1.3
  *
  * Requires at least:     4.4
- * Tested up to:          5.8.2
+ * Tested up to:          5.9
  * WC requires at least:  3.0
- * WC tested up to:       5.9.0
+ * WC tested up to:       6.1.1
  *
- * Author:                MakeWebBetter
- * Author URI:            https://makewebbetter.com/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend
+ * Author:                WP Swings
+ * Author URI:            https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-org-backend&utm_campaign=official
  * License:               GNU General Public License v3.0
  * License URI:           http://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain:           woo-one-click-upsell-funnel
@@ -79,6 +79,21 @@ function mwb_upsell_lite_plugin_activation() {
 
 $mwb_upsell_lite_plugin_activation = mwb_upsell_lite_plugin_activation();
 
+// Upgrade notice.
+add_action( 'after_plugin_row_' . plugin_basename( __FILE__ ), 'mwb_wocuf_add_owner_notice', 0, 3 );
+
+/**
+ * Begins execution of the plugin.
+ *
+ * @param mixed $plugin_file The plugin file name.
+ * @param mixed $plugin_data The plugin file data.
+ * @param mixed $status      The plugin file status.
+ * @since 1.0.0
+ */
+function mwb_wocuf_add_owner_notice( $plugin_file, $plugin_data, $status ) {
+	include_once plugin_dir_path( __FILE__ ) . 'extra-templates/woocommerce-one-click-upsell-funnel-owner-notice.html';
+}
+
 if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 
 	// If pro plugin not active, then load Org Plugin else Don't.
@@ -88,7 +103,7 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 
 		define( 'MWB_WOCUF_DIRPATH', plugin_dir_path( __FILE__ ) );
 
-		define( 'MWB_WOCUF_VERSION', 'v3.1.2' );
+		define( 'MWB_WOCUF_VERSION', 'v3.1.3' );
 
 		/**
 		 * The code that runs during plugin activation.
@@ -136,10 +151,10 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 			if ( false !== strpos( $file, 'woocommerce-one-click-upsell-funnel.php' ) ) {
 
 				$row_meta = array(
-					'docs'    => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://docs.makewebbetter.com/woocommerce-one-click-upsell-funnel/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend">' . esc_html__( 'Go to Docs', 'woo-one-click-upsell-funnel' ) . '</a>',
-					'goPro'   => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#45b649,#dce35b);padding:5px;border-radius:6px;" href="https://makewebbetter.com/product/woocommerce-one-click-upsell-funnel-pro/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend"><strong>' . esc_html__( 'Go Premium', 'woo-one-click-upsell-funnel' ) . '</strong></a>',
-					'demo'    => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://demo.makewebbetter.com/woocommerce-one-click-upsell-funnel/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend"><strong>' . esc_html__( 'See Demo', 'woo-one-click-upsell-funnel' ) . '</strong></a>',
-					'support' => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://support.makewebbetter.com/wordpress-plugins-knowledge-base/category/woocommerce-one-click-upsell-funnel-pro-kb/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend"><strong>' . esc_html__( 'Support', 'woo-one-click-upsell-funnel' ) . '</strong></a>',
+					'docs'    => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://docs.wpswings.com/one-click-upsell-funnel-for-woocommerce/?utm_source=wpswings-upsell-doc&utm_medium=upsell-org-backend&utm_campaign=upsell-doc">' . esc_html__( 'Go to Docs', 'woo-one-click-upsell-funnel' ) . '</a>',
+					'goPro'   => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#45b649,#dce35b);padding:5px;border-radius:6px;" 	   href="https://wpswings.com/product/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=wpswings-upsell-pro&utm_medium=upsell-org-backend&utm_campaign=upsell-pro"><strong>' . esc_html__( 'Go Premium', 'woo-one-click-upsell-funnel' ) . '</strong></a>',
+					'demo'    => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://demo.wpswings.com/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=wpswings-upsell-demo&utm_medium=upsell-org-backend&utm_campaign=upsell-demo"><strong>' . esc_html__( 'Try Premium Demo', 'woo-one-click-upsell-funnel' ) . '</strong></a>',
+					'support' => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://support.wpswings.com/wordpress-plugins-knowledge-base/category/one-click-upsell-funnel-for-woocommerce-pro-kb/?utm_source=wpswings-upsell-kb&utm_medium=upsell-org-backend&utm_campaign=upsell-kb"><strong>' . esc_html__( 'Support', 'woo-one-click-upsell-funnel' ) . '</strong></a>',
 				);
 
 				return array_merge( $links, $row_meta );
@@ -176,6 +191,7 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 
 		// Return and Load nothing.
 		run_woocommerce_one_click_upsell_funnel();
+		add_action( 'mwb_wocuf_pro_setting_tab_active', 'mwb_wocuf_add_owner_notice', 0, 3 );
 
 	}
 } else {

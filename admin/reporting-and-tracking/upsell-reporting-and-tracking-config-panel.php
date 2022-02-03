@@ -4,7 +4,7 @@
  *
  * This file is used to markup the admin-facing aspects of the plugin.
  *
- * @link       https://makewebbetter.com/?utm_source=MWB-upsell-backend&utm_medium=MWB-ORG-backend&utm_campaign=MWB-backend
+ * @link       https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-org-backend&utm_campaign=official
  * @since      1.0.0
  *
  * @package    woo_one_click_upsell_funnel
@@ -22,7 +22,11 @@ if ( 'overview' === get_transient( 'mwb_upsell_default_settings_tab' ) ) {
 	$active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'overview';
 }
 
-do_action( 'mwb_wocuf_pro_setting_tab_active' ); ?>
+?>
+
+<div class="mwb-notice-wrapper">
+<?php do_action( 'mwb_wocuf_pro_setting_tab_active', '', '', '' ); ?>
+</div>
 
 <div class="wrap woocommerce" id="mwb_wocuf_pro_setting_wrapper">
 
@@ -39,7 +43,7 @@ do_action( 'mwb_wocuf_pro_setting_tab_active' ); ?>
 		<div id="mwb_upsell_skype_connect_with_us">   
 			<div class="mwb_upsell_skype_connect_title"><?php esc_html_e( 'Connect with Us in one click', 'woo-one-click-upsell-funnel' ); ?></div>
 
-			<a class="button" target="_blank" href="https://join.skype.com/invite/IKVeNkLHebpC"><img src="<?php echo esc_url( MWB_WOCUF_URL . 'admin/resources/skype_logo.png' ); ?>"><?php esc_html_e( 'Connect', 'woo-one-click-upsell-funnel' ); ?></a>
+			<a class="button" target="_blank" href="https://join.skype.com/invite/xCmwbfxx8MCX"><img src="<?php echo esc_url( MWB_WOCUF_URL . 'admin/resources/skype_logo.png' ); ?>"><?php esc_html_e( 'Connect', 'woo-one-click-upsell-funnel' ); ?></a>
 
 			<p><?php esc_html_e( 'Regarding any issue, query or feature request for Upsell', 'woo-one-click-upsell-funnel' ); ?></p>
 		</div>
