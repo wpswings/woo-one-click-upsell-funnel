@@ -180,8 +180,8 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 			'sales_amount' => '#8eba36',
 			'item_count'   => '#dbe1e3',
 		);
-		$secure_nonce        = wp_create_nonce( 'mwb-upsell-auth-nonce' );
-		$id_nonce_verified   = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+		$secure_nonce        = wp_create_nonce( 'wps-upsell-auth-nonce' );
+		$id_nonce_verified   = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
 
 		if ( ! $id_nonce_verified ) {
 			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
@@ -472,8 +472,8 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 	 */
 	public function get_export_button() {
 
-		$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
-		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+		$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
+		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
 
 		if ( ! $id_nonce_verified ) {
 			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );

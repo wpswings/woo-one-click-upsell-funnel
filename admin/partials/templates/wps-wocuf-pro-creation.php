@@ -277,7 +277,7 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 
 	// After funnel is saved.
 	// Handling Funnel offer-page posts deletion which are dynamically assigned.
-	mwb_upsell_lite_offer_page_posts_deletion();
+	wps_upsell_lite_offer_page_posts_deletion();
 
 	?>
 	<!-- Settings saved notice -->
@@ -349,7 +349,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 						$attribute_description = sprintf( '<p class="mwb_upsell_tip_tip">%s</p><p class="mwb_upsell_tip_tip">%s</p><p class="mwb_upsell_tip_tip">%s</p>', esc_html__( 'Post Checkout Offers will be displayed :', 'woo-one-click-upsell-funnel' ), esc_html__( 'Sandbox Mode &rarr; For Admin only', 'woo-one-click-upsell-funnel' ), esc_html__( 'Live Mode &rarr; For All', 'woo-one-click-upsell-funnel' ) );
 
-						mwb_upsell_lite_wc_help_tip( $attribute_description );
+						wps_upsell_lite_wc_help_tip( $attribute_description );
 						?>
 
 						<label>
@@ -366,17 +366,17 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 				<div class="mwb_upsell_offer_template_previews">
 
 					<div class="mwb_upsell_offer_template_preview_one">
-						<div class="mwb_upsell_offer_template_preview_one_sub_div"><img src="<?php echo esc_url( MWB_WOCUF_URL . 'admin/resources/offer-previews/offer-template-one.png' ); ?>">
+						<div class="mwb_upsell_offer_template_preview_one_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/offer-template-one.png' ); ?>">
 						</div>
 					</div>
 
 					<div class="mwb_upsell_offer_template_preview_two">
-						<div class="mwb_upsell_offer_template_preview_two_sub_div"><img src="<?php echo esc_url( MWB_WOCUF_URL . 'admin/resources/offer-previews/offer-template-two.png' ); ?>">
+						<div class="mwb_upsell_offer_template_preview_two_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/offer-template-two.png' ); ?>">
 						</div>
 					</div>
 
 					<div class="mwb_upsell_offer_template_preview_three">
-						<div class="mwb_upsell_offer_template_preview_three_sub_div"><img src="<?php echo esc_url( MWB_WOCUF_URL . 'admin/resources/offer-previews/offer-template-three.png' ); ?>">
+						<div class="mwb_upsell_offer_template_preview_three_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/offer-template-three.png' ); ?>">
 						</div>
 					</div>
 
@@ -396,7 +396,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 						<?php
 
 						$description = esc_html__( 'Provide the name of your funnel', 'woo-one-click-upsell-funnel' );
-						mwb_upsell_lite_wc_help_tip( $description );
+						wps_upsell_lite_wc_help_tip( $description );
 						?>
 
 						<input type="text" id="mwb_upsell_funnel_name" name="mwb_wocuf_funnel_name" value="<?php echo esc_html( $funnel_name ); ?>" id="mwb_wocuf_pro_funnel_name" class="input-text mwb_wocuf_pro_commone_class" required="" maxlength="30">
@@ -417,7 +417,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 						$description = esc_html__( 'If any one of these Target Products is checked out then the this funnel will be triggered and the below offers will be shown.', 'woo-one-click-upsell-funnel' );
 
-						mwb_upsell_lite_wc_help_tip( $description );
+						wps_upsell_lite_wc_help_tip( $description );
 						?>
 
 						<select class="wc-funnel-product-search" multiple="multiple" style="" name="mwb_wocuf_target_pro_ids[]" data-placeholder="<?php esc_attr_e( 'Search for a product&hellip;', 'woo-one-click-upsell-funnel' ); ?>">
@@ -461,7 +461,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 						$description = esc_html__( 'Schedule your funnel for specific weekdays.', 'woo-one-click-upsell-funnel' );
 
-						mwb_upsell_lite_wc_help_tip( $description );
+						wps_upsell_lite_wc_help_tip( $description );
 
 						?>
 						<!-- Add multiselect since v3.0.0 -->
@@ -506,7 +506,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 						$attribut_description = esc_html__( 'Global Funnel will always trigger independent of the target products and categories. Global Funnel has the highest priority so this will execute at last when no other funnel triggers.', 'woo-one-click-upsell-funnel' );
 
-						mwb_upsell_lite_wc_help_tip( $attribut_description );
+						wps_upsell_lite_wc_help_tip( $attribut_description );
 
 						$mwb_wocuf_is_global = ! empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_global_funnel'] ) ? $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_global_funnel'] : 'no';
 						?>
@@ -531,7 +531,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 						$attribut_description = esc_html__( 'This feature makes the upsell funnel to be shown to the customers only once, whether they accept or reject it. This works with respect to the order billing email.', 'woo-one-click-upsell-funnel' );
 
-						mwb_upsell_lite_wc_help_tip( $attribut_description );
+						wps_upsell_lite_wc_help_tip( $attribut_description );
 
 						$mwb_wocuf_is_exclusive = ! empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_exclusive_offer'] ) ? $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_exclusive_offer'] : 'no';
 						?>
@@ -556,7 +556,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 						$attribute_description = sprintf( '<p class="mwb_upsell_tip_tip">%s</p><p class="mwb_upsell_tip_tip">%s</p><p class="mwb_upsell_tip_tip">%s</p>', esc_html__( 'This feature replaces the target product with the Offer product as an Upgrade.', 'woo-one-click-upsell-funnel' ), esc_html__( 'Please keep this Funnel limited to One Offer as other Offers won\'t show up if this feature is on.', 'woo-one-click-upsell-funnel' ), esc_html__( 'This feature will not work if Global Funnel feature is on for this funnel.', 'woo-one-click-upsell-funnel' ) );
 
-						mwb_upsell_lite_wc_help_tip( $attribute_description );
+						wps_upsell_lite_wc_help_tip( $attribute_description );
 
 						$mwb_wocuf_smoff_upgrade = ! empty( $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_smart_offer_upgrade'] ) ? $mwb_wocuf_pro_funnel_data[ $mwb_wocuf_pro_funnel_id ]['mwb_wocuf_smart_offer_upgrade'] : 'no';
 						?>
@@ -791,7 +791,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 										$image_post_id = ! empty( $mwb_wocuf_custom_offer_images[ $current_offer_id ] ) ? $mwb_wocuf_custom_offer_images[ $current_offer_id ] : '';
 
-										echo $this->mwb_wocuf_pro_image_uploader_field( $current_offer_id, $image_post_id );  // phpcs:ignore 
+										echo $this->wps_wocuf_pro_image_uploader_field( $current_offer_id, $image_post_id );  // phpcs:ignore 
 									?>
 								</td>
 							</tr>
@@ -863,7 +863,7 @@ $mwb_wocuf_pro_funnel_schedule_options = array(
 
 														<div class="mwb_upsell_offer_preview">
 
-															<a href="javascript:void(0)" class="mwb_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( MWB_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-$template_key.jpg" ); ?>"></a>
+															<a href="javascript:void(0)" class="mwb_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-$template_key.jpg" ); ?>"></a>
 														</div>
 
 														<div class="mwb_upsell_offer_action">

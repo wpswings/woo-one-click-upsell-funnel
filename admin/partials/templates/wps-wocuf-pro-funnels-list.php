@@ -47,7 +47,7 @@ if ( ! empty( $_GET['del_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_u
 
 		update_option( 'mwb_wocuf_funnels_list', $mwb_wocuf_pro_funnels );
 
-		wp_redirect( esc_url( admin_url( 'admin.php?page=mwb-wocuf-setting&tab=funnels-list' ) ) ); //phpcs:ignore
+		wp_redirect( esc_url( admin_url( 'admin.php?page=wps-wocuf-setting&tab=funnels-list' ) ) ); //phpcs:ignore
 		exit();
 	}
 }
@@ -103,7 +103,7 @@ if ( ! empty( $mwb_wocuf_pro_funnels_list ) ) {
 
 				<tr>		
 					<!-- Funnel Name -->
-					<td><a class="mwb_upsell_funnel_list_name" href="?page=mwb-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $key ); ?>"><?php echo esc_html( $value['mwb_wocuf_funnel_name'] ); ?></a></td>
+					<td><a class="mwb_upsell_funnel_list_name" href="?page=wps-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $key ); ?>"><?php echo esc_html( $value['mwb_wocuf_funnel_name'] ); ?></a></td>
 
 					<!-- Funnel Status -->
 					<td>
@@ -219,10 +219,10 @@ if ( ! empty( $mwb_wocuf_pro_funnels_list ) ) {
 					<td>
 
 						<!-- Funnel View/Edit link -->
-						<a class="mwb_wocuf_pro_funnel_links" href="?page=mwb-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $key ); ?>&manage_nonce=<?php echo esc_html( wp_create_nonce( 'manage_funnel' ) ); ?>"><?php esc_html_e( 'View / Edit', 'woo-one-click-upsell-funnel' ); ?></a>
+						<a class="mwb_wocuf_pro_funnel_links" href="?page=wps-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $key ); ?>&manage_nonce=<?php echo esc_html( wp_create_nonce( 'manage_funnel' ) ); ?>"><?php esc_html_e( 'View / Edit', 'woo-one-click-upsell-funnel' ); ?></a>
 
 						<!-- Funnel Delete link -->
-						<a class="mwb_wocuf_pro_funnel_links" href="?page=mwb-wocuf-setting&tab=funnels-list&del_funnel_id=<?php echo esc_html( $key ); ?>&del_nonce=<?php echo esc_html( wp_create_nonce( 'del_funnel' ) ); ?>"><?php esc_html_e( 'Delete', 'woo-one-click-upsell-funnel' ); ?></a>
+						<a class="mwb_wocuf_pro_funnel_links" href="?page=wps-wocuf-setting&tab=funnels-list&del_funnel_id=<?php echo esc_html( $key ); ?>&del_nonce=<?php echo esc_html( wp_create_nonce( 'del_funnel' ) ); ?>"><?php esc_html_e( 'Delete', 'woo-one-click-upsell-funnel' ); ?></a>
 					</td>
 
 					<?php do_action( 'mwb_wocuf_pro_funnel_add_more_col_data' ); ?>
@@ -237,7 +237,7 @@ if ( ! empty( $mwb_wocuf_pro_funnels_list ) ) {
 
 <!-- Create New Funnel -->
 <div class="mwb_wocuf_pro_create_new_funnel">
-	<a href="?page=mwb-wocuf-setting&manage_nonce=<?php echo esc_html( wp_create_nonce( 'manage_funnel' ) ); ?>&tab=creation-setting&funnel_id=<?php echo esc_html( $mwb_wocuf_pro_funnel_number + 1 ); ?>"><?php esc_html_e( '+Create New Funnel', 'woo-one-click-upsell-funnel' ); ?></a>
+	<a href="?page=wps-wocuf-setting&manage_nonce=<?php echo esc_html( wp_create_nonce( 'manage_funnel' ) ); ?>&tab=creation-setting&funnel_id=<?php echo esc_html( $mwb_wocuf_pro_funnel_number + 1 ); ?>"><?php esc_html_e( '+Create New Funnel', 'woo-one-click-upsell-funnel' ); ?></a>
 </div>
 
 <?php do_action( 'mwb_wocuf_pro_extend_funnels_listing' ); ?>

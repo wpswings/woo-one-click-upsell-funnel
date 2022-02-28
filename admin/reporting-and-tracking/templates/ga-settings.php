@@ -108,7 +108,7 @@ $google_analytics_fields = array(
 <!-- Other Tracking Plugins Compatibilities - Start -->
 <div class="mwb_upsell_slide_down_title">
 	<h2><?php esc_html_e( 'Other Tracking Plugins Compatibilities', 'woo-one-click-upsell-funnel' ); ?></h2>
-	<a href="#" class="mwb_upsell_slide_down_link"><img src="<?php echo esc_url( MWB_WOCUF_URL . 'admin/resources/down.png' ); ?>"></a>
+	<a href="#" class="mwb_upsell_slide_down_link"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/down.png' ); ?>"></a>
 </div>
 
 <div class="mwb_upsell_table mwb_upsell_slide_down_content">
@@ -188,7 +188,7 @@ $google_analytics_fields = array(
 							</th>
 
 							<td class="forminp forminp-text">
-								<?php mwb_upsell_lite_wc_help_tip( $field_data['attribute_description'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+								<?php wps_upsell_lite_wc_help_tip( $field_data['attribute_description'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
 								<?php if ( 'text' == $field_data['type'] ) : ?>
 

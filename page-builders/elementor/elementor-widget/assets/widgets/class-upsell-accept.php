@@ -35,8 +35,8 @@ class Upsell_Accept extends Widget_Button {
 	 */
 	public function __construct( $data = array(), $args = null ) {
 		parent::__construct( $data, $args );
-		wp_register_style( 'upsell-widgets-css', plugins_url( 'woo-one-click-upsell-funnel/page-builders/elementor/elementor-widget/assets/css/upsell-widgets.css', MWB_WOCUF_DIRPATH ), array(), '3.1.2' );
-		wp_register_script( 'upsell-widgets-js', plugins_url( 'woo-one-click-upsell-funnel/page-builders/elementor/elementor-widget/assets/js/upsell-widgets.js', MWB_WOCUF_DIRPATH ), array( 'elementor-frontend' ), '3.1.2', true );
+		wp_register_style( 'upsell-widgets-css', plugins_url( 'woo-one-click-upsell-funnel/page-builders/elementor/elementor-widget/assets/css/upsell-widgets.css', WPS_WOCUF_DIRPATH ), array(), '3.1.2' );
+		wp_register_script( 'upsell-widgets-js', plugins_url( 'woo-one-click-upsell-funnel/page-builders/elementor/elementor-widget/assets/js/upsell-widgets.js', WPS_WOCUF_DIRPATH ), array( 'elementor-frontend' ), '3.1.2', true );
 
 	}
 

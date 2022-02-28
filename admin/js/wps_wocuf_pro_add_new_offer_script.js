@@ -28,13 +28,13 @@ jQuery(document).ready( function($) {
 
 	jQuery('.wc-funnel-product-search').select2({
   		ajax:{
-    			url :mwb_upsell_lite_js_obj.ajaxurl,
+    			url :wps_upsell_lite_js_obj.ajaxurl,
     			dataType: 'json',
     			delay: 200,
     			data: function (params) {
       				return {
         				q: params.term,
-        				nonce : mwb_upsell_lite_js_obj.auth_nonce,
+        				nonce : wps_upsell_lite_js_obj.auth_nonce,
         				action: 'seach_products_for_funnel'
       				};
     			},
@@ -59,13 +59,13 @@ jQuery(document).ready( function($) {
 
 	jQuery('.wc-offer-product-search').select2({
   		ajax:{
-    			url :mwb_upsell_lite_js_obj.ajaxurl,
+    			url :wps_upsell_lite_js_obj.ajaxurl,
     			dataType: 'json',
     			delay: 200,
     			data: function (params) {
       				return {
         				q: params.term,
-        				nonce : mwb_upsell_lite_js_obj.auth_nonce,
+        				nonce : wps_upsell_lite_js_obj.auth_nonce,
         				action: 'seach_products_for_offers'
       				};
     			},
@@ -113,12 +113,12 @@ jQuery(document).ready( function($) {
 
 		$.ajax({
 		    type:'POST',
-		    url :mwb_upsell_lite_js_obj.ajaxurl,
+		    url :wps_upsell_lite_js_obj.ajaxurl,
 		    data:{
-		    	action: 'mwb_wocuf_pro_return_offer_content',
-		    	nonce : mwb_upsell_lite_js_obj.auth_nonce,
-		    	mwb_wocuf_pro_flag: index,
-		    	mwb_wocuf_pro_funnel: funnel
+		    	action: 'wps_wocuf_pro_return_offer_content',
+		    	nonce : wps_upsell_lite_js_obj.auth_nonce,
+		    	wps_wocuf_pro_flag: index,
+		    	wps_wocuf_pro_funnel: funnel
 		    },
 
 		    success:function( data ) {
@@ -147,13 +147,13 @@ jQuery(document).ready( function($) {
 		    	// Reinitialize product search in new offer.
 		    	jQuery('.wc-offer-product-search').select2({
 			  		ajax:{
-			    			url :mwb_upsell_lite_js_obj.ajaxurl,
+			    			url :wps_upsell_lite_js_obj.ajaxurl,
 			    			dataType: 'json',
 			    			delay: 200,
 			    			data: function (params) {
 			      				return {
 			        				q: params.term,
-			        				nonce : mwb_upsell_lite_js_obj.auth_nonce,
+			        				nonce : wps_upsell_lite_js_obj.auth_nonce,
 			        				action: 'seach_products_for_offers'
 			      				};
 			    			},
@@ -203,10 +203,10 @@ jQuery(document).ready( function($) {
 
 		$.ajax({
 		    type:'POST',
-		    url :mwb_upsell_lite_js_obj.ajaxurl,
+		    url :wps_upsell_lite_js_obj.ajaxurl,
 		    data:{
 		    	action: 'mwb_upsell_activate_offer_template_ajax',
-				nonce : mwb_upsell_lite_js_obj.auth_nonce,
+				nonce : wps_upsell_lite_js_obj.auth_nonce,
 		    	funnel_id: funnel_id,
 		    	offer_id: offer_id,
 		    	template_id: template_id,

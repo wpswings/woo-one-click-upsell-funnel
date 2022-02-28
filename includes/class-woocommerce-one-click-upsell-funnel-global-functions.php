@@ -16,9 +16,9 @@
  *
  * @since    2.0.0
  */
-function mwb_upsell_lite_elementor_plugin_active() {
+function wps_upsell_lite_elementor_plugin_active() {
 
-	if ( mwb_upsell_lite_is_plugin_active( 'elementor/elementor.php' ) ) {
+	if ( wps_upsell_lite_is_plugin_active( 'elementor/elementor.php' ) ) {
 
 		return true;
 	} else {
@@ -32,9 +32,9 @@ function mwb_upsell_lite_elementor_plugin_active() {
  *
  * @since    3.0.0
  */
-function mwb_upsell_lite_is_upsell_pro_active() {
+function wps_upsell_lite_is_upsell_pro_active() {
 
-	if ( mwb_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
+	if ( wps_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
 
 		return true;
 
@@ -49,10 +49,10 @@ function mwb_upsell_lite_is_upsell_pro_active() {
  *
  * @since    2.0.0
  */
-function mwb_upsell_lite_validate_upsell_nonce() {
+function wps_upsell_lite_validate_upsell_nonce() {
 
-	$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
-	$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+	$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
+	$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
 
 	if ( ! $id_nonce_verified ) {
 		wp_die( esc_html__( 'Nonce Not verified', 'woo-one-click-upsell-funnel' ) );
@@ -72,12 +72,12 @@ function mwb_upsell_lite_validate_upsell_nonce() {
  *
  * @since    2.0.0
  */
-function mwb_upsell_lite_get_product_discount() {
+function wps_upsell_lite_get_product_discount() {
 
-	$mwb_wocuf_pro_offered_discount = '';
+	$wps_wocuf_pro_offered_discount = '';
 
-	$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
-	$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+	$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
+	$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
 
 	if ( ! $id_nonce_verified ) {
 		wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
@@ -89,11 +89,11 @@ function mwb_upsell_lite_get_product_discount() {
 	// If Live offer.
 	if ( 'not_set' !== $funnel_id && 'not_set' !== $offer_id ) {
 
-		$mwb_wocuf_pro_all_funnels = get_option( 'mwb_wocuf_funnels_list' );
+		$wps_wocuf_pro_all_funnels = get_option( 'mwb_wocuf_funnels_list' );
 
-		$mwb_wocuf_pro_offered_discount = $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ];
+		$wps_wocuf_pro_offered_discount = $wps_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ];
 
-		$mwb_wocuf_pro_offered_discount = ! empty( $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] ) ? $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] : '';
+		$wps_wocuf_pro_offered_discount = ! empty( $wps_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] : '';
 	} elseif ( current_user_can( 'manage_options' ) ) {
 
 		// Get funnel and offer id from current offer page post id.
@@ -111,26 +111,26 @@ function mwb_upsell_lite_get_product_discount() {
 
 			if ( isset( $funnel_id ) && isset( $offer_id ) ) {
 
-				$mwb_wocuf_pro_all_funnels = get_option( 'mwb_wocuf_funnels_list' );
+				$wps_wocuf_pro_all_funnels = get_option( 'mwb_wocuf_funnels_list' );
 
 				// When New offer is added ( Not saved ) so only at that time it will return 50%.
-				$mwb_wocuf_pro_offered_discount = isset( $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] ) ? $mwb_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] : '50%';
+				$wps_wocuf_pro_offered_discount = isset( $wps_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] : '50%';
 
-				$mwb_wocuf_pro_offered_discount = ! empty( $mwb_wocuf_pro_offered_discount ) ? $mwb_wocuf_pro_offered_discount : '';
+				$wps_wocuf_pro_offered_discount = ! empty( $wps_wocuf_pro_offered_discount ) ? $wps_wocuf_pro_offered_discount : '';
 			}
 		} else {
 
 			// Get global product discount.
 
-			$mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', array() );
+			$wps_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', array() );
 
-			$global_product_discount = isset( $mwb_upsell_global_settings['global_product_discount'] ) ? $mwb_upsell_global_settings['global_product_discount'] : '50%';
+			$global_product_discount = isset( $wps_upsell_global_settings['global_product_discount'] ) ? $wps_upsell_global_settings['global_product_discount'] : '50%';
 
-			$mwb_wocuf_pro_offered_discount = $global_product_discount;
+			$wps_wocuf_pro_offered_discount = $global_product_discount;
 		}
 	}
 
-	return $mwb_wocuf_pro_offered_discount;
+	return $wps_wocuf_pro_offered_discount;
 }
 
 /**
@@ -138,11 +138,11 @@ function mwb_upsell_lite_get_product_discount() {
  *
  * @since    2.0.0
  */
-function mwb_upsell_lite_get_pid_from_url_params() {
+function wps_upsell_lite_get_pid_from_url_params() {
 
 	$params['status']  = 'false';
-	$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
-	$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+	$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
+	$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
 
 	if ( ! $id_nonce_verified ) {
 		wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
@@ -164,7 +164,7 @@ function mwb_upsell_lite_get_pid_from_url_params() {
  *
  * @since    2.0.0
  */
-function mwb_upsell_lite_live_offer_url_params() {
+function wps_upsell_lite_live_offer_url_params() {
 
 	$add_live_nonce = ! empty( $_POST['mwb_wocuf_after_post_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_after_post_nonce'] ) ) : '';
 
@@ -204,7 +204,7 @@ function mwb_upsell_lite_live_offer_url_params() {
  *
  * @since    2.0.0
  */
-function mwb_upsell_lite_offer_page_posts_deletion() {
+function wps_upsell_lite_offer_page_posts_deletion() {
 
 	// Get all funnels.
 	$all_created_funnels = get_option( 'mwb_wocuf_funnels_list', array() );
@@ -256,7 +256,7 @@ function mwb_upsell_lite_offer_page_posts_deletion() {
  *
  * @since    2.0.0
  */
-function mwb_upsell_lite_supported_gateways() {
+function wps_upsell_lite_supported_gateways() {
 
 	$supported_gateways = array(
 		'cod', // Cash on delivery.
@@ -271,7 +271,7 @@ function mwb_upsell_lite_supported_gateways() {
  *
  * @since    3.0.0
  */
-function mwb_upsell_lite_payment_gateways_with_parent_secured() {
+function wps_upsell_lite_payment_gateways_with_parent_secured() {
 
 	$gateways_with_parent_secured = array(
 		'cod', // Cash on delivery.
@@ -287,10 +287,10 @@ function mwb_upsell_lite_payment_gateways_with_parent_secured() {
  *
  * @since    2.0.0
  */
-function mwb_upsell_lite_elementor_offer_template_1() {
+function wps_upsell_lite_elementor_offer_template_1() {
 
 	// phpcs:disable
-	$elementor_data = file_get_contents( MWB_WOCUF_DIRPATH . 'json/offer-template-1.json' );
+	$elementor_data = file_get_contents( WPS_WOCUF_DIRPATH . 'json/offer-template-1.json' );
 	// phpcs:enable
 
 	return $elementor_data;
@@ -303,10 +303,10 @@ function mwb_upsell_lite_elementor_offer_template_1() {
  *
  * @since    2.0.0
  */
-function mwb_upsell_lite_elementor_offer_template_2() {
+function wps_upsell_lite_elementor_offer_template_2() {
 
 	// phpcs:disable
-	$elementor_data = file_get_contents( MWB_WOCUF_DIRPATH . 'json/offer-template-2.json' );
+	$elementor_data = file_get_contents( WPS_WOCUF_DIRPATH . 'json/offer-template-2.json' );
 	// phpcs:enable
 
 	return $elementor_data;
@@ -319,10 +319,10 @@ function mwb_upsell_lite_elementor_offer_template_2() {
  *
  * @since    2.0.0
  */
-function mwb_upsell_lite_elementor_offer_template_3() {
+function wps_upsell_lite_elementor_offer_template_3() {
 
 	// phpcs:disable
-	$elementor_data = file_get_contents( MWB_WOCUF_DIRPATH . 'json/offer-template-3.json' );
+	$elementor_data = file_get_contents( WPS_WOCUF_DIRPATH . 'json/offer-template-3.json' );
 	// phpcs:enable
 
 	return $elementor_data;
@@ -333,7 +333,7 @@ function mwb_upsell_lite_elementor_offer_template_3() {
  *
  * @since    2.0.0
  */
-function mwb_upsell_lite_gutenberg_offer_content() {
+function wps_upsell_lite_gutenberg_offer_content() {
 
 	$post_content = '<!-- wp:spacer {"height":50} -->
 		<div style="height:50px" aria-hidden="true" class="wp-block-spacer"></div>
@@ -406,7 +406,7 @@ if ( ! function_exists( 'mwb_upsell_lite_get_first_offer_after_redirect' ) ) {
 	 * @param mixed $url url.
 	 * @since    3.0.0
 	 */
-	function mwb_upsell_lite_get_first_offer_after_redirect( $url = false ) {
+	function wps_upsell_lite_get_first_offer_after_redirect( $url = false ) {
 
 		if ( ! empty( $url ) ) {
 
@@ -428,7 +428,7 @@ if ( ! function_exists( 'mwb_upsell_lite_get_first_offer_after_redirect' ) ) {
 	}
 }
 
-if ( ! function_exists( 'mwb_upsell_lite_wc_help_tip' ) ) {
+if ( ! function_exists( 'wps_upsell_lite_wc_help_tip' ) ) {
 
 	/**
 	 * Get tooltip.
@@ -436,7 +436,7 @@ if ( ! function_exists( 'mwb_upsell_lite_wc_help_tip' ) ) {
 	 * @param mixed $tip message.
 	 * @since    3.0.4
 	 */
-	function mwb_upsell_lite_wc_help_tip( $tip = '' ) {
+	function wps_upsell_lite_wc_help_tip( $tip = '' ) {
 		?>
 		<span class="woocommerce-help-tip" data-tip="<?php echo esc_html( $tip ); ?>"></span>
 		<?php

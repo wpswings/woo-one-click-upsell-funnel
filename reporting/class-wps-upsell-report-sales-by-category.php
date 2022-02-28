@@ -56,8 +56,8 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 	 */
 	public function __construct() {
 
-		$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
-		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+		$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
+		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
 
 		if ( ! $id_nonce_verified ) {
 			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
@@ -136,8 +136,8 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 
 		$this->chart_colours = array( '#8eba36', '#3498db', '#1abc9c', '#34495e', '#2ecc71', '#f1c40f', '#e67e22', '#e74c3c', '#2980b9', '#8e44ad', '#2c3e50', '#16a085', '#27ae60', '#f39c12', '#d35400', '#c0392b' );
 
-		$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
-		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+		$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
+		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
 
 		if ( ! $id_nonce_verified ) {
 			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
@@ -240,8 +240,8 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 	 */
 	public function category_widget() {
 
-		$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
-		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+		$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
+		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
 
 		if ( ! $id_nonce_verified ) {
 			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
@@ -300,8 +300,8 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 	 * Output an export link.
 	 */
 	public function get_export_button() {
-		$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
-		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+		$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
+		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
 
 		if ( ! $id_nonce_verified ) {
 			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );

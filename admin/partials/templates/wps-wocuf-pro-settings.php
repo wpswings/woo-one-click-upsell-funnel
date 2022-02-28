@@ -100,7 +100,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 					<td class="forminp forminp-text">
 						<?php
 						$attribut_description = esc_html__( 'Enable Upsell plugin.', 'woo-one-click-upsell-funnel' );
-						mwb_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 
 						<label class="mwb_wocuf_pro_enable_plugin_label">
@@ -121,7 +121,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 					<td class="forminp forminp-text">
 						<?php
 						$attribute_description = esc_html__( 'Please set up and activate Upsell supported payment gateways as offers will only appear through them.', 'woo-one-click-upsell-funnel' );
-						mwb_upsell_lite_wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						wps_upsell_lite_wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 						<a target="_blank" href="<?php echo esc_url( admin_url( 'admin.php?page=wc-settings&tab=checkout' ) ); ?>"><?php esc_html_e( 'Manage Upsell supported payment gateways &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>		
 					</td>
@@ -139,7 +139,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 						<?php
 						$attribut_description = esc_html__( 'Skip funnel if any offer product in funnel is already present during checkout.', 'woo-one-click-upsell-funnel' );
-						mwb_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 
 						<?php
@@ -169,7 +169,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 						<?php
 						$attribut_description = esc_html__( 'Remove theme and other plugin styles from offer pages. (Not applicable for Custom Offer pages)', 'woo-one-click-upsell-funnel' );
-						mwb_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 
 						<?php
@@ -199,7 +199,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 						<?php
 						$attribut_description = esc_html__( 'Select the format for price html to be shown.', 'woo-one-click-upsell-funnel' );
-						mwb_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 
 						<?php
@@ -226,7 +226,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 					<td class="forminp forminp-text">
 						<?php
 						$attribut_description = esc_html__( 'The upsell funnel will be skipped if any of the offer product is already been purchased in previous orders. This will only work for logged in users.', 'woo-one-click-upsell-funnel' );
-						mwb_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped.
+						wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped.
 
 						$skip_similar_offer = ! empty( $mwb_upsell_global_settings['smart_skip_if_purchased'] ) ? $mwb_upsell_global_settings['smart_skip_if_purchased'] : '';
 						?>
@@ -250,7 +250,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 						<?php
 						$attribut_description = esc_html__( '( Not for Live Offer ) Set Global Offer Product for Sandbox View of Custom Offer Page.', 'woo-one-click-upsell-funnel' );
-						mwb_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 
 						<select class="wc-offer-product-search mwb_upsell_offer_product" name="global_product_id" data-placeholder="<?php esc_html_e( 'Search for a product&hellip;', 'woo-one-click-upsell-funnel' ); ?>">
@@ -289,7 +289,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 							<?php
 							$attribut_description = esc_html__( '( Not for Live Offer ) Set Global Offer Discount in product price for Sandbox View of Custom Offer Page.', 'woo-one-click-upsell-funnel' );
-							mwb_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							?>
 
 							<?php
@@ -318,7 +318,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 							<?php
 							$attribut_description = esc_html__( '( For Live Offer only ) This message will be shown along with a loader on clicking upsell Accept / Reject message.', 'woo-one-click-upsell-funnel' );
-							mwb_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							?>
 
 							<?php
@@ -347,7 +347,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 							<?php
 							$attribut_description = esc_html__( 'Enter your Custom CSS without style tags.', 'woo-one-click-upsell-funnel' );
-							mwb_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							?>
 
 							<?php
@@ -375,7 +375,7 @@ $mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', arra
 
 							<?php
 							$attribut_description = esc_html__( 'Enter your Custom JS without script tags.', 'woo-one-click-upsell-funnel' );
-							mwb_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							?>
 							<?php
 

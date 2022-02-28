@@ -19,7 +19,7 @@ if ( empty( $pagenow ) || 'plugins.php' !== $pagenow ) {
 	return false;
 }
 
-	$form_fields = apply_filters( 'mwb_deactivation_form_fields', array() );
+$form_fields = apply_filters( 'mwb_deactivation_form_fields', array() );
 ?>
 <?php if ( ! empty( $form_fields ) ) : ?>
 	<div class="mwb-onboarding-section">

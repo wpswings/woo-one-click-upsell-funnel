@@ -63,7 +63,7 @@ $funnels_list = get_option( 'mwb_wocuf_funnels_list' );
 
 				<tr>		
 					<!-- Funnel Name -->
-					<td><a class="mwb_upsell_funnel_list_name" href="?page=mwb-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $key ); ?>"><?php echo esc_html( $value['mwb_wocuf_funnel_name'] ); ?></a></td>
+					<td><a class="mwb_upsell_funnel_list_name" href="?page=wps-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $key ); ?>"><?php echo esc_html( $value['mwb_wocuf_funnel_name'] ); ?></a></td>
 
 					<!-- Trigger Count -->
 					<td>

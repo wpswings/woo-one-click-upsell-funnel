@@ -23,7 +23,7 @@ if ( class_exists( 'Mwb_Upsell_Widget_Loader' ) ) {
  */
 class Mwb_Upsell_Widget_Loader {
 
-	const MWB_UPSELL_WIDGET_LOADER = MWB_WOCUF_DIRPATH . 'page-builders/';
+	const MWB_UPSELL_WIDGET_LOADER = WPS_WOCUF_DIRPATH . 'page-builders/';
 
 	/**
 	 * The instance.
@@ -97,7 +97,7 @@ class Mwb_Upsell_Widget_Loader {
 			foreach ( $builders as $slug => $class_name ) {
 				$active = false;
 
-				if ( mwb_upsell_lite_is_plugin_active( $slug ) ) {
+				if ( wps_upsell_lite_is_plugin_active( $slug ) ) {
 					$active = true;
 				} elseif ( class_exists( $class_name ) ) {
 					$active = true;
