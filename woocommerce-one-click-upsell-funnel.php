@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @param mixed $plugin_slug plugin slug.
  */
-function mwb_upsell_lite_is_plugin_active( $plugin_slug ) {
+function wps_upsell_lite_is_plugin_active( $plugin_slug ) {
 
 	if ( empty( $plugin_slug ) ) {
 
@@ -63,12 +63,12 @@ function mwb_upsell_lite_is_plugin_active( $plugin_slug ) {
  * The code that runs during plugin activation.
  * This action is for woocommerce dependency check.
  */
-function mwb_upsell_lite_plugin_activation() {
+function wps_upsell_lite_plugin_activation() {
 	$activation['status']  = true;
 	$activation['message'] = '';
 
 	// Dependant plugin.
-	if ( ! mwb_upsell_lite_is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+	if ( ! wps_upsell_lite_is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
 
 		$activation['status']  = false;
 		$activation['message'] = 'woo_inactive';
@@ -77,33 +77,18 @@ function mwb_upsell_lite_plugin_activation() {
 	return $activation;
 }
 
-$mwb_upsell_lite_plugin_activation = mwb_upsell_lite_plugin_activation();
+$wps_upsell_lite_plugin_activation = wps_upsell_lite_plugin_activation();
 
-// Upgrade notice.
-add_action( 'after_plugin_row_' . plugin_basename( __FILE__ ), 'mwb_wocuf_add_owner_notice', 0, 3 );
-
-/**
- * Begins execution of the plugin.
- *
- * @param mixed $plugin_file The plugin file name.
- * @param mixed $plugin_data The plugin file data.
- * @param mixed $status      The plugin file status.
- * @since 1.0.0
- */
-function mwb_wocuf_add_owner_notice( $plugin_file, $plugin_data, $status ) {
-	include_once plugin_dir_path( __FILE__ ) . 'extra-templates/woocommerce-one-click-upsell-funnel-owner-notice.html';
-}
-
-if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
+if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 
 	// If pro plugin not active, then load Org Plugin else Don't.
-	if ( ! mwb_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
+	if ( ! wps_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
 
-		define( 'MWB_WOCUF_URL', plugin_dir_url( __FILE__ ) );
+		define( 'WPS_WOCUF_URL', plugin_dir_url( __FILE__ ) );
 
-		define( 'MWB_WOCUF_DIRPATH', plugin_dir_path( __FILE__ ) );
+		define( 'WPS_WOCUF_DIRPATH', plugin_dir_path( __FILE__ ) );
 
-		define( 'MWB_WOCUF_VERSION', 'v3.1.3' );
+		define( 'WPS_WOCUF_VERSION', 'v3.1.3' );
 
 		/**
 		 * The code that runs during plugin activation.
@@ -123,22 +108,22 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 			Woocommerce_One_Click_Upsell_Funnel_Deactivator::deactivate();
 		}
 
-		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'mwb_upsell_lite_plugin_settings_link' );
+		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'wps_upsell_lite_plugin_settings_link' );
 
 		/**
 		 * This action is for woocommerce dependency check.
 		 *
 		 * @param mixed $links links.
 		 */
-		function mwb_upsell_lite_plugin_settings_link( $links ) {
+		function wps_upsell_lite_plugin_settings_link( $links ) {
 
 			$plugin_links = array(
-				'<a href="' . admin_url( 'admin.php?page=mwb-wocuf-setting&tab=overview' ) . '">' . esc_html__( 'Settings', 'woo-one-click-upsell-funnel' ) . '</a>',
+				'<a href="' . admin_url( 'admin.php?page=wps-wocuf-setting&tab=overview' ) . '">' . esc_html__( 'Settings', 'woo-one-click-upsell-funnel' ) . '</a>',
 			);
 			return array_merge( $plugin_links, $links );
 		}
 
-		add_filter( 'plugin_row_meta', 'mwb_upsell_lite_add_doc_and_premium_link', 10, 2 );
+		add_filter( 'plugin_row_meta', 'wps_upsell_lite_add_doc_and_premium_link', 10, 2 );
 
 		/**
 		 * This action is for add premium version link.
@@ -146,7 +131,7 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 		 * @param mixed $links links.
 		 * @param mixed $file file.
 		 */
-		function mwb_upsell_lite_add_doc_and_premium_link( $links, $file ) {
+		function wps_upsell_lite_add_doc_and_premium_link( $links, $file ) {
 
 			if ( false !== strpos( $file, 'woocommerce-one-click-upsell-funnel.php' ) ) {
 
@@ -191,34 +176,32 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 
 		// Return and Load nothing.
 		run_woocommerce_one_click_upsell_funnel();
-		add_action( 'mwb_wocuf_pro_setting_tab_active', 'mwb_wocuf_add_owner_notice', 0, 3 );
-
 	}
 } else {
 
 	// Deactivation of plugin at dependency failed.
-	add_action( 'admin_init', 'mwb_upsell_lite_plugin_activation_failure' );
+	add_action( 'admin_init', 'wps_upsell_lite_plugin_activation_failure' );
 
 	/**
 	 * Deactivate this plugin.
 	 */
-	function mwb_upsell_lite_plugin_activation_failure() {
+	function wps_upsell_lite_plugin_activation_failure() {
 
 		deactivate_plugins( plugin_basename( __FILE__ ) );
 	}
 
 	// Add admin error notice.
-	add_action( 'admin_notices', 'mwb_upsell_lite_plugin_activation_admin_notice' );
+	add_action( 'admin_notices', 'wps_upsell_lite_plugin_activation_admin_notice' );
 
 	/**
 	 * This function is used to display plugin activation error notice.
 	 */
-	function mwb_upsell_lite_plugin_activation_admin_notice() {
+	function wps_upsell_lite_plugin_activation_admin_notice() {
 
-		global $mwb_upsell_lite_plugin_activation;
+		global $wps_upsell_lite_plugin_activation;
 
-		$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
-		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+		$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
+		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
 
 		if ( ! $id_nonce_verified ) {
 			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
@@ -229,7 +212,7 @@ if ( true === $mwb_upsell_lite_plugin_activation['status'] ) {
 
 		?>
 
-		<?php if ( 'woo_inactive' === $mwb_upsell_lite_plugin_activation['message'] ) : ?>
+		<?php if ( 'woo_inactive' === $wps_upsell_lite_plugin_activation['message'] ) : ?>
 
 			<div class="notice notice-error is-dismissible">
 				<p><strong><?php esc_html_e( 'WooCommerce', 'woo-one-click-upsell-funnel' ); ?></strong><?php esc_html_e( ' is not activated, Please activate WooCommerce first to activate ', 'woo-one-click-upsell-funnel' ); ?><strong><?php esc_html_e( 'One Click Upsell Funnel for WooCommerce', 'woo-one-click-upsell-funnel' ); ?></strong><?php esc_html_e( '.', 'woo-one-click-upsell-funnel' ); ?></p>
