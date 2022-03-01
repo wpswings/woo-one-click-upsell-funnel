@@ -34,7 +34,7 @@ if ( ! empty( $_GET['del_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_u
 		$funnel_id = sanitize_text_field( wp_unslash( $_GET['del_funnel_id'] ) );
 
 		// Get all funnels.
-		$wps_wocuf_pro_funnels = WPS_Upsell_Data_Handler::get_option( 'mwb_wocuf_funnels_list' );
+		$wps_wocuf_pro_funnels = WPS_Upsell_Data_Handler::get_option( 'wps_wocuf_funnels_list' );
 
 		foreach ( $wps_wocuf_pro_funnels as $single_funnel => $data ) {
 
@@ -53,7 +53,7 @@ if ( ! empty( $_GET['del_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_u
 }
 
 // Get all funnels.
-$wps_wocuf_pro_funnels_list = WPS_Upsell_Data_Handler::get_option( 'mwb_wocuf_funnels_list' );
+$wps_wocuf_pro_funnels_list = WPS_Upsell_Data_Handler::get_option( 'wps_wocuf_funnels_list', array() );
 
 if ( ! empty( $wps_wocuf_pro_funnels_list ) ) {
 

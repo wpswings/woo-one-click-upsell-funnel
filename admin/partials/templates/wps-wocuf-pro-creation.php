@@ -206,7 +206,7 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 	$wps_wocuf_pro_funnel['mwb_wocuf_smart_offer_upgrade'] = ! empty( $_POST['mwb_wocuf_smart_offer_upgrade'] ) ? 'yes' : 'no';
 
 	// Get all funnels.
-	$wps_wocuf_pro_created_funnels = WPS_Upsell_Data_Handler::get_option( 'mwb_wocuf_funnels_list', array() );
+	$wps_wocuf_pro_created_funnels = WPS_Upsell_Data_Handler::get_option( 'wps_wocuf_funnels_list', array() );
 
 	// If funnel already exists then save Exclusive offer email data.
 	if ( ! empty( $wps_wocuf_pro_created_funnels[ $wps_wocuf_pro_funnel_id ]['offer_already_shown_to_users'] ) && is_array( $wps_wocuf_pro_created_funnels[ $wps_wocuf_pro_funnel_id ]['offer_already_shown_to_users'] ) ) {
@@ -288,7 +288,7 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 }
 
 // Get all funnels.
-$wps_wocuf_pro_funnel_data = WPS_Upsell_Data_Handler::get_option( 'mwb_wocuf_funnels_list', array() );
+$wps_wocuf_pro_funnel_data = WPS_Upsell_Data_Handler::get_option( 'wps_wocuf_funnels_list', array() );
 
 // Not used anywhere I guess.
 $wps_wocuf_pro_custom_th_page = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_pro_custom_th_page'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_pro_custom_th_page'] : 'off';

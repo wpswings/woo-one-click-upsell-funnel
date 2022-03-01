@@ -190,7 +190,7 @@ class Woocommerce_One_Click_Upsell_Funnel {
 
 		$plugin_admin = new Woocommerce_One_Click_Upsell_Funnel_Admin( $this->get_plugin_name(), $this->get_version() );
 
-		$wps_wocuf_enable_plugin = WPS_Upsell_Data_Handler::get_option( 'mwb_wocuf_enable_plugin', 'on' );
+		$wps_wocuf_enable_plugin = WPS_Upsell_Data_Handler::get_option( 'wps_wocuf_enable_plugin', 'on' );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 
@@ -273,7 +273,7 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		// Hide upsell offer pages from added menu list in customizer and admin panel.
 		$this->loader->add_filter( 'wp_get_nav_menu_items', $plugin_public, 'exclude_pages_from_menu_list', 10, 3 );
 
-		$wps_upsell_global_settings = WPS_Upsell_Data_Handler::get_option( 'mwb_upsell_lite_global_options', array() );
+		$wps_upsell_global_settings = WPS_Upsell_Data_Handler::get_option( 'wps_upsell_lite_global_options', array() );
 
 		$remove_all_styles = ! empty( $wps_upsell_global_settings['remove_all_styles'] ) ? $wps_upsell_global_settings['remove_all_styles'] : 'yes';
 
@@ -291,7 +291,7 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		// Remove http and https from Upsell Action shortcodes added by Page Builders.
 		$this->loader->add_filter( 'the_content', $plugin_public, 'filter_upsell_shortcodes_content' );
 
-		$wps_wocuf_enable_plugin = WPS_Upsell_Data_Handler::get_option( 'mwb_wocuf_enable_plugin', 'on' );
+		$wps_wocuf_enable_plugin = WPS_Upsell_Data_Handler::get_option( 'wps_wocuf_enable_plugin', 'on' );
 
 		if ( 'on' === $wps_wocuf_enable_plugin ) {
 

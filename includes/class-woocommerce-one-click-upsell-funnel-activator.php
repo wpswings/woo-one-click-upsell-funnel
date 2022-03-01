@@ -33,7 +33,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Activator {
 		/**
 		 * Generating default offer page at the time of plugin activation
 		 */
-		$wps_wocuf_pro_offer_default_page_id = WPS_Upsell_Data_Handler::get_option( '_wocuf_pro_funnel_default_offer_page', '' );
+		$wps_wocuf_pro_offer_default_page_id = WPS_Upsell_Data_Handler::get_option( 'wps_wocuf_pro_funnel_default_offer_page', '' );
 
 		// For WordPress 5 and + versions, Guttenberg content will be used for default offer page.
 		$post_content = '5' <= get_bloginfo( 'version' ) ? wps_upsell_lite_gutenberg_offer_content() : '[wps_wocuf_pro_funnel_default_offer_page]';
@@ -51,7 +51,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Activator {
 
 			$wps_wocuf_pro_post = wp_insert_post( $wps_wocuf_pro_funnel_page );
 
-			update_option( 'wps_wocuf_pro_funnel_default_offer_page', $wps_wocuf_pro_post );
+			update_option( 'mwb_wocuf_pro_funnel_default_offer_page', $wps_wocuf_pro_post );
 		}
 
 		// Schedule cron for Order payment process If redirected for upsell and still pending.

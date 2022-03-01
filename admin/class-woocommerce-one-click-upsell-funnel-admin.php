@@ -335,7 +335,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 					$funnel_offer_template_section_html = $this->get_funnel_offer_template_section_html( $funnel_offer_post_id, $offer_index, $funnel_id );
 
 					// Save an array of all created upsell offer-page post ids.
-					$upsell_offer_post_ids = WPS_Upsell_Data_Handler::get_option( 'mwb_upsell_lite_offer_post_ids', array() );
+					$upsell_offer_post_ids = WPS_Upsell_Data_Handler::get_option( 'wps_upsell_lite_offer_post_ids', array() );
 
 					$upsell_offer_post_ids[] = $funnel_offer_post_id;
 
@@ -349,7 +349,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 			}
 
 			// Get all funnels.
-			$wps_wocuf_pro_funnel = WPS_Upsell_Data_Handler::get_option( 'mwb_wocuf_funnels_list' );
+			$wps_wocuf_pro_funnel = WPS_Upsell_Data_Handler::get_option( 'wps_wocuf_funnels_list' );
 
 			// Funnel offers array.
 			$wps_wocuf_pro_offers_to_add = isset( $wps_wocuf_pro_funnel[ $funnel_id ]['mwb_wocuf_applied_offer_number'] ) ? $wps_wocuf_pro_funnel[ $funnel_id ]['mwb_wocuf_applied_offer_number'] : array();
@@ -879,7 +879,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 		// Only do this for pages.
 		if ( ! empty( $typenow ) && 'page' === $typenow ) {
 
-			$saved_offer_post_ids = WPS_Upsell_Data_Handler::get_option( 'mwb_upsell_lite_offer_post_ids', array() );
+			$saved_offer_post_ids = WPS_Upsell_Data_Handler::get_option( 'wps_upsell_lite_offer_post_ids', array() );
 
 			if ( ! empty( $saved_offer_post_ids ) && is_array( $saved_offer_post_ids ) && count( $saved_offer_post_ids ) ) {
 

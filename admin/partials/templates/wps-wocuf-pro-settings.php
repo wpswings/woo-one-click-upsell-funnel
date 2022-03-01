@@ -76,9 +76,9 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 }
 
 // By default plugin will be enabled.
-$wps_wocuf_enable_plugin = WPS_Upsell_Data_Handler::get_option( 'mwb_wocuf_enable_plugin', 'on' );
+$wps_wocuf_enable_plugin = WPS_Upsell_Data_Handler::get_option( 'wps_wocuf_enable_plugin', 'on' );
 
-$wps_upsell_global_settings = WPS_Upsell_Data_Handler::get_option( 'mwb_upsell_lite_global_options', array() );
+$wps_upsell_global_settings = WPS_Upsell_Data_Handler::get_option( 'wps_upsell_lite_global_options', array() );
 
 ?>
 

@@ -27,7 +27,7 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 		wp_die();
 	}
 
-	$wps_upsell_analytics_options = WPS_Upsell_Data_Handler::get_option( 'mwb_upsell_analytics_configuration', array() );
+	$wps_upsell_analytics_options = WPS_Upsell_Data_Handler::get_option( 'wps_upsell_analytics_configuration', array() );
 
 	$wps_upsell_fb_pixel_config = ! empty( $wps_upsell_analytics_options['facebook-pixel'] ) ? $wps_upsell_analytics_options['facebook-pixel'] : array();
 
@@ -61,7 +61,7 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 	<?php
 }
 
-$wps_upsell_analytics_options = WPS_Upsell_Data_Handler::get_option( 'mwb_upsell_analytics_configuration', array() );
+$wps_upsell_analytics_options = WPS_Upsell_Data_Handler::get_option( 'wps_upsell_analytics_configuration', array() );
 
 $wps_upsell_fb_pixel_config = ! empty( $wps_upsell_analytics_options['facebook-pixel'] ) ? $wps_upsell_analytics_options['facebook-pixel'] : array();
 

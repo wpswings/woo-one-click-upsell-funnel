@@ -89,7 +89,7 @@ function wps_upsell_lite_get_product_discount() {
 	// If Live offer.
 	if ( 'not_set' !== $funnel_id && 'not_set' !== $offer_id ) {
 
-		$wps_wocuf_pro_all_funnels = WPS_Upsell_Data_Handler::get_option( 'mwb_wocuf_funnels_list' );
+		$wps_wocuf_pro_all_funnels = WPS_Upsell_Data_Handler::get_option( 'wps_wocuf_funnels_list' );
 
 		$wps_wocuf_pro_offered_discount = $wps_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ];
 
@@ -111,7 +111,7 @@ function wps_upsell_lite_get_product_discount() {
 
 			if ( isset( $funnel_id ) && isset( $offer_id ) ) {
 
-				$wps_wocuf_pro_all_funnels = WPS_Upsell_Data_Handler::get_option( 'mwb_wocuf_funnels_list' );
+				$wps_wocuf_pro_all_funnels = WPS_Upsell_Data_Handler::get_option( 'wps_wocuf_funnels_list' );
 
 				// When New offer is added ( Not saved ) so only at that time it will return 50%.
 				$wps_wocuf_pro_offered_discount = isset( $wps_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] : '50%';
@@ -122,7 +122,7 @@ function wps_upsell_lite_get_product_discount() {
 
 			// Get global product discount.
 
-			$wps_upsell_global_settings = WPS_Upsell_Data_Handler::get_option( 'mwb_upsell_lite_global_options', array() );
+			$wps_upsell_global_settings = WPS_Upsell_Data_Handler::get_option( 'wps_upsell_lite_global_options', array() );
 
 			$global_product_discount = isset( $wps_upsell_global_settings['global_product_discount'] ) ? $wps_upsell_global_settings['global_product_discount'] : '50%';
 
@@ -207,9 +207,9 @@ function wps_upsell_lite_live_offer_url_params() {
 function wps_upsell_lite_offer_page_posts_deletion() {
 
 	// Get all funnels.
-	$all_created_funnels = WPS_Upsell_Data_Handler::get_option( 'mwb_wocuf_funnels_list', array() );
+	$all_created_funnels = WPS_Upsell_Data_Handler::get_option( 'wps_wocuf_funnels_list', array() );
 	// Get all saved offer post ids.
-	$saved_offer_post_ids = WPS_Upsell_Data_Handler::get_option( 'mwb_upsell_lite_offer_post_ids', array() );
+	$saved_offer_post_ids = WPS_Upsell_Data_Handler::get_option( 'wps_upsell_lite_offer_post_ids', array() );
 
 	if ( ! empty( $all_created_funnels ) && is_array( $all_created_funnels ) && count(
 		$all_created_funnels
