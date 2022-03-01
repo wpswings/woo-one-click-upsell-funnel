@@ -23,7 +23,7 @@ if ( class_exists( 'Mwb_Upsell_Widget_Loader' ) ) {
  */
 class Mwb_Upsell_Widget_Loader {
 
-	const MWB_UPSELL_WIDGET_LOADER = WPS_WOCUF_DIRPATH . 'page-builders/';
+	const WPS_UPSELL_WIDGET_LOADER = WPS_WOCUF_DIRPATH . 'page-builders/';
 
 	/**
 	 * The instance.
@@ -125,7 +125,7 @@ class Mwb_Upsell_Widget_Loader {
 		if ( ! empty( $this->active_builders ) && is_array( $this->active_builders ) ) {
 			foreach ( $this->active_builders as $b_slug => $b_name ) {
 				$widget_file = $this->retrieve_loader_file( $b_slug, $b_slug );
-				$widget_path = self::MWB_UPSELL_WIDGET_LOADER . $widget_file;
+				$widget_path = self::WPS_UPSELL_WIDGET_LOADER . $widget_file;
 
 				if ( file_exists( $widget_path ) ) {
 					require_once $widget_path;

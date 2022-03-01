@@ -5,7 +5,7 @@
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
- * @link       http://makewebbetter.com/
+ * @link       https://wpswings.com/
  * @since      1.0.0
  *
  * @package     woo_one_click_upsell_funnel
@@ -24,7 +24,7 @@
  * @since      1.0.0
  * @package     woo_one_click_upsell_funnel
  * @subpackage woo_one_click_upsell_funnel/includes
- * @author     makewebbetter <webmaster@makewebbetter.com>
+ * @author     wpswings <webmaster@wpswings.com>
  */
 class Woocommerce_One_Click_Upsell_Funnel {
 
@@ -132,7 +132,7 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		 */
 		if ( ! class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
 
-			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-makewebbetter-onboarding-helper.php';
+			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wpswings-onboarding-helper.php';
 		}
 
 		if ( class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {

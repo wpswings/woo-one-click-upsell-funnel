@@ -2,32 +2,32 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
-#mwb_wocuf_pro_setting_wrapper *{
+#wps_wocuf_pro_setting_wrapper *{
   box-sizing: border-box;
 }
-#mwb_wocuf_pro_setting_wrapper p{
+#wps_wocuf_pro_setting_wrapper p{
   color: #000;
   text-align: left;
   padding: 10px;
 }
-.mwb_wocuf_pro_funnels_list table{
+.wps_wocuf_pro_funnels_list table{
   table-layout: fixed;
 }
-.mwb_wocuf_pro_funnels_list table tr:nth-child(2n+1) {
+.wps_wocuf_pro_funnels_list table tr:nth-child(2n+1) {
     background-color: #f7f5f5;
 }
-.mwb_wocuf_pro_shortcodes p,
-.mwb_upsell_slide_down p {
+.wps_wocuf_pro_shortcodes p,
+.wps_upsell_slide_down p {
   display: inline-block;
 }
-#mwb_wocuf_pro_setting_wrapper h1{
+#wps_wocuf_pro_setting_wrapper h1{
   padding: 7px 20px;
   font-size: 20px;
   border-radius: 10px 0px;
   color: #1d1d1d;
   text-align: left;
 }
-.mwb-wocuf-pro-wrap p.submit input#submit {
+.wps-wocuf-pro-wrap p.submit input#submit {
  background: #0474b7 ;
  padding: 10px 10px;
  border: 0px;
@@ -35,7 +35,7 @@
  border-radius: 5px;
  cursor: pointer;
 }
-.mwb-wocuf-pro-form-table tr {
+.wps-wocuf-pro-form-table tr {
  margin-top: 20px;
  display: block;
  background: #fff;
@@ -43,17 +43,17 @@
  padding: 20px 10px;
 }
 
-.mwb_wocuf_pro_funnel_links{
+.wps_wocuf_pro_funnel_links{
   background-color:#73c4c1;
   padding:5px;
   border-radius:20px;
   color:white;
 }
-.mwb_wocuf_pro_funnels_list{
+.wps_wocuf_pro_funnels_list{
   margin-top: 30px;
   overflow-x: auto;
 }
-.mwb_wocuf_pro_funnels_list h1, .mwb_upsell_table .new_created_offers h2, .mwb_upsell_table  h1 {
+.wps_wocuf_pro_funnels_list h1, .wps_upsell_table .new_created_offers h2, .wps_upsell_table  h1 {
   background-color: #1894AC;
   color: #fff;
   font-size: 32px;
@@ -62,60 +62,60 @@
   text-align: center;
   text-transform: capitalize;
 }
-.mwb_upsell_table  h1{
+.wps_upsell_table  h1{
   margin:30px 0 0;
 }
-.mwb_upsell_table .new_created_offers h2{
+.wps_upsell_table .new_created_offers h2{
   background-color: #B6B8B5;
   color: #000;
 }
-.mwb_wocuf_pro_funnels_list table {
+.wps_wocuf_pro_funnels_list table {
   border: 2px solid #e4e4e4;
   width: 100%;
   border-collapse: collapse;
 }
-.mwb_wocuf_pro_creation_setting tr td {
+.wps_wocuf_pro_creation_setting tr td {
   padding: 15px 20px;
 }
-#mwb_wocuf_pro_setting_wrapper tr td .mwb_wocuf_pro_funnel_links {
+#wps_wocuf_pro_setting_wrapper tr td .wps_wocuf_pro_funnel_links {
   background-color: #3ddabd;
   display: inline-block;
   padding: 6px 10px;
   margin: 5px 0px
 }
-#mwb_wocuf_pro_setting_wrapper tr td .mwb_wocuf_pro_funnel_links:hover {
+#wps_wocuf_pro_setting_wrapper tr td .wps_wocuf_pro_funnel_links:hover {
   color: #fff;
   background-color: #38bba3;
 }
-.mwb_wocuf_pro_funnels_list table th, .mwb_upsell_table table th, .mwb_upsell_table table th label h4{
+.wps_wocuf_pro_funnels_list table th, .wps_upsell_table table th, .wps_upsell_table table th label h4{
   color: #000;
   font-size: 15px;
   font-weight: 500;
   padding: 15px!important;
   text-align: left;
 }
-.mwb_wocuf_pro_funnels_list table td,.mwb_upsell_table table td {
+.wps_wocuf_pro_funnels_list table td,.wps_upsell_table table td {
   font-size: 16px;
   padding: 15px;
   text-align: left;
 }
-.mwb_wocuf_pro_funnels_list table td a{
+.wps_wocuf_pro_funnels_list table td a{
   font-size: 15px;
   font-weight: 400;
   cursor: pointer;
   border: none;
   text-decoration: none;
 }
-#mwb_wocuf_pro_setting_wrapper .nav-tab:hover,.mwb_wocuf_pro_funnels_list table td a:hover{
+#wps_wocuf_pro_setting_wrapper .nav-tab:hover,.wps_wocuf_pro_funnels_list table td a:hover{
   background-color: #38bba3;
 }
-.mwb_wocuf_pro_create_new_funnel a {
+.wps_wocuf_pro_create_new_funnel a {
   font-size: 24px;
   margin-bottom: 15px;
   padding: 15px;
   display: inline-block;
 }
-#mwb_wocuf_pro_setting_wrapper{
+#wps_wocuf_pro_setting_wrapper{
   background: #fff none repeat scroll 0 0;
   padding: 0 20px;
 }
@@ -127,23 +127,23 @@
   background-color:#011b44;
   color:white; 
 }
-#mwb_wocuf_pro_setting_wrapper .nav-tab-active{
+#wps_wocuf_pro_setting_wrapper .nav-tab-active{
   background: white none repeat scroll 0 0;
   color: black ;
 }
 
-#mwb_wocuf_pro_setting_wrapper #mwb_wocuf_pro_setting_form .titledesc {
+#wps_wocuf_pro_setting_wrapper #wps_wocuf_pro_setting_form .titledesc {
   padding-left: 19px;
 }
 
-#mwb_wocuf_pro_setting_form tr:nth-child(2n+1) {
+#wps_wocuf_pro_setting_form tr:nth-child(2n+1) {
   background: #fff none repeat scroll 0 0;
 }
-#mwb_wocuf_pro_setting_form .mwb_upsell_table {
+#wps_wocuf_pro_setting_form .wps_upsell_table {
   border: 1px solid #ccc;
   overflow-x:auto; 
 }
-#mwb_wocuf_pro_setting_form .submit input {
+#wps_wocuf_pro_setting_form .submit input {
   background: #592e48 none repeat scroll 0 0;
   border: 1px solid #592e48 ;
   color: #fff;
@@ -151,11 +151,11 @@
   box-shadow: none !important;
   text-shadow: none !important;
 }
-#mwb_wocuf_pro_setting_wrapper {
+#wps_wocuf_pro_setting_wrapper {
   background: #fff none repeat scroll 0 0;
   padding: 20px;
 }
-#mwb_wocuf_pro_setting_form tr:nth-child(2n) {
+#wps_wocuf_pro_setting_form tr:nth-child(2n) {
   background: #f1f1f1 none repeat scroll 0 0;
 }
 .hide
@@ -166,25 +166,25 @@
 {
   display: inline !important;
 }
-#mwb_wocuf_pro_setting_wrapper {
+#wps_wocuf_pro_setting_wrapper {
   background: #fff none repeat scroll 0 0;
   margin: 0;
   padding: 20px;
 }
 
-.mwb-notice-wrapper {
+.wps-notice-wrapper {
   background: #fff;
   padding: 5px;
   padding-top: 30px;
 }
-.mwb_wocuf_pro_create_new_funnel{
+.wps_wocuf_pro_create_new_funnel{
   margin:0 auto;
   text-align: center;
   padding-bottom: 20px;
   font-size: 30px;
 }
 /*custom style*/
-#mwb_wocuf_pro_setting_wrapper .nav-tab {
+#wps_wocuf_pro_setting_wrapper .nav-tab {
   background: #3ddabd;
   border: 0;
   padding: 10px 50px 10px 50px;
@@ -192,49 +192,49 @@
   border-radius: 20px 0px 20px 0px;
 }
 
-#mwb_wocuf_pro_setting_wrapper .nav-tab.nav-tab-active {
+#wps_wocuf_pro_setting_wrapper .nav-tab.nav-tab-active {
   background-color: #38bba3;
   color: #fff;
 }
-.mwb_wocuf_pro_funnels_list table td, .mwb_wocuf_pro_funnels_list table th,.mwb_upsell_table table th,.mwb_upsell_table table td{
+.wps_wocuf_pro_funnels_list table td, .wps_wocuf_pro_funnels_list table th,.wps_upsell_table table th,.wps_upsell_table table td{
   border: 1px solid #f1f1f1;
   padding:15px;
 
 }
 
-.mwb_wocuf_pro_funnels_list table th {
+.wps_wocuf_pro_funnels_list table th {
   border: 1px solid #d0cccc;
 }
 
 /*edit create funnel style*/
-.mwb_upsell_table table {
+.wps_upsell_table table {
   border-collapse: collapse;
   width: 100%;
 }
-.mwb_upsell_table table th{
+.wps_upsell_table table th{
   width: 30%;
 }
-.mwb_upsell_table .new_created_offers h2{
+.wps_upsell_table .new_created_offers h2{
   font-size: 22px;
 }
-.mwb_upsell_table select {
+.wps_upsell_table select {
   height: 40px !important;
   padding-left: 10px;
   width: 50%;
 }
-.mwb_upsell_table select option{
+.wps_upsell_table select option{
   padding: 10px;
 }
-.mwb_upsell_table table th label h4{
+.wps_upsell_table table th label h4{
   padding:15px 0;
 }
-.mwb_wocuf_pro_create_new_offer::before,.mwb_wocuf_pro_create_new_funnel a::before {
+.wps_wocuf_pro_create_new_offer::before,.wps_wocuf_pro_create_new_funnel a::before {
   background-color:#38bba3;
   left: -48%;
   transform-origin: 100% 50% 0;
   width: 100%;
 }
-.mwb_wocuf_pro_create_new_offer::before, .mwb_wocuf_pro_create_new_offer::after ,.mwb_wocuf_pro_create_new_funnel a::before,.mwb_wocuf_pro_create_new_funnel a::after{
+.wps_wocuf_pro_create_new_offer::before, .wps_wocuf_pro_create_new_offer::after ,.wps_wocuf_pro_create_new_funnel a::before,.wps_wocuf_pro_create_new_funnel a::after{
   bottom: -200%;
   content: "";
   display: block;
@@ -244,14 +244,14 @@
   transition: width 600ms cubic-bezier(0.23, 1, 0.32, 1) 0s;
   z-index: -1;
 }
-.mwb_wocuf_pro_create_new_offer::after,.mwb_wocuf_pro_create_new_funnel a::after {
+.wps_wocuf_pro_create_new_offer::after,.wps_wocuf_pro_create_new_funnel a::after {
   background-color: #3ddabd;
   right: -48%;
   transform-origin: 0 50% 0;
   width: 100%;
 }
 
-.mwb_wocuf_pro_create_new_offer,.mwb_wocuf_pro_create_new_funnel a{
+.wps_wocuf_pro_create_new_offer,.wps_wocuf_pro_create_new_funnel a{
   background-color: #fff;
   box-sizing: border-box;
   display: inline-block;
@@ -270,46 +270,46 @@
   text-decoration: none;
   color:#fff;
 }
-.mwb_wocuf_pro_create_new_offer:hover,.mwb_wocuf_pro_create_new_funnel a:hover{
+.wps_wocuf_pro_create_new_offer:hover,.wps_wocuf_pro_create_new_funnel a:hover{
   color: #000;
   border: 1px solid #000;
 }
-.mwb_wocuf_pro_create_new_offer:hover::before, .mwb_wocuf_pro_create_new_offer.active::before, .mwb_wocuf_pro_create_new_offer:hover::after, .mwb_wocuf_pro_create_new_offer.active::after {
+.wps_wocuf_pro_create_new_offer:hover::before, .wps_wocuf_pro_create_new_offer.active::before, .wps_wocuf_pro_create_new_offer:hover::after, .wps_wocuf_pro_create_new_offer.active::after {
   transform: rotate(45deg);
   width: 0;
   color: #000;
 }
-.mwb_wocuf_pro_create_new_offer:hover, .mwb_wocuf_pro_create_new_offer.active {
+.wps_wocuf_pro_create_new_offer:hover, .wps_wocuf_pro_create_new_offer.active {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.13) inset;
 }
-.mwb_wocuf_pro_create_new_funnel a:hover::before, .mwb_wocuf_pro_create_new_funnel a.active::before, .mwb_wocuf_pro_create_new_funnel a:hover::after, .mwb_wocuf_pro_create_new_funnel a.active::after {
+.wps_wocuf_pro_create_new_funnel a:hover::before, .wps_wocuf_pro_create_new_funnel a.active::before, .wps_wocuf_pro_create_new_funnel a:hover::after, .wps_wocuf_pro_create_new_funnel a.active::after {
   transform: rotate(45deg);
   width: 0;
   color: #000;
 }
-#mwb_wocuf_pro_creation_setting_save {
+#wps_wocuf_pro_creation_setting_save {
   background-color: #1d424b;
   border: medium none;
   box-shadow: 0 1px 0 #c1c3c0;
   color: #fff;
   text-shadow: none;
 }
-#mwb_wocuf_pro_creation_setting_save:hover {
+#wps_wocuf_pro_creation_setting_save:hover {
   opacity: 0.75
 }
-#mwb_wocuf_pro_setting_wrapper p,#mwb_wocuf_pro_setting_wrapper span{
+#wps_wocuf_pro_setting_wrapper p,#wps_wocuf_pro_setting_wrapper span{
   font-size: 16px;
   font-weight: 400;
 }
-#mwb_wocuf_pro_setting_wrapper p.submit {
+#wps_wocuf_pro_setting_wrapper p.submit {
   padding: 15px 0 !important;
 }
-h1.mwb_wocuf_pro_setting_title .mwb-wocuf-pro-wrap h1 {
+h1.wps_wocuf_pro_setting_title .wps-wocuf-pro-wrap h1 {
   padding: 10px 10px;
   font-weight: 400;
   border-radius: 10px 0px;
 }
-.mwb_wocuf_pro_license_text p.submit #mwb_wocuf_pro_license_activate {
+.wps_wocuf_pro_license_text p.submit #wps_wocuf_pro_license_activate {
   background-color: #3ddabd !important;
   border: 0;
   box-shadow: 0px 0px;
@@ -317,28 +317,28 @@ h1.mwb_wocuf_pro_setting_title .mwb-wocuf-pro-wrap h1 {
   padding: 5px 20px;
   height: auto;
 }
-#mwb_wocuf_pro_setting_wrapper .mwb_wocuf_pro_funnels_list p {
+#wps_wocuf_pro_setting_wrapper .wps_wocuf_pro_funnels_list p {
   margin: 0;
 }
-table.form-table.mwb_wocuf_pro_shortcodes .mwb_upsell_shortcode_div {
+table.form-table.wps_wocuf_pro_shortcodes .wps_upsell_shortcode_div {
   margin: 10px 0px;
 }
-table.form-table.mwb_wocuf_pro_shortcodes tr td, table.form-table.mwb_wocuf_pro_shortcodes tr th,
-table.form-table.mwb_upsell_slide_down_table tr td, table.form-table.mwb_upsell_slide_down_table tr th {
+table.form-table.wps_wocuf_pro_shortcodes tr td, table.form-table.wps_wocuf_pro_shortcodes tr th,
+table.form-table.wps_upsell_slide_down_table tr td, table.form-table.wps_upsell_slide_down_table tr th {
   vertical-align: middle;
 }
-table.form-table.mwb_wocuf_pro_shortcodes,
-table.form-table.mwb_upsell_slide_down_table {
+table.form-table.wps_wocuf_pro_shortcodes,
+table.form-table.wps_upsell_slide_down_table {
   margin-top: 20px;
 }
-.mwb_wocuf_pro_new_offer {
+.wps_wocuf_pro_new_offer {
   margin: 30px 0;
   text-align: center;
 }
-#mwb_wocuf_pro_setting_wrapper .mwb_wocuf_pro_no_funnel{
+#wps_wocuf_pro_setting_wrapper .wps_wocuf_pro_no_funnel{
   text-align: center;
 }
-#mwb_wocuf_pro_loader {
+#wps_wocuf_pro_loader {
  background-color: rgba(255, 255, 255, 0.6);
  bottom: 0;
  height: 100%;
@@ -349,7 +349,7 @@ table.form-table.mwb_upsell_slide_down_table {
  width: 100%;
  z-index: 99999;
 }
-#mwb_wocuf_pro_loader img {
+#wps_wocuf_pro_loader img {
   display: block;
   left: 0;
   margin: 0 auto;
@@ -358,11 +358,11 @@ table.form-table.mwb_upsell_slide_down_table {
   top: 50%;
   transform: translateY(-50%);
 }
-.mwb_upsell_table .wp-picker-container {
+.wps_upsell_table .wp-picker-container {
  display: inline-block;
 }
 
-span.mwb_wocuf_pro_span label {
+span.wps_wocuf_pro_span label {
   background-color: #d9edf7 ;
   border-left: 3px solid #0073aa ;
   color: #31708f ;
@@ -374,7 +374,7 @@ span.mwb_wocuf_pro_span label {
   position: relative;
 }
 
-span.mwb_wocuf_pro_span label::after {
+span.wps_wocuf_pro_span label::after {
   border-bottom: 8px solid transparent;
   border-left: 10px solid #0073aa ;
   border-top: 8px solid transparent;
@@ -385,7 +385,7 @@ span.mwb_wocuf_pro_span label::after {
   transform: translateY(-50%);
 }
 /*mycss*/
-.mwb_wocuf_pro_delete_new_created_offers {
+.wps_wocuf_pro_delete_new_created_offers {
   border: 0;
 }
 .new_created_offers span {
@@ -393,13 +393,13 @@ span.mwb_wocuf_pro_span label::after {
 }
 /*=====  End of media query  ======*/
 
-#mwb-wocuf-day-count {
+#wps-wocuf-day-count {
   color: #c40b0b;
   font-weight: bold !important;
 }
 
 /*updated*/
-.mwb_wocuf_pro_commone_class {
+.wps_wocuf_pro_commone_class {
   height: 45px !important;
 }
 
@@ -411,7 +411,7 @@ span.mwb_wocuf_pro_span label::after {
 
  /*since v2.0.0 - Global Settings - Start*/
 
- .mwb_wocuf_pro_creation_setting textarea {
+ .wps_wocuf_pro_creation_setting textarea {
   max-width: 100% !important;
 }
 
@@ -419,17 +419,17 @@ span.mwb_wocuf_pro_span label::after {
 
 /*since v2.0.0 - Funnel status - Start*/
 
-.mwb_upsell_funnel_status_on.active,
-.mwb_upsell_funnel_status_off.active {
+.wps_upsell_funnel_status_on.active,
+.wps_upsell_funnel_status_off.active {
   display: inline-block;
 }
 
-.mwb_upsell_funnel_status_on,
-.mwb_upsell_funnel_status_off {
+.wps_upsell_funnel_status_on,
+.wps_upsell_funnel_status_off {
   display: none;
 }
 
-#mwb_upsell_funnel_status .woocommerce-help-tip {
+#wps_upsell_funnel_status .woocommerce-help-tip {
   bottom: 2px;
 }
 
@@ -437,18 +437,18 @@ span.mwb_wocuf_pro_span label::after {
 
 /*since v2.0.0 - Shortcodes - Start*/
 
-.mwb_upsell_tip_tip {
+.wps_upsell_tip_tip {
   font-size: 11px;
 }
 
-.mwb_upsell_shortcode {
+.wps_upsell_shortcode {
   background-color: #f1f1f1 ;
   padding: 10px;
   margin: 20px 0px;
   border-radius: 10px;
 }
 
-.mwb_upsell_slide_down_link {
+.wps_upsell_slide_down_link {
   overflow: hidden;
   display: inline-block;
   width: 27px;
@@ -457,33 +457,33 @@ span.mwb_wocuf_pro_span label::after {
   position: absolute;
 }
 
-.mwb_upsell_slide_down_title {
+.wps_upsell_slide_down_title {
   position: relative;
   background-color: #f1f1f1;
   margin-top: 30px;
 }
-.mwb_upsell_slide_down_title h2 {
+.wps_upsell_slide_down_title h2 {
   color: #5f5555;
   padding-left: 20px;
 }
 
-.mwb_upsell_slide_down_content {
+.wps_upsell_slide_down_content {
   display: none;
 }
 
-.mwb_upsell_slide_down_title h2 {
+.wps_upsell_slide_down_title h2 {
   display: inline-block;
 }
 
-.mwb_upsell_slide_down_link:focus {
+.wps_upsell_slide_down_link:focus {
   box-shadow: 0px 0px 0px 0px;
 }
 
-.mwb_upsell_slide_down_link img {
+.wps_upsell_slide_down_link img {
   width: 100%;
 }
 
-.mwb_upsell_shortcodes_hr {
+.wps_upsell_shortcodes_hr {
   height: auto;
   color: inherit;
   background-color: inherit;
@@ -497,17 +497,17 @@ span.mwb_wocuf_pro_span label::after {
 
 /*since v2.0.0 - Offer preview - Start*/
 
-.mwb_upsell_offer_template_preview_one,
-.mwb_upsell_offer_template_preview_two,
-.mwb_upsell_offer_template_preview_three {
+.wps_upsell_offer_template_preview_one,
+.wps_upsell_offer_template_preview_two,
+.wps_upsell_offer_template_preview_three {
   display: none;
 }
 
-.mwb_upsell_preview_body {
+.wps_upsell_preview_body {
   overflow: hidden;
 }
 
-.mwb_upsell_offer_template_previews {
+.wps_upsell_offer_template_previews {
   display: none;
 }
 
@@ -515,7 +515,7 @@ span.mwb_wocuf_pro_span label::after {
 
 /*since v2.0.0 - Offer template not supported - End*/
 
-.mwb_upsell_offer_template_unsupported h4 {
+.wps_upsell_offer_template_unsupported h4 {
   font-weight: 400;
   font-size: 17px;
 }
@@ -524,23 +524,23 @@ span.mwb_wocuf_pro_span label::after {
 
 /*since v2.0.0 - Funnel list - Start*/
 
-.mwb_upsell_funnel_list_name {
+.wps_upsell_funnel_list_name {
   font-size: 16px !important;
   font-weight: 200 !important;
 }
 
-.mwb_wocuf_pro_funnels_list p {
+.wps_wocuf_pro_funnels_list p {
 
   color: #444 !important  ;
 }
 
-.mwb_upsell_funnel_list_targets {
+.wps_upsell_funnel_list_targets {
   background-color: #eaeaea;
   border-radius: 10px 10px;
 }
 
-.mwb_upsell_funnel_list_live,
-.mwb_upsell_funnel_list_sandbox {
+.wps_upsell_funnel_list_live,
+.wps_upsell_funnel_list_sandbox {
   height: 25px;
   width: 25px;
   border-radius: 50%;
@@ -549,44 +549,44 @@ span.mwb_wocuf_pro_span label::after {
   top: 6px;
 }
 
-.mwb_upsell_funnel_list_live {
+.wps_upsell_funnel_list_live {
   background-color: #6dbe45;
 }
 
-.mwb_upsell_funnel_list_sandbox {
+.wps_upsell_funnel_list_sandbox {
   background-color: #fc7626;
 }
 
-.mwb_upsell_funnel_list_live_name,
-.mwb_upsell_funnel_list_sandbox_name {
+.wps_upsell_funnel_list_live_name,
+.wps_upsell_funnel_list_sandbox_name {
   padding-left: 10px;
   line-height: 35px;
   display: inline-block;
 }
 
-.mwb_upsell_funnel_list_live_name {
+.wps_upsell_funnel_list_live_name {
   color: #6dbe45;
   font-weight: 500 !important;
 }
 
-.mwb_upsell_funnel_list_sandbox_name {
+.wps_upsell_funnel_list_sandbox_name {
   color: #fc7626;
   font-weight: 500 !important;
 }
 
-#mwb_upsell_funnel_list_target_th {
+#wps_upsell_funnel_list_target_th {
   width: 25%;
 }
 
-.mwb-upsell-funnel-attributes p {
+.wps-upsell-funnel-attributes p {
   font-style: italic;
 }
 
-.mwb-upsell-funnel-attributes.yes p {
+.wps-upsell-funnel-attributes.yes p {
   color: #72b750 !important;
 }
 
-.mwb-upsell-funnel-attributes.no p {
+.wps-upsell-funnel-attributes.no p {
   color: #ffa500 !important;
 }
 
@@ -594,16 +594,16 @@ span.mwb_wocuf_pro_span label::after {
 
 /*since v2.0.0 - Buton focus- Start*/
 
-.mwb_wocuf_pro_create_new_offer:focus, .mwb_wocuf_pro_create_new_funnel a:focus {
+.wps_wocuf_pro_create_new_offer:focus, .wps_wocuf_pro_create_new_funnel a:focus {
  border: 0;
  box-shadow: 0px 0px;
  outline: solid 1px #ccc;
 }
 
-.mwb_wocuf_pro_create_new_offer:focus {
+.wps_wocuf_pro_create_new_offer:focus {
   outline: solid 1px #ccc;
 }
-#mwb_wocuf_pro_setting_wrapper tr td .mwb_wocuf_pro_funnel_links:focus {
+#wps_wocuf_pro_setting_wrapper tr td .wps_wocuf_pro_funnel_links:focus {
   outline: none;
   box-shadow: 0px 0px;
   color: #fff;
@@ -613,30 +613,30 @@ span.mwb_wocuf_pro_span label::after {
 
 /*since v2.0.0 - Elementor notice - Start*/
 
-#mwb_upsell_elementor_notice p {
+#wps_upsell_elementor_notice p {
   font-size: 15px;
   font-weight: 300;
 }
 
-#mwb_upsell_elementor_notice .submit {
+#wps_upsell_elementor_notice .submit {
   font-weight: inherit;
 }
 
-#mwb_upsell_elementor_notice .mwb_upsell_heading_span {
+#wps_upsell_elementor_notice .wps_upsell_heading_span {
   color: #6d6666;
   font-weight: 600 !important;
 }
 
-#mwb_upsell_dismiss_elementor_inactive_notice {
+#wps_upsell_dismiss_elementor_inactive_notice {
   margin-top: 10px;
 }
 
-#mwb_upsell_elementor_notice {
+#wps_upsell_elementor_notice {
   border-left-color: #3ddabd;
   margin-top: 15px;
 }
 
-#mwb_upsell_activate_elementor {
+#wps_upsell_activate_elementor {
   background-color: #3ddabd;
   color: #fff;
   font-size: 14px;
@@ -647,7 +647,7 @@ span.mwb_wocuf_pro_span label::after {
   height: auto; 
 }
 
-#mwb_upsell_dismiss_elementor_inactive_notice {
+#wps_upsell_dismiss_elementor_inactive_notice {
   border: 1px solid #e0e0e0;
   box-shadow: 0px 0px;
   height: auto;
@@ -657,7 +657,7 @@ span.mwb_wocuf_pro_span label::after {
 
 /*since v2.0.0 - Overview - Start*/
 
-#mwb_upsell_lite_overview #mwb_upsell_lite_overview_video h2 {
+#wps_upsell_lite_overview #wps_upsell_lite_overview_video h2 {
   text-align: center;
   font-size: 30px;
   color: #76807e;
@@ -665,43 +665,43 @@ span.mwb_wocuf_pro_span label::after {
   margin-top: 30px;
 }
 
-#mwb_upsell_lite_overview #mwb_upsell_lite_overview_pro_version h2 {
+#wps_upsell_lite_overview #wps_upsell_lite_overview_pro_version h2 {
   text-align: center;
   font-size: 30px;
   color: #76807e;
   line-height: 1em;
 }
 
-.mwb_upsell_overview_product_icon.simple, 
-.mwb_upsell_overview_product_icon.variable {
+.wps_upsell_overview_product_icon.simple, 
+.wps_upsell_overview_product_icon.variable {
   float: left;
   width: 50%;
   text-align: center;
   padding: 0px 15px;
   box-sizing: border-box;
 }
-.mwb_upsell_overview_product_icon.subscription {
+.wps_upsell_overview_product_icon.subscription {
   max-width: 50%;
   margin: 30px auto;
   text-align: center;
   clear: both;
 }
-.mwb_upsell_overview_product_icon img {
+.wps_upsell_overview_product_icon img {
   opacity: 0.9;
 }
 
-.mwb_upsell_overview_product_icon img{
+.wps_upsell_overview_product_icon img{
   max-width: 100%;
 }
-#mwb_upsell_lite_overview .mwb_upsell_overview_supported_product:after {
+#wps_upsell_lite_overview .wps_upsell_overview_supported_product:after {
   display: block;
   clear: both;
   content: '';
 }
-#mwb_upsell_lite_overview #mwb_upsell_lite_overview_pro_version .mwb_upsell_overview_supported_payment_gateways img {
+#wps_upsell_lite_overview #wps_upsell_lite_overview_pro_version .wps_upsell_overview_supported_payment_gateways img {
   width: 100%;
 }
-#mwb_upsell_lite_overview #mwb_upsell_lite_overview_pro_version .mwb_upsell_overview_go_pro a.button {
+#wps_upsell_lite_overview #wps_upsell_lite_overview_pro_version .wps_upsell_overview_go_pro a.button {
   background-color: #78c900;
   color: #fff;
   border: 0;
@@ -711,18 +711,18 @@ span.mwb_wocuf_pro_span label::after {
   display: inline-block;
 }
 
-#mwb_upsell_lite_overview #mwb_upsell_lite_overview_pro_version .mwb_upsell_overview_go_pro a.button:hover {
+#wps_upsell_lite_overview #wps_upsell_lite_overview_pro_version .wps_upsell_overview_go_pro a.button:hover {
   background-color: #80d600;
 }
 
-#mwb_upsell_lite_overview #mwb_upsell_lite_overview_pro_version .mwb_upsell_overview_go_pro a.button:focus {
+#wps_upsell_lite_overview #wps_upsell_lite_overview_pro_version .wps_upsell_overview_go_pro a.button:focus {
   box-shadow: 0 0 3px #ccc;
 }
 
-#mwb_upsell_lite_overview #mwb_upsell_lite_overview_pro_version .mwb_upsell_overview_go_pro {
+#wps_upsell_lite_overview #wps_upsell_lite_overview_pro_version .wps_upsell_overview_go_pro {
   text-align: center;
 }
-#mwb_upsell_lite_overview #mwb_upsell_lite_overview_pro_version h3 {
+#wps_upsell_lite_overview #wps_upsell_lite_overview_pro_version h3 {
   background-color: #f1f1f1;
   padding: 10px 10px;
   font-size: 18px;
@@ -731,23 +731,23 @@ span.mwb_wocuf_pro_span label::after {
   line-height: 29px;
 }
 
-#mwb_upsell_lite_overview #mwb_upsell_lite_overview_pro_version h4 {
+#wps_upsell_lite_overview #wps_upsell_lite_overview_pro_version h4 {
   font-size: 15px;
 }
 
 @media only screen and (max-width: 480px) {
-  .mwb_upsell_overview_product_icon {
+  .wps_upsell_overview_product_icon {
     width: 100%;
   }
-  .mwb_upsell_overview_product_icon img{
+  .wps_upsell_overview_product_icon img{
     width: 50%;
   }
-  #mwb_upsell_lite_overview #mwb_upsell_lite_overview_pro_version .mwb_upsell_overview_go_pro a.button {
+  #wps_upsell_lite_overview #wps_upsell_lite_overview_pro_version .wps_upsell_overview_go_pro a.button {
     padding: 20px 0px;
     font-size: 20px;
     width: 100%;
   }
-  #mwb_upsell_lite_overview #mwb_upsell_lite_overview_pro_version h2 {
+  #wps_upsell_lite_overview #wps_upsell_lite_overview_pro_version h2 {
     font-size: 20px;
   }
 }
@@ -756,22 +756,22 @@ span.mwb_wocuf_pro_span label::after {
 
 /*since v3.0.0 - Upsell Funnel Reporting - Start*/
 
-.mwb_uspell_reporting_funnel_stats_hr {
+.wps_uspell_reporting_funnel_stats_hr {
     margin-top: 30px;
     margin-bottom: 30px;
 }
 
-.mwb_upsell_stats_conversion_rate {
+.wps_upsell_stats_conversion_rate {
   background-color: #b4db65;
   border-radius: 10px 10px;
 }
 
-.mwb_upsell_stats_total_sales {
+.wps_upsell_stats_total_sales {
   background-color: #8eba36;
   border-radius: 10px 10px;
 }
 
-.mwb_upsell_stats_conversion_rate p, .mwb_upsell_stats_total_sales p {
+.wps_upsell_stats_conversion_rate p, .wps_upsell_stats_total_sales p {
   color: #ffffff !important;
 }
 
@@ -779,7 +779,7 @@ span.mwb_wocuf_pro_span label::after {
 
 /*since v2.0.0 - Designer CSS - Start*/
 
-#mwb_wocuf_pro_setting_wrapper .mwb_wocuf_pro_setting_title {
+#wps_wocuf_pro_setting_wrapper .wps_wocuf_pro_setting_title {
   color: #23282d;
   padding: 6px 20px;
   font-size: 30px;
@@ -788,19 +788,19 @@ span.mwb_wocuf_pro_span label::after {
   margin-bottom: 50px;
   padding: 0;
 }
-#mwb_wocuf_pro_setting_wrapper .mwb_wocuf_pro_setting_title span.mwb_wocuf_pro_setting_title_version {
+#wps_wocuf_pro_setting_wrapper .wps_wocuf_pro_setting_title span.wps_wocuf_pro_setting_title_version {
   float: right;
 }
-#mwb_wocuf_pro_setting_wrapper p {
+#wps_wocuf_pro_setting_wrapper p {
   margin: 0;
 }
-#mwb_wocuf_pro_setting_wrapper nav.nav-tab-wrapper.woo-nav-tab-wrapper {
+#wps_wocuf_pro_setting_wrapper nav.nav-tab-wrapper.woo-nav-tab-wrapper {
   margin: 0;
   padding: 0px 20px;
   border-bottom: solid 1px #e0e0e0;
 }
 
-#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading h2 {
+#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading h2 {
   margin: 20px 0px;
   margin-left: -15px;
   line-height: normal;
@@ -814,54 +814,54 @@ span.mwb_wocuf_pro_span label::after {
 }
 
 
-#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr th, #mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr td {
+#wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr th, #wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr td {
   padding: 15px 10px 10px 35px !important;
   vertical-align: middle;
   position: relative;
 }
-#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr td .select2.select2-container.select2-container--default .select2-selection.select2-selection--single,
-#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr td input[type="text"] {
+#wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr td .select2.select2-container.select2-container--default .select2-selection.select2-selection--single,
+#wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr td input[type="text"] {
   height: 40px;
 }
-#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr td .mwb_upsell_attribute_description {
+#wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr td .wps_upsell_attribute_description {
   position: relative;
 }
-#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr td .mwb_upsell_attribute_description span.woocommerce-help-tip {
+#wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr td .wps_upsell_attribute_description span.woocommerce-help-tip {
   left: -25px;
 }
-#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr td .mwb_upsell_global_description {
+#wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr td .wps_upsell_global_description {
   font-size: 13px;
   font-style: italic;
   display: block;
 }
-#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_upsell_slide_down_table tr td .mwb_upsell_global_description {
+#wps_wocuf_pro_setting_wrapper table.form-table.wps_upsell_slide_down_table tr td .wps_upsell_global_description {
   font-size: 13.6px;
 }
-#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_upsell_slide_down_table .mwb_upsell_other_plugin_author_name {
+#wps_wocuf_pro_setting_wrapper table.form-table.wps_upsell_slide_down_table .wps_upsell_other_plugin_author_name {
   font-size: 14px;
   font-style: italic;
   font-weight: 500;
 }
-#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_upsell_slide_down_table .mwb_upsell_global_description b {
+#wps_wocuf_pro_setting_wrapper table.form-table.wps_upsell_slide_down_table .wps_upsell_global_description b {
   font-weight: 500;
 }
-.new_created_offers.mwb_upsell_single_offer .mwb_upsell_offer_templates_parent {
+.new_created_offers.wps_upsell_single_offer .wps_upsell_offer_templates_parent {
   display: flex;
   flex-wrap: wrap;
 }
-#mwb_wocuf_pro_setting_wrapper .nav-tab:focus {
+#wps_wocuf_pro_setting_wrapper .nav-tab:focus {
   box-shadow: 0px 0px;
   color: #fff;
 }
-#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr td #mwb_upsell_funnel_name {
+#wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr td #wps_upsell_funnel_name {
   height: 40px !important;
   width: 100%;
   max-width: 400px;
 }
-.mwb_upsell_slide_down_title h2 {
+.wps_upsell_slide_down_title h2 {
   font-size: 14px;
 }
-.mwb_wocuf_pro_header {
+.wps_wocuf_pro_header {
   display: -webkit-flex;
   display: -moz-flex;
   display: -ms-flex;
@@ -872,7 +872,7 @@ span.mwb_wocuf_pro_span label::after {
   margin-bottom: 20px;
   flex-wrap: wrap;
 }
-#mwb_wocuf_pro_setting_wrapper .mwb_wocuf_pro_setting_title {
+#wps_wocuf_pro_setting_wrapper .wps_wocuf_pro_setting_title {
   font-size: 25px;
   font-weight: 200;
   line-height: 25px;
@@ -880,14 +880,14 @@ span.mwb_wocuf_pro_span label::after {
   margin: 0;
   width: 65%;
 }
-#mwb_upsell_skype_connect_with_us {
+#wps_upsell_skype_connect_with_us {
   text-align: center;
   width: 30%;
   border: 1px solid #dddddd;
   border-radius: 4px;
   margin-left: 1%;
 }
-#mwb_upsell_skype_connect_with_us .button {
+#wps_upsell_skype_connect_with_us .button {
   height: auto;
   background-color: #ffffff;
   border: 1px solid #dddddd;
@@ -896,28 +896,28 @@ span.mwb_wocuf_pro_span label::after {
   font-size: 13px;
   transition: 0.2s linear all;
 }
-#mwb_upsell_skype_connect_with_us .button:hover,
-#mwb_upsell_skype_connect_with_us .button:focus{
+#wps_upsell_skype_connect_with_us .button:hover,
+#wps_upsell_skype_connect_with_us .button:focus{
  color: #00aaf2;
  transition: 0.2s linear all;
 }
-#mwb_upsell_skype_connect_with_us .button img {
+#wps_upsell_skype_connect_with_us .button img {
   width: 21px;
   vertical-align: middle;
   margin-right: 5px;
 }
-#mwb_upsell_skype_connect_with_us p {
+#wps_upsell_skype_connect_with_us p {
   text-align: center;
   font-size: 13px;
   color: #474343;
 }
-#mwb_upsell_skype_connect_with_us .mwb_upsell_skype_connect_title {
+#wps_upsell_skype_connect_with_us .wps_upsell_skype_connect_title {
   font-weight: normal;
   font-size: 14px;
   color: #474343;
   margin: 1em 0;
 }
-#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .mwb_wocuf_pro_offers h1 {
+#wps_wocuf_pro_setting_wrapper .wps_upsell_table .wps_wocuf_pro_offers h1 {
   background-color: #f1f1f1;
   padding: 10px 10px;
   font-size: 20px;
@@ -925,13 +925,13 @@ span.mwb_wocuf_pro_span label::after {
   text-align: left;
   border-radius: 10px 0px;
 }
-#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table p.submit #mwb_wocuf_pro_creation_setting_save {
+#wps_wocuf_pro_setting_wrapper .wps_upsell_table p.submit #wps_wocuf_pro_creation_setting_save {
   background-color: #3ddabd;
   padding: 7px 23px;
   height: auto;
   font-size: 14px;
 }
-    #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .new_offers .mwb_upsell_offer_title {
+    #wps_wocuf_pro_setting_wrapper .wps_upsell_table .new_offers .wps_upsell_offer_title {
       display: inline-block;
       border-radius: 10px 0px;
       margin: 0;
@@ -940,12 +940,12 @@ span.mwb_wocuf_pro_span label::after {
       background-color: #38bba3;
       color: #fff;
     }
-    #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .new_offers tr th label h4 {
+    #wps_wocuf_pro_setting_wrapper .wps_upsell_table .new_offers tr th label h4 {
       padding: 0px !important;
       margin: 0;
       font-size: 14px;
     }
-    .mwb_upsell_offer_templates_parent .mwb_upsell_offer_template {
+    .wps_upsell_offer_templates_parent .wps_upsell_offer_template {
      float: left;
      width: 33.333%;
      padding: 0px 10px;
@@ -953,12 +953,12 @@ span.mwb_wocuf_pro_span label::after {
      margin-bottom: 15px;
    }
 
-   .mwb_upsell_offer_templates_parent .mwb_upsell_offer_template .mwb_upsell_offer_template_sub_div {
+   .wps_upsell_offer_templates_parent .wps_upsell_offer_template .wps_upsell_offer_template_sub_div {
     position: relative;
     padding: 5px;
   }
 
-  .mwb_upsell_offer_templates_parent .mwb_upsell_offer_template h5 {
+  .wps_upsell_offer_templates_parent .wps_upsell_offer_template h5 {
    text-align: center;
    background-color: #f1f1f1;
    padding: 12px 0px;
@@ -966,7 +966,7 @@ span.mwb_wocuf_pro_span label::after {
    margin-bottom: 10px;
  }
 
- .new_created_offers.mwb_upsell_single_offer button.button.mwb_wocuf_pro_delete_old_created_offers {
+ .new_created_offers.wps_upsell_single_offer button.button.wps_wocuf_pro_delete_old_created_offers {
   color: #ffffff;
   background-color: #f91d1d;
   border: 0px;
@@ -974,7 +974,7 @@ span.mwb_wocuf_pro_span label::after {
   height: auto;
 }
 
-.new_created_offers.mwb_upsell_single_offer button.button.mwb_wocuf_pro_delete_new_created_offers {
+.new_created_offers.wps_upsell_single_offer button.button.wps_wocuf_pro_delete_new_created_offers {
   color: #ffffff;
   background-color: #f91d1d;
   border: 0px;
@@ -982,26 +982,26 @@ span.mwb_wocuf_pro_span label::after {
   height: auto;
 }
 
-.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template .mwb_upsell_offer_preview img {
+.wps_upsell_offer_templates_parent .wps_upsell_offer_template .wps_upsell_offer_preview img {
   width: 100%;
 
 }
-.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template .mwb_upsell_offer_preview{
+.wps_upsell_offer_templates_parent .wps_upsell_offer_template .wps_upsell_offer_preview{
   margin-bottom: 20px;
 }
-.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template .mwb_upsell_offer_preview a {
+.wps_upsell_offer_templates_parent .wps_upsell_offer_template .wps_upsell_offer_preview a {
   display: block;
   position: relative;
   border: 1px solid #e0e0e0
 }
-.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template.active .mwb_upsell_view_offer_template {
+.wps_upsell_offer_templates_parent .wps_upsell_offer_template.active .wps_upsell_view_offer_template {
   border: solid 2px #38bba3;
 }
-.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template.active h5 {
+.wps_upsell_offer_templates_parent .wps_upsell_offer_template.active h5 {
   background-color: #38bba3;
   color: #fff;
 }
-.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template .mwb_upsell_offer_preview a:hover:after {
+.wps_upsell_offer_templates_parent .wps_upsell_offer_template .wps_upsell_offer_preview a:hover:after {
   background-color: rgba(0, 0, 0, 0.63);
   width: 100%;
   top: 0px;
@@ -1010,90 +1010,90 @@ span.mwb_wocuf_pro_span label::after {
   position: absolute;
   left: 0;
 }
-.new_created_offers.mwb_upsell_single_offer .mwb_upsell_offer_description {
+.new_created_offers.wps_upsell_single_offer .wps_upsell_offer_description {
   font-size: 13px !important;
   font-style: italic;
 }
-.mwb_upsell_offer_template.mwb_upsell_custom_page_link_div.active h6 {
+.wps_upsell_offer_template.wps_upsell_custom_page_link_div.active h6 {
   text-align: center;
   font-size: 16px;
   margin: 20px 0px;
 }
-#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr th label {
+#wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr th label {
   font-size: 15px;
 }
-.mwb_upsell_offer_template.mwb_upsell_custom_page_link_div.active {
+.wps_upsell_offer_template.wps_upsell_custom_page_link_div.active {
   border: solid 2px #38bba3;
 }
-.mwb_upsell_offer_template.mwb_upsell_custom_page_link_div p {
+.wps_upsell_offer_template.wps_upsell_custom_page_link_div p {
   text-align: center !important;
   font-size: 14px !important;
 }
-.new_created_offers.mwb_upsell_single_offer table {
+.new_created_offers.wps_upsell_single_offer table {
   border: solid 2px #38bba3;
   margin-bottom: 30px !important;
   border-collapse: collapse;
 }
-#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .new_offers tr td select, #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .new_offers tr td input {
+#wps_wocuf_pro_setting_wrapper .wps_upsell_table .new_offers tr td select, #wps_wocuf_pro_setting_wrapper .wps_upsell_table .new_offers tr td input {
   width: 100%;
   height: 40px;
 }
-#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .new_offers tr td .select2-container.select2-container--default.select2-container--focus {
+#wps_wocuf_pro_setting_wrapper .wps_upsell_table .new_offers tr td .select2-container.select2-container--default.select2-container--focus {
   width: 100% !important;
 }
-.new_created_offers.mwb_upsell_single_offer .mwb_upsell_offer_templates_parent:after {
+.new_created_offers.wps_upsell_single_offer .wps_upsell_offer_templates_parent:after {
   content: '';
   display: block;
   clear: both;
 }
-#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading div#mwb_upsell_funnel_status {
+#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading div#wps_upsell_funnel_status {
   float: right;
   padding: 40px 10px;
   width: 200px;
 }
-#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading div#mwb_upsell_funnel_status span {
+#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading div#wps_upsell_funnel_status span {
   padding: 7px 10px;
 }
-#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading div#mwb_upsell_funnel_status label{
+#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading div#wps_upsell_funnel_status label{
   position: relative;
   display: inline-block;
   width: 60px;
   height: 34px;
   top: -3px;
 }
-#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading 
-div#mwb_upsell_funnel_status input{
+#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading 
+div#wps_upsell_funnel_status input{
   opacity: 0;
   width: 0;
   height: 0;
 }
-#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading 
-div#mwb_upsell_funnel_status input:checked + .mwb_upsell_funnel_span {
+#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading 
+div#wps_upsell_funnel_status input:checked + .wps_upsell_funnel_span {
   background-color: #6dbe45;
 }
 
-#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading 
-div#mwb_upsell_funnel_status input:focus + .mwb_upsell_funnel_span {
+#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading 
+div#wps_upsell_funnel_status input:focus + .wps_upsell_funnel_span {
   box-shadow: 0 0 1px #3ddabd;
 }
 
-#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading 
-div#mwb_upsell_funnel_status input:checked + .mwb_upsell_funnel_span:before {
+#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading 
+div#wps_upsell_funnel_status input:checked + .wps_upsell_funnel_span:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
 
-#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading 
-div#mwb_upsell_funnel_status .mwb_upsell_funnel_span {
+#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading 
+div#wps_upsell_funnel_status .wps_upsell_funnel_span {
 
   border-radius: 34px;
 }
-#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading 
-div#mwb_upsell_funnel_status .mwb_upsell_funnel_span:before {
+#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading 
+div#wps_upsell_funnel_status .wps_upsell_funnel_span:before {
   border-radius: 50%;
 }
-#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading div#mwb_upsell_funnel_status .mwb_upsell_funnel_span{
+#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading div#wps_upsell_funnel_status .wps_upsell_funnel_span{
  position: absolute;
  cursor: pointer;
  top: 0;
@@ -1104,7 +1104,7 @@ div#mwb_upsell_funnel_status .mwb_upsell_funnel_span:before {
  -webkit-transition: .4s;
  transition: .4s;
 }
-#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading div#mwb_upsell_funnel_status .mwb_upsell_funnel_span:before {
+#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading div#wps_upsell_funnel_status .wps_upsell_funnel_span:before {
   position: absolute;
   content: "";
   height: 26px;
@@ -1116,7 +1116,7 @@ div#mwb_upsell_funnel_status .mwb_upsell_funnel_span:before {
   transition: .4s;
 }
 
-.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template button, .mwb_upsell_offer_templates_parent .mwb_upsell_offer_template .mwb_upsell_offer_template_sub_div .mwb_upsell_offer_action button, .mwb_upsell_offer_templates_parent .mwb_upsell_offer_template .mwb_upsell_offer_template_sub_div .mwb_upsell_offer_action .button {
+.wps_upsell_offer_templates_parent .wps_upsell_offer_template button, .wps_upsell_offer_templates_parent .wps_upsell_offer_template .wps_upsell_offer_template_sub_div .wps_upsell_offer_action button, .wps_upsell_offer_templates_parent .wps_upsell_offer_template .wps_upsell_offer_template_sub_div .wps_upsell_offer_action .button {
   background-color: #f1f1f1;
   border: 1px solid #e0e0e0;
   box-shadow: 0px 0px;
@@ -1126,13 +1126,13 @@ div#mwb_upsell_funnel_status .mwb_upsell_funnel_span:before {
   height: auto;
 
 }
-.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template.active .button {
+.wps_upsell_offer_templates_parent .wps_upsell_offer_template.active .button {
   background-color: #38bba3 !important;
   color: #fff !important;
 }
-.mwb_upsell_offer_template_preview_three.active,
-.mwb_upsell_offer_template_preview_two.active,
-.mwb_upsell_offer_template_preview_one.active {
+.wps_upsell_offer_template_preview_three.active,
+.wps_upsell_offer_template_preview_two.active,
+.wps_upsell_offer_template_preview_one.active {
   display: block;
   position: fixed;
   top: 0px;
@@ -1143,20 +1143,20 @@ div#mwb_upsell_funnel_status .mwb_upsell_funnel_span:before {
   height: 100%;
   overflow-Y: scroll;
 }
-.mwb_upsell_offer_template_preview_three.active .mwb_upsell_offer_template_preview_three_sub_div,
-.mwb_upsell_offer_template_preview_two.active .mwb_upsell_offer_template_preview_two_sub_div,
-.mwb_upsell_offer_template_preview_one.active .mwb_upsell_offer_template_preview_one_sub_div {
+.wps_upsell_offer_template_preview_three.active .wps_upsell_offer_template_preview_three_sub_div,
+.wps_upsell_offer_template_preview_two.active .wps_upsell_offer_template_preview_two_sub_div,
+.wps_upsell_offer_template_preview_one.active .wps_upsell_offer_template_preview_one_sub_div {
   width: 100%;
   max-width: 1020px;
   margin: 90px auto;
 }
-.mwb_upsell_offer_template_preview_three.active .mwb_upsell_offer_template_preview_three_sub_div img,
-.mwb_upsell_offer_template_preview_two.active .mwb_upsell_offer_template_preview_two_sub_div img,
-.mwb_upsell_offer_template_preview_one.active .mwb_upsell_offer_template_preview_one_sub_div img {
+.wps_upsell_offer_template_preview_three.active .wps_upsell_offer_template_preview_three_sub_div img,
+.wps_upsell_offer_template_preview_two.active .wps_upsell_offer_template_preview_two_sub_div img,
+.wps_upsell_offer_template_preview_one.active .wps_upsell_offer_template_preview_one_sub_div img {
   width: 100%;
 }
 
-.mwb_upsell_offer_template_previews .mwb_upsell_offer_preview_close {
+.wps_upsell_offer_template_previews .wps_upsell_offer_preview_close {
   z-index: 9999999;
   pointer-events: auto;
   transform: scale(1);
@@ -1171,13 +1171,13 @@ div#mwb_upsell_funnel_status .mwb_upsell_funnel_span:before {
   border: solid 1px #fff !important;
   border-radius: 50%;
 }
-.mwb_upsell_offer_template_previews .mwb_upsell_offer_preview_close .mwb_upsell_offer_preview_close_span:before {
+.wps_upsell_offer_template_previews .wps_upsell_offer_preview_close .wps_upsell_offer_preview_close_span:before {
   transform: rotate(45deg);
 }
-.mwb_upsell_offer_template_previews .mwb_upsell_offer_preview_close .mwb_upsell_offer_preview_close_span:after {
+.wps_upsell_offer_template_previews .wps_upsell_offer_preview_close .wps_upsell_offer_preview_close_span:after {
   transform: rotate(-45deg);
 }
-.mwb_upsell_offer_template_previews .mwb_upsell_offer_preview_close .mwb_upsell_offer_preview_close_span:before, .mwb_upsell_offer_template_previews .mwb_upsell_offer_preview_close .mwb_upsell_offer_preview_close_span:after {
+.wps_upsell_offer_template_previews .wps_upsell_offer_preview_close .wps_upsell_offer_preview_close_span:before, .wps_upsell_offer_template_previews .wps_upsell_offer_preview_close .wps_upsell_offer_preview_close_span:after {
   background: #ffffff;
   content: "";
   margin: auto;
@@ -1194,16 +1194,16 @@ div#mwb_upsell_funnel_status .mwb_upsell_funnel_span:before {
   transition: transform 250ms cubic-bezier(0.785,0.135,0.15,0.86);
   will-change: transform;
 }
-#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading div#mwb_upsell_funnel_status span.mwb_upsell_funnel_status_on {
+#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading div#wps_upsell_funnel_status span.wps_upsell_funnel_status_on {
   color: #6dbe45;
 }
-#mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading div#mwb_upsell_funnel_status span.mwb_upsell_funnel_status_off {
+#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading div#wps_upsell_funnel_status span.wps_upsell_funnel_status_off {
   color: #fc7626;
 }
-#mwb_upsell_funnel_status span {
+#wps_upsell_funnel_status span {
   font-weight: 500;
 }
-.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template .mwb_upsell_offer_preview a:hover:before {
+.wps_upsell_offer_templates_parent .wps_upsell_offer_template .wps_upsell_offer_preview a:hover:before {
   width: 100%;
   top: 50%;
   content: 'Preview';
@@ -1214,50 +1214,50 @@ div#mwb_upsell_funnel_status .mwb_upsell_funnel_span:before {
   right: 0px;
   text-align: center;
 }
-.mwb_wocuf_pro_funnels_list table td a:hover {
+.wps_wocuf_pro_funnels_list table td a:hover {
   background-color: transparent;
 }
-.mwb_wocuf_pro_funnels_list tr th {
+.wps_wocuf_pro_funnels_list tr th {
   background-color: #f1f1f1;
   color: #23282d;
 }
-table.form-table.mwb_wocuf_pro_creation_setting {
+table.form-table.wps_wocuf_pro_creation_setting {
   margin-top: 30px !important;
   margin-bottom: 15px !important;
   border: solid 2px #ccc;
 }
-div#mwb_wocuf_pro_setting_wrapper .submit #mwb_wocuf_pro_creation_setting_save {
+div#wps_wocuf_pro_setting_wrapper .submit #wps_wocuf_pro_creation_setting_save {
   background-color: #3ddabd;
   padding: 7px 23px;
   height: auto;
   font-size: 14px;
 }
-table.form-table.mwb_wocuf_pro_shortcodes,
-table.form-table.mwb_upsell_slide_down_table {
+table.form-table.wps_wocuf_pro_shortcodes,
+table.form-table.wps_upsell_slide_down_table {
   margin-top: 30px !important;
   border: solid 2px #ccc;
 }
-.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template button:hover,
-.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template .mwb_upsell_offer_template_sub_div .mwb_upsell_offer_action button:hover,
-.mwb_upsell_offer_templates_parent .mwb_upsell_offer_template .mwb_upsell_offer_template_sub_div .mwb_upsell_offer_action .button:hover{
+.wps_upsell_offer_templates_parent .wps_upsell_offer_template button:hover,
+.wps_upsell_offer_templates_parent .wps_upsell_offer_template .wps_upsell_offer_template_sub_div .wps_upsell_offer_action button:hover,
+.wps_upsell_offer_templates_parent .wps_upsell_offer_template .wps_upsell_offer_template_sub_div .wps_upsell_offer_action .button:hover{
   background: #38bba3;
   color: #fff;
   box-shadow: 0px 0px;
   border: 1px solid #e0e0e0;
 }
-table.form-table.mwb_wocuf_pro_creation_setting .mwb_wocuf_pro_enable_plugin_label {
+table.form-table.wps_wocuf_pro_creation_setting .wps_wocuf_pro_enable_plugin_label {
   position: relative;
   display: inline-block;
   width: 60px;
   height: 34px;
   top: -3px;
 }
-table.form-table.mwb_wocuf_pro_creation_setting .mwb_wocuf_pro_enable_plugin_label .mwb_wocuf_pro_enable_plugin_input {
+table.form-table.wps_wocuf_pro_creation_setting .wps_wocuf_pro_enable_plugin_label .wps_wocuf_pro_enable_plugin_input {
   opacity: 0;
   width: 0;
   height: 0;
 }
-table.form-table.mwb_wocuf_pro_creation_setting .mwb_wocuf_pro_enable_plugin_label span.mwb_wocuf_pro_enable_plugin_span {
+table.form-table.wps_wocuf_pro_creation_setting .wps_wocuf_pro_enable_plugin_label span.wps_wocuf_pro_enable_plugin_span {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -1269,7 +1269,7 @@ table.form-table.mwb_wocuf_pro_creation_setting .mwb_wocuf_pro_enable_plugin_lab
   transition: .4s;
   border-radius: 30px;
 }
-table.form-table.mwb_wocuf_pro_creation_setting .mwb_wocuf_pro_enable_plugin_label span.mwb_wocuf_pro_enable_plugin_span:before {
+table.form-table.wps_wocuf_pro_creation_setting .wps_wocuf_pro_enable_plugin_label span.wps_wocuf_pro_enable_plugin_span:before {
   position: absolute;
   content: "";
   height: 26px;
@@ -1281,74 +1281,74 @@ table.form-table.mwb_wocuf_pro_creation_setting .mwb_wocuf_pro_enable_plugin_lab
   transition: .4s;
   border-radius: 50%;
 }
-table.form-table.mwb_wocuf_pro_creation_setting .mwb_wocuf_pro_enable_plugin_label .mwb_wocuf_pro_enable_plugin_input:checked + .mwb_wocuf_pro_enable_plugin_span:before {
+table.form-table.wps_wocuf_pro_creation_setting .wps_wocuf_pro_enable_plugin_label .wps_wocuf_pro_enable_plugin_input:checked + .wps_wocuf_pro_enable_plugin_span:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
-table.form-table.mwb_wocuf_pro_creation_setting .mwb_wocuf_pro_enable_plugin_label .mwb_wocuf_pro_enable_plugin_input:checked + .mwb_wocuf_pro_enable_plugin_span {
+table.form-table.wps_wocuf_pro_creation_setting .wps_wocuf_pro_enable_plugin_label .wps_wocuf_pro_enable_plugin_input:checked + .wps_wocuf_pro_enable_plugin_span {
   background-color: #6dbe45;
 }
-button.button-primary.mwb_upsell_activate_offer_template:focus {
+button.button-primary.wps_upsell_activate_offer_template:focus {
   background-color: #38bba3 !important;
   border: 0;
   box-shadow: 0px 0px;
 }
-.mwb-wocuf-pro-wrap {
+.wps-wocuf-pro-wrap {
   margin-top: 30px;
 }
-.mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text {
+.wps-wocuf-pro-wrap .wps_wocuf_pro_license_text {
   border: solid 2px #ccc;
   margin-top: 10px;
   padding: 10px 15px;
 }
-.mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text #mwb_wocuf_pro_license_form .submit {
+.wps-wocuf-pro-wrap .wps_wocuf_pro_license_text #wps_wocuf_pro_license_form .submit {
   padding: 0px 5px !important;
 }
-.mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text table.mwb-wocuf-pro-form-table tr {
+.wps-wocuf-pro-wrap .wps_wocuf_pro_license_text table.wps-wocuf-pro-form-table tr {
   padding: 0;
 }
-.mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text table.mwb-wocuf-pro-form-table {
+.wps-wocuf-pro-wrap .wps_wocuf_pro_license_text table.wps-wocuf-pro-form-table {
   width: 100%;
 }
-.mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text table.mwb-wocuf-pro-form-table tr th {
+.wps-wocuf-pro-wrap .wps_wocuf_pro_license_text table.wps-wocuf-pro-form-table tr th {
   width: 12%;
   text-align: left;
 }
-.mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text table.mwb-wocuf-pro-form-table tr td {
+.wps-wocuf-pro-wrap .wps_wocuf_pro_license_text table.wps-wocuf-pro-form-table tr td {
   width: 60%;
   display: block;
 }
-.mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text table.mwb-wocuf-pro-form-table tr #mwb_wocuf_pro_license_key {
+.wps-wocuf-pro-wrap .wps_wocuf_pro_license_text table.wps-wocuf-pro-form-table tr #wps_wocuf_pro_license_key {
   height: 38px;
   width: 100%;
   max-width: 380px !important;
 } 
-.mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text p.submit {
+.wps-wocuf-pro-wrap .wps_wocuf_pro_license_text p.submit {
   padding: 20px 10px !important;
 }
-.mwb-wocuf-pro-wrap h1 {
+.wps-wocuf-pro-wrap h1 {
   font-size: 22px !important;
   background-color: #f1f1f1;
   padding: 10px 10px;
   border-radius: 10px 0px;
 }
-.mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text {
+.wps-wocuf-pro-wrap .wps_wocuf_pro_license_text {
   border: solid 2px #ccc;
   margin-top: 10px;
   padding: 10px 15px;
 }
-#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr td .woocommerce-help-tip {
+#wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr td .woocommerce-help-tip {
   margin: 0;
   top: 50%;
   position: absolute;
   left: 10px;
   transform: translateY(-50%);
 }
-#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr td span.select2-selection__rendered {
+#wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr td span.select2-selection__rendered {
   line-height: 38px;
 }
-#mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr td .select2.select2-container.select2-container--default .select2-selection.select2-selection--single .select2-selection__arrow {
+#wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr td .select2.select2-container.select2-container--default .select2-selection.select2-selection--single .select2-selection__arrow {
   height: 38px;
 }
 .select2-container--default.select2-container--focus .select2-selection--multiple {
@@ -1356,38 +1356,38 @@ button.button-primary.mwb_upsell_activate_offer_template:focus {
   box-shadow: 0 0 2px rgba(30,140,190,.8);
   outline: 0;
 }
-.mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text table.mwb-wocuf-pro-form-table tr td #mwb_wocuf_pro_license_key {
+.wps-wocuf-pro-wrap .wps_wocuf_pro_license_text table.wps-wocuf-pro-form-table tr td #wps_wocuf_pro_license_key {
   width: calc(100% - 30px) !important;
   float: left;
 }
-.mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text table.mwb-wocuf-pro-form-table tr td #mwb_upsell_license_ajax_loader {
+.wps-wocuf-pro-wrap .wps_wocuf_pro_license_text table.wps-wocuf-pro-form-table tr td #wps_upsell_license_ajax_loader {
   float: left;
   left: 10px;
   top: 10px;
   position: relative;
 }
-.mwb_upsell_overview_supported_woo_addons_banner img {
+.wps_upsell_overview_supported_woo_addons_banner img {
   max-width: 100%;
   width: auto;
 }
-.mwb_upsell_overview_go_pro {
+.wps_upsell_overview_go_pro {
   margin: 40px 0;
 }
 
 /**
  * Notice Cross button fix. 
  */
-#mwb_wocuf_pro_setting_wrapper .notice-dismiss {
+#wps_wocuf_pro_setting_wrapper .notice-dismiss {
   top: 4px;
 }
 
 /**
  * Offer Clear button.
  */
-.mwb-upsell-offer-product-clear.hidden {
+.wps-upsell-offer-product-clear.hidden {
   display: none;
 }
-.mwb-upsell-offer-product-clear {
+.wps-upsell-offer-product-clear {
   width: auto !important;
   height: auto !important;
 }
@@ -1395,7 +1395,7 @@ button.button-primary.mwb_upsell_activate_offer_template:focus {
 /**
  * Custom Offer Image.
  */
-.mwb_wocuf_saved_custom_image a:focus{
+.wps_wocuf_saved_custom_image a:focus{
   box-shadow: unset !important;
 }
 
@@ -1403,15 +1403,15 @@ button.button-primary.mwb_upsell_activate_offer_template:focus {
               Version : 3.0.0
  ============================================*/
 
-.mwb_upsell_lite_tool_ga {
+.wps_upsell_lite_tool_ga {
   margin-top: 50px;
   width: 500px;
 }
-.mwb_upsell_lite_tool_fb {
+.wps_upsell_lite_tool_fb {
   width: 439px !important;
   margin-top: 20px;
 }
-.mwb_upsell_overview_product_icon a:focus {
+.wps_upsell_overview_product_icon a:focus {
   color: #ffffff;
   box-shadow: none;
   outline: none;
@@ -1423,73 +1423,73 @@ button.button-primary.mwb_upsell_activate_offer_template:focus {
 
 
 @media only screen and (max-width:1024px)  {
-  .mwb_wocuf_pro_funnels_list table {
+  .wps_wocuf_pro_funnels_list table {
     width: 1024px;
   }
 }
 
 @media only screen and (max-width:867px)  {
-  #mwb_wocuf_pro_setting_wrapper .nav-tab {
+  #wps_wocuf_pro_setting_wrapper .nav-tab {
     padding: 10px 35px 10px 35px;
   }
-  #mwb_wocuf_pro_setting_wrapper .nav-tab {
+  #wps_wocuf_pro_setting_wrapper .nav-tab {
     margin-top: 17px;
   }
-  #mwb_wocuf_pro_setting_wrapper .nav-tab:nth-child(1){
+  #wps_wocuf_pro_setting_wrapper .nav-tab:nth-child(1){
     margin-top: 17px !important;
   }
-  #mwb_wocuf_pro_setting_wrapper nav.nav-tab-wrapper.woo-nav-tab-wrapper {
+  #wps_wocuf_pro_setting_wrapper nav.nav-tab-wrapper.woo-nav-tab-wrapper {
    display: flex;
    flex-wrap: wrap;
  }
- .mwb_upsell_offer_templates_parent .mwb_upsell_offer_template {
+ .wps_upsell_offer_templates_parent .wps_upsell_offer_template {
   width: 50%;
 }
-.new_created_offers.mwb_upsell_single_offer th, .new_created_offers.mwb_upsell_single_offer td {
+.new_created_offers.wps_upsell_single_offer th, .new_created_offers.wps_upsell_single_offer td {
   display: block;
 }
- #mwb_wocuf_pro_setting_wrapper .mwb_wocuf_pro_setting_title,
-  #mwb_upsell_skype_connect_with_us{
+ #wps_wocuf_pro_setting_wrapper .wps_wocuf_pro_setting_title,
+  #wps_upsell_skype_connect_with_us{
     width: 100%;
   }
-  #mwb_upsell_skype_connect_with_us{
+  #wps_upsell_skype_connect_with_us{
     margin-top: 10px;
     margin-right: 0;
   }
 }
 @media only screen and (max-width:767px)  {
-  .mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text table.mwb-wocuf-pro-form-table tr td{
+  .wps-wocuf-pro-wrap .wps_wocuf_pro_license_text table.wps-wocuf-pro-form-table tr td{
     width: 100%;
     display: block;
   }
-  .mwb-wocuf-pro-wrap .mwb_wocuf_pro_license_text table.mwb-wocuf-pro-form-table tr th {
+  .wps-wocuf-pro-wrap .wps_wocuf_pro_license_text table.wps-wocuf-pro-form-table tr th {
     width: 100%;
   }
 
-  #mwb_upsell_dismiss_elementor_inactive_notice,
-  #mwb_upsell_activate_elementor {
+  #wps_upsell_dismiss_elementor_inactive_notice,
+  #wps_upsell_activate_elementor {
     font-size: 13px;
     padding: 8px 10px;
   }
   
-  #mwb_upsell_lite_overview #mwb_upsell_lite_overview_video h2 {
+  #wps_upsell_lite_overview #wps_upsell_lite_overview_video h2 {
     font-size: 21px;
   }
 
 }
 @media only screen and (max-width:600px)  {
 
-  .mwb_wocuf_pro_funnels_list {
+  .wps_wocuf_pro_funnels_list {
     overflow-x: auto;
     width: 100%;
   }
-  table.form-table.mwb_wocuf_pro_creation_setting select#mwb_wocuf_pro_applied_rule {
+  table.form-table.wps_wocuf_pro_creation_setting select#wps_wocuf_pro_applied_rule {
     width: 100%;
   }
-  table.form-table.mwb_wocuf_pro_creation_setting span.select2.select2-container.select2-container--default.select2-container--focus.select2-container--below {
+  table.form-table.wps_wocuf_pro_creation_setting span.select2.select2-container.select2-container--default.select2-container--focus.select2-container--below {
     width: 100% !important;
   }
-  table.form-table.mwb_wocuf_pro_creation_sett
+  table.form-table.wps_wocuf_pro_creation_sett
   .new_created_offers {
     overflow-x: auto;
     width: 100%;
@@ -1497,7 +1497,7 @@ button.button-primary.mwb_upsell_activate_offer_template:focus {
   #wpbody select {
     height: auto;
   }
-  .mwb_upsell_table select {
+  .wps_upsell_table select {
     width: 100%;
   }
 
@@ -1505,87 +1505,87 @@ button.button-primary.mwb_upsell_activate_offer_template:focus {
 
 
 @media only screen and (max-width:500px)  {
-  #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading h2 {
+  #wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading h2 {
     width: 100%;
     font-size: 28px;
   }
-  .mwb_upsell_offer_templates_parent .mwb_upsell_offer_template {
+  .wps_upsell_offer_templates_parent .wps_upsell_offer_template {
     width: 100%;
   }
-  #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_upsell_funnel_name_heading div#mwb_upsell_funnel_status {
+  #wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading div#wps_upsell_funnel_status {
     float: left;
     padding: 10px 10px;
     width: 100%;
   }
-  #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .select2-container .select2-search__field {
+  #wps_wocuf_pro_setting_wrapper .wps_upsell_table .select2-container .select2-search__field {
     font-size: 11px !important;
     width: 80% !important;
   }
-  #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .new_created_offers input {
+  #wps_wocuf_pro_setting_wrapper .wps_upsell_table .new_created_offers input {
     width: 85% !important;
     font-size: 10px !important;
   }
-  #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .new_created_offers select {
+  #wps_wocuf_pro_setting_wrapper .wps_upsell_table .new_created_offers select {
     font-size: 11px !important;
     height: 39px !important;
     width: 80% !important;
   }
-  #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .new_offers .mwb_upsell_offer_title {
+  #wps_wocuf_pro_setting_wrapper .wps_upsell_table .new_offers .wps_upsell_offer_title {
     padding: 10px 24px;
   }
-  .mwb_upsell_table table th label h4{
+  .wps_upsell_table table th label h4{
     padding:0 !important;
   }
-  #mwb_wocuf_pro_setting_wrapper p, #mwb_wocuf_pro_setting_wrapper span{
+  #wps_wocuf_pro_setting_wrapper p, #wps_wocuf_pro_setting_wrapper span{
     font-size: 14px !important; 
   }
 
-  #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .select2-selection.select2-selection--multiple {
+  #wps_wocuf_pro_setting_wrapper .wps_upsell_table .select2-selection.select2-selection--multiple {
     width: 65% !important;
   }
-  #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table select{
+  #wps_wocuf_pro_setting_wrapper .wps_upsell_table select{
     width: 64% !important;
   }
-  #mwb_wocuf_pro_setting_wrapper .mwb_wocuf_pro_common_class {
+  #wps_wocuf_pro_setting_wrapper .wps_wocuf_pro_common_class {
     width: 95% !important;
   }
 
-  #mwb_wocuf_pro_setting_wrapper .mwb_wocuf_pro_common_class {
+  #wps_wocuf_pro_setting_wrapper .wps_wocuf_pro_common_class {
     font-size: 12px !important;
   }
 
   /*updated*/
-  #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table #mwb_wocuf_pro_funnel_name {
+  #wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_wocuf_pro_funnel_name {
     width: 100% !important;
   }
 
-  #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table select {
+  #wps_wocuf_pro_setting_wrapper .wps_upsell_table select {
     width: 100% !important;
   }
 
-    .form-table.mwb_wocuf_pro_creation_setting .select2.select2-container.select2-container--default {
+    .form-table.wps_wocuf_pro_creation_setting .select2.select2-container.select2-container--default {
       min-width: 100% !important;
       width: 100% !important;
     }
 
-    #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .select2-selection.select2-selection--multiple {
+    #wps_wocuf_pro_setting_wrapper .wps_upsell_table .select2-selection.select2-selection--multiple {
       width: 100% !important;
     }
 
-    #mwb_wocuf_pro_setting_wrapper .mwb_upsell_table .select2-container .select2-search__field {
+    #wps_wocuf_pro_setting_wrapper .wps_upsell_table .select2-container .select2-search__field {
       font-size: 15px !important;
       height: 33px;
     }
-    #mwb_wocuf_pro_setting_wrapper table.form-table.mwb_wocuf_pro_creation_setting tr td input[type="text"]{
+    #wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr td input[type="text"]{
       width: 100%;
     }
 
-    #mwb_upsell_dismiss_elementor_inactive_notice,
-    #mwb_upsell_activate_elementor {
+    #wps_upsell_dismiss_elementor_inactive_notice,
+    #wps_upsell_activate_elementor {
       font-size: 13px;
       padding: 8px 10px;
     }
-    #mwb_wocuf_pro_setting_wrapper .nav-tab{
+    #wps_wocuf_pro_setting_wrapper .nav-tab{
       text-align: center;
       width: 100%;
     }

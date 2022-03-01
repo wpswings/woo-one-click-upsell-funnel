@@ -1,38 +1,38 @@
-var mwb_wocuf_pro_custom_offer_bought = false;
+var wps_wocuf_pro_custom_offer_bought = false;
 
 jQuery(document).ready(function($){
 	
-	jQuery('#mwb_wocuf_pro_offer_loader').hide();
+	jQuery('#wps_wocuf_pro_offer_loader').hide();
 
-	jQuery('.mwb_wocuf_pro_custom_buy').on('click',function(e) {
+	jQuery('.wps_wocuf_pro_custom_buy').on('click',function(e) {
 
-		jQuery('#mwb_wocuf_pro_offer_loader').show();
+		jQuery('#wps_wocuf_pro_offer_loader').show();
 
-		if( mwb_wocuf_pro_custom_offer_bought ) {
+		if( wps_wocuf_pro_custom_offer_bought ) {
 			e.preventDefault();
 			return;
 		}
 
-	    mwb_wocuf_pro_custom_offer_bought = true;
+	    wps_wocuf_pro_custom_offer_bought = true;
 	});
 
-	jQuery('.mwb_wocuf_pro_no').on('click',function(e){
+	jQuery('.wps_wocuf_pro_no').on('click',function(e){
 
-		jQuery('#mwb_wocuf_pro_offer_loader').show();
+		jQuery('#wps_wocuf_pro_offer_loader').show();
 		
 	});
 
 	/**
 	 * Shortcode Scripts since v3.0.0
 	 */
-	jQuery( '.mwb_upsell_quantity_input' ).on( 'change',function(e) {
+	jQuery( '.wps_upsell_quantity_input' ).on( 'change',function(e) {
 
 		var updated_quantity = jQuery( this ).val();
 
 		jQuery( 'a' ).map( function() {
             
             // Check if any of them are empty.
-            if( this.href.includes( 'mwb_wocuf_pro_buy' ) ) {
+            if( this.href.includes( 'wps_wocuf_pro_buy' ) ) {
 
             	if( false == this.href.includes( 'fetch' ) ) {
 
@@ -57,9 +57,9 @@ jQuery(document).ready(function($){
             }
 
             // For variable products.
-            else if( this.href.includes( '#mwb_upsell' ) ) {
+            else if( this.href.includes( '#wps_upsell' ) ) {
 
-            	jQuery( '.mwb_wocuf_pro_quantity' ).val( updated_quantity );
+            	jQuery( '.wps_wocuf_pro_quantity' ).val( updated_quantity );
             }
         });
 	});
@@ -72,35 +72,35 @@ jQuery(document).ready(function($){
 
 		e.preventDefault();
 
-		swal( mwb_upsell_public.alert_preview_title, mwb_upsell_public.alert_preview_content, 'info' );
+		swal( wps_upsell_public.alert_preview_title, wps_upsell_public.alert_preview_content, 'info' );
 	});
 
 
 	/**
 	 * Adding Upsell Loader since v3.0.0
 	 */
-	if( 'undefined' !== typeof( mwb_upsell_public ) ) {
+	if( 'undefined' !== typeof( wps_upsell_public ) ) {
 
-		if( mwb_upsell_public.show_upsell_loader ) {
+		if( wps_upsell_public.show_upsell_loader ) {
 
-			mwb_upsell_loader_message = mwb_upsell_public.upsell_actions_message;
+			wps_upsell_loader_message = wps_upsell_public.upsell_actions_message;
 
-			mwb_upsell_loader_message_html = '';
+			wps_upsell_loader_message_html = '';
 
-			if( mwb_upsell_loader_message.length ) {
+			if( wps_upsell_loader_message.length ) {
 
-				mwb_upsell_loader_message_html = '<p class="mwb_upsell_loader_text">' + mwb_upsell_loader_message + '</p>';
+				wps_upsell_loader_message_html = '<p class="wps_upsell_loader_text">' + wps_upsell_loader_message + '</p>';
 			}
 
-			jQuery( 'body' ).append( '<div class="mwb_upsell_loader">' + mwb_upsell_loader_message_html + '</div>' );
+			jQuery( 'body' ).append( '<div class="wps_upsell_loader">' + wps_upsell_loader_message_html + '</div>' );
 
 			jQuery( document ).on('click', 'a', function(e) {
 
 				// Check if any of them are empty.
-	            if( this.href.includes( 'mwb_wocuf_pro_buy' ) || this.href.includes( '#mwb_upsell' ) || this.href.includes( 'ocuf_th' ) ) {
+	            if( this.href.includes( 'wps_wocuf_pro_buy' ) || this.href.includes( '#wps_upsell' ) || this.href.includes( 'ocuf_th' ) ) {
 
 	            	// Show loader on click.
-	            	jQuery( '.mwb_upsell_loader' ).show();
+	            	jQuery( '.wps_upsell_loader' ).show();
 	            }
 			});
 		}

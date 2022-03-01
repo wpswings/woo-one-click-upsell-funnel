@@ -13,107 +13,107 @@ jQuery(document).ready( function($) {
 	});
 
 	// On click of deactivate.
-	if( 'plugins.php' == mwb_onboarding.current_screen ) {
+	if( 'plugins.php' == wps_onboarding.current_screen ) {
 
 		// Add Deactivation id to all deactivation links.
 		embed_id_to_deactivation_urls();
 
-		add_deactivate_slugs_callback( mwb_onboarding.current_supported_slug );
+		add_deactivate_slugs_callback( wps_onboarding.current_supported_slug );
 
 		jQuery( document ).on( 'change','.on-boarding-radio-field' ,function(e){
 
 			e.preventDefault();
 			if ( 'other' == jQuery( this ).attr( 'id' ) ) {
-				jQuery( '#deactivation-reason-text' ).removeClass( 'mwb-keep-hidden' );
+				jQuery( '#deactivation-reason-text' ).removeClass( 'wps-keep-hidden' );
 			} else {
-				jQuery( '#deactivation-reason-text' ).addClass( 'mwb-keep-hidden' );
+				jQuery( '#deactivation-reason-text' ).addClass( 'wps-keep-hidden' );
 			}
 		});
 	}
 
 	else {
 
-		// Show Popup after 1 second of entering into the MWB pagescreen.
+		// Show Popup after 1 second of entering into the WPS pagescreen.
 		if ( jQuery( '#show-counter' ).length > 0 && jQuery( '#show-counter' ).val() == 'not-sent' ) {
-			setTimeout( mwb_show_onboard_popup(), 1000 );
+			setTimeout( wps_show_onboard_popup(), 1000 );
 		}
 	}
 
 	/* Close Button Click */
-	jQuery( document ).on( 'click','.mwb-on-boarding-close-btn a',function(e){
+	jQuery( document ).on( 'click','.wps-on-boarding-close-btn a',function(e){
 		e.preventDefault();
-		mwb_hide_onboard_popup();
+		wps_hide_onboard_popup();
 	});
 
 	/* Skip and deactivate. */
-	jQuery( document ).on( 'click','.mwb-deactivation-no_thanks',function(e){
+	jQuery( document ).on( 'click','.wps-deactivation-no_thanks',function(e){
 
 		window.location.replace( deactivate_url );
-		mwb_hide_onboard_popup();
+		wps_hide_onboard_popup();
 	});
 
 	/* Skip For a day. */
-	jQuery( document ).on( 'click','.mwb-on-boarding-no_thanks',function(e){
+	jQuery( document ).on( 'click','.wps-on-boarding-no_thanks',function(e){
 
 		jQuery.ajax({
             type: 'post',
             dataType: 'json',
-            url: mwb_onboarding.ajaxurl,
+            url: wps_onboarding.ajaxurl,
             data: {
-                nonce : mwb_onboarding.auth_nonce, 
+                nonce : wps_onboarding.auth_nonce, 
                 action: 'skip_onboarding_popup' ,
             },
             success: function( msg ){
-				mwb_hide_onboard_popup();
+				wps_hide_onboard_popup();
             }
         });
 
 	});
 
 	/* Submitting Form */
-	jQuery( document ).on( 'submit','form.mwb-on-boarding-form',function(e){
+	jQuery( document ).on( 'submit','form.wps-on-boarding-form',function(e){
 
 		e.preventDefault();
-		var form_data = JSON.stringify( jQuery( 'form.mwb-on-boarding-form' ).serializeArray() ); 
+		var form_data = JSON.stringify( jQuery( 'form.wps-on-boarding-form' ).serializeArray() ); 
 
 		jQuery.ajax({
             type: 'post',
             dataType: 'json',
-            url: mwb_onboarding.ajaxurl,
+            url: wps_onboarding.ajaxurl,
             data: {
-                nonce : mwb_onboarding.auth_nonce, 
+                nonce : wps_onboarding.auth_nonce, 
                 action: 'send_onboarding_data' ,
                 form_data: form_data,  
             },
             success: function( msg ){
-        		if( 'plugins.php' == mwb_onboarding.current_screen ) {
+        		if( 'plugins.php' == wps_onboarding.current_screen ) {
 					window.location.replace( deactivate_url );
 				}
-                mwb_hide_onboard_popup();
+                wps_hide_onboard_popup();
             }
         });
 	});
 
 	/* Open Popup */
-	function mwb_show_onboard_popup() {
-		jQuery( '.mwb-onboarding-section' ).show();
-		jQuery( '.mwb-on-boarding-wrapper-background' ).addClass( 'onboard-popup-show' );
+	function wps_show_onboard_popup() {
+		jQuery( '.wps-onboarding-section' ).show();
+		jQuery( '.wps-on-boarding-wrapper-background' ).addClass( 'onboard-popup-show' );
 
 	    if( ! jQuery( 'body' ).hasClass( 'mobile-device' ) ) {
-	    	jQuery( 'body' ).addClass( 'mwb-on-boarding-wrapper-control' );
+	    	jQuery( 'body' ).addClass( 'wps-on-boarding-wrapper-control' );
 	    }
 	}
 
 	/* Close Popup */
-	function mwb_hide_onboard_popup() {
-		jQuery( '.mwb-on-boarding-wrapper-background' ).removeClass( 'onboard-popup-show' );
-		jQuery( '.mwb-onboarding-section' ).hide();
+	function wps_hide_onboard_popup() {
+		jQuery( '.wps-on-boarding-wrapper-background' ).removeClass( 'onboard-popup-show' );
+		jQuery( '.wps-onboarding-section' ).hide();
 		if( ! jQuery( 'body' ).hasClass( 'mobile-device' ) ) {
-	    	jQuery( 'body' ).removeClass( 'mwb-on-boarding-wrapper-control' );
+	    	jQuery( 'body' ).removeClass( 'wps-on-boarding-wrapper-control' );
 	    }
 	}
 
-	/* Apply deactivate in all the MWB plugins. */
+	/* Apply deactivate in all the WPS plugins. */
 	function add_deactivate_slugs_callback( all_slugs ) {
 		
 		for ( var i = all_slugs.length - 1; i >= 0; i-- ) {
@@ -125,10 +125,10 @@ jQuery(document).ready( function($) {
 				plugin_name = jQuery( this ).attr( 'aria-label' );
 				plugin_name = plugin_name.replace( 'Deactivate ', '' );
 				jQuery( '#plugin-name' ).val( plugin_name );
-				jQuery( '.mwb-on-boarding-heading' ).text( plugin_name + ' Feedback' );
+				jQuery( '.wps-on-boarding-heading' ).text( plugin_name + ' Feedback' );
 				var placeholder = jQuery( '#deactivation-reason-text' ).attr( 'placeholder' );
 				jQuery( '#deactivation-reason-text' ).attr( 'placeholder', placeholder.replace( '{plugin-name}', plugin_name ) );
-				mwb_show_onboard_popup();
+				wps_show_onboard_popup();
 			});
 		}
 	}

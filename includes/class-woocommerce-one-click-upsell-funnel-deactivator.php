@@ -2,7 +2,7 @@
 /**
  * Fired during plugin deactivation
  *
- * @link       http://makewebbetter.com/
+ * @link       https://wpswings.com/
  * @since      1.0.0
  *
  * @package     woo_one_click_upsell_funnel
@@ -17,7 +17,7 @@
  * @since      1.0.0
  * @package     woo_one_click_upsell_funnel
  * @subpackage woo_one_click_upsell_funnel/includes
- * @author     makewebbetter <webmaster@makewebbetter.com>
+ * @author     wpswings <webmaster@wpswings.com>
  */
 class Woocommerce_One_Click_Upsell_Funnel_Deactivator {
 

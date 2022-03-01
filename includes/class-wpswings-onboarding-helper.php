@@ -2,7 +2,7 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       https://makewebbetter.com
+ * @link       https://wpswings.com
  * @since      3.0.0
  *
  * @package     woo_one_click_upsell_funnel
@@ -14,7 +14,7 @@
  *
  * @package     woo_one_click_upsell_funnel
  * @subpackage  woo_one_click_upsell_funnel/includes
- * @author      makewebbetter <webmaster@makewebbetter.com>
+ * @author      wpswings <webmaster@wpswings.com>
  */
 if ( class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
 	return;
@@ -156,10 +156,10 @@ class Makewebbetter_Onboarding_Helper {
 		 */
 		if ( $this->is_valid_page_screen() ) {
 
-			wp_enqueue_style( 'makewebbetter-onboarding-style', WPS_WOCUF_URL . 'admin/css/makewebbetter-onboarding-admin.css', array(), '3.0.0', 'all' );
+			wp_enqueue_style( 'wpswings-onboarding-style', WPS_WOCUF_URL . 'admin/css/wpswings-onboarding-admin.css', array(), '3.0.0', 'all' );
 
 			// Uncomment Only when your plugin doesn't uses the Select2.
-			wp_enqueue_style( 'makewebbetter-onboarding-select2-style', WPS_WOCUF_URL . 'admin/css/select2.min.css', array(), '3.0.0', 'all' );
+			wp_enqueue_style( 'wpswings-onboarding-select2-style', WPS_WOCUF_URL . 'admin/css/select2.min.css', array(), '3.0.0', 'all' );
 		}
 	}
 
@@ -183,12 +183,12 @@ class Makewebbetter_Onboarding_Helper {
 		 */
 		if ( $this->is_valid_page_screen() ) {
 
-			wp_enqueue_script( 'makewebbetter-onboarding-scripts', WPS_WOCUF_URL . 'admin/js/makewebbetter-onboarding-admin.js', array( 'jquery' ), '3.0.0', true );
+			wp_enqueue_script( 'wpswings-onboarding-scripts', WPS_WOCUF_URL . 'admin/js/wpswings-onboarding-admin.js', array( 'jquery' ), '3.0.0', true );
 
 			global $pagenow;
 			$current_slug = ! empty( explode( '/', plugin_basename( __FILE__ ) ) ) ? explode( '/', plugin_basename( __FILE__ ) )[0] : '';
 			wp_localize_script(
-				'makewebbetter-onboarding-scripts',
+				'wpswings-onboarding-scripts',
 				'wps_onboarding',
 				array(
 					'ajaxurl'                => admin_url( 'admin-ajax.php' ),
@@ -199,7 +199,7 @@ class Makewebbetter_Onboarding_Helper {
 			);
 
 			// Uncomment Only when your plugin doesn't uses the Select2.
-			wp_enqueue_script( 'makewebbetter-onboarding-select2-script', WPS_WOCUF_URL . 'admin/js/select2.min.js', array( 'jquery' ), '3.0.0', false );
+			wp_enqueue_script( 'wpswings-onboarding-select2-script', WPS_WOCUF_URL . 'admin/js/select2.min.js', array( 'jquery' ), '3.0.0', false );
 		}
 	}
 
@@ -211,7 +211,7 @@ class Makewebbetter_Onboarding_Helper {
 	public function add_onboarding_popup_screen() {
 
 		if ( $this->is_valid_page_screen() && $this->can_show_onboarding_popup() ) {
-			require_once WPS_WOCUF_DIRPATH . 'extra-templates/makewebbetter-onboarding-template-display.php';
+			require_once WPS_WOCUF_DIRPATH . 'extra-templates/wpswings-onboarding-template-display.php';
 		}
 	}
 
@@ -225,7 +225,7 @@ class Makewebbetter_Onboarding_Helper {
 
 		global $pagenow;
 		if ( ! empty( $pagenow ) && 'plugins.php' === $pagenow ) {
-			require_once WPS_WOCUF_DIRPATH . 'extra-templates/makewebbetter-deactivation-template-display.php';
+			require_once WPS_WOCUF_DIRPATH . 'extra-templates/wpswings-deactivation-template-display.php';
 		}
 	}
 
@@ -676,7 +676,7 @@ class Makewebbetter_Onboarding_Helper {
 
 
 	/**
-	 * Send the data to MWB server.
+	 * Send the data to WPS server.
 	 *
 	 * @since    3.0.0
 	 */

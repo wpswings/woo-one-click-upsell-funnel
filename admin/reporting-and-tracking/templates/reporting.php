@@ -24,20 +24,20 @@ $funnels_list = get_option( 'mwb_wocuf_funnels_list' );
 
 ?>
 
-<div class="mwb_wocuf_pro_funnels_list">
+<div class="wps_wocuf_pro_funnels_list">
 
-	<div class="mwb_uspell_reporting_heading" >
+	<div class="wps_uspell_reporting_heading" >
 		<h2><?php esc_html_e( 'Upsell Sales - Reports', 'woo-one-click-upsell-funnel' ); ?></h2>
 		<a target="_blank" href="<?php echo esc_url( admin_url( 'admin.php?page=wc-reports&tab=upsell' ) ); ?>"><?php esc_html_e( 'Visit here &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 	</div>
 
-	<hr class="mwb_uspell_reporting_funnel_stats_hr">
+	<hr class="wps_uspell_reporting_funnel_stats_hr">
 
-	<div class="mwb_uspell_stats_heading" ><h2><?php esc_html_e( 'Upsell - Behavioral Analytics', 'woo-one-click-upsell-funnel' ); ?></h2></div>
+	<div class="wps_uspell_stats_heading" ><h2><?php esc_html_e( 'Upsell - Behavioral Analytics', 'woo-one-click-upsell-funnel' ); ?></h2></div>
 
 	<?php if ( empty( $funnels_list ) ) : ?>
 
-		<p class="mwb_wocuf_pro_no_funnel"><?php esc_html_e( 'No Upsell Data found', 'woo-one-click-upsell-funnel' ); ?></p>
+		<p class="wps_wocuf_pro_no_funnel"><?php esc_html_e( 'No Upsell Data found', 'woo-one-click-upsell-funnel' ); ?></p>
 
 	<?php endif; ?>
 
@@ -63,7 +63,7 @@ $funnels_list = get_option( 'mwb_wocuf_funnels_list' );
 
 				<tr>		
 					<!-- Funnel Name -->
-					<td><a class="mwb_upsell_funnel_list_name" href="?page=wps-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $key ); ?>"><?php echo esc_html( $value['mwb_wocuf_funnel_name'] ); ?></a></td>
+					<td><a class="wps_upsell_funnel_list_name" href="?page=wps-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $key ); ?>"><?php echo esc_html( $value['mwb_wocuf_funnel_name'] ); ?></a></td>
 
 					<!-- Trigger Count -->
 					<td>
@@ -158,7 +158,7 @@ $funnels_list = get_option( 'mwb_wocuf_funnels_list' );
 
 						$conversion_rate = number_format( (float) $conversion_rate, 2 );
 
-						echo '<div class="mwb_upsell_stats_conversion_rate"><p>' . esc_html( $conversion_rate ) . esc_html__( '%', 'woo-one-click-upsell-funnel' ) . '</p><div>';
+						echo '<div class="wps_upsell_stats_conversion_rate"><p>' . esc_html( $conversion_rate ) . esc_html__( '%', 'woo-one-click-upsell-funnel' ) . '</p><div>';
 
 						?>
 
@@ -173,7 +173,7 @@ $funnels_list = get_option( 'mwb_wocuf_funnels_list' );
 
 						$funnel_total_sales = number_format( (float) $funnel_total_sales, 2 );
 
-						echo '<div class="mwb_upsell_stats_total_sales"><p>' . esc_html( get_woocommerce_currency_symbol() ) . esc_html( $funnel_total_sales ) . '</p><div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo '<div class="wps_upsell_stats_total_sales"><p>' . esc_html( get_woocommerce_currency_symbol() ) . esc_html( $funnel_total_sales ) . '</p><div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 						?>
 

@@ -348,7 +348,7 @@ function wps_upsell_lite_gutenberg_offer_content() {
 		<!-- /wp:spacer -->
 
 		<!-- wp:html -->
-		<div class="mwb_upsell_default_offer_image">[mwb_upsell_image]</div>
+		<div class="wps_upsell_default_offer_image">[mwb_upsell_image]</div>
 		<!-- /wp:html -->
 
 		<!-- wp:spacer {"height":20} -->
@@ -360,7 +360,7 @@ function wps_upsell_lite_gutenberg_offer_content() {
 		<!-- /wp:heading -->
 
 		<!-- wp:html -->
-		<div class="mwb_upsell_default_offer_description">[mwb_upsell_desc]</div>
+		<div class="wps_upsell_default_offer_description">[mwb_upsell_desc]</div>
 		<!-- /wp:html -->
 
 		<!-- wp:heading {"level":3,"align":"center"} -->
@@ -372,19 +372,19 @@ function wps_upsell_lite_gutenberg_offer_content() {
 		<!-- /wp:spacer -->
 
 		<!-- wp:html -->
-		<div class="mwb_upsell_default_offer_variations">[mwb_upsell_variations]</div>
+		<div class="wps_upsell_default_offer_variations">[mwb_upsell_variations]</div>
 		<!-- /wp:html -->
 
-		<!-- wp:button {"customBackgroundColor":"#78c900","align":"center","className":"mwb_upsell_default_offer_buy_now"} -->
-		<div class="wp-block-button aligncenter mwb_upsell_default_offer_buy_now"><a class="wp-block-button__link has-background" href="[mwb_upsell_yes]" style="background-color:#78c900">Add this to my Order</a></div>
+		<!-- wp:button {"customBackgroundColor":"#78c900","align":"center","className":"wps_upsell_default_offer_buy_now"} -->
+		<div class="wp-block-button aligncenter wps_upsell_default_offer_buy_now"><a class="wp-block-button__link has-background" href="[mwb_upsell_yes]" style="background-color:#78c900">Add this to my Order</a></div>
 		<!-- /wp:button -->
 
 		<!-- wp:spacer {"height":25} -->
 		<div style="height:25px" aria-hidden="true" class="wp-block-spacer"></div>
 		<!-- /wp:spacer -->
 
-		<!-- wp:button {"customBackgroundColor":"#e50000","align":"center","className":"mwb_upsell_default_offer_no_thanks"} -->
-		<div class="wp-block-button aligncenter mwb_upsell_default_offer_no_thanks"><a class="wp-block-button__link has-background" href="[mwb_upsell_no]" style="background-color:#e50000">No thanks</a></div>
+		<!-- wp:button {"customBackgroundColor":"#e50000","align":"center","className":"wps_upsell_default_offer_no_thanks"} -->
+		<div class="wp-block-button aligncenter wps_upsell_default_offer_no_thanks"><a class="wp-block-button__link has-background" href="[mwb_upsell_no]" style="background-color:#e50000">No thanks</a></div>
 		<!-- /wp:button -->
 
 		<!-- wp:html -->
