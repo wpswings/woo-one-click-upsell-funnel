@@ -14,14 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( class_exists( 'Mwb_Upsell_Report_Sales_By_Funnel' ) ) {
+if ( class_exists( 'WPS_Upsell_Report_Sales_By_Funnel' ) ) {
 	return;
 }
 
 /**
- * Mwb_Upsell_Report_Sales_By_Funnel.
+ * WPS_Upsell_Report_Sales_By_Funnel.
  */
-class Mwb_Upsell_Report_Sales_By_Funnel {
+class WPS_Upsell_Report_Sales_By_Funnel {
 
 	/**
 	 * Upsell Funnel ID for operations.

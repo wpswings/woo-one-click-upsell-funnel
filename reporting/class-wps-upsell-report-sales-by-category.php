@@ -14,14 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( class_exists( 'Mwb_Upsell_Report_Sales_By_Category' ) ) {
+if ( class_exists( 'WPS_Upsell_Report_Sales_By_Category' ) ) {
 	return;
 }
 
 /**
- * Mwb_Upsell_Report_Sales_By_Category.
+ * WPS_Upsell_Report_Sales_By_Category.
  */
-class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
+class WPS_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 
 	/**
 	 * Chart colors.

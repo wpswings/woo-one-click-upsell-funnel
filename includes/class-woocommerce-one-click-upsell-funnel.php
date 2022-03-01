@@ -151,8 +151,8 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		 * The file responsible for Upsell Widgets added within every page builder.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'page-builders/class-wps-upsell-widget-loader.php';
-		if ( class_exists( 'Mwb_Upsell_Widget_Loader' ) ) {
-			Mwb_Upsell_Widget_Loader::get_instance();
+		if ( class_exists( 'WPS_Upsell_Widget_Loader' ) ) {
+			WPS_Upsell_Widget_Loader::get_instance();
 		}
 
 	}

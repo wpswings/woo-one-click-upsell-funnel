@@ -96,7 +96,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 		wp_localize_script(
 			'woocommerce-one-click-upsell-public-script',
-			'mwb_upsell_public',
+			'wps_upsell_public',
 			array(
 				'alert_preview_title'    => esc_html__( 'One Click Upsell', 'woo-one-click-upsell-funnel' ),
 				'alert_preview_content'  => esc_html__( 'This is Preview Mode, please checkout to see Live Offers.', 'woo-one-click-upsell-funnel' ),
@@ -564,7 +564,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		update_post_meta( $order_id, 'mwb_upsell_funnel_id', $funnel_id );
 
 		// Add Funnel Triggered count and Offer View Count for the current Funnel.
-		$sales_by_funnel = new Mwb_Upsell_Report_Sales_By_Funnel( $funnel_id );
+		$sales_by_funnel = new WPS_Upsell_Report_Sales_By_Funnel( $funnel_id );
 		$sales_by_funnel->add_funnel_triggered_count();
 		$sales_by_funnel->add_offer_view_count();
 
@@ -635,7 +635,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			}
 
 			// Add Offer Reject Count for the current Funnel.
-			$sales_by_funnel = new Mwb_Upsell_Report_Sales_By_Funnel( $funnel_id );
+			$sales_by_funnel = new WPS_Upsell_Report_Sales_By_Funnel( $funnel_id );
 			$sales_by_funnel->add_offer_reject_count();
 
 			$wps_wocuf_pro_all_funnels = get_option( 'mwb_wocuf_funnels_list', array() );
@@ -741,7 +741,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				}
 
 				// Add Offer View Count for the current Funnel.
-				$sales_by_funnel = new Mwb_Upsell_Report_Sales_By_Funnel( $funnel_id );
+				$sales_by_funnel = new WPS_Upsell_Report_Sales_By_Funnel( $funnel_id );
 				$sales_by_funnel->add_offer_view_count();
 
 				wp_redirect( $url ); //phpcs:ignore
@@ -822,7 +822,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 					$product = $wps_wocuf_pro_original_offered_product;
 
 					if ( ! $wps_wocuf_pro_original_offered_product->is_type( 'variable' ) ) {
-						$wps_wocuf_pro_offered_product = $this->mwb_wocuf_pro_change_offered_product_price( $wps_wocuf_pro_original_offered_product, $wps_wocuf_pro_offered_discount[ $offer_id ] );
+						$wps_wocuf_pro_offered_product = $this->wps_wocuf_pro_change_offered_product_price( $wps_wocuf_pro_original_offered_product, $wps_wocuf_pro_offered_discount[ $offer_id ] );
 
 						$product = $wps_wocuf_pro_offered_product;
 					}
@@ -1079,7 +1079,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 						$wps_wocuf_pro_offered_discount = ! empty( $wps_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] : '';
 
-						$upsell_product = $this->mwb_wocuf_pro_change_offered_product_price( $upsell_product, $wps_wocuf_pro_offered_discount );
+						$upsell_product = $this->wps_wocuf_pro_change_offered_product_price( $upsell_product, $wps_wocuf_pro_offered_discount );
 
 						if ( $is_product_with_variations ) {
 
@@ -1101,7 +1101,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 						$upsell_item_id = $order->add_product( $upsell_product, $offer_quantity );
 
 						// Add Offer Accept Count for the current Funnel.
-						$sales_by_funnel = new Mwb_Upsell_Report_Sales_By_Funnel( $funnel_id );
+						$sales_by_funnel = new WPS_Upsell_Report_Sales_By_Funnel( $funnel_id );
 						$sales_by_funnel->add_offer_accept_count();
 
 						$target_item_id = get_post_meta( $order_id, '__smart_offer_upgrade_target_key', true );
@@ -1242,7 +1242,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 						}
 
 						// Add Offer View Count for the current Funnel.
-						$sales_by_funnel = new Mwb_Upsell_Report_Sales_By_Funnel( $funnel_id );
+						$sales_by_funnel = new WPS_Upsell_Report_Sales_By_Funnel( $funnel_id );
 						$sales_by_funnel->add_offer_view_count();
 
 						wp_redirect( $url ); //phpcs:ignore
@@ -1893,7 +1893,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				// Apply discount on product.
 				if ( ! empty( $upsell_offered_discount ) ) {
 
-					$upsell_product = $this->mwb_wocuf_pro_change_offered_product_price( $upsell_product, $upsell_offered_discount );
+					$upsell_product = $this->wps_wocuf_pro_change_offered_product_price( $upsell_product, $upsell_offered_discount );
 				} else {
 					$upsell_product->set_price( 0 );
 				}
@@ -2147,7 +2147,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			$atts
 		);
 
-		return $this->mwb_wocuf_pro_custom_page_offer_price_for_all(
+		return $this->wps_wocuf_pro_custom_page_offer_price_for_all(
 			array(
 				'style' => $atts['style'],
 				'class' => $atts['class'],
@@ -2172,7 +2172,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			$atts
 		);
 
-		return $this->mwb_wocuf_pro_custom_page_yes_link_for_all(
+		return $this->wps_wocuf_pro_custom_page_yes_link_for_all(
 			array(
 				'style' => $atts['style'],
 				'class' => $atts['class'],
@@ -2197,7 +2197,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			$atts
 		);
 
-		return $this->mwb_wocuf_pro_custom_page_order_details_link_for_all(
+		return $this->wps_wocuf_pro_custom_page_order_details_link_for_all(
 			array(
 				'style' => $atts['style'],
 				'class' => $atts['class'],
@@ -2314,7 +2314,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 			$wps_wocuf_pro_original_offered_product = wc_get_product( $wps_wocuf_pro_single_offered_product );
 
-			$wps_wocuf_pro_offered_product = $this->mwb_wocuf_pro_change_offered_product_price( $wps_wocuf_pro_original_offered_product, $wps_wocuf_pro_offered_discount[ $offer_id ] );
+			$wps_wocuf_pro_offered_product = $this->wps_wocuf_pro_change_offered_product_price( $wps_wocuf_pro_original_offered_product, $wps_wocuf_pro_offered_discount[ $offer_id ] );
 
 			$product = $wps_wocuf_pro_offered_product;
 
@@ -2400,7 +2400,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 			$wps_wocuf_pro_original_offered_product = wc_get_product( $wps_wocuf_pro_single_offered_product );
 
-			$wps_wocuf_pro_offered_product = $this->mwb_wocuf_pro_change_offered_product_price( $wps_wocuf_pro_original_offered_product, $wps_wocuf_pro_offered_discount[ $offer_id ] );
+			$wps_wocuf_pro_offered_product = $this->wps_wocuf_pro_change_offered_product_price( $wps_wocuf_pro_original_offered_product, $wps_wocuf_pro_offered_discount[ $offer_id ] );
 
 			$product = $wps_wocuf_pro_offered_product;
 
@@ -2447,7 +2447,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			$atts
 		);
 
-		return $this->mwb_wocuf_pro_custom_page_no_link_for_all(
+		return $this->wps_wocuf_pro_custom_page_no_link_for_all(
 			array(
 				'style' => $atts['style'],
 				'class' => $atts['class'],
@@ -2761,7 +2761,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		if ( $upsell_purchased ) {
 
 			// Add Funnel Success count and Total Sales for the current Funnel.
-			$sales_by_funnel = new Mwb_Upsell_Report_Sales_By_Funnel( $funnel_id );
+			$sales_by_funnel = new WPS_Upsell_Report_Sales_By_Funnel( $funnel_id );
 
 			$sales_by_funnel->add_funnel_success_count();
 			$sales_by_funnel->add_funnel_total_sales( $upsell_item_total );

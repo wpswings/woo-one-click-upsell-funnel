@@ -1033,7 +1033,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 		$report_file      = ! empty( $report_type ) ? str_replace( '_', '-', $report_type ) : '';
 		$preformat_string = ! empty( $report_type ) ? ucwords( str_replace( '_', ' ', $report_type ) ) : '';
-		$class_name       = ! empty( $preformat_string ) ? 'Mwb_Upsell_Report_' . str_replace( ' ', '_', $preformat_string ) : '';
+		$class_name       = ! empty( $preformat_string ) ? 'WPS_Upsell_Report_' . str_replace( ' ', '_', $preformat_string ) : '';
 
 		/**
 		 * The file responsible for defining reporting.
