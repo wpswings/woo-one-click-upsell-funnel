@@ -174,10 +174,10 @@ class WPS_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 							'function' => '',
 							'name'     => 'post_date',
 						),
-						'mwb_wocuf_upsell_order' => array(
+						'wps_wocuf_upsell_order' => array(
 							'type'     => 'meta',
 							'function' => '',
-							'name'     => 'mwb_wocuf_pro_upsell_meta',
+							'name'     => 'wps_wocuf_pro_upsell_meta',
 						),
 						'is_upsell_purchase'     => array(
 							'type'            => 'order_item_meta',

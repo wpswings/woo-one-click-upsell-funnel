@@ -71,10 +71,10 @@ class WPS_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 						'function' => '',
 						'name'     => 'post_date',
 					),
-					'mwb_wocuf_upsell_order' => array(
+					'wps_wocuf_upsell_order' => array(
 						'type'     => 'meta',
 						'function' => '',
-						'name'     => 'mwb_wocuf_pro_upsell_meta',
+						'name'     => 'wps_wocuf_pro_upsell_meta',
 					),
 					'is_upsell_purchase'     => array(
 						'type'            => 'order_item_meta',
@@ -108,10 +108,10 @@ class WPS_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 						'function' => '',
 						'name'     => 'post_date',
 					),
-					'mwb_wocuf_upsell_order' => array(
+					'wps_wocuf_upsell_order' => array(
 						'type'     => 'meta',
 						'function' => '',
-						'name'     => 'mwb_wocuf_pro_upsell_meta',
+						'name'     => 'wps_wocuf_pro_upsell_meta',
 					),
 					'is_upsell_purchase'     => array(
 						'type'            => 'order_item_meta',
@@ -150,10 +150,10 @@ class WPS_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 							'function'        => 'SUM',
 							'name'            => 'order_item_count',
 						),
-						'mwb_wocuf_upsell_order' => array(
+						'wps_wocuf_upsell_order' => array(
 							'type'     => 'meta',
 							'function' => '',
-							'name'     => 'mwb_wocuf_pro_upsell_meta',
+							'name'     => 'wps_wocuf_pro_upsell_meta',
 						),
 						'is_upsell_purchase'     => array(
 							'type'            => 'order_item_meta',
@@ -205,10 +205,10 @@ class WPS_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 						'function' => 'SUM',
 						'name'     => 'total_shipping_tax',
 					),
-					'mwb_wocuf_upsell_order' => array(
+					'wps_wocuf_upsell_order' => array(
 						'type'     => 'meta',
 						'function' => '',
-						'name'     => 'mwb_wocuf_pro_upsell_meta',
+						'name'     => 'wps_wocuf_pro_upsell_meta',
 					),
 					'is_upsell_purchase'     => array(
 						'type'            => 'order_item_meta',

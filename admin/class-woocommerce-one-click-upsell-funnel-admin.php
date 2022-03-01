@@ -192,12 +192,6 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 				wp_enqueue_script( 'wps-wocuf-pro-color-picker-handle', plugin_dir_url( __FILE__ ) . 'js/wps_wocuf_pro_color_picker_handle.js', array( 'jquery', 'wp-color-picker' ), $this->version, true );
 			}
-
-			if ( isset( $_GET['section'] ) && 'mwb-wocuf-pro-paypal-gateway' === sanitize_text_field( wp_unslash( $_GET['section'] ) ) ) {
-				wp_enqueue_script( 'wps-wocuf-pro-paypal-script', plugin_dir_url( __FILE__ ) . 'js/woocommerce_one_click_upsell_funnel_pro-paypal.js', array( 'jquery' ), $this->version, false );
-			} elseif ( isset( $_GET['section'] ) && 'mwb-wocuf-pro-stripe-gateway' === sanitize_text_field( wp_unslash( $_GET['section'] ) ) ) {
-				wp_enqueue_script( 'wps-wocuf-pro-stripe-script', plugin_dir_url( __FILE__ ) . 'js/woocommerce_one_click_upsell_funnel_pro-stripe.js', array( 'jquery' ), $this->version, false );
-			}
 		}
 	}
 
@@ -813,7 +807,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 			$vars = array_merge(
 				$vars,
 				array(
-					'meta_key' => 'mwb_wocuf_upsell_order'    // phpcs:ignore
+					'meta_key' => 'wps_wocuf_upsell_order'    // phpcs:ignore
 				)
 			);
 
@@ -822,7 +816,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 			$vars = array_merge(
 				$vars,
 				array(
-					'meta_key'     => 'mwb_wocuf_upsell_order',    // phpcs:ignore
+					'meta_key'     => 'wps_wocuf_upsell_order',    // phpcs:ignore
 					'meta_compare' => 'NOT EXISTS',
 				)
 			);
