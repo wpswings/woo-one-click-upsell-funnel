@@ -78,15 +78,6 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 			if ( 'toplevel_page_wps-wocuf-setting' === $pagescreen || '1-click-upsell_page_wps-wocuf-setting-tracking' === $pagescreen ) {
 
-				add_filter(
-					'doing_it_wrong_trigger_error',
-					function () {
-						return false;
-					},
-					10,
-					0
-				);
-
 				wp_register_style( 'wps_wocuf_pro_admin_style', plugin_dir_url( __FILE__ ) . 'css/woocommerce_one_click_upsell_funnel_pro-admin.css', array(), $this->version, 'all' );
 
 				wp_enqueue_style( 'wps_wocuf_pro_admin_style' );
@@ -137,68 +128,69 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 				wp_register_script( 'woocommerce_admin', WC()->plugin_url() . '/assets/js/admin/woocommerce_admin.js', array( 'jquery', 'jquery-blockui', 'jquery-ui-sortable', 'jquery-ui-widget', 'jquery-ui-core', 'jquery-tiptip', 'wc-enhanced-select' ), WC_VERSION, false );
 
 				wp_register_script( 'jquery-tiptip', WC()->plugin_url() . '/assets/js/jquery-tiptip/jquery.tipTip.js', array( 'jquery' ), WC_VERSION, true );
-					$locale  = localeconv();
-					$decimal = isset( $locale['decimal_point'] ) ? $locale['decimal_point'] : '.';
-					$params  = array(
-						/* translators: %s: decimal */
-						'i18n_decimal_error'               => sprintf( esc_html__( 'Please enter in decimal (%s) format without thousand separators.', 'woo-one-click-upsell-funnel' ), $decimal ),
-						/* translators: %s: price decimal separator */
-						'i18n_mon_decimal_error'           => sprintf( esc_html__( 'Please enter in monetary decimal (%s) format without thousand separators and currency symbols.', 'woo-one-click-upsell-funnel' ), wc_get_price_decimal_separator() ),
-						'i18n_country_iso_error'           => esc_html__( 'Please enter in country code with two capital letters.', 'woo-one-click-upsell-funnel' ),
-						'i18_sale_less_than_regular_error' => esc_html__( 'Please enter in a value less than the regular price.', 'woo-one-click-upsell-funnel' ),
-						'decimal_point'                    => $decimal,
-						'mon_decimal_point'                => wc_get_price_decimal_separator(),
-						'strings'                          => array(
-							'import_products' => esc_html__( 'Import', 'woo-one-click-upsell-funnel' ),
-							'export_products' => esc_html__( 'Export', 'woo-one-click-upsell-funnel' ),
-						),
-						'urls'                             => array(
-							'import_products' => esc_url_raw( admin_url( 'edit.php?post_type=product&page=product_importer' ) ),
-							'export_products' => esc_url_raw( admin_url( 'edit.php?post_type=product&page=product_exporter' ) ),
-						),
-					);
+				$locale  = localeconv();
+				$decimal = isset( $locale['decimal_point'] ) ? $locale['decimal_point'] : '.';
+				$params  = array(
+					/* translators: %s: decimal */
+					'i18n_decimal_error'               => sprintf( esc_html__( 'Please enter in decimal (%s) format without thousand separators.', 'woo-one-click-upsell-funnel' ), $decimal ),
+					/* translators: %s: price decimal separator */
+					'i18n_mon_decimal_error'           => sprintf( esc_html__( 'Please enter in monetary decimal (%s) format without thousand separators and currency symbols.', 'woo-one-click-upsell-funnel' ), wc_get_price_decimal_separator() ),
+					'i18n_country_iso_error'           => esc_html__( 'Please enter in country code with two capital letters.', 'woo-one-click-upsell-funnel' ),
+					'i18_sale_less_than_regular_error' => esc_html__( 'Please enter in a value less than the regular price.', 'woo-one-click-upsell-funnel' ),
+					'decimal_point'                    => $decimal,
+					'mon_decimal_point'                => wc_get_price_decimal_separator(),
+					'strings'                          => array(
+						'import_products' => esc_html__( 'Import', 'woo-one-click-upsell-funnel' ),
+						'export_products' => esc_html__( 'Export', 'woo-one-click-upsell-funnel' ),
+					),
+					'urls'                             => array(
+						'import_products' => esc_url_raw( admin_url( 'edit.php?post_type=product&page=product_importer' ) ),
+						'export_products' => esc_url_raw( admin_url( 'edit.php?post_type=product&page=product_exporter' ) ),
+					),
+				);
 
-					wp_localize_script(
-						'wps_wocuf_pro_admin_script',
-						'wps_wocuf_pro_ajaxurl',
-						array(
-							'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-						)
-					);
+				wp_localize_script(
+					'wps_wocuf_pro_admin_script',
+					'wps_wocuf_pro_ajaxurl',
+					array(
+						'ajaxUrl'  => admin_url( 'admin-ajax.php' ),
+						'migrator' => $this->get_migration_status(),
+					)
+				);
 
-					wp_enqueue_script( 'wps_wocuf_pro_admin_script' );
+				wp_enqueue_script( 'wps_wocuf_pro_admin_script' );
 
-					wp_localize_script( 'woocommerce_admin', 'woocommerce_admin', $params );
+				wp_localize_script( 'woocommerce_admin', 'woocommerce_admin', $params );
 
-					wp_enqueue_script( 'woocommerce_admin' );
+				wp_enqueue_script( 'woocommerce_admin' );
 
-					$wocuf_js_data = array(
-						'ajaxurl'         => admin_url( 'admin-ajax.php' ),
-						'auth_nonce'      => wp_create_nonce( 'wps_wocuf_nonce' ),
-						'current_version' => WPS_WOCUF_VERSION,
-					);
+				$wocuf_js_data = array(
+					'ajaxurl'         => admin_url( 'admin-ajax.php' ),
+					'auth_nonce'      => wp_create_nonce( 'wps_wocuf_nonce' ),
+					'current_version' => WPS_WOCUF_VERSION,
+				);
 
-					wp_enqueue_script( 'wps-wocuf-pro-add_new-offer-script', plugin_dir_url( __FILE__ ) . 'js/wps_wocuf_pro_add_new_offer_script.js', array( 'woocommerce_admin', 'wc-enhanced-select' ), $this->version, false );
+				wp_enqueue_script( 'wps-wocuf-pro-add_new-offer-script', plugin_dir_url( __FILE__ ) . 'js/wps_wocuf_pro_add_new_offer_script.js', array( 'woocommerce_admin', 'wc-enhanced-select' ), $this->version, false );
 
-					wp_localize_script( 'wps-wocuf-pro-add_new-offer-script', 'wps_upsell_lite_js_obj', $wocuf_js_data );
+				wp_localize_script( 'wps-wocuf-pro-add_new-offer-script', 'wps_upsell_lite_js_obj', $wocuf_js_data );
 
-					$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
-					$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
+				$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
+				$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
 
-					if ( ! $id_nonce_verified ) {
-						wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
-					}
+				if ( ! $id_nonce_verified ) {
+					wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
+				}
 
-					if ( ! empty( $_GET['wps-upsell-offer-section'] ) ) {
+				if ( ! empty( $_GET['wps-upsell-offer-section'] ) ) {
 
-						$upsell_offer_section['value'] = isset( $_GET['wps-upsell-offer-section'] ) ? sanitize_text_field( wp_unslash( $_GET['wps-upsell-offer-section'] ) ) : '' ;
+					$upsell_offer_section['value'] = isset( $_GET['wps-upsell-offer-section'] ) ? sanitize_text_field( wp_unslash( $_GET['wps-upsell-offer-section'] ) ) : '';
 
-						wp_localize_script( 'wps-wocuf-pro-add_new-offer-script', 'offer_section_obj', $upsell_offer_section );
-					}
+					wp_localize_script( 'wps-wocuf-pro-add_new-offer-script', 'offer_section_obj', $upsell_offer_section );
+				}
 
-					wp_enqueue_style( 'wp-color-picker' );
+				wp_enqueue_style( 'wp-color-picker' );
 
-					wp_enqueue_script( 'wps-wocuf-pro-color-picker-handle', plugin_dir_url( __FILE__ ) . 'js/wps_wocuf_pro_color_picker_handle.js', array( 'jquery', 'wp-color-picker' ), $this->version, true );
+				wp_enqueue_script( 'wps-wocuf-pro-color-picker-handle', plugin_dir_url( __FILE__ ) . 'js/wps_wocuf_pro_color_picker_handle.js', array( 'jquery', 'wp-color-picker' ), $this->version, true );
 			}
 
 			if ( isset( $_GET['section'] ) && 'mwb-wocuf-pro-paypal-gateway' === sanitize_text_field( wp_unslash( $_GET['section'] ) ) ) {
@@ -343,7 +335,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 					$funnel_offer_template_section_html = $this->get_funnel_offer_template_section_html( $funnel_offer_post_id, $offer_index, $funnel_id );
 
 					// Save an array of all created upsell offer-page post ids.
-					$upsell_offer_post_ids = get_option( 'mwb_upsell_lite_offer_post_ids', array() );
+					$upsell_offer_post_ids = WPS_Upsell_Data_Handler::get_option( 'mwb_upsell_lite_offer_post_ids', array() );
 
 					$upsell_offer_post_ids[] = $funnel_offer_post_id;
 
@@ -357,7 +349,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 			}
 
 			// Get all funnels.
-			$wps_wocuf_pro_funnel = get_option( 'mwb_wocuf_funnels_list' );
+			$wps_wocuf_pro_funnel = WPS_Upsell_Data_Handler::get_option( 'mwb_wocuf_funnels_list' );
 
 			// Funnel offers array.
 			$wps_wocuf_pro_offers_to_add = isset( $wps_wocuf_pro_funnel[ $funnel_id ]['mwb_wocuf_applied_offer_number'] ) ? $wps_wocuf_pro_funnel[ $funnel_id ]['mwb_wocuf_applied_offer_number'] : array();
@@ -745,7 +737,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 	 */
 	public function wps_wocuf_pro_populate_upsell_order_column( $column, $post_id ) {
 
-		$upsell_order = get_post_meta( $post_id, 'mwb_wocuf_upsell_order', true );
+		$upsell_order = WPS_Upsell_Data_Handler::get_post_meta( $post_id, 'mwb_wocuf_upsell_order', true );
 
 		switch ( $column ) {
 
@@ -887,7 +879,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 		// Only do this for pages.
 		if ( ! empty( $typenow ) && 'page' === $typenow ) {
 
-			$saved_offer_post_ids = get_option( 'mwb_upsell_lite_offer_post_ids', array() );
+			$saved_offer_post_ids = WPS_Upsell_Data_Handler::get_option( 'mwb_upsell_lite_offer_post_ids', array() );
 
 			if ( ! empty( $saved_offer_post_ids ) && is_array( $saved_offer_post_ids ) && count( $saved_offer_post_ids ) ) {
 
@@ -1065,6 +1057,15 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 	public function add_submenu_page_reporting_callback() {
 
 		require_once WPS_WOCUF_DIRPATH . 'admin/reporting-and-tracking/upsell-reporting-and-tracking-config-panel.php';
+	}
+
+	/**
+	 * Is instant Migration needed or not.
+	 *
+	 * @since       3.1.4
+	 */
+	public function get_migration_status() {
+		return true;
 	}
 
 	// End of class.
