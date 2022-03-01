@@ -51,7 +51,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Activator {
 
 			$wps_wocuf_pro_post = wp_insert_post( $wps_wocuf_pro_funnel_page );
 
-			update_option( 'mwb_wocuf_pro_funnel_default_offer_page', $wps_wocuf_pro_post );
+			update_option( 'wps_wocuf_pro_funnel_default_offer_page', $wps_wocuf_pro_post );
 		}
 
 		// Schedule cron for Order payment process If redirected for upsell and still pending.

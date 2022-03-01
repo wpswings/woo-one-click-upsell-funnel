@@ -63,8 +63,8 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 	$wps_upsell_global_options['global_custom_js'] = ! empty( $_POST['global_custom_js'] ) ? sanitize_textarea_field( wp_unslash( $_POST['global_custom_js'] ) ) : '';
 
 	// Save.
-	update_option( 'mwb_wocuf_enable_plugin', $wps_upsell_global_options['mwb_wocuf_enable_plugin'] );
-	update_option( 'mwb_upsell_lite_global_options', $wps_upsell_global_options );
+	update_option( 'wps_wocuf_enable_plugin', $wps_upsell_global_options['mwb_wocuf_enable_plugin'] );
+	update_option( 'wps_upsell_lite_global_options', $wps_upsell_global_options );
 
 	?>
 

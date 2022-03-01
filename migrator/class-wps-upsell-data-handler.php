@@ -106,7 +106,7 @@ class WPS_Upsell_Data_Handler {
 			return false;
 		}
 
-		// Key doesn't contains wps as new key.
+		// Key doesn't contains wps as a key.
 		if ( false !== strpos( 'wps', $meta_key ) ) {
 			return get_post_meta( $post_id, $meta_key, true );
 		}
@@ -122,12 +122,12 @@ class WPS_Upsell_Data_Handler {
 
 			// prepare same key as old.
 			$mwb_meta_key   = str_replace( 'wps', 'mwb', $meta_key );
-			$mwb_meta_value = get_post_meta( $post_id, $wps_meta_key, true );
+			$mwb_meta_value = get_post_meta( $post_id, $mwb_meta_key, true );
 
 			// Update the same value to wps key.
 			if ( ! empty( $mwb_meta_value ) ) {
 				update_post_meta( $post_id, $meta_key, $mwb_meta_value );
-				delete_meta( $mwb_meta_key );
+				delete_post_meta( $post_id, $mwb_meta_key );
 			}
 
 			// return saved value.

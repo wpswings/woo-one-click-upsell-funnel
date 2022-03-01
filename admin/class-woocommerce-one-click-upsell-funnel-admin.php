@@ -339,7 +339,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 					$upsell_offer_post_ids[] = $funnel_offer_post_id;
 
-					update_option( 'mwb_upsell_lite_offer_post_ids', $upsell_offer_post_ids );
+					update_option( 'wps_upsell_lite_offer_post_ids', $upsell_offer_post_ids );
 
 				}
 			} else { // When Elementor is not active.
@@ -737,7 +737,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 	 */
 	public function wps_wocuf_pro_populate_upsell_order_column( $column, $post_id ) {
 
-		$upsell_order = WPS_Upsell_Data_Handler::get_post_meta( $post_id, 'mwb_wocuf_upsell_order', true );
+		$upsell_order = WPS_Upsell_Data_Handler::get_post_meta( $post_id, 'wps_wocuf_upsell_order', true );
 
 		switch ( $column ) {
 

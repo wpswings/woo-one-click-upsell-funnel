@@ -45,7 +45,7 @@ if ( ! empty( $_GET['del_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_u
 			}
 		}
 
-		update_option( 'mwb_wocuf_funnels_list', $wps_wocuf_pro_funnels );
+		update_option( 'wps_wocuf_funnels_list', $wps_wocuf_pro_funnels );
 
 		wp_redirect( esc_url( admin_url( 'admin.php?page=wps-wocuf-setting&tab=funnels-list' ) ) ); //phpcs:ignore
 		exit();

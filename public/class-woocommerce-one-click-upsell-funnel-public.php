@@ -281,7 +281,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 													ksort( $sorted_upsell_funnels );
 
-													update_option( 'mwb_wocuf_funnels_list', $sorted_upsell_funnels );
+													update_option( 'wps_wocuf_funnels_list', $sorted_upsell_funnels );
 												}
 											}
 										}
@@ -523,7 +523,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				if ( $funnel_redirect ) {
 
 					// For cron - Upsell is initialized. As just going to Redirect.
-					update_post_meta( $order_id, 'mwb_ocufp_upsell_initialized', time() );
+					update_post_meta( $order_id, 'wps_ocufp_upsell_initialized', time() );
 
 					$this->initial_redirection_to_upsell_offer_and_triggers( $order_id, $wps_wocuf_pro_single_funnel, $result );
 
@@ -558,10 +558,10 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		 * This can be used to track upsell orders in which browser window was closed
 		 * and other purposes.
 		 */
-		update_post_meta( $order_id, 'mwb_upsell_order_started', 'true' );
+		update_post_meta( $order_id, 'wps_upsell_order_started', 'true' );
 
 		// Add Upsell Funnel Id to order meta for Sales by Funnel tracking.
-		update_post_meta( $order_id, 'mwb_upsell_funnel_id', $funnel_id );
+		update_post_meta( $order_id, 'wps_upsell_funnel_id', $funnel_id );
 
 		// Add Funnel Triggered count and Offer View Count for the current Funnel.
 		$sales_by_funnel = new WPS_Upsell_Report_Sales_By_Funnel( $funnel_id );
@@ -1128,7 +1128,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 						$order->calculate_totals();
 
 						// Upsell product was purchased for this order.
-						update_post_meta( $order_id, 'mwb_wocuf_upsell_order', 'true' );
+						update_post_meta( $order_id, 'wps_wocuf_upsell_order', 'true' );
 
 					}
 
@@ -1298,7 +1298,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 			foreach ( $pending_upsell_orders as $order_id ) {
 
-				$time_stamp = WPS_Upsell_Data_Handler::get_post_meta( $order_id, 'mwb_ocufp_upsell_initialized', true );
+				$time_stamp = WPS_Upsell_Data_Handler::get_post_meta( $order_id, 'wps_ocufp_upsell_initialized', true );
 
 				if ( ! empty( $time_stamp ) ) {
 
@@ -1317,7 +1317,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 						$order = new WC_Order( $order_id );
 
 						// For cron - Payment initialized.
-						delete_post_meta( $order_id, 'mwb_ocufp_upsell_initialized' );
+						delete_post_meta( $order_id, 'wps_ocufp_upsell_initialized' );
 
 						$payment_method = $order->get_payment_method();
 
@@ -1344,10 +1344,10 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		}
 
 		// As Order Payment is initiated so Expire further Offers.
-		update_post_meta( $order_id, '_mwb_upsell_expire_further_offers', true );
+		update_post_meta( $order_id, '_wps_upsell_expire_further_offers', true );
 
 		// Delete Offers Processed data as now we don't need it.
-		delete_post_meta( $order_id, '_mwb_upsell_offers_processed' );
+		delete_post_meta( $order_id, '_wps_upsell_offers_processed' );
 
 		$result = $this->upsell_order_final_payment( $order_id );
 
@@ -1393,7 +1393,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		$order = new WC_Order( $order_id );
 
 		// For cron - Payment initialized.
-		delete_post_meta( $order_id, 'mwb_ocufp_upsell_initialized' );
+		delete_post_meta( $order_id, 'wps_ocufp_upsell_initialized' );
 
 		$payment_method = $order->get_payment_method();
 
@@ -1777,7 +1777,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				$offer_page_id = $post->ID;
 
 				// Means this is Upsell offer template.
-				$funnel_data = WPS_Upsell_Data_Handler::get_post_meta( $offer_page_id, 'mwb_upsell_funnel_data', true );
+				$funnel_data = WPS_Upsell_Data_Handler::get_post_meta( $offer_page_id, 'wps_upsell_funnel_data', true );
 
 				if ( ! empty( $funnel_data ) && is_array( $funnel_data ) ) {
 
@@ -2692,7 +2692,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 */
 	private function expire_further_offers( $order_id = 0 ) {
 
-		$expire_further_offers = WPS_Upsell_Data_Handler::get_post_meta( $order_id, '_mwb_upsell_expire_further_offers', true );
+		$expire_further_offers = WPS_Upsell_Data_Handler::get_post_meta( $order_id, '_wps_upsell_expire_further_offers', true );
 
 		if ( ! empty( $expire_further_offers ) ) {
 
@@ -2717,7 +2717,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		}
 
 		// Process once and only for Upsells.
-		$funnel_id = WPS_Upsell_Data_Handler::get_post_meta( $order_id, 'mwb_upsell_funnel_id', true );
+		$funnel_id = WPS_Upsell_Data_Handler::get_post_meta( $order_id, 'wps_upsell_funnel_id', true );
 
 		if ( empty( $funnel_id ) ) {
 
@@ -2771,7 +2771,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		 * Delete Funnel id so that this is processed only once and funnel id
 		 * might change so no need to associate the order with it.
 		 */
-		delete_post_meta( $order_id, 'mwb_upsell_funnel_id' );
+		delete_post_meta( $order_id, 'wps_upsell_funnel_id' );
 	}
 
 	/**
@@ -2948,7 +2948,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		$order_id = wc_get_order_id_by_order_key( $order_key );
 
 		// Process once and only for Upsells.
-		if ( empty( $order_id ) || ! WPS_Upsell_Data_Handler::get_post_meta( $order_id, 'mwb_upsell_order_started', true ) === true || ! empty( WPS_Upsell_Data_Handler::get_post_meta( $order_id, '_mwb_upsell_ga_parent_tracked', true ) ) || WPS_Upsell_Data_Handler::get_post_meta( $order_id, '_mwb_upsell_ga_tracked', true ) === 1 ) {
+		if ( empty( $order_id ) || ! WPS_Upsell_Data_Handler::get_post_meta( $order_id, 'wps_upsell_order_started', true ) === true || ! empty( WPS_Upsell_Data_Handler::get_post_meta( $order_id, '_wps_upsell_ga_parent_tracked', true ) ) || WPS_Upsell_Data_Handler::get_post_meta( $order_id, '_wps_upsell_ga_tracked', true ) === 1 ) {
 
 			return;
 		}
@@ -3113,7 +3113,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 		wc_enqueue_js( $ga_purchase_js );
 
-		update_post_meta( $order_id, '_mwb_upsell_ga_parent_tracked', $upsell_ga_parent_tracked_data );
+		update_post_meta( $order_id, '_wps_upsell_ga_parent_tracked', $upsell_ga_parent_tracked_data );
 	}
 
 	/**
@@ -3125,7 +3125,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 */
 	public function add_ga_purchase_event( $order_id = '' ) {
 
-		if ( empty( $order_id ) || WPS_Upsell_Data_Handler::get_post_meta( $order_id, '_mwb_upsell_ga_tracked', true ) === 1 ) {
+		if ( empty( $order_id ) || WPS_Upsell_Data_Handler::get_post_meta( $order_id, '_wps_upsell_ga_tracked', true ) === 1 ) {
 
 			return;
 		}
@@ -3179,7 +3179,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		}
 
 		$upsell_ga_parent_tracked      = false;
-		$upsell_ga_parent_tracked_data = WPS_Upsell_Data_Handler::get_post_meta( $order_id, '_mwb_upsell_ga_parent_tracked', true );
+		$upsell_ga_parent_tracked_data = WPS_Upsell_Data_Handler::get_post_meta( $order_id, '_wps_upsell_ga_parent_tracked', true );
 
 		if ( ! empty( $upsell_ga_parent_tracked_data ) && is_array( $upsell_ga_parent_tracked_data ) ) {
 
@@ -3252,7 +3252,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			// No Upsell Items so return as no need to send any data to GA as it's already tracked.
 			if ( false === $upsell_purchase ) {
 
-				update_post_meta( $order_id, '_mwb_upsell_ga_tracked', 1 );
+				update_post_meta( $order_id, '_wps_upsell_ga_tracked', 1 );
 				return;
 			}
 		}
@@ -3330,7 +3330,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 		wc_enqueue_js( $ga_purchase_js );
 
-		update_post_meta( $order_id, '_mwb_upsell_ga_tracked', 1 );
+		update_post_meta( $order_id, '_wps_upsell_ga_tracked', 1 );
 	}
 
 	/**
@@ -3352,7 +3352,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		$order_id = wc_get_order_id_by_order_key( $order_key );
 
 		// Process once and only for Upsells.
-		if ( empty( $order_id ) || ! WPS_Upsell_Data_Handler::get_post_meta( $order_id, 'mwb_upsell_order_started', true ) === true || ! empty( WPS_Upsell_Data_Handler::get_post_meta( $order_id, '_mwb_upsell_fbp_parent_tracked', true ) ) || WPS_Upsell_Data_Handler::get_post_meta( $order_id, '_mwb_upsell_fbp_tracked', true ) === true ) {
+		if ( empty( $order_id ) || ! WPS_Upsell_Data_Handler::get_post_meta( $order_id, 'wps_upsell_order_started', true ) === true || ! empty( WPS_Upsell_Data_Handler::get_post_meta( $order_id, '_wps_upsell_fbp_parent_tracked', true ) ) || WPS_Upsell_Data_Handler::get_post_meta( $order_id, '_wps_upsell_fbp_tracked', true ) === true ) {
 
 			return;
 		}
@@ -3406,7 +3406,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			'order_total' => $order_total,
 		);
 
-		update_post_meta( $order_id, '_mwb_upsell_fbp_parent_tracked', $upsell_fb_pixel_parent_tracked_data );
+		update_post_meta( $order_id, '_wps_upsell_fbp_parent_tracked', $upsell_fb_pixel_parent_tracked_data );
 	}
 
 	/**
@@ -3418,7 +3418,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 */
 	public function add_fb_pixel_purchase_event( $order_id = '' ) {
 
-		if ( empty( $order_id ) || true === WPS_Upsell_Data_Handler::get_post_meta( $order_id, '_mwb_upsell_fbp_tracked', true ) ) {
+		if ( empty( $order_id ) || true === WPS_Upsell_Data_Handler::get_post_meta( $order_id, '_wps_upsell_fbp_tracked', true ) ) {
 
 			return;
 		}
@@ -3438,7 +3438,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		$product_ids  = array();
 
 		$upsell_fb_pixel_parent_tracked      = false;
-		$upsell_fb_pixel_parent_tracked_data = WPS_Upsell_Data_Handler::get_post_meta( $order_id, '_mwb_upsell_fbp_parent_tracked', true );
+		$upsell_fb_pixel_parent_tracked_data = WPS_Upsell_Data_Handler::get_post_meta( $order_id, '_wps_upsell_fbp_parent_tracked', true );
 
 		if ( ! empty( $upsell_fb_pixel_parent_tracked_data ) && is_array( $upsell_fb_pixel_parent_tracked_data ) ) {
 
@@ -3476,7 +3476,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			// No Upsell Items so return as no need to send any data.
 			if ( false === $upsell_purchase ) {
 
-				update_post_meta( $order_id, '_mwb_upsell_fbp_tracked', true );
+				update_post_meta( $order_id, '_wps_upsell_fbp_tracked', true );
 				return;
 			}
 		}
@@ -3508,7 +3508,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 		wc_enqueue_js( $fb_purchase_js );
 
-		update_post_meta( $order_id, '_mwb_upsell_fbp_tracked', true );
+		update_post_meta( $order_id, '_wps_upsell_fbp_tracked', true );
 	}
 
 
@@ -4011,13 +4011,13 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			return;
 		}
 
-		$offers_processed = WPS_Upsell_Data_Handler::get_post_meta( $order_id, '_mwb_upsell_offers_processed', true );
+		$offers_processed = WPS_Upsell_Data_Handler::get_post_meta( $order_id, '_wps_upsell_offers_processed', true );
 
 		$offers_processed = ! empty( $offers_processed ) ? $offers_processed : array();
 
 		$offers_processed[ $current_offer_id ] = $url;
 
-		update_post_meta( $order_id, '_mwb_upsell_offers_processed', $offers_processed );
+		update_post_meta( $order_id, '_wps_upsell_offers_processed', $offers_processed );
 	}
 
 	/**
@@ -4034,7 +4034,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			return;
 		}
 
-		$offers_processed = WPS_Upsell_Data_Handler::get_post_meta( $order_id, '_mwb_upsell_offers_processed', true );
+		$offers_processed = WPS_Upsell_Data_Handler::get_post_meta( $order_id, '_wps_upsell_offers_processed', true );
 
 		if ( ! empty( $offers_processed ) && is_array( $offers_processed ) ) {
 

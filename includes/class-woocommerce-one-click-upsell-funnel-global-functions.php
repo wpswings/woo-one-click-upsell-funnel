@@ -100,7 +100,7 @@ function wps_upsell_lite_get_product_discount() {
 		global $post;
 		$offer_page_id = $post->ID;
 
-		$funnel_data = WPS_Upsell_Data_Handler::get_post_meta( $offer_page_id, 'mwb_upsell_funnel_data', true );
+		$funnel_data = WPS_Upsell_Data_Handler::get_post_meta( $offer_page_id, 'wps_upsell_funnel_data', true );
 
 		$product_found_in_funnel = false;
 
@@ -246,7 +246,7 @@ function wps_upsell_lite_offer_page_posts_deletion() {
 
 		// Update saved offer post ids array.
 		$saved_offer_post_ids = array_values( $saved_offer_post_ids );
-		update_option( 'mwb_upsell_lite_offer_post_ids', $saved_offer_post_ids );
+		update_option( 'wps_upsell_lite_offer_post_ids', $saved_offer_post_ids );
 
 	}
 }

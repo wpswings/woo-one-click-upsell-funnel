@@ -268,11 +268,11 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 			$wps_wocuf_pro_created_funnels = $wps_wocuf_pro_created_funnels + $wps_wocuf_pro_funnel_series;
 		}
 
-		update_option( 'mwb_wocuf_funnels_list', $wps_wocuf_pro_created_funnels );
+		update_option( 'wps_wocuf_funnels_list', $wps_wocuf_pro_created_funnels );
 
 	} else { // If there are no other funnels.
 
-		update_option( 'mwb_wocuf_funnels_list', $wps_wocuf_pro_funnel_series );
+		update_option( 'wps_wocuf_funnels_list', $wps_wocuf_pro_funnel_series );
 	}
 
 	// After funnel is saved.

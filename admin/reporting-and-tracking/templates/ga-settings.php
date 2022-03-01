@@ -49,7 +49,7 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 		);
 
 		// Save.
-		update_option( 'mwb_upsell_analytics_configuration', $wps_upsell_analytics_options );
+		update_option( 'wps_upsell_analytics_configuration', $wps_upsell_analytics_options );
 	}
 
 	?>
