@@ -110,7 +110,7 @@ class WPS_Upsell_Widget_Loader {
 			}
 		}
 
-		$this->active_builders = apply_filters( 'mwb_active_page_builders', $builders );
+		$this->active_builders = apply_filters( 'wps_active_page_builders', $builders );
 
 		return $this->active_builders;
 	}

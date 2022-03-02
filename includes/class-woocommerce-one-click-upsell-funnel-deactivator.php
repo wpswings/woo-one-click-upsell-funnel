@@ -37,9 +37,9 @@ class Woocommerce_One_Click_Upsell_Funnel_Deactivator {
 		}
 
 		// Clear scheduled cron for User update.
-		if ( wp_next_scheduled( 'mwb_wocuf_lite_order_cron_schedule' ) ) {
+		if ( wp_next_scheduled( 'wps_wocuf_lite_order_cron_schedule' ) ) {
 
-			wp_clear_scheduled_hook( 'mwb_wocuf_lite_order_cron_schedule' );
+			wp_clear_scheduled_hook( 'wps_wocuf_lite_order_cron_schedule' );
 		}
 
 	}

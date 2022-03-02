@@ -128,7 +128,7 @@ class Upsell_Price extends Widget_Base {
 			array(
 				'label'   => '',
 				'type'    => Controls_Manager::WYSIWYG,
-				'default' => '<p>Special Offer Price</p><p>[mwb_upsell_price]</p>',
+				'default' => '<p>Special Offer Price</p><p>[wps_upsell_price]</p>',
 			)
 		);
 

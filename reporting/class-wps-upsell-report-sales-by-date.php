@@ -80,7 +80,7 @@ class WPS_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 						'type'            => 'order_item_meta',
 						'order_item_type' => 'line_item',
 						'function'        => '',
-						'name'            => 'mwb_wocuf_pro_upsell_item_meta',
+						'name'            => 'wps_wocuf_pro_upsell_item_meta',
 					),
 				),
 				'group_by'     => $this->group_by_query,
@@ -117,7 +117,7 @@ class WPS_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 						'type'            => 'order_item_meta',
 						'order_item_type' => 'line_item',
 						'function'        => '',
-						'name'            => 'mwb_wocuf_pro_upsell_item_meta',
+						'name'            => 'wps_wocuf_pro_upsell_item_meta',
 					),
 				),
 				'where'        => array(
@@ -159,7 +159,7 @@ class WPS_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 							'type'            => 'order_item_meta',
 							'order_item_type' => 'line_item',
 							'function'        => '',
-							'name'            => 'mwb_wocuf_pro_upsell_item_meta',
+							'name'            => 'wps_wocuf_pro_upsell_item_meta',
 						),
 					),
 					'where'        => array(
@@ -214,7 +214,7 @@ class WPS_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 						'type'            => 'order_item_meta',
 						'order_item_type' => 'line_item',
 						'function'        => '',
-						'name'            => 'mwb_wocuf_pro_upsell_item_meta',
+						'name'            => 'wps_wocuf_pro_upsell_item_meta',
 					),
 					'post_date'              => array(
 						'type'     => 'post_data',
@@ -257,7 +257,7 @@ class WPS_Upsell_Report_Sales_By_Date extends WC_Admin_Report {
 		$this->report_data->total_items = absint( array_sum( wp_list_pluck( $this->report_data->order_items, 'order_item_count' ) ) );
 
 		// 3rd party filtering of report data
-		$this->report_data = apply_filters( 'mwb_wocuf_pro_upsell_sales_report_data', $this->report_data );
+		$this->report_data = apply_filters( 'wps_wocuf_pro_upsell_sales_report_data', $this->report_data );
 	}
 
 	/**

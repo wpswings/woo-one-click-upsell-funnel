@@ -91,9 +91,9 @@ function wps_upsell_lite_get_product_discount() {
 
 		$wps_wocuf_pro_all_funnels = WPS_Upsell_Data_Handler::get_option( 'wps_wocuf_funnels_list' );
 
-		$wps_wocuf_pro_offered_discount = $wps_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ];
+		$wps_wocuf_pro_offered_discount = $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_offer_discount_price'][ $offer_id ];
 
-		$wps_wocuf_pro_offered_discount = ! empty( $wps_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] : '';
+		$wps_wocuf_pro_offered_discount = ! empty( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_offer_discount_price'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_offer_discount_price'][ $offer_id ] : '';
 	} elseif ( current_user_can( 'manage_options' ) ) {
 
 		// Get funnel and offer id from current offer page post id.
@@ -114,7 +114,7 @@ function wps_upsell_lite_get_product_discount() {
 				$wps_wocuf_pro_all_funnels = WPS_Upsell_Data_Handler::get_option( 'wps_wocuf_funnels_list' );
 
 				// When New offer is added ( Not saved ) so only at that time it will return 50%.
-				$wps_wocuf_pro_offered_discount = isset( $wps_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['mwb_wocuf_offer_discount_price'][ $offer_id ] : '50%';
+				$wps_wocuf_pro_offered_discount = isset( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_offer_discount_price'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_offer_discount_price'][ $offer_id ] : '50%';
 
 				$wps_wocuf_pro_offered_discount = ! empty( $wps_wocuf_pro_offered_discount ) ? $wps_wocuf_pro_offered_discount : '';
 			}
@@ -166,9 +166,9 @@ function wps_upsell_lite_get_pid_from_url_params() {
  */
 function wps_upsell_lite_live_offer_url_params() {
 
-	$add_live_nonce = ! empty( $_POST['mwb_wocuf_after_post_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_after_post_nonce'] ) ) : '';
+	$add_live_nonce = ! empty( $_POST['wps_wocuf_after_post_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_wocuf_after_post_nonce'] ) ) : '';
 
-	wp_verify_nonce( $add_live_nonce, 'mwb_wocuf_after_field_post_nonce' );
+	wp_verify_nonce( $add_live_nonce, 'wps_wocuf_after_field_post_nonce' );
 
 	$params['status'] = 'false';
 
@@ -222,9 +222,9 @@ function wps_upsell_lite_offer_page_posts_deletion() {
 		// Retrieve all valid( present in funnel ) offer assigned page post ids.
 		foreach ( $all_created_funnels as $funnel_id => $single_funnel ) {
 
-			if ( ! empty( $single_funnel['mwb_upsell_post_id_assigned'] ) && is_array( $single_funnel['mwb_upsell_post_id_assigned'] ) && count( $single_funnel['mwb_upsell_post_id_assigned'] ) ) {
+			if ( ! empty( $single_funnel['wps_upsell_post_id_assigned'] ) && is_array( $single_funnel['wps_upsell_post_id_assigned'] ) && count( $single_funnel['wps_upsell_post_id_assigned'] ) ) {
 
-				foreach ( $single_funnel['mwb_upsell_post_id_assigned'] as $offer_post_id ) {
+				foreach ( $single_funnel['wps_upsell_post_id_assigned'] as $offer_post_id ) {
 
 					if ( ! empty( $offer_post_id ) ) {
 
@@ -262,7 +262,7 @@ function wps_upsell_lite_supported_gateways() {
 		'cod', // Cash on delivery.
 	);
 
-	return apply_filters( 'mwb_upsell_lite_supported_gateways', $supported_gateways );
+	return apply_filters( 'wps_upsell_lite_supported_gateways', $supported_gateways );
 }
 
 /**
@@ -277,7 +277,7 @@ function wps_upsell_lite_payment_gateways_with_parent_secured() {
 		'cod', // Cash on delivery.
 	);
 
-	return apply_filters( 'mwb_upsell_lite_pg_with_parent_secured', $gateways_with_parent_secured );
+	return apply_filters( 'wps_upsell_lite_pg_with_parent_secured', $gateways_with_parent_secured );
 }
 
 /**
@@ -348,7 +348,7 @@ function wps_upsell_lite_gutenberg_offer_content() {
 		<!-- /wp:spacer -->
 
 		<!-- wp:html -->
-		<div class="wps_upsell_default_offer_image">[mwb_upsell_image]</div>
+		<div class="wps_upsell_default_offer_image">[wps_upsell_image]</div>
 		<!-- /wp:html -->
 
 		<!-- wp:spacer {"height":20} -->
@@ -356,15 +356,15 @@ function wps_upsell_lite_gutenberg_offer_content() {
 		<!-- /wp:spacer -->
 
 		<!-- wp:heading {"align":"center"} -->
-		<h2 style="text-align:center">[mwb_upsell_title]</h2>
+		<h2 style="text-align:center">[wps_upsell_title]</h2>
 		<!-- /wp:heading -->
 
 		<!-- wp:html -->
-		<div class="wps_upsell_default_offer_description">[mwb_upsell_desc]</div>
+		<div class="wps_upsell_default_offer_description">[wps_upsell_desc]</div>
 		<!-- /wp:html -->
 
 		<!-- wp:heading {"level":3,"align":"center"} -->
-		<h3 style="text-align:center">Special Offer Price : [mwb_upsell_price]</h3>
+		<h3 style="text-align:center">Special Offer Price : [wps_upsell_price]</h3>
 		<!-- /wp:heading -->
 
 		<!-- wp:spacer {"height":15} -->
@@ -372,11 +372,11 @@ function wps_upsell_lite_gutenberg_offer_content() {
 		<!-- /wp:spacer -->
 
 		<!-- wp:html -->
-		<div class="wps_upsell_default_offer_variations">[mwb_upsell_variations]</div>
+		<div class="wps_upsell_default_offer_variations">[wps_upsell_variations]</div>
 		<!-- /wp:html -->
 
 		<!-- wp:button {"customBackgroundColor":"#78c900","align":"center","className":"wps_upsell_default_offer_buy_now"} -->
-		<div class="wp-block-button aligncenter wps_upsell_default_offer_buy_now"><a class="wp-block-button__link has-background" href="[mwb_upsell_yes]" style="background-color:#78c900">Add this to my Order</a></div>
+		<div class="wp-block-button aligncenter wps_upsell_default_offer_buy_now"><a class="wp-block-button__link has-background" href="[wps_upsell_yes]" style="background-color:#78c900">Add this to my Order</a></div>
 		<!-- /wp:button -->
 
 		<!-- wp:spacer {"height":25} -->
@@ -384,11 +384,11 @@ function wps_upsell_lite_gutenberg_offer_content() {
 		<!-- /wp:spacer -->
 
 		<!-- wp:button {"customBackgroundColor":"#e50000","align":"center","className":"wps_upsell_default_offer_no_thanks"} -->
-		<div class="wp-block-button aligncenter wps_upsell_default_offer_no_thanks"><a class="wp-block-button__link has-background" href="[mwb_upsell_no]" style="background-color:#e50000">No thanks</a></div>
+		<div class="wp-block-button aligncenter wps_upsell_default_offer_no_thanks"><a class="wp-block-button__link has-background" href="[wps_upsell_no]" style="background-color:#e50000">No thanks</a></div>
 		<!-- /wp:button -->
 
 		<!-- wp:html -->
-		[mwb_upsell_default_offer_identification]
+		[wps_upsell_default_offer_identification]
 		<!-- /wp:html -->
 
 		<!-- wp:spacer {"height":50} -->
@@ -398,7 +398,7 @@ function wps_upsell_lite_gutenberg_offer_content() {
 		return $post_content;
 }
 
-if ( ! function_exists( 'mwb_upsell_lite_get_first_offer_after_redirect' ) ) {
+if ( ! function_exists( 'wps_upsell_lite_get_first_offer_after_redirect' ) ) {
 
 	/**
 	 * Get Order id from key.

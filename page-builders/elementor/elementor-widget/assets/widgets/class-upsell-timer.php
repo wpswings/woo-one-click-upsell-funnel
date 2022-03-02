@@ -121,8 +121,8 @@ class Upsell_Timer extends Widget_Base {
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'placeholder' => '[mwb_upsell_timer]',
-				'default'     => '[mwb_upsell_timer minutes=5]',
+				'placeholder' => '[wps_upsell_timer]',
+				'default'     => '[wps_upsell_timer minutes=5]',
 			)
 		);
 

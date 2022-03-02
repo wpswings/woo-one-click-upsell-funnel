@@ -121,8 +121,8 @@ class Upsell_Image extends Widget_Base {
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'placeholder' => '[mwb_upsell_image]',
-				'default'     => '[mwb_upsell_image]',
+				'placeholder' => '[wps_upsell_image]',
+				'default'     => '[wps_upsell_image]',
 			)
 		);
 

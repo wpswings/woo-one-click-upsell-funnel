@@ -132,7 +132,7 @@ class Upsell_Title extends Widget_Base {
 					'active' => true,
 				),
 				'placeholder' => esc_html__( 'Enter your title', 'woo-one-click-upsell-funnel' ),
-				'default'     => esc_html__( '[mwb_upsell_title]', 'woo-one-click-upsell-funnel' ),
+				'default'     => esc_html__( '[wps_upsell_title]', 'woo-one-click-upsell-funnel' ),
 			)
 		);
 

@@ -16,12 +16,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Save settings on Save changes.
-if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
+if ( isset( $_POST['wps_wocuf_pro_common_settings_save'] ) ) {
 
 	// Nonce verification.
-	$wps_wocuf_pro_create_nonce = ! empty( $_POST['mwb_wocuf_pro_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_pro_nonce'] ) ) : '';
+	$wps_wocuf_pro_create_nonce = ! empty( $_POST['wps_wocuf_pro_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_wocuf_pro_nonce'] ) ) : '';
 
-	if ( empty( $wps_wocuf_pro_create_nonce ) || ! wp_verify_nonce( $wps_wocuf_pro_create_nonce, 'mwb_wocuf_pro_setting_nonce' ) ) : ?>
+	if ( empty( $wps_wocuf_pro_create_nonce ) || ! wp_verify_nonce( $wps_wocuf_pro_create_nonce, 'wps_wocuf_pro_setting_nonce' ) ) : ?>
 
 		<div class="notice notice-error is-dismissible wps-noticee">
 			<p><?php esc_html_e( 'Sorry, due to some security issue, your settings could not be saved. Please reload the page.', 'woo-one-click-upsell-funnel' ); ?></p>
@@ -74,7 +74,7 @@ $wps_upsell_ga_analytics_config = ! empty( $wps_upsell_analytics_options['google
 // Form Fields Mapping.
 $google_analytics_fields = array(
 
-	'mwb_wocuf_pixel_account_id'      => array(
+	'wps_wocuf_pixel_account_id'      => array(
 		'name'                  => 'pixel_account_id',
 		'label'                 => 'Fb Pixel ID',
 		'type'                  => 'text',
@@ -85,7 +85,7 @@ $google_analytics_fields = array(
 		'value'                 => ! empty( $wps_upsell_fb_pixel_config['pixel_account_id'] ) ? sanitize_text_field( wp_unslash( $wps_upsell_fb_pixel_config['pixel_account_id'] ) ) : '',
 	),
 
-	'mwb_wocuf_enable_pixel_basecode' => array(
+	'wps_wocuf_enable_pixel_basecode' => array(
 		'name'                  => 'enable_pixel_basecode',
 		'label'                 => 'Enable Pixel Base code',
 		'type'                  => 'checkbox',
@@ -95,7 +95,7 @@ $google_analytics_fields = array(
 		'value'                 => ! empty( $wps_upsell_fb_pixel_config['enable_pixel_basecode'] ) ? sanitize_text_field( wp_unslash( $wps_upsell_fb_pixel_config['enable_pixel_basecode'] ) ) : 'no',
 	),
 
-	'mwb_wocuf_enable_purchase_event' => array(
+	'wps_wocuf_enable_purchase_event' => array(
 		'name'                  => 'enable_purchase_event',
 		'label'                 => 'Enable Purchase Event',
 		'type'                  => 'checkbox',
@@ -269,7 +269,7 @@ $google_analytics_fields = array(
 			<tbody>
 
 				<!-- Nonce field here. -->
-				<?php wp_nonce_field( 'mwb_wocuf_pro_setting_nonce', 'mwb_wocuf_pro_nonce' ); ?>
+				<?php wp_nonce_field( 'wps_wocuf_pro_setting_nonce', 'wps_wocuf_pro_nonce' ); ?>
 
 				<?php if ( ! empty( $google_analytics_fields ) && is_array( $google_analytics_fields ) ) : ?>
 					<?php foreach ( $google_analytics_fields as $field_id => $field_data ) : ?>
@@ -311,7 +311,7 @@ $google_analytics_fields = array(
 
 					<?php endforeach; ?>
 				<?php endif; ?>
-				<?php do_action( 'mwb_wocuf_pro_create_more_settings' ); ?>
+				<?php do_action( 'wpswocuf_pro_create_more_settings' ); ?>
 			</tbody>
 		</table>
 	</div>

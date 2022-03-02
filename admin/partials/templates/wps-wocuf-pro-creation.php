@@ -75,49 +75,49 @@ if ( ! isset( $_GET['funnel_id'] ) ) {
 }
 
 // When save changes is clicked.
-if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
+if ( isset( $_POST['wps_wocuf_pro_creation_setting_save'] ) ) {
 
-	unset( $_POST['mwb_wocuf_pro_creation_setting_save'] );
+	unset( $_POST['wps_wocuf_pro_creation_setting_save'] );
 
 	// Nonce verification.
-	check_admin_referer( 'mwb_wocuf_pro_creation_nonce', 'mwb_wocuf_pro_nonce' );
+	check_admin_referer( 'wps_wocuf_pro_creation_nonce', 'wps_wocuf_pro_nonce' );
 
 	// Saved funnel id.
-	$wps_wocuf_pro_funnel_id = ! empty( $_POST['mwb_wocuf_funnel_id'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_funnel_id'] ) ) : '';
+	$wps_wocuf_pro_funnel_id = ! empty( $_POST['wps_wocuf_funnel_id'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_wocuf_funnel_id'] ) ) : '';
 
-	if ( empty( $_POST['mwb_wocuf_target_pro_ids'] ) ) {
+	if ( empty( $_POST['wps_wocuf_target_pro_ids'] ) ) {
 
-		$_POST['mwb_wocuf_target_pro_ids'] = array();
+		$_POST['wps_wocuf_target_pro_ids'] = array();
 	}
 
-	if ( empty( $_POST['mwb_upsell_funnel_status'] ) ) {
+	if ( empty( $_POST['wps_upsell_funnel_status'] ) ) {
 
-		$_POST['mwb_upsell_funnel_status'] = 'no';
+		$_POST['wps_upsell_funnel_status'] = 'no';
 	}
 
-	if ( empty( $_POST['mwb_upsell_offer_image'] ) ) {
+	if ( empty( $_POST['wps_upsell_offer_image'] ) ) {
 
-		$_POST['mwb_upsell_offer_image'] = array();
+		$_POST['wps_upsell_offer_image'] = array();
 	}
 
 	/**
 	 * Handle the schedule here.
 	 */
-	if ( empty( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ) {
+	if ( empty( $_POST['wps_wocuf_pro_funnel_schedule'] ) ) {
 
-		if ( isset( $_POST['mwb_wocuf_pro_funnel_schedule'] ) && (int) '0' === (int) $_POST['mwb_wocuf_pro_funnel_schedule'] ) {
+		if ( isset( $_POST['wps_wocuf_pro_funnel_schedule'] ) && (int) '0' === (int) $_POST['wps_wocuf_pro_funnel_schedule'] ) {
 
 			// Zero is marked as sunday.
-			$_POST['mwb_wocuf_pro_funnel_schedule'] = array( '0' );
+			$_POST['wps_wocuf_pro_funnel_schedule'] = array( '0' );
 
 		} else {
 
 			// Empty is marked as daily.
-			$_POST['mwb_wocuf_pro_funnel_schedule'] = array( '7' );
+			$_POST['wps_wocuf_pro_funnel_schedule'] = array( '7' );
 		}
-	} elseif ( ! is_array( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ) {
+	} elseif ( ! is_array( $_POST['wps_wocuf_pro_funnel_schedule'] ) ) {
 
-		$_POST['mwb_wocuf_pro_funnel_schedule'] = array( sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ) );
+		$_POST['wps_wocuf_pro_funnel_schedule'] = array( sanitize_text_field( wp_unslash( $_POST['wps_wocuf_pro_funnel_schedule'] ) ) );
 	}
 
 	$wps_wocuf_pro_funnel        = array();
@@ -128,82 +128,82 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 	 */
 
 	// Sanitize and strip slashes for normal single value feilds.
-	$wps_wocuf_pro_funnel['mwb_upsell_funnel_status'] = ! empty( $_POST['mwb_upsell_funnel_status'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_upsell_funnel_status'] ) ) : '';
-	$wps_wocuf_pro_funnel['mwb_wocuf_funnel_id']      = ! empty( $_POST['mwb_wocuf_funnel_id'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_funnel_id'] ) ) : '';
-	$wps_wocuf_pro_funnel['mwb_upsell_fsav3']         = ! empty( $_POST['mwb_upsell_fsav3'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_upsell_fsav3'] ) ) : '';
-	$wps_wocuf_pro_funnel['mwb_wocuf_funnel_name']    = ! empty( $_POST['mwb_wocuf_funnel_name'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_funnel_name'] ) ) : '';
+	$wps_wocuf_pro_funnel['wps_upsell_funnel_status'] = ! empty( $_POST['wps_upsell_funnel_status'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_upsell_funnel_status'] ) ) : '';
+	$wps_wocuf_pro_funnel['wps_wocuf_funnel_id']      = ! empty( $_POST['wps_wocuf_funnel_id'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_wocuf_funnel_id'] ) ) : '';
+	$wps_wocuf_pro_funnel['wps_upsell_fsav3']         = ! empty( $_POST['wps_upsell_fsav3'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_upsell_fsav3'] ) ) : '';
+	$wps_wocuf_pro_funnel['wps_wocuf_funnel_name']    = ! empty( $_POST['wps_wocuf_funnel_name'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_wocuf_funnel_name'] ) ) : '';
 
 	// Sanitize and strip slashes for Funnel Target products.
-	$target_pro_schedule_array = ! empty( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_pro_funnel_schedule'] ) ) : array();
+	$target_pro_schedule_array = ! empty( $_POST['wps_wocuf_pro_funnel_schedule'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['wps_wocuf_pro_funnel_schedule'] ) ) : array();
 
-	$wps_wocuf_pro_funnel['mwb_wocuf_pro_funnel_schedule'] = ! empty( $target_pro_schedule_array ) ? $target_pro_schedule_array : array();
+	$wps_wocuf_pro_funnel['wps_wocuf_pro_funnel_schedule'] = ! empty( $target_pro_schedule_array ) ? $target_pro_schedule_array : array();
 
 
 	// Sanitize and strip slashes for Funnel Target products.
-	$target_pro_ids_array = ! empty( $_POST['mwb_wocuf_target_pro_ids'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_target_pro_ids'] ) ) : array();
+	$target_pro_ids_array = ! empty( $_POST['wps_wocuf_target_pro_ids'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['wps_wocuf_target_pro_ids'] ) ) : array();
 
-	$wps_wocuf_pro_funnel['mwb_wocuf_target_pro_ids'] = ! empty( $target_pro_ids_array ) ? $target_pro_ids_array : array();
+	$wps_wocuf_pro_funnel['wps_wocuf_target_pro_ids'] = ! empty( $target_pro_ids_array ) ? $target_pro_ids_array : array();
 
 
 	// Sanitize and strip slashes for Funnel Offer products.
-	$products_in_offer_array = ! empty( $_POST['mwb_wocuf_products_in_offer'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_products_in_offer'] ) ) : '';
+	$products_in_offer_array = ! empty( $_POST['wps_wocuf_products_in_offer'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['wps_wocuf_products_in_offer'] ) ) : '';
 
-	$wps_wocuf_pro_funnel['mwb_wocuf_products_in_offer'] = ! empty( $products_in_offer_array ) ? $products_in_offer_array : array();
+	$wps_wocuf_pro_funnel['wps_wocuf_products_in_offer'] = ! empty( $products_in_offer_array ) ? $products_in_offer_array : array();
 
 
 	// Sanitize and strip slashes for Funnel Offer price.
-	$offer_discount_price_array = ! empty( $_POST['mwb_wocuf_offer_discount_price'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_offer_discount_price'] ) ) : '';
+	$offer_discount_price_array = ! empty( $_POST['wps_wocuf_offer_discount_price'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['wps_wocuf_offer_discount_price'] ) ) : '';
 
-	$wps_wocuf_pro_funnel['mwb_wocuf_offer_discount_price'] = ! empty( $offer_discount_price_array ) ? $offer_discount_price_array : array();
+	$wps_wocuf_pro_funnel['wps_wocuf_offer_discount_price'] = ! empty( $offer_discount_price_array ) ? $offer_discount_price_array : array();
 
 
 	// Sanitize and strip slashes for attached offer on yes array.
-	$attached_offers_on_buy = ! empty( $_POST['mwb_wocuf_attached_offers_on_buy'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_attached_offers_on_buy'] ) ) : '';
+	$attached_offers_on_buy = ! empty( $_POST['wps_wocuf_attached_offers_on_buy'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['wps_wocuf_attached_offers_on_buy'] ) ) : '';
 
-	$wps_wocuf_pro_funnel['mwb_wocuf_attached_offers_on_buy'] = $attached_offers_on_buy;
+	$wps_wocuf_pro_funnel['wps_wocuf_attached_offers_on_buy'] = $attached_offers_on_buy;
 
 
 	// Sanitize and strip slashes for attached offer on no array.
-	$attached_offers_on_no = ! empty( $_POST['mwb_wocuf_attached_offers_on_no'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_attached_offers_on_no'] ) ) : '';
+	$attached_offers_on_no = ! empty( $_POST['wps_wocuf_attached_offers_on_no'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['wps_wocuf_attached_offers_on_no'] ) ) : '';
 
-	$wps_wocuf_pro_funnel['mwb_wocuf_attached_offers_on_no'] = $attached_offers_on_no;
+	$wps_wocuf_pro_funnel['wps_wocuf_attached_offers_on_no'] = $attached_offers_on_no;
 
 
 	// Sanitize and strip slashes for attached offer template array.
-	$offer_template = ! empty( $_POST['mwb_wocuf_pro_offer_template'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_pro_offer_template'] ) ) : '';
+	$offer_template = ! empty( $_POST['wps_wocuf_pro_offer_template'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['wps_wocuf_pro_offer_template'] ) ) : '';
 
-	$wps_wocuf_pro_funnel['mwb_wocuf_pro_offer_template'] = $offer_template;
+	$wps_wocuf_pro_funnel['wps_wocuf_pro_offer_template'] = $offer_template;
 
 
 	// Sanitize and strip slashes for custom page url array.
-	$offer_custom_page_url = ! empty( $_POST['mwb_wocuf_offer_custom_page_url'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_offer_custom_page_url'] ) ) : '';
+	$offer_custom_page_url = ! empty( $_POST['wps_wocuf_offer_custom_page_url'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['wps_wocuf_offer_custom_page_url'] ) ) : '';
 
 	$offer_custom_page_url = ! empty( $offer_custom_page_url ) ? array_map( 'esc_url', wp_unslash( $offer_custom_page_url ) ) : '';
 
-	$wps_wocuf_pro_funnel['mwb_wocuf_offer_custom_page_url'] = $offer_custom_page_url;
+	$wps_wocuf_pro_funnel['wps_wocuf_offer_custom_page_url'] = $offer_custom_page_url;
 
 
 	// Sanitize and strip slashes for applied offer number.
-	$applied_offer_number = ! empty( $_POST['mwb_wocuf_applied_offer_number'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_wocuf_applied_offer_number'] ) ) : '';
+	$applied_offer_number = ! empty( $_POST['wps_wocuf_applied_offer_number'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['wps_wocuf_applied_offer_number'] ) ) : '';
 
-	$wps_wocuf_pro_funnel['mwb_wocuf_applied_offer_number'] = $applied_offer_number;
+	$wps_wocuf_pro_funnel['wps_wocuf_applied_offer_number'] = $applied_offer_number;
 
 	// Sanitize and strip slashes for page id assigned.
-	$post_id_assigned = ! empty( $_POST['mwb_upsell_post_id_assigned'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_upsell_post_id_assigned'] ) ) : '';
+	$post_id_assigned = ! empty( $_POST['wps_upsell_post_id_assigned'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['wps_upsell_post_id_assigned'] ) ) : '';
 
-	$wps_wocuf_pro_funnel['mwb_upsell_post_id_assigned'] = $post_id_assigned;
+	$wps_wocuf_pro_funnel['wps_upsell_post_id_assigned'] = $post_id_assigned;
 
 	// Since v3.0.0.
 	// Sanitize and strip slashes for Funnel offer custom image.
-	$custom_image_ids_array = ! empty( $_POST['mwb_upsell_offer_image'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['mwb_upsell_offer_image'] ) ) : array();
+	$custom_image_ids_array = ! empty( $_POST['wps_upsell_offer_image'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_POST['wps_upsell_offer_image'] ) ) : array();
 
-	$wps_wocuf_pro_funnel['mwb_upsell_offer_image'] = ! empty( $custom_image_ids_array ) ? $custom_image_ids_array : array();
+	$wps_wocuf_pro_funnel['wps_upsell_offer_image'] = ! empty( $custom_image_ids_array ) ? $custom_image_ids_array : array();
 
-	$wps_wocuf_pro_funnel['mwb_wocuf_global_funnel'] = ! empty( $_POST['mwb_wocuf_global_funnel'] ) ? 'yes' : 'no';
+	$wps_wocuf_pro_funnel['wps_wocuf_global_funnel'] = ! empty( $_POST['wps_wocuf_global_funnel'] ) ? 'yes' : 'no';
 
-	$wps_wocuf_pro_funnel['mwb_wocuf_exclusive_offer'] = ! empty( $_POST['mwb_wocuf_exclusive_offer'] ) ? 'yes' : 'no';
+	$wps_wocuf_pro_funnel['wps_wocuf_exclusive_offer'] = ! empty( $_POST['wps_wocuf_exclusive_offer'] ) ? 'yes' : 'no';
 
-	$wps_wocuf_pro_funnel['mwb_wocuf_smart_offer_upgrade'] = ! empty( $_POST['mwb_wocuf_smart_offer_upgrade'] ) ? 'yes' : 'no';
+	$wps_wocuf_pro_funnel['wps_wocuf_smart_offer_upgrade'] = ! empty( $_POST['wps_wocuf_smart_offer_upgrade'] ) ? 'yes' : 'no';
 
 	// Get all funnels.
 	$wps_wocuf_pro_created_funnels = WPS_Upsell_Data_Handler::get_option( 'wps_wocuf_funnels_list', array() );
@@ -291,7 +291,7 @@ if ( isset( $_POST['mwb_wocuf_pro_creation_setting_save'] ) ) {
 $wps_wocuf_pro_funnel_data = WPS_Upsell_Data_Handler::get_option( 'wps_wocuf_funnels_list', array() );
 
 // Not used anywhere I guess.
-$wps_wocuf_pro_custom_th_page = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_pro_custom_th_page'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_pro_custom_th_page'] : 'off';
+$wps_wocuf_pro_custom_th_page = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_pro_custom_th_page'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_pro_custom_th_page'] : 'off';
 
 $wps_wocuf_pro_funnel_schedule_options = array(
 	'0' => esc_html__( 'Sunday', 'woo-one-click-upsell-funnel' ),
@@ -316,7 +316,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 			<tbody>
 
 				<!-- Nonce field here. -->
-				<?php wp_nonce_field( 'mwb_wocuf_pro_creation_nonce', 'mwb_wocuf_pro_nonce' ); ?>
+				<?php wp_nonce_field( 'wps_wocuf_pro_creation_nonce', 'wps_wocuf_pro_nonce' ); ?>
 
 				<input type="hidden" name="wps_wocuf_funnel_id" value="<?php echo esc_html( $wps_wocuf_pro_funnel_id ); ?>">
 
@@ -325,13 +325,13 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 				<?php
 
-				$funnel_name = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_funnel_name'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_funnel_name'] : esc_html__( 'Funnel', 'woo-one-click-upsell-funnel' ) . " #$wps_wocuf_pro_funnel_id";
+				$funnel_name = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_funnel_name'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_funnel_name'] : esc_html__( 'Funnel', 'woo-one-click-upsell-funnel' ) . " #$wps_wocuf_pro_funnel_id";
 
-				$funnel_status = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_upsell_funnel_status'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_upsell_funnel_status'] : 'no';
+				$funnel_status = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_upsell_funnel_status'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_upsell_funnel_status'] : 'no';
 
 				// Pre v3.0.0 Funnels will be live.
 				// The first condition to ensure funnel is already saved.
-				if ( ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_funnel_name'] ) && empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_upsell_fsav3'] ) ) {
+				if ( ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_funnel_name'] ) && empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_upsell_fsav3'] ) ) {
 
 					$funnel_status = 'yes';
 				}
@@ -426,7 +426,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 						if ( ! empty( $wps_wocuf_pro_funnel_data ) ) {
 
-							$wps_wocuf_pro_target_products = isset( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_target_pro_ids'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_target_pro_ids'] : array();
+							$wps_wocuf_pro_target_products = isset( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_target_pro_ids'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_target_pro_ids'] : array();
 
 							// array_map with absint converts negative array values to positive, so that we dont get negative ids.
 							$wps_wocuf_pro_target_product_ids = ! empty( $wps_wocuf_pro_target_products ) ? array_map( 'absint', $wps_wocuf_pro_target_products ) : null;
@@ -473,12 +473,12 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 							 * After v1.0.0 schedule value will be array.
 							 * Hence, convert earlier version data in array.
 							 */
-							if ( empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) || ! is_array( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) ) {
+							if ( empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_pro_funnel_schedule'] ) || ! is_array( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_pro_funnel_schedule'] ) ) {
 
-								$selected_week = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) ? array( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) : array( '7' );
+								$selected_week = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_pro_funnel_schedule'] ) ? array( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_pro_funnel_schedule'] ) : array( '7' );
 							} else {
 
-								$selected_week = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_pro_funnel_schedule'] : array( '7' );
+								$selected_week = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_pro_funnel_schedule'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_pro_funnel_schedule'] : array( '7' );
 							}
 
 							?>
@@ -508,7 +508,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 						wps_upsell_lite_wc_help_tip( $attribut_description );
 
-						$wps_wocuf_is_global = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_global_funnel'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_global_funnel'] : 'no';
+						$wps_wocuf_is_global = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_global_funnel'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_global_funnel'] : 'no';
 						?>
 
 						<label class="wps_wocuf_pro_enable_plugin_label">
@@ -533,7 +533,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 						wps_upsell_lite_wc_help_tip( $attribut_description );
 
-						$wps_wocuf_is_exclusive = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_exclusive_offer'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_exclusive_offer'] : 'no';
+						$wps_wocuf_is_exclusive = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_exclusive_offer'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_exclusive_offer'] : 'no';
 						?>
 
 						<label class="wps_wocuf_pro_enable_plugin_label">
@@ -558,7 +558,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 						wps_upsell_lite_wc_help_tip( $attribute_description );
 
-						$wps_wocuf_smoff_upgrade = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_smart_offer_upgrade'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_smart_offer_upgrade'] : 'no';
+						$wps_wocuf_smoff_upgrade = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_smart_offer_upgrade'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_smart_offer_upgrade'] : 'no';
 						?>
 
 						<label class="wps_wocuf_pro_enable_plugin_label">
@@ -577,31 +577,31 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 		<?php
 
 		// Funnel Offers array.
-		$wps_wocuf_pro_existing_offers = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_applied_offer_number'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_applied_offer_number'] : '';
+		$wps_wocuf_pro_existing_offers = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_applied_offer_number'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_applied_offer_number'] : '';
 
 		// Array of offers with product Id.
-		$wps_wocuf_pro_product_in_offer = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_products_in_offer'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_products_in_offer'] : '';
+		$wps_wocuf_pro_product_in_offer = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_products_in_offer'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_products_in_offer'] : '';
 
 		// Array of offers with discount.
-		$wps_wocuf_pro_products_discount = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_offer_discount_price'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_offer_discount_price'] : '';
+		$wps_wocuf_pro_products_discount = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_offer_discount_price'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_offer_discount_price'] : '';
 
 		// Array of offers with Buy now go to link.
-		$wps_wocuf_pro_offers_buy_now_offers = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_attached_offers_on_buy'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_attached_offers_on_buy'] : '';
+		$wps_wocuf_pro_offers_buy_now_offers = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_attached_offers_on_buy'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_attached_offers_on_buy'] : '';
 
 		// Array of offers with No thanks go to link.
-		$wps_wocuf_pro_offers_no_thanks_offers = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_attached_offers_on_no'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_attached_offers_on_no'] : '';
+		$wps_wocuf_pro_offers_no_thanks_offers = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_attached_offers_on_no'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_attached_offers_on_no'] : '';
 
 		// Array of offers with active template.
-		$wps_wocuf_pro_offer_active_template = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_pro_offer_template'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_pro_offer_template'] : '';
+		$wps_wocuf_pro_offer_active_template = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_pro_offer_template'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_pro_offer_template'] : '';
 
 		// Array of offers with custom page url.
-		$wps_wocuf_pro_offer_custom_page_url = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_offer_custom_page_url'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_wocuf_offer_custom_page_url'] : '';
+		$wps_wocuf_pro_offer_custom_page_url = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_offer_custom_page_url'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_offer_custom_page_url'] : '';
 
 		// Array of offers with their post id.
-		$post_id_assigned_array = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_upsell_post_id_assigned'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_upsell_post_id_assigned'] : '';
+		$post_id_assigned_array = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_upsell_post_id_assigned'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_upsell_post_id_assigned'] : '';
 
 		// Funnel Offers array.
-		$wps_wocuf_custom_offer_images = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_upsell_offer_image'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['mwb_upsell_offer_image'] : array();
+		$wps_wocuf_custom_offer_images = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_upsell_offer_image'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_upsell_offer_image'] : array();
 
 		// Funnel Offers array.
 		// To be used for showing other offers except for itself in 'buy now' and 'no thanks' go to link.

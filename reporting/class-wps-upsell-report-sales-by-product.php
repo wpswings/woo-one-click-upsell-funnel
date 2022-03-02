@@ -88,7 +88,7 @@ class WPS_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 						'type'            => 'order_item_meta',
 						'order_item_type' => 'line_item',
 						'function'        => '',
-						'name'            => 'mwb_wocuf_pro_upsell_item_meta',
+						'name'            => 'wps_wocuf_pro_upsell_item_meta',
 					),
 				),
 				'where_meta'   => array(
@@ -126,7 +126,7 @@ class WPS_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 							'type'            => 'order_item_meta',
 							'order_item_type' => 'line_item',
 							'function'        => '',
-							'name'            => 'mwb_wocuf_pro_upsell_item_meta',
+							'name'            => 'wps_wocuf_pro_upsell_item_meta',
 						),
 					),
 					'where_meta'   => array(
@@ -527,7 +527,7 @@ class WPS_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 							'type'            => 'order_item_meta',
 							'order_item_type' => 'line_item',
 							'function'        => '',
-							'name'            => 'mwb_wocuf_pro_upsell_item_meta',
+							'name'            => 'wps_wocuf_pro_upsell_item_meta',
 						),
 					),
 					'where_meta'   => array(
@@ -572,7 +572,7 @@ class WPS_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 							'type'            => 'order_item_meta',
 							'order_item_type' => 'line_item',
 							'function'        => '',
-							'name'            => 'mwb_wocuf_pro_upsell_item_meta',
+							'name'            => 'wps_wocuf_pro_upsell_item_meta',
 						),
 					),
 					'where_meta'   => array(

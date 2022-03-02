@@ -19,12 +19,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Save settings on Save changes.
-if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
+if ( isset( $_POST['wps_wocuf_pro_common_settings_save'] ) ) {
 
 	// Nonce verification.
-	$wps_wocuf_pro_create_nonce = ! empty( $_POST['mwb_wocuf_pro_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['mwb_wocuf_pro_nonce'] ) ) : '';
+	$wps_wocuf_pro_create_nonce = ! empty( $_POST['wps_wocuf_pro_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_wocuf_pro_nonce'] ) ) : '';
 
-	if ( empty( $wps_wocuf_pro_create_nonce ) || ! wp_verify_nonce( $wps_wocuf_pro_create_nonce, 'mwb_wocuf_pro_setting_nonce' ) ) {
+	if ( empty( $wps_wocuf_pro_create_nonce ) || ! wp_verify_nonce( $wps_wocuf_pro_create_nonce, 'wps_wocuf_pro_setting_nonce' ) ) {
 
 		esc_html_e( 'Sorry, due to some security issue, your settings could not be saved.', 'woo-one-click-upsell-funnel' );
 		wp_die();
@@ -33,7 +33,7 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 	$wps_upsell_global_options = array();
 
 	// Enable Plugin.
-	$wps_upsell_global_options['mwb_wocuf_enable_plugin'] = ! empty( $_POST['mwb_wocuf_enable_plugin'] ) ? 'on' : 'off';
+	$wps_upsell_global_options['wps_wocuf_enable_plugin'] = ! empty( $_POST['wps_wocuf_enable_plugin'] ) ? 'on' : 'off';
 
 	// Global product id.
 	$wps_upsell_global_options['global_product_id'] = ! empty( $_POST['global_product_id'] ) ? sanitize_text_field( wp_unslash( $_POST['global_product_id'] ) ) : '';
@@ -63,7 +63,7 @@ if ( isset( $_POST['mwb_wocuf_pro_common_settings_save'] ) ) {
 	$wps_upsell_global_options['global_custom_js'] = ! empty( $_POST['global_custom_js'] ) ? sanitize_textarea_field( wp_unslash( $_POST['global_custom_js'] ) ) : '';
 
 	// Save.
-	update_option( 'wps_wocuf_enable_plugin', $wps_upsell_global_options['mwb_wocuf_enable_plugin'] );
+	update_option( 'wps_wocuf_enable_plugin', $wps_upsell_global_options['wps_wocuf_enable_plugin'] );
 	update_option( 'wps_upsell_lite_global_options', $wps_upsell_global_options );
 
 	?>
@@ -88,7 +88,7 @@ $wps_upsell_global_settings = WPS_Upsell_Data_Handler::get_option( 'wps_upsell_l
 			<tbody>
 
 				<!-- Nonce field here. -->
-				<?php wp_nonce_field( 'mwb_wocuf_pro_setting_nonce', 'mwb_wocuf_pro_nonce' ); ?>
+				<?php wp_nonce_field( 'wps_wocuf_pro_setting_nonce', 'wps_wocuf_pro_nonce' ); ?>
 
 				<!-- Enable Plugin start -->
 				<tr valign="top">
@@ -388,7 +388,7 @@ $wps_upsell_global_settings = WPS_Upsell_Data_Handler::get_option( 'wps_upsell_l
 					</td>
 				</tr>
 				<!-- Global Custom JS end -->	
-				<?php do_action( 'mwb_wocuf_pro_create_more_settings' ); ?>
+				<?php do_action( 'wpswocuf_pro_create_more_settings' ); ?>
 			</tbody>
 		</table>
 	</div>

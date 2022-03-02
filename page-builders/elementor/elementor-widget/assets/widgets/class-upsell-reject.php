@@ -167,7 +167,7 @@ class Upsell_Reject extends Widget_Button {
 				),
 				'placeholder' => esc_html__( 'Add Upsell no shortcode here', 'woo-one-click-upsell-funnel' ),
 				'default'     => array(
-					'url' => '[mwb_upsell_no]',
+					'url' => '[wps_upsell_no]',
 				),
 			)
 		);

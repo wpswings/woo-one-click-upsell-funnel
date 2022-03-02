@@ -121,8 +121,8 @@ class Upsell_Quantity extends Widget_Base {
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'placeholder' => '[mwb_upsell_quantity]',
-				'default'     => '[mwb_upsell_quantity]',
+				'placeholder' => '[wps_upsell_quantity]',
+				'default'     => '[wps_upsell_quantity]',
 			)
 		);
 

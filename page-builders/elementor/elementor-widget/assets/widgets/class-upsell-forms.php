@@ -121,8 +121,8 @@ class Upsell_Forms extends Widget_Base {
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'placeholder' => '[mwb_form]',
-				'default'     => '[mwb_form]',
+				'placeholder' => '[wps_form]',
+				'default'     => '[wps_form]',
 			)
 		);
 

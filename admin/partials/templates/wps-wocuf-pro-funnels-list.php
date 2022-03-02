@@ -88,14 +88,14 @@ if ( ! empty( $wps_wocuf_pro_funnels_list ) ) {
 				<th id="wps_upsell_funnel_list_target_th"><?php esc_html_e( 'Target Product(s)', 'woo-one-click-upsell-funnel' ); ?></th>
 				<th><?php esc_html_e( 'Offers', 'woo-one-click-upsell-funnel' ); ?></th>
 				<th><?php esc_html_e( 'Action', 'woo-one-click-upsell-funnel' ); ?></th>
-				<?php do_action( 'mwb_wocuf_pro_funnel_add_more_col_head' ); ?>
+				<?php do_action( 'wpswocuf_pro_funnel_add_more_col_head' ); ?>
 			</tr>
 
 			<!-- Foreach Funnel start -->
 			<?php
 			foreach ( $wps_wocuf_pro_funnels_list as $key => $value ) :
 
-				$offers_count = ! empty( $value['mwb_wocuf_products_in_offer'] ) ? $value['mwb_wocuf_products_in_offer'] : array();
+				$offers_count = ! empty( $value['wps_wocuf_products_in_offer'] ) ? $value['wps_wocuf_products_in_offer'] : array();
 
 				$offers_count = count( $offers_count );
 
@@ -103,20 +103,20 @@ if ( ! empty( $wps_wocuf_pro_funnels_list ) ) {
 
 				<tr>		
 					<!-- Funnel Name -->
-					<td><a class="wps_upsell_funnel_list_name" href="?page=wps-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $key ); ?>"><?php echo esc_html( $value['mwb_wocuf_funnel_name'] ); ?></a></td>
+					<td><a class="wps_upsell_funnel_list_name" href="?page=wps-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $key ); ?>"><?php echo esc_html( $value['wps_wocuf_funnel_name'] ); ?></a></td>
 
 					<!-- Funnel Status -->
 					<td>
 
 						<?php
 
-						$funnel_status       = ! empty( $value['mwb_upsell_funnel_status'] ) ? $value['mwb_upsell_funnel_status'] : 'no';
-						$global_funnel       = ! empty( $value['mwb_wocuf_global_funnel'] ) ? $value['mwb_wocuf_global_funnel'] : 'no';
-						$exclusive_offer     = ! empty( $value['mwb_wocuf_exclusive_offer'] ) ? $value['mwb_wocuf_exclusive_offer'] : 'no';
-						$smart_offer_upgrade = ! empty( $value['mwb_wocuf_smart_offer_upgrade'] ) ? $value['mwb_wocuf_smart_offer_upgrade'] : 'no';
+						$funnel_status       = ! empty( $value['wps_upsell_funnel_status'] ) ? $value['wps_upsell_funnel_status'] : 'no';
+						$global_funnel       = ! empty( $value['wps_wocuf_global_funnel'] ) ? $value['wps_wocuf_global_funnel'] : 'no';
+						$exclusive_offer     = ! empty( $value['wps_wocuf_exclusive_offer'] ) ? $value['wps_wocuf_exclusive_offer'] : 'no';
+						$smart_offer_upgrade = ! empty( $value['wps_wocuf_smart_offer_upgrade'] ) ? $value['wps_wocuf_smart_offer_upgrade'] : 'no';
 
 						// Pre v3.0.0 Funnels will be live.
-						$funnel_status = ! empty( $value['mwb_upsell_fsav3'] ) ? $funnel_status : 'yes';
+						$funnel_status = ! empty( $value['wps_upsell_fsav3'] ) ? $funnel_status : 'yes';
 
 						if ( 'yes' === $funnel_status ) {
 
@@ -152,11 +152,11 @@ if ( ! empty( $wps_wocuf_pro_funnels_list ) ) {
 					<td>
 						<?php
 
-						if ( ! empty( $value['mwb_wocuf_target_pro_ids'] ) ) {
+						if ( ! empty( $value['wps_wocuf_target_pro_ids'] ) ) {
 
 							echo '<div class="wps_upsell_funnel_list_targets">';
 
-							foreach ( $value['mwb_wocuf_target_pro_ids'] as $single_target_product ) :
+							foreach ( $value['wps_wocuf_target_pro_ids'] as $single_target_product ) :
 
 								$product = wc_get_product( $single_target_product );
 								?>
@@ -182,13 +182,13 @@ if ( ! empty( $wps_wocuf_pro_funnels_list ) ) {
 					<td>
 						<?php
 
-						if ( ! empty( $value['mwb_wocuf_products_in_offer'] ) ) {
+						if ( ! empty( $value['wps_wocuf_products_in_offer'] ) ) {
 
 							echo '<div class="wps_upsell_funnel_list_targets">';
 
 							echo '<p><i>' . esc_html__( 'Offers Count', 'woo-one-click-upsell-funnel' ) . ' - ' . esc_html( $offers_count ) . '</i></p>';
 
-							foreach ( $value['mwb_wocuf_products_in_offer'] as $offer_key => $single_offer_product ) :
+							foreach ( $value['wps_wocuf_products_in_offer'] as $offer_key => $single_offer_product ) :
 
 								$product = wc_get_product( $single_offer_product );
 
@@ -225,7 +225,7 @@ if ( ! empty( $wps_wocuf_pro_funnels_list ) ) {
 						<a class="wps_wocuf_pro_funnel_links" href="?page=wps-wocuf-setting&tab=funnels-list&del_funnel_id=<?php echo esc_html( $key ); ?>&del_nonce=<?php echo esc_html( wp_create_nonce( 'del_funnel' ) ); ?>"><?php esc_html_e( 'Delete', 'woo-one-click-upsell-funnel' ); ?></a>
 					</td>
 
-					<?php do_action( 'mwb_wocuf_pro_funnel_add_more_col_data' ); ?>
+					<?php do_action( 'wpswocuf_pro_funnel_add_more_col_data' ); ?>
 				</tr>
 			<?php endforeach; ?>
 			<!-- Foreach Funnel end -->
@@ -240,4 +240,4 @@ if ( ! empty( $wps_wocuf_pro_funnels_list ) ) {
 	<a href="?page=wps-wocuf-setting&manage_nonce=<?php echo esc_html( wp_create_nonce( 'manage_funnel' ) ); ?>&tab=creation-setting&funnel_id=<?php echo esc_html( $wps_wocuf_pro_funnel_number + 1 ); ?>"><?php esc_html_e( '+Create New Funnel', 'woo-one-click-upsell-funnel' ); ?></a>
 </div>
 
-<?php do_action( 'mwb_wocuf_pro_extend_funnels_listing' ); ?>
+<?php do_action( 'wpswocuf_pro_extend_funnels_listing' ); ?>

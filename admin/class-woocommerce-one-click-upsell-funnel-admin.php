@@ -350,7 +350,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 			$wps_wocuf_pro_funnel = WPS_Upsell_Data_Handler::get_option( 'wps_wocuf_funnels_list' );
 
 			// Funnel offers array.
-			$wps_wocuf_pro_offers_to_add = isset( $wps_wocuf_pro_funnel[ $funnel_id ]['mwb_wocuf_applied_offer_number'] ) ? $wps_wocuf_pro_funnel[ $funnel_id ]['mwb_wocuf_applied_offer_number'] : array();
+			$wps_wocuf_pro_offers_to_add = isset( $wps_wocuf_pro_funnel[ $funnel_id ]['wps_wocuf_applied_offer_number'] ) ? $wps_wocuf_pro_funnel[ $funnel_id ]['wps_wocuf_applied_offer_number'] : array();
 
 			// Buy now action select html.
 			$buy_now_action_select_html = '<select name="wps_wocuf_attached_offers_on_buy[' . $offer_index . ']"><option value="thanks">' . esc_html__( 'Order ThankYou Page', 'woo-one-click-upsell-funnel' ) . '</option>';
@@ -767,18 +767,18 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 		if ( isset( $_GET['post_type'] ) && 'shop_order' === sanitize_key( wp_unslash( $_GET['post_type'] ) ) ) {
 
-			if ( isset( $_GET['mwb_wocuf_pro_upsell_filter'] ) ) :
+			if ( isset( $_GET['wps_wocuf_pro_upsell_filter'] ) ) :
 
 				?>
 				<select name="wps_wocuf_pro_upsell_filter">
-					<option value="all" <?php echo 'all' === sanitize_key( wp_unslash( $_GET['mwb_wocuf_pro_upsell_filter'] ) ) ? 'selected=selected' : ''; ?>><?php esc_html_e( 'All Orders', 'woo-one-click-upsell-funnel' ); ?></option>
-					<option value="no_upsells" <?php echo 'no_upsells' === sanitize_key( wp_unslash( $_GET['mwb_wocuf_pro_upsell_filter'] ) ) ? 'selected=selected' : ''; ?>><?php esc_html_e( 'No Upsell Orders', 'woo-one-click-upsell-funnel' ); ?></option>
-					<option value="all_upsells" <?php echo 'all_upsells' === sanitize_key( wp_unslash( $_GET['mwb_wocuf_pro_upsell_filter'] ) ) ? 'selected=selected' : ''; ?>><?php esc_html_e( 'Only Upsell Orders', 'woo-one-click-upsell-funnel' ); ?></option>
+					<option value="all" <?php echo 'all' === sanitize_key( wp_unslash( $_GET['wps_wocuf_pro_upsell_filter'] ) ) ? 'selected=selected' : ''; ?>><?php esc_html_e( 'All Orders', 'woo-one-click-upsell-funnel' ); ?></option>
+					<option value="no_upsells" <?php echo 'no_upsells' === sanitize_key( wp_unslash( $_GET['wps_wocuf_pro_upsell_filter'] ) ) ? 'selected=selected' : ''; ?>><?php esc_html_e( 'No Upsell Orders', 'woo-one-click-upsell-funnel' ); ?></option>
+					<option value="all_upsells" <?php echo 'all_upsells' === sanitize_key( wp_unslash( $_GET['wps_wocuf_pro_upsell_filter'] ) ) ? 'selected=selected' : ''; ?>><?php esc_html_e( 'Only Upsell Orders', 'woo-one-click-upsell-funnel' ); ?></option>
 				</select>
 				<?php
 			endif;
 
-			if ( ! isset( $_GET['mwb_wocuf_pro_upsell_filter'] ) ) :
+			if ( ! isset( $_GET['wps_wocuf_pro_upsell_filter'] ) ) :
 				?>
 				<select name="wps_wocuf_pro_upsell_filter">
 					<option value="all"><?php esc_html_e( 'All Orders', 'woo-one-click-upsell-funnel' ); ?></option>
@@ -806,7 +806,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
 		}
 
-		if ( isset( $_GET['mwb_wocuf_pro_upsell_filter'] ) && 'all_upsells' === $_GET['mwb_wocuf_pro_upsell_filter'] ) {
+		if ( isset( $_GET['wps_wocuf_pro_upsell_filter'] ) && 'all_upsells' === $_GET['wps_wocuf_pro_upsell_filter'] ) {
 
 			$vars = array_merge(
 				$vars,
@@ -815,7 +815,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 				)
 			);
 
-		} elseif ( isset( $_GET['mwb_wocuf_pro_upsell_filter'] ) && 'no_upsells' === $_GET['mwb_wocuf_pro_upsell_filter'] ) {
+		} elseif ( isset( $_GET['wps_wocuf_pro_upsell_filter'] ) && 'no_upsells' === $_GET['wps_wocuf_pro_upsell_filter'] ) {
 
 			$vars = array_merge(
 				$vars,
@@ -842,7 +842,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 				'posts_per_page' => -1,
 				'post_type'      => 'any',
 				'post_status'    => 'publish',
-				's'              => '[mwb_wocuf_pro_funnel_default_offer_page]',
+				's'              => '[wps_wocuf_pro_funnel_default_offer_page]',
 				'orderby'        => 'ID',
 				'order'          => 'ASC',
 			)

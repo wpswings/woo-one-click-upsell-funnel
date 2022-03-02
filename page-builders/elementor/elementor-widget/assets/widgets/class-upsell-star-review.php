@@ -121,8 +121,8 @@ class Upsell_Star_Review extends Widget_Base {
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'placeholder' => '[mwb_upsell_star_review]',
-				'default'     => '[mwb_upsell_star_review stars=4.5]',
+				'placeholder' => '[wps_upsell_star_review]',
+				'default'     => '[wps_upsell_star_review stars=4.5]',
 			)
 		);
 

@@ -63,7 +63,7 @@ $funnels_list = WPS_Upsell_Data_Handler::get_option( 'wps_wocuf_funnels_list' );
 
 				<tr>		
 					<!-- Funnel Name -->
-					<td><a class="wps_upsell_funnel_list_name" href="?page=wps-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $key ); ?>"><?php echo esc_html( $value['mwb_wocuf_funnel_name'] ); ?></a></td>
+					<td><a class="wps_upsell_funnel_list_name" href="?page=wps-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $key ); ?>"><?php echo esc_html( $value['wps_wocuf_funnel_name'] ); ?></a></td>
 
 					<!-- Trigger Count -->
 					<td>

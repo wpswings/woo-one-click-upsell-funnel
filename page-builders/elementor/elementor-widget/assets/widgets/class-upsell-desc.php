@@ -124,7 +124,7 @@ class Upsell_Desc extends Widget_Base {
 			array(
 				'label'   => '',
 				'type'    => Controls_Manager::WYSIWYG,
-				'default' => '<p>[mwb_upsell_desc]</p>',
+				'default' => '<p>[wps_upsell_desc]</p>',
 			)
 		);
 

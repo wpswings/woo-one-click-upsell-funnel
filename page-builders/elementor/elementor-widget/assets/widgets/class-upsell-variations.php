@@ -121,8 +121,8 @@ class Upsell_Variations extends Widget_Base {
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'placeholder' => '[mwb_upsell_variations]',
-				'default'     => '[mwb_upsell_variations]',
+				'placeholder' => '[wps_upsell_variations]',
+				'default'     => '[wps_upsell_variations]',
 			)
 		);
 

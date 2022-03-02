@@ -167,7 +167,7 @@ class Upsell_Accept extends Widget_Button {
 				),
 				'placeholder' => esc_html__( 'Add Upsell yes shortcode here', 'woo-one-click-upsell-funnel' ),
 				'default'     => array(
-					'url' => '[mwb_upsell_yes]',
+					'url' => '[wps_upsell_yes]',
 				),
 			)
 		);
