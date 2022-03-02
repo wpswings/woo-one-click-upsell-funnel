@@ -159,6 +159,7 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		 * The file responsible for Upsell migrator for WPS.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrator/class-wps-upsell-data-handler.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrator/woo-functions.php';
 
 	}
 
@@ -201,6 +202,10 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		$this->loader->add_action( 'wp_ajax_seach_products_for_offers', $plugin_admin, 'seach_products_for_offers' );
 
 		$this->loader->add_action( 'wp_ajax_seach_products_for_funnel', $plugin_admin, 'seach_products_for_funnel' );
+
+		// Init migrator.
+		$this->loader->add_action( 'wp_ajax_wps_upsell_init_migrator', $plugin_admin, 'wps_upsell_init_migrator' );
+		$this->loader->add_action( 'wp_ajax_wps_upsell_stop_migrator', $plugin_admin, 'wps_upsell_stop_migrator' );
 
 		// Dismiss Elementor inactive notice.
 		$this->loader->add_action( 'wp_ajax_wps_upsell_dismiss_elementor_inactive_notice', $plugin_admin, 'dismiss_elementor_inactive_notice' );

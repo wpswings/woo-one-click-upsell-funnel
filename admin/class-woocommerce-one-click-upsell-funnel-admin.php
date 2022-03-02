@@ -82,6 +82,8 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 				wp_enqueue_style( 'wps_wocuf_pro_admin_style' );
 
+				wp_enqueue_script( 'wps-upsell-sweet-alert-2-js', plugin_dir_url( __FILE__ ) . 'js/sweet-alert.js', array(), '2.1.2', false );
+
 				wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/select2.min.css', array(), $this->version, 'all' );
 
 				wp_register_style( 'woocommerce_admin_styles', WC()->plugin_url() . '/assets/css/admin.css', array(), WC_VERSION );
@@ -151,10 +153,12 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 				wp_localize_script(
 					'wps_wocuf_pro_admin_script',
-					'wps_wocuf_pro_ajaxurl',
+					'wps_wocuf_pro_obj',
 					array(
-						'ajaxUrl'  => admin_url( 'admin-ajax.php' ),
-						'migrator' => $this->get_migration_status(),
+						'ajaxUrl'               => admin_url( 'admin-ajax.php' ),
+						'migrator'              => $this->get_migration_status(),
+						'alert_preview_title'   => esc_html__( 'Attention Required', 'woo-one-click-upsell-funnel' ),
+						'alert_preview_content' => esc_html__( 'We are preparing your migration to WP Swings. Please give a few time and get the plugin started.', 'woo-one-click-upsell-funnel' ),
 					)
 				);
 
@@ -1059,9 +1063,105 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 	 * @since       3.1.4
 	 */
 	public function get_migration_status() {
-		return true;
+
+		return get_option( 'wps_upsell_lite_funnel_migrator', false );
 	}
 
+	/**
+	 * Stop Migration Prompt.
+	 *
+	 * @since       3.1.4
+	 */
+	public function wps_upsell_stop_migrator() {
+		update_option( 'wps_upsell_lite_funnel_migrator', true );
+	}
+
+	/**
+	 * Init Migration.
+	 *
+	 * @since       3.1.4
+	 */
+	public function wps_upsell_init_migrator() {
+
+		// Migrate post metas.
+		$saved_options = wps_wocuf_get_saved_options();
+
+		if ( ! empty( $saved_options ) && is_array( $saved_options ) ) {
+			foreach ( $saved_options as $key => $saved_option ) {
+				$option_name     = $saved_option['option_name'];
+				$new_option_name = str_replace( 'mwb', 'wps', $option_name );
+				$option_value    = get_option( $option_name );
+
+				if ( in_array( $option_name, array( 'woocommerce_mwb-wocuf-pro-stripe-gateway_settings' ), true ) ) {
+					continue;
+				}
+
+				// Update the same value to wps key.
+				if ( ! empty( $option_value ) ) {
+					if ( is_array( $option_value ) ) {
+						switch ( $option_name ) {
+							case 'mwb_wocuf_pro_funnels_list':
+								foreach ( $option_value as $key => $value ) {
+									$option_value[ $key ] = $this->moderate_keys( $value );
+								}
+								break;
+						}
+					}
+
+					update_option( $new_option_name, $option_value );
+					delete_option( $option_name );
+				}
+			}
+		}
+
+		$saved_post_meta = wps_wocuf_get_saved_post_meta();
+		if ( ! empty( $saved_post_meta ) && is_array( $saved_post_meta ) ) {
+			foreach ( $saved_post_meta as $key => $post_meta ) {
+
+				if ( ! empty( $post_meta ) && is_array( $post_meta ) ) {
+
+					$post_id      = $post_meta['post_id'];
+					$meta_key     = $post_meta['meta_key'];
+					$new_meta_key = str_replace( 'mwb', 'wps', $meta_key );
+					$meta_value   = get_post_meta( $post_id, $meta_key, true );
+
+					if ( ! empty( $meta_value ) ) {
+
+						// Migrate the meta to the new name() .
+						update_post_meta( $post_id, $new_meta_key, $meta_value );  // add the meta with the new name.
+						delete_post_meta( $post_id, $meta_key );        // delete the old meta.
+					}
+				}
+			}
+		}
+
+		wp_send_json(
+			array(
+				'code' => 200,
+			)
+		);
+
+	}
+
+	/**
+	 * Init Migration formatting.
+	 *
+	 * @param array $array Values.
+	 * @since       3.1.4
+	 */
+	public function moderate_keys( $array = array() ) {
+
+		if ( ! empty( $array ) && is_array( $array ) ) {
+			foreach ( $array as $key => $value ) {
+				$new_key           = str_replace( 'mwb', 'wps', $key );
+				$array[ $new_key ] = $value;
+				unset( $array[ $key ] );
+			}
+			return $array;
+		}
+
+		return $array;
+	}
 	// End of class.
 }
 ?>

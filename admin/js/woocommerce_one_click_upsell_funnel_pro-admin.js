@@ -78,7 +78,7 @@ jQuery(document).ready( function($) {
 
 		$.ajax({
 		    type:'POST',
-		    url :wps_wocuf_pro_ajaxurl.ajaxUrl,
+		    url :wps_wocuf_pro_obj.ajaxUrl,
 		    data:{
 		    	action: 'wps_upsell_dismiss_elementor_inactive_notice',
 		    },
@@ -128,4 +128,82 @@ jQuery(document).ready( function($) {
 	});
 
 // END OF SCRIPT,
+});
+
+/**
+ * Update Scripts for migration
+ */
+jQuery(document).ready( function($) {
+
+	const ajaxUrl = wps_wocuf_pro_obj.ajaxUrl;
+	const migrator = wps_wocuf_pro_obj.migrator;
+	const migratorHead = wps_wocuf_pro_obj.alert_preview_title;
+	const migratorNotice = wps_wocuf_pro_obj.alert_preview_content;
+	const promptMigrationIsNeeded = () => {
+		Swal.fire({
+			backdrop: 'rgb(0 0 0 / 88%)',
+			title: migratorHead,
+			icon : 'error',
+			text: migratorNotice,
+			showDenyButton: false,
+			allowOutsideClick : false,
+			showCloseButton: false,
+			showCancelButton: false,
+			confirmButtonText: '<i class="fa fa-thumbs-up"></i> Great! Lets Start.',
+		  }).then((stater) => {
+			if (stater.isConfirmed) {
+
+				// let timerInterval
+				Swal.fire({
+					backdrop: 'rgb(0 0 0 / 88%)',
+					title: 'Thank you!',
+					html: 'The plugin will be ready to use shortly.',
+					timerProgressBar: true,
+					didOpen: () => {
+						Swal.showLoading();
+						$.ajax({
+							type:'POST',
+							url :wps_wocuf_pro_obj.ajaxUrl,
+							data:{
+								action: 'wps_upsell_init_migrator',
+							},
+							success:function( response ) {
+								$.ajax({
+									type:'POST',
+									url :wps_wocuf_pro_obj.ajaxUrl,
+									data:{
+										action: 'wps_upsell_stop_migrator',
+									}
+								});
+
+								if( response.code === 200 ) {
+									Swal.fire({
+										backdrop: 'rgb(0 0 0 / 88%)',
+										icon: 'success',
+										title: 'Yess....',
+										text: 'We are good to go!',
+									}).then(()	=>	{
+										window.location.reload();
+									})
+								} else {
+									Swal.fire({
+										backdrop: 'rgb(0 0 0 / 88%)',
+										icon: 'error',
+										title: 'Oops...',
+										text: 'Something went wrong! Try Manual Migration.',
+									}).then(() => {
+										window.location.reload();
+									})
+								}
+							}
+						});
+					},
+				})
+			}
+		})
+	}
+
+	if ( true != migrator ) {
+		promptMigrationIsNeeded();
+	}
 });

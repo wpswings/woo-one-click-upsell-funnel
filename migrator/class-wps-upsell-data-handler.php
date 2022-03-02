@@ -63,6 +63,7 @@ class WPS_Upsell_Data_Handler {
 
 			// Update the same value to wps key.
 			if ( ! empty( $mwb_option_value ) ) {
+
 				update_option( $option_name, $mwb_option_value );
 				delete_option( $mwb_option_name );
 			}
@@ -132,49 +133,6 @@ class WPS_Upsell_Data_Handler {
 
 			// return saved value.
 			return get_post_meta( $post_id, $meta_key, true );
-		}
-	}
-
-	/**
-	 * Replacement for tables to WPS.
-	 *
-	 * @since     1.0.4
-	 */
-	public function migrate_tables() {
-
-		global $wpdb;
-		$crm_log_table = $wpdb->prefix . 'mwb_woo_quickbooks_log';
-
-		// If exists true.
-		if ( 'exists' === wps_woo_crm_log_table_exists( $crm_log_table ) ) {
-			$sql = 'ALTER TABLE `wp_mwb_woo_quickbooks_log` RENAME TO `wp_wps_woo_quickbooks_log`';
-			wps_woo_crm_execute_db_query( $sql );
-		}
-	}
-
-	/**
-	 * Replacement for Feeds to WPS.
-	 *
-	 * @since     1.0.4
-	 */
-	public function migrate_feeds() {
-		$all_feeds = get_posts(
-			array(
-				'post_type'      => 'mwb_quickbooks_feed',
-				'post_status'    => array( 'publish', 'draft' ),
-				'fields'         => 'ids',
-				'posts_per_page' => -1,
-			)
-		);
-
-		if ( ! empty( $all_feeds ) && is_array( $all_feeds ) ) {
-			foreach ( $all_feeds as $key => $feed_id ) {
-				$args = array(
-					'ID'        => $feed_id,
-					'post_type' => 'wps_quickbooks_feed',
-				);
-				wp_update_post( $args );
-			}
 		}
 	}
 
