@@ -88,7 +88,7 @@ if ( ! empty( $wps_wocuf_pro_funnels_list ) ) {
 				<th id="wps_upsell_funnel_list_target_th"><?php esc_html_e( 'Target Product(s)', 'woo-one-click-upsell-funnel' ); ?></th>
 				<th><?php esc_html_e( 'Offers', 'woo-one-click-upsell-funnel' ); ?></th>
 				<th><?php esc_html_e( 'Action', 'woo-one-click-upsell-funnel' ); ?></th>
-				<?php do_action( 'wpswocuf_pro_funnel_add_more_col_head' ); ?>
+				<?php do_action( 'wps_wocuf_pro_funnel_add_more_col_head' ); ?>
 			</tr>
 
 			<!-- Foreach Funnel start -->
@@ -225,7 +225,7 @@ if ( ! empty( $wps_wocuf_pro_funnels_list ) ) {
 						<a class="wps_wocuf_pro_funnel_links" href="?page=wps-wocuf-setting&tab=funnels-list&del_funnel_id=<?php echo esc_html( $key ); ?>&del_nonce=<?php echo esc_html( wp_create_nonce( 'del_funnel' ) ); ?>"><?php esc_html_e( 'Delete', 'woo-one-click-upsell-funnel' ); ?></a>
 					</td>
 
-					<?php do_action( 'wpswocuf_pro_funnel_add_more_col_data' ); ?>
+					<?php do_action( 'wps_wocuf_pro_funnel_add_more_col_data' ); ?>
 				</tr>
 			<?php endforeach; ?>
 			<!-- Foreach Funnel end -->
@@ -240,4 +240,4 @@ if ( ! empty( $wps_wocuf_pro_funnels_list ) ) {
 	<a href="?page=wps-wocuf-setting&manage_nonce=<?php echo esc_html( wp_create_nonce( 'manage_funnel' ) ); ?>&tab=creation-setting&funnel_id=<?php echo esc_html( $wps_wocuf_pro_funnel_number + 1 ); ?>"><?php esc_html_e( '+Create New Funnel', 'woo-one-click-upsell-funnel' ); ?></a>
 </div>
 
-<?php do_action( 'wpswocuf_pro_extend_funnels_listing' ); ?>
+<?php do_action( 'wps_wocuf_pro_extend_funnels_listing' ); ?>

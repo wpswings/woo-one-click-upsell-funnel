@@ -25,7 +25,7 @@ if ( 'overview' === get_transient( 'wps_upsell_default_settings_tab' ) ) {
 ?>
 
 <div class="wps-notice-wrapper">
-<?php do_action( 'wpswocuf_pro_setting_tab_active', '', '', '' ); ?>
+<?php do_action( 'wps_wocuf_pro_setting_tab_active', '', '', '' ); ?>
 </div>
 
 <div class="wrap woocommerce" id="wps_wocuf_pro_setting_wrapper">
@@ -56,7 +56,7 @@ if ( 'overview' === get_transient( 'wps_upsell_default_settings_tab' ) ) {
 		<a class="nav-tab <?php echo 'pixel-setting' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=wps-wocuf-setting-tracking&tab=pixel-setting"><?php esc_html_e( 'FB Pixel', 'woo-one-click-upsell-funnel' ); ?></a>
 		<a class="nav-tab <?php echo 'overview' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=wps-wocuf-setting-tracking&tab=overview"><?php esc_html_e( 'Overview', 'woo-one-click-upsell-funnel' ); ?></a>
 
-		<?php do_action( 'wpswocuf_pro_setting_tab' ); ?>	
+		<?php do_action( 'wps_wocuf_pro_setting_tab' ); ?>	
 	</nav>
 	<?php
 
@@ -70,6 +70,6 @@ if ( 'overview' === get_transient( 'wps_upsell_default_settings_tab' ) ) {
 		include_once 'templates/tracking-overview.php';
 	}
 
-	do_action( 'wpswocuf_pro_setting_tab_html' );
+	do_action( 'wps_wocuf_pro_setting_tab_html' );
 	?>
 </div>

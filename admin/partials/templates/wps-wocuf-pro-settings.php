@@ -388,7 +388,7 @@ $wps_upsell_global_settings = WPS_Upsell_Data_Handler::get_option( 'wps_upsell_l
 					</td>
 				</tr>
 				<!-- Global Custom JS end -->	
-				<?php do_action( 'wpswocuf_pro_create_more_settings' ); ?>
+				<?php do_action( 'wps_wocuf_pro_create_more_settings' ); ?>
 			</tbody>
 		</table>
 	</div>

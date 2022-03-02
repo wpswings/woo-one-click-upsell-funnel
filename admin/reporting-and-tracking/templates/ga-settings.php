@@ -210,7 +210,7 @@ $google_analytics_fields = array(
 
 					<?php endforeach; ?>
 				<?php endif; ?>
-				<?php do_action( 'wpswocuf_pro_create_more_settings' ); ?>
+				<?php do_action( 'wps_wocuf_pro_create_more_settings' ); ?>
 			</tbody>
 		</table>
 	</div>
