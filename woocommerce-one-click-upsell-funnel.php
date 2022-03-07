@@ -18,9 +18,9 @@
  * Version:               3.1.3
  *
  * Requires at least:     4.4
- * Tested up to:          5.9
+ * Tested up to:          5.9.1
  * WC requires at least:  3.0
- * WC tested up to:       6.1.1
+ * WC tested up to:       6.2.1
  *
  * Author:                WP Swings
  * Author URI:            https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-org-backend&utm_campaign=official
