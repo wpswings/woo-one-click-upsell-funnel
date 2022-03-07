@@ -156,7 +156,6 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 					'wps_wocuf_pro_obj',
 					array(
 						'ajaxUrl'               => admin_url( 'admin-ajax.php' ),
-						'migrator'              => $this->get_migration_status(),
 						'alert_preview_title'   => esc_html__( 'Attention Required', 'woo-one-click-upsell-funnel' ),
 						'alert_preview_content' => esc_html__( 'We are preparing your migration to WP Swings. Please give a few time and get the plugin started.', 'woo-one-click-upsell-funnel' ),
 					)
@@ -333,7 +332,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 					$funnel_offer_template_section_html = $this->get_funnel_offer_template_section_html( $funnel_offer_post_id, $offer_index, $funnel_id );
 
 					// Save an array of all created upsell offer-page post ids.
-					$upsell_offer_post_ids = WPS_Upsell_Data_Handler::get_option( 'wps_upsell_lite_offer_post_ids', array() );
+					$upsell_offer_post_ids = get_option( 'wps_upsell_lite_offer_post_ids', array() );
 
 					$upsell_offer_post_ids[] = $funnel_offer_post_id;
 
@@ -347,7 +346,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 			}
 
 			// Get all funnels.
-			$wps_wocuf_pro_funnel = WPS_Upsell_Data_Handler::get_option( 'wps_wocuf_funnels_list' );
+			$wps_wocuf_pro_funnel = get_option( 'wps_wocuf_funnels_list' );
 
 			// Funnel offers array.
 			$wps_wocuf_pro_offers_to_add = isset( $wps_wocuf_pro_funnel[ $funnel_id ]['wps_wocuf_applied_offer_number'] ) ? $wps_wocuf_pro_funnel[ $funnel_id ]['wps_wocuf_applied_offer_number'] : array();
@@ -735,7 +734,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 	 */
 	public function wps_wocuf_pro_populate_upsell_order_column( $column, $post_id ) {
 
-		$upsell_order = WPS_Upsell_Data_Handler::get_post_meta( $post_id, 'wps_wocuf_upsell_order', true );
+		$upsell_order = get_post_meta( $post_id, 'wps_wocuf_upsell_order', true );
 
 		switch ( $column ) {
 
@@ -877,7 +876,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 		// Only do this for pages.
 		if ( ! empty( $typenow ) && 'page' === $typenow ) {
 
-			$saved_offer_post_ids = WPS_Upsell_Data_Handler::get_option( 'wps_upsell_lite_offer_post_ids', array() );
+			$saved_offer_post_ids = get_option( 'wps_upsell_lite_offer_post_ids', array() );
 
 			if ( ! empty( $saved_offer_post_ids ) && is_array( $saved_offer_post_ids ) && count( $saved_offer_post_ids ) ) {
 
@@ -1058,25 +1057,6 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 	}
 
 	/**
-	 * Is instant Migration needed or not.
-	 *
-	 * @since       3.1.4
-	 */
-	public function get_migration_status() {
-
-		return get_option( 'wps_upsell_lite_funnel_migrator', false );
-	}
-
-	/**
-	 * Stop Migration Prompt.
-	 *
-	 * @since       3.1.4
-	 */
-	public function wps_upsell_stop_migrator() {
-		update_option( 'wps_upsell_lite_funnel_migrator', true );
-	}
-
-	/**
 	 * Init Migration.
 	 *
 	 * @since       3.1.4
@@ -1091,10 +1071,6 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 				$option_name     = $saved_option['option_name'];
 				$new_option_name = str_replace( 'mwb', 'wps', $option_name );
 				$option_value    = get_option( $option_name );
-
-				if ( in_array( $option_name, array( 'woocommerce_mwb-wocuf-pro-stripe-gateway_settings' ), true ) ) {
-					continue;
-				}
 
 				// Update the same value to wps key.
 				if ( ! empty( $option_value ) ) {
@@ -1115,6 +1091,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 		}
 
 		$saved_post_meta = wps_wocuf_get_saved_post_meta();
+
 		if ( ! empty( $saved_post_meta ) && is_array( $saved_post_meta ) ) {
 			foreach ( $saved_post_meta as $key => $post_meta ) {
 
@@ -1155,7 +1132,10 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 			foreach ( $array as $key => $value ) {
 				$new_key           = str_replace( 'mwb', 'wps', $key );
 				$array[ $new_key ] = $value;
-				unset( $array[ $key ] );
+
+				if ( $new_key !== $key ) {
+					unset( $array[ $key ] );
+				}
 			}
 			return $array;
 		}

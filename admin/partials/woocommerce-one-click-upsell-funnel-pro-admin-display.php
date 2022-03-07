@@ -82,6 +82,17 @@ if ( 'overview' === get_transient( 'wps_upsell_default_settings_tab' ) ) {
 			<p><?php esc_html_e( 'Regarding any issue, query or feature request for Upsell', 'woo-one-click-upsell-funnel' ); ?></p>
 		</div>
 	</div>
+	<div id="wps-wocuf-thirty-days-notify" class="notice notice-error">
+		<p>
+			<strong>
+				<?php esc_html_e( 'We have done a major changes in plugin! Please ', 'woocommerce-one-click-upsell-funnel-pro' ); ?>
+				<a href="?page=wps-wocuf-setting&tab=funnels-list">
+					<?php esc_html_e( 'Migrate', 'woocommerce-one-click-upsell-funnel-pro' ); ?>
+				</a>
+				<?php esc_html_e( ' or you may risk losing data and the plugin will also become dysfunctional.', 'woocommerce-one-click-upsell-funnel-pro' ); ?>
+			</strong>
+		</p>
+	</div>
 	<nav class="nav-tab-wrapper woo-nav-tab-wrapper">
 		<a class="nav-tab <?php echo 'creation-setting' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=wps-wocuf-setting&tab=creation-setting"><?php esc_html_e( 'Save Funnel', 'woo-one-click-upsell-funnel' ); ?></a>
 		<a class="nav-tab <?php echo 'funnels-list' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=wps-wocuf-setting&tab=funnels-list"><?php esc_html_e( 'Funnels List', 'woo-one-click-upsell-funnel' ); ?></a>

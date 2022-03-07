@@ -261,14 +261,14 @@ class Makewebbetter_Onboarding_Helper {
 	 */
 	public function can_show_onboarding_popup() {
 
-		$is_already_sent = WPS_Upsell_Data_Handler::get_option( 'onboarding-data-sent', false );
+		$is_already_sent = get_option( 'onboarding-data-sent', false );
 
 		// Already submitted the data.
 		if ( ! empty( $is_already_sent ) && 'sent' === $is_already_sent ) {
 			return false;
 		}
 
-		$get_skipped_timstamp = WPS_Upsell_Data_Handler::get_option( 'onboarding-data-skipped', false );
+		$get_skipped_timstamp = get_option( 'onboarding-data-skipped', false );
 		if ( ! empty( $get_skipped_timstamp ) ) {
 
 			$next_show = strtotime( '+2 days', $get_skipped_timstamp );
@@ -417,7 +417,7 @@ class Makewebbetter_Onboarding_Helper {
 				'label'       => '',
 				'type'        => 'hidden',
 				'name'        => 'show-counter',
-				'value'       => WPS_Upsell_Data_Handler::get_option( 'onboarding-data-sent', 'not-sent' ),
+				'value'       => get_option( 'onboarding-data-sent', 'not-sent' ),
 				'required'    => '',
 				'extra-class' => '',
 			),

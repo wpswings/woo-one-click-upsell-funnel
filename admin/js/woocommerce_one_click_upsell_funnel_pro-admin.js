@@ -136,9 +136,16 @@ jQuery(document).ready( function($) {
 jQuery(document).ready( function($) {
 
 	const ajaxUrl = wps_wocuf_pro_obj.ajaxUrl;
-	const migrator = wps_wocuf_pro_obj.migrator;
 	const migratorHead = wps_wocuf_pro_obj.alert_preview_title;
 	const migratorNotice = wps_wocuf_pro_obj.alert_preview_content;
+
+    // Initiate Migration
+	$(document).on('click', '.wps_wocuf_init_migration', function(e) {
+
+		e.preventDefault();
+		promptMigrationIsNeeded();		
+	});
+
 	const promptMigrationIsNeeded = () => {
 		Swal.fire({
 			backdrop: 'rgb(0 0 0 / 88%)',
@@ -149,7 +156,7 @@ jQuery(document).ready( function($) {
 			allowOutsideClick : false,
 			showCloseButton: false,
 			showCancelButton: false,
-			confirmButtonText: '<i class="fa fa-thumbs-up"></i> Great! Lets Start.',
+			confirmButtonText: '<i class="fa fa-thumbs-up"></i> Great! Lets Start',
 		  }).then((stater) => {
 			if (stater.isConfirmed) {
 
@@ -158,24 +165,18 @@ jQuery(document).ready( function($) {
 					backdrop: 'rgb(0 0 0 / 88%)',
 					title: 'Thank you!',
 					html: 'The plugin will be ready to use shortly.',
+					footer: 'Estimated time : less than 5 mins...',
 					timerProgressBar: true,
+					timer: 99999999,
 					didOpen: () => {
 						Swal.showLoading();
 						$.ajax({
-							type:'POST',
-							url :wps_wocuf_pro_obj.ajaxUrl,
-							data:{
+							type: 'POST',
+							url : ajaxUrl,
+							data: {
 								action: 'wps_upsell_init_migrator',
 							},
 							success:function( response ) {
-								$.ajax({
-									type:'POST',
-									url :wps_wocuf_pro_obj.ajaxUrl,
-									data:{
-										action: 'wps_upsell_stop_migrator',
-									}
-								});
-
 								if( response.code === 200 ) {
 									Swal.fire({
 										backdrop: 'rgb(0 0 0 / 88%)',
@@ -183,16 +184,7 @@ jQuery(document).ready( function($) {
 										title: 'Yess....',
 										text: 'We are good to go!',
 									}).then(()	=>	{
-										window.location.reload();
-									})
-								} else {
-									Swal.fire({
-										backdrop: 'rgb(0 0 0 / 88%)',
-										icon: 'error',
-										title: 'Oops...',
-										text: 'Something went wrong! Try Manual Migration.',
-									}).then(() => {
-										window.location.reload();
+										// window.location.reload();
 									})
 								}
 							}
@@ -202,8 +194,5 @@ jQuery(document).ready( function($) {
 			}
 		})
 	}
-
-	if ( true != migrator ) {
-		promptMigrationIsNeeded();
-	}
+	
 });

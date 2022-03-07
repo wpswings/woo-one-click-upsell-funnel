@@ -1595,5 +1595,9 @@ button.button-primary.wps_upsell_activate_offer_template:focus {
 
 /**
  * v2.0.0 CSS Ends HERE ------------>>>>>>>>>>>>>>>>>>>
- * 
+ *
+ */
  
+ .wps_wocuf_pro_desc {
+   text-align: center !important;
+ }

@@ -34,7 +34,7 @@ if ( ! empty( $_GET['del_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_u
 		$funnel_id = sanitize_text_field( wp_unslash( $_GET['del_funnel_id'] ) );
 
 		// Get all funnels.
-		$wps_wocuf_pro_funnels = WPS_Upsell_Data_Handler::get_option( 'wps_wocuf_funnels_list' );
+		$wps_wocuf_pro_funnels = get_option( 'wps_wocuf_funnels_list' );
 
 		foreach ( $wps_wocuf_pro_funnels as $single_funnel => $data ) {
 
@@ -53,7 +53,7 @@ if ( ! empty( $_GET['del_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_u
 }
 
 // Get all funnels.
-$wps_wocuf_pro_funnels_list = WPS_Upsell_Data_Handler::get_option( 'wps_wocuf_funnels_list', array() );
+$wps_wocuf_pro_funnels_list = get_option( 'wps_wocuf_funnels_list', array() );
 
 if ( ! empty( $wps_wocuf_pro_funnels_list ) ) {
 
@@ -238,6 +238,12 @@ if ( ! empty( $wps_wocuf_pro_funnels_list ) ) {
 <!-- Create New Funnel -->
 <div class="wps_wocuf_pro_create_new_funnel">
 	<a href="?page=wps-wocuf-setting&manage_nonce=<?php echo esc_html( wp_create_nonce( 'manage_funnel' ) ); ?>&tab=creation-setting&funnel_id=<?php echo esc_html( $wps_wocuf_pro_funnel_number + 1 ); ?>"><?php esc_html_e( '+Create New Funnel', 'woo-one-click-upsell-funnel' ); ?></a>
+</div>
+
+<!-- Create New Migration -->
+<div class="wps_wocuf_pro_create_new_funnel">
+	<p class="wps_wocuf_pro_desc"><?php esc_html_e( 'Not getting saved funnels and settings from previous version?', 'woocommerce-one-click-upsell-funnel-pro' ); ?></p>
+	<a class="wps_wocuf_init_migration" href="javascript:void(0)"><?php esc_html_e( 'Try Migration', 'woocommerce-one-click-upsell-funnel-pro' ); ?></a>
 </div>
 
 <?php do_action( 'wps_wocuf_pro_extend_funnels_listing' ); ?>

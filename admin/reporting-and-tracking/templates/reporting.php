@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Get all funnels.
-$funnels_list = WPS_Upsell_Data_Handler::get_option( 'wps_wocuf_funnels_list' );
+$funnels_list = get_option( 'wps_wocuf_funnels_list' );
 
 ?>
 
