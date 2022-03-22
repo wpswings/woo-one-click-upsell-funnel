@@ -221,7 +221,7 @@ class WPS_OCU_Migration {
 
 			// Delete Old key and Add New key.
 			update_option( $new_option_name, $option_value );
-			// delete_option( $option_name );
+			delete_option( $option_name );
 		}
 	}
 

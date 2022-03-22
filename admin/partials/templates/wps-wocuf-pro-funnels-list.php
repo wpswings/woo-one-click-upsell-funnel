@@ -243,7 +243,7 @@ if ( ! empty( $wps_wocuf_pro_funnels_list ) ) {
 <!-- Create New Migration -->
 <div class="wps_wocuf_pro_create_new_funnel">
 	<p class="wps_wocuf_pro_desc"><?php esc_html_e( 'Not getting saved funnels and settings from previous version?', 'woocommerce-one-click-upsell-funnel-pro' ); ?></p>
-	<a class="wps_wocuf_init_migration" href="javascript:void(0)"><?php esc_html_e( 'Try Migration', 'woocommerce-one-click-upsell-funnel-pro' ); ?></a>
+	<a id="wps_wocuf_migration_button" class="wps_wocuf_init_migration" href="javascript:void(0)"><?php esc_html_e( 'Try Migration', 'woocommerce-one-click-upsell-funnel-pro' ); ?></a>
 </div>
 
 <?php do_action( 'wps_wocuf_pro_extend_funnels_listing' ); ?>

@@ -86,7 +86,7 @@ if ( 'overview' === get_transient( 'wps_upsell_default_settings_tab' ) ) {
 		<p>
 			<strong>
 				<?php esc_html_e( 'We have done a major changes in plugin! Please ', 'woocommerce-one-click-upsell-funnel-pro' ); ?>
-				<a href="?page=wps-wocuf-setting&tab=funnels-list">
+				<a href="?page=wps-wocuf-setting&tab=funnels-list#wps_wocuf_migration_button">
 					<?php esc_html_e( 'Migrate', 'woocommerce-one-click-upsell-funnel-pro' ); ?>
 				</a>
 				<?php esc_html_e( ' or you may risk losing data and the plugin will also become dysfunctional.', 'woocommerce-one-click-upsell-funnel-pro' ); ?>
