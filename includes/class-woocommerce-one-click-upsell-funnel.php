@@ -79,6 +79,7 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		$this->define_mirator_hooks();
 	}
 
 	/**
@@ -155,11 +156,6 @@ class Woocommerce_One_Click_Upsell_Funnel {
 			WPS_Upsell_Widget_Loader::get_instance();
 		}
 
-		/**
-		 * The file responsible for Upsell migrator for WPS.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrator/woo-functions.php';
-
 	}
 
 	/**
@@ -176,6 +172,29 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		$plugin_i18n = new Woocommerce_One_Click_Upsell_Funnel_I18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
+
+	}
+
+	/**
+	 * Responsible for Upsell migrator for WPS.
+	 *
+	 * @since    3.1.4
+	 * @access   private
+	 */
+	private function define_mirator_hooks() {
+
+		/**
+		 * The file responsible for Upsell migrator for WPS.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrator/class-wps-ocu-migration.php';
+
+		$plugin_migrator = new WPS_OCU_Migration();
+
+		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_migrator, 'enqueue_styles' );
+
+		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_migrator, 'enqueue_scripts' );
+
+		$this->loader->add_action( 'wp_ajax_process_ajax_events', $plugin_migrator, 'process_ajax_events' );
 
 	}
 
