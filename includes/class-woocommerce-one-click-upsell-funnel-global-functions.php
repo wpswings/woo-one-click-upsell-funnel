@@ -34,7 +34,7 @@ function wps_upsell_lite_elementor_plugin_active() {
  */
 function wps_upsell_lite_is_upsell_pro_active() {
 
-	if ( wps_upsell_lite_is_plugin_active( 'one-click-upsell-funnel-for-woocommerce-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
+	if ( wps_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
 
 		return true;
 

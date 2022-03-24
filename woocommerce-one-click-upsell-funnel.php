@@ -82,7 +82,7 @@ $wps_upsell_lite_plugin_activation = wps_upsell_lite_plugin_activation();
 if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 
 	// If pro plugin not active, then load Org Plugin else Don't.
-	if ( ! wps_upsell_lite_is_plugin_active( 'one-click-upsell-funnel-for-woocommerce-pro/one-click-upsell-funnel-for-woocommerce-pro.php' ) && ! wps_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
+	if ( ! wps_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) && ! wps_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
 
 		define( 'WPS_WOCUF_URL', plugin_dir_url( __FILE__ ) );
 
