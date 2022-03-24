@@ -35,6 +35,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 
+require_once ABSPATH . 'wp-admin/includes/plugin.php';
+
 /**
  * Plugin Active Detection.
  *
@@ -57,6 +59,52 @@ function wps_upsell_lite_is_plugin_active( $plugin_slug ) {
 
 	return in_array( $plugin_slug, $active_plugins, true ) || array_key_exists( $plugin_slug, $active_plugins );
 
+}
+
+$old_pro_present   = false;
+$installed_plugins = get_plugins();
+
+if ( array_key_exists( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php', $installed_plugins ) ) {
+	$pro_plugin = $installed_plugins['woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php'];
+	if ( version_compare( $pro_plugin['Version'], '3.6.6', '<' ) ) {
+		$old_pro_present = true;
+	}
+}
+
+if ( true === $old_pro_present ) {
+
+	add_action( 'admin_notices', 'check_and_inform_update' );
+
+	/**
+	 * Check update if pro is old.
+	 */
+	function check_and_inform_update() {
+		$update_file = plugin_dir_path( dirname( __FILE__ ) ) . 'woocommerce-one-click-upsell-funnel-pro/class-mwb-wocuf-pro-update.php';
+
+		// If present but not active.
+		if ( ! wps_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
+			if ( file_exists( $update_file ) ) {
+				$mwb_wocuf_pro_license_key = get_option( 'mwb_wocuf_pro_license_key', '' );
+				! defined( 'MWB_WOCUF_PRO_LICENSE_KEY' ) && define( 'MWB_WOCUF_PRO_LICENSE_KEY', $mwb_wocuf_pro_license_key );
+				! defined( 'MWB_WOCUF_PRO_BASE_FILE' ) && define( 'MWB_WOCUF_PRO_BASE_FILE', 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' );
+			}
+			require_once $update_file;
+		}
+
+		if ( defined( 'MWB_WOCUF_PRO_BASE_FILE' ) ) {
+			do_action( 'mwb_wocuf_pro_check_event' );
+			$is_update_fetched = get_option( 'mwb_wocuf_plugin_update', 'false' );
+			$plugin_transient  = get_site_transient( 'update_plugins' );
+			$update_obj        = ! empty( $plugin_transient->response[ MWB_WOCUF_PRO_BASE_FILE ] ) ? $plugin_transient->response[ MWB_WOCUF_PRO_BASE_FILE ] : false;
+
+			if ( ! empty( $update_obj ) ) : ?>
+				<div class="notice notice-error is-dismissible">
+					<p><?php esc_html_e( 'Your One Click Upsell Funnel Pro plugin update is here! Please Update it now.', 'sample-text-domain' ); ?></p>
+				</div>
+				<?php
+			endif;
+		}
+	}
 }
 
 /**
@@ -82,7 +130,7 @@ $wps_upsell_lite_plugin_activation = wps_upsell_lite_plugin_activation();
 if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 
 	// If pro plugin not active, then load Org Plugin else Don't.
-	if ( ! wps_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) && ! wps_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
+	if ( ! wps_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
 
 		define( 'WPS_WOCUF_URL', plugin_dir_url( __FILE__ ) );
 
@@ -212,7 +260,7 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 
 		?>
 
-		<?php if ( 'woo_inactive' === $wps_upsell_lite_plugin_activation['message'] ) : ?>
+			<?php if ( 'woo_inactive' === $wps_upsell_lite_plugin_activation['message'] ) : ?>
 
 			<div class="notice notice-error is-dismissible">
 				<p><strong><?php esc_html_e( 'WooCommerce', 'woo-one-click-upsell-funnel' ); ?></strong><?php esc_html_e( ' is not activated, Please activate WooCommerce first to activate ', 'woo-one-click-upsell-funnel' ); ?><strong><?php esc_html_e( 'One Click Upsell Funnel for WooCommerce', 'woo-one-click-upsell-funnel' ); ?></strong><?php esc_html_e( '.', 'woo-one-click-upsell-funnel' ); ?></p>
