@@ -73,6 +73,23 @@ if ( array_key_exists( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-
 
 if ( true === $old_pro_present ) {
 
+	add_action( 'mwb_wocuf_pro_setting_tab_active', 'mwb_wocuf_lite_add_updatenow_notice', 0, 3 );
+
+	/**
+	 * Add update now notice.
+	 *
+	 * @param string $v version.
+	 * @param string $f version.
+	 * @param string $d version.
+	 */
+	function mwb_wocuf_lite_add_updatenow_notice( $v = false, $f = false, $d = false ) {
+		?>
+			<div class="notice notice-error is-dismissible">
+				<p><?php esc_html_e( 'Your One Click Upsell Funnel Pro plugin update is here! Please Update it now via plugins page.', 'sample-text-domain' ); ?></p>
+			</div>
+		<?php
+	}
+
 	add_action( 'admin_notices', 'check_and_inform_update' );
 
 	/**
@@ -97,7 +114,8 @@ if ( true === $old_pro_present ) {
 			$plugin_transient  = get_site_transient( 'update_plugins' );
 			$update_obj        = ! empty( $plugin_transient->response[ MWB_WOCUF_PRO_BASE_FILE ] ) ? $plugin_transient->response[ MWB_WOCUF_PRO_BASE_FILE ] : false;
 
-			if ( ! empty( $update_obj ) ) : ?>
+			if ( ! empty( $update_obj ) ) :
+				?>
 				<div class="notice notice-error is-dismissible">
 					<p><?php esc_html_e( 'Your One Click Upsell Funnel Pro plugin update is here! Please Update it now.', 'sample-text-domain' ); ?></p>
 				</div>
@@ -128,6 +146,18 @@ function wps_upsell_lite_plugin_activation() {
 $wps_upsell_lite_plugin_activation = wps_upsell_lite_plugin_activation();
 
 if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
+
+	$wps_wocuf_pro_license_key = get_option( 'wps_wocuf_pro_license_key', '' );
+	$mwb_wocuf_pro_license_key = get_option( 'mwb_wocuf_pro_license_key', '' );
+	$thirty_days               = get_option( 'mwb_wocuf_pro_activated_timestamp', 0 );
+	$license_check             = get_option( 'mwb_wocuf_pro_license_check', false );
+
+	if ( ! empty( $mwb_wocuf_pro_license_key ) && empty( $wps_wocuf_pro_license_key ) ) {
+		update_option( 'wps_wocuf_pro_license_key', $mwb_wocuf_pro_license_key );
+		update_option( 'wps_wocuf_pro_activated_timestamp', $thirty_days );
+		update_option( 'wps_wocuf_pro_license_check', $license_check );
+		$wps_wocuf_pro_license_key = get_option( 'wps_wocuf_pro_license_key', '' );
+	}
 
 	// If pro plugin not active, then load Org Plugin else Don't.
 	if ( ! wps_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
