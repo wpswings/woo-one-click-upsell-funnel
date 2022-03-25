@@ -132,6 +132,36 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 	// If pro plugin not active, then load Org Plugin else Don't.
 	if ( ! wps_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
 
+		add_action( 'after_plugin_row_' . plugin_basename( __FILE__ ), 'wps_wocuf_lite_migrate_notice', 0, 3 );
+		/**
+		 * Migration to new domain notice.
+		 *
+		 * @param string $plugin_file Path to the plugin file relative to the plugins directory.
+		 * @param array  $plugin_data An array of plugin data.
+		 * @param string $status Status filter currently applied to the plugin list.
+		 */
+		function wps_wocuf_lite_migrate_notice( $plugin_file, $plugin_data, $status ) {
+
+			?>
+			<tr class="plugin-update-tr active notice-warning notice-alt">
+				<td colspan="4" class="plugin-update colspanchange">
+					<div class="notice notice-error inline update-message notice-alt">
+						<p class='wps-notice-title wps-notice-section'>
+							<?php esc_html_e( 'Heads up. The latest update includes some substantial changes across different areas of the plugin. Please visit your dashboard and ', 'woo-one-click-upsell-funnel' ); ?>
+							<a href="<?php admin_url( 'admin.php?page=wps-wocuf-setting&tab=funnels-list' ); ?>"><?php esc_html_e( 'Click Here', 'woo-one-click-upsell-funnel' ); ?></a>
+							<?php esc_html_e( 'migrate now button.', 'woo-one-click-upsell-funnel' ); ?>
+						</p>
+					</div>
+				</td>
+			</tr>
+			<style>
+				.wps-notice-section > p:before {
+					content: none;
+				}
+			</style>
+			<?php
+		}
+
 		define( 'WPS_WOCUF_URL', plugin_dir_url( __FILE__ ) );
 
 		define( 'WPS_WOCUF_DIRPATH', plugin_dir_path( __FILE__ ) );
