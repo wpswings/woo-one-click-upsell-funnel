@@ -129,6 +129,16 @@ $wps_upsell_lite_plugin_activation = wps_upsell_lite_plugin_activation();
 
 if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 
+	$wps_wocuf_pro_license_key = get_option( 'wps_wocuf_pro_license_key', '' );
+	$mwb_wocuf_pro_license_key = get_option( 'mwb_wocuf_pro_license_key', '' );
+	$thirty_days               = get_option( 'mwb_wocuf_pro_activated_timestamp', 0 );
+
+	if ( ! empty( $mwb_wocuf_pro_license_key ) && empty( $wps_wocuf_pro_license_key ) ) {
+		update_option( 'wps_wocuf_pro_license_key', $mwb_wocuf_pro_license_key );
+		update_option( 'wps_wocuf_pro_activated_timestamp', $thirty_days );
+		$wps_wocuf_pro_license_key = get_option( 'wps_wocuf_pro_license_key', '' );
+	}
+
 	// If pro plugin not active, then load Org Plugin else Don't.
 	if ( ! wps_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
 
