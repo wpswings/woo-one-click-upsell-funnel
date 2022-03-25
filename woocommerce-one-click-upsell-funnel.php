@@ -150,10 +150,12 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 	$wps_wocuf_pro_license_key = get_option( 'wps_wocuf_pro_license_key', '' );
 	$mwb_wocuf_pro_license_key = get_option( 'mwb_wocuf_pro_license_key', '' );
 	$thirty_days               = get_option( 'mwb_wocuf_pro_activated_timestamp', 0 );
+	$license_check             = get_option( 'mwb_wocuf_pro_license_check', false );
 
 	if ( ! empty( $mwb_wocuf_pro_license_key ) && empty( $wps_wocuf_pro_license_key ) ) {
 		update_option( 'wps_wocuf_pro_license_key', $mwb_wocuf_pro_license_key );
 		update_option( 'wps_wocuf_pro_activated_timestamp', $thirty_days );
+		update_option( 'wps_wocuf_pro_license_check', $license_check );
 		$wps_wocuf_pro_license_key = get_option( 'wps_wocuf_pro_license_key', '' );
 	}
 
