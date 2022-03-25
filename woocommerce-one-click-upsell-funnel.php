@@ -73,6 +73,23 @@ if ( array_key_exists( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-
 
 if ( true === $old_pro_present ) {
 
+	add_action( 'mwb_wocuf_pro_setting_tab_active', 'mwb_wocuf_lite_add_updatenow_notice', 0, 3 );
+
+	/**
+	 * Add update now notice.
+	 *
+	 * @param string $v version.
+	 * @param string $f version.
+	 * @param string $d version.
+	 */
+	function mwb_wocuf_lite_add_updatenow_notice( $v = false, $f = false, $d = false ) {
+		?>
+				<div class="notice notice-error is-dismissible">
+					<p><?php esc_html_e( 'Your One Click Upsell Funnel Pro plugin update is here! Please Update it now.', 'sample-text-domain' ); ?></p>
+				</div>
+		<?php
+	}
+
 	add_action( 'admin_notices', 'check_and_inform_update' );
 
 	/**
@@ -97,7 +114,8 @@ if ( true === $old_pro_present ) {
 			$plugin_transient  = get_site_transient( 'update_plugins' );
 			$update_obj        = ! empty( $plugin_transient->response[ MWB_WOCUF_PRO_BASE_FILE ] ) ? $plugin_transient->response[ MWB_WOCUF_PRO_BASE_FILE ] : false;
 
-			if ( ! empty( $update_obj ) ) : ?>
+			if ( ! empty( $update_obj ) ) :
+				?>
 				<div class="notice notice-error is-dismissible">
 					<p><?php esc_html_e( 'Your One Click Upsell Funnel Pro plugin update is here! Please Update it now.', 'sample-text-domain' ); ?></p>
 				</div>
