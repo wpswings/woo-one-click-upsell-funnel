@@ -178,7 +178,7 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 					<div class="notice notice-error inline update-message notice-alt">
 						<p class='wps-notice-title wps-notice-section'>
 							<?php esc_html_e( 'Heads up. The latest update includes some substantial changes across different areas of the plugin. Please visit your dashboard and ', 'woo-one-click-upsell-funnel' ); ?>
-							<a href="<?php admin_url( 'admin.php?page=wps-wocuf-setting&tab=funnels-list' ); ?>"><?php esc_html_e( 'Click Here', 'woo-one-click-upsell-funnel' ); ?></a>
+							<a href="<?php echo esc_url( admin_url( 'admin.php?page=wps-wocuf-setting&tab=funnels-list' ) ); ?>"><?php esc_html_e( 'Click Here', 'woo-one-click-upsell-funnel' ); ?></a>
 							<?php esc_html_e( 'migrate now button.', 'woo-one-click-upsell-funnel' ); ?>
 						</p>
 					</div>
