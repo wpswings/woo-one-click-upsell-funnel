@@ -9,6 +9,8 @@
 	const settings_count = settings.length;
 	const metas          = wps_ocu_migrator_obj.data.metas;
 	const metas_count    = metas.length;
+	const pages          = wps_ocu_migrator_obj.data.pages;
+	const pages_count    = pages.length;
 	const action   = 'process_ajax_events';
 
 	// Functions.
@@ -19,6 +21,7 @@
 			text: 'Click to start import',
 			showCloseButton: true,
 			showCancelButton: true,
+			allowOutsideClick: false,
 			focusConfirm: false,
 			confirmButtonText:
 			  '<i class="fa fa-thumbs-up"></i> Great!',
@@ -31,6 +34,7 @@
 				Swal.fire({
 					title   : 'Settings are being imported!',
 					html    : 'Please do not reload/close this page until prompted.',
+					allowOutsideClick: false,
 					footer  : '<span class="order-progress-report">' + settings_count + ' are left to import',
 					didOpen: () => {
 						Swal.showLoading()
@@ -56,6 +60,7 @@
 				Swal.fire({
 					title   : 'Orders/Reports are being imported!',
 					html    : 'Please do not reload/close this page until prompted.',
+					allowOutsideClick: false,
 					footer  : '<span class="order-progress-report">' + metas_count + ' are left to import',
 					didOpen: () => {
 						Swal.showLoading()
@@ -83,7 +88,41 @@
 				startImportOrders(metas);
 			} else {
 				// All orders imported!
-				Swal.fire('Import Completed', '', 'success');
+				Swal.fire({
+					title   : 'Shortcodes are being imported!',
+					html    : 'Please do not reload/close this page until prompted.',
+					allowOutsideClick: false,
+					footer  : '<span class="shortcodes-progress-report">' + pages_count + ' are left to import',
+					didOpen: () => {
+						Swal.showLoading()
+					}
+				});
+				startImportPages(pages);
+			}
+		}, function(error) {
+			console.error(error);
+		});
+	}
+
+	/**
+	 * Step Three : Migrate postmeta.
+	 */
+	 const startImportPages = ( pages ) => {
+		var event   = 'import_single_page';
+		var request = { action, event, nonce, pages };
+		jQuery.post( ajaxUrl , request ).done(function( response ){
+			console.log( response );
+			pagess = response;
+		}).then(
+		function( pagess ) {
+			pagess_count = Object.keys(pagess).length;
+			jQuery('.shortcodes-progress-report').text( pagess_count + ' are left to import' );
+			if( ! jQuery.isEmptyObject(pagess) ) {
+				startImportPages(pagess);
+			} else {
+				Swal.fire('Import Completed', '', 'success').then(() => {
+					window.location.reload();
+				});
 			}
 		}, function(error) {
 			console.error(error);

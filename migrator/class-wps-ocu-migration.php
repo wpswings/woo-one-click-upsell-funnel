@@ -100,6 +100,7 @@ class WPS_OCU_Migration {
 							array(
 								'settings' => $this->get_options_keys(),
 								'metas'    => $this->get_post_meta_keys(),
+								'pages'    => $this->get_pages_ids_with_shortcodes(),
 							)
 						),
 					)
@@ -131,6 +132,19 @@ class WPS_OCU_Migration {
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'postmeta';
 		$sql        = "SELECT DISTINCT `meta_key` FROM `$table_name` WHERE `meta_key` LIKE '%mwb_wocuf%' OR `meta_key` LIKE '%mwb_upsell%' OR `meta_key` LIKE '%mwb_ocuf%'";
+		return $this->wps_wocuf_get_query_results( $sql, ARRAY_A );
+	}
+
+	/**
+	 * Check for all the options saved via current crm plugin.
+	 *
+	 * @return array.
+	 */
+	private function get_pages_ids_with_shortcodes() {
+
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'posts';
+		$sql        = "SELECT DISTINCT `ID` FROM `$table_name` WHERE `post_type` = 'page' AND `post_content` LIKE '%[mwb_%'";
 		return $this->wps_wocuf_get_query_results( $sql, ARRAY_A );
 	}
 
@@ -183,6 +197,41 @@ class WPS_OCU_Migration {
 
 		$this->import_option( $old_key );
 		return $settings;
+	}
+
+	/**
+	 * Import Single option.
+	 *
+	 * @param array $posted_data the posted data.
+	 * @since       3.1.4
+	 */
+	public function import_single_page( $posted_data = array() ) {
+
+		$pages = ! empty( $posted_data['pages'] ) ? $posted_data['pages'] : array();
+
+		if ( empty( $pages ) ) {
+			return array();
+		}
+
+		foreach ( $pages as $key => $value ) {
+			$page_id = ! empty( $value['ID'] ) ? $value['ID'] : '';
+			unset( $pages[ $key ] );
+			break;
+		}
+
+		$page_obj = get_post( $page_id );
+
+		if ( ! empty( $page_obj ) ) {
+			$content = $page_obj->post_content;
+			$content = str_replace( 'mwb_', 'wps_', $content );
+			$my_post = array(
+				'ID'           => $page_id,
+				'post_content' => $content,
+			);
+			wp_update_post( $my_post );
+		}
+
+		return $pages;
 	}
 
 	/**
@@ -262,7 +311,7 @@ class WPS_OCU_Migration {
 			$new_meta_key = str_replace( 'mwb', 'wps', $meta_key );
 			global $wpdb;
 			$table_name = $wpdb->prefix . 'postmeta';
-			$sql = "UPDATE `$table_name` SET
+			$sql        = "UPDATE `$table_name` SET
 			`meta_key` = '$new_meta_key'
 			WHERE `meta_key` = '$meta_key'";
 
