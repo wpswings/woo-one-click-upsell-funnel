@@ -229,6 +229,12 @@ class WPS_OCU_Migration {
 				'post_content' => $content,
 			);
 			wp_update_post( $my_post );
+
+			$elementor_data = get_post_meta( $page_id, '_elementor_data', true );
+			if ( ! empty( $elementor_data ) ) {
+				$elementor_data = str_replace( 'mwb_', 'wps_', $elementor_data );
+				update_post_meta( $page_id, '_elementor_data', $elementor_data );
+			}
 		}
 
 		return $pages;
