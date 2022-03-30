@@ -178,7 +178,7 @@ class Woocommerce_One_Click_Upsell_Funnel {
 	/**
 	 * Responsible for Upsell migrator for WPS.
 	 *
-	 * @since    3.1.4
+	 * @since    3.2.0
 	 * @access   private
 	 */
 	private function define_mirator_hooks() {

@@ -3,7 +3,7 @@
  * The migration-specific functionality of the plugin.
  *
  * @link       https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-org-backend&utm_campaign=official
- * @since      3.1.4
+ * @since      3.2.0
  *
  * @package     woo_one_click_upsell_funnel
  * @subpackage woo_one_click_upsell_funnel/migration
@@ -24,7 +24,7 @@ class WPS_OCU_Migration {
 	/**
 	 * Register the stylesheets for the migration area.
 	 *
-	 * @since    3.1.4
+	 * @since    3.2.0
 	 */
 	public function enqueue_styles() {
 
@@ -56,7 +56,7 @@ class WPS_OCU_Migration {
 	/**
 	 * Register the JavaScript for the migration area.
 	 *
-	 * @since    3.1.4
+	 * @since    3.2.0
 	 */
 	public function enqueue_scripts() {
 
@@ -179,7 +179,7 @@ class WPS_OCU_Migration {
 	 * Import Single option.
 	 *
 	 * @param array $posted_data the posted data.
-	 * @since       3.1.4
+	 * @since       3.2.0
 	 */
 	public function import_single_option( $posted_data = array() ) {
 
@@ -203,7 +203,7 @@ class WPS_OCU_Migration {
 	 * Import Single option.
 	 *
 	 * @param array $posted_data the posted data.
-	 * @since       3.1.4
+	 * @since       3.2.0
 	 */
 	public function import_single_page( $posted_data = array() ) {
 
@@ -244,7 +244,7 @@ class WPS_OCU_Migration {
 	 * Modify Single option.
 	 *
 	 * @param string|array $option_name The option key.
-	 * @since       3.1.4
+	 * @since       3.2.0
 	 */
 	public function import_option( $option_name = '' ) {
 
@@ -284,7 +284,7 @@ class WPS_OCU_Migration {
 	 * Import Single meta in all posts at once.
 	 *
 	 * @param array $posted_data the posted data.
-	 * @since       3.1.4
+	 * @since       3.2.0
 	 */
 	public function import_single_meta( $posted_data = array() ) {
 
@@ -308,7 +308,7 @@ class WPS_OCU_Migration {
 	 * Init Migration for postmeta.
 	 *
 	 * @param string $meta_key meta key to import.
-	 * @since       3.1.4
+	 * @since       3.2.0
 	 */
 	public function import_postmeta( $meta_key = false ) {
 
@@ -330,7 +330,7 @@ class WPS_OCU_Migration {
 	 * Init Migration formatting.
 	 *
 	 * @param array $array Values.
-	 * @since       3.1.4
+	 * @since       3.2.0
 	 */
 	public function moderate_keys( $array = array() ) {
 
