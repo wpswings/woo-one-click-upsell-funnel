@@ -17,8 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'ONBOARD_PLUGIN_NAME', 'One Click Upsell Funnel for Woocommerce' );
 
-if ( class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
-	$this->onboard = new Makewebbetter_Onboarding_Helper();
+if ( class_exists( 'WPSwings_Onboarding_Helper' ) ) {
+	$this->onboard = new WPSwings_Onboarding_Helper();
 }
 
 $secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
@@ -85,11 +85,11 @@ if ( 'overview' === get_transient( 'wps_upsell_default_settings_tab' ) ) {
 	<div id="wps-wocuf-thirty-days-notify" class="notice notice-error">
 		<p>
 			<strong>
-				<?php esc_html_e( 'We have done a major changes in plugin! Please ', 'woocommerce-one-click-upsell-funnel-pro' ); ?>
+				<?php esc_html_e( 'We have done a major changes in plugin! Please ', 'woo-one-click-upsell-funnel' ); ?>
 				<a href="?page=wps-wocuf-setting&tab=funnels-list#wps_wocuf_migration_button">
-					<?php esc_html_e( 'Migrate', 'woocommerce-one-click-upsell-funnel-pro' ); ?>
+					<?php esc_html_e( 'Migrate', 'woo-one-click-upsell-funnel' ); ?>
 				</a>
-				<?php esc_html_e( ' or you may risk losing data and the plugin will also become dysfunctional.', 'woocommerce-one-click-upsell-funnel-pro' ); ?>
+				<?php esc_html_e( ' or you may risk losing data and the plugin will also become dysfunctional.', 'woo-one-click-upsell-funnel' ); ?>
 			</strong>
 		</p>
 	</div>

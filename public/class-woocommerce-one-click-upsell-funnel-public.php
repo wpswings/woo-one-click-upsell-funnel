@@ -3628,19 +3628,10 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			return;
 		}
 
-		?>
+		wp_register_style( 'wps_upsell_pro_global_custom_css', false, array(), WC_VERSION, 'all' );
+		wp_enqueue_style( 'wps_upsell_pro_global_custom_css' );
+		wp_add_inline_style( 'wps_upsell_pro_global_custom_css', $global_custom_css );
 
-		<style type="text/css">
-
-			<?php
-			echo wp_unslash( $global_custom_css ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			// It just displayes the html itself. Content in it is already escaped if required.
-
-			?>
-
-		</style>
-
-		<?php
 	}
 
 	/**
@@ -3664,18 +3655,10 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			return;
 		}
 
-		?>
+		wp_register_script( 'wps_upsell_pro_global_custom_js', false, array( 'jquery' ), WC_VERSION, false );
+		wp_enqueue_script( 'wps_upsell_pro_global_custom_js' );
+		wp_add_inline_script( 'wps_upsell_pro_global_custom_js', $global_custom_js );
 
-		<script type="text/javascript">
-
-			<?php
-				echo wp_unslash( $global_custom_js ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
-				// It just displayes the html itself. Content in it is already escaped if required.
-			?>
-
-		</script>
-
-		<?php
 
 	}
 

@@ -131,14 +131,14 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		/**
 		 * The class responsible for the Onboarding functionality.
 		 */
-		if ( ! class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
+		if ( ! class_exists( 'WPSwings_Onboarding_Helper' ) ) {
 
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wpswings-onboarding-helper.php';
 		}
 
-		if ( class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
+		if ( class_exists( 'WPSwings_Onboarding_Helper' ) ) {
 
-			$this->onboard = new Makewebbetter_Onboarding_Helper();
+			$this->onboard = new WPSwings_Onboarding_Helper();
 		}
 
 		/**

@@ -16,14 +16,14 @@
  * @subpackage  woo_one_click_upsell_funnel/includes
  * @author      wpswings <webmaster@wpswings.com>
  */
-if ( class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
+if ( class_exists( 'WPSwings_Onboarding_Helper' ) ) {
 	return;
 }
 
 /**
  * Helper module for WP Swings plugins.
  */
-class Makewebbetter_Onboarding_Helper {
+class WPSwings_Onboarding_Helper {
 
 	/**
 	 * The single instance of the class.
