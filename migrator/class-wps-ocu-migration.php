@@ -134,7 +134,6 @@ class WPS_OCU_Migration {
 		$sql        = "SELECT DISTINCT `meta_key` FROM `$table_name` WHERE `meta_key` LIKE '%mwb_wocuf%' OR `meta_key` LIKE '%mwb_upsell%' OR `meta_key` LIKE '%mwb_ocuf%'";
 		return $this->wps_wocuf_get_query_results( $sql, ARRAY_A );
 	}
-
 	/**
 	 * Check for all the options saved via current crm plugin.
 	 *
@@ -143,9 +142,17 @@ class WPS_OCU_Migration {
 	private function get_pages_ids_with_shortcodes() {
 
 		global $wpdb;
-		$table_name = $wpdb->prefix . 'posts';
-		$sql        = "SELECT DISTINCT `ID` FROM `$table_name` WHERE `post_type` = 'page' AND `post_content` LIKE '%[mwb_%'";
-		return $this->wps_wocuf_get_query_results( $sql, ARRAY_A );
+		$table_name    = $wpdb->prefix . 'posts';
+		$sql           = "SELECT DISTINCT `ID` FROM `$table_name` WHERE ( `post_type` = 'revision' OR `post_type` = 'page' ) AND `post_content` LIKE '%[mwb_%'";
+		$content_pages = $this->wps_wocuf_get_query_results( $sql, ARRAY_A );
+
+		$table_name = $wpdb->prefix . 'postmeta';
+		$sql        = "SELECT `post_id` FROM `$table_name` WHERE `meta_value` LIKE '%[mwb_%'";
+		$meta_pages = $this->wps_wocuf_get_query_results( $sql, ARRAY_A );
+
+		$ids = array_merge( $meta_pages, $content_pages );
+
+		return $ids;
 	}
 
 	/**
@@ -215,6 +222,9 @@ class WPS_OCU_Migration {
 
 		foreach ( $pages as $key => $value ) {
 			$page_id = ! empty( $value['ID'] ) ? $value['ID'] : '';
+			if ( empty( $page_id ) ) {
+				$page_id = ! empty( $value['post_id'] ) ? $value['post_id'] : '';
+			}
 			unset( $pages[ $key ] );
 			break;
 		}
