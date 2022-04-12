@@ -1,5 +1,5 @@
-![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg) ![Active installs](https://img.shields.io/badge/Active-1000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-5.8.3-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-6.1.0-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-7.0-blue)
-# One Click Upsell Funnel for WooCommerce
+![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg) ![Active installs](https://img.shields.io/badge/Active-1000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-5.9.3-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-6.3.1-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-7.0-blue)
+# One Click Upsell Funnel for WooCommerce – Post-Purchase Upsell & Cross-Sell Offers, Boost Sales
 ![One Click Upsell Funnel for WooCommerce](https://ps.w.org/woo-one-click-upsell-funnel/assets/banner-772x250.png?rev=2672029)
 * Contributors: WP Swings
 * Author URI: [WP Swings](https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-github-page&utm_campaign=official)
@@ -8,7 +8,7 @@
  
 # Description
  
-**TOP RATED POST-PURCHASE UPSELL PLUGIN ON WORDPRESS**
+**ONE CLICK UPSELL FUNNEL FOR WOOCOMMERCE IS A COMPLETE SOLUTION TO BOOST SALES WITH THE HELP OF OF ONE-CLICK POST-PURCHASE UPSELL AND CROSS-SELL OFFERS**
  
 [**One Click Upsell Funnel for WooCommerce**](https://wordpress.org/plugins/woo-one-click-upsell-funnel/) plugin offers post-purchase upsell offers, i.e. after the checkout is done. Customers can buy these upsell products in just one click with no hassle of re-entering the payment details or adding the product to the cart again.
  
@@ -17,9 +17,9 @@
 ***
 >**IMPORTANT NOTICE:**
  
->_**From this update Version 3.1.3 onwards, the One Click Upsell Funnel plugin and its support will be handled by [**WP Swings**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-github-page&utm_campaign=official).**_
+>_**From update Version 3.1.3 onwards, the One Click Upsell Funnel plugin and its support will be handled by [**WP Swings**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-github-page&utm_campaign=official).**_
  
->_**WP Swings is just our improvised and rebranded version with all quality solutions and help being the same, so no worries at your end. Please [**Connect with us**](https://wpswings.com/contact-us/?utm_source=wpswings-contact&utm_medium=upsell-github-page&utm_campaign=contactus) for all setup, support, and update related queries without hesitation.**_
+>_**WP Swings is just our improvised and rebranded version with all quality solutions and help to be the same, so no worries at your end. Please [**Connect with us**](https://wpswings.com/contact-us/?utm_source=wpswings-contact&utm_medium=upsell-github-page&utm_campaign=contactus) for all setup, support, and update related queries without hesitation.**_
 ***
  
 **WITH THE ONE CLICK UPSELL FUNNEL FOR WOOCOMMERCE PLUGIN YOU CAN:**
@@ -84,6 +84,11 @@ Checkout [**One Click Upsell Funnel for WooCommerce Knowledge Base**](https://su
 * [**One Click Upsell Funnel for WooCommerce Frontend Demo**](https://demo.wpswings.com/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=wpswings-upsell-demo&utm_medium=upsell-github-page&utm_campaign=frontend-demo)
  
 * [**One Click Upsell Funnel for WooCommerce Backend Demo**](https://demo.wpswings.com/one-click-upsell-funnel-for-woocommerce-pro/request-for-personal-demo/?utm_source=wpswings-upsell-demo&utm_medium=upsell-github-page&utm_campaign=backend-demo)
+
+## PLUGIN COMPATIBILITIES
+One-Click Upsell Funnel plugin has been made compatible with a wide range of payment gateways. We made our extension compatible with [**WooCommerce Stripe Payment Gateway**](https://wordpress.org/plugins/woocommerce-gateway-stripe/), WooCommerce PayPal Standard, [**WooCommerce PayPal Payments**](https://wordpress.org/plugins/woocommerce-paypal-payments/), and [**Authorize.net**](https://woocommerce.com/products/authorize-net/)
+Also, we can do customization for our users to add other payment gateways.
+
  
 ## WHAT PREMIUM VERSION OF ONE CLICK UPSELL FUNNEL FOR WOOCOMMERCE OFFERS
  
@@ -92,20 +97,24 @@ Checkout [**One Click Upsell Funnel for WooCommerce Knowledge Base**](https://su
 * Category Based Offers
 * Multiple Payment Gateways
 * Premium Support
+* Additional Offers
  
 > Note:  Get [**One Click Upsell Funnel for WooCommerce Pro**](https://wpswings.com/product/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=wpswings-upsell-pro&utm_medium=upsell-github-page&utm_campaign=upsell-pro)
  
-## DOCUMENTATION OF PREMIUM VERSION
+### DOCUMENTATION OF PREMIUM VERSION
  
 Checkout [**One Click Upsell Funnel for WooCommerce Pro Documentation**](https://docs.wpswings.com/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=wpswings-upsell-doc&utm_medium=upsell-github-page&utm_campaign=upsell-doc)
  
-### **SUPPORT**
+## SUPPORT
  
 If you need support or have questions, kindly use our online chat window [**here**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-github-page&utm_campaign=official) or connect with us then [**Generate a ticket**](https://wpswings.com/submit-query/?utm_source=wpswings-submit-query&utm_medium=upsell-github-page&utm_campaign=query)
  
-### **MORE ABOUT WP SWINGS**
+## MORE ABOUT WP SWINGS
  
 - [**Our Official Website**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-github-page&utm_campaign=official)
 - [**Follow us on Facebook Page**](https://www.facebook.com/wpswings)
 - [**Tweet us on @WPSwings**](https://twitter.com/wpswings)
 - [**Visit our LinkedIn Account**](https://www.linkedin.com/company/wpswings/)
+
+
+
