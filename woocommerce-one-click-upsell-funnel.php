@@ -14,13 +14,13 @@
  * @wordpress-plugin
  * Plugin Name:           One Click Upsell Funnel for Woocommerce
  * Plugin URI:            https://wordpress.org/plugins/woo-one-click-upsell-funnel/
- * Description:           Show exclusive post-checkout offers to your customers. Create dedicated Upsell offer pages. Offers that are relevant and benefits your customers on the existing purchase and so increase Average Order Value and your Revenue.
+ * Description:           Show exclusive post-checkout offers to your customers. Create dedicated Upsell offer pages. Offers that are relevant and benefits your customers on the existing purchase and so increase Average Order Value and your Revenue. <a href="https://wpswings.com/woocommerce-plugins/?utm_source=wpswings-upsell-shop&utm_medium=upsell-org-backend&utm_campaign=shop-page" target="_blank" >Elevate your e-commerce store by exploring more on <strong>WP Swings</strong></a>.
  * Version:               3.2.0
  *
  * Requires at least:     4.4
- * Tested up to:          5.9.1
+ * Tested up to:          5.9.2
  * WC requires at least:  3.0
- * WC tested up to:       6.2.1
+ * WC tested up to:       6.3.1
  *
  * Author:                WP Swings
  * Author URI:            https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-org-backend&utm_campaign=official
@@ -227,6 +227,7 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 
 			$plugin_links = array(
 				'<a href="' . admin_url( 'admin.php?page=wps-wocuf-setting&tab=overview' ) . '">' . esc_html__( 'Settings', 'woo-one-click-upsell-funnel' ) . '</a>',
+				'<a class="wps-ubo-lite-go-pro" style="background: #05d5d8; color: white; font-weight: 700; padding: 2px 5px; border: 1px solid #05d5d8; border-radius: 5px;" href="https://wpswings.com/product/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=wpswings-upsell-pro&utm_medium=upsell-org-backend&utm_campaign=upsell-pro" target="_blank">' . esc_html__( 'GO PRO', 'woo-one-click-upsell-funnel' ) . '</a>',
 			);
 			return array_merge( $plugin_links, $links );
 		}
@@ -247,7 +248,7 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 					'docs'    => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://docs.wpswings.com/one-click-upsell-funnel-for-woocommerce/?utm_source=wpswings-upsell-doc&utm_medium=upsell-org-backend&utm_campaign=upsell-doc">' . esc_html__( 'Go to Docs', 'woo-one-click-upsell-funnel' ) . '</a>',
 					'goPro'   => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#45b649,#dce35b);padding:5px;border-radius:6px;" 	   href="https://wpswings.com/product/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=wpswings-upsell-pro&utm_medium=upsell-org-backend&utm_campaign=upsell-pro"><strong>' . esc_html__( 'Go Premium', 'woo-one-click-upsell-funnel' ) . '</strong></a>',
 					'demo'    => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://demo.wpswings.com/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=wpswings-upsell-demo&utm_medium=upsell-org-backend&utm_campaign=upsell-demo"><strong>' . esc_html__( 'Try Premium Demo', 'woo-one-click-upsell-funnel' ) . '</strong></a>',
-					'support' => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://support.wpswings.com/wordpress-plugins-knowledge-base/category/one-click-upsell-funnel-for-woocommerce-pro-kb/?utm_source=wpswings-upsell-kb&utm_medium=upsell-org-backend&utm_campaign=upsell-kb"><strong>' . esc_html__( 'Support', 'woo-one-click-upsell-funnel' ) . '</strong></a>',
+					'support' => '<a target="_blank" style="color:#FFF;background:linear-gradient(to right,#7a28ff 0,#00a1ff 100%);padding:5px;border-radius:6px;" href="https://wpswings.com/submit-query/?utm_source=wpswings-upsell-support&utm_medium=upsell-org-backend&utm_campaign=support"><strong>' . esc_html__( 'Support', 'woo-one-click-upsell-funnel' ) . '</strong></a>',
 				);
 
 				return array_merge( $links, $row_meta );
