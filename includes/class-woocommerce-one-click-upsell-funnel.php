@@ -242,6 +242,9 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		// Include Upsell plugin for Deactivation pop-up.
 		$this->loader->add_filter( 'wps_deactivation_supported_slug', $plugin_admin, 'add_wps_deactivation_screens' );
 
+		// Add attribute to styles allowed properties.
+		$this->loader->add_filter( 'safe_style_css', $plugin_admin, 'wocuf_lite_add_style_attribute' );
+
 		if ( 'on' === $wps_wocuf_enable_plugin ) {
 
 			// Adding Upsell Orders column in Orders table in backend.
@@ -315,6 +318,8 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		$this->loader->add_filter( 'the_content', $plugin_public, 'filter_upsell_shortcodes_content' );
 
 		$wps_wocuf_enable_plugin = get_option( 'wps_wocuf_enable_plugin', 'on' );
+
+		$this->loader->add_filter( 'wp_kses_allowed_html', $plugin_public, 'wocuf_lite_allow_script_tags' );
 
 		if ( 'on' === $wps_wocuf_enable_plugin ) {
 

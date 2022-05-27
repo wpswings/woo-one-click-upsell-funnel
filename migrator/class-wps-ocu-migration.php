@@ -22,6 +22,13 @@
 class WPS_OCU_Migration {
 
 	/**
+	 * Version
+	 *
+	 * @var string
+	 */
+	public $version = WPS_WOCUF_VERSION;
+
+	/**
 	 * Register the stylesheets for the migration area.
 	 *
 	 * @since    3.2.0
@@ -117,9 +124,26 @@ class WPS_OCU_Migration {
 	private function get_options_keys() {
 
 		global $wpdb;
-		$table_name = $wpdb->prefix . 'options';
-		$sql        = "SELECT option_name FROM `$table_name` WHERE `option_name` LIKE '%mwb_wocuf%' OR `option_name` LIKE '%mwb_upsell%'";
-		return $this->wps_wocuf_get_query_results( $sql, ARRAY_A );
+
+		wp_cache_delete( 'wps_migration_option_keys' );
+		if ( empty( wp_cache_get( 'wps_migration_option_keys' ) ) ) {
+
+			$options = $wpdb->get_results( //phpcs:ignore
+				$wpdb->prepare(
+					'SELECT option_name FROM ' . $wpdb->prefix . 'options WHERE `option_name` LIKE %s OR `option_name` LIKE %s',
+					'%mwb_wocuf%',
+					'%mwb_upsell%'
+				),
+				ARRAY_A
+			);
+
+			wp_cache_set(
+				'wps_migration_option_keys',
+				$options
+			);
+		}
+
+		return $options;
 	}
 
 	/**
@@ -130,9 +154,27 @@ class WPS_OCU_Migration {
 	private function get_post_meta_keys() {
 
 		global $wpdb;
-		$table_name = $wpdb->prefix . 'postmeta';
-		$sql        = "SELECT DISTINCT `meta_key` FROM `$table_name` WHERE `meta_key` LIKE '%mwb_wocuf%' OR `meta_key` LIKE '%mwb_upsell%' OR `meta_key` LIKE '%mwb_ocuf%'";
-		return $this->wps_wocuf_get_query_results( $sql, ARRAY_A );
+
+		wp_cache_delete( 'wps_migration_post_meta_keys' );
+		if ( empty( wp_cache_get( 'wps_migration_post_meta_keys' ) ) ) {
+
+			$meta_keys = $wpdb->get_results( //phpcs:ignore
+				$wpdb->prepare(
+					'SELECT DISTINCT `meta_key` FROM ' . $wpdb->prefix . 'postmeta WHERE `meta_key` LIKE %s OR `meta_key` LIKE %s OR `meta_key` LIKE %s',
+					'%mwb_wocuf%',
+					'%mwb_upsell%',
+					'%mwb_ocuf%'
+				),
+				ARRAY_A
+			);
+
+			wp_cache_set(
+				'wps_migration_post_meta_keys',
+				$meta_keys
+			);
+		}
+
+		return $meta_keys;
 	}
 	/**
 	 * Check for all the options saved via current crm plugin.
@@ -142,29 +184,46 @@ class WPS_OCU_Migration {
 	private function get_pages_ids_with_shortcodes() {
 
 		global $wpdb;
-		$table_name    = $wpdb->prefix . 'posts';
-		$sql           = "SELECT DISTINCT `ID` FROM `$table_name` WHERE ( `post_type` = 'revision' OR `post_type` = 'page' ) AND `post_content` LIKE '%[mwb_%'";
-		$content_pages = $this->wps_wocuf_get_query_results( $sql, ARRAY_A );
 
-		$table_name = $wpdb->prefix . 'postmeta';
-		$sql        = "SELECT `post_id` FROM `$table_name` WHERE `meta_value` LIKE '%[mwb_%'";
-		$meta_pages = $this->wps_wocuf_get_query_results( $sql, ARRAY_A );
+		wp_cache_delete( 'wps_migration_shortcode_content_pages_keys' );
+		if ( empty( wp_cache_get( 'wps_migration_shortcode_content_pages_keys' ) ) ) {
+
+			$content_pages = $wpdb->get_results( //phpcs:ignore
+				$wpdb->prepare(
+					'SELECT DISTINCT ID FROM ' . $wpdb->prefix . 'posts WHERE ( post_type = %s OR post_type = %s ) AND post_content LIKE %s',
+					'revision',
+					'page',
+					'%[mwb_%'
+				),
+				ARRAY_A
+			);
+
+			wp_cache_set(
+				'wps_migration_shortcode_content_pages_keys',
+				$content_pages
+			);
+		}
+
+		wp_cache_delete( 'wps_migration_shortcode_meta_pages_keys' );
+		if ( empty( wp_cache_get( 'wps_migration_shortcode_meta_pages_keys' ) ) ) {
+
+			$meta_pages = $wpdb->get_results( //phpcs:ignore
+				$wpdb->prepare(
+					'SELECT `post_id` FROM ' . $wpdb->prefix . 'postmeta WHERE `meta_value` LIKE %s',
+					'%[mwb_%'
+				),
+				ARRAY_A
+			);
+
+			wp_cache_set(
+				'wps_migration_shortcode_meta_pages_keys',
+				$meta_pages
+			);
+		}
 
 		$ids = array_merge( $meta_pages, $content_pages );
 
 		return $ids;
-	}
-
-	/**
-	 * Get query results from database
-	 *
-	 * @param  string $query Query to be executed.
-	 * @return array         Result data.
-	 */
-	private function wps_wocuf_get_query_results( $query ) {
-		global $wpdb;
-		$result = $wpdb->get_results( $query, ARRAY_A ); // @codingStandardsIgnoreLine.
-		return $result;
 	}
 
 
@@ -247,6 +306,10 @@ class WPS_OCU_Migration {
 			}
 		}
 
+		if ( empty( $pages ) ) {
+			update_option( 'wocuf_lite_migration_status', true );
+		}
+
 		return $pages;
 	}
 
@@ -326,14 +389,25 @@ class WPS_OCU_Migration {
 
 			$new_meta_key = str_replace( 'mwb', 'wps', $meta_key );
 			global $wpdb;
-			$table_name = $wpdb->prefix . 'postmeta';
-			$sql        = "UPDATE `$table_name` SET
-			`meta_key` = '$new_meta_key'
-			WHERE `meta_key` = '$meta_key'";
 
-			$this->wps_wocuf_get_query_results( $sql );
+			wp_cache_delete( 'wps_migration_post_meta_keys' );
+			if ( empty( wp_cache_get( 'wps_migration_post_meta_keys' ) ) ) {
+
+				$import_keys = $wpdb->get_results( //phpcs:ignore
+					$wpdb->prepare(
+						'UPDATE ' . $wpdb->prefix . 'postmeta SET `meta_key` = %s WHERE `meta_key` = %s',
+						$new_meta_key,
+						$meta_key
+					),
+					ARRAY_A
+				);
+
+				wp_cache_set(
+					'wps_migration_post_meta_keys',
+					$import_keys
+				);
+			}
 		}
-
 	}
 
 	/**

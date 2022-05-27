@@ -1591,6 +1591,20 @@ button.button-primary.wps_upsell_activate_offer_template:focus {
     }
   }
 
+  /* Update 3.2.1 starts*/
+  #wps_wocuf_pro_setting_wrapper .wps_upsell_single_offer input, #wps_wocuf_pro_setting_wrapper .wps_upsell_single_offer select, #wps_wocuf_pro_setting_wrapper .wps_upsell_single_offer .select2 {
+    width: 100% !important;
+    max-width: 400px;
+    color: #005646;
+    margin: 0;
+}
+
+#wps_wocuf_pro_setting_wrapper .wps_upsell_table .new_offers tr td select, #wps_wocuf_pro_setting_wrapper .wps_upsell_table .new_offers tr td input {
+    height: 40px;
+}
+  /* Update 3.2.1 ends*/
+
+
   /*since v2.0.0 - Designer CSS - End*/
 
 /**

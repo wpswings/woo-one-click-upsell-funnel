@@ -270,6 +270,15 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 	 */
 	public function upsell_menu_html() {
 
+		if ( ! empty( $_GET['reset_migration'] ) && true == $_GET['reset_migration'] ) {  //phpcs:ignore
+			$nonce = ! empty( $_GET['wocuf_nonce'] ) ? sanitize_text_field( wp_unslash( $_GET['wocuf_nonce'] ) ) : '';
+			if ( empty( $nonce ) || ! wp_verify_nonce( $nonce, 'wocuf_lite_migration' ) ) {
+				die( 'Nonce not verified' );
+			}
+			delete_option( 'wocuf_lite_migration_status' );
+			wp_safe_redirect( admin_url() . '?page=wps-wocuf-setting&tab=funnels-list' );
+		}
+
 		require_once plugin_dir_path( __FILE__ ) . '/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php';
 	}
 
@@ -373,6 +382,8 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 			$offer_scroll_id_val = "#offer-section-$offer_index";
 
+			$allowed_html = wps_upsell_lite_allowed_html();
+
 			$data = '<div style="display:none;" data-id="' . $offer_index . '" data-scroll-id="' . $offer_scroll_id_val . '" class="new_created_offers wps_upsell_single_offer">
 			<h2 class="wps_upsell_offer_title">' . esc_html__( 'Offer #', 'woo-one-click-upsell-funnel' ) . $offer_index . '</h2>
 			<table>
@@ -387,41 +398,55 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 			<span class="wps_upsell_offer_description" >' . esc_html__( 'Specify new offer price or discount %', 'woo-one-click-upsell-funnel' ) . '</span>
 			</td>
 			<tr>
-			    <th><label><h4>' . esc_html__( 'Offer Image', 'woo-one-click-upsell-funnel' ) . '</h4></label>
-			    </th>
-			    <td>' . $this->wps_wocuf_pro_image_uploader_field( $offer_index ) . '</td>
+				<th><label><h4>' . esc_html__( 'Offer Image', 'woo-one-click-upsell-funnel' ) . '</h4></label>
+				</th>
+				<td>' . $this->wps_wocuf_pro_image_uploader_field( $offer_index ) . '</td>
 			</tr>
 			</tr>
-		    <tr>
-		    <th><label><h4>' . esc_html__( 'After \'Buy Now\' go to', 'woo-one-click-upsell-funnel' ) . '</h4></label></th>
-		    <td>' . $buy_now_action_select_html . '<span class="wps_upsell_offer_description">' . esc_html__( 'Select where the customer will be redirected after accepting this offer', 'woo-one-click-upsell-funnel' ) . '</span></td>
-		    </tr>
-		    <tr>
-		    <th><label><h4>' . esc_html__( 'After \'No thanks\' go to', 'woo-one-click-upsell-funnel' ) . '</h4></label></th>
-		    <td>' . $no_thanks_action_select_html . '<span class="wps_upsell_offer_description">' . esc_html__( 'Select where the customer will be redirected after rejecting this offer', 'woo-one-click-upsell-funnel' ) . '</td>
-		    </tr>' . $funnel_offer_template_section_html . '
-		    <tr>
-		    <th><label><h4>' . esc_html__( 'Offer Custom Page Link', 'woo-one-click-upsell-funnel' ) . '</h4></label></th>
-		    <td>
-		    <input type="text" class="wps_upsell_custom_offer_page_url" name="wps_wocuf_offer_custom_page_url[' . $offer_index . ']" >
-		    </td>
-		    </tr>
-		    <tr>
-		    <td colspan="2">
-		    <button class="button wps_wocuf_pro_delete_new_created_offers" data-id="' . $offer_index . '">' . esc_html__( 'Remove', 'woo-one-click-upsell-funnel' ) . '</button>
-		    </td>
-		    </tr>
-		    </table>
-		    <input type="hidden" name="wps_wocuf_applied_offer_number[' . $offer_index . ']" value="' . $offer_index . '">
-		    ' . $funnel_offer_post_html . '</div>';
+			<tr>
+			<th><label><h4>' . esc_html__( 'After \'Buy Now\' go to', 'woo-one-click-upsell-funnel' ) . '</h4></label></th>
+			<td>' . $buy_now_action_select_html . '<span class="wps_upsell_offer_description">' . esc_html__( 'Select where the customer will be redirected after accepting this offer', 'woo-one-click-upsell-funnel' ) . '</span></td>
+			</tr>
+			<tr>
+			<th><label><h4>' . esc_html__( 'After \'No thanks\' go to', 'woo-one-click-upsell-funnel' ) . '</h4></label></th>
+			<td>' . $no_thanks_action_select_html . '<span class="wps_upsell_offer_description">' . esc_html__( 'Select where the customer will be redirected after rejecting this offer', 'woo-one-click-upsell-funnel' ) . '</td>
+			</tr>' . $funnel_offer_template_section_html . '
+			<tr>
+			<th><label><h4>' . esc_html__( 'Offer Custom Page Link', 'woo-one-click-upsell-funnel' ) . '</h4></label></th>
+			<td>
+			<input type="text" class="wps_upsell_custom_offer_page_url" name="wps_wocuf_offer_custom_page_url[' . $offer_index . ']" >
+			</td>
+			</tr>
+			<tr>
+			<td colspan="2">
+			<button class="button wps_wocuf_pro_delete_new_created_offers" data-id="' . $offer_index . '">' . esc_html__( 'Remove', 'woo-one-click-upsell-funnel' ) . '</button>
+			</td>
+			</tr>
+			</table>
+			<input type="hidden" name="wps_wocuf_applied_offer_number[' . $offer_index . ']" value="' . $offer_index . '">
+			' . $funnel_offer_post_html . '</div>';
 
 			$new_data = apply_filters( 'wps_wocuf_pro_add_more_to_offers', $data );
 
-			echo $new_data; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo wp_kses( $new_data, $allowed_html );
 			// It just displayes the html itself. Content in it is already escaped if required.
 		}
 
 		wp_die();
+	}
+
+	/**
+	 * Add attribute to styles allowed properties in wp_kses.
+	 *
+	 * @param array $styles Allowed properties.
+	 * @return array
+	 *
+	 * @since    3.6.7
+	 */
+	public function wocuf_lite_add_style_attribute( $styles ) {
+
+		$styles[] = 'display';
+		return $styles;
 	}
 
 	/**
@@ -810,7 +835,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 			$vars = array_merge(
 				$vars,
 				array(
-					'meta_key' => 'wps_wocuf_upsell_order'    // phpcs:ignore
+					'meta_key' => 'wps_wocuf_upsell_order',     // phpcs:ignore
 				)
 			);
 
@@ -969,7 +994,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 		return '<div class="wps_wocuf_saved_custom_image">
 		<a href="#" class="wps_wocuf_pro_upload_image_button' . $image . '</a>
 		<input type="hidden" name="wps_upsell_offer_image[' . $hidden_field_index . ']" id="wps_upsell_offer_image_for_' . $hidden_field_index . '" value="' . esc_attr( $image_post_id ) . '" />
-		<a href="#" class="wps_wocuf_pro_remove_image_button button" style="display:inline-block;margin-top: 10px;display:' . $display . '">Remove image</a>
+		<a href="#" class="wps_wocuf_pro_remove_image_button button" style="margin-top: 10px;display:' . $display . '">Remove image</a>
 		</div>';
 	}
 

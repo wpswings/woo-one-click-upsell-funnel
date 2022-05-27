@@ -791,7 +791,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 										$image_post_id = ! empty( $wps_wocuf_custom_offer_images[ $current_offer_id ] ) ? $wps_wocuf_custom_offer_images[ $current_offer_id ] : '';
 
-										echo $this->wps_wocuf_pro_image_uploader_field( $current_offer_id, $image_post_id );  // phpcs:ignore 
+										echo wp_kses( $this->wps_wocuf_pro_image_uploader_field( $current_offer_id, $image_post_id ), wps_upsell_lite_allowed_html() );
 									?>
 								</td>
 							</tr>
@@ -803,7 +803,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 								</th>
 
 								<td>
-									<?php echo $wps_wocuf_pro_buy_now_action_html; // phpcs:ignore ?>
+									<?php echo wp_kses( $wps_wocuf_pro_buy_now_action_html, wps_upsell_lite_allowed_html() ); // phpcs:ignore ?>
 
 									<span class="wps_upsell_offer_description"><?php esc_html_e( 'Select where the customer will be redirected after accepting this offer', 'woo-one-click-upsell-funnel' ); ?></span>
 								</td>
@@ -816,7 +816,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 								</th>
 
 								<td>
-									<?php echo $wps_wocuf_pro_no_thanks_action_html;  // phpcs:ignore ?>
+									<?php echo wp_kses( $wps_wocuf_pro_no_thanks_action_html, wps_upsell_lite_allowed_html() );  // phpcs:ignore ?>
 									<span class="wps_upsell_offer_description"><?php esc_html_e( 'Select where the customer will be redirected after rejecting this offer', 'woo-one-click-upsell-funnel' ); ?></span>
 								</td>
 							</tr>

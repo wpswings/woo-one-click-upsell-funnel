@@ -69,7 +69,6 @@ class Elementor_Widget {
 			'upsell-desc',
 			'upsell-short-desc',
 			'upsell-star-review',
-			'upsell-timer',
 			'upsell-quantity',
 			'upsell-forms',
 		);
@@ -102,7 +101,6 @@ class Elementor_Widget {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Desc() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Short_Desc() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Star_Review() );
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Timer() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Quantity() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widgets\Upsell_Forms() );
 	}

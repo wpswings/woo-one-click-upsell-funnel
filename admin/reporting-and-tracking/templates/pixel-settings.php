@@ -298,7 +298,7 @@ $google_analytics_fields = array(
 								<span class="wps_upsell_global_description">
 								<?php
 								echo ! empty( $field_data['note'] ) ? esc_html( $field_data['note'] ) : '';
-								echo ! empty( $field_data['note_html'] ) ? ' ' . $field_data['note_html'] : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+								echo ! empty( $field_data['note_html'] ) ? ' ' . esc_url( $field_data['note_html'] ) : '';
 								?>
 								<?php
 								if ( ! empty( $field_data['note_html'] ) ) :

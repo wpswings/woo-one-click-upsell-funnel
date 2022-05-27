@@ -3658,8 +3658,21 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		wp_register_script( 'wps_upsell_pro_global_custom_js', false, array( 'jquery' ), WC_VERSION, false );
 		wp_enqueue_script( 'wps_upsell_pro_global_custom_js' );
 		wp_add_inline_script( 'wps_upsell_pro_global_custom_js', $global_custom_js );
+	}
 
-
+	/**
+	 * Allow Script tags in wp_kses
+	 *
+	 * @param array $allowedposttags allowed post tags.
+	 * @return array
+	 */
+	public function wocuf_lite_allow_script_tags( $allowedposttags ) {
+		$allowedposttags['script'] = array(
+			'src'    => true,
+			'height' => true,
+			'width'  => true,
+		);
+		return $allowedposttags;
 	}
 
 	/**

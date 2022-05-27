@@ -68,6 +68,302 @@ function wps_upsell_lite_validate_upsell_nonce() {
 }
 
 /**
+ * This function returns just allowed html for order bump.
+ *
+ * @since    1.0.0
+ */
+function wps_upsell_lite_allowed_html() {
+
+	// Return the complete html elements defined by us.
+	$allowed_html = array(
+		'input'  => array(
+			'class'   => array(
+				'add_offer_in_cart',
+				'offer_shown_id',
+				'offer_shown_discount',
+			),
+			'id'      => array(
+				'target_id_cart_key',
+			),
+			'name'          => array(),
+			'placeholder'   => array(),
+			'value'         => array(),
+			'type'          => array( 'hidden', 'checkbox' ),
+			'checked'       => array(),
+			'min'           => array(),
+			'max'           => array(),
+		),
+		'label'  => array(
+			'class' => array( 'wps_upsell_bump_checkbox_container' ),
+			'id'    => array(),
+			'value' => array(),
+		),
+		'span'   => array(
+			'class' => array(
+				'woocommerce-Price-amount',
+				'amount',
+				'woocommerce-Price-currencySymbol',
+				'checkmark',
+			),
+			'id'    => array(),
+			'value' => array(),
+		),
+		'br'     => '',
+		'ins'    => '',
+		'del'    => '',
+		'h2'     => array(
+			'wps_upsell_offer_title',
+		),
+		'h3'     => '',
+		'h4'     => '',
+		'h5'     => '',
+		'div'    => array(
+			'class'                              => array(
+				'wps_wocuf_saved_custom_image',
+				'new_created_offers',
+				'wps_upsell_single_offer',
+				'wps_upsell_offer_parent_wrapper',
+				'wps_upsell_offer_discount_section',
+				'wps_upsell_offer_wrapper',
+				'wps_upsell_offer_product_section',
+				'wps_upsell_offer_image',
+				'wps_upsell_offer_product_content',
+				'wps_upsell_offer_primary_section' => array(
+					'div' => array(
+						'img' => array(
+							'src',
+						),
+					),
+				),
+				'wps_upsell_offer_secondary_section',
+				'woocommerce-product-gallery__image',
+				'wps_ubo_lite_go_pro_popup_wrap',
+				'wps_ubo_lite_go_pro_popup',
+				'wps_ubo_lite_go_pro_popup_head',
+				'wps_ubo_lite_go_pro_popup_content',
+				'wps_ubo_lite_go_pro_popup_button',
+			),
+			'id'                                 => array(),
+			'value'                              => array(),
+			'data-thumb'                         => array(),
+			'data-thumb-alt'                     => array(),
+			'woocommerce-product-gallery__image' => array(),
+			'data-thumb'                         => array(),
+		),
+		'p'      => array(
+			'class' => array(
+				'wps_upsell_offer_product_price',
+				'wps_upsell_offer_product_description',
+				'wps_ubo_lite_go_pro_popup_text',
+			),
+			'id'    => array(),
+			'value' => array(),
+		),
+		'b'      => '',
+		'img'    => array(
+			'class'                   => array( 'wp-post-image' ),
+			'id'                      => array(),
+			'src'                     => array(),
+			'style'                   => array(),
+			'data-id'                 => array(),
+			'data-id'                 => array(),
+			'data-id'                 => array(),
+			'width'                   => array(),
+			'height'                  => array(),
+			'alt'                     => array(),
+			'data-caption'            => array(),
+			'data-src'                => array(),
+			'data-large_image'        => array(),
+			'data-large_image_width'  => array(),
+			'data-large_image_height' => array(),
+			'srcset'                  => array(),
+			'sizes'                   => array(),
+		),
+		'a'      => array(
+			'href'   => array(),
+			'class'  => array(
+				'wps_wocuf_pro_upload_image_button',
+				'wps_wocuf_pro_remove_image_button',
+				'button',
+				'wps_ubo_lite_overview_go_pro_button',
+			),
+			'target' => '_blank',
+		),
+		'select' => array(
+			'id'                    => array(),
+			'class'                 => array(),
+			'name'                  => array(),
+			'data-attribute_name'   => array(),
+			'data-show_option_none' => array(),
+			'order_bump_index'      => array(),
+			'order'                 => array(),
+			'attribute_pa_color'    => array(),
+		),
+		'h4'     => array(
+			'data-wps_qty'          => array(),
+			'data-wps_is_fixed_qty' => array(),
+			'data-qty_allowed'      => array(),
+			'class'                 => array(),
+		),
+		'option' => array(
+			'value'    => array(),
+			'selected' => array(),
+		),
+	);
+
+	$allowed_html = array(
+		'input'  => array(
+			'class'          => array(),
+			'id'             => array(),
+			'name'           => array(),
+			'placeholder'    => array(),
+			'value'          => array(),
+			'type'           => array(),
+			'checked'        => array(),
+			'min'            => array(),
+			'max'            => array(),
+			'style'          => array(
+				// 'display' => array(),
+			),
+			'data-id'        => array(),
+			'data-scroll-id' => array(),
+			'inputmode'      => array(),
+			'title'          => array(),
+			'step'           => array(),
+		),
+		'label'  => array(
+			'for'   => array(),
+			'class' => array(),
+			'id'    => array(),
+			'value' => array(),
+		),
+		'span'   => array(
+			'class' => array(),
+			'id'    => array(),
+			'value' => array(),
+			'style' => array(),
+		),
+		'br'     => array(),
+		'h2'     => array(
+			'class' => array(),
+			'id'    => array(),
+		),
+		'h3'     => array(
+			'class' => array(),
+			'id'    => array(),
+		),
+		'h4'     => array(
+			'id'    => array(),
+			'class' => array(),
+		),
+		'h5'     => array(
+			'id'    => array(),
+			'class' => array(),
+		),
+		'tr'     => array(
+			'id'    => array(),
+			'class' => array(),
+		),
+		'th'     => array(
+			'id'    => array(),
+			'class' => array(),
+		),
+		'td'     => array(
+			'id'      => array(),
+			'class'   => array(),
+			'colspan' => array(),
+		),
+		'table'  => array(
+			'id'    => array(),
+			'class' => array(),
+		),
+		'div'    => array(
+			'class'                              => array(),
+			'id'                                 => array(),
+			'data-id'                            => array(),
+			'value'                              => array(),
+			'data-thumb'                         => array(),
+			'data-thumb-alt'                     => array(),
+			'woocommerce-product-gallery__image' => array(),
+			'data-thumb'                         => array(),
+			'data-scroll-id'                     => array(),
+			'style'                              => array(
+				// 'display' => array(),
+			),
+		),
+		'button' => array(
+			'class'              => array(),
+			'id'                 => array(),
+			'data-id'            => array(),
+			'data-template-id'   => array(),
+			'data-offer-id'      => array(),
+			'data-funnel-id'     => array(),
+			'data-offer-post-id' => array(),
+		),
+		'p'      => array(
+			'class' => array(),
+			'id'    => array(),
+			'value' => array(),
+		),
+		'b'      => array(),
+		'img'    => array(
+			'class'                   => array(),
+			'id'                      => array(),
+			'src'                     => array(),
+			'style'                   => array(),
+			'data-id'                 => array(),
+			'data-id'                 => array(),
+			'data-id'                 => array(),
+			'width'                   => array(),
+			'height'                  => array(),
+			'alt'                     => array(),
+			'data-caption'            => array(),
+			'data-src'                => array(),
+			'data-large_image'        => array(),
+			'data-large_image_width'  => array(),
+			'data-large_image_height' => array(),
+			'srcset'                  => array(),
+			'sizes'                   => array(),
+		),
+		'a'      => array(
+			'href'   => array(),
+			'class'  => array(),
+			'target' => array(),
+			'style'  => array(
+				'display' => 'none',
+			),
+			'data-template-id' => array(),
+		),
+		'select' => array(
+			'id'                    => array(),
+			'class'                 => array(),
+			'name'                  => array(),
+			'data-placeholder'      => array(),
+			'data-attribute_name'   => array(),
+			'data-show_option_none' => array(),
+			'order'                 => array(),
+			'attribute_pa_color'    => array(),
+			'style'                 => array(),
+		),
+		'option' => array(
+			'value'    => array(),
+			'selected' => array(),
+		),
+		'del'    => array(
+			'aria-hidden' => array(),
+		),
+		'bdi'    => array(),
+		'ins'    => array(),
+		'script' => array(
+			'type' => array(),
+		),
+	);
+
+	return $allowed_html;
+}
+
+
+/**
  * Get product discount.
  *
  * @since    2.0.0

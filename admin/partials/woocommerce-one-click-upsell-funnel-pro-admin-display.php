@@ -82,17 +82,31 @@ if ( 'overview' === get_transient( 'wps_upsell_default_settings_tab' ) ) {
 			<p><?php esc_html_e( 'Regarding any issue, query or feature request for Upsell', 'woo-one-click-upsell-funnel' ); ?></p>
 		</div>
 	</div>
-	<div id="wps-wocuf-thirty-days-notify" class="notice notice-error">
-		<p>
-			<strong>
-				<?php esc_html_e( 'We have done a major changes in plugin! Please ', 'woo-one-click-upsell-funnel' ); ?>
-				<a href="?page=wps-wocuf-setting&tab=funnels-list#wps_wocuf_migration_button">
-					<?php esc_html_e( 'Migrate', 'woo-one-click-upsell-funnel' ); ?>
-				</a>
-				<?php esc_html_e( ' or you may risk losing data and the plugin will also become dysfunctional.', 'woo-one-click-upsell-funnel' ); ?>
-			</strong>
-		</p>
-	</div>
+
+	<?php if ( empty( get_option( 'wocuf_lite_migration_status', false ) ) ) { ?>
+		<div id="wps-wocuf-thirty-days-notify" class="notice notice-error">
+			<p>
+				<strong>
+					<?php esc_html_e( 'We have done a major changes in plugin! Please ', 'woo-one-click-upsell-funnel' ); ?>
+					<a href="?page=wps-wocuf-setting&tab=funnels-list#wps_wocuf_migration_button">
+						<?php esc_html_e( 'Migrate', 'woo-one-click-upsell-funnel' ); ?>
+					</a>
+					<?php esc_html_e( ' or you may risk losing data and the plugin will also become dysfunctional.', 'woo-one-click-upsell-funnel' ); ?>
+				</strong>
+			</p>
+		</div>
+	<?php } else { ?>
+		<div id="wps-wocuf-thirty-days-notify" class="notice notice-success">
+			<p>
+				<strong>
+					<?php esc_html_e( 'Migration was successful! If you want to reset the migration, please click here. ', 'one-click-upsell-funnel-for-woocommerce-pro' ); ?>
+					<a href="?page=wps-wocuf-setting&tab=funnels-list&reset_migration=1&wocuf_nonce=<?php echo esc_attr( wp_create_nonce( 'wocuf_lite_migration' ) ); ?>">
+						<?php esc_html_e( 'Reset Migration', 'woo-one-click-upsell-funnel' ); ?>
+					</a>
+				</strong>
+			</p>
+		</div>
+	<?php } ?>
 	<nav class="nav-tab-wrapper woo-nav-tab-wrapper">
 		<a class="nav-tab <?php echo 'creation-setting' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=wps-wocuf-setting&tab=creation-setting"><?php esc_html_e( 'Save Funnel', 'woo-one-click-upsell-funnel' ); ?></a>
 		<a class="nav-tab <?php echo 'funnels-list' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=wps-wocuf-setting&tab=funnels-list"><?php esc_html_e( 'Funnels List', 'woo-one-click-upsell-funnel' ); ?></a>

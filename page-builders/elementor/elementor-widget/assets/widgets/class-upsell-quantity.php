@@ -141,8 +141,9 @@ class Upsell_Quantity extends Widget_Base {
 		$shortcode = $this->get_settings_for_display( 'shortcode' );
 
 		$shortcode = do_shortcode( shortcode_unautop( $shortcode ) );
+
 		?>
-		<div class="elementor-shortcode"><?php echo $shortcode; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
+		<div class="elementor-shortcode"><?php echo wp_kses( $shortcode, wps_upsell_lite_allowed_html() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
 		<?php
 	}
 

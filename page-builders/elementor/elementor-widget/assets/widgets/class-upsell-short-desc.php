@@ -441,7 +441,7 @@ class Upsell_Short_Desc extends Widget_Base {
 		<?php } ?>
 		<?php
 		// PHPCS - the main text of a widget should not be escaped.
-				echo $editor_content; // phpcs:ignore WordPress.Security.EscapeOutput 
+				echo esc_html( $editor_content ); // phpcs:ignore WordPress.Security.EscapeOutput 
 		?>
 		<?php if ( $should_render_inline_editing ) { ?>
 			</div>

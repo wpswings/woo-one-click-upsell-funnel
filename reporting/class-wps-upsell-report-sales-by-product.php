@@ -622,7 +622,7 @@ class WPS_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 				label: "<?php echo esc_js( __( 'Number of items sold', 'woocommerce' ) ); ?>",
 				data: order_data.order_item_counts,
 				color: '<?php echo esc_html( $this->chart_colours['item_count'] ); //phpcs:ignore ?>',
-				bars: { fillColor: '<?php echo esc_html( $this->chart_colours['item_count'] ); //phpcs:ignore ?>', fill: true, show: true, lineWidth: 0, barWidth: <?php echo $this->barwidth; //phpcs:ignore ?> * 0.5, align: 'center' },
+				bars: { fillColor: '<?php echo esc_html( $this->chart_colours['item_count'] ); //phpcs:ignore ?>', fill: true, show: true, lineWidth: 0, barWidth: <?php echo esc_html( $this->barwidth ); //phpcs:ignore ?> * 0.5, align: 'center' },
 				shadowSize: 0,
 				hoverable: false
 			  },
@@ -634,9 +634,10 @@ class WPS_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 				points: { show: true, radius: 5, lineWidth: 3, fillColor: '#fff', fill: true },
 				lines: { show: true, lineWidth: 4, fill: false },
 				shadowSize: 0,
-				<?php echo $this->get_currency_tooltip(); //phpcs:ignore ?>
+				prepend_tooltip: "<?php echo esc_html( get_woocommerce_currency_symbol() ); ?>"
 			  }
 			];
+
 
 			if ( highlight !== 'undefined' && series[ highlight ] ) {
 			  highlight_series = series[ highlight ];
