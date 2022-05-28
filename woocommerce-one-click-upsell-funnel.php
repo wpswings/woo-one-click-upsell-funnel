@@ -85,7 +85,7 @@ if ( true === $old_pro_present ) {
 	function mwb_wocuf_lite_add_updatenow_notice( $v = false, $f = false, $d = false ) {
 		?>
 			<div class="notice notice-error is-dismissible">
-				<p><?php esc_html_e( 'Your One Click Upsell Funnel Pro plugin update is here! Please Update it now via plugins page.', 'sample-text-domain' ); ?></p>
+				<p><?php esc_html_e( 'Your One Click Upsell Funnel Pro plugin update is here! Please Update it now via plugins page.', 'woo-one-click-upsell-funnel' ); ?></p>
 			</div>
 		<?php
 	}
@@ -117,7 +117,7 @@ if ( true === $old_pro_present ) {
 			if ( ! empty( $update_obj ) ) :
 				?>
 				<div class="notice notice-error is-dismissible">
-					<p><?php esc_html_e( 'Your One Click Upsell Funnel Pro plugin update is here! Please Update it now.', 'sample-text-domain' ); ?></p>
+					<p><?php esc_html_e( 'Your One Click Upsell Funnel Pro plugin update is here! Please Update it now.', 'woo-one-click-upsell-funnel' ); ?></p>
 				</div>
 				<?php
 			endif;

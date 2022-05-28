@@ -99,7 +99,7 @@ if ( 'overview' === get_transient( 'wps_upsell_default_settings_tab' ) ) {
 		<div id="wps-wocuf-thirty-days-notify" class="notice notice-success">
 			<p>
 				<strong>
-					<?php esc_html_e( 'Migration was successful! If you want to reset the migration, please click here. ', 'one-click-upsell-funnel-for-woocommerce-pro' ); ?>
+					<?php esc_html_e( 'Migration was successful! If you want to reset the migration, please click here. ', 'woo-one-click-upsell-funnel' ); ?>
 					<a href="?page=wps-wocuf-setting&tab=funnels-list&reset_migration=1&wocuf_nonce=<?php echo esc_attr( wp_create_nonce( 'wocuf_lite_migration' ) ); ?>">
 						<?php esc_html_e( 'Reset Migration', 'woo-one-click-upsell-funnel' ); ?>
 					</a>
