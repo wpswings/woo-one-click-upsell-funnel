@@ -14,14 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( class_exists( 'Mwb_Upsell_Report_Sales_By_Product' ) ) {
+if ( class_exists( 'WPS_Upsell_Report_Sales_By_Product' ) ) {
 	return;
 }
 
 /**
- * Mwb_Upsell_Report_Sales_By_Product.
+ * WPS_Upsell_Report_Sales_By_Product.
  */
-class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
+class WPS_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 
 	/**
 	 * Chart colors.
@@ -79,16 +79,16 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 						'function'        => 'SUM',
 						'name'            => 'order_item_amount',
 					),
-					'mwb_wocuf_upsell_order' => array(
+					'wps_wocuf_upsell_order' => array(
 						'type'     => 'meta',
 						'function' => '',
-						'name'     => 'mwb_wocuf_pro_upsell_meta',
+						'name'     => 'wps_wocuf_pro_upsell_meta',
 					),
 					'is_upsell_purchase'     => array(
 						'type'            => 'order_item_meta',
 						'order_item_type' => 'line_item',
 						'function'        => '',
-						'name'            => 'mwb_wocuf_pro_upsell_item_meta',
+						'name'            => 'wps_wocuf_pro_upsell_item_meta',
 					),
 				),
 				'where_meta'   => array(
@@ -117,18 +117,17 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 							'function'        => 'SUM',
 							'name'            => 'order_item_count',
 						),
-						'mwb_wocuf_upsell_order' => array(
+						'wps_wocuf_upsell_order' => array(
 							'type'     => 'meta',
 							'function' => '',
-							'name'     => 'mwb_wocuf_pro_upsell_meta',
+							'name'     => 'wps_wocuf_pro_upsell_meta',
 						),
 						'is_upsell_purchase'     => array(
 							'type'            => 'order_item_meta',
 							'order_item_type' => 'line_item',
 							'function'        => '',
-							'name'            => 'mwb_wocuf_pro_upsell_item_meta',
+							'name'            => 'wps_wocuf_pro_upsell_item_meta',
 						),
-
 					),
 					'where_meta'   => array(
 						'relation' => 'AND',
@@ -180,8 +179,8 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 			'sales_amount' => '#8eba36',
 			'item_count'   => '#dbe1e3',
 		);
-		$secure_nonce        = wp_create_nonce( 'mwb-upsell-auth-nonce' );
-		$id_nonce_verified   = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+		$secure_nonce        = wp_create_nonce( 'wps-upsell-auth-nonce' );
+		$id_nonce_verified   = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
 
 		if ( ! $id_nonce_verified ) {
 			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
@@ -472,8 +471,8 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 	 */
 	public function get_export_button() {
 
-		$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
-		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+		$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
+		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
 
 		if ( ! $id_nonce_verified ) {
 			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
@@ -528,7 +527,7 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 							'type'            => 'order_item_meta',
 							'order_item_type' => 'line_item',
 							'function'        => '',
-							'name'            => 'mwb_wocuf_pro_upsell_item_meta',
+							'name'            => 'wps_wocuf_pro_upsell_item_meta',
 						),
 					),
 					'where_meta'   => array(
@@ -573,7 +572,7 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 							'type'            => 'order_item_meta',
 							'order_item_type' => 'line_item',
 							'function'        => '',
-							'name'            => 'mwb_wocuf_pro_upsell_item_meta',
+							'name'            => 'wps_wocuf_pro_upsell_item_meta',
 						),
 					),
 					'where_meta'   => array(
@@ -623,7 +622,7 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 				label: "<?php echo esc_js( __( 'Number of items sold', 'woocommerce' ) ); ?>",
 				data: order_data.order_item_counts,
 				color: '<?php echo esc_html( $this->chart_colours['item_count'] ); //phpcs:ignore ?>',
-				bars: { fillColor: '<?php echo esc_html( $this->chart_colours['item_count'] ); //phpcs:ignore ?>', fill: true, show: true, lineWidth: 0, barWidth: <?php echo $this->barwidth; //phpcs:ignore ?> * 0.5, align: 'center' },
+				bars: { fillColor: '<?php echo esc_html( $this->chart_colours['item_count'] ); //phpcs:ignore ?>', fill: true, show: true, lineWidth: 0, barWidth: <?php echo esc_html( $this->barwidth ); //phpcs:ignore ?> * 0.5, align: 'center' },
 				shadowSize: 0,
 				hoverable: false
 			  },
@@ -635,9 +634,10 @@ class Mwb_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 				points: { show: true, radius: 5, lineWidth: 3, fillColor: '#fff', fill: true },
 				lines: { show: true, lineWidth: 4, fill: false },
 				shadowSize: 0,
-				<?php echo $this->get_currency_tooltip(); //phpcs:ignore ?>
+				prepend_tooltip: "<?php echo esc_html( get_woocommerce_currency_symbol() ); ?>"
 			  }
 			];
+
 
 			if ( highlight !== 'undefined' && series[ highlight ] ) {
 			  highlight_series = series[ highlight ];

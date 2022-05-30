@@ -14,14 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( class_exists( 'Mwb_Upsell_Report_Sales_By_Category' ) ) {
+if ( class_exists( 'WPS_Upsell_Report_Sales_By_Category' ) ) {
 	return;
 }
 
 /**
- * Mwb_Upsell_Report_Sales_By_Category.
+ * WPS_Upsell_Report_Sales_By_Category.
  */
-class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
+class WPS_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 
 	/**
 	 * Chart colors.
@@ -56,8 +56,8 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 	 */
 	public function __construct() {
 
-		$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
-		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+		$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
+		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
 
 		if ( ! $id_nonce_verified ) {
 			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
@@ -136,8 +136,8 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 
 		$this->chart_colours = array( '#8eba36', '#3498db', '#1abc9c', '#34495e', '#2ecc71', '#f1c40f', '#e67e22', '#e74c3c', '#2980b9', '#8e44ad', '#2c3e50', '#16a085', '#27ae60', '#f39c12', '#d35400', '#c0392b' );
 
-		$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
-		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+		$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
+		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
 
 		if ( ! $id_nonce_verified ) {
 			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
@@ -174,16 +174,16 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 							'function' => '',
 							'name'     => 'post_date',
 						),
-						'mwb_wocuf_upsell_order' => array(
+						'wps_wocuf_upsell_order' => array(
 							'type'     => 'meta',
 							'function' => '',
-							'name'     => 'mwb_wocuf_pro_upsell_meta',
+							'name'     => 'wps_wocuf_pro_upsell_meta',
 						),
 						'is_upsell_purchase'     => array(
 							'type'            => 'order_item_meta',
 							'order_item_type' => 'line_item',
 							'function'        => '',
-							'name'            => 'mwb_wocuf_pro_upsell_item_meta',
+							'name'            => 'wps_wocuf_pro_upsell_item_meta',
 						),
 					),
 					'group_by'     => 'ID, product_id, post_date',
@@ -240,8 +240,8 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 	 */
 	public function category_widget() {
 
-		$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
-		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+		$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
+		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
 
 		if ( ! $id_nonce_verified ) {
 			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
@@ -262,7 +262,7 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 
 			include_once WC()->plugin_path() . '/includes/walkers/class-wc-product-cat-dropdown-walker.php';
 
-			echo wc_walk_category_dropdown_tree( $categories, 0, $r ); // phpcs:ignore
+			echo wp_kses( wc_walk_category_dropdown_tree( $categories, 0, $r ), wps_upsell_lite_allowed_html() ); // phpcs:ignore
 		?>
 		</select>
 		<a href="#" class="select_none"><?php esc_html_e( 'None', 'woocommerce' ); ?></a>
@@ -300,8 +300,8 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 	 * Output an export link.
 	 */
 	public function get_export_button() {
-		$secure_nonce      = wp_create_nonce( 'mwb-upsell-auth-nonce' );
-		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'mwb-upsell-auth-nonce' );
+		$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
+		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
 
 		if ( ! $id_nonce_verified ) {
 			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
@@ -411,7 +411,7 @@ class Mwb_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
                         barWidth: ' . esc_html( $width ) * 0.75 . ',
                         stack: false
                       },
-                      ' . $this->get_currency_tooltip() . ',
+                      prepend_tooltip: "' . esc_html( get_woocommerce_currency_symbol() ) . '",
                       enable_tooltip: true,
                       prepend_label: true
                     },';

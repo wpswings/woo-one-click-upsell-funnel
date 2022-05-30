@@ -14,14 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( class_exists( 'Mwb_Upsell_Report_Sales_By_Funnel' ) ) {
+if ( class_exists( 'WPS_Upsell_Report_Sales_By_Funnel' ) ) {
 	return;
 }
 
 /**
- * Mwb_Upsell_Report_Sales_By_Funnel.
+ * WPS_Upsell_Report_Sales_By_Funnel.
  */
-class Mwb_Upsell_Report_Sales_By_Funnel {
+class WPS_Upsell_Report_Sales_By_Funnel {
 
 	/**
 	 * Upsell Funnel ID for operations.
@@ -62,7 +62,7 @@ class Mwb_Upsell_Report_Sales_By_Funnel {
 	 */
 	protected function set_funnel_series() {
 
-		$this->funnel_series = get_option( 'mwb_wocuf_funnels_list', array() );
+		$this->funnel_series = get_option( 'wps_wocuf_funnels_list', array() );
 	}
 
 	/**
@@ -91,7 +91,7 @@ class Mwb_Upsell_Report_Sales_By_Funnel {
 	 */
 	protected function save_funnel_series( $funnel_series = array() ) {
 
-		update_option( 'mwb_wocuf_funnels_list', $funnel_series );
+		update_option( 'wps_wocuf_funnels_list', $funnel_series );
 	}
 
 	/**

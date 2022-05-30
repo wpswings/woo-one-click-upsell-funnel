@@ -10,7 +10,7 @@
  */
 
 /**
- * Template Name: MWB OneClick Upsell Template
+ * Template Name: WPS OneClick Upsell Template
  * This template will only display the content you entered in the page editor
  */
 

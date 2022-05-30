@@ -128,7 +128,7 @@ class Upsell_Price extends Widget_Base {
 			array(
 				'label'   => '',
 				'type'    => Controls_Manager::WYSIWYG,
-				'default' => '<p>Special Offer Price</p><p>[mwb_upsell_price]</p>',
+				'default' => '<p>Special Offer Price</p><p>[wps_upsell_price]</p>',
 			)
 		);
 
@@ -444,8 +444,9 @@ class Upsell_Price extends Widget_Base {
 			<div <?php $this->print_render_attribute_string( 'editor' ); ?>>
 		<?php } ?>
 		<?php
+
 		// PHPCS - the main text of a widget should not be escaped.
-				echo $editor_content; // phpcs:ignore WordPress.Security.EscapeOutput 
+			echo wp_kses( $editor_content, wps_upsell_lite_allowed_html() ); // phpcs:ignore WordPress.Security.EscapeOutput 
 		?>
 		<?php if ( $should_render_inline_editing ) { ?>
 			</div>

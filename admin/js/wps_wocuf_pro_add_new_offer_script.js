@@ -1,7 +1,7 @@
 jQuery(document).ready( function($) {
 
 	// Remove Saved Offers.
-	jQuery('.mwb_wocuf_pro_delete_old_created_offers').on( 'click', function(e) {
+	jQuery('.wps_wocuf_pro_delete_old_created_offers').on( 'click', function(e) {
 		e.preventDefault();
     	var btn_id = $(this).data( 'id' );
 		jQuery(".new_created_offers[data-id='" + btn_id + "']").slideUp( 'slow', function() { $(this).remove(); } );
@@ -17,9 +17,9 @@ jQuery(document).ready( function($) {
 		// After scrolling remove offer section parameter from url.
 		var after_scroll_href = window.location.href;
 
-		if ( after_scroll_href.indexOf( '&mwb-upsell-offer-section=' ) >= 0 ) {
+		if ( after_scroll_href.indexOf( '&wps-upsell-offer-section=' ) >= 0 ) {
 
-			var after_scroll_newUrl = after_scroll_href.substring( 0, after_scroll_href.indexOf( '&mwb-upsell-offer-section=' ) );
+			var after_scroll_newUrl = after_scroll_href.substring( 0, after_scroll_href.indexOf( '&wps-upsell-offer-section=' ) );
 
    			window.history.replaceState( {}, '', after_scroll_newUrl );
 
@@ -28,13 +28,13 @@ jQuery(document).ready( function($) {
 
 	jQuery('.wc-funnel-product-search').select2({
   		ajax:{
-    			url :mwb_upsell_lite_js_obj.ajaxurl,
+    			url :wps_upsell_lite_js_obj.ajaxurl,
     			dataType: 'json',
     			delay: 200,
     			data: function (params) {
       				return {
         				q: params.term,
-        				nonce : mwb_upsell_lite_js_obj.auth_nonce,
+        				nonce : wps_upsell_lite_js_obj.auth_nonce,
         				action: 'seach_products_for_funnel'
       				};
     			},
@@ -59,13 +59,13 @@ jQuery(document).ready( function($) {
 
 	jQuery('.wc-offer-product-search').select2({
   		ajax:{
-    			url :mwb_upsell_lite_js_obj.ajaxurl,
+    			url :wps_upsell_lite_js_obj.ajaxurl,
     			dataType: 'json',
     			delay: 200,
     			data: function (params) {
       				return {
         				q: params.term,
-        				nonce : mwb_upsell_lite_js_obj.auth_nonce,
+        				nonce : wps_upsell_lite_js_obj.auth_nonce,
         				action: 'seach_products_for_offers'
       				};
     			},
@@ -89,7 +89,7 @@ jQuery(document).ready( function($) {
 	});
 
 	// Create New Offer.
-	jQuery( '#mwb_upsell_create_new_offer' ).on( 'click', function(e) {
+	jQuery( '#wps_upsell_create_new_offer' ).on( 'click', function(e) {
 
 		e.preventDefault();
 
@@ -100,8 +100,8 @@ jQuery(document).ready( function($) {
 		var funnel = $(this).data('id');
 
 		// Show loading icon.
-		$('#mwb_wocuf_pro_loader').removeClass('hide');
-		$('#mwb_wocuf_pro_loader').addClass('show');
+		$('#wps_wocuf_pro_loader').removeClass('hide');
+		$('#wps_wocuf_pro_loader').addClass('show');
 
 		upsell_create_new_offer_post_request( index, funnel );		
 	});
@@ -113,19 +113,19 @@ jQuery(document).ready( function($) {
 
 		$.ajax({
 		    type:'POST',
-		    url :mwb_upsell_lite_js_obj.ajaxurl,
+		    url :wps_upsell_lite_js_obj.ajaxurl,
 		    data:{
-		    	action: 'mwb_wocuf_pro_return_offer_content',
-		    	nonce : mwb_upsell_lite_js_obj.auth_nonce,
-		    	mwb_wocuf_pro_flag: index,
-		    	mwb_wocuf_pro_funnel: funnel
+		    	action: 'wps_wocuf_pro_return_offer_content',
+		    	nonce : wps_upsell_lite_js_obj.auth_nonce,
+		    	wps_wocuf_pro_flag: index,
+		    	wps_wocuf_pro_funnel: funnel
 		    },
 
 		    success:function( data ) {
 
 		    	// Hide loading icon.
-		    	jQuery('#mwb_wocuf_pro_loader').removeClass('show');
-				jQuery('#mwb_wocuf_pro_loader').addClass('hide');
+		    	jQuery('#wps_wocuf_pro_loader').removeClass('show');
+				jQuery('#wps_wocuf_pro_loader').addClass('hide');
 
 		    	jQuery('.new_offers').append(data);
 
@@ -138,7 +138,7 @@ jQuery(document).ready( function($) {
 
 
 	    		// Remove Added Offers.
-		    	jQuery('.mwb_wocuf_pro_delete_new_created_offers').on( 'click', function(e) {
+		    	jQuery('.wps_wocuf_pro_delete_new_created_offers').on( 'click', function(e) {
 		    		e.preventDefault();
 			    	var btn_id = $(this).data( 'id' );
 					jQuery("div.new_created_offers[data-id='" + btn_id + "']").slideUp( 'slow', function() { $(this).remove(); } );
@@ -147,13 +147,13 @@ jQuery(document).ready( function($) {
 		    	// Reinitialize product search in new offer.
 		    	jQuery('.wc-offer-product-search').select2({
 			  		ajax:{
-			    			url :mwb_upsell_lite_js_obj.ajaxurl,
+			    			url :wps_upsell_lite_js_obj.ajaxurl,
 			    			dataType: 'json',
 			    			delay: 200,
 			    			data: function (params) {
 			      				return {
 			        				q: params.term,
-			        				nonce : mwb_upsell_lite_js_obj.auth_nonce,
+			        				nonce : wps_upsell_lite_js_obj.auth_nonce,
 			        				action: 'seach_products_for_offers'
 			      				};
 			    			},
@@ -181,7 +181,7 @@ jQuery(document).ready( function($) {
     }
 
     // Insert and Activate respective template.
-	$(document).on('click', '.mwb_upsell_activate_offer_template', function(e) {
+	$(document).on('click', '.wps_upsell_activate_offer_template', function(e) {
 
 		e.preventDefault();
 
@@ -198,15 +198,15 @@ jQuery(document).ready( function($) {
 		var offer_post_id = $(this).data( 'offer-post-id' );
 
 		// Show loading icon.
-		$('#mwb_wocuf_pro_loader').removeClass('hide');
-		$('#mwb_wocuf_pro_loader').addClass('show');
+		$('#wps_wocuf_pro_loader').removeClass('hide');
+		$('#wps_wocuf_pro_loader').addClass('show');
 
 		$.ajax({
 		    type:'POST',
-		    url :mwb_upsell_lite_js_obj.ajaxurl,
+		    url :wps_upsell_lite_js_obj.ajaxurl,
 		    data:{
-		    	action: 'mwb_upsell_activate_offer_template_ajax',
-				nonce : mwb_upsell_lite_js_obj.auth_nonce,
+		    	action: 'wps_upsell_activate_offer_template_ajax',
+				nonce : wps_upsell_lite_js_obj.auth_nonce,
 		    	funnel_id: funnel_id,
 		    	offer_id: offer_id,
 		    	template_id: template_id,
@@ -220,22 +220,22 @@ jQuery(document).ready( function($) {
 				if( true === data.status ) {
 
 		    		// Update Offer template value to current template id. 
-		    		current_button.closest('.mwb_upsell_offer_templates_parent').find('.mwb_wocuf_pro_offer_template_input').val(template_id);
+		    		current_button.closest('.wps_upsell_offer_templates_parent').find('.wps_wocuf_pro_offer_template_input').val(template_id);
 
 		    		/**
 		    		 * Append offer section parameter in current url, so after form submit we can scroll back to
 		    		 * the current respective offer section.
 		    		 */
 		    		var href_funnel_offer_url = window.location.href;
-					href_funnel_offer_url += '&mwb-upsell-offer-section=offer-section-' + offer_id; 
+					href_funnel_offer_url += '&wps-upsell-offer-section=offer-section-' + offer_id; 
 					window.history.replaceState( {}, '', href_funnel_offer_url );
 
 					// Hide loading icon.
-		    		$('#mwb_wocuf_pro_loader').removeClass('show');
-					$('#mwb_wocuf_pro_loader').addClass('hide');
+		    		$('#wps_wocuf_pro_loader').removeClass('show');
+					$('#wps_wocuf_pro_loader').addClass('hide');
 
 					// Submit form ( Save upsell funnel ).
-		    		$("#mwb_wocuf_pro_creation_setting_save").click();
+		    		$("#wps_wocuf_pro_creation_setting_save").click();
 		    	} 
 			 }
 	   });		
@@ -246,17 +246,17 @@ jQuery(document).ready( function($) {
 
 		if ( jQuery( this ).val() ) {
 
-			jQuery( '.mwb-upsell-offer-product-clear' ).show();
+			jQuery( '.wps-upsell-offer-product-clear' ).show();
 		}
 
 		else {
 
-			jQuery( '.mwb-upsell-offer-product-clear' ).hide();
+			jQuery( '.wps-upsell-offer-product-clear' ).hide();
 		}
 	});
 
     // Clear values.
-	jQuery( '.mwb-upsell-offer-product-clear' ).on( 'click', function(e) {
+	jQuery( '.wps-upsell-offer-product-clear' ).on( 'click', function(e) {
 		jQuery( this ).parent().find( '.wc-offer-product-search' ).empty();
 	}); 
 });

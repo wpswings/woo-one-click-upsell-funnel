@@ -2,7 +2,7 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       https://makewebbetter.com
+ * @link       https://wpswings.com
  * @since      3.0.0
  *
  * @package     woo_one_click_upsell_funnel
@@ -14,16 +14,16 @@
  *
  * @package     woo_one_click_upsell_funnel
  * @subpackage  woo_one_click_upsell_funnel/includes
- * @author      makewebbetter <webmaster@makewebbetter.com>
+ * @author      wpswings <webmaster@wpswings.com>
  */
-if ( class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
+if ( class_exists( 'WPSwings_Onboarding_Helper' ) ) {
 	return;
 }
 
 /**
  * Helper module for WP Swings plugins.
  */
-class Makewebbetter_Onboarding_Helper {
+class WPSwings_Onboarding_Helper {
 
 	/**
 	 * The single instance of the class.
@@ -105,8 +105,8 @@ class Makewebbetter_Onboarding_Helper {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( 'admin_footer', array( $this, 'add_onboarding_popup_screen' ) );
 		add_action( 'admin_footer', array( $this, 'add_deactivation_popup_screen' ) );
-		add_filter( 'mwb_on_boarding_form_fields', array( $this, 'add_on_boarding_form_fields' ) );
-		add_filter( 'mwb_deactivation_form_fields', array( $this, 'add_deactivation_form_fields' ) );
+		add_filter( 'wps_on_boarding_form_fields', array( $this, 'add_on_boarding_form_fields' ) );
+		add_filter( 'wps_deactivation_form_fields', array( $this, 'add_deactivation_form_fields' ) );
 
 		// Ajax to send data.
 		add_action( 'wp_ajax_send_onboarding_data', array( $this, 'send_onboarding_data' ) );
@@ -156,10 +156,10 @@ class Makewebbetter_Onboarding_Helper {
 		 */
 		if ( $this->is_valid_page_screen() ) {
 
-			wp_enqueue_style( 'makewebbetter-onboarding-style', MWB_WOCUF_URL . 'admin/css/makewebbetter-onboarding-admin.css', array(), '3.0.0', 'all' );
+			wp_enqueue_style( 'wpswings-onboarding-style', WPS_WOCUF_URL . 'admin/css/wpswings-onboarding-admin.css', array(), '3.0.0', 'all' );
 
 			// Uncomment Only when your plugin doesn't uses the Select2.
-			wp_enqueue_style( 'makewebbetter-onboarding-select2-style', MWB_WOCUF_URL . 'admin/css/select2.min.css', array(), '3.0.0', 'all' );
+			wp_enqueue_style( 'wpswings-onboarding-select2-style', WPS_WOCUF_URL . 'admin/css/select2.min.css', array(), '3.0.0', 'all' );
 		}
 	}
 
@@ -183,23 +183,23 @@ class Makewebbetter_Onboarding_Helper {
 		 */
 		if ( $this->is_valid_page_screen() ) {
 
-			wp_enqueue_script( 'makewebbetter-onboarding-scripts', MWB_WOCUF_URL . 'admin/js/makewebbetter-onboarding-admin.js', array( 'jquery' ), '3.0.0', true );
+			wp_enqueue_script( 'wpswings-onboarding-scripts', WPS_WOCUF_URL . 'admin/js/wpswings-onboarding-admin.js', array( 'jquery' ), '3.0.0', true );
 
 			global $pagenow;
 			$current_slug = ! empty( explode( '/', plugin_basename( __FILE__ ) ) ) ? explode( '/', plugin_basename( __FILE__ ) )[0] : '';
 			wp_localize_script(
-				'makewebbetter-onboarding-scripts',
-				'mwb_onboarding',
+				'wpswings-onboarding-scripts',
+				'wps_onboarding',
 				array(
 					'ajaxurl'                => admin_url( 'admin-ajax.php' ),
-					'auth_nonce'             => wp_create_nonce( 'mwb_onboarding_nonce' ),
+					'auth_nonce'             => wp_create_nonce( 'wps_onboarding_nonce' ),
 					'current_screen'         => $pagenow,
-					'current_supported_slug' => apply_filters( 'mwb_deactivation_supported_slug', array( $current_slug ) ),
+					'current_supported_slug' => apply_filters( 'wps_deactivation_supported_slug', array( $current_slug ) ),
 				)
 			);
 
 			// Uncomment Only when your plugin doesn't uses the Select2.
-			wp_enqueue_script( 'makewebbetter-onboarding-select2-script', MWB_WOCUF_URL . 'admin/js/select2.min.js', array( 'jquery' ), '3.0.0', false );
+			wp_enqueue_script( 'wpswings-onboarding-select2-script', WPS_WOCUF_URL . 'admin/js/select2.min.js', array( 'jquery' ), '3.0.0', false );
 		}
 	}
 
@@ -211,7 +211,7 @@ class Makewebbetter_Onboarding_Helper {
 	public function add_onboarding_popup_screen() {
 
 		if ( $this->is_valid_page_screen() && $this->can_show_onboarding_popup() ) {
-			require_once MWB_WOCUF_DIRPATH . 'extra-templates/makewebbetter-onboarding-template-display.php';
+			require_once WPS_WOCUF_DIRPATH . 'extra-templates/wpswings-onboarding-template-display.php';
 		}
 	}
 
@@ -225,7 +225,7 @@ class Makewebbetter_Onboarding_Helper {
 
 		global $pagenow;
 		if ( ! empty( $pagenow ) && 'plugins.php' === $pagenow ) {
-			require_once MWB_WOCUF_DIRPATH . 'extra-templates/makewebbetter-deactivation-template-display.php';
+			require_once WPS_WOCUF_DIRPATH . 'extra-templates/wpswings-deactivation-template-display.php';
 		}
 	}
 
@@ -244,7 +244,7 @@ class Makewebbetter_Onboarding_Helper {
 
 		if ( ! empty( $screen->id ) ) {
 
-			$is_valid = in_array( $screen->id, apply_filters( 'mwb_helper_valid_frontend_screens', array() ), true ) && $this->add_mwb_additional_validation();
+			$is_valid = in_array( $screen->id, apply_filters( 'wps_helper_valid_frontend_screens', array() ), true ) && $this->add_wps_additional_validation();
 		}
 
 		if ( empty( $is_valid ) && 'plugins.php' === $pagenow ) {
@@ -496,7 +496,7 @@ class Makewebbetter_Onboarding_Helper {
 				'name'        => 'deactivation_reason_text',
 				'value'       => '',
 				'required'    => '',
-				'extra-class' => 'mwb-keep-hidden',
+				'extra-class' => 'wps-keep-hidden',
 			),
 
 			wp_rand() => array(
@@ -565,7 +565,7 @@ class Makewebbetter_Onboarding_Helper {
 		$html = '';
 
 		if ( 'hidden' !== $type ) : ?>
-			<div class ="mwb-customer-data-form-single-field">
+			<div class ="wps-customer-data-form-single-field">
 			<?php
 		endif;
 
@@ -583,7 +583,7 @@ class Makewebbetter_Onboarding_Helper {
 
 					foreach ( $options as $option_value => $option_label ) :
 						?>
-						<div class="mwb-<?php echo esc_html( $base_class ); ?>-radio-wrapper">
+						<div class="wps-<?php echo esc_html( $base_class ); ?>-radio-wrapper">
 							<input type="<?php echo esc_attr( $type ); ?>" class="on-boarding-<?php echo esc_attr( $type ); ?>-field <?php echo esc_attr( $class ); ?>" value="<?php echo esc_attr( $option_value ); ?>" id="<?php echo esc_attr( $option_value ); ?>" <?php echo esc_html( $required ); ?> <?php echo esc_attr( $is_multiple ); ?>>
 							<label class="on-boarding-field-label" for="<?php echo esc_html( $option_value ); ?>"><?php echo esc_html( $option_label ); ?></label>
 						</div>
@@ -601,7 +601,7 @@ class Makewebbetter_Onboarding_Helper {
 
 					<label class="on-boarding-label" for="<?php echo esc_attr( $id ); ?>'"><?php echo esc_attr( $label ); ?></label>	
 					<?php foreach ( $options as $option_id => $option_label ) : ?>
-						<div class="mwb-<?php echo esc_html( $base_class ); ?>-checkbox-wrapper">
+						<div class="wps-<?php echo esc_html( $base_class ); ?>-checkbox-wrapper">
 						<input type="<?php echo esc_html( $type ); ?>" class="on-boarding-<?php echo esc_html( $type ); ?>-field <?php echo esc_html( $class ); ?>" value="<?php echo esc_html( $value ); ?>" id="<?php echo esc_html( $option_id ); ?>">
 						<label class="on-boarding-field-label" for="<?php echo esc_html( $option_id ); ?>"><?php echo esc_html( $option_label ); ?></label>
 						</div>
@@ -676,13 +676,13 @@ class Makewebbetter_Onboarding_Helper {
 
 
 	/**
-	 * Send the data to MWB server.
+	 * Send the data to WPS server.
 	 *
 	 * @since    3.0.0
 	 */
 	public function send_onboarding_data() {
 
-		check_ajax_referer( 'mwb_onboarding_nonce', 'nonce' );
+		check_ajax_referer( 'wps_onboarding_nonce', 'nonce' );
 
 		$form_data = ! empty( $_POST['form_data'] ) ? json_decode( sanitize_text_field( wp_unslash( $_POST['form_data'] ) ) ) : '';
 
@@ -814,7 +814,7 @@ class Makewebbetter_Onboarding_Helper {
 	 * @param      string $result       The result of this validation.
 	 * @since    3.0.0
 	 */
-	public function add_mwb_additional_validation( $result = true ) {
+	public function add_wps_additional_validation( $result = true ) {
 
 		if ( ! empty( $_GET['tab'] ) && 'settings' !== $_GET['tab'] ) { //phpcs:ignore
 

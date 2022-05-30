@@ -124,7 +124,7 @@ class Upsell_Desc extends Widget_Base {
 			array(
 				'label'   => '',
 				'type'    => Controls_Manager::WYSIWYG,
-				'default' => '<p>[mwb_upsell_desc]</p>',
+				'default' => '<p>[wps_upsell_desc]</p>',
 			)
 		);
 
@@ -441,7 +441,8 @@ class Upsell_Desc extends Widget_Base {
 		<?php } ?>
 		<?php
 		// PHPCS - the main text of a widget should not be escaped.
-				echo $editor_content; // phpcs:ignore WordPress.Security.EscapeOutput 
+
+			echo wp_kses( $editor_content, wps_upsell_lite_allowed_html() );
 		?>
 		<?php if ( $should_render_inline_editing ) { ?>
 			</div>

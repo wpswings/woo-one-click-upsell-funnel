@@ -5,7 +5,7 @@
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
- * @link       http://makewebbetter.com/
+ * @link       https://wpswings.com/
  * @since      1.0.0
  *
  * @package     woo_one_click_upsell_funnel
@@ -24,7 +24,7 @@
  * @since      1.0.0
  * @package     woo_one_click_upsell_funnel
  * @subpackage woo_one_click_upsell_funnel/includes
- * @author     makewebbetter <webmaster@makewebbetter.com>
+ * @author     wpswings <webmaster@wpswings.com>
  */
 class Woocommerce_One_Click_Upsell_Funnel {
 
@@ -67,8 +67,8 @@ class Woocommerce_One_Click_Upsell_Funnel {
 	 */
 	public function __construct() {
 
-		if ( defined( 'MWB_WOCUF_VERSION' ) ) {
-			$this->version = MWB_WOCUF_VERSION;
+		if ( defined( 'WPS_WOCUF_VERSION' ) ) {
+			$this->version = WPS_WOCUF_VERSION;
 		} else {
 			$this->version = '2.0.0';
 		}
@@ -79,6 +79,7 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		$this->define_mirator_hooks();
 	}
 
 	/**
@@ -130,29 +131,29 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		/**
 		 * The class responsible for the Onboarding functionality.
 		 */
-		if ( ! class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
+		if ( ! class_exists( 'WPSwings_Onboarding_Helper' ) ) {
 
-			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-makewebbetter-onboarding-helper.php';
+			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wpswings-onboarding-helper.php';
 		}
 
-		if ( class_exists( 'Makewebbetter_Onboarding_Helper' ) ) {
+		if ( class_exists( 'WPSwings_Onboarding_Helper' ) ) {
 
-			$this->onboard = new Makewebbetter_Onboarding_Helper();
+			$this->onboard = new WPSwings_Onboarding_Helper();
 		}
 
 		/**
 		 * The file responsible for Upsell Sales by Funnel - Data handling and Stats.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'reporting/class-mwb-upsell-report-sales-by-funnel.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'reporting/class-wps-upsell-report-sales-by-funnel.php';
 
 		$this->loader = new Woocommerce_One_Click_Upsell_Funnel_Loader();
 
 		/**
 		 * The file responsible for Upsell Widgets added within every page builder.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'page-builders/class-mwb-upsell-widget-loader.php';
-		if ( class_exists( 'Mwb_Upsell_Widget_Loader' ) ) {
-			Mwb_Upsell_Widget_Loader::get_instance();
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'page-builders/class-wps-upsell-widget-loader.php';
+		if ( class_exists( 'WPS_Upsell_Widget_Loader' ) ) {
+			WPS_Upsell_Widget_Loader::get_instance();
 		}
 
 	}
@@ -175,6 +176,29 @@ class Woocommerce_One_Click_Upsell_Funnel {
 	}
 
 	/**
+	 * Responsible for Upsell migrator for WPS.
+	 *
+	 * @since    3.2.0
+	 * @access   private
+	 */
+	private function define_mirator_hooks() {
+
+		/**
+		 * The file responsible for Upsell migrator for WPS.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrator/class-wps-ocu-migration.php';
+
+		$plugin_migrator = new WPS_OCU_Migration();
+
+		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_migrator, 'enqueue_styles' );
+
+		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_migrator, 'enqueue_scripts' );
+
+		$this->loader->add_action( 'wp_ajax_process_ajax_events', $plugin_migrator, 'process_ajax_events' );
+
+	}
+
+	/**
 	 * Register all of the hooks related to the admin area functionality
 	 * of the plugin.
 	 *
@@ -185,57 +209,61 @@ class Woocommerce_One_Click_Upsell_Funnel {
 
 		$plugin_admin = new Woocommerce_One_Click_Upsell_Funnel_Admin( $this->get_plugin_name(), $this->get_version() );
 
-		$mwb_wocuf_enable_plugin = get_option( 'mwb_wocuf_enable_plugin', 'on' );
+		$wps_wocuf_enable_plugin = get_option( 'wps_wocuf_enable_plugin', 'on' );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'mwb_wocuf_pro_admin_menu' );
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'wps_wocuf_pro_admin_menu' );
 
 		$this->loader->add_action( 'wp_ajax_seach_products_for_offers', $plugin_admin, 'seach_products_for_offers' );
 
 		$this->loader->add_action( 'wp_ajax_seach_products_for_funnel', $plugin_admin, 'seach_products_for_funnel' );
 
+		// Init migrator.
+		$this->loader->add_action( 'wp_ajax_wps_upsell_init_migrator', $plugin_admin, 'wps_upsell_init_migrator' );
+		$this->loader->add_action( 'wp_ajax_wps_upsell_stop_migrator', $plugin_admin, 'wps_upsell_stop_migrator' );
+
 		// Dismiss Elementor inactive notice.
-		$this->loader->add_action( 'wp_ajax_mwb_upsell_dismiss_elementor_inactive_notice', $plugin_admin, 'dismiss_elementor_inactive_notice' );
+		$this->loader->add_action( 'wp_ajax_wps_upsell_dismiss_elementor_inactive_notice', $plugin_admin, 'dismiss_elementor_inactive_notice' );
 
 		// Hide Upsell offer pages in admin panel 'Pages'.
 		$this->loader->add_action( 'pre_get_posts', $plugin_admin, 'hide_upsell_offer_pages_in_admin' );
 
-		$this->loader->add_filter( 'page_template', $plugin_admin, 'mwb_wocuf_pro_page_template' );
+		$this->loader->add_filter( 'page_template', $plugin_admin, 'wps_wocuf_pro_page_template' );
 
 		// Create new offer - ajax handle function.
-		$this->loader->add_action( 'wp_ajax_mwb_wocuf_pro_return_offer_content', $plugin_admin, 'return_funnel_offer_section_content' );
+		$this->loader->add_action( 'wp_ajax_wps_wocuf_pro_return_offer_content', $plugin_admin, 'return_funnel_offer_section_content' );
 
 		// Insert and Activate respective template ajax handle function.
-		$this->loader->add_action( 'wp_ajax_mwb_upsell_activate_offer_template_ajax', $plugin_admin, 'activate_respective_offer_template' );
-
-		// Include Upsell screen for Onboarding pop-up.
-		$this->loader->add_filter( 'mwb_helper_valid_frontend_screens', $plugin_admin, 'add_mwb_frontend_screens' );
+		$this->loader->add_action( 'wp_ajax_wps_upsell_activate_offer_template_ajax', $plugin_admin, 'activate_respective_offer_template' );
 
 		// Include Upsell plugin for Deactivation pop-up.
-		$this->loader->add_filter( 'mwb_deactivation_supported_slug', $plugin_admin, 'add_mwb_deactivation_screens' );
+		$this->loader->add_filter( 'wps_deactivation_supported_slug', $plugin_admin, 'add_wps_deactivation_screens' );
 
-		if ( 'on' === $mwb_wocuf_enable_plugin ) {
+		// Add attribute to styles allowed properties.
+		$this->loader->add_filter( 'safe_style_css', $plugin_admin, 'wocuf_lite_add_style_attribute' );
+
+		if ( 'on' === $wps_wocuf_enable_plugin ) {
 
 			// Adding Upsell Orders column in Orders table in backend.
-			$this->loader->add_filter( 'manage_edit-shop_order_columns', $plugin_admin, 'mwb_wocuf_pro_add_columns_to_admin_orders', 11 );
+			$this->loader->add_filter( 'manage_edit-shop_order_columns', $plugin_admin, 'wps_wocuf_pro_add_columns_to_admin_orders', 11 );
 
 			// Populating Upsell Orders column with Single Order or Upsell order.
-			$this->loader->add_action( 'manage_shop_order_posts_custom_column', $plugin_admin, 'mwb_wocuf_pro_populate_upsell_order_column', 10, 2 );
+			$this->loader->add_action( 'manage_shop_order_posts_custom_column', $plugin_admin, 'wps_wocuf_pro_populate_upsell_order_column', 10, 2 );
 
 			// Add Upsell Filtering dropdown for All Orders, No Upsell Orders, Only Upsell Orders.
-			$this->loader->add_filter( 'restrict_manage_posts', $plugin_admin, 'mwb_wocuf_pro_restrict_manage_posts' );
+			$this->loader->add_filter( 'restrict_manage_posts', $plugin_admin, 'wps_wocuf_pro_restrict_manage_posts' );
 
 			// Modifying query vars for filtering Upsell Orders.
-			$this->loader->add_filter( 'request', $plugin_admin, 'mwb_wocuf_pro_request_query' );
+			$this->loader->add_filter( 'request', $plugin_admin, 'wps_wocuf_pro_request_query' );
 
 			// Add 'Upsell Support' column on payment gateways page.
 			$this->loader->add_filter( 'woocommerce_payment_gateways_setting_columns', $plugin_admin, 'upsell_support_in_payment_gateway' );
 
 			// 'Upsell Support' content on payment gateways page.
-			$this->loader->add_action( 'woocommerce_payment_gateways_setting_column_mwb_upsell', $plugin_admin, 'upsell_support_content_in_payment_gateway' );
+			$this->loader->add_action( 'woocommerce_payment_gateways_setting_column_wps_upsell', $plugin_admin, 'upsell_support_content_in_payment_gateway' );
 
 		}
 
@@ -259,7 +287,7 @@ class Woocommerce_One_Click_Upsell_Funnel {
 
 		$this->loader->add_action( 'woocommerce_init', $plugin_public, 'check_compatibltiy_instance_cs' );
 
-		// Set cron recurrence time for 'mwb_wocuf_twenty_minutes' schedule.
+		// Set cron recurrence time for 'wps_wocuf_twenty_minutes' schedule.
 		$this->loader->add_filter( 'cron_schedules', $plugin_public, 'set_cron_schedule_time' );
 
 		// Redirect upsell offer pages if not admin or upsell nonce expired.
@@ -271,11 +299,11 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		// Hide upsell offer pages from added menu list in customizer and admin panel.
 		$this->loader->add_filter( 'wp_get_nav_menu_items', $plugin_public, 'exclude_pages_from_menu_list', 10, 3 );
 
-		$mwb_upsell_global_settings = get_option( 'mwb_upsell_lite_global_options', array() );
+		$wps_upsell_global_settings = get_option( 'wps_upsell_lite_global_options', array() );
 
-		$remove_all_styles = ! empty( $mwb_upsell_global_settings['remove_all_styles'] ) ? $mwb_upsell_global_settings['remove_all_styles'] : 'yes';
+		$remove_all_styles = ! empty( $wps_upsell_global_settings['remove_all_styles'] ) ? $wps_upsell_global_settings['remove_all_styles'] : 'yes';
 
-		if ( 'yes' === $remove_all_styles && mwb_upsell_lite_elementor_plugin_active() ) {
+		if ( 'yes' === $remove_all_styles && wps_upsell_lite_elementor_plugin_active() ) {
 
 			// Remove styles from offer pages.
 			$this->loader->add_action( 'wp_print_styles', $plugin_public, 'remove_styles_offer_pages' );
@@ -284,26 +312,28 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		$this->loader->add_action( 'init', $plugin_public, 'upsell_shortcodes' );
 
 		// Hide currency switcher on any page.
-		$this->loader->add_filter( 'mwb_currency_switcher_side_switcher_after_html', $plugin_public, 'hide_switcher_on_upsell_page' );
+		$this->loader->add_filter( 'wps_currency_switcher_side_switcher_after_html', $plugin_public, 'hide_switcher_on_upsell_page' );
 
 		// Remove http and https from Upsell Action shortcodes added by Page Builders.
 		$this->loader->add_filter( 'the_content', $plugin_public, 'filter_upsell_shortcodes_content' );
 
-		$mwb_wocuf_enable_plugin = get_option( 'mwb_wocuf_enable_plugin', 'on' );
+		$wps_wocuf_enable_plugin = get_option( 'wps_wocuf_enable_plugin', 'on' );
 
-		if ( 'on' === $mwb_wocuf_enable_plugin ) {
+		$this->loader->add_filter( 'wp_kses_allowed_html', $plugin_public, 'wocuf_lite_allow_script_tags' );
+
+		if ( 'on' === $wps_wocuf_enable_plugin ) {
 
 			// Initiate Upsell Orders before processing payment.
-			$this->loader->add_action( 'woocommerce_checkout_order_processed', $plugin_public, 'mwb_wocuf_initiate_upsell_orders' );
+			$this->loader->add_action( 'woocommerce_checkout_order_processed', $plugin_public, 'wps_wocuf_initiate_upsell_orders' );
 
 			// When user clicks on No thanks for Upsell offer.
-			! is_admin() && $this->loader->add_action( 'wp_loaded', $plugin_public, 'mwb_wocuf_pro_process_the_funnel' );
+			! is_admin() && $this->loader->add_action( 'wp_loaded', $plugin_public, 'wps_wocuf_pro_process_the_funnel' );
 
 			// When user clicks on Add upsell product to my Order.
-			! is_admin() && $this->loader->add_action( 'wp_loaded', $plugin_public, 'mwb_wocuf_pro_charge_the_offer' );
+			! is_admin() && $this->loader->add_action( 'wp_loaded', $plugin_public, 'wps_wocuf_pro_charge_the_offer' );
 
 			// Define Cron schedule fire Event for Order payment process.
-			$this->loader->add_action( 'mwb_wocuf_lite_order_cron_schedule', $plugin_public, 'order_payment_cron_fire_event' );
+			$this->loader->add_action( 'wps_wocuf_lite_order_cron_schedule', $plugin_public, 'order_payment_cron_fire_event' );
 
 			// Global Custom CSS.
 			$this->loader->add_action( 'wp_head', $plugin_public, 'global_custom_css' );
@@ -387,21 +417,5 @@ class Woocommerce_One_Click_Upsell_Funnel {
 	 */
 	public function get_version() {
 		return $this->version;
-	}
-
-	/**
-	 * Retrieve the version number of the woocommerce plugin.
-	 *
-	 * @since     1.0.0
-	 * @return    string    The version number of the woocommerce plugin.
-	 */
-	public function mwb_wocuf_woocommerce_version_check() {
-
-		require ABSPATH . 'wp-content/plugins/woocommerce/woocommerce.php';
-
-		global $woocommerce;
-
-		return $woocommerce->version;
-
 	}
 }

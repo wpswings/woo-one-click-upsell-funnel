@@ -2,7 +2,7 @@
 /**
  * Fired during plugin deactivation
  *
- * @link       http://makewebbetter.com/
+ * @link       https://wpswings.com/
  * @since      1.0.0
  *
  * @package     woo_one_click_upsell_funnel
@@ -17,7 +17,7 @@
  * @since      1.0.0
  * @package     woo_one_click_upsell_funnel
  * @subpackage woo_one_click_upsell_funnel/includes
- * @author     makewebbetter <webmaster@makewebbetter.com>
+ * @author     wpswings <webmaster@wpswings.com>
  */
 class Woocommerce_One_Click_Upsell_Funnel_Deactivator {
 
@@ -31,9 +31,15 @@ class Woocommerce_One_Click_Upsell_Funnel_Deactivator {
 	public static function deactivate() {
 
 		// Clear scheduled cron for User update.
-		if ( wp_next_scheduled( 'mwb_wocuf_lite_order_cron_schedule' ) ) {
+		if ( wp_next_scheduled( 'wps_wocuf_lite_order_cron_schedule' ) ) {
 
-			wp_clear_scheduled_hook( 'mwb_wocuf_lite_order_cron_schedule' );
+			wp_clear_scheduled_hook( 'wps_wocuf_lite_order_cron_schedule' );
+		}
+
+		// Clear scheduled cron for User update.
+		if ( wp_next_scheduled( 'wps_wocuf_lite_order_cron_schedule' ) ) {
+
+			wp_clear_scheduled_hook( 'wps_wocuf_lite_order_cron_schedule' );
 		}
 
 	}

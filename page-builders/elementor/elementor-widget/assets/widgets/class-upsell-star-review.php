@@ -121,8 +121,8 @@ class Upsell_Star_Review extends Widget_Base {
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'placeholder' => '[mwb_upsell_star_review]',
-				'default'     => '[mwb_upsell_star_review stars=4.5]',
+				'placeholder' => '[wps_upsell_star_review]',
+				'default'     => '[wps_upsell_star_review stars=4.5]',
 			)
 		);
 
@@ -142,7 +142,7 @@ class Upsell_Star_Review extends Widget_Base {
 
 		$shortcode = do_shortcode( shortcode_unautop( $shortcode ) );
 		?>
-		<div class="elementor-shortcode"><?php echo $shortcode; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
+		<div class="elementor-shortcode"><?php echo wp_kses( $shortcode, wps_upsell_lite_allowed_html() ); ?></div>
 		<?php
 	}
 

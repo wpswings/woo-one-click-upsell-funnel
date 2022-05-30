@@ -17,21 +17,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 
-<div id="mwb_upsell_lite_overview">
-	<div id="mwb_upsell_lite_overview_pro_version">
+<div id="wps_upsell_lite_overview">
+	<div id="wps_upsell_lite_overview_pro_version">
 
 		<h2><?php esc_html_e( 'eCommerce Analytics & Tracking', 'woo-one-click-upsell-funnel' ); ?></h2>
 		<h3><?php esc_html_e( 'Supported Analytics Tools', 'woo-one-click-upsell-funnel' ); ?></h3>
 
-		<div class="mwb_upsell_overview_supported_product">
-			<div class="mwb_upsell_overview_product_icon simple">
-				<a href="<?php echo esc_url( admin_url( 'admin.php?page=mwb-wocuf-setting-tracking&tab=ga-setting' ) ); ?>">
-					<img class="mwb_upsell_lite_tool_ga" src="<?php echo esc_url( MWB_WOCUF_URL . 'admin/reporting-and-tracking/resources/icons/google-analytics.svg' ); ?>">
+		<div class="wps_upsell_overview_supported_product">
+			<div class="wps_upsell_overview_product_icon simple">
+				<a href="<?php echo esc_url( admin_url( 'admin.php?page=wps-wocuf-setting-tracking&tab=ga-setting' ) ); ?>">
+					<img class="wps_upsell_lite_tool_ga" src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/reporting-and-tracking/resources/icons/google-analytics.svg' ); ?>">
 				</a>
 			</div>
-			<div class="mwb_upsell_overview_product_icon simple">
-				<a href="<?php echo esc_url( admin_url( 'admin.php?page=mwb-wocuf-setting-tracking&tab=pixel-setting' ) ); ?>">
-					<img class="mwb_upsell_lite_tool_fb" src="<?php echo esc_url( MWB_WOCUF_URL . 'admin/reporting-and-tracking/resources/icons/facebook-pixel.png' ); ?>">
+			<div class="wps_upsell_overview_product_icon simple">
+				<a href="<?php echo esc_url( admin_url( 'admin.php?page=wps-wocuf-setting-tracking&tab=pixel-setting' ) ); ?>">
+					<img class="wps_upsell_lite_tool_fb" src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/reporting-and-tracking/resources/icons/facebook-pixel.png' ); ?>">
 				</a>
 			</div>
 		</div>
