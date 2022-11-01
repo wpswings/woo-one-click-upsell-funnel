@@ -934,7 +934,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 	public function upsell_support_in_payment_gateway( $default_columns ) {
 
 		$new_column['wps_upsell'] = esc_html__( 'Upsell Supported', 'woo-one-click-upsell-funnel' );
-
+		wps_upsee_lite_go_pro( 'pro' ); 
 		// Place at second last position.
 		$position = count( $default_columns ) - 1;
 
@@ -975,7 +975,9 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 		}
 
 		echo "<input type='hidden' id='wps_ubo_pro_status' value='inactive'>
-		<?php wps_upsee_lite_go_pro( 'pro' ); ?></td>";
+		</td>";
+		
+		
 	}
 
 	/**

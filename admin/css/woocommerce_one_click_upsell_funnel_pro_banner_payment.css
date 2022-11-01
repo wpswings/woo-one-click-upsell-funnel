@@ -2,7 +2,22 @@
 
  /* Pro banner
  */
+ #wps_wocuf_pro_setting_wrapper *{
+  box-sizing: border-box;
+}
+#wps_wocuf_pro_setting_wrapper p{
+  color: #000;
+  text-align: left;
+  padding: 10px;
+}
 
+#wps_wocuf_pro_setting_wrapper h1{
+  padding: 7px 20px;
+  font-size: 20px;
+  border-radius: 10px 0px;
+  color: #1d1d1d;
+  text-align: left;
+}
 
  td.wps_upsell_supported {
   position: relative;

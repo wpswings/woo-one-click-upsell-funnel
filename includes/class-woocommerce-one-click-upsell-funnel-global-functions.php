@@ -642,11 +642,11 @@ function wps_upsee_lite_go_pro( $location = 'pro' ) {
 
 	if ( 'pro' === $location ) {
 
-		$message = esc_html__( 'Stucked with Limited Gateway access? Unlock your power to explore more.', 'upsell-order-bump-offer-for-woocommerce' );
+		$message = esc_html__( 'Stucked with Limited Gateway access? Unlock your power to explore more.', 'woo-one-click-upsell-funnel' );
 
 	} else {
 
-		$message = esc_html__( 'Stucked to just one Order Funnel? Unlock your power to explore more.', 'upsell-order-bump-offer-for-woocommerce' );
+		$message = esc_html__( 'Stucked to just one Order Funnel? Unlock your power to explore more.', 'woo-one-click-upsell-funnel' );
 	}
 
 	ob_start();
@@ -657,7 +657,7 @@ function wps_upsee_lite_go_pro( $location = 'pro' ) {
 		<div class="wps_ubo_lite_go_pro_popup">
 			<!-- Main heading. -->
 			<div class="wps_ubo_lite_go_pro_popup_head">
-				<h2><?php esc_html_e( 'Want More? Go Pro !!', 'upsell-order-bump-offer-for-woocommerce' ); ?></h2>
+				<h2><?php esc_html_e( 'Want More? Go Pro !!', 'woo-one-click-upsell-funnel' ); ?></h2>
 				<!-- Close button. -->
 				<a href="" class="wps_ubo_lite_go_pro_popup_close">
 					<span>&times;</span>
@@ -674,13 +674,13 @@ function wps_upsee_lite_go_pro( $location = 'pro' ) {
 					<?php echo esc_html( $message ); ?>
 				</p>
 				<p class="wps_ubo_lite_go_pro_popup_text">
-					<?php esc_html_e( 'Go with our premium version and make unlimited numbers of Upsells. Get more smart features and make the most attractive offers with all of your products. Set Relevant offers for specific targets which will ensure customer satisfaction and higher conversion rates.', 'upsell-order-bump-offer-for-woocommerce' ); ?>
+					<?php esc_html_e( 'Go with our premium version and make unlimited numbers of Upsells. Get more smart features and make the most attractive offers with all of your products. Set Relevant offers for specific targets which will ensure customer satisfaction and higher conversion rates.', 'woo-one-click-upsell-funnel' ); ?>
 				</p>
 			</div>
 
 			<!-- Go pro button. -->
 			<div class="wps_ubo_lite_go_pro_popup_button">
-				<a class="button wps_ubo_lite_overview_go_pro_button" target="_blank" href="https://wpswings.com/product/upsell-order-bump-offer-for-woocommerce-pro/?utm_source=wpswings-order-bump-pro&utm_medium=order-bump-org-backend&utm_campaign=WPS-order-bump-pro"><?php echo esc_html__( 'Upgrade to Premium', 'upsell-order-bump-offer-for-woocommerce' ) . ' <span class="dashicons dashicons-arrow-right-alt"></span>'; ?></a>
+				<a class="button wps_ubo_lite_overview_go_pro_button" target="_blank" href="https://wpswings.com/product/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=wpswings-upsell-funnel-pro&utm_medium=upsell-funnel-org-backend&utm_campaign=WPS-upsell-funnel-pro"><?php echo esc_html__( 'Upgrade to Premium', 'woo-one-click-upsell-funnel' ) . ' <span class="dashicons dashicons-arrow-right-alt"></span>'; ?></a>
 			</div>
 		</div>
 		<!-- Go pro popup main end. -->
