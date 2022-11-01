@@ -603,7 +603,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 		<input type='hidden' id='wps_ubo_pro_status' value='inactive'>
 		<?php wps_upsee_lite_go_pro( 'pro' ); ?>
 
-		<div class="wps_wocuf_pro_offers"><h1><?php esc_html_e( 'Funnel Offershvjh', 'woo-one-click-upsell-funnel' ); ?></h1>
+		<div class="wps_wocuf_pro_offers"><h1><?php esc_html_e( 'Funnel Offers', 'woo-one-click-upsell-funnel' ); ?></h1>
 		</div>
 		<br>
 		<?php

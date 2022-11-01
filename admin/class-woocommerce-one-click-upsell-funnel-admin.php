@@ -960,17 +960,22 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 		if ( in_array( $gateway->id, $supported_gateways, true ) ) {
 
 			echo '<span class="status-enabled">' . esc_html__( 'Yes', 'woo-one-click-upsell-funnel' ) . '</span>';
+		
 		} else {
+		
 			if ( in_array( $gateway->id, $supported_gateways_pro, true ) ) {
-
-				echo '<span class="wps_wupsell_premium_strip">' . esc_html__( 'Yefgdxfgs', 'woo-one-click-upsell-funnel' ) . '</span>';
+				
+				echo '	<span class="wps_wupsell_premium_strip">' . esc_html__( 'pro', 'woo-one-click-upsell-funnel' ) . '</span>';
+			
 			} else{
+
 				echo '<span class="status-disabled">' . esc_html__( 'No', 'woo-one-click-upsell-funnel' ) . '</span>';
 			}
 
 		}
 
-		echo '</td>';
+		echo "<input type='hidden' id='wps_ubo_pro_status' value='inactive'>
+		<?php wps_upsee_lite_go_pro( 'pro' ); ?></td>";
 	}
 
 	/**

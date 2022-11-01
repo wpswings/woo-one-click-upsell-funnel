@@ -642,11 +642,11 @@ function wps_upsee_lite_go_pro( $location = 'pro' ) {
 
 	if ( 'pro' === $location ) {
 
-		$message = esc_html__( 'Want some more super cool features? Unlock your power to explore more.', 'upsell-order-bump-offer-for-woocommerce' );
+		$message = esc_html__( 'Stucked with Limited Gateway access? Unlock your power to explore more.', 'upsell-order-bump-offer-for-woocommerce' );
 
 	} else {
 
-		$message = esc_html__( 'Stucked to just one order bump? Unlock your power to explore more.', 'upsell-order-bump-offer-for-woocommerce' );
+		$message = esc_html__( 'Stucked to just one Order Funnel? Unlock your power to explore more.', 'upsell-order-bump-offer-for-woocommerce' );
 	}
 
 	ob_start();
@@ -674,7 +674,7 @@ function wps_upsee_lite_go_pro( $location = 'pro' ) {
 					<?php echo esc_html( $message ); ?>
 				</p>
 				<p class="wps_ubo_lite_go_pro_popup_text">
-					<?php esc_html_e( 'Go with our premium version and make unlimited numbers of order bumps. Get more smart features and make the most attractive offers with all of your products. Set Relevant offers for specific targets which will ensure customer satisfaction and higher conversion rates.', 'upsell-order-bump-offer-for-woocommerce' ); ?>
+					<?php esc_html_e( 'Go with our premium version and make unlimited numbers of Upsells. Get more smart features and make the most attractive offers with all of your products. Set Relevant offers for specific targets which will ensure customer satisfaction and higher conversion rates.', 'upsell-order-bump-offer-for-woocommerce' ); ?>
 				</p>
 			</div>
 
