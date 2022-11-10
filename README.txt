@@ -3,9 +3,9 @@ Contributors: wpswings
 Donate link: https://wpswings.com/
 Tags: boost sales, cross-sell, post-purchase offers, upsell, woocommerce upsell
 Requires at least: 5.1.0
-Tested up to: 6.0.1
+Tested up to: 6.1.0
 WC requires at least: 5.1.0
-WC tested up to: 6.8.2
+WC tested up to: 7.0.1
 Stable tag: 3.2.3
 Requires PHP: 7.0.0
 License: GPLv3 or later 
@@ -17,7 +17,9 @@ Boost Sales & Increase the Average Order Value (AOV) of your WooCommerce Store w
 
 **ONE CLICK UPSELL FUNNEL FOR WOOCOMMERCE IS A COMPLETE SOLUTION TO BOOST SALES & AOV WITH THE HELP OF ONE-CLICK POST-PURCHASE UPSELL AND CROSS-SELL OFFERS**
 
-One Click Upsell Funnel for WooCommerce plugin allows the merchants to create post-purchase upsell and cross-sell offers. Customers can add these upsell products in just one click to their cart with no hassle of re-entering the payment details.
+One Click Upsell Funnel for WooCommerce plugin allows the merchants to create post-purchase upsell and cross-sell offers. Customers can add these upsell products in just one click to their cart with no hassle of re-entering the payment details. It is an extremely potent plugin for creating, testing, and maintaining upsell funnels giving fantastic offers to customers, increasing their satisfaction with their purchase and ultimately elevating SALES.
+
+Create an endless number of upsell offers using the [**WooCommerce upsell plugin**]((https://wpswings.com/product/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=wpswings-upsell-pro&utm_medium=upsell-org-page&utm_campaign=upsell-pro)), and examine a track report for each funnel. Additionally, you may use pre-made templates to easily set up and provide upsell for WooCommerce on your online store. Encourage customers to purchase more!
 
 
 [youtube https://www.youtube.com/watch?v=Wa3NL4oy-tE&w=560&h=315&rel=0]
@@ -49,7 +51,7 @@ One Click Upsell Funnel for WooCommerce plugin allows the merchants to create po
 With the WooCommerce Upsell Plugin, you can create unlimited sales funnels with any number of Upsell and Cross-Sell Offers. In simple words, you can show your customers multiple post-purchase offers in a single funnel which increases the impulse buys, Average Order Value, and revenue of your WooCommerce store.
 
 **2) Reporting Feature for Funnel Tracking**
-With One Click Upsell plugin, you get a complete report of every single funnel. This report includes the number of times every single funnel has been triggered. Accepted and rejected offers of each funnel, their conversion rate, total sales, etc. This helps you comprehend what funnels interest your customers more and what not. Also, you can track the Upsells using Google Analytics and Facebook Pixel.
+With the One Click Upsell plugin, you get a complete report of every single funnel. This report includes the number of times every single funnel has been triggered. Accepted and rejected offers of each funnel, their conversion rate, total sales, etc. This helps you comprehend what funnels interest your customers more and what not. Also, you can track the Upsells using Google Analytics and Facebook Pixel.
 
 **3) Independent Global Funnel**
 You can now create a global funnel that can be triggered always independent of any target products. You can use this feature if you want to show an upsell offer to your customers every time they make a purchase in your WooCommerce store.
@@ -75,7 +77,6 @@ As the name suggests, it is one click upsell, which means the customers can purc
 
 Visit [**One Click Upsell Funnel for WooCommerce Documentation**](https://docs.wpswings.com/one-click-upsell-funnel-for-woocommerce/?utm_source=wpswings-upsell-doc&utm_medium=upsell-org-page&utm_campaign=upsell-doc) and learn more about the features and working of the plugin. 
 
-Check out  [**One Click Upsell Knowledge Base**](https://support.wpswings.com/wordpress-plugins-knowledge-base/category/one-click-upsell-funnel-for-woocommerce/?utm_source=wpswings-upsell-kb&utm_medium=upsell-org-page&utm_campaign=upsell-kb)
 
 
 == LIVE DEMO OF ONE CLICK UPSELL FUNNEL PLUGIN  ==
@@ -124,7 +125,7 @@ But, we have made our Pro version of the One Click Upsell plugin compatible with
 * Variable Products
 * Subscription Products
 * Bundled Products
-* Category Based Offers
+* Category-Based Offers
 * Multiple Payment Gateways
 * Premium Support
 * Additional Offers
@@ -156,6 +157,7 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 
 If you need support or have questions, kindly use our online chat window [**here**](https://wpswings.com/contact-us/?utm_source=wpswings-contact&utm_medium=upsell-org-page&utm_campaign=contact-us) or connect with us then [**Generate a ticket**](https://wpswings.com/submit-query/?utm_source=wpswings-submit-query&utm_medium=upsell-org-page&utm_campaign=query)
 
+> Create and Revamp your eCommerce store with [**WooCommerce Services**](https://wpswings.com/woocommerce-services/?utm_source=wpswings-upsell-services&utm_medium=upsell-org-page&utm_campaign=woocommerce-services)
 
 == Screenshots ==
 
@@ -253,9 +255,17 @@ Yes. One Click Upsell lets you add multiple upsell products in a single funnel. 
 
 Most of the major WordPress page builders like Elementor, WPBakery, Divibuilders, Thrive Architect, and other WordPress page builders are supported.	
 
+
+= My Question is Not Listed? =
+
+Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.com/wordpress-plugins-knowledge-base/category/one-click-upsell-funnel-for-woocommerce/?utm_source=wpswings-upsell-kb&utm_medium=upsell-org-page&utm_campaign=upsell-kb)
+
 == Changelog ==
 
-= 3.2.3 - Released on 23 August 2022 =
+= 3.2.2 - Released on 10 November 2022 =
+* New: Compatible with the latest WP and WC
+
+= 3.2.2 - Released on 23 August 2022 =
 * New: Minor bug fixes
 * New: Compatible with the latest WP and WC
 
@@ -354,7 +364,5 @@ Most of the major WordPress page builders like Elementor, WPBakery, Divibuilders
 
 == Upgrade Notice ==
 
-= 3.2.3 - Released on 23 August 2022 =
-* New: Minor bug fixes
-* New: Compatible with latest WP and WC
-
+= 3.2.2 - Released on 10 November 2022 =
+* New: Compatible with the latest WP and WC
