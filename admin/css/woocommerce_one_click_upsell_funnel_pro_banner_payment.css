@@ -1,0 +1,168 @@
+
+
+ /* Pro banner
+ */
+ #wps_wocuf_pro_setting_wrapper *{
+  box-sizing: border-box;
+}
+#wps_wocuf_pro_setting_wrapper p{
+  color: #000;
+  text-align: left;
+  padding: 10px;
+}
+
+#wps_wocuf_pro_setting_wrapper h1{
+  padding: 7px 20px;
+  font-size: 20px;
+  border-radius: 10px 0px;
+  color: #1d1d1d;
+  text-align: left;
+}
+
+ td.wps_upsell_supported {
+  position: relative;
+}
+ .wps_wupsell_premium_strip:after {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 39px solid transparent;
+    border-top: 21px solid #78c900;
+    position: absolute;
+    content: '';
+    top: 8px;
+    left: 24px;
+    transform: rotate(27deg);
+    z-index: -1;
+  }
+  .wps_wupsell_premium_strip {
+    border: 1px solid #78c900;
+    color: #ffffff;
+    background-color: #78c900;
+    position: absolute;
+    top: 15px;
+    bottom: 0;
+    right: 0;
+    left: 0px;
+    width: 32px;
+    height: 21px;
+    transform: skewY(-26deg);
+    transform-origin: top left;
+    color: #ffffff;
+    text-align: right;
+    font-size: 14px;
+  }
+  
+  
+  /* Go pro popup - Start */
+  .wps_ubo_lite_go_pro_popup_wrap.wps_ubo_lite_go_pro_popup_show {
+    opacity: 1;
+    visibility: visible;
+    transition: 0.3s linear all;
+  }
+  .wps_ubo_lite_go_pro_popup_wrap {
+    align-items: center;
+    background-color: rgba(0,0,0,0.5); 
+    bottom: 0;
+    display: flex;
+    height: 100%; 
+    justify-content: center;
+    left: 0;
+    opacity: 0;
+    position: fixed; 
+    right: 0;
+    top: 0; 
+    transition: 0.3s linear all;
+    visibility: hidden;
+    width: 100%; 
+    z-index: 999; 
+  }
+  .wps_ubo_lite_go_pro_popup {
+    background-color: #ffffff;
+    max-width: 800px;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    margin-left: 160px;
+  }
+  .wps_ubo_lite_go_pro_popup_body {
+    overflow: hidden;
+  }
+  .wps_ubo_lite_go_pro_popup_head {
+    position: relative;
+  }
+  .wps_ubo_lite_go_pro_popup_close {
+    position: absolute;
+    right: -11px;
+    top: 6px;
+    opacity: 0.8;
+    width: 25px;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 22px;
+    border: 1px solid rgba(255,255,255,0.6);
+    height: 25px;
+    line-height: 21px;
+    border-radius: 50%;
+  }
+  #wps_upsell_bump_setting_wrapper .wps_ubo_lite_go_pro_popup_close span {
+      font-size: 25px !important;
+      line-height: 19px;
+  }
+  .wps_ubo_lite_go_pro_popup_close:focus,
+  .wps_ubo_lite_go_pro_popup_close:hover{
+    outline: 0;
+    box-shadow: none;
+    color: #ffffff;
+    border-color: #ffffff;
+  }
+  .wps_ubo_lite_go_pro_popup img {
+    max-width: 100%;
+    width: auto;
+  }
+  .wps_ubo_lite_go_pro_popup_button .wps_ubo_lite_overview_go_pro_button,
+  .button.wps_ubo_lite_overview_go_pro_button {
+    background-color: #78c900;
+    color: #ffffff;
+    padding: 14px 36px;
+    height: auto;
+    border: none;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+    box-shadow: none;
+  }
+  .wps_ubo_lite_go_pro_popup_button .wps_ubo_lite_overview_go_pro_button span, .button.wps_ubo_lite_overview_go_pro_button span{
+    vertical-align: middle;
+    margin-left: 5px;
+  }
+  .wps_ubo_lite_go_pro_popup_button .wps_ubo_lite_overview_go_pro_button:focus,
+  .wps_ubo_lite_go_pro_popup_button .wps_ubo_lite_overview_go_pro_button:hover,
+  .button.wps_ubo_lite_overview_go_pro_button:focus,
+  .button.wps_ubo_lite_overview_go_pro_button:hover{
+    background-color:#78c900;
+    box-shadow: none;
+    color: #ffffff;
+    opacity: 0.8;
+    outline: 0;
+  }
+  .wps_ubo_lite_go_pro_popup_button {
+      text-align: center;
+  }
+  .wps_ubo_lite_go_pro_popup_head h2 {
+    background-color: #7979f6;
+    border-radius: 5px 5px 0 0;
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.7;
+    margin: -20px -20px 30px -20px;
+    padding: 10px;
+  }
+  .wps_ubo_lite_go_pro_popup_content p {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  /* Go pro popup - End */

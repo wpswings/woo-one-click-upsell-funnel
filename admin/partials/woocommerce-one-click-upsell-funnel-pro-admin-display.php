@@ -77,7 +77,7 @@ if ( 'overview' === get_transient( 'wps_upsell_default_settings_tab' ) ) {
 		<div id="wps_upsell_skype_connect_with_us">   
 			<div class="wps_upsell_skype_connect_title"><?php esc_html_e( 'Connect with Us in one click', 'woo-one-click-upsell-funnel' ); ?></div>
 
-			<a class="button" target="_blank" href="https://join.skype.com/invite/xCwpsfxx8MCX"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/skype_logo.png' ); ?>"><?php esc_html_e( 'Connect', 'woo-one-click-upsell-funnel' ); ?></a>
+			<a class="button" target="_blank" href="https://join.skype.com/invite/xCmwbfxx8MCX"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/skype_logo.png' ); ?>"><?php esc_html_e( 'Connect', 'woo-one-click-upsell-funnel' ); ?></a>
 
 			<p><?php esc_html_e( 'Regarding any issue, query or feature request for Upsell', 'woo-one-click-upsell-funnel' ); ?></p>
 		</div>

@@ -418,6 +418,40 @@ function wps_upsell_lite_supported_gateways() {
 
 	return apply_filters( 'wps_upsell_lite_supported_gateways', $supported_gateways );
 }
+/**
+ * Upsell supported payment gateways.
+ *
+ * @since    2.0.0
+ */
+function wps_upsell_pro_supported_gateways() {
+
+	$supported_gateways = array(
+		'bacs', // Direct bank transfer.
+		'cheque', // Check payments.
+		'cod', // Cash on delivery.
+		'wps-wocuf-pro-stripe-gateway', // Upsell Stripe.
+		'cardcom', // Official Cardcom.
+		'paypal',    // Woocommerce Paypal ( Standard ).
+		'wps-wocuf-pro-paypal-gateway', // Upsell Paypal ( Express Checkout ).
+		'ppec_paypal', // https://wordpress.org/plugins/woocommerce-gateway-paypal-express-checkout/.
+		'authorize', // https://wordpress.org/plugins/authorizenet-payment-gateway-for-woocommerce/.
+		'paystack', // https://wordpress.org/plugins/woo-paystack/.
+		'vipps', // https://wordpress.org/plugins/woo-vipps/.
+		'transferuj', // TPAY.com https://wordpress.org/plugins/woocommerce-transferujpl-payment-gateway/.
+		'razorpay', // https://wordpress.org/plugins/woo-razorpay/.
+		'stripe_ideal', // Official Stripe - iDeal.
+		'authorize_net_cim_credit_card', // Official Authorize.Net-CC.
+		'square_credit_card', // Official Square-XL plugins.
+		'braintree_cc', // Official Braintree for Woocommerce plugins.
+		'paypal_express', // Angeleye Paypal Express Checkout.
+		'stripe', // Official Stripe - CC.
+		'', // For Free Product.
+		'ppcp-gateway', // For Paypal payments plugin.
+		'ppcp-credit-card-gateway', // For Paypal CC payments plugin.
+	);
+
+	return apply_filters( 'wps_upsell_proe_supported_gateways', $supported_gateways );
+}
 
 /**
  * Upsell supported payment gateways for which Parent Order is secured.
@@ -595,4 +629,230 @@ if ( ! function_exists( 'wps_upsell_lite_wc_help_tip' ) ) {
 		<span class="woocommerce-help-tip" data-tip="<?php echo esc_html( $tip ); ?>"></span>
 		<?php
 	}
+}
+
+
+/**
+ * Add Go pro popup.
+ *
+ * @param   string $location        Location of page where you want to show popup.
+ * @since   1.2.0
+ */
+function wps_upsee_lite_go_pro( $location = 'pro' ) {
+
+	if ( 'pro' === $location ) {
+
+		$message = esc_html__( 'Stucked with Limited Gateway access? Unlock your power to explore more.', 'woo-one-click-upsell-funnel' );
+
+	} else {
+
+		$message = esc_html__( 'Stucked to just one Order Funnel? Unlock your power to explore more.', 'woo-one-click-upsell-funnel' );
+	}
+
+	ob_start();
+	?>
+	<!-- Go pro popup wrap start. -->
+	<div class="wps_ubo_lite_go_pro_popup_wrap">
+		<!-- Go pro popup main start. -->
+		<div class="wps_ubo_lite_go_pro_popup">
+			<!-- Main heading. -->
+			<div class="wps_ubo_lite_go_pro_popup_head">
+				<h2><?php esc_html_e( 'Want More? Go Pro !!', 'woo-one-click-upsell-funnel' ); ?></h2>
+				<!-- Close button. -->
+				<a href="" class="wps_ubo_lite_go_pro_popup_close">
+					<span>&times;</span>
+				</a>
+			</div>  
+
+			<!-- Notice icon. -->
+			<div class="wps_ubo_lite_go_pro_popup_head"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/icons/pro.png' ); ?> ">
+			</div>
+
+			<!-- Notice. -->
+			<div class="wps_ubo_lite_go_pro_popup_content">
+				<p class="wps_ubo_lite_go_pro_popup_text">
+					<?php echo esc_html( $message ); ?>
+				</p>
+				<p class="wps_ubo_lite_go_pro_popup_text">
+					<?php esc_html_e( 'Go with our premium version and make unlimited numbers of Upsells. Get more smart features and make the most attractive offers with all of your products. Set Relevant offers for specific targets which will ensure customer satisfaction and higher conversion rates.', 'woo-one-click-upsell-funnel' ); ?>
+				</p>
+			</div>
+
+			<!-- Go pro button. -->
+			<div class="wps_ubo_lite_go_pro_popup_button">
+				<a class="button wps_ubo_lite_overview_go_pro_button" target="_blank" href="https://wpswings.com/product/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=wpswings-upsell-funnel-pro&utm_medium=upsell-funnel-org-backend&utm_campaign=WPS-upsell-funnel-pro"><?php echo esc_html__( 'Upgrade to Premium', 'woo-one-click-upsell-funnel' ) . ' <span class="dashicons dashicons-arrow-right-alt"></span>'; ?></a>
+			</div>
+		</div>
+		<!-- Go pro popup main end. -->
+	</div>
+	<!-- Go pro popup wrap end. -->
+	<?php
+	$popup_html = ob_get_contents();
+	ob_end_clean();
+	$allowed_html = wps_upselllite_allowed_html();
+	echo wp_kses( $popup_html, $allowed_html );
+}
+
+
+
+/**
+ * This function returns just allowed html for order bump.
+ *
+ * @since    1.0.0
+ */
+function wps_upselllite_allowed_html() {
+
+	// Return the complete html elements defined by us.
+	$allowed_html = array(
+		'input'   => array(
+			'class'       => array(
+				'add_offer_in_cart',
+				'offer_shown_id',
+				'offer_shown_discount',
+			),
+			'id'          => array(
+				'target_id_cart_key',
+			),
+			'name'        => array(),
+			'placeholder' => array(),
+			'value'       => array(),
+			'type'        => array( 'hidden', 'checkbox' ),
+			'checked'     => array(),
+			'min'         => array(),
+			'max'         => array(),
+		),
+		'label'   => array(
+			'class' => array( 'wps_upsell_bump_checkbox_container' ),
+			'id'    => array(),
+			'value' => array(),
+		),
+		'span'    => array(
+			'class' => array(
+				'woocommerce-Price-amount',
+				'amount',
+				'woocommerce-Price-currencySymbol',
+				'checkmark',
+			),
+			'id'    => array(),
+			'value' => array(),
+		),
+		'br'      => '',
+		'ins'     => '',
+		'del'     => '',
+		'h2'      => '',
+		'h3'      => '',
+		'h4'      => '',
+		'h5'      => array(
+			'class' => array(
+				'add_offer_in_cart_text',
+			),
+		),
+		'div'     => array(
+			'class'                              => array(
+				'wps_upsell_offer_main_wrapper',
+				'wps_upsell_offer_parent_wrapper',
+				'wps_upsell_offer_discount_section',
+				'wps_upsell_offer_wrapper',
+				'wps_upsell_offer_product_section',
+				'wps_upsell_offer_image',
+				'wps_upsell_offer_arrow',
+				'wps_upsell_offer_product_content',
+				'wps_upsell_offer_primary_section' => array(
+					'div' => array(
+						'img' => array(
+							'src',
+						),
+					),
+				),
+				'wps_upsell_offer_secondary_section',
+				'woocommerce-product-gallery__image',
+				'wps_ubo_lite_go_pro_popup_wrap',
+				'wps_ubo_lite_go_pro_popup',
+				'wps_ubo_lite_go_pro_popup_head',
+				'wps_ubo_lite_go_pro_popup_content',
+				'wps_ubo_lite_go_pro_popup_button',
+			),
+			'id'                                 => array(),
+			'value'                              => array(),
+			'data-thumb'                         => array(),
+			'data-thumb-alt'                     => array(),
+			'woocommerce-product-gallery__image' => array(),
+			'data-thumb'                         => array(),
+		),
+		'svg'     => array(
+			'xmlns'   => array(),
+			'viewbox' => array(),
+		),
+		'defs'    => array(),
+		'style'   => array(),
+		'g'       => array(
+			'id' => array(),
+		),
+		'polygon' => array(
+			'class'  => array(),
+			'points' => array(),
+		),
+		'p'        => array(
+			'class' => array(
+				'wps_upsell_offer_product_price',
+				'wps_upsell_offer_product_description',
+				'wps_ubo_lite_go_pro_popup_text',
+			),
+			'id'    => array(),
+			'value' => array(),
+		),
+		'b'       => '',
+		'img'     => array(
+			'class'                   => array( 'wp-post-image' ),
+			'id'                      => array(),
+			'src'                     => array(),
+			'style'                   => array(),
+			'data-id'                 => array(),
+			'data-id'                 => array(),
+			'data-id'                 => array(),
+			'width'                   => array(),
+			'height'                  => array(),
+			'alt'                     => array(),
+			'data-caption'            => array(),
+			'data-src'                => array(),
+			'data-large_image'        => array(),
+			'data-large_image_width'  => array(),
+			'data-large_image_height' => array(),
+			'srcset'                  => array(),
+			'sizes'                   => array(),
+		),
+		'a'       => array(
+			'href'   => array(),
+			'class'  => array(
+				'wps_ubo_lite_go_pro_popup_close',
+				'button',
+				'wps_ubo_lite_overview_go_pro_button',
+			),
+			'target' => '_blank',
+		),
+		'select'  => array(
+			'id'                    => array(),
+			'class'                 => array(),
+			'name'                  => array(),
+			'data-attribute_name'   => array(),
+			'data-show_option_none' => array(),
+			'order_bump_index'      => array(),
+			'order'                 => array(),
+			'attribute_pa_color'    => array(),
+		),
+		'h4'      => array(
+			'data-wps_qty'          => array(),
+			'data-wps_is_fixed_qty' => array(),
+			'data-qty_allowed'      => array(),
+			'class'                 => array(),
+		),
+		'option'  => array(
+			'value'    => array(),
+			'selected' => array(),
+		),
+	);
+	?>
+
+	<?php
+	return $allowed_html;
 }

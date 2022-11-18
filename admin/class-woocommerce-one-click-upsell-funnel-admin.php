@@ -76,6 +76,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 		if ( isset( $screen->id ) ) {
 			$pagescreen = $screen->id;
 
+
 			if ( 'toplevel_page_wps-wocuf-setting' === $pagescreen || '1-click-upsell_page_wps-wocuf-setting-tracking' === $pagescreen ) {
 
 				wp_register_style( 'wps_wocuf_pro_admin_style', plugin_dir_url( __FILE__ ) . 'css/woocommerce_one_click_upsell_funnel_pro-admin.css', array(), $this->version, 'all' );
@@ -91,6 +92,11 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 				wp_enqueue_style( 'woocommerce_admin_menu_styles' );
 
 				wp_enqueue_style( 'woocommerce_admin_styles' );
+			}
+			if ( 'woocommerce_page_wc-settings' === $pagescreen ) {
+				wp_register_style( 'wps_wocuf_pro_banner_admin_style', plugin_dir_url( __FILE__ ) . 'css/woocommerce_one_click_upsell_funnel_pro_banner_payment.css', array(), $this->version, 'all' );
+
+				wp_enqueue_style( 'wps_wocuf_pro_banner_admin_style' );
 			}
 		}
 	}
@@ -118,6 +124,11 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 		if ( isset( $screen->id ) ) {
 			$pagescreen = $screen->id;
+
+			if ( 'woocommerce_page_wc-settings' === $pagescreen ) {
+				wp_enqueue_script( 'wps_wocuf_pro_banner_admin_script', plugin_dir_url( __FILE__ ) . 'js/woocommerce_one_click_upsell_funnel_pro-banner-admin.js', array( 'jquery' ), $this->version, false );
+
+			}
 
 			if ( 'toplevel_page_wps-wocuf-setting' === $pagescreen || '1-click-upsell_page_wps-wocuf-setting-tracking' === $pagescreen ) {
 
@@ -923,7 +934,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 	public function upsell_support_in_payment_gateway( $default_columns ) {
 
 		$new_column['wps_upsell'] = esc_html__( 'Upsell Supported', 'woo-one-click-upsell-funnel' );
-
+		wps_upsee_lite_go_pro( 'pro' ); 
 		// Place at second last position.
 		$position = count( $default_columns ) - 1;
 
@@ -941,18 +952,32 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 	public function upsell_support_content_in_payment_gateway( $gateway ) {
 
 		$supported_gateways = wps_upsell_lite_supported_gateways();
+		
+		$supported_gateways_pro = wps_upsell_pro_supported_gateways();
 
 		echo '<td class="wps_upsell_supported">';
 
 		if ( in_array( $gateway->id, $supported_gateways, true ) ) {
 
 			echo '<span class="status-enabled">' . esc_html__( 'Yes', 'woo-one-click-upsell-funnel' ) . '</span>';
+		
 		} else {
+		
+			if ( in_array( $gateway->id, $supported_gateways_pro, true ) ) {
+				
+				echo '	<span class="wps_wupsell_premium_strip">' . esc_html__( 'pro', 'woo-one-click-upsell-funnel' ) . '</span>';
+			
+			} else{
 
-			echo '<span class="status-disabled">' . esc_html__( 'No', 'woo-one-click-upsell-funnel' ) . '</span>';
+				echo '<span class="status-disabled">' . esc_html__( 'No', 'woo-one-click-upsell-funnel' ) . '</span>';
+			}
+
 		}
 
-		echo '</td>';
+		echo "<input type='hidden' id='wps_ubo_pro_status' value='inactive'>
+		</td>";
+		
+		
 	}
 
 	/**
