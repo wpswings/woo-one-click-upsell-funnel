@@ -262,7 +262,7 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Changelog ==
 
-= 3.2.2 - Released on 10 November 2022 =
+= 3.2.3 - Released on 10 November 2022 =
 * New: Compatible with the latest WP and WC
 
 = 3.2.2 - Released on 23 August 2022 =
@@ -364,5 +364,5 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Upgrade Notice ==
 
-= 3.2.2 - Released on 10 November 2022 =
+= 3.2.3 - Released on 10 November 2022 =
 * New: Compatible with the latest WP and WC
