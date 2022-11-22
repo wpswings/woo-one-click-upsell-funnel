@@ -521,8 +521,6 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 							// It just displayes the html itself. Content in it is already escaped if required.
 							?>
 							">
-
-
 								<div class="wps_upsell_offer_template_sub_div"> 
 
 									<h5><?php echo esc_html( $template_name ); ?></h5>
