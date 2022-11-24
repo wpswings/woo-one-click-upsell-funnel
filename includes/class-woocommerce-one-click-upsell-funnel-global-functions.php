@@ -652,7 +652,7 @@ function wps_upsee_lite_go_pro( $location = 'pro' ) {
 	ob_start();
 	?>
 	<!-- Go pro popup wrap start. -->
-	<div class="wps_ubo_lite_go_pro_popup_wrap">
+	<div class="wps_ubo_lite_go_pro_popup_wrap" id="all_offers_ubo_lite">
 		<!-- Go pro popup main start. -->
 		<div class="wps_ubo_lite_go_pro_popup">
 			<!-- Main heading. -->
@@ -692,6 +692,69 @@ function wps_upsee_lite_go_pro( $location = 'pro' ) {
 	$allowed_html = wps_upselllite_allowed_html();
 	echo wp_kses( $popup_html, $allowed_html );
 }
+
+
+
+
+/**
+ * Add Go pro popup.
+ *
+ * @param   string $location        Location of page where you want to show popup.
+ * @since   1.2.0
+ */
+function wps_upsee_lite_product_offer_go_pro( $location = 'pro' ) {
+
+
+		$message = esc_html__( 'Want More Product Types? Go Pro !!', 'woo-one-click-upsell-funnel' );
+	
+
+	ob_start();
+	?>
+	<div  id="product_features_ubo_lite" >
+	<!-- Go pro popup wrap start. -->
+	<div class="wps_ubo_lite_go_pro_popup_wrap" >
+		<!-- Go pro popup main start. -->
+		<div class="wps_ubo_lite_go_pro_popup" >
+			<!-- Main heading. -->
+			<div class="wps_ubo_lite_go_pro_popup_head">
+				<h2><?php esc_html_e( 'Want more Product types and super cool features?', 'woo-one-click-upsell-funnel' ); ?></h2>
+				<!-- Close button. -->
+				<a href="" class="wps_ubo_lite_go_pro_popup_close">
+					<span>&times;</span>
+				</a>
+			</div>  
+
+			<!-- Notice icon. -->
+			<div class="wps_ubo_lite_go_pro_popup_head"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/icons/pro.png' ); ?> ">
+			</div>
+
+			<!-- Notice. -->
+			<div class="wps_ubo_lite_go_pro_popup_content">
+				<p class="wps_ubo_lite_go_pro_popup_text">
+					<?php echo esc_html( $message ); ?>
+				</p>
+				<p class="wps_ubo_lite_go_pro_popup_text">
+					<?php esc_html_e( 'Go with our premium version and get other product types compatible like Variable, Subscription, and Bundles. ', 'woo-one-click-upsell-funnel' ); ?>
+				</p>
+			</div>
+
+			<!-- Go pro button. -->
+			<div class="wps_ubo_lite_go_pro_popup_button">
+				<a class="button wps_ubo_lite_overview_go_pro_button" target="_blank" href="https://wpswings.com/product/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=wpswings-upsell-funnel-pro&utm_medium=upsell-funnel-org-backend&utm_campaign=WPS-upsell-funnel-pro"><?php echo esc_html__( 'Upgrade to Premium', 'woo-one-click-upsell-funnel' ) . ' <span class="dashicons dashicons-arrow-right-alt"></span>'; ?></a>
+			</div>
+		</div>
+		<!-- Go pro popup main end. -->
+	</div>
+	</div>
+	<!-- Go pro popup wrap end. -->
+	<?php
+	$popup_html = ob_get_contents();
+	ob_end_clean();
+	$allowed_html = wps_upselllite_allowed_html();
+	echo wp_kses( $popup_html, $allowed_html );
+}
+
+
 
 
 

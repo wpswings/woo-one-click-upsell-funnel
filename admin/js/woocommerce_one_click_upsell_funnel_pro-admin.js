@@ -2,7 +2,7 @@
 	'use strict';
 	$(document).ready(function(){
 		$('#wps_wocuf_pro_target_pro_ids').select2();
-
+		$('#product_features_ubo_lite').hide();
 		//  Add multiselect to Funnel Schedule since v3.0.0
 		if ( $( '.wps-upsell-funnel-schedule-search' ).length ) {
 
@@ -131,8 +131,10 @@ jQuery(document).ready( function($) {
 	/**
 	 * Scripts after v1.0.2
 	 */
-	 $('#wps_wocuf_pro_add_products_tick').on( 'click', function (e) {
-
+	 $('.ubo_offer_input').on( 'click', function (e) {
+		debugger;
+		var data_offer = jQuery(e.currentTarget).attr('product_offer');
+		
 		// Add popup to unlock pro features.
 		var pro_status = document.getElementById( 'wps_ubo_pro_status' );
 		if( null != pro_status ) {
@@ -141,6 +143,10 @@ jQuery(document).ready( function($) {
 			$(this).prop("checked", false);
 			$( '.wps_ubo_lite_go_pro_popup_wrap' ).addClass( 'wps_ubo_lite_go_pro_popup_show' );
 			$( 'body' ).addClass( 'wps_ubo_lite_go_pro_popup_body' );
+		}
+		if ( data_offer == "yes" ) {
+			jQuery('#product_features_ubo_lite').show();
+			jQuery('#all_offers_ubo_lite').hide();
 		}
 	});
 

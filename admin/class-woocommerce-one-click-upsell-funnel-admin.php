@@ -478,15 +478,11 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 		<tr>
 			<th><label><h4><?php esc_html_e( 'Offer Template', 'woo-one-click-upsell-funnel' ); ?></h4></label>
 			</th>
-
 			<?php
-
 			$assigned_post_id        = ! empty( $funnel_offer_post_id ) ? $funnel_offer_post_id : '';
 			$current_offer_id        = $offer_index;
 			$wps_wocuf_pro_funnel_id = $funnel_id;
-
 			?>
-
 			<td>
 
 				<?php if ( ! empty( $assigned_post_id ) ) : ?>

@@ -420,7 +420,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 						wps_upsell_lite_wc_help_tip( $description );
 						?>
 
-						<select class="wc-funnel-product-search" multiple="multiple" style="" name="wps_wocuf_target_pro_ids[]" data-placeholder="<?php esc_attr_e( 'Search for a product&hellip;', 'woo-one-click-upsell-funnel' ); ?>">
+						<select class="wc-funnel-product-search" multiple="multiple" style="" name="wps_wocuf_target_pro_ids[]" data-placeholder="<?php esc_attr_e( 'Search for a simple product&hellip;', 'woo-one-click-upsell-funnel' ); ?>">
 
 						<?php
 
@@ -443,10 +443,51 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 						}
 
 						?>
-						</select>		
+						</select>	
+						&nbsp;
+						<label class="wps_wocuf_pro_enable_plugin_label">
+								<input class="wps_wocuf_pro_enable_plugin_input ubo_offer_input" product_offer="yes" id="wps_wocuf_pro_add_products_tick" type="checkbox" <?php echo ( 'yes' === $wps_wocuf_add_product_tick ) ? "checked='checked'" : ''; ?> name="wps_wocuf_add_products" >	
+								<span class="wps_wocuf_pro_enable_plugin_span"></span>
+							</label>	
+						
+						<span class="wps_upsell_funnel_product_offer_off "><?php esc_html_e( 'Upgrade To Pro For Variable, Subscription And Bundle Type Products', 'woo-one-click-upsell-funnel' ); ?></span>
+						
 					</td>	
 				</tr>
 				<!-- Select Target product end -->
+
+				<!-- Select Target category start -->
+				<tr valign="top">
+
+					<th scope="row" class="titledesc">
+						<label for="wps_wocuf_pro_target_pro_ids"><?php esc_html_e( 'Select target categories', 'woo-one-click-upsell-funnel' ); ?></label>
+					</th>
+
+					<td class="forminp forminp-text">
+
+						<?php
+
+						$description = esc_html__( 'If any one of these Target Category Products is checked out then the this funnel will be triggered and the below offers will be shown.', 'woo-one-click-upsell-funnel' );
+
+						wps_upsell_lite_wc_help_tip( $description );
+
+						?>
+
+						<select class="wc-funnel-product-search ubo_offer_input" disabled="true" multiple="multiple" style="" name="wps_wocuf_target_category_pro_ids[]" data-placeholder="<?php esc_attr_e( 'Upgrade To Pro For This Feature&hellip;', 'woo-one-click-upsell-funnel' ); ?>">
+
+						
+						</select>
+						&nbsp;
+						<label class="wps_wocuf_pro_enable_plugin_label">
+								<input class="wps_wocuf_pro_enable_plugin_input ubo_offer_input" product_offer="yes" id="wps_wocuf_pro_add_products_tick" type="checkbox" <?php echo ( 'yes' === $wps_wocuf_add_product_tick ) ? "checked='checked'" : ''; ?> name="wps_wocuf_add_products" >	
+								<span class="wps_wocuf_pro_enable_plugin_span"></span>
+							</label>	
+						
+						<span class="wps_upsell_funnel_product_offer_off "><?php esc_html_e( 'Upgrade To Pro For Category Products', 'woo-one-click-upsell-funnel' ); ?></span>
+							
+					</td>	
+				</tr>
+				<!-- Select Target category end -->
 
 				<!-- Schedule your Funnel start -->
 				<tr valign="top">
@@ -573,18 +614,18 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 
 
-		<div class="wps_wocuf_pro_offers"><h1><?php esc_html_e( 'Additional Funnel Offers', 'one-click-upsell-funnel-for-woocommerce-pro' ); ?></h1>
+		<div class="wps_wocuf_pro_offers"><h1><?php esc_html_e( 'Additional Funnel Offers', 'woo-one-click-upsell-funnel' ); ?></h1>
 			<table class="form-table wps_wocuf_pro_creation_setting">
 				<tbody>
 					<tr valign="top">
 						<th scope="row" class="titledesc">
 						<span class="wps_wupsell_premium_strip">Pro</span>
-							<label for="wps_wocuf_add_products"><?php esc_html_e( 'Add Additional offers', 'one-click-upsell-funnel-for-woocommerce-pro' ); ?></label>
+							<label for="wps_wocuf_add_products"><?php esc_html_e( 'Add Additional offers', 'woo-one-click-upsell-funnel' ); ?></label>
 						</th>
 						<td class="forminp forminp-text">
 							<?php
 
-							$attribut_description = esc_html__( 'This option will add Additional offer producs on upsell pages', 'one-click-upsell-funnel-for-woocommerce-pro' );
+							$attribut_description = esc_html__( 'This option will add Additional offer producs on upsell pages', 'woo-one-click-upsell-funnel' );
 
 							wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
@@ -592,7 +633,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 							?>
 
 							<label class="wps_wocuf_pro_enable_plugin_label">
-								<input class="wps_wocuf_pro_enable_plugin_input" id="wps_wocuf_pro_add_products_tick" type="checkbox" <?php echo ( 'yes' === $wps_wocuf_add_product_tick ) ? "checked='checked'" : ''; ?> name="wps_wocuf_add_products" >	
+								<input class="wps_wocuf_pro_enable_plugin_input ubo_offer_input" id="wps_wocuf_pro_add_products_tick" type="checkbox" <?php echo ( 'yes' === $wps_wocuf_add_product_tick ) ? "checked='checked'" : ''; ?> name="wps_wocuf_add_products" >	
 								<span class="wps_wocuf_pro_enable_plugin_span"></span>
 							</label>
 						</td>
@@ -602,6 +643,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 		</div>
 		<input type='hidden' id='wps_ubo_pro_status' value='inactive'>
 		<?php wps_upsee_lite_go_pro( 'pro' ); ?>
+		<?php wps_upsee_lite_product_offer_go_pro( 'pro' ); ?>
 
 		<div class="wps_wocuf_pro_offers"><h1><?php esc_html_e( 'Funnel Offers', 'woo-one-click-upsell-funnel' ); ?></h1>
 		</div>
