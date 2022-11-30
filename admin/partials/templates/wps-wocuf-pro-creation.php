@@ -205,14 +205,14 @@ if ( isset( $_POST['wps_wocuf_pro_creation_setting_save'] ) ) {
 
 	$wps_wocuf_pro_funnel['wps_wocuf_smart_offer_upgrade'] = ! empty( $_POST['wps_wocuf_smart_offer_upgrade'] ) ? 'yes' : 'no';
 
-	// Get all funnels.
+	// Get all funnels.**
 	$wps_wocuf_pro_created_funnels = get_option( 'wps_wocuf_funnels_list', array() );
 
 	// If funnel already exists then save Exclusive offer email data.
 	if ( ! empty( $wps_wocuf_pro_created_funnels[ $wps_wocuf_pro_funnel_id ]['offer_already_shown_to_users'] ) && is_array( $wps_wocuf_pro_created_funnels[ $wps_wocuf_pro_funnel_id ]['offer_already_shown_to_users'] ) ) {
 
 		$already_saved_funnel = $wps_wocuf_pro_created_funnels[ $wps_wocuf_pro_funnel_id ];
-
++
 		// Not Post data, so no need to Sanitize and Strip slashes.
 
 		// Empty and array already checked above.
@@ -404,6 +404,28 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 				</tr>
 				<!-- Funnel Name end-->
 
+					<!-- cart amount start-->
+					<tr valign="top">
+
+<th scope="row" class="titledesc">
+<span class="wps_wupsell_premium_strip">Pro</span>
+	<label for="wps_wocuf_pro_funnel_cart_amount"><?php esc_html_e( 'Minimum Cart Amount', 'one-click-upsell-funnel-for-woocommerce-pro' ); ?></label>
+</th>
+
+<td class="forminp forminp-text">
+
+	<?php
+
+	$description = esc_html__( 'Enter Minimum Cart Amount To Trigger Funnel', 'one-click-upsell-funnel-for-woocommerce-pro' );
+	wps_upsell_lite_wc_help_tip( $description );
+
+	?>
+
+	<input type="number" min="0" id="wps_upsell_funnel_cart_amount" name="wps_wocuf_pro_funnel_cart_amount" value="0" disabled="true" class="input-text wps_wocuf_pro_commone_class" required="">
+</td>
+</tr>
+<!-- cart amount end-->
+
 				<!-- Select Target product start -->
 				<tr valign="top">
 
@@ -414,7 +436,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 					<td class="forminp forminp-text">
 
 						<?php
-
+  
 						$description = esc_html__( 'If any one of these Target Products is checked out then the this funnel will be triggered and the below offers will be shown.', 'woo-one-click-upsell-funnel' );
 
 						wps_upsell_lite_wc_help_tip( $description );
@@ -441,7 +463,6 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 								}
 							}
 						}
-
 						?>
 						</select>	
 						&nbsp;
@@ -460,6 +481,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 				<tr valign="top">
 
 					<th scope="row" class="titledesc">
+					<span class="wps_wupsell_premium_strip">Pro</span>
 						<label for="wps_wocuf_pro_target_pro_ids"><?php esc_html_e( 'Select target categories', 'woo-one-click-upsell-funnel' ); ?></label>
 					</th>
 
@@ -477,14 +499,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 						
 						</select>
-						&nbsp;
-						<label class="wps_wocuf_pro_enable_plugin_label">
-								<input class="wps_wocuf_pro_enable_plugin_input ubo_offer_input" product_offer="yes" id="wps_wocuf_pro_add_products_tick" type="checkbox" <?php echo ( 'yes' === $wps_wocuf_add_product_tick ) ? "checked='checked'" : ''; ?> name="wps_wocuf_add_products" >	
-								<span class="wps_wocuf_pro_enable_plugin_span"></span>
-							</label>	
-						
-						<span class="wps_upsell_funnel_product_offer_off "><?php esc_html_e( 'Upgrade To Pro For Category Products', 'woo-one-click-upsell-funnel' ); ?></span>
-							
+					
 					</td>	
 				</tr>
 				<!-- Select Target category end -->
@@ -609,6 +624,27 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 					</td>
 				</tr>
 				<!-- Smart Offer Upgrade end -->
+				<tr valign="top">
+						<th scope="row" class="titledesc">
+						<span class="wps_wupsell_premium_strip">Pro</span>
+							<label for="wps_wocuf_add_products"><?php esc_html_e( 'Show Form Fields', 'woo-one-click-upsell-funnel' ); ?></label>
+						</th>
+						<td class="forminp forminp-text">
+							<?php
+
+							$attribut_description = esc_html__( 'This option Will add custom form feilds on upsell pages. Applicable to first offer page only.', 'woo-one-click-upsell-funnel' );
+
+							wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
+							$wps_wocuf_add_product_tick = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_add_products'] ) ? 'yes' : 'no';
+							?>
+
+							<label class="wps_wocuf_pro_enable_plugin_label">
+								<input class="wps_wocuf_pro_enable_plugin_input ubo_offer_input" id="wps_wocuf_pro_add_products_tick" type="checkbox" <?php echo ( 'yes' === $wps_wocuf_add_product_tick ) ? "checked='checked'" : ''; ?> name="wps_wocuf_add_products" >	
+								<span class="wps_wocuf_pro_enable_plugin_span"></span>
+							</label>
+						</td>
+					</tr>
 			</tbody>
 		</table>
 
