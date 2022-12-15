@@ -205,14 +205,14 @@ if ( isset( $_POST['wps_wocuf_pro_creation_setting_save'] ) ) {
 
 	$wps_wocuf_pro_funnel['wps_wocuf_smart_offer_upgrade'] = ! empty( $_POST['wps_wocuf_smart_offer_upgrade'] ) ? 'yes' : 'no';
 
-	// Get all funnels.**
+	// Get all funnels.**.
 	$wps_wocuf_pro_created_funnels = get_option( 'wps_wocuf_funnels_list', array() );
 
 	// If funnel already exists then save Exclusive offer email data.
 	if ( ! empty( $wps_wocuf_pro_created_funnels[ $wps_wocuf_pro_funnel_id ]['offer_already_shown_to_users'] ) && is_array( $wps_wocuf_pro_created_funnels[ $wps_wocuf_pro_funnel_id ]['offer_already_shown_to_users'] ) ) {
 
 		$already_saved_funnel = $wps_wocuf_pro_created_funnels[ $wps_wocuf_pro_funnel_id ];
-+
+		+  // phpcs:ignore
 		// Not Post data, so no need to Sanitize and Strip slashes.
 
 		// Empty and array already checked above.
@@ -436,7 +436,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 					<td class="forminp forminp-text">
 
 						<?php
-  
+
 						$description = esc_html__( 'If any one of these Target Products is checked out then the this funnel will be triggered and the below offers will be shown.', 'woo-one-click-upsell-funnel' );
 
 						wps_upsell_lite_wc_help_tip( $description );

@@ -76,7 +76,6 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 		if ( isset( $screen->id ) ) {
 			$pagescreen = $screen->id;
 
-
 			if ( 'toplevel_page_wps-wocuf-setting' === $pagescreen || '1-click-upsell_page_wps-wocuf-setting-tracking' === $pagescreen ) {
 
 				wp_register_style( 'wps_wocuf_pro_admin_style', plugin_dir_url( __FILE__ ) . 'css/woocommerce_one_click_upsell_funnel_pro-admin.css', array(), $this->version, 'all' );
@@ -740,7 +739,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 		wp_die();
 	}
-//4896175317
+
 	/**
 	 * Adding custom column in orders table at backend
 	 *
@@ -928,7 +927,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 	public function upsell_support_in_payment_gateway( $default_columns ) {
 
 		$new_column['wps_upsell'] = esc_html__( 'Upsell Supported', 'woo-one-click-upsell-funnel' );
-		wps_upsee_lite_go_pro( 'pro' ); 
+		wps_upsee_lite_go_pro( 'pro' );
 		// Place at second last position.
 		$position = count( $default_columns ) - 1;
 
@@ -946,7 +945,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 	public function upsell_support_content_in_payment_gateway( $gateway ) {
 
 		$supported_gateways = wps_upsell_lite_supported_gateways();
-		
+
 		$supported_gateways_pro = wps_upsell_pro_supported_gateways();
 
 		echo '<td class="wps_upsell_supported">';
@@ -954,24 +953,22 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 		if ( in_array( $gateway->id, $supported_gateways, true ) ) {
 
 			echo '<span class="status-enabled">' . esc_html__( 'Yes', 'woo-one-click-upsell-funnel' ) . '</span>';
-		
+
 		} else {
-		
+
 			if ( in_array( $gateway->id, $supported_gateways_pro, true ) ) {
-				
+
 				echo '	<span class="wps_wupsell_premium_strip">' . esc_html__( 'pro', 'woo-one-click-upsell-funnel' ) . '</span>';
-			
-			} else{
+
+			} else {
 
 				echo '<span class="status-disabled">' . esc_html__( 'No', 'woo-one-click-upsell-funnel' ) . '</span>';
 			}
-
 		}
 
 		echo "<input type='hidden' id='wps_ubo_pro_status' value='inactive'>
 		</td>";
-		
-		
+
 	}
 
 	/**
