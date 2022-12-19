@@ -2259,7 +2259,10 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 		$order_received_url = add_query_arg( 'key', $order_key, $order_received_url );
 
-		$result = '<a href="' . $order_received_url . '" class="button' . $atts['class'] . '" style="' . $atts['style'] . '">' . $content . '</a>';
+		$result = '<a href="' . $order_received_url . '" 
+		class="button' . $atts['class'] . '" 
+		style="' . $atts['style'] . '">
+		' . $content . '</a>';
 
 		return $result;
 	}
@@ -2333,10 +2336,15 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 			$product = $wps_wocuf_pro_offered_product;
 
-			$result .= '<div style="' . $atts['style'] . '" class="wps_wocuf_pro_custom_offer_price ' . $atts['class'] . '">' . $wps_wocuf_pro_before_offer_price_text . ' : ' . $product->get_price_html() . '</div>';
+			$result .= '<div style="' . $atts['style'] . '" 
+			class="wps_wocuf_pro_custom_offer_price ' . $atts['class'] . '">
+			' . $wps_wocuf_pro_before_offer_price_text . ' :
+				 ' . $product->get_price_html() . '</div>';
 
 		} else {
-			$result .= '<div style="' . $atts['style'] . '" class="wps_wocuf_pro_custom_offer_price ' . $atts['class'] . '">' . $content . '</div>';
+			$result .= '<div style="' . $atts['style'] . '" 
+			class="wps_wocuf_pro_custom_offer_price ' . $atts['class'] . '">
+			' . $content . '</div>';
 		}
 
 		return $result;
