@@ -212,11 +212,11 @@ if ( isset( $_POST['wps_wocuf_pro_creation_setting_save'] ) ) {
 	if ( ! empty( $wps_wocuf_pro_created_funnels[ $wps_wocuf_pro_funnel_id ]['offer_already_shown_to_users'] ) && is_array( $wps_wocuf_pro_created_funnels[ $wps_wocuf_pro_funnel_id ]['offer_already_shown_to_users'] ) ) {
 
 		$already_saved_funnel = $wps_wocuf_pro_created_funnels[ $wps_wocuf_pro_funnel_id ];
-		+  // phpcs:ignore
 		// Not Post data, so no need to Sanitize and Strip slashes.
 
 		// Empty and array already checked above.
 		$wps_wocuf_pro_funnel['offer_already_shown_to_users'] = $already_saved_funnel['offer_already_shown_to_users'];
+		$already_saved_funnel = $already_saved_funnel + $wps_wocuf_pro_funnel['offer_already_shown_to_users'];
 	}
 
 	// If funnel already exists then save Upsell Sales by Funnel - Stats if present.
@@ -328,6 +328,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 				$funnel_name = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_funnel_name'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_funnel_name'] : esc_html__( 'Funnel', 'woo-one-click-upsell-funnel' ) . " #$wps_wocuf_pro_funnel_id";
 
 				$funnel_status = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_upsell_funnel_status'] ) ? $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_upsell_funnel_status'] : 'no';
+				$wps_wocuf_add_product_tick = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_add_products'] ) ? 'yes' : 'no';
 
 				// Pre v3.0.0 Funnels will be live.
 				// The first condition to ensure funnel is already saved.

@@ -1,0 +1,26 @@
+{
+    "name": "wpswings/one-click-upsell-funnel-for-woocommerce-pro",
+    "type": "wordpress-plugin",
+    "authors": [
+        {
+            "name": "WP Swings",
+            "email": "support@wpswings.com"
+        }
+    ],
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.5",
+        "wp-coding-standards/wpcs": "^2.3",
+        "woocommerce/woocommerce-sniffs": "^0.1.0",
+        "phpcompatibility/php-compatibility": "^9.3",
+        "phpcompatibility/phpcompatibility-wp": "*",
+        "automattic/vipwpcs": "*"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "\"vendor/bin/phpcs\" --config-set installed_paths vendor/wp-coding-standards/wpcs,vendor/woocommerce/woocommerce-sniffs/src,vendor/phpcompatibility/php-compatibility,vendor/phpcompatibility/phpcompatibility-wp,vendor/phpcompatibility/phpcompatibility-paragonie,vendor/automattic/vipwpcs"
+        ],
+        "post-update-cmd": [
+            "\"vendor/bin/phpcs\" --config-set installed_paths vendor/wp-coding-standards/wpcs,vendor/woocommerce/woocommerce-sniffs/src,vendor/phpcompatibility/php-compatibility,vendor/phpcompatibility/phpcompatibility-wp,vendor/phpcompatibility/phpcompatibility-paragonie,vendor/automattic/vipwpcs"
+        ]
+    }
+}

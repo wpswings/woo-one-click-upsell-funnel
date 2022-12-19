@@ -843,7 +843,8 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 							    <p class="wps_wocuf_pro_product_desc">' . $product->get_description() . '</p></div>';
 
 					$result .= '<div class="wps_wocuf_pro_product_price">
-						    	<h4>' . $wps_wocuf_pro_before_offer_price_text . ' : ' . $product->get_price_html() . '</h4></div></div></div>';
+						    	<h4>' . $wps_wocuf_pro_before_offer_price_text . ' :
+									 ' . $product->get_price_html() . '</h4></div></div></div>';
 
 					$result .= '<div class="wps_wocuf_pro_offered_product_actions">
 				    			<form class="wps_wocuf_pro_offer_form" method="post">
@@ -856,7 +857,13 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 								<input type="hidden" name="wps_wocuf_post_nonce" value="' . wp_create_nonce( 'wps_wocuf_field_post_nonce' ) . '">
 								<input type="hidden" name="wps_wocuf_after_post_nonce" value="' . wp_create_nonce( 'wps_wocuf_after_field_post_nonce' ) . '">
 								<button data-id="' . $funnel_id . '" style="background-color:' . $wps_wocuf_pro_buy_button_color . '" class="wps_wocuf_pro_buy wps_wocuf_pro_custom_buy" type="submit" name="wps_wocuf_pro_buy">' . $wps_wocuf_pro_buy_text . '</button></form>
-								<a style="color:' . $ocuf_th_button_color . '" class="wps_wocuf_pro_skip wps_wocuf_pro_no" href="?ocuf_ns=' . $wp_nonce . '&ocuf_th=1&ocuf_ok=' . $order_key . '&ocuf_ofd=' . $offer_id . '&ocuf_fid=' . $funnel_id . '">' . $wps_wocuf_pro_no_text . '</a>
+								<a style="color:' . $ocuf_th_button_color . '" 
+								class="wps_wocuf_pro_skip wps_wocuf_pro_no" 
+								href="?ocuf_ns=' . $wp_nonce . '
+								&ocuf_th=1&ocuf_ok=' . $order_key . '
+								&ocuf_ofd=' . $offer_id . '
+								&ocuf_fid=' . $funnel_id . '">
+								' . $wps_wocuf_pro_no_text . '</a>
 								</div>
 				    		</div></div>';
 
@@ -2028,7 +2035,12 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 						$offer_id  = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) ) : '';
 						$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) ) : '';
 
-						$buy_now_link = '?wps_wocuf_pro_buy=true&ocuf_ns=' . $wp_nonce . '&ocuf_ok=' . $order_key . '&ocuf_ofd=' . $offer_id . '&ocuf_fid=' . $funnel_id . '&product_id=' . $product_id;
+						$buy_now_link = '?wps_wocuf_pro_buy
+						=true&ocuf_ns=' . $wp_nonce . '
+						&ocuf_ok=' . $order_key . '
+						&ocuf_ofd=' . $offer_id . '
+						&ocuf_fid=' . $funnel_id . '
+						&product_id=' . $product_id;
 					}
 				} elseif ( 'admin_view' === $validate_shortcode ) {
 
@@ -2076,7 +2088,10 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 					$offer_id  = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) ) : '';
 					$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) ) : '';
 
-					$no_thanks_link = '?ocuf_ns=' . $wp_nonce . '&ocuf_th=1&ocuf_ok=' . $order_key . '&ocuf_ofd=' . $offer_id . '&ocuf_fid=' . $funnel_id;
+					$no_thanks_link = '?ocuf_ns=' . $wp_nonce . '
+					&ocuf_th=1&ocuf_ok=' . $order_key . '
+					&ocuf_ofd=' . $offer_id . '
+					&ocuf_fid=' . $funnel_id;
 
 				} elseif ( 'admin_view' === $validate_shortcode ) {
 
@@ -2500,9 +2515,17 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		}
 
 		if ( ! empty( $offer_id ) && ! empty( $order_key ) && ! empty( $wp_nonce ) ) {
-			$result .= '<a style="' . $atts['style'] . '" class="wps_wocuf_pro_no wps_wocuf_pro_custom_skip ' . $atts['class'] . '" href="?ocuf_ns=' . $wp_nonce . '&ocuf_th=1&ocuf_ok=' . $order_key . '&ocuf_ofd=' . $offer_id . '&ocuf_fid=' . $funnel_id . '">' . $content . '</a>';
+			$result .= '<a style="' . $atts['style'] . '" class=
+			"wps_wocuf_pro_no wps_wocuf_pro_custom_skip ' . $atts['class'] . '" 
+			href="?ocuf_ns=' . $wp_nonce . '
+			&ocuf_th=1&ocuf_ok=' . $order_key . '
+			&ocuf_ofd=' . $offer_id . '
+			&ocuf_fid=' . $funnel_id . '"
+			>' . $content . '</a>';
 		} else {
-			$result .= '<a style="' . $atts['style'] . '" class="wps_wocuf_pro_custom_skip ' . $atts['class'] . '" href="">' . $content . '</a>';
+			$result .= '<a style="' . $atts['style'] . '" 
+			class="wps_wocuf_pro_custom_skip ' . $atts['class'] . '" 
+			href="">' . $content . '</a>';
 		}
 
 		return $result;
