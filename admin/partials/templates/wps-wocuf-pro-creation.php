@@ -410,14 +410,14 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 <th scope="row" class="titledesc">
 <span class="wps_wupsell_premium_strip">Pro</span>
-	<label for="wps_wocuf_pro_funnel_cart_amount"><?php esc_html_e( 'Minimum Cart Amount', 'one-click-upsell-funnel-for-woocommerce-pro' ); ?></label>
+	<label for="wps_wocuf_pro_funnel_cart_amount"><?php esc_html_e( 'Minimum Cart Amount', 'woo-one-click-upsell-funnel' ); ?></label>
 </th>
 
 <td class="forminp forminp-text">
 
 	<?php
 
-	$description = esc_html__( 'Enter Minimum Cart Amount To Trigger Funnel', 'one-click-upsell-funnel-for-woocommerce-pro' );
+	$description = esc_html__( 'Enter Minimum Cart Amount To Trigger Funnel', 'woo-one-click-upsell-funnel' );
 	wps_upsell_lite_wc_help_tip( $description );
 
 	?>
