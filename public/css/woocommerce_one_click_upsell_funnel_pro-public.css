@@ -485,3 +485,11 @@ background-color: #bf0000 !important;
     font-size: 20px;
   }
 }
+
+.theme-betheme .wps_upsell_offer_product_price {
+  margin: 15px 0;
+}
+
+.theme-Divi .wps_upsell_offer_product_price {
+  margin: 15px 0;
+}
