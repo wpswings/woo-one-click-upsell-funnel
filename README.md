@@ -1,4 +1,4 @@
-![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg) ![Active installs](https://img.shields.io/badge/Active-1000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-6.0.0-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-6.5.1-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-7.0-blue)
+![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg) ![Active installs](https://img.shields.io/badge/Active-1000%2B-brightgreen) ![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-6.1.1-brightgreen) ![WC tested](https://img.shields.io/badge/WC%20tested-7.2.0-brightgreen) ![Requires PHP](https://img.shields.io/badge/Requires%20PHP-7.0-blue)
 # One Click Upsell Funnel for WooCommerce – Post-Purchase Upsell & Cross-Sell Offers, Boost Sales
 ![One Click Upsell Funnel for WooCommerce](https://ps.w.org/woo-one-click-upsell-funnel/assets/banner-772x250.png?rev=2672029)
 * Contributors: WP Swings
@@ -10,18 +10,13 @@
  
 **ONE CLICK UPSELL FUNNEL FOR WOOCOMMERCE IS A COMPLETE SOLUTION TO BOOST SALES WITH THE HELP OF OF ONE-CLICK POST-PURCHASE UPSELL AND CROSS-SELL OFFERS**
  
-[**One Click Upsell Funnel for WooCommerce**](https://wordpress.org/plugins/woo-one-click-upsell-funnel/) plugin offers post-purchase upsell offers, i.e. after the checkout is done. Customers can buy these upsell products in just one click with no hassle of re-entering the payment details or adding the product to the cart again.
+[**One Click Upsell Funnel for WooCommerce**](https://wordpress.org/plugins/woo-one-click-upsell-funnel/) plugin offers post-purchase upsell offers, i.e. after the checkout is done. Customers can buy these upsell products in just one click with no hassle of re-entering the payment details or adding the product to the cart again. It is an extremely potent plugin for creating, testing, and maintaining upsell funnels giving fantastic offers to customers, increasing their satisfaction with their purchase and ultimately elevating SALES.
  
+Create an endless number of upsell offers using the [**WooCommerce upsell plugin**](https://wpswings.com/product/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=wpswings-upsell-pro&utm_medium=upsell-github-page&utm_campaign=upsell-pro), and examine a track report for each funnel. Additionally, you may use pre-made templates to easily set up and provide upsell for WooCommerce on your online store. Encourage customers to purchase more!
+
 [**One-Click Upsell Funnel For WooCommerce Tutorial 2022: Installation and Setup**](https://youtu.be/PvyKF8WEkAk)
- 
-***
->**IMPORTANT NOTICE:**
- 
->_**From the 3.1.3 Version update onwards, the One Click Upsell Funnel plugin and its support will be handled by [**WP Swings**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-github-page&utm_campaign=official).**_
- 
->_**WP Swings is just our improvised and rebranded version with all quality solutions and help to be the same, so no worries at your end. Please [**Connect with us**](https://wpswings.com/contact-us/?utm_source=wpswings-contact&utm_medium=upsell-github-page&utm_campaign=contactus) for all setup, support, and update related queries without hesitation.**_
-***
- 
+
+  
 **WITH THE ONE CLICK UPSELL FUNNEL FOR WOOCOMMERCE PLUGIN YOU CAN:**
  
 * Create unlimited funnels with an unlimited number of offers.
@@ -38,7 +33,7 @@
 * Create fully customizable upsell offer pages without any coding skill.
 * Build responsive and product-specific offer pages.
  
-### PLUGIN MEETS YOUR REQUIREMENT, SO
+### WOOCOMMERCE UPSELL PLUGIN MEETS YOUR REQUIREMENT
 [**Download Now !!**](https://downloads.wordpress.org/plugin/woo-one-click-upsell-funnel.zip)
  
  
@@ -84,7 +79,8 @@ Checkout [**One Click Upsell Funnel for WooCommerce Knowledge Base**](https://su
  
 * [**One Click Upsell Funnel for WooCommerce Backend Demo**](https://demo.wpswings.com/one-click-upsell-funnel-for-woocommerce-pro/request-for-personal-demo/?utm_source=wpswings-upsell-demo&utm_medium=upsell-github-page&utm_campaign=backend-demo)
 
-## PLUGIN COMPATIBILITIES
+## PLUGIN COMPATIBILITY WITH ONE CLICK UPSELL FUNNEL FOR WOOCOMMERCE
+
 
 **1) Upsell Order Bump Offer For WooCommerce**
 
@@ -101,15 +97,12 @@ The WooCommerce Upsell Plugin is compatible with [**Subscriptions For WooCommerc
 One Click Upsell Funnel plugin has been made compatible with a wide range of payment gateways. We made our WooCommerce upsell plugin compatible with 
 
 * [**WooCommerce Stripe Payment Gateway**](https://wordpress.org/plugins/woocommerce-gateway-stripe/)
-* [**WooCommerce Standard PayPal**](https://wordpress.org/plugins/enable-standard-paypal-for-woocommerce/)
 * [**WooCommerce PayPal Payments**](https://wordpress.org/plugins/woocommerce-paypal-payments/)
 * [**Authorize.net**](https://woocommerce.com/products/authorize-net/)
-* [**PayPal Express Checkout**](https://wordpress.org/plugins/express-checkout-paypal-payment-gateway-for-woocommerce/)
 * [**Braintree**](https://wordpress.org/plugins/woo-payment-gateway/)
 * [**Square**](https://wordpress.org/plugins/woocommerce-square/)
 * [**Paystack**](https://wordpress.org/plugins/woo-paystack/)
 * [**Vipps**](https://wordpress.org/plugins/woo-vipps/)
-* [**Tpay**](https://wordpress.org/plugins/woocommerce-transferujpl-payment-gateway/)
 * [**Cardcom**](https://wordpress.org/plugins/woo-cardcom-payment-gateway/)
 
 
@@ -135,6 +128,10 @@ Checkout [**One Click Upsell Funnel for WooCommerce Pro Documentation**](https:/
 ## SUPPORT
  
 If you need support or have questions, kindly use our online chat window [**here**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-github-page&utm_campaign=official) or connect with us then [**Generate a ticket**](https://wpswings.com/submit-query/?utm_source=wpswings-submit-query&utm_medium=upsell-github-page&utm_campaign=query)
+
+> If our documentation doesn’t contain the solution to your problem, you can visit the [**WP Swings Forums Community**](https://forums.wpswings.com/?utm_source=wpswings-forums&utm_medium=upsell-github-page&utm_campaign=forum)
+
+> Create and Revamp your eCommerce store with [**WooCommerce Services**](https://wpswings.com/woocommerce-services/?utm_source=wpswings-upsell-services&utm_medium=upsell-github-page&utm_campaign=woocommerce-services)
  
 ## MORE ABOUT WP SWINGS
  
@@ -142,5 +139,6 @@ If you need support or have questions, kindly use our online chat window [**here
 - [**Follow us on Facebook Page**](https://www.facebook.com/wpswings)
 - [**Tweet us on @WPSwings**](https://twitter.com/wpswings)
 - [**Visit our LinkedIn Account**](https://www.linkedin.com/company/wpswings/)
+
 
 
