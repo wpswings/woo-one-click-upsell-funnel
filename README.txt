@@ -6,7 +6,7 @@ Requires at least: 5.1.0
 Tested up to: 6.1.1
 WC requires at least: 5.1.0
 WC tested up to: 7.2.0
-Stable tag: 3.2.4
+Stable tag: 3.2.5
 Requires PHP: 7.0.0
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -261,7 +261,7 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Changelog ==
 
-= 3.2.4 - Released on 20 December 2022 =
+= 3.2.5 - Released on 20 December 2022 =
 * Enhancement: Show pro features in free version with an upgrade label [Appearance section].
 * New: Compatible with the latest WP and WC
 
@@ -367,6 +367,6 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Upgrade Notice ==
 
-= 3.2.4 - Released on 20 December 2022 =
+= 3.2.5 - Released on 20 December 2022 =
 * Enhancement: Show pro features in free version with an upgrade label [Appearance section].
 * New: Compatible with the latest WP and WC
