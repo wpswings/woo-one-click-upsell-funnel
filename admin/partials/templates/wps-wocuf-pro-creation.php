@@ -963,8 +963,8 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 										<div class="wps_upsell_offer_templates_parent">
 
 											<input class="wps_wocuf_pro_offer_template_input" type="hidden" name="wps_wocuf_pro_offer_template[<?php echo esc_html( $current_offer_id ); ?>]" value="<?php echo esc_html( $offer_template_active ); ?>">
-
-											<?php foreach ( $offer_templates_array as $template_key => $template_name ) : ?>
+											<?php if ( wps_upsell_lite_elementor_plugin_active()) {
+											foreach ( $offer_templates_array as $template_key => $template_name ) : ?>
 												<!-- Offer templates foreach start-->
 												<div class="wps_upsell_offer_template <?php echo esc_html( (string) $template_key === (string) $offer_template_active ? 'active' : '' ); ?>">
 
@@ -996,7 +996,8 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 												</div>
 												<!-- Offer templates foreach end-->
-											<?php endforeach; ?>
+											<?php endforeach; 
+											}?>
 
 											<!-- Offer link to custom page start-->
 											<div class="wps_upsell_offer_template wps_upsell_custom_page_link_div <?php echo esc_html( 'custom' === $offer_template_active ? 'active' : '' ); ?>">

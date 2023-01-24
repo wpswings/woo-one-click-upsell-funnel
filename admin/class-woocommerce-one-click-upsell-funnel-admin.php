@@ -1131,6 +1131,12 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 	}
 
+	/**
+	 * Upsell saving for simple products.
+	 *
+	 * @param [type] $post_id Is the post id.
+	 * @return void
+	 */
 	public function upsell_saving_simple_product_dynamic_shipping( $post_id ){
 		if ( isset( $_POST['upsell-custom-shipping-simple-nonce'] ) ) {
 			if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['upsell-custom-shipping-simple-nonce'] ) ), 'simple-product' ) ) {
@@ -1145,6 +1151,14 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 
 
+	/**
+	 * Upsell setting for variable products.
+	 *
+	 * @param [type] $loop Is the loop.
+	 * @param [type] $variation_data Is the variation data.
+	 * @param [type] $variation Is the variation object.
+	 * @return void
+	 */
 	public function upsell_add_custom_price_to_variations( $loop, $variation_data, $variation ) {
 		$upsell_shipping_product = get_post_meta( $variation->ID, 'wps_upsell_simple_shipping_product_'.$variation->ID, true );
 			
@@ -1173,6 +1187,13 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 
 
+	/**
+	 * Upsell save data setting for variable.
+	 *
+	 * @param [type] $variation_id Is the variation id.
+	 * @param [type] $i Is the number of variation.
+	 * @return void
+	 */
 	public function upsell_save_custom_price_variations(  $variation_id, $i  ){
 
 		if ( isset( $_POST['wps-upsell-price-variation-nonce'] ) ) {
