@@ -1,7 +1,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: One Click Upsell Funnel for Woocommerce 3.2.4\n"
+"Project-Id-Version: One Click Upsell Funnel for Woocommerce 3.2.5\n"
 "POT-Creation-Date: 2022-12-19 16:48+0530\n"
 "PO-Revision-Date: 2022-08-23 13:50+0530\n"
 "Last-Translator: \n"
