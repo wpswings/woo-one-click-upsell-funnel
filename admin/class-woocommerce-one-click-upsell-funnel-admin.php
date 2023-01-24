@@ -576,7 +576,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 				<?php else : ?>
 
 					<div class="wps_upsell_offer_template_unsupported">	
-					<h4><?php esc_html_e( 'Feature not supported for this Offer, please add a new Offer with Elementor active.', 'woo-one-click-upsell-funnel' ); ?></h4>
+					<h4><?php esc_html_e( 'Please activate Elementor if you want to use our Pre-defined Templates, else make a custom page yourself and add link below.', 'woo-one-click-upsell-funnel' ); ?></h4>
 					</div>
 
 				<?php endif; ?>
@@ -1108,6 +1108,11 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 	}
 
 
+	/**
+	 * Product simple product.
+	 *
+	 * @return void
+	 */
 	public function upsell_simple_product_settings(){
 			$upsell_shipping_product = get_post_meta( get_the_ID(), 'wps_upsell_simple_shipping_product_'.get_the_ID(), true );
 			if ( function_exists( 'wp_nonce_field' ) ) {
@@ -1116,13 +1121,19 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 			?>
 			<div class="wps_product_custom_field product_custom_field options_group show_if_simple show_if_external ">
-				<h4> 
+			<h4> 
 					<?php
-						echo esc_html__( 'Upsell setting', 'woocommerce-multi-currency-switcher' );
+						echo esc_html__( 'Upsell setting', 'woo-one-click-upsell-funnel' );
 					?>
+					<span class="wps-help-tip"></span>
+					<p>
+						<?php
+							echo esc_html__( 'Add shipping price of this product for upsell offer.', 'woo-one-click-upsell-funnel' );
+						?>
+					</p>
 				</h4>
-<p class="form-field _sale_price_field">
-				<label><?php echo esc_html__( 'Upsell shipping Price', 'woocommerce-multi-currency-switcher' ); ?></label>	
+				<p class="form-field _sale_price_field">
+				<label><?php echo esc_html__( 'Upsell shipping Price', 'woo-one-click-upsell-funnel' ); ?></label>	
 				<input type="number" class="wps_product_shipping_input"  name="wps_upsell_simple_shipping_product_<?php echo get_the_ID()?>" id="wps_upsell_simple_shipping_product_<?php echo get_the_ID()?>" value="<?php echo $upsell_shipping_product; ?>"  >
 				</p>
 			</div>
@@ -1166,18 +1177,22 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 			wp_nonce_field( 'variable-product', 'wps-upsell-price-variation-nonce' );
 		}
 		
-		
-
 		?>
 			<div class="wps_product_custom_field product_custom_field options_group show_if_simple show_if_external ">
-				<h4> 
+			<h4> 
 					<?php
-						echo esc_html__( 'Upsell setting', 'woocommerce-multi-currency-switcher' );
+						echo esc_html__( 'Upsell setting', 'woo-one-click-upsell-funnel' );
 					?>
+					<span class="wps-help-tip"></span>
+					<p>
+						<?php
+							echo esc_html__( 'Add shipping price of this product for upsell offer.', 'woo-one-click-upsell-funnel' );
+						?>
+					</p>
 				</h4>
 
 				<label>
-				<?php echo esc_html__( 'Upsell shipping Price', 'woocommerce-multi-currency-switcher' ); ?>	
+				<?php echo esc_html__( 'Upsell shipping Price', 'woo-one-click-upsell-funnel' ); ?>	
 				</label>
 				<input type="number" class="wps_product_shipping_input"  name="wps_upsell_simple_shipping_product_<?php echo $variation->ID; ?>" id="wps_upsell_simple_shipping_product_<?php echo $variation->ID; ?>" value="<?php echo $upsell_shipping_product; ?>"  >
 			
@@ -1201,7 +1216,6 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 				wp_die();
 			}
 		}
-	
 
 		$upsell_shipping_price = ! empty( $_POST['wps_upsell_simple_shipping_product_'.$variation_id] ) ?sanitize_text_field( wp_unslash( $_POST['wps_upsell_simple_shipping_product_'.$variation_id] ) ):'';
 		update_post_meta($variation_id,'wps_upsell_simple_shipping_product_'.$variation_id,$upsell_shipping_price);

@@ -1482,6 +1482,8 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 		add_shortcode( 'wps_upsell_price', array( $this, 'product_price_shortcode_content' ) );
 
+		add_shortcode( 'wps_upsell_product_shipping_price', array( $this, 'upsell_product_shipping_price_shortcode_content' ) );
+
 		add_shortcode( 'wps_upsell_variations', array( $this, 'variations_selector_shortcode_content' ) );
 
 		// Review.
@@ -1897,6 +1899,42 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				return $upsell_product_image_src_div;
 			}
 		}
+	}
+
+
+	/**
+	 * Shortcode for Upsell product shipping price.
+	 *
+	 * @param mixed $atts shortcode attributes.
+	 * @since       3.0.0
+	 */
+	public function upsell_product_shipping_price_shortcode_content( $atts ) {
+
+		$validate_shortcode = $this->validate_shortcode();
+
+		if ( $validate_shortcode ) {
+
+			$product_id = $this->get_upsell_product_id_for_shortcode();
+			$atts = shortcode_atts(
+				array(
+					'id'    => '',
+					'class' => '',
+					'style' => '',
+				),
+				$atts
+			);
+			$id    = $atts['id'];
+			$class = $atts['class'];
+			$style = $atts['style'];
+			$upsell_shipping_product = get_post_meta( $product_id, 'wps_upsell_simple_shipping_product_'.$product_id , true );
+		
+			$upsell_product_price_html_div = "Shipping Price <br> <div id='$id' class='wps_upsell_offer_product_price $class' style='$style'>
+						" . wc_price( $upsell_shipping_product ) . "</div>";
+
+		}
+
+		return $upsell_product_price_html_div;
+
 	}
 
 	/**
