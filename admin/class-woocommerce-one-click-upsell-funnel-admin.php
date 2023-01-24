@@ -214,6 +214,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 				wp_enqueue_script( 'wps-wocuf-pro-color-picker-handle', plugin_dir_url( __FILE__ ) . 'js/wps_wocuf_pro_color_picker_handle.js', array( 'jquery', 'wp-color-picker' ), $this->version, true );
 			}
+
 		}
 	}
 
@@ -1122,10 +1123,11 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 				</h4>
 <p class="form-field _sale_price_field">
 				<label><?php echo esc_html__( 'Upsell shipping Price', 'woocommerce-multi-currency-switcher' ); ?></label>	
-				<input type="number" class="mwb_input"  name="wps_upsell_simple_shipping_product" id="wps_upsell_simple_shipping_product" value="<?php echo $upsell_shipping_product; ?>"  >
+				<input type="number" class="wps_product_shipping_input"  name="wps_upsell_simple_shipping_product_<?php echo get_the_ID()?>" id="wps_upsell_simple_shipping_product_<?php echo get_the_ID()?>" value="<?php echo $upsell_shipping_product; ?>"  >
 				</p>
 			</div>
 			<?php
+			
 
 	}
 
@@ -1135,7 +1137,8 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 				wp_die();
 			}
 		}
-		$upsell_shipping_price = ! empty( $_POST['wps_upsell_simple_shipping_product_'].$post_id ) ?sanitize_text_field( wp_unslash( $_POST['wps_upsell_simple_shipping_product_'].$post_id ) ):'';
+		 $upsell_shipping_price = ! empty( $_POST['wps_upsell_simple_shipping_product_'.$post_id] ) ?sanitize_text_field( wp_unslash( $_POST['wps_upsell_simple_shipping_product_'.$post_id] ) ):'';
+	
 		update_post_meta($post_id,'wps_upsell_simple_shipping_product_'.$post_id ,$upsell_shipping_price);
 	}
 
@@ -1162,7 +1165,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 				<label>
 				<?php echo esc_html__( 'Upsell shipping Price', 'woocommerce-multi-currency-switcher' ); ?>	
 				</label>
-				<input type="number" class="mwb_input"  name="wps_upsell_simple_shipping_product_<?php echo $variation->ID; ?>" id="wps_upsell_simple_shipping_product_<?php echo $variation->ID; ?>" value="<?php echo $upsell_shipping_product; ?>"  >
+				<input type="number" class="wps_product_shipping_input"  name="wps_upsell_simple_shipping_product_<?php echo $variation->ID; ?>" id="wps_upsell_simple_shipping_product_<?php echo $variation->ID; ?>" value="<?php echo $upsell_shipping_product; ?>"  >
 			
 			</div>
 			<?php
