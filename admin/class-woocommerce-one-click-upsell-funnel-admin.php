@@ -1097,5 +1097,83 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 		require_once WPS_WOCUF_DIRPATH . 'admin/reporting-and-tracking/upsell-reporting-and-tracking-config-panel.php';
 	}
 
+
+	public function upsell_simple_product_settings(){
+			$upsell_shipping_product = get_post_meta( get_the_ID(), 'wps_upsell_simple_shipping_product_'.get_the_ID(), true );
+			if ( function_exists( 'wp_nonce_field' ) ) {
+				wp_nonce_field( 'simple-product', 'upsell-custom-shipping-simple-nonce' );
+			}
+
+			?>
+			<div class="product_custom_field options_group show_if_simple show_if_external ">
+				<h4> 
+					<?php
+						echo esc_html__( 'Upsell setting', 'woocommerce-multi-currency-switcher' );
+					?>
+				</h4>
+
+				<?php echo esc_html__( 'Upsell shipping Price', 'woocommerce-multi-currency-switcher' ); ?>	<input type="text" class="mwb_input"  name="wps_upsell_simple_shipping_product" id="wps_upsell_simple_shipping_product" value="<?php echo $upsell_shipping_product; ?>"  >
+			
+			</div>
+			<?php
+
+	}
+
+	public function upsell_saving_simple_product_dynamic_shipping( $post_id ){
+		if ( isset( $_POST['upsell-custom-shipping-simple-nonce'] ) ) {
+			if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['upsell-custom-shipping-simple-nonce'] ) ), 'simple-product' ) ) {
+				wp_die();
+			}
+		}
+		$upsell_shipping_price = ! empty( $_POST['wps_upsell_simple_shipping_product_'].$post_id ) ?sanitize_text_field( wp_unslash( $_POST['wps_upsell_simple_shipping_product_'].$post_id ) ):'';
+		update_post_meta($post_id,'wps_upsell_simple_shipping_product_'.$post_id ,$upsell_shipping_price);
+	}
+
+
+
+
+	public function upsell_add_custom_price_to_variations( $loop, $variation_data, $variation ) {
+		$upsell_shipping_product = get_post_meta( $variation->ID, 'wps_upsell_simple_shipping_product_'.$variation->ID, true );
+			
+		if ( 0 === $loop ) {
+			wp_nonce_field( 'variable-product', 'wps-upsell-price-variation-nonce' );
+		}
+		
+		
+
+		?>
+			<div class="product_custom_field options_group show_if_simple show_if_external ">
+				<h4> 
+					<?php
+						echo esc_html__( 'Upsell setting', 'woocommerce-multi-currency-switcher' );
+					?>
+				</h4>
+
+				<?php echo esc_html__( 'Upsell shipping Price', 'woocommerce-multi-currency-switcher' ); ?>	<input type="text" class="mwb_input"  name="wps_upsell_simple_shipping_product_<?php echo $variation->ID; ?>" id="wps_upsell_simple_shipping_product_<?php echo $variation->ID; ?>" value="<?php echo $upsell_shipping_product; ?>"  >
+			
+			</div>
+			<?php
+	}
+
+
+
+	public function upsell_save_custom_price_variations(  $variation_id, $i  ){
+
+		if ( isset( $_POST['wps-upsell-price-variation-nonce'] ) ) {
+			if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['wps-upsell-price-variation-nonce'] ) ), 'variable-product' ) ) {
+				wp_die();
+			}
+		}
+	
+
+		$upsell_shipping_price = ! empty( $_POST['wps_upsell_simple_shipping_product_'.$variation_id] ) ?sanitize_text_field( wp_unslash( $_POST['wps_upsell_simple_shipping_product_'.$variation_id] ) ):'';
+		update_post_meta($variation_id,'wps_upsell_simple_shipping_product_'.$variation_id,$upsell_shipping_price);
+
+	}
+
 }
+
+
+
+
 ?>
