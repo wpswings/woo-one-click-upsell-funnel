@@ -1,0 +1,11 @@
+.wps_product_custom_field h4 {
+    background-color: #ebebeb;
+    padding: 10px 15px;
+    color: #000;
+    font-weight: 700;
+    margin-top: 0px;
+}
+.wps_product_custom_field input {
+    width: 100%;
+    margin-top: 5px;
+}

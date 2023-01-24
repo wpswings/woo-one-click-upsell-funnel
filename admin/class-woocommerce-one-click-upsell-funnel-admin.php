@@ -97,6 +97,15 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 				wp_enqueue_style( 'wps_wocuf_pro_banner_admin_style' );
 			}
+
+
+			if ( isset( $screen->id ) && 'product' == $screen->id ) {
+
+				wp_register_style( 'woocommerce_one_click_upsell_funnel_product_shipping', plugin_dir_url( __FILE__ ) . 'css/woocommerce_one_click_upsell_funnel_product_shipping.css', array(), $this->version, 'all' );
+
+				wp_enqueue_style( 'woocommerce_one_click_upsell_funnel_product_shipping' );
+				
+			}
 		}
 	}
 
@@ -1105,15 +1114,16 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 			}
 
 			?>
-			<div class="product_custom_field options_group show_if_simple show_if_external ">
+			<div class="wps_product_custom_field product_custom_field options_group show_if_simple show_if_external ">
 				<h4> 
 					<?php
 						echo esc_html__( 'Upsell setting', 'woocommerce-multi-currency-switcher' );
 					?>
 				</h4>
-
-				<?php echo esc_html__( 'Upsell shipping Price', 'woocommerce-multi-currency-switcher' ); ?>	<input type="text" class="mwb_input"  name="wps_upsell_simple_shipping_product" id="wps_upsell_simple_shipping_product" value="<?php echo $upsell_shipping_product; ?>"  >
-			
+<p class="form-field _sale_price_field">
+				<label><?php echo esc_html__( 'Upsell shipping Price', 'woocommerce-multi-currency-switcher' ); ?></label>	
+				<input type="number" class="mwb_input"  name="wps_upsell_simple_shipping_product" id="wps_upsell_simple_shipping_product" value="<?php echo $upsell_shipping_product; ?>"  >
+				</p>
 			</div>
 			<?php
 
@@ -1142,14 +1152,17 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 		
 
 		?>
-			<div class="product_custom_field options_group show_if_simple show_if_external ">
+			<div class="wps_product_custom_field product_custom_field options_group show_if_simple show_if_external ">
 				<h4> 
 					<?php
 						echo esc_html__( 'Upsell setting', 'woocommerce-multi-currency-switcher' );
 					?>
 				</h4>
 
-				<?php echo esc_html__( 'Upsell shipping Price', 'woocommerce-multi-currency-switcher' ); ?>	<input type="text" class="mwb_input"  name="wps_upsell_simple_shipping_product_<?php echo $variation->ID; ?>" id="wps_upsell_simple_shipping_product_<?php echo $variation->ID; ?>" value="<?php echo $upsell_shipping_product; ?>"  >
+				<label>
+				<?php echo esc_html__( 'Upsell shipping Price', 'woocommerce-multi-currency-switcher' ); ?>	
+				</label>
+				<input type="number" class="mwb_input"  name="wps_upsell_simple_shipping_product_<?php echo $variation->ID; ?>" id="wps_upsell_simple_shipping_product_<?php echo $variation->ID; ?>" value="<?php echo $upsell_shipping_product; ?>"  >
 			
 			</div>
 			<?php
