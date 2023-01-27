@@ -611,7 +611,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			$wp_nonce = sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) );
 
 			$order_id = wc_get_order_id_by_order_key( $order_key );
-		
+
 			if ( ! empty( $order_id ) ) {
 
 				$order = wc_get_order( $order_id );
@@ -633,7 +633,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				$current_offer_id = $offer_id;
 				$this->validate_offers_processed_on_upsell_action( $order_id, $current_offer_id );
 			}
-			
+
 			// Add Offer Reject Count for the current Funnel.
 			$sales_by_funnel = new WPS_Upsell_Report_Sales_By_Funnel( $funnel_id );
 			$sales_by_funnel->add_offer_reject_count();
@@ -1399,34 +1399,24 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			foreach ( $order->get_items() as $item_id => $item ) {
 
 				$product_id = $item->get_product_id();
-				$shipping_price += floatval( get_post_meta( $product_id, 'wps_upsell_simple_shipping_product_'.$product_id, true ));
-		
-			
-				
-				
+				$shipping_price += floatval( get_post_meta( $product_id, 'wps_upsell_simple_shipping_product_' . $product_id, true ) );
 			}
 		}
 
-		if ( $shipping_price != 0 && ! empty( $shipping_price ) ){
+		if ( 0 != $shipping_price && ! empty( $shipping_price ) ) {
 			$item_ship = new WC_Order_Item_Shipping();
 
-		$item_ship->set_name( "" );
-		$item_ship->set_total( $shipping_price );
-		// $item_ship->set_tax_class( '' );
-		// $item_ship->set_tax_status( 'none' );
-		// Add Shipping item to the order
-		$order->add_item( $item_ship );
-		$order->calculate_totals();
-	
+			$item_ship->set_name( '' );
+			$item_ship->set_total( $shipping_price );
+			// Add Shipping item to the order
+			$order->add_item( $item_ship );
+			$order->calculate_totals();
 
 		}
-	
 
 		global $woocommerce;
 
 		$gateways = $woocommerce->payment_gateways->get_available_payment_gateways();
-
-		
 
 		// For cron - Payment initialized.
 		delete_post_meta( $order_id, 'wps_ocufp_upsell_initialized' );
@@ -1926,10 +1916,10 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			$id    = $atts['id'];
 			$class = $atts['class'];
 			$style = $atts['style'];
-			$upsell_shipping_product = get_post_meta( $product_id, 'wps_upsell_simple_shipping_product_'.$product_id , true );
-		
+			$upsell_shipping_product = get_post_meta( $product_id, 'wps_upsell_simple_shipping_product_' . $product_id, true );
+
 			$upsell_product_price_html_div = "Shipping Price <br> <div id='$id' class='wps_upsell_offer_product_price $class' style='$style'>
-						" . wc_price( $upsell_shipping_product ) . "</div>";
+						" . wc_price( $upsell_shipping_product ) . '</div>';
 
 		}
 
