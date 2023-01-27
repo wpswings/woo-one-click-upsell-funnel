@@ -1408,7 +1408,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 			$item_ship->set_name( '' );
 			$item_ship->set_total( $shipping_price );
-			// Add Shipping item to the order
+			// Add Shipping item to the order.
 			$order->add_item( $item_ship );
 			$order->calculate_totals();
 

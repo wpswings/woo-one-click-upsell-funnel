@@ -1132,7 +1132,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 				</h4>
 				<p class="form-field _sale_price_field">
 				<label><?php echo esc_html__( 'Upsell shipping Price', 'woo-one-click-upsell-funnel' ); ?></label>	
-				<input type="number" class="wps_product_shipping_input"  name="wps_upsell_simple_shipping_product_<?php echo get_the_ID(); ?>" id="wps_upsell_simple_shipping_product_<?php echo esc_attr( get_the_ID() ); ?>" value="<?php echo esc_attr( $upsell_shipping_product ); ?>"  >
+				<input type="number" class="wps_product_shipping_input"  name="wps_upsell_simple_shipping_product_<?php echo esc_attr( get_the_ID() ); ?>" id="wps_upsell_simple_shipping_product_<?php echo esc_attr( get_the_ID() ); ?>" value="<?php echo esc_attr( $upsell_shipping_product ); ?>"  >
 				</p>
 			</div>
 			<?php
