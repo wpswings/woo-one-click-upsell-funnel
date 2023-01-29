@@ -1394,19 +1394,15 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		}
 		$order = new WC_Order( $order_id );
 		$shipping_price = 0;
+		$live_offer_url_params = wps_upsell_lite_live_offer_url_params();
+		$product_id = $live_offer_url_params['product_id'];
 		if ( ! empty( $order ) ) {
-
-			foreach ( $order->get_items() as $item_id => $item ) {
-
-				$product_id = $item->get_product_id();
-				$shipping_price += floatval( get_post_meta( $product_id, 'wps_upsell_simple_shipping_product_' . $product_id, true ) );
-			}
+				$shipping_price = floatval( get_post_meta( $product_id, 'wps_upsell_simple_shipping_product_' . $product_id, true ) );
 		}
 
 		if ( 0 != $shipping_price && ! empty( $shipping_price ) ) {
 			$item_ship = new WC_Order_Item_Shipping();
-
-			$item_ship->set_name( '' );
+			$item_ship->set_name( 'Upsell shipping' );
 			$item_ship->set_total( $shipping_price );
 			// Add Shipping item to the order.
 			$order->add_item( $item_ship );
