@@ -1380,6 +1380,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		}
 	}
 
+
 	/**
 	 * Process Payment for Upsell order.
 	 *
