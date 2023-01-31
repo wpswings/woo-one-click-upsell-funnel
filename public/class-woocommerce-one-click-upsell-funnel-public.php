@@ -1048,12 +1048,20 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				$funnel_id = $live_offer_url_params['funnel_id'];
 
 				$product_id = $live_offer_url_params['product_id'];
-
 				$order_key = $live_offer_url_params['order_key'];
+				$order_id = wc_get_order_id_by_order_key( $order_key );
+				 $shipping_price = floatval( get_post_meta( $product_id, 'wps_upsell_simple_shipping_product_' . $product_id, true ) );
+				if ( ! empty( $shipping_price )) {
+					$shipping_price_order = floatval( get_post_meta( $order_id, 'wps_upsell_simple_shipping_product_',  true ) );
+					$shipping_price_order +=$shipping_price;
+					update_post_meta( $order_id, 'wps_upsell_simple_shipping_product_',$shipping_price_order );
+							
+				}
+				
 
 				$offer_quantity = ! empty( $live_offer_url_params['quantity'] ) ? $live_offer_url_params['quantity'] : '1';
 
-				$order_id = wc_get_order_id_by_order_key( $order_key );
+				
 
 				if ( ! empty( $order_id ) ) {
 
@@ -1393,18 +1401,16 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 			return false;
 		}
-		$order = new WC_Order( $order_id );
-		$shipping_price = 0;
-		$live_offer_url_params = wps_upsell_lite_live_offer_url_params();
-		$product_id = $live_offer_url_params['product_id'];
-		if ( ! empty( $order ) ) {
-				$shipping_price = floatval( get_post_meta( $product_id, 'wps_upsell_simple_shipping_product_' . $product_id, true ) );
-		}
+		$order = new WC_Order( $order_id );		
+		$shipping_price_order =0;
+			if ( ! empty( $order ) ) {
+				$shipping_price_order = floatval( get_post_meta( $order_id, 'wps_upsell_simple_shipping_product_',  true ) );
+			}
 
-		if ( 0 != $shipping_price && ! empty( $shipping_price ) ) {
+		if ( 0 != $shipping_price_order && ! empty( $shipping_price_order ) ) {
 			$item_ship = new WC_Order_Item_Shipping();
 			$item_ship->set_name( 'Upsell shipping' );
-			$item_ship->set_total( $shipping_price );
+			$item_ship->set_total( $shipping_price_order );
 			// Add Shipping item to the order.
 			$order->add_item( $item_ship );
 			$order->calculate_totals();
