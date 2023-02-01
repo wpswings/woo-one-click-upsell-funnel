@@ -1051,17 +1051,14 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				$order_key = $live_offer_url_params['order_key'];
 				$order_id = wc_get_order_id_by_order_key( $order_key );
 				 $shipping_price = floatval( get_post_meta( $product_id, 'wps_upsell_simple_shipping_product_' . $product_id, true ) );
-				if ( ! empty( $shipping_price )) {
-					$shipping_price_order = floatval( get_post_meta( $order_id, 'wps_upsell_simple_shipping_product_',  true ) );
-					$shipping_price_order +=$shipping_price;
-					update_post_meta( $order_id, 'wps_upsell_simple_shipping_product_',$shipping_price_order );
-							
+				if ( ! empty( $shipping_price ) ) {
+					$shipping_price_order = floatval( get_post_meta( $order_id, 'wps_upsell_simple_shipping_product_', true ) );
+					$shipping_price_order += $shipping_price;
+					update_post_meta( $order_id, 'wps_upsell_simple_shipping_product_', $shipping_price_order );
+
 				}
-				
 
 				$offer_quantity = ! empty( $live_offer_url_params['quantity'] ) ? $live_offer_url_params['quantity'] : '1';
-
-				
 
 				if ( ! empty( $order_id ) ) {
 
@@ -1401,11 +1398,11 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 			return false;
 		}
-		$order = new WC_Order( $order_id );		
-		$shipping_price_order =0;
-			if ( ! empty( $order ) ) {
-				$shipping_price_order = floatval( get_post_meta( $order_id, 'wps_upsell_simple_shipping_product_',  true ) );
-			}
+		$order = new WC_Order( $order_id );
+		$shipping_price_order = 0;
+		if ( ! empty( $order ) ) {
+			$shipping_price_order = floatval( get_post_meta( $order_id, 'wps_upsell_simple_shipping_product_', true ) );
+		}
 
 		if ( 0 != $shipping_price_order && ! empty( $shipping_price_order ) ) {
 			$item_ship = new WC_Order_Item_Shipping();

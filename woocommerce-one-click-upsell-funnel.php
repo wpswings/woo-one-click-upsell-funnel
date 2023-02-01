@@ -256,7 +256,7 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 					'doc'     => '<a href="https://docs.wpswings.com/one-click-upsell-funnel-for-woocommerce/?utm_source=wpswings-upsell-doc&utm_medium=upsell-org-backend&utm_campaign=upsell-doc" target="_blank"><img class="wps-info-img" src="' . esc_url( WPS_WOCUF_URL ) . 'admin/resources/icons/Documentation.svg" class="wps-info-img" alt="Documentation image">' . esc_html__( 'Documentation', 'woo-one-click-upsell-funnel' ) . '</a>',
 					'support' => '<a href="https://wpswings.com/submit-query/?utm_source=wpswings-upsell-support&utm_medium=upsell-org-backend&utm_campaign=support" target="_blank"><img class="wps-info-img" src="' . esc_url( WPS_WOCUF_URL ) . 'admin/resources/icons/Support.svg" class="wps-info-img" alt="DeSupportmo image">' . esc_html__( 'Support', 'woo-one-click-upsell-funnel' ) . '</a>',
 					'services' => '<a href="https://wpswings.com/woocommerce-services/?utm_source=wpswings-upsell-services&utm_medium=upsell-org-backend&utm_campaign=woocommerce-services" target="_blank"><img class="wps-info-img" src="' . esc_url( WPS_WOCUF_URL ) . 'admin/resources/icons/Services.svg" class="wps-info-img" alt="DeServicesmo image">' . esc_html__( 'Services', 'woo-one-click-upsell-funnel' ) . '</a>',
-					
+
 				);
 
 				return array_merge( $links, $row_meta );

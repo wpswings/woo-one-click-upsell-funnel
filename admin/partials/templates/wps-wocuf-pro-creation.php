@@ -964,8 +964,8 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 											<input class="wps_wocuf_pro_offer_template_input" type="hidden" name="wps_wocuf_pro_offer_template[<?php echo esc_html( $current_offer_id ); ?>]" value="<?php echo esc_html( $offer_template_active ); ?>">
 											<?php
-												foreach ( $offer_templates_array as $template_key => $template_name ) :
-													?>
+											foreach ( $offer_templates_array as $template_key => $template_name ) :
+												?>
 												<!-- Offer templates foreach start-->
 												<div class="wps_upsell_offer_template <?php echo esc_html( (string) $template_key === (string) $offer_template_active ? 'active' : '' ); ?>">
 
@@ -980,7 +980,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 														<div class="wps_upsell_offer_action">
 
-																<?php if ( (string) $template_key !== (string) $offer_template_active ) : ?>
+															<?php if ( (string) $template_key !== (string) $offer_template_active ) : ?>
 
 															<button class="button-primary wps_upsell_activate_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" data-offer-id="<?php echo esc_html( $current_offer_id ); ?>" data-funnel-id="<?php echo esc_html( $wps_wocuf_pro_funnel_id ); ?>" data-offer-post-id="<?php echo esc_html( $assigned_post_id ); ?>" ><?php esc_html_e( 'Insert and Activate', 'woo-one-click-upsell-funnel' ); ?></button>
 
@@ -1034,9 +1034,10 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 										<h4><?php esc_html_e( 'Please activate Elementor if you want to use our Pre-defined Templates, else make a custom page yourself and add link below.', 'woo-one-click-upsell-funnel' ); ?></h4>
 										</div>
 
-									<?php endif;
+										<?php
+									endif;
 										$assigned_post_id = ! empty( $post_id_assigned_array[ $current_offer_id ] ) ? $post_id_assigned_array[ $current_offer_id ] : '';
-										?>
+									?>
 								</td>
 							</tr>
 							<!-- Section : Offer template end -->
