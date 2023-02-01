@@ -1034,7 +1034,9 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 										<h4><?php esc_html_e( 'Please activate Elementor if you want to use our Pre-defined Templates, else make a custom page yourself and add link below.', 'woo-one-click-upsell-funnel' ); ?></h4>
 										</div>
 
-									<?php endif; ?>
+									<?php endif;
+										$assigned_post_id = ! empty( $post_id_assigned_array[ $current_offer_id ] ) ? $post_id_assigned_array[ $current_offer_id ] : '';
+										?>
 								</td>
 							</tr>
 							<!-- Section : Offer template end -->
