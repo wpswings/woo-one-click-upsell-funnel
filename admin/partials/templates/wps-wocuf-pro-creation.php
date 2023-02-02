@@ -939,10 +939,11 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 								</th>
 
 								<?php
-
 								$assigned_post_id = ! empty( $post_id_assigned_array[ $current_offer_id ] ) ? $post_id_assigned_array[ $current_offer_id ] : '';
+								if ( ! wps_upsell_lite_elementor_plugin_active() ) {
+									$assigned_post_id = '';
+								}
 								?>
-
 								<td>
 
 									<?php if ( ! empty( $assigned_post_id ) ) : ?>
@@ -958,13 +959,13 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 										);
 
 										?>
-
 										<!-- Offer templates parent div start -->
 										<div class="wps_upsell_offer_templates_parent">
 
 											<input class="wps_wocuf_pro_offer_template_input" type="hidden" name="wps_wocuf_pro_offer_template[<?php echo esc_html( $current_offer_id ); ?>]" value="<?php echo esc_html( $offer_template_active ); ?>">
-
-											<?php foreach ( $offer_templates_array as $template_key => $template_name ) : ?>
+											<?php
+											foreach ( $offer_templates_array as $template_key => $template_name ) :
+												?>
 												<!-- Offer templates foreach start-->
 												<div class="wps_upsell_offer_template <?php echo esc_html( (string) $template_key === (string) $offer_template_active ? 'active' : '' ); ?>">
 
@@ -996,7 +997,9 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 												</div>
 												<!-- Offer templates foreach end-->
-											<?php endforeach; ?>
+													<?php
+											endforeach;
+											?>
 
 											<!-- Offer link to custom page start-->
 											<div class="wps_upsell_offer_template wps_upsell_custom_page_link_div <?php echo esc_html( 'custom' === $offer_template_active ? 'active' : '' ); ?>">
@@ -1028,10 +1031,13 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 										<div class="wps_upsell_offer_template_unsupported">
 
-										<h4><?php esc_html_e( 'Feature not supported for this Offer, please add a new Offer with Elementor active.', 'woo-one-click-upsell-funnel' ); ?></h4>
+										<h4><?php esc_html_e( 'Please activate Elementor if you want to use our Pre-defined Templates, else make a custom page yourself and add link below.', 'woo-one-click-upsell-funnel' ); ?></h4>
 										</div>
 
-									<?php endif; ?>
+										<?php
+									endif;
+										$assigned_post_id = ! empty( $post_id_assigned_array[ $current_offer_id ] ) ? $post_id_assigned_array[ $current_offer_id ] : '';
+									?>
 								</td>
 							</tr>
 							<!-- Section : Offer template end -->

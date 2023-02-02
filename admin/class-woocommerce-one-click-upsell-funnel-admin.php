@@ -97,6 +97,14 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 				wp_enqueue_style( 'wps_wocuf_pro_banner_admin_style' );
 			}
+
+			if ( isset( $screen->id ) && 'product' == $screen->id ) {
+
+				wp_register_style( 'woocommerce_one_click_upsell_funnel_product_shipping', plugin_dir_url( __FILE__ ) . 'css/woocommerce_one_click_upsell_funnel_product_shipping.css', array(), $this->version, 'all' );
+
+				wp_enqueue_style( 'woocommerce_one_click_upsell_funnel_product_shipping' );
+
+			}
 		}
 	}
 
@@ -566,7 +574,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 				<?php else : ?>
 
 					<div class="wps_upsell_offer_template_unsupported">	
-					<h4><?php esc_html_e( 'Feature not supported for this Offer, please add a new Offer with Elementor active.', 'woo-one-click-upsell-funnel' ); ?></h4>
+					<h4><?php esc_html_e( 'Please activate Elementor if you want to use our Pre-defined Templates, else make a custom page yourself and add link below.', 'woo-one-click-upsell-funnel' ); ?></h4>
 					</div>
 
 				<?php endif; ?>
@@ -1097,5 +1105,123 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 		require_once WPS_WOCUF_DIRPATH . 'admin/reporting-and-tracking/upsell-reporting-and-tracking-config-panel.php';
 	}
 
+
+	/**
+	 * Product simple product.
+	 *
+	 * @return void
+	 */
+	public function upsell_simple_product_settings() {
+			$upsell_shipping_product = get_post_meta( get_the_ID(), 'wps_upsell_simple_shipping_product_' . get_the_ID(), true );
+		if ( function_exists( 'wp_nonce_field' ) ) {
+			wp_nonce_field( 'simple-product', 'upsell-custom-shipping-simple-nonce' );
+		}
+
+		?>
+			<div class="wps_product_custom_field product_custom_field options_group show_if_simple show_if_external ">
+			<h4> 
+					<?php
+						echo esc_html__( 'Upsell setting', 'woo-one-click-upsell-funnel' );
+					?>
+					<span class="wps-help-tip"></span>
+					<p>
+						<?php
+							echo esc_html__( 'Add shipping price of this product for upsell offer.', 'woo-one-click-upsell-funnel' );
+						?>
+					</p>
+				</h4>
+				<p class="form-field _sale_price_field">
+				<label><?php echo esc_html__( 'Upsell shipping Price', 'woo-one-click-upsell-funnel' ); ?></label>	
+				<input type="number" class="wps_product_shipping_input"  name="wps_upsell_simple_shipping_product_<?php echo esc_attr( get_the_ID() ); ?>" id="wps_upsell_simple_shipping_product_<?php echo esc_attr( get_the_ID() ); ?>" value="<?php echo esc_attr( $upsell_shipping_product ); ?>"  >
+				</p>
+			</div>
+			<?php
+
+	}
+
+	/**
+	 * Upsell saving for simple products.
+	 *
+	 * @param [type] $post_id Is the post id.
+	 * @return void
+	 */
+	public function upsell_saving_simple_product_dynamic_shipping( $post_id ) {
+		if ( isset( $_POST['upsell-custom-shipping-simple-nonce'] ) ) {
+			if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['upsell-custom-shipping-simple-nonce'] ) ), 'simple-product' ) ) {
+				wp_die();
+			}
+		}
+		 $upsell_shipping_price = ! empty( $_POST[ 'wps_upsell_simple_shipping_product_' . $post_id ] ) ? sanitize_text_field( wp_unslash( $_POST[ 'wps_upsell_simple_shipping_product_' . $post_id ] ) ) : '';
+
+		update_post_meta( $post_id, 'wps_upsell_simple_shipping_product_' . $post_id, $upsell_shipping_price );
+	}
+
+
+
+
+	/**
+	 * Upsell setting for variable products.
+	 *
+	 * @param [type] $loop Is the loop.
+	 * @param [type] $variation_data Is the variation data.
+	 * @param [type] $variation Is the variation object.
+	 * @return void
+	 */
+	public function upsell_add_custom_price_to_variations( $loop, $variation_data, $variation ) {
+		$upsell_shipping_product = get_post_meta( $variation->ID, 'wps_upsell_simple_shipping_product_' . $variation->ID, true );
+
+		if ( 0 === $loop ) {
+			wp_nonce_field( 'variable-product', 'wps-upsell-price-variation-nonce' );
+		}
+
+		?>
+			<div class="wps_product_custom_field product_custom_field options_group show_if_simple show_if_external ">
+			<h4> 
+					<?php
+						echo esc_html__( 'Upsell setting', 'woo-one-click-upsell-funnel' );
+					?>
+					<span class="wps-help-tip"></span>
+					<p>
+						<?php
+							echo esc_html__( 'Add shipping price of this product for upsell offer.', 'woo-one-click-upsell-funnel' );
+						?>
+					</p>
+				</h4>
+
+				<label>
+				<?php echo esc_html__( 'Upsell shipping Price', 'woo-one-click-upsell-funnel' ); ?>	
+				</label>
+				<input type="number" class="wps_product_shipping_input"  name="wps_upsell_simple_shipping_product_<?php echo esc_attr( $variation->ID ); ?>" id="wps_upsell_simple_shipping_product_<?php echo esc_attr( $variation->ID ); ?>" value="<?php echo esc_attr( $upsell_shipping_product ); ?>"  >
+			
+			</div>
+			<?php
+	}
+
+
+
+	/**
+	 * Upsell save data setting for variable.
+	 *
+	 * @param [type] $variation_id Is the variation id.
+	 * @param [type] $i Is the number of variation.
+	 * @return void
+	 */
+	public function upsell_save_custom_price_variations( $variation_id, $i ) {
+
+		if ( isset( $_POST['wps-upsell-price-variation-nonce'] ) ) {
+			if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['wps-upsell-price-variation-nonce'] ) ), 'variable-product' ) ) {
+				wp_die();
+			}
+		}
+
+		$upsell_shipping_price = ! empty( $_POST[ 'wps_upsell_simple_shipping_product_' . $variation_id ] ) ? sanitize_text_field( wp_unslash( $_POST[ 'wps_upsell_simple_shipping_product_' . $variation_id ] ) ) : '';
+		update_post_meta( $variation_id, 'wps_upsell_simple_shipping_product_' . $variation_id, $upsell_shipping_price );
+
+	}
+
 }
+
+
+
+
 ?>

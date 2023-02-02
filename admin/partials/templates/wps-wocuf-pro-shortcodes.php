@@ -94,6 +94,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<span class="wps_upsell_shortcode_content"><?php echo esc_html__( '[wps_upsell_desc_short]' ); ?></span>
 						</p>
 					</div>
+					<div class="wps_upsell_shortcode_div" >
+						<p class="wps_upsell_shortcode">
+							<?php
+							$attribute_description = sprintf( '<p class="wps_upsell_tip_tip">%s</p>', esc_html__( 'This shortcode returns the product upsell shipping price.', 'woo-one-click-upsell-funnel' ) );
+
+							wps_upsell_lite_wc_help_tip( $attribute_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped.
+							?>
+							<span class="wps_upsell_shortcode_title"><?php esc_html_e( 'Product Upsell Shipping Price &rarr;', 'woo-one-click-upsell-funnel' ); ?></span>
+							<span class="wps_upsell_shortcode_content"><?php echo esc_html__( '[wps_upsell_product_shipping_price]' ); ?></span>
+						</p>
+					</div>
 					<hr class="wps_upsell_shortcodes_hr">
 					<div class="wps_upsell_shortcode_div" >
 						<p class="wps_upsell_shortcode">

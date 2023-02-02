@@ -1,0 +1,51 @@
+.wps-help-tip {
+    position: relative;
+    top: 3px;
+    left: 7px;
+}
+.wps-help-tip::after {
+    font-family: Dashicons;
+    speak: never;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    text-indent: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    content: "\f223";
+    cursor: help;
+}
+.wps-help-tip ~ p {
+    position: absolute;
+    background-color: #000;
+    width: 180px;
+    border-radius: 5px;
+    left: 40px;
+    color: #fff;
+    line-height: 18px;
+    font-weight: 400;
+    padding: 7px 10px;
+    display: none;
+}
+.wps_product_custom_field h4 {
+    position: relative;
+    background-color: #ebebeb;
+    padding: 10px 15px;
+    color: #000;
+    font-weight: 700;
+    margin-top: 0px;
+}
+.wps-help-tip:hover ~ p {
+    display: block;
+}
+.wps_product_custom_field input {
+    width: 100%;
+    margin-top: 5px;
+}

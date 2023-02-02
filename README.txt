@@ -2,11 +2,11 @@
 Contributors: wpswings
 Donate link: https://wpswings.com/
 Tags: woocommerce upsell, boost sales, cross-sell, post-purchase offers, upsell
-Requires at least: 5.1.0
+Requires at least: 5.5.0
 Tested up to: 6.1.1
-WC requires at least: 5.1.0
-WC tested up to: 7.2.0
-Stable tag: 3.2.4
+WC requires at least: 5.5.0
+WC tested up to: 7.3.0
+Stable tag: 3.2.5
 Requires PHP: 7.0.0
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -50,28 +50,32 @@ Create an endless number of upsell offers using the [**WooCommerce upsell plugin
 **1) Unlimited Funnels with Unlimited Number of Offers**
 With the WooCommerce Upsell Plugin, you can create unlimited sales funnels with any number of Upsell and Cross-Sell Offers. In simple words, you can show your customers multiple post-purchase offers in a single funnel which increases the impulse buys, Average Order Value, and revenue of your WooCommerce store.
 
-**2) Reporting Feature for Funnel Tracking**
+**2) Add the Shipping Price on COD**
+You may now set the Shipping price to Cash on Delivery at checkout with this new feature of the WooCommerce one-click upsell plugin. At the upsell checkout, providing your consumers with a thorough accounting of every dollar spent could enhance AOV and sales.
+
+
+**3) Reporting Feature for Funnel Tracking**
 With the One Click Upsell plugin, you get a complete report of every single funnel. This report includes the number of times every single funnel has been triggered. Accepted and rejected offers of each funnel, their conversion rate, total sales, etc. This helps you comprehend what funnels interest your customers more and what not. Also, you can track the Upsells using Google Analytics and Facebook Pixel.
 
-**3) Independent Global Funnel**
+**4) Independent Global Funnel**
 You can now create a global funnel that can be triggered always independent of any target products. You can use this feature if you want to show an upsell offer to your customers every time they make a purchase in your WooCommerce store.
 
-**4) Smart Offer Upgrade**
+**5) Smart Offer Upgrade**
 Want to offer an upgrade on the existing purchase to your customers? The Smart Offer Upgrade feature replaces the existing product (customer is buying) with the offer product as soon as they accept the upsell offer.
 
-**5) Exclusive Offer Feature**
+**6) Exclusive Offer Feature**
 This feature will make the Funnel Offers exclusive to the customers, meaning it will be shown to customers only once based on the order email.
 
-**6) Sandbox Mode**
+**7) Sandbox Mode**
 In the Sandbox mode, the Upsell funnel triggers only for the admin and not for Live Customers. This enables store owners to freely view, test, and customize their Upsell funnel offers before making them live.
 
-**7) Page Builder Support to Build Responsive Offer Pages**
-The One-Click Upsell Funnel plugin supports most of the page builders available on WordPress. This makes it easy for the merchants to create and customize their offer pages without coding knowledge.
+**8) Page Builder Support to Build Responsive Offer Pages**
+The One-Click Upsell Funnel plugin supports most of the page builders available on WordPress. This makes it easy for merchants to create and customize their offer pages without coding knowledge.
 
-**8) Shortcodes to Build Useful Offer Page Elements**
+**9) Shortcodes to Build Useful Offer Page Elements**
 This plugin provides various shortcodes to create different offer page elements. The plugin offers shortcodes for Buy Now, No Thanks, Product Title, Description, Short Description, Image, Price, Variations, Offer Quantity, and Urgency Timer.
 
-**9) Ability to Simplify The Buying Process**
+**10) Ability to Simplify The Buying Process**
 As the name suggests, it is one click upsell, which means the customers can purchase the upsell product in one click checkout without re-entering the payment details again. This simplifies the buying process of the customers and also engages the customer at your store which lifts the customer success & reduces your churn rate.
 
 
@@ -137,7 +141,7 @@ Checkout [**One Click Upsell Funnel for WooCommerce Pro Documentation**](https:/
 
 = Automatic installation =
 
-Automatic installation is the easiest option as WordPress handles the file transfers itself and you don't need to leave your web browser. To do an automatic install of One Click Upsell for WooCommerce, log in to your WordPress dashboard, navigate to the Plugins menu and click Add New.
+Automatic installation is the easiest option as WordPress handles the file transfers itself and you don't need to leave your web browser. To do an automatic install of One Click Upsell for WooCommerce, log in to your WordPress dashboard, navigate to the Plugins menu, and click Add New.
 
 In the search field type **One Click Upsell for WooCommerce** and click Search Plugins. Once you've found our One Click Upsell for WooCommerce plugin you can view details about it such as the point release, rating, and description. Most importantly, of course, you can install it by simply clicking **"Install Now"**.
 
@@ -177,16 +181,17 @@ If you need support or have questions, kindly use our online chat window [**here
 
 == Frequently Asked Questions ==
 
-= I installed an upsell plugin, created funnels and added the offers too but still, it does not show up on purchasing the funnel targets? =
+= I installed an upsell plugin, created funnels, and added the offers too but still, it does not show up on purchasing the funnel targets. =
 
-If the upsell offers are not showing, make sure:
-1) You’ve enabled the One-Click Upsell funnel plugin. Navigate to the Global Settings and enable the plugin if it is disabled.
+If the upsell offers are not showing, make sure the:
+1) You’ve enabled the One-Click Upsell funnel plugin. Navigate to Global Settings and enable the plugin if it is disabled.
 2) Your funnel is not in Sandbox Mode. If it is, edit the funnel and make it Live, and Save Changes.
 3) You are testing for the correct target product or category you’ve set in the funnel.
 4) The offer page is published.
-5) You’re making the payment through one of our supported payment gateways. If you make payments through a payment gateway not supported by our plugin, the offer will not be displayed.
+5) You’re making the payment through one of our supported payment gateways. The offer will not be displayed if you make payments through a payment gateway not supported by our plugin.
+6) Make sure you have selected any one of the following templates or made your own custom template and inserted a page link.
 
-= What types of Products does upsell plugin supports? =
+= What types of Products do upsell plugin support? =
 
 **Free Version**: Only Simple Products.
 
@@ -196,7 +201,7 @@ If the upsell offers are not showing, make sure:
 
 **Free Version**: Supports only Cash on Delivery.
 
-**Premium version**: Supports WooCommerce Standard Paypal, Stripe, Paypal Express Checkout, Authorize.net, Braintree, Square, Paystack, Vipps, Tpay, Cardcom, and core payment options such as Cash On Delivery, Direct Bank Transfer, and Cheque Payments.
+**Premium version**: Supports Stripe, Paypal Payments, Authorize.net, Braintree, Square, Paystack, Vipps, Cardcom, and core payment options such as Cash On Delivery, Direct Bank Transfer, and Cheque Payments.
 
 = Is my Payment Gateway compatible with the upsell plugin? =
 
@@ -211,7 +216,7 @@ For **“Buy Now”** shortcode:
 
 You need to copy this **Buy Now → [wps_upsell_yes]** and place it at a suitable place on your page.
 
-**Description:** This shortcode only returns the link so it has to be used in the link section. In HTML use it as href=”[mwb_upsell_yes]” of an anchor tag.
+**Description:** This shortcode only returns the link so it has to be used in the link section. In HTML use it as href=”[wps_upsell_yes]” of an anchor tag.
 
 For **“No thanks”** shortcode:
 
@@ -222,7 +227,7 @@ You need to copy this **No Thanks → [wps_upsell_no]** and place it at a suitab
 
 = Can I design an upsell offer page if I don't have a designer? =
 
-Yes, you can. Our plugin is compatible with Elementor which lets you customize your upsell offer pages as per your needs. And you don’t need a designer for it. Just drag and drop the elements you need and your page will be ready in minutes.
+Yes, you can. Our plugin is compatible with some page builders and we have also provided shortcodes for designing your Offer page. You can design yourself and don’t need any designer for that. Simply drag and drop and your page is ready.
 
 = Can I show an upsell offer as per the buyer's behavior? =
 
@@ -248,7 +253,7 @@ Yes, we have Upsell Sales by Funnel Stats that show Individual Funnel Performanc
 
 = Can I offer multiple upsell offers in a single funnel? =
 
-Yes. One Click Upsell lets you add multiple upsell products in a single funnel. So if you want to offer more than one product after checkout, you can do that by adding new offers in the funnel.
+Yes. One Click Upsell lets you add multiple upsell products in a single funnel. So if you want to offer more than one product after checkout, you can do that by adding new offers to the funnel. Or you can use a feature named Additional Offers in the pro version.
 
 = What page builders does this plugin support? =
 
@@ -261,8 +266,12 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Changelog ==
 
+= 3.2.5 - Released on 02 February 2023 =
+* Feature: Add the shipping price on COD
+* New: Compatible with the latest WP and WC
+
 = 3.2.4 - Released on 20 December 2022 =
-* Enhancement: Show pro features in free version with an upgrade label [Appearance section].
+* Enhancement: Show pro features in the free version with an upgraded label [Appearance section].
 * New: Compatible with the latest WP and WC
 
 = 3.2.3 - Released on 10 November 2022 =
@@ -278,18 +287,18 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 = 3.2.0 - Released on 31 March 2022 =
 * New: Some substantial changes across different areas of the plugin.
 * New: Minor Bug Fixes
-* New: Inbuilt Migrator for existing users to import all plugins data at once.
+* New: Inbuilt Migrator for existing users to import all plugin data at once.
 * New: Compatible with the latest WP and WC
 
 = 3.1.3 - Released on 03 Feb 2022 =
 * New: Change author from MakeWebBetter to WP Swings
 * New: Notice display of current version for [**WP Swings**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-org-page&utm_campaign=official)
 * New: Minor Bug fixes
-* New: Compatible with latest WP and WC
+* New: Compatible with the latest WP and WC
 
 = 3.1.2 - Released on 16 Dec 2021 =
 * Bug Fixes 
-* New : Elementor Widgets with shortcodes
+* New: Elementor Widgets with shortcodes
 * Compatibility with WooCommerce (6.0.0)
 
 = 3.1.1 - Released on 22 Nov 2021 =
@@ -301,7 +310,7 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 = 3.1.0 - Released on 2 Nov 2021 =
 * Dependency with Free Plugin
 * Bug fixes
-* Guest Nonce error Fix
+* Guest Nonce Error Fix
 * Compatibility with New PayPal payments
 *  WooCommerce One Click Upsell Funnel Pro Compatible with WooCommerce Subscriptions Free/Pro
 
@@ -367,6 +376,6 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Upgrade Notice ==
 
-= 3.2.4 - Released on 20 December 2022 =
-* Enhancement: Show pro features in free version with an upgrade label [Appearance section].
+= 3.2.5 - Released on 02 February 2023 =
+* Feature: Add the shipping price on COD
 * New: Compatible with the latest WP and WC

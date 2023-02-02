@@ -1048,12 +1048,17 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				$funnel_id = $live_offer_url_params['funnel_id'];
 
 				$product_id = $live_offer_url_params['product_id'];
-
 				$order_key = $live_offer_url_params['order_key'];
+				$order_id = wc_get_order_id_by_order_key( $order_key );
+				 $shipping_price = floatval( get_post_meta( $product_id, 'wps_upsell_simple_shipping_product_' . $product_id, true ) );
+				if ( ! empty( $shipping_price ) ) {
+					$shipping_price_order = floatval( get_post_meta( $order_id, 'wps_upsell_simple_shipping_product_', true ) );
+					$shipping_price_order += $shipping_price;
+					update_post_meta( $order_id, 'wps_upsell_simple_shipping_product_', $shipping_price_order );
+
+				}
 
 				$offer_quantity = ! empty( $live_offer_url_params['quantity'] ) ? $live_offer_url_params['quantity'] : '1';
-
-				$order_id = wc_get_order_id_by_order_key( $order_key );
 
 				if ( ! empty( $order_id ) ) {
 
@@ -1380,6 +1385,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		}
 	}
 
+
 	/**
 	 * Process Payment for Upsell order.
 	 *
@@ -1392,12 +1398,25 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 			return false;
 		}
+		$order = new WC_Order( $order_id );
+		$shipping_price_order = 0;
+		if ( ! empty( $order ) ) {
+			$shipping_price_order = floatval( get_post_meta( $order_id, 'wps_upsell_simple_shipping_product_', true ) );
+		}
+
+		if ( 0 != $shipping_price_order && ! empty( $shipping_price_order ) ) {
+			$item_ship = new WC_Order_Item_Shipping();
+			$item_ship->set_name( 'Upsell shipping' );
+			$item_ship->set_total( $shipping_price_order );
+			// Add Shipping item to the order.
+			$order->add_item( $item_ship );
+			$order->calculate_totals();
+
+		}
 
 		global $woocommerce;
 
 		$gateways = $woocommerce->payment_gateways->get_available_payment_gateways();
-
-		$order = new WC_Order( $order_id );
 
 		// For cron - Payment initialized.
 		delete_post_meta( $order_id, 'wps_ocufp_upsell_initialized' );
@@ -1452,6 +1471,8 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		add_shortcode( 'wps_upsell_image', array( $this, 'product_image_shortcode_content' ) );
 
 		add_shortcode( 'wps_upsell_price', array( $this, 'product_price_shortcode_content' ) );
+
+		add_shortcode( 'wps_upsell_product_shipping_price', array( $this, 'upsell_product_shipping_price_shortcode_content' ) );
 
 		add_shortcode( 'wps_upsell_variations', array( $this, 'variations_selector_shortcode_content' ) );
 
@@ -1868,6 +1889,42 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				return $upsell_product_image_src_div;
 			}
 		}
+	}
+
+
+	/**
+	 * Shortcode for Upsell product shipping price.
+	 *
+	 * @param mixed $atts shortcode attributes.
+	 * @since       3.0.0
+	 */
+	public function upsell_product_shipping_price_shortcode_content( $atts ) {
+
+		$validate_shortcode = $this->validate_shortcode();
+
+		if ( $validate_shortcode ) {
+
+			$product_id = $this->get_upsell_product_id_for_shortcode();
+			$atts = shortcode_atts(
+				array(
+					'id'    => '',
+					'class' => '',
+					'style' => '',
+				),
+				$atts
+			);
+			$id    = $atts['id'];
+			$class = $atts['class'];
+			$style = $atts['style'];
+			$upsell_shipping_product = get_post_meta( $product_id, 'wps_upsell_simple_shipping_product_' . $product_id, true );
+
+			$upsell_product_price_html_div = "Shipping Price <br> <div id='$id' class='wps_upsell_offer_product_price $class' style='$style'>
+						" . wc_price( $upsell_shipping_product ) . '</div>';
+
+		}
+
+		return $upsell_product_price_html_div;
+
 	}
 
 	/**

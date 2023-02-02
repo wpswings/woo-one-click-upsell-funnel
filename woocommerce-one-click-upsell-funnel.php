@@ -15,12 +15,12 @@
  * Plugin Name:           One Click Upsell Funnel for Woocommerce
  * Plugin URI:            https://wordpress.org/plugins/woo-one-click-upsell-funnel/
  * Description:           One Click Upsell Funnel for WooCommerce allows showing post-checkout offers to customers which helps to increase Average Order Value & Revenue. <a href="https://wpswings.com/woocommerce-plugins/?utm_source=wpswings-upsell-shop&utm_medium=upsell-org-backend&utm_campaign=shop-page" target="_blank" >Elevate your e-commerce store by exploring more on <strong>WP Swings</strong></a>.
- * Version:               3.2.4
+ * Version:               3.2.5
  *
- * Requires at least:     5.1.0
+ * Requires at least:     5.5.0
  * Tested up to:          6.1.1
- * WC requires at least:  5.1.0
- * WC tested up to:       7.2.0
+ * WC requires at least:  5.5.0
+ * WC tested up to:       7.3.0
  *
  * Author:                WP Swings
  * Author URI:            https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-org-backend&utm_campaign=official
@@ -199,7 +199,7 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 
 		define( 'WPS_WOCUF_DIRPATH', plugin_dir_path( __FILE__ ) );
 
-		define( 'WPS_WOCUF_VERSION', 'v3.2.4' );
+		define( 'WPS_WOCUF_VERSION', 'v3.2.5' );
 
 		/**
 		 * The code that runs during plugin activation.
@@ -256,7 +256,7 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 					'doc'     => '<a href="https://docs.wpswings.com/one-click-upsell-funnel-for-woocommerce/?utm_source=wpswings-upsell-doc&utm_medium=upsell-org-backend&utm_campaign=upsell-doc" target="_blank"><img class="wps-info-img" src="' . esc_url( WPS_WOCUF_URL ) . 'admin/resources/icons/Documentation.svg" class="wps-info-img" alt="Documentation image">' . esc_html__( 'Documentation', 'woo-one-click-upsell-funnel' ) . '</a>',
 					'support' => '<a href="https://wpswings.com/submit-query/?utm_source=wpswings-upsell-support&utm_medium=upsell-org-backend&utm_campaign=support" target="_blank"><img class="wps-info-img" src="' . esc_url( WPS_WOCUF_URL ) . 'admin/resources/icons/Support.svg" class="wps-info-img" alt="DeSupportmo image">' . esc_html__( 'Support', 'woo-one-click-upsell-funnel' ) . '</a>',
 					'services' => '<a href="https://wpswings.com/woocommerce-services/?utm_source=wpswings-upsell-services&utm_medium=upsell-org-backend&utm_campaign=woocommerce-services" target="_blank"><img class="wps-info-img" src="' . esc_url( WPS_WOCUF_URL ) . 'admin/resources/icons/Services.svg" class="wps-info-img" alt="DeServicesmo image">' . esc_html__( 'Services', 'woo-one-click-upsell-funnel' ) . '</a>',
-					
+
 				);
 
 				return array_merge( $links, $row_meta );

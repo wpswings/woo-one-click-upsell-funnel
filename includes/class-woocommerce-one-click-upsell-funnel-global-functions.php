@@ -704,9 +704,7 @@ function wps_upsee_lite_go_pro( $location = 'pro' ) {
  */
 function wps_upsee_lite_product_offer_go_pro( $location = 'pro' ) {
 
-
 		$message = esc_html__( 'Want More Product Types? Go Pro !!', 'woo-one-click-upsell-funnel' );
-	
 
 	ob_start();
 	?>

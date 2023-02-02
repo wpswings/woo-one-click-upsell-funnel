@@ -70,7 +70,7 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		if ( defined( 'WPS_WOCUF_VERSION' ) ) {
 			$this->version = WPS_WOCUF_VERSION;
 		} else {
-			$this->version = '3.2.4';
+			$this->version = '3.2.5';
 		}
 
 		$this->plugin_name = 'woocommerce-one-click-upsell-funnel';
@@ -265,6 +265,10 @@ class Woocommerce_One_Click_Upsell_Funnel {
 			// 'Upsell Support' content on payment gateways page.
 			$this->loader->add_action( 'woocommerce_payment_gateways_setting_column_wps_upsell', $plugin_admin, 'upsell_support_content_in_payment_gateway' );
 
+			$this->loader->add_action( 'woocommerce_product_options_general_product_data', $plugin_admin, 'upsell_simple_product_settings' );
+			$this->loader->add_action( 'woocommerce_process_product_meta', $plugin_admin, 'upsell_saving_simple_product_dynamic_shipping' );
+			$this->loader->add_action( 'woocommerce_product_after_variable_attributes', $plugin_admin, 'upsell_add_custom_price_to_variations', 10, 3 );
+			$this->loader->add_action( 'woocommerce_save_product_variation', $plugin_admin, 'upsell_save_custom_price_variations', 10, 2 );
 		}
 
 		$this->loader->add_filter( 'woocommerce_admin_reports', $plugin_admin, 'add_upsell_reporting' );
