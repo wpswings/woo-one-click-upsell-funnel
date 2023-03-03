@@ -503,6 +503,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 						'one'   => esc_html__( 'STANDARD TEMPLATE', 'woo-one-click-upsell-funnel' ),
 						'two'   => esc_html__( 'CREATIVE TEMPLATE', 'woo-one-click-upsell-funnel' ),
 						'three' => esc_html__( 'VIDEO TEMPLATE', 'woo-one-click-upsell-funnel' ),
+					//	'four' => esc_html__( 'Fitness TEMPLATE', 'woo-one-click-upsell-funnel' ),
 					);
 
 					?>
@@ -537,8 +538,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 										<?php if ( $template_key !== $offer_template_active ) : ?>
 
-										<button class="button-primary wps_upsell_activate_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" data-offer-id="<?php echo esc_html( $current_offer_id ); ?>" data-funnel-id="<?php echo esc_html( $wps_wocuf_pro_funnel_id ); ?>" data-offer-post-id="<?php echo esc_html( $assigned_post_id ); ?>" ><?php esc_html_e( 'Insert and Activate', 'woo-one-click-upsell-funnel' ); ?></button>
-
+										
 										<?php else : ?>
 
 											<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
@@ -550,7 +550,39 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 								</div>	
 							</div>
 							<!-- Offer templates foreach end-->
-						<?php endforeach; ?>	
+						<?php endforeach; ?>
+						
+						<!-- Offer templates 4 foreach start-->
+						
+						<div class="wps_upsell_offer_template ">
+								<div class="wps_upsell_offer_template_sub_div"> 
+
+									<h5> <?php esc_html_e( 'FITNESS TEMPLATE', 'woo-one-click-upsell-funnel' ); ?></h5>
+
+									<div class="wps_upsell_offer_preview">
+
+										<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="four" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-four.jpg" ); ?>"></a>
+									</div>
+
+									<div class="wps_upsell_offer_action">
+
+										<?php if ( $template_key !== $offer_template_active ) : ?>
+
+										<button class="button-primary wps_upsell_activate_offer_template" data-template-id="four" data-offer-id="<?php echo esc_html( $current_offer_id ); ?>" data-funnel-id="<?php echo esc_html( $wps_wocuf_pro_funnel_id ); ?>" data-offer-post-id="<?php echo esc_html( $assigned_post_id ); ?>" ><?php esc_html_e( 'Insert and Activate', 'woo-one-click-upsell-funnel' ); ?></button>
+
+										<?php else : ?>
+
+											<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+
+											<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+
+										<?php endif; ?>
+									</div>
+								</div>	
+										</div>
+
+						<!-- Offer templates 4 foreach start-->
+						
 						<!-- Offer link to custom page start-->
 						<div class="wps_upsell_offer_template wps_upsell_custom_page_link_div <?php echo esc_html( 'custom' === $offer_template_active ? 'active' : '' ); ?>">
 

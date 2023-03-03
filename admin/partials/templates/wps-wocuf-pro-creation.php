@@ -381,6 +381,11 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 						</div>
 					</div>
 
+					<div class="wps_upsell_offer_template_preview_four">
+						<div class="wps_upsell_offer_template_preview_four_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/offer-template-four.png' ); ?>">
+						</div>
+					</div>
+
 					<a href="javascript:void(0)" class="wps_upsell_offer_preview_close"><span class="wps_upsell_offer_preview_close_span"></span></a>
 				</div>
 
@@ -956,6 +961,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 											'one'   => esc_html__( 'STANDARD TEMPLATE', 'woo-one-click-upsell-funnel' ),
 											'two'   => esc_html__( 'CREATIVE TEMPLATE', 'woo-one-click-upsell-funnel' ),
 											'three' => esc_html__( 'VIDEO TEMPLATE', 'woo-one-click-upsell-funnel' ),
+											//'four' => esc_html__( 'FITNESS TEMPLATE', 'woo-one-click-upsell-funnel' ),
 										);
 
 										?>
@@ -1000,6 +1006,37 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 													<?php
 											endforeach;
 											?>
+
+											<!-- Offer templates 4 foreach start-->
+						
+						<div class="wps_upsell_offer_template ">
+						<span class="wps_wupsell_premium_strip">Pro</span>
+								<div class="wps_upsell_offer_template_sub_div"> 
+
+									<h5> <?php esc_html_e( 'FITNESS TEMPLATE', 'woo-one-click-upsell-funnel' ); ?></h5>
+
+									<div class="wps_upsell_offer_preview">
+
+										<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="four" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-four.jpg" ); ?>"></a>
+									</div>
+
+									<div class="wps_upsell_offer_action">
+
+										<?php if ( $template_key !== $offer_template_active ) : ?>
+
+							
+										<?php else : ?>
+
+											<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+
+											<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+
+										<?php endif; ?>
+									</div>
+								</div>	
+										</div>
+
+						<!-- Offer templates 4 foreach start-->
 
 											<!-- Offer link to custom page start-->
 											<div class="wps_upsell_offer_template wps_upsell_custom_page_link_div <?php echo esc_html( 'custom' === $offer_template_active ? 'active' : '' ); ?>">

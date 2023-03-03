@@ -517,6 +517,22 @@ function wps_upsell_lite_elementor_offer_template_3() {
 }
 
 /**
+ * Elementor Upsell offer template 4.
+ *
+ * Video Template.
+ *
+ * @since    2.0.0
+ */
+function wps_upsell_lite_elementor_offer_template_4() {
+
+	// phpcs:disable
+	$elementor_data = file_get_contents( WPS_WOCUF_DIRPATH . 'json/offer-template-4.json' );
+	// phpcs:enable
+
+	return $elementor_data;
+}
+
+/**
  * Gutenberg Offer Page content.
  *
  * @since    2.0.0
