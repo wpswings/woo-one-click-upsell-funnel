@@ -495,7 +495,6 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 				<?php if ( ! empty( $assigned_post_id ) ) : ?>
 
 					<?php
-
 					// As default is "one".
 					$offer_template_active = 'one';
 
