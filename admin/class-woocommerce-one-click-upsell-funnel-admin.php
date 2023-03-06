@@ -503,7 +503,6 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 						'one'   => esc_html__( 'STANDARD TEMPLATE', 'woo-one-click-upsell-funnel' ),
 						'two'   => esc_html__( 'CREATIVE TEMPLATE', 'woo-one-click-upsell-funnel' ),
 						'three' => esc_html__( 'VIDEO TEMPLATE', 'woo-one-click-upsell-funnel' ),
-					//	'four' => esc_html__( 'Fitness TEMPLATE', 'woo-one-click-upsell-funnel' ),
 					);
 
 					?>

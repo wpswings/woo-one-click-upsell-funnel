@@ -132,7 +132,6 @@ jQuery(document).ready( function($) {
 	 * Scripts after v1.0.2
 	 */
 	 $('.ubo_offer_input').on( 'click', function (e) {
-		debugger;
 		var data_offer = jQuery(e.currentTarget).attr('product_offer');
 		
 		// Add popup to unlock pro features.
