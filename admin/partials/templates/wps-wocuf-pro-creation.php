@@ -487,8 +487,8 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 				<tr valign="top">
 
 					<th scope="row" class="titledesc">
-					<span class="wps_wupsell_premium_strip">Pro</span>
-						<label for="wps_wocuf_pro_target_pro_ids"><?php esc_html_e( 'Select target categories', 'woo-one-click-upsell-funnel' ); ?></label>
+					<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span>
+						<label for="wps_wocuf_pro_target_pro_ids"><?php esc_html_e( 'Select target category(s)', 'woo-one-click-upsell-funnel' ); ?></label>
 					</th>
 
 					<td class="forminp forminp-text">
@@ -632,7 +632,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 				<!-- Smart Offer Upgrade end -->
 				<tr valign="top">
 						<th scope="row" class="titledesc">
-						<span class="wps_wupsell_premium_strip">Pro</span>
+						<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span>
 							<label for="wps_wocuf_add_products"><?php esc_html_e( 'Show Form Fields', 'woo-one-click-upsell-funnel' ); ?></label>
 						</th>
 						<td class="forminp forminp-text">
@@ -661,7 +661,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 				<tbody>
 					<tr valign="top">
 						<th scope="row" class="titledesc">
-						<span class="wps_wupsell_premium_strip">Pro</span>
+						<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span>
 							<label for="wps_wocuf_add_products"><?php esc_html_e( 'Add Additional offers', 'woo-one-click-upsell-funnel' ); ?></label>
 						</th>
 						<td class="forminp forminp-text">
