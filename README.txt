@@ -5,19 +5,19 @@ Tags: woocommerce upsell, boost sales, cross-sell, post-purchase offers, upsell
 Requires at least: 5.5.0
 Tested up to: 6.1.1
 WC requires at least: 5.5.0
-WC tested up to: 7.3.0
-Stable tag: 3.2.5
+WC tested up to: 7.5.0
+Stable tag: 3.2.6
 Requires PHP: 7.0.0
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Boost Sales & Increase the Average Order Value (AOV) of your WooCommerce Store with the help of One Click Post-Purchase Upsell and Cross-Sell Offers.
+Boost Sales & Increase the Average Order Value (AOV) of your WooCommerce Store with the help of Post-Purchase Upsell and Cross-Sell Offers.
 
 == Description ==
 
 **ONE CLICK UPSELL FUNNEL FOR WOOCOMMERCE IS A COMPLETE SOLUTION TO BOOST SALES & AOV WITH THE HELP OF ONE-CLICK POST-PURCHASE UPSELL AND CROSS-SELL OFFERS**
 
-One Click Upsell Funnel for WooCommerce plugin allows the merchants to create post-purchase upsell and cross-sell offers. Customers can add these upsell products in just one click to their cart with no hassle of re-entering the payment details. It is an extremely potent plugin for creating, testing, and maintaining upsell funnels giving fantastic offers to customers, increasing their satisfaction with their purchase and ultimately elevating SALES.
+One Click Upsell Funnel for WooCommerce plugin allows the merchants to create post-purchase upsell and cross-sell offers. Customers can add these upsell products in just one click to their cart with no hassle of re-entering the payment details. It is an extremely potent plugin for creating, testing, and maintaining upsell funnels giving fantastic offers to customers, increasing their satisfaction with their purchase, and ultimately elevating SALES.
 
 Create an endless number of upsell offers using the [**WooCommerce upsell plugin**](https://wpswings.com/product/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=wpswings-upsell-pro&utm_medium=upsell-org-page&utm_campaign=upsell-pro), and examine a track report for each funnel. Additionally, you may use pre-made templates to easily set up and provide upsell for WooCommerce on your online store. Encourage customers to purchase more!
 
@@ -55,10 +55,10 @@ You may now set the Shipping price to Cash on Delivery at checkout with this new
 
 
 **3) Reporting Feature for Funnel Tracking**
-With the One Click Upsell plugin, you get a complete report of every single funnel. This report includes the number of times every single funnel has been triggered. Accepted and rejected offers of each funnel, their conversion rate, total sales, etc. This helps you comprehend what funnels interest your customers more and what not. Also, you can track the Upsells using Google Analytics and Facebook Pixel.
+With the One Click Upsell plugin, you get a complete report of every single funnel. This report includes the number of times every single funnel has been triggered. Accepted and rejected offers of each funnel, their conversion rate, total sales, etc. This helps you comprehend what funnels interest your customers more and what do not. Also, you can track the Upsells using Google Analytics and Facebook Pixel.
 
 **4) Independent Global Funnel**
-You can now create a global funnel that can be triggered always independent of any target products. You can use this feature if you want to show an upsell offer to your customers every time they make a purchase in your WooCommerce store.
+You can now create a global funnel that can be triggered always independently of any target products. You can use this feature if you want to show an upsell offer to your customers every time they make a purchase in your WooCommerce store.
 
 **5) Smart Offer Upgrade**
 Want to offer an upgrade on the existing purchase to your customers? The Smart Offer Upgrade feature replaces the existing product (customer is buying) with the offer product as soon as they accept the upsell offer.
@@ -123,6 +123,7 @@ But, we have made our Pro version of the One Click Upsell plugin compatible with
 
 == WHAT PREMIUM VERSION OF ONE CLICK UPSELL FUNNEL FOR WOOCOMMERCE OFFERS ==
 
+* Fully Customizable & Highly Converting Sales Funnel Templates
 * Variable Products
 * Subscription Products
 * Bundled Products
@@ -151,7 +152,7 @@ The manual installation method involves downloading our One Click Upsell for Woo
 
 = Updating =
 
-Automatic updates should work like a charm; as always though, ensure you backup your site just in case.
+Automatic updates should work like a charm; as always though, ensure you back up your site just in case.
 
  
 == Support ==
@@ -210,6 +211,13 @@ You can see the list of supported payment gateways over our [product page](https
 We will check the possibilities and make your gateway compatible with our plugin on your request. There is always a way for everyone.
 
 
+= How to make a custom offer page for upsell of my own? =
+
+If you want to make a custom offer page for upsell of your own without our pre-defined templates you can do it with the link we have given in the **'Offer Template'** section. Click on **' Click here to Create Custom Template'** and make a new offer as per your website needs. After making that page insert a link in the below box and save.
+
+**Note:** Make sure you are using page builders which are supported by the plugin.
+
+
 = How can I use Custom Page Shortcodes for BUY NOW and NO THANKS? =
 
 For **“Buy Now”** shortcode:
@@ -265,6 +273,9 @@ Most of the major WordPress page builders like Elementor, WPBakery, Divibuilders
 Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.com/wordpress-plugins-knowledge-base/category/one-click-upsell-funnel-for-woocommerce/?utm_source=wpswings-upsell-kb&utm_medium=upsell-org-page&utm_campaign=upsell-kb)
 
 == Changelog ==
+
+= 3.2.6 - Released on 16 March 2023 =
+* New: Compatible with the latest WP(6.1.1) and WC(7.5.0)
 
 = 3.2.5 - Released on 02 February 2023 =
 * Feature: Add the shipping price on COD
@@ -368,7 +379,7 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 * Bug fix
 
 = 1.0.1 =
-* Added support for woocommerce standard product page for funnel offers and a few new options in settings. 
+* Added support for WooCommerce standard product page for funnel offers and a few new options in settings. 
 
 = 1.0.0 =
 * First version 
@@ -376,6 +387,5 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Upgrade Notice ==
 
-= 3.2.5 - Released on 02 February 2023 =
-* Feature: Add the shipping price on COD
-* New: Compatible with the latest WP and WC
+= 3.2.6 - Released on 16 March 2023 =
+* New: Compatible with the latest WP(6.1.1) and WC(7.5.0)
