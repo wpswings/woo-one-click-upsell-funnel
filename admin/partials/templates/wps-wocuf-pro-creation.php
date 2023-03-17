@@ -381,6 +381,11 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 						</div>
 					</div>
 
+					<div class="wps_upsell_offer_template_preview_four">
+						<div class="wps_upsell_offer_template_preview_four_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/offer-template-four.png' ); ?>">
+						</div>
+					</div>
+
 					<a href="javascript:void(0)" class="wps_upsell_offer_preview_close"><span class="wps_upsell_offer_preview_close_span"></span></a>
 				</div>
 
@@ -482,8 +487,8 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 				<tr valign="top">
 
 					<th scope="row" class="titledesc">
-					<span class="wps_wupsell_premium_strip">Pro</span>
-						<label for="wps_wocuf_pro_target_pro_ids"><?php esc_html_e( 'Select target categories', 'woo-one-click-upsell-funnel' ); ?></label>
+					<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span>
+						<label for="wps_wocuf_pro_target_pro_ids"><?php esc_html_e( 'Select target category(s)', 'woo-one-click-upsell-funnel' ); ?></label>
 					</th>
 
 					<td class="forminp forminp-text">
@@ -627,7 +632,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 				<!-- Smart Offer Upgrade end -->
 				<tr valign="top">
 						<th scope="row" class="titledesc">
-						<span class="wps_wupsell_premium_strip">Pro</span>
+						<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span>
 							<label for="wps_wocuf_add_products"><?php esc_html_e( 'Show Form Fields', 'woo-one-click-upsell-funnel' ); ?></label>
 						</th>
 						<td class="forminp forminp-text">
@@ -656,7 +661,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 				<tbody>
 					<tr valign="top">
 						<th scope="row" class="titledesc">
-						<span class="wps_wupsell_premium_strip">Pro</span>
+						<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span>
 							<label for="wps_wocuf_add_products"><?php esc_html_e( 'Add Additional offers', 'woo-one-click-upsell-funnel' ); ?></label>
 						</th>
 						<td class="forminp forminp-text">
@@ -1000,6 +1005,40 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 													<?php
 											endforeach;
 											?>
+
+											<!-- Offer templates 4 foreach start-->
+						
+						<div class="wps_upsell_offer_template ">
+
+								<div class="wps_upsell_offer_template_sub_div"> 
+
+									<h5> <?php esc_html_e( 'FITNESS TEMPLATE', 'woo-one-click-upsell-funnel' ); ?></h5>
+
+									<div class="wps_upsell_offer_preview">
+
+										<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="four" >
+											<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-four.jpg" ); ?>"></a>
+									</div>
+
+									<div class="wps_upsell_offer_action">
+
+										<?php if ( $template_key !== $offer_template_active ) : ?>
+
+											<input type="button" class=" wps_upsell_activate_offer_template_pro ubo_offer_input" value="<?php esc_html_e( 'Upgrade To Pro', 'woo-one-click-upsell-funnel' ); ?>"/>
+
+							
+										<?php else : ?>
+
+											<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+
+											<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+
+										<?php endif; ?>
+									</div>
+								</div>	
+										</div>
+
+						<!-- Offer templates 4 foreach start-->
 
 											<!-- Offer link to custom page start-->
 											<div class="wps_upsell_offer_template wps_upsell_custom_page_link_div <?php echo esc_html( 'custom' === $offer_template_active ? 'active' : '' ); ?>">

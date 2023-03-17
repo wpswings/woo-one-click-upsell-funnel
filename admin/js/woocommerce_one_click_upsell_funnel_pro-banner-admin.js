@@ -1,7 +1,6 @@
 
 jQuery(document).ready( function($) {
 
-debugger;
     $('#product_features_ubo_lite').hide();
 /**
 	 * Scripts after v1.0.2

@@ -1130,6 +1130,7 @@ div#wps_upsell_funnel_status .wps_upsell_funnel_span:before {
   background-color: #38bba3 !important;
   color: #fff !important;
 }
+.wps_upsell_offer_template_preview_four.active,
 .wps_upsell_offer_template_preview_three.active,
 .wps_upsell_offer_template_preview_two.active,
 .wps_upsell_offer_template_preview_one.active {
@@ -1143,6 +1144,8 @@ div#wps_upsell_funnel_status .wps_upsell_funnel_span:before {
   height: 100%;
   overflow-Y: scroll;
 }
+
+.wps_upsell_offer_template_preview_four.active .wps_upsell_offer_template_preview_four_sub_div,
 .wps_upsell_offer_template_preview_three.active .wps_upsell_offer_template_preview_three_sub_div,
 .wps_upsell_offer_template_preview_two.active .wps_upsell_offer_template_preview_two_sub_div,
 .wps_upsell_offer_template_preview_one.active .wps_upsell_offer_template_preview_one_sub_div {
@@ -1150,6 +1153,8 @@ div#wps_upsell_funnel_status .wps_upsell_funnel_span:before {
   max-width: 1020px;
   margin: 90px auto;
 }
+
+.wps_upsell_offer_template_preview_four.active .wps_upsell_offer_template_preview_four_sub_div img,
 .wps_upsell_offer_template_preview_three.active .wps_upsell_offer_template_preview_three_sub_div img,
 .wps_upsell_offer_template_preview_two.active .wps_upsell_offer_template_preview_two_sub_div img,
 .wps_upsell_offer_template_preview_one.active .wps_upsell_offer_template_preview_one_sub_div img {
