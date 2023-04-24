@@ -1130,6 +1130,11 @@ div#wps_upsell_funnel_status .wps_upsell_funnel_span:before {
   background-color: #38bba3 !important;
   color: #fff !important;
 }
+
+.wps_upsell_offer_template_preview_eight.active,
+.wps_upsell_offer_template_preview_seven.active ,
+.wps_upsell_offer_template_preview_six.active ,
+.wps_upsell_offer_template_preview_five.active ,
 .wps_upsell_offer_template_preview_four.active,
 .wps_upsell_offer_template_preview_three.active,
 .wps_upsell_offer_template_preview_two.active,
@@ -1145,6 +1150,11 @@ div#wps_upsell_funnel_status .wps_upsell_funnel_span:before {
   overflow-Y: scroll;
 }
 
+
+.wps_upsell_offer_template_preview_eight.active .wps_upsell_offer_template_preview_eight_sub_div ,
+.wps_upsell_offer_template_preview_seven.active .wps_upsell_offer_template_preview_seven_sub_div ,
+.wps_upsell_offer_template_preview_six.active .wps_upsell_offer_template_preview_six_sub_div ,
+.wps_upsell_offer_template_preview_five.active .wps_upsell_offer_template_preview_five_sub_div ,
 .wps_upsell_offer_template_preview_four.active .wps_upsell_offer_template_preview_four_sub_div,
 .wps_upsell_offer_template_preview_three.active .wps_upsell_offer_template_preview_three_sub_div,
 .wps_upsell_offer_template_preview_two.active .wps_upsell_offer_template_preview_two_sub_div,
@@ -1154,6 +1164,10 @@ div#wps_upsell_funnel_status .wps_upsell_funnel_span:before {
   margin: 90px auto;
 }
 
+.wps_upsell_offer_template_preview_eight.active .wps_upsell_offer_template_preview_eight_sub_div img,
+.wps_upsell_offer_template_preview_seven.active .wps_upsell_offer_template_preview_seven_sub_div img,
+.wps_upsell_offer_template_preview_six.active .wps_upsell_offer_template_preview_six_sub_div img,
+.wps_upsell_offer_template_preview_five.active .wps_upsell_offer_template_preview_five_sub_div img,
 .wps_upsell_offer_template_preview_four.active .wps_upsell_offer_template_preview_four_sub_div img,
 .wps_upsell_offer_template_preview_three.active .wps_upsell_offer_template_preview_three_sub_div img,
 .wps_upsell_offer_template_preview_two.active .wps_upsell_offer_template_preview_two_sub_div img,
