@@ -998,6 +998,15 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				$offer_price           = $currency_switcher_obj->wps_mmcsfw_get_price_of_product( $offer_price, $temp_product->get_id() );
 			}
 
+			if (class_exists('WOOCS')) {
+				global $WOOCS;
+				$currencies = $WOOCS->get_currencies();
+				$currency = $WOOCS->current_currency;
+				if ($currency != $WOOCS->default_currency) {
+					$offer_price = $WOOCS->back_convert($offer_price, $currencies[$currency]['rate']);
+				}
+			}
+
 			$temp_product->set_price( $offer_price );
 		} else {
 			/**
@@ -1402,6 +1411,14 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		$shipping_price_order = 0;
 		if ( ! empty( $order ) ) {
 			$shipping_price_order = floatval( get_post_meta( $order_id, 'wps_upsell_simple_shipping_product_', true ) );
+		}
+		if (class_exists('WOOCS')) {
+			global $WOOCS;
+			$currencies = $WOOCS->get_currencies();
+			$currency = $WOOCS->current_currency;
+			if ($currency != $WOOCS->default_currency) {
+				$shipping_price_order = $WOOCS->back_convert($shipping_price_order, $currencies[$currency]['rate']);
+			}
 		}
 
 		if ( 0 != $shipping_price_order && ! empty( $shipping_price_order ) ) {
