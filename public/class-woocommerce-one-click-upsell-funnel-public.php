@@ -1412,14 +1412,11 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		if ( ! empty( $order ) ) {
 			$shipping_price_order = floatval( get_post_meta( $order_id, 'wps_upsell_simple_shipping_product_', true ) );
 		}
-		if (class_exists('WOOCS')) {
-			global $WOOCS;
-			$currencies = $WOOCS->get_currencies();
-			$currency = $WOOCS->current_currency;
-			if ($currency != $WOOCS->default_currency) {
-				$shipping_price_order = $WOOCS->back_convert($shipping_price_order, $currencies[$currency]['rate']);
-			}
+		if ( class_exists( 'WOOCS' ) ) {
+			global $WOOCS; // phpcs:ignore issues due to plugin compatibility.
+			$shipping_price_order = $WOOCS->woocs_exchange_value( $shipping_price_order ); // phpcs:ignore issues due to plugin compatibility.	
 		}
+		
 
 		if ( 0 != $shipping_price_order && ! empty( $shipping_price_order ) ) {
 			$item_ship = new WC_Order_Item_Shipping();
@@ -1934,6 +1931,11 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			$class = $atts['class'];
 			$style = $atts['style'];
 			$upsell_shipping_product = get_post_meta( $product_id, 'wps_upsell_simple_shipping_product_' . $product_id, true );
+			
+			if ( class_exists( 'WOOCS' ) ) {
+				global $WOOCS; // phpcs:ignore issues due to plugin compatibility.
+				$upsell_shipping_product = $WOOCS->woocs_exchange_value( $upsell_shipping_product ); // phpcs:ignore issues due to plugin compatibility.
+			}
 
 			$upsell_product_price_html_div = "Shipping Price <br> <div id='$id' class='wps_upsell_offer_product_price $class' style='$style'>
 						" . wc_price( $upsell_shipping_product ) . '</div>';
