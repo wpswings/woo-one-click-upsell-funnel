@@ -339,5 +339,4 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 		<?php endif;
 	}
 }
-
 ?>
