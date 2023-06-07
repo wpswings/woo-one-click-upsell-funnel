@@ -1412,7 +1412,6 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			global $WOOCS; // phpcs:ignore issues due to plugin compatibility.
 			$shipping_price_order = $WOOCS->woocs_exchange_value( $shipping_price_order ); // phpcs:ignore issues due to plugin compatibility.	
 		}
-		
 
 		if ( 0 != $shipping_price_order && ! empty( $shipping_price_order ) ) {
 			$item_ship = new WC_Order_Item_Shipping();
@@ -1927,7 +1926,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			$class = $atts['class'];
 			$style = $atts['style'];
 			$upsell_shipping_product = get_post_meta( $product_id, 'wps_upsell_simple_shipping_product_' . $product_id, true );
-			
+
 			if ( class_exists( 'WOOCS' ) ) {
 				global $WOOCS; // phpcs:ignore issues due to plugin compatibility.
 				$upsell_shipping_product = $WOOCS->woocs_exchange_value( $upsell_shipping_product ); // phpcs:ignore issues due to plugin compatibility.
