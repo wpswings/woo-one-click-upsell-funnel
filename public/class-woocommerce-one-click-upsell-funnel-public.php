@@ -998,9 +998,13 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				$offer_price           = $currency_switcher_obj->wps_mmcsfw_get_price_of_product( $offer_price, $temp_product->get_id() );
 			}
 
-			if ( class_exists( 'WOOCS' ) ) {
-				global $WOOCS; // phpcs:ignore issues due to plugin compatibility.
-				$offer_price = $WOOCS->woocs_exchange_value( $offer_price ); // phpcs:ignore issues due to plugin compatibility.	
+			if (class_exists('WOOCS')) {
+				global $WOOCS;
+				$currency = $WOOCS->current_currency;
+				if ($currency != $WOOCS->default_currency) {
+					$currencies = $WOOCS->get_currencies();
+					$offer_price = $WOOCS->back_convert($offer_price, $currencies[$currency]['rate']);
+				}
 			}
 
 			$temp_product->set_price( $offer_price );
