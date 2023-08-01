@@ -6,7 +6,7 @@ Requires at least: 5.5.0
 Tested up to: 6.2.2
 WC requires at least: 5.5.0
 WC tested up to: 7.7.2
-Stable tag: 3.2.8
+Stable tag: 3.2.9
 Requires PHP: 7.0.0
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -288,7 +288,7 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Changelog ==
 
-= 3.2.8 - Released on 8 June 2023 = 
+= 3.2.9 - Released on 8 June 2023 = 
 * New: Compatibility with Currency Switcher
 * New: Compatible with the latest WP(6.2.2) and WC(7.7.2)
 
@@ -408,7 +408,7 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Upgrade Notice ==
 
-= 3.2.8 - Released on 8 June 2023 = 
+= 3.2.9 - Released on 8 June 2023 = 
 * New: Compatibility with Currency Switcher
 * New: Compatible with the latest WP(6.2.2) and WC(7.7.2)
 
