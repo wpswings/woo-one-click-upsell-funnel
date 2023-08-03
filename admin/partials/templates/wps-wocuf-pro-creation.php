@@ -968,6 +968,11 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 								if ( ! wps_upsell_lite_elementor_plugin_active() ) {
 									$assigned_post_id = '';
 								}
+								if (  ! wps_upsell_divi_builder_plugin_active() ){
+									
+								}elseif ( ! wps_upsell_lite_elementor_plugin_active() ) {
+									$assigned_post_id = '';
+								}
 								?>
 								<td>
 
@@ -982,6 +987,20 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 											'two'   => esc_html__( 'CREATIVE TEMPLATE', 'woo-one-click-upsell-funnel' ),
 											'three' => esc_html__( 'VIDEO TEMPLATE', 'woo-one-click-upsell-funnel' ),
 										);
+
+										if ( wps_upsell_divi_builder_plugin_active() ){
+											if ( ! wps_upsell_lite_elementor_plugin_active() ){
+												$offer_template_active = ! empty( $wps_wocuf_pro_offer_active_template[ $current_offer_id ] ) ? $wps_wocuf_pro_offer_active_template[ $current_offer_id ] : 'nine';
+	
+											}
+											
+											$offer_templates_array_divi = array(
+												'four' => esc_html__( 'Divi Builder TEMPLATE', 'one-click-upsell-funnel-for-woocommerce-pro' ),
+												'five'   => esc_html__( 'Oxygen Builder TEMPLATE', 'one-click-upsell-funnel-for-woocommerce-pro' ),
+											);
+										}
+
+										
 
 										?>
 										<!-- Offer templates parent div start -->

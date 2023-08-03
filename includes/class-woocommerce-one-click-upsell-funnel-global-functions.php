@@ -27,6 +27,27 @@ function wps_upsell_lite_elementor_plugin_active() {
 	}
 }
 
+
+/**
+ * Check if Divi Builder plugin is active or not.
+ *
+ * @since    3.0.0
+ */
+function wps_upsell_divi_builder_plugin_active() {
+
+	$desired_woocommerce_theme = 'Divi';
+
+    // Get the current active theme's slug
+    $active_theme = get_stylesheet();
+
+    // Compare the active theme with the desired WooCommerce theme
+    if ($active_theme === $desired_woocommerce_theme) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 /**
  * Check if Upsell Pro plugin is active or not.
  *
