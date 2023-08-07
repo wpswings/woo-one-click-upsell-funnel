@@ -1790,7 +1790,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 						$id    = $atts['id'];
 						$class = $atts['class'];
 						$style = $atts['style'];
-
+echo 'cxfvgcfg-----------------------';
 						$upsell_product_image_src_div =
 							"<div id='$id' class='wps_upsell_offer_product_image $class' style='$style'>
 								<img src='$upsell_product_image_src'>
@@ -1840,7 +1840,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 							$id    = $atts['id'];
 							$class = $atts['class'];
 							$style = $atts['style'];
-
+							echo 'cxfvgcfg------------jjjj-----------';
 							$upsell_product_image_src_div =
 								"<div id='$id' class='wps_upsell_offer_product_image $class' style='$style'>
 									<img src='$upsell_product_image_src'>
@@ -1885,7 +1885,6 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 					"<div id='$id' class='wps_upsell_offer_product_image $class' style='$style'>
 						<img src='$upsell_product_image_src'>
 					</div>";
-
 				return $upsell_product_image_src_div;
 			}
 		}
