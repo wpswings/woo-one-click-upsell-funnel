@@ -1029,7 +1029,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 											<?php
 											foreach ( $offer_templates_array as $template_key => $template_name ) :
 
-												echo $template_key;
+												
 												if ( 'four' == $template_key ) {
 													$template_key_custom = 'two';
 													$template_name_custom = 'CREATIVE TEMPLATE';
