@@ -497,6 +497,12 @@ span.wps_wocuf_pro_span label::after {
 
 /*since v2.0.0 - Offer preview - Start*/
 
+
+.wps_upsell_offer_template_preview_eight,
+.wps_upsell_offer_template_preview_seven,
+.wps_upsell_offer_template_preview_six,
+.wps_upsell_offer_template_preview_five,
+.wps_upsell_offer_template_preview_four,
 .wps_upsell_offer_template_preview_one,
 .wps_upsell_offer_template_preview_two,
 .wps_upsell_offer_template_preview_three {

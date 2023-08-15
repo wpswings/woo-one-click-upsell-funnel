@@ -149,6 +149,21 @@ jQuery(document).ready( function($) {
 		}
 	});
 
+	$('.wps_upsell_offer_preview_close').on( 'click', function (e) {
+debugger;
+jQuery('.wps_upsell_offer_template_preview_three').removeClass('active');
+jQuery('.wps_upsell_offer_template_preview_two').removeClass('active');
+jQuery('.wps_upsell_offer_template_preview_one').removeClass('active');
+jQuery('.wps_upsell_offer_template_preview_four').removeClass('active');
+jQuery('.wps_upsell_offer_template_preview_five').removeClass('active');
+jQuery('.wps_upsell_offer_template_preview_six').removeClass('active');
+jQuery('.wps_upsell_offer_template_preview_seven').removeClass('active');
+jQuery('.wps_upsell_offer_template_preview_eight').removeClass('active');
+
+	});
+
+	
+
 
 // END OF SCRIPT,
 });
