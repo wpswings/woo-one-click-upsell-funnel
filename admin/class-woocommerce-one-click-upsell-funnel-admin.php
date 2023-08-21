@@ -551,9 +551,16 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 										<?php
 														if ( 'one' == $template_key || 'two' == $template_key || 'three' == $template_key ) {
 
-															?>
-																<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-$template_key.jpg" ); ?>"></a>
-															<?php
+															if ( wps_upsell_divi_builder_plugin_active() ) {
+																?>
+																	<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/divi/offer-template-$template_key.png" ); ?>"></a>
+																<?php
+															} else{
+																?>
+																	<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-$template_key.jpg" ); ?>"></a>
+																<?php
+
+															}
 														} else {
 
 
