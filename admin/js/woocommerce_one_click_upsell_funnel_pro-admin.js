@@ -1,6 +1,8 @@
 (function( $ ) {
 	'use strict';
 	$(document).ready(function(){
+		jQuery('.wps_ubo_lite_go_pro_popup_close').attr('href','javascript:void(0)');
+	
 		$('#wps_wocuf_pro_target_pro_ids').select2();
 		$('#product_features_ubo_lite').hide();
 		//  Add multiselect to Funnel Schedule since v3.0.0
@@ -131,9 +133,9 @@ jQuery(document).ready( function($) {
 	/**
 	 * Scripts after v1.0.2
 	 */
-	 $('.ubo_offer_input').on( 'click', function (e) {
+	$('.ubo_offer_input').on( 'click', function (e) {
 		var data_offer = jQuery(e.currentTarget).attr('product_offer');
-		
+		debugger;
 		// Add popup to unlock pro features.
 		var pro_status = document.getElementById( 'wps_ubo_pro_status' );
 		if( null != pro_status ) {
@@ -142,6 +144,7 @@ jQuery(document).ready( function($) {
 			$(this).prop("checked", false);
 			$( '.wps_ubo_lite_go_pro_popup_wrap' ).addClass( 'wps_ubo_lite_go_pro_popup_show' );
 			$( 'body' ).addClass( 'wps_ubo_lite_go_pro_popup_body' );
+			$('.wps_ubo_lite_go_pro_popup_show').show();
 		}
 		if ( data_offer == "yes" ) {
 			jQuery('#product_features_ubo_lite').show();
@@ -150,17 +153,28 @@ jQuery(document).ready( function($) {
 	});
 
 	$('.wps_upsell_offer_preview_close').on( 'click', function (e) {
-debugger;
-jQuery('.wps_upsell_offer_template_preview_three').removeClass('active');
-jQuery('.wps_upsell_offer_template_preview_two').removeClass('active');
-jQuery('.wps_upsell_offer_template_preview_one').removeClass('active');
-jQuery('.wps_upsell_offer_template_preview_four').removeClass('active');
-jQuery('.wps_upsell_offer_template_preview_five').removeClass('active');
-jQuery('.wps_upsell_offer_template_preview_six').removeClass('active');
-jQuery('.wps_upsell_offer_template_preview_seven').removeClass('active');
-jQuery('.wps_upsell_offer_template_preview_eight').removeClass('active');
+		jQuery('.wps_upsell_offer_template_preview_three').removeClass('active');
+		jQuery('.wps_upsell_offer_template_preview_two').removeClass('active');
+		jQuery('.wps_upsell_offer_template_preview_one').removeClass('active');
+		jQuery('.wps_upsell_offer_template_preview_four').removeClass('active');
+		jQuery('.wps_upsell_offer_template_preview_five').removeClass('active');
+		jQuery('.wps_upsell_offer_template_preview_six').removeClass('active');
+		jQuery('.wps_upsell_offer_template_preview_seven').removeClass('active');
+		jQuery('.wps_upsell_offer_template_preview_eight').removeClass('active');
 
 	});
+
+	$('.wps_ubo_lite_go_pro_popup_close').on( 'click', function (e) {
+		debugger;
+		jQuery('#product_features_ubo_lite').hide();
+		$( '.wps_ubo_lite_go_pro_popup_wrap' ).removeClass( 'wps_ubo_lite_go_pro_popup_show' );
+		$( 'body' ).removeClass( 'wps_ubo_lite_go_pro_popup_body' );
+		jQuery('#product_features_ubo_lite').hide();
+		jQuery('#all_offers_ubo_lite').hide();
+		
+	});
+
+	
 
 	
 

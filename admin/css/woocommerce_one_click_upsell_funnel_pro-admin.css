@@ -78,14 +78,14 @@
   padding: 15px 20px;
 }
 #wps_wocuf_pro_setting_wrapper tr td .wps_wocuf_pro_funnel_links {
-  background-color: #3ddabd;
+  background-color: #2196f3;
   display: inline-block;
   padding: 6px 10px;
   margin: 5px 0px
 }
 #wps_wocuf_pro_setting_wrapper tr td .wps_wocuf_pro_funnel_links:hover {
   color: #fff;
-  background-color: #38bba3;
+  background-color: #3854bb;
 }
 .wps_wocuf_pro_funnels_list table th, .wps_upsell_table table th, .wps_upsell_table table th label h4{
   color: #000;
@@ -107,7 +107,7 @@
   text-decoration: none;
 }
 #wps_wocuf_pro_setting_wrapper .nav-tab:hover,.wps_wocuf_pro_funnels_list table td a:hover{
-  background-color: #38bba3;
+  background-color: #3854bb;
 }
 .wps_wocuf_pro_create_new_funnel a {
   font-size: 24px;
@@ -185,7 +185,7 @@
 }
 /*custom style*/
 #wps_wocuf_pro_setting_wrapper .nav-tab {
-  background: #3ddabd;
+  background: #2196f3;
   border: 0;
   padding: 10px 50px 10px 50px;
   margin-left: -18px;
@@ -193,7 +193,7 @@
 }
 
 #wps_wocuf_pro_setting_wrapper .nav-tab.nav-tab-active {
-  background-color: #38bba3;
+  background-color: #3854bb;
   color: #fff;
 }
 .wps_wocuf_pro_funnels_list table td, .wps_wocuf_pro_funnels_list table th,.wps_upsell_table table th,.wps_upsell_table table td{
@@ -229,7 +229,7 @@
   padding:15px 0;
 }
 .wps_wocuf_pro_create_new_offer::before,.wps_wocuf_pro_create_new_funnel a::before {
-  background-color:#38bba3;
+  background-color:#2196f3;
   left: -48%;
   transform-origin: 100% 50% 0;
   width: 100%;
@@ -245,7 +245,7 @@
   z-index: -1;
 }
 .wps_wocuf_pro_create_new_offer::after,.wps_wocuf_pro_create_new_funnel a::after {
-  background-color: #3ddabd;
+  background-color: #2196f3;
   right: -48%;
   transform-origin: 0 50% 0;
   width: 100%;
@@ -310,7 +310,7 @@ h1.wps_wocuf_pro_setting_title .wps-wocuf-pro-wrap h1 {
   border-radius: 10px 0px;
 }
 .wps_wocuf_pro_license_text p.submit #wps_wocuf_pro_license_activate {
-  background-color: #3ddabd !important;
+  background-color: #2196f3 !important;
   border: 0;
   box-shadow: 0px 0px;
   text-shadow: 0px 0px;
@@ -532,7 +532,7 @@ span.wps_wocuf_pro_span label::after {
 
 .wps_upsell_funnel_list_name {
   font-size: 16px !important;
-  font-weight: 200 !important;
+  font-weight: 200px !important;
 }
 
 .wps_wocuf_pro_funnels_list p {
@@ -638,12 +638,12 @@ span.wps_wocuf_pro_span label::after {
 }
 
 #wps_upsell_elementor_notice {
-  border-left-color: #3ddabd;
+  border-left-color: #2196f3;
   margin-top: 15px;
 }
 
 #wps_upsell_activate_elementor {
-  background-color: #3ddabd;
+  background-color: #2196f3;
   color: #fff;
   font-size: 14px;
   border: 1px solid #e0e0e0;
@@ -932,7 +932,7 @@ span.wps_wocuf_pro_span label::after {
   border-radius: 10px 0px;
 }
 #wps_wocuf_pro_setting_wrapper .wps_upsell_table p.submit #wps_wocuf_pro_creation_setting_save {
-  background-color: #3ddabd;
+  background-color: #2196f3;
   padding: 7px 23px;
   height: auto;
   font-size: 14px;
@@ -943,7 +943,7 @@ span.wps_wocuf_pro_span label::after {
       margin: 0;
       font-size: 16px;
       padding: 10px 100px;
-      background-color: #38bba3;
+      background-color: #2196f3;
       color: #fff;
     }
     #wps_wocuf_pro_setting_wrapper .wps_upsell_table .new_offers tr th label h4 {
@@ -1001,10 +1001,10 @@ span.wps_wocuf_pro_span label::after {
   border: 1px solid #e0e0e0
 }
 .wps_upsell_offer_templates_parent .wps_upsell_offer_template.active .wps_upsell_view_offer_template {
-  border: solid 2px #38bba3;
+  border: solid 2px #2196f3;
 }
 .wps_upsell_offer_templates_parent .wps_upsell_offer_template.active h5 {
-  background-color: #38bba3;
+  background-color: #2196f3;
   color: #fff;
 }
 .wps_upsell_offer_templates_parent .wps_upsell_offer_template .wps_upsell_offer_preview a:hover:after {
@@ -1029,14 +1029,14 @@ span.wps_wocuf_pro_span label::after {
   font-size: 15px;
 }
 .wps_upsell_offer_template.wps_upsell_custom_page_link_div.active {
-  border: solid 2px #38bba3;
+  border: solid 2px #2196f3;
 }
 .wps_upsell_offer_template.wps_upsell_custom_page_link_div p {
   text-align: center !important;
   font-size: 14px !important;
 }
 .new_created_offers.wps_upsell_single_offer table {
-  border: solid 2px #38bba3;
+  border: solid 2px #2196f3;
   margin-bottom: 30px !important;
   border-collapse: collapse;
 }
@@ -1080,7 +1080,7 @@ div#wps_upsell_funnel_status input:checked + .wps_upsell_funnel_span {
 
 #wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading 
 div#wps_upsell_funnel_status input:focus + .wps_upsell_funnel_span {
-  box-shadow: 0 0 1px #3ddabd;
+  box-shadow: 0 0 1px #2196f3;
 }
 
 #wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading 
@@ -1133,7 +1133,7 @@ div#wps_upsell_funnel_status .wps_upsell_funnel_span:before {
 
 }
 .wps_upsell_offer_templates_parent .wps_upsell_offer_template.active .button {
-  background-color: #38bba3 !important;
+  background-color: #2196f3 !important;
   color: #fff !important;
 }
 
@@ -1252,7 +1252,7 @@ table.form-table.wps_wocuf_pro_creation_setting {
   border: solid 2px #ccc;
 }
 div#wps_wocuf_pro_setting_wrapper .submit #wps_wocuf_pro_creation_setting_save {
-  background-color: #3ddabd;
+  background-color: #2196f3;
   padding: 7px 23px;
   height: auto;
   font-size: 14px;
@@ -1265,7 +1265,7 @@ table.form-table.wps_upsell_slide_down_table {
 .wps_upsell_offer_templates_parent .wps_upsell_offer_template button:hover,
 .wps_upsell_offer_templates_parent .wps_upsell_offer_template .wps_upsell_offer_template_sub_div .wps_upsell_offer_action button:hover,
 .wps_upsell_offer_templates_parent .wps_upsell_offer_template .wps_upsell_offer_template_sub_div .wps_upsell_offer_action .button:hover{
-  background: #38bba3;
+  background: #2196f3;
   color: #fff;
   box-shadow: 0px 0px;
   border: 1px solid #e0e0e0;
@@ -1315,7 +1315,7 @@ table.form-table.wps_wocuf_pro_creation_setting .wps_wocuf_pro_enable_plugin_lab
   background-color: #6dbe45;
 }
 button.button-primary.wps_upsell_activate_offer_template:focus {
-  background-color: #38bba3 !important;
+  background-color: #2196f3 !important;
   border: 0;
   box-shadow: 0px 0px;
 }

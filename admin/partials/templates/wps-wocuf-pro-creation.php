@@ -367,18 +367,68 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 				<div class="wps_upsell_offer_template_previews">
 
 					<div class="wps_upsell_offer_template_preview_one">
-						<div class="wps_upsell_offer_template_preview_one_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/offer-template-one.png' ); ?>">
-						</div>
+						<?php
+
+						if ( wps_upsell_divi_builder_plugin_active() ) {
+
+							?>
+								<div class="wps_upsell_offer_template_preview_one_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/divi/offer-template-one.png' ); ?>">
+								</div>
+							<?php
+
+
+						} else{
+							?>
+								<div class="wps_upsell_offer_template_preview_one_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/offer-template-one.png' ); ?>">
+								</div>
+							<?php							
+						}
+						?>
+						
 					</div>
 
 					<div class="wps_upsell_offer_template_preview_two">
-						<div class="wps_upsell_offer_template_preview_two_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/offer-template-two.png' ); ?>">
-						</div>
+					<?php
+
+						if ( wps_upsell_divi_builder_plugin_active() ) {
+
+							?>
+								<div class="wps_upsell_offer_template_preview_two_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/divi/offer-template-two.png' ); ?>">
+								</div>
+							<?php
+
+
+						} else{
+							?>
+								<div class="wps_upsell_offer_template_preview_two_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/offer-template-two.png' ); ?>">
+								</div>
+							<?php							
+						}
+					?>
+						
 					</div>
 
 					<div class="wps_upsell_offer_template_preview_three">
-						<div class="wps_upsell_offer_template_preview_three_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/offer-template-three.png' ); ?>">
-						</div>
+					<?php
+
+						if ( wps_upsell_divi_builder_plugin_active() ) {
+
+							?>
+								<div class="wps_upsell_offer_template_preview_three_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/divi/offer-template-three.png' ); ?>">
+								</div>
+							<?php
+
+
+						} else{
+							?>
+								<div class="wps_upsell_offer_template_preview_three_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/offer-template-three.png' ); ?>">
+								</div>
+							<?php							
+						}
+					?>	
+					
+					
+					
 					</div>
 
 					<div class="wps_upsell_offer_template_preview_four">
@@ -994,32 +1044,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 											);
 										}
 
-										// if ( wps_upsell_divi_builder_plugin_active() ){
-										// 	if ( ! wps_upsell_lite_elementor_plugin_active() ){
-										// 		$offer_template_active = ! empty( $wps_wocuf_pro_offer_active_template[ $current_offer_id ] ) ? $wps_wocuf_pro_offer_active_template[ $current_offer_id ] : 'nine';
-	
-										// 	}
-											
-										// 	$offer_templates_array_divi = array(
-										// 		'four' => esc_html__( 'Divi Builder TEMPLATE', 'one-click-upsell-funnel-for-woocommerce-pro' ),
-										// 		'five'   => esc_html__( 'Oxygen Builder TEMPLATE', 'one-click-upsell-funnel-for-woocommerce-pro' ),
-										// 	);
-										// }
-
-
-										// if ( ! empty( $offer_templates_array_ele ) ) {
-											
-										// 	if ( ! empty( $offer_templates_array_divi ) ) {
-										// 		$offer_templates_array = array_merge( $offer_templates_array_ele, $offer_templates_array_divi );
-										// 	} else{
-										// 		$offer_templates_array = $offer_templates_array_ele;
-										// 	}
-
-										// } elseif ( wps_upsell_divi_builder_plugin_active()){
-										// 		$offer_templates_array = $offer_templates_array_divi;
-										// } else{
-										// 	$offer_templates_array = array();
-										// }
+									
 									
 
 										?>
@@ -1036,7 +1061,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 												<!-- Offer templates foreach start-->
 												<div class="wps_upsell_offer_template <?php echo esc_html( (string) $template_key === (string) $offer_template_active ? 'active' : '' ); ?>">
 
-													<div class="wps_upsell_offer_template_sub_div"> 
+													<div class="wps_upsell_offer_template_sub_div">
 
 														<h5><?php echo esc_html( $template_name ); ?></h5>
 
@@ -1044,15 +1069,30 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 															<?php
 														if ( 'one' == $template_key || 'two' == $template_key || 'three' == $template_key   ) {
+															if ( wps_upsell_divi_builder_plugin_active() ) {
+																?>
+																	<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/divi/offer-template-$template_key.png" ); ?>"></a>
+																<?php
+															} else{
+																?>
+																	<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-$template_key.jpg" ); ?>"></a>
+																<?php
 
-															?>
-																<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-$template_key.jpg" ); ?>"></a>
-															<?php
+															}
+
+															
 														} else {
+															if ( wps_upsell_divi_builder_plugin_active() ) {
+																?>
+																	<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/divi/offer-template-$template_key.png" ); ?>"></a>
+																<?php
+															} else{
+																?>
+																	<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-$template_key.jpg" ); ?>"></a>
+																<?php
 
-
+															}
 															?>
-																<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-$template_key.png" ); ?>"></a>
 															<?php
 
 														}

@@ -79,7 +79,6 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-		$this->define_mirator_hooks();
 	}
 
 	/**
@@ -175,28 +174,6 @@ class Woocommerce_One_Click_Upsell_Funnel {
 
 	}
 
-	/**
-	 * Responsible for Upsell migrator for WPS.
-	 *
-	 * @since    3.2.0
-	 * @access   private
-	 */
-	private function define_mirator_hooks() {
-
-		/**
-		 * The file responsible for Upsell migrator for WPS.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'migrator/class-wps-ocu-migration.php';
-
-		$plugin_migrator = new WPS_OCU_Migration();
-
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_migrator, 'enqueue_styles' );
-
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_migrator, 'enqueue_scripts' );
-
-		$this->loader->add_action( 'wp_ajax_process_ajax_events', $plugin_migrator, 'process_ajax_events' );
-
-	}
 
 	/**
 	 * Register all of the hooks related to the admin area functionality
