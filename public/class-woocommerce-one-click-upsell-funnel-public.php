@@ -119,7 +119,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		$payment_method = $order->get_payment_method();
 
 		$supported_gateways = wps_upsell_lite_supported_gateways();
-	
+
 		if ( in_array( $payment_method, $supported_gateways, true ) ) {
 
 			$wps_wocuf_pro_all_funnels = get_option( 'wps_wocuf_funnels_list', array() );
@@ -666,7 +666,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				$funnel_offer_post_id_assigned = ! empty( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_upsell_post_id_assigned'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_upsell_post_id_assigned'][ $offer_id ] : '';
 
 				// When funnel is saved since v3.0.0 and offer post id is assigned and elementor active.
-				if ( ! empty( $funnel_offer_post_id_assigned ) && 'true' === $funnel_saved_after_version_3 && wps_upsell_lite_elementor_plugin_active() || wps_upsell_divi_builder_plugin_active()  ) {
+				if ( ! empty( $funnel_offer_post_id_assigned ) && 'true' === $funnel_saved_after_version_3 && wps_upsell_lite_elementor_plugin_active() || wps_upsell_divi_builder_plugin_active() ) {
 
 					$redirect_to_upsell = false;
 
@@ -1790,7 +1790,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 						$id    = $atts['id'];
 						$class = $atts['class'];
 						$style = $atts['style'];
-echo 'cxfvgcfg-----------------------';
+						echo 'cxfvgcfg-----------------------';
 						$upsell_product_image_src_div =
 							"<div id='$id' class='wps_upsell_offer_product_image $class' style='$style'>
 								<img src='$upsell_product_image_src'>
@@ -2601,7 +2601,7 @@ echo 'cxfvgcfg-----------------------';
 	 * @since    3.0.0
 	 */
 	public function remove_styles_offer_pages() {
-		
+
 		$saved_offer_post_ids = get_option( 'wps_upsell_lite_offer_post_ids', array() );
 
 		if ( ! empty( $saved_offer_post_ids ) && is_array( $saved_offer_post_ids ) && count( $saved_offer_post_ids ) ) {
@@ -2658,7 +2658,7 @@ echo 'cxfvgcfg-----------------------';
 	 * @since    3.0.0
 	 */
 	public function exclude_pages_from_front_end( $args ) {
-		
+
 		$saved_offer_post_ids = get_option( 'wps_upsell_lite_offer_post_ids', array() );
 
 		if ( ! empty( $saved_offer_post_ids ) && is_array( $saved_offer_post_ids ) && count( $saved_offer_post_ids ) ) {
@@ -2734,11 +2734,11 @@ echo 'cxfvgcfg-----------------------';
 	public function upsell_offer_page_redirect() {
 
 		$saved_offer_post_ids = get_option( 'wps_upsell_lite_offer_post_ids', array() );
-			
+
 		if ( ! empty( $saved_offer_post_ids ) && is_array( $saved_offer_post_ids ) && count( $saved_offer_post_ids ) ) {
 
 			global $post;
-			
+
 			// When current page is one of the upsell offer page.
 			if ( ! empty( $post->ID ) && in_array( $post->ID, $saved_offer_post_ids, true ) ) {
 
@@ -2746,8 +2746,8 @@ echo 'cxfvgcfg-----------------------';
 
 				if ( wps_upsell_divi_builder_plugin_active() ) {
 
-					//1833px
-					update_post_meta($post->ID,'_et_pb_page_layout', 'et_no_sidebar');
+					// 1833px
+					update_post_meta( $post->ID, '_et_pb_page_layout', 'et_no_sidebar' );
 					?>
 						<style type="text/css">	
 							body{
@@ -2756,7 +2756,7 @@ echo 'cxfvgcfg-----------------------';
 							.main_title{
 								display: none !important;
 							}
-							.page-id-<?php echo $post->ID; ?> header, .page-id-<?php echo $post->ID; ?> footer {
+							.page-id-<?php echo esc_attr( $post->ID ); ?> header, .page-id-<?php echo esc_attr( $post->ID ); ?> footer {
 								display: none !important; }
 							.container{
 								width:100% !important;

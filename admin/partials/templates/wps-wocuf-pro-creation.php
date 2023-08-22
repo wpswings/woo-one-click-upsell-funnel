@@ -377,11 +377,11 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 							<?php
 
 
-						} else{
+						} else {
 							?>
 								<div class="wps_upsell_offer_template_preview_one_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/offer-template-one.png' ); ?>">
 								</div>
-							<?php							
+							<?php
 						}
 						?>
 						
@@ -390,20 +390,20 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 					<div class="wps_upsell_offer_template_preview_two">
 					<?php
 
-						if ( wps_upsell_divi_builder_plugin_active() ) {
+					if ( wps_upsell_divi_builder_plugin_active() ) {
 
-							?>
+						?>
 								<div class="wps_upsell_offer_template_preview_two_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/divi/offer-template-two.png' ); ?>">
 								</div>
 							<?php
 
 
-						} else{
-							?>
+					} else {
+						?>
 								<div class="wps_upsell_offer_template_preview_two_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/offer-template-two.png' ); ?>">
 								</div>
-							<?php							
-						}
+							<?php
+					}
 					?>
 						
 					</div>
@@ -411,21 +411,22 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 					<div class="wps_upsell_offer_template_preview_three">
 					<?php
 
-						if ( wps_upsell_divi_builder_plugin_active() ) {
+					if ( wps_upsell_divi_builder_plugin_active() ) {
 
-							?>
+						?>
 								<div class="wps_upsell_offer_template_preview_three_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/divi/offer-template-three.png' ); ?>">
 								</div>
 							<?php
 
 
-						} else{
-							?>
+					} else {
+						?>
 								<div class="wps_upsell_offer_template_preview_three_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/offer-template-three.png' ); ?>">
 								</div>
-							<?php							
-						}
-					?>	
+							<?php
+					}
+					?>
+						
 					
 					
 					
@@ -808,7 +809,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 				// Funnel Offers array. Foreach as offer_id => offer_id.
 				// Key and value are always same as offer array keys are not reindexed.
-				foreach ( $wps_wocuf_pro_existing_offers as 
+				foreach ( $wps_wocuf_pro_existing_offers as
 				$current_offer_id => $current_offer_id_val ) {
 
 					$wps_wocuf_pro_buy_attached_offers = '';
@@ -1016,15 +1017,8 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 								<?php
 								$assigned_post_id = ! empty( $post_id_assigned_array[ $current_offer_id ] ) ? $post_id_assigned_array[ $current_offer_id ] : '';
-							
-								
-								if ( ! wps_upsell_lite_elementor_plugin_active() ) {
-									//$assigned_post_id = '';
-								}
-								if (  ! wps_upsell_divi_builder_plugin_active() ){
-									
-								}
-								
+
+
 								?>
 								<td>
 
@@ -1033,9 +1027,9 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 										<?php
 
 										$offer_template_active = ! empty( $wps_wocuf_pro_offer_active_template[ $current_offer_id ] ) ? $wps_wocuf_pro_offer_active_template[ $current_offer_id ] : 'one';
-										
+
 										if ( wps_upsell_lite_elementor_plugin_active() || wps_upsell_divi_builder_plugin_active() ) {
-											$offer_templates_array =array();
+											$offer_templates_array = array();
 
 											$offer_templates_array = array(
 												'one'   => esc_html__( 'STANDARD TEMPLATE', 'woo-one-click-upsell-funnel' ),
@@ -1044,8 +1038,8 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 											);
 										}
 
-									
-									
+
+
 
 										?>
 										<!-- Offer templates parent div start -->
@@ -1055,8 +1049,8 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 											<?php
 											foreach ( $offer_templates_array as $template_key => $template_name ) :
 
-												
-												
+
+
 												?>
 												<!-- Offer templates foreach start-->
 												<div class="wps_upsell_offer_template <?php echo esc_html( (string) $template_key === (string) $offer_template_active ? 'active' : '' ); ?>">
@@ -1068,36 +1062,35 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 														<div class="wps_upsell_offer_preview">
 
 															<?php
-														if ( 'one' == $template_key || 'two' == $template_key || 'three' == $template_key   ) {
-															if ( wps_upsell_divi_builder_plugin_active() ) {
-																?>
+															if ( 'one' == $template_key || 'two' == $template_key || 'three' == $template_key ) {
+																if ( wps_upsell_divi_builder_plugin_active() ) {
+																	?>
 																	<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/divi/offer-template-$template_key.png" ); ?>"></a>
-																<?php
-															} else{
-																?>
+																	<?php
+																} else {
+																	?>
 																	<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-$template_key.jpg" ); ?>"></a>
+																	<?php
+
+																}
+															} else {
+																if ( wps_upsell_divi_builder_plugin_active() ) {
+																	?>
+																	<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/divi/offer-template-$template_key.png" ); ?>"></a>
+																	<?php
+																} else {
+																	?>
+																	<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-$template_key.jpg" ); ?>"></a>
+																	<?php
+
+																}
+																?>
 																<?php
 
 															}
 
-															
-														} else {
-															if ( wps_upsell_divi_builder_plugin_active() ) {
-																?>
-																	<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/divi/offer-template-$template_key.png" ); ?>"></a>
-																<?php
-															} else{
-																?>
-																	<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-$template_key.jpg" ); ?>"></a>
-																<?php
-
-															}
 															?>
-															<?php
-
-														}
-
-														?>	
+															
 														</div>
 
 														<div class="wps_upsell_offer_action">
@@ -1122,7 +1115,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 													<?php
 											endforeach;
 											if ( wps_upsell_lite_elementor_plugin_active() || wps_upsell_divi_builder_plugin_active() ) {
-											?>
+												?>
 
 
 
@@ -1297,9 +1290,9 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 											</div>	
 											</div>
 											<!-- Offer templates 8 foreach start-->
-<?php
-											}				
-?>
+												<?php
+											}
+											?>
 
 
 											<!-- Offer link to custom page start-->
