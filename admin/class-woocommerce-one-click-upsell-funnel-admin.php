@@ -644,8 +644,14 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 											<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-											<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+											<?php
+												if ( !wps_upsell_divi_builder_plugin_active()){
+													?>
+														<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
+													<?php
+												}
+											?>
 										<?php endif; ?>
 									</div>
 								</div>	
@@ -679,8 +685,14 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 											<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-											<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+											<?php
+												if ( !wps_upsell_divi_builder_plugin_active()){
+													?>
+														<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
+													<?php
+												}
+											?>
 										<?php endif; ?>
 									</div>
 								</div>	
@@ -714,8 +726,14 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 			<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-			<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+			<?php
+				if ( !wps_upsell_divi_builder_plugin_active()){
+					?>
+						<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
+					<?php
+				}
+			?>
 		<?php endif; ?>
 	</div>
 </div>	
@@ -753,8 +771,14 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 			<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-			<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+			<?php
+				if ( !wps_upsell_divi_builder_plugin_active()){
+					?>
+						<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
+					<?php
+				}
+			?>
 		<?php endif; ?>
 	</div>
 </div>	
@@ -788,8 +812,14 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 			<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-			<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+			<?php
+				if ( !wps_upsell_divi_builder_plugin_active()){
+					?>
+						<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
+					<?php
+				}
+			?>
 		<?php endif; ?>
 	</div>
 </div>	
