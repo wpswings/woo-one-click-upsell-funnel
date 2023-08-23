@@ -1360,7 +1360,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 										<div class="wps_upsell_offer_template_unsupported">
 
-										<h4><?php esc_html_e( 'Please activate Elementor if you want to use our Pre-defined Templates, else make a custom page yourself and add link below.', 'woo-one-click-upsell-funnel' ); ?></h4>
+										<h4><?php esc_html_e( 'Please activate Elementor / Divi Theme if you want to use our Pre-defined Templates, else make a custom page yourself and add link below.', 'woo-one-click-upsell-funnel' ); ?></h4>
 										</div>
 
 										<?php
