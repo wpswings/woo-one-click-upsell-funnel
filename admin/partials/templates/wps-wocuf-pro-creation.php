@@ -1103,12 +1103,12 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 																<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 																<?php
-																	if ( !wps_upsell_divi_builder_plugin_active()){
-																		?>
+																if ( ! wps_upsell_divi_builder_plugin_active() ) {
+																	?>
 																			<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
 																		<?php
-																	}
+																}
 																?>
 																
 															<?php endif; ?>
@@ -1151,12 +1151,12 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 															<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
 															<?php
-																if ( !wps_upsell_divi_builder_plugin_active()){
-																	?>
+															if ( ! wps_upsell_divi_builder_plugin_active() ) {
+																?>
 																		<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
 																	<?php
-																}
+															}
 															?>
 														<?php endif; ?>
 													</div>
@@ -1191,12 +1191,12 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 															<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
 															<?php
-																if ( !wps_upsell_divi_builder_plugin_active()){
-																	?>
+															if ( ! wps_upsell_divi_builder_plugin_active() ) {
+																?>
 																		<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
 																	<?php
-																}
+															}
 															?>
 														<?php endif; ?>
 												</div>
@@ -1233,14 +1233,15 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 											<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-											<?php
-												if ( !wps_upsell_divi_builder_plugin_active()){
-													?>
+																						<?php
+																						if ( ! wps_upsell_divi_builder_plugin_active() ) {
+																							?>
 														<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-													<?php
-												}
-											?>																					<?php endif; ?>
+																							<?php
+																						}
+																						?>
+																																<?php endif; ?>
 											</div>
 											</div>	
 											</div>
@@ -1271,14 +1272,14 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 											<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-											<?php
-												if ( !wps_upsell_divi_builder_plugin_active()){
-													?>
+																						<?php
+																						if ( ! wps_upsell_divi_builder_plugin_active() ) {
+																							?>
 														<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-													<?php
-												}
-											?>
+																							<?php
+																						}
+																						?>
 																					<?php endif; ?>
 											</div>
 											</div>	
@@ -1312,14 +1313,14 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 											<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-											<?php
-												if ( !wps_upsell_divi_builder_plugin_active()){
-													?>
+																						<?php
+																						if ( ! wps_upsell_divi_builder_plugin_active() ) {
+																							?>
 														<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-													<?php
-												}
-											?>
+																							<?php
+																						}
+																						?>
 																					<?php endif; ?>
 											</div>
 											</div>	
@@ -1414,7 +1415,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 		</div>
 
 		<!-- Save Changes for whole funnel -->
-		<p class="submit">
+		<p class="submit wps-wocuf-sticky-btn">
 			<input type="submit" value="<?php esc_html_e( 'Save Changes', 'woo-one-click-upsell-funnel' ); ?>" class="button-primary woocommerce-save-button" name="wps_wocuf_pro_creation_setting_save" id="wps_wocuf_pro_creation_setting_save" >
 		</p>
 	</div>

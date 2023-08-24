@@ -1816,3 +1816,12 @@ button.button-primary.wps_upsell_activate_offer_template:focus {
 	border-top: solid 1px #00bda5;
 	padding: 20px 15px;
   }
+
+
+  
+  .wps-wocuf-sticky-btn{
+    position: sticky;
+    bottom: 0;
+    background-color: #fff;
+    padding: 20px 0px !important;
+}
