@@ -428,7 +428,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 										$funnel_offer_post_id_assigned = ! empty( $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_upsell_post_id_assigned'][ $ocuf_ofd ] ) ? $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_upsell_post_id_assigned'][ $ocuf_ofd ] : '';
 
 										// When funnel is saved since v3.0.0 and offer post id is assigned and elementor active.
-										if ( ! empty( $funnel_offer_post_id_assigned ) && 'true' === $funnel_saved_after_version_3 && wps_upsell_lite_elementor_plugin_active() ) {
+										if ( ! empty( $funnel_offer_post_id_assigned ) && 'true' === $funnel_saved_after_version_3 && wps_upsell_lite_elementor_plugin_active() || wps_upsell_divi_builder_plugin_active() ) {
 
 											$redirect_to_upsell = false;
 
@@ -666,7 +666,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				$funnel_offer_post_id_assigned = ! empty( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_upsell_post_id_assigned'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_upsell_post_id_assigned'][ $offer_id ] : '';
 
 				// When funnel is saved since v3.0.0 and offer post id is assigned and elementor active.
-				if ( ! empty( $funnel_offer_post_id_assigned ) && 'true' === $funnel_saved_after_version_3 && wps_upsell_lite_elementor_plugin_active() ) {
+				if ( ! empty( $funnel_offer_post_id_assigned ) && 'true' === $funnel_saved_after_version_3 && wps_upsell_lite_elementor_plugin_active() || wps_upsell_divi_builder_plugin_active() ) {
 
 					$redirect_to_upsell = false;
 
@@ -1180,7 +1180,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 							$funnel_offer_post_id_assigned = ! empty( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_upsell_post_id_assigned'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_upsell_post_id_assigned'][ $offer_id ] : '';
 
 							// When funnel is saved since v3.0.0 and offer post id is assigned and elementor active.
-							if ( ! empty( $funnel_offer_post_id_assigned ) && 'true' === $funnel_saved_after_version_3 && wps_upsell_lite_elementor_plugin_active() ) {
+							if ( ! empty( $funnel_offer_post_id_assigned ) && 'true' === $funnel_saved_after_version_3 && wps_upsell_lite_elementor_plugin_active() || wps_upsell_divi_builder_plugin_active() ) {
 
 								$redirect_to_upsell = false;
 
@@ -1790,7 +1790,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 						$id    = $atts['id'];
 						$class = $atts['class'];
 						$style = $atts['style'];
-
+						echo 'cxfvgcfg-----------------------';
 						$upsell_product_image_src_div =
 							"<div id='$id' class='wps_upsell_offer_product_image $class' style='$style'>
 								<img src='$upsell_product_image_src'>
@@ -1840,7 +1840,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 							$id    = $atts['id'];
 							$class = $atts['class'];
 							$style = $atts['style'];
-
+							echo 'cxfvgcfg------------jjjj-----------';
 							$upsell_product_image_src_div =
 								"<div id='$id' class='wps_upsell_offer_product_image $class' style='$style'>
 									<img src='$upsell_product_image_src'>
@@ -1885,7 +1885,6 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 					"<div id='$id' class='wps_upsell_offer_product_image $class' style='$style'>
 						<img src='$upsell_product_image_src'>
 					</div>";
-
 				return $upsell_product_image_src_div;
 			}
 		}
@@ -2745,6 +2744,30 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 				$validate_shortcode = $this->validate_shortcode();
 
+				if ( wps_upsell_divi_builder_plugin_active() ) {
+
+					// 1833px
+					update_post_meta( $post->ID, '_et_pb_page_layout', 'et_no_sidebar' );
+					?>
+						<style type="text/css">	
+							body{
+								margin: auto;
+							}
+							.main_title{
+								display: none !important;
+							}
+							.page-id-<?php echo esc_attr( $post->ID ); ?> header, .page-id-<?php echo esc_attr( $post->ID ); ?> footer {
+								display: none !important; }
+							.container{
+								width:100% !important;
+								max-width: 100% !important;
+							}
+							body:not(.et-tb) #main-content .container, body:not(.et-tb-has-header) #main-content .container {
+								padding-top: 0px !important;
+							}
+						</style>
+					<?php
+				}
 				if ( false === $validate_shortcode ) {
 
 					$this->expire_offer();

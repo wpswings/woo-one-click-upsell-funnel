@@ -367,18 +367,69 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 				<div class="wps_upsell_offer_template_previews">
 
 					<div class="wps_upsell_offer_template_preview_one">
-						<div class="wps_upsell_offer_template_preview_one_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/offer-template-one.png' ); ?>">
-						</div>
+						<?php
+
+						if ( wps_upsell_divi_builder_plugin_active() ) {
+
+							?>
+								<div class="wps_upsell_offer_template_preview_one_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/divi/offer-template-one.png' ); ?>">
+								</div>
+							<?php
+
+
+						} else {
+							?>
+								<div class="wps_upsell_offer_template_preview_one_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/offer-template-one.png' ); ?>">
+								</div>
+							<?php
+						}
+						?>
+						
 					</div>
 
 					<div class="wps_upsell_offer_template_preview_two">
-						<div class="wps_upsell_offer_template_preview_two_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/offer-template-two.png' ); ?>">
-						</div>
+					<?php
+
+					if ( wps_upsell_divi_builder_plugin_active() ) {
+
+						?>
+								<div class="wps_upsell_offer_template_preview_two_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/divi/offer-template-two.png' ); ?>">
+								</div>
+							<?php
+
+
+					} else {
+						?>
+								<div class="wps_upsell_offer_template_preview_two_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/offer-template-two.png' ); ?>">
+								</div>
+							<?php
+					}
+					?>
+						
 					</div>
 
 					<div class="wps_upsell_offer_template_preview_three">
-						<div class="wps_upsell_offer_template_preview_three_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/offer-template-three.png' ); ?>">
-						</div>
+					<?php
+
+					if ( wps_upsell_divi_builder_plugin_active() ) {
+
+						?>
+								<div class="wps_upsell_offer_template_preview_three_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/divi/offer-template-three.png' ); ?>">
+								</div>
+							<?php
+
+
+					} else {
+						?>
+								<div class="wps_upsell_offer_template_preview_three_sub_div"><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-previews/offer-template-three.png' ); ?>">
+								</div>
+							<?php
+					}
+					?>
+						
+					
+					
+					
 					</div>
 
 					<div class="wps_upsell_offer_template_preview_four">
@@ -758,7 +809,8 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 				// Funnel Offers array. Foreach as offer_id => offer_id.
 				// Key and value are always same as offer array keys are not reindexed.
-				foreach ( $wps_wocuf_pro_existing_offers as $current_offer_id => $current_offer_id_val ) {
+				foreach ( $wps_wocuf_pro_existing_offers as
+				$current_offer_id => $current_offer_id_val ) {
 
 					$wps_wocuf_pro_buy_attached_offers = '';
 
@@ -965,9 +1017,8 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 								<?php
 								$assigned_post_id = ! empty( $post_id_assigned_array[ $current_offer_id ] ) ? $post_id_assigned_array[ $current_offer_id ] : '';
-								if ( ! wps_upsell_lite_elementor_plugin_active() ) {
-									$assigned_post_id = '';
-								}
+
+
 								?>
 								<td>
 
@@ -977,11 +1028,18 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 										$offer_template_active = ! empty( $wps_wocuf_pro_offer_active_template[ $current_offer_id ] ) ? $wps_wocuf_pro_offer_active_template[ $current_offer_id ] : 'one';
 
-										$offer_templates_array = array(
-											'one'   => esc_html__( 'STANDARD TEMPLATE', 'woo-one-click-upsell-funnel' ),
-											'two'   => esc_html__( 'CREATIVE TEMPLATE', 'woo-one-click-upsell-funnel' ),
-											'three' => esc_html__( 'VIDEO TEMPLATE', 'woo-one-click-upsell-funnel' ),
-										);
+										if ( wps_upsell_lite_elementor_plugin_active() || wps_upsell_divi_builder_plugin_active() ) {
+											$offer_templates_array = array();
+
+											$offer_templates_array = array(
+												'one'   => esc_html__( 'STANDARD TEMPLATE', 'woo-one-click-upsell-funnel' ),
+												'two'   => esc_html__( 'CREATIVE TEMPLATE', 'woo-one-click-upsell-funnel' ),
+												'three' => esc_html__( 'VIDEO TEMPLATE', 'woo-one-click-upsell-funnel' ),
+											);
+										}
+
+
+
 
 										?>
 										<!-- Offer templates parent div start -->
@@ -990,17 +1048,49 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 											<input class="wps_wocuf_pro_offer_template_input" type="hidden" name="wps_wocuf_pro_offer_template[<?php echo esc_html( $current_offer_id ); ?>]" value="<?php echo esc_html( $offer_template_active ); ?>">
 											<?php
 											foreach ( $offer_templates_array as $template_key => $template_name ) :
+
+
+
 												?>
 												<!-- Offer templates foreach start-->
 												<div class="wps_upsell_offer_template <?php echo esc_html( (string) $template_key === (string) $offer_template_active ? 'active' : '' ); ?>">
 
-													<div class="wps_upsell_offer_template_sub_div"> 
+													<div class="wps_upsell_offer_template_sub_div">
 
 														<h5><?php echo esc_html( $template_name ); ?></h5>
 
 														<div class="wps_upsell_offer_preview">
 
-															<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-$template_key.jpg" ); ?>"></a>
+															<?php
+															if ( 'one' == $template_key || 'two' == $template_key || 'three' == $template_key ) {
+																if ( wps_upsell_divi_builder_plugin_active() ) {
+																	?>
+																	<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/divi/offer-template-$template_key.png" ); ?>"></a>
+																	<?php
+																} else {
+																	?>
+																	<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-$template_key.jpg" ); ?>"></a>
+																	<?php
+
+																}
+															} else {
+																if ( wps_upsell_divi_builder_plugin_active() ) {
+																	?>
+																	<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/divi/offer-template-$template_key.png" ); ?>"></a>
+																	<?php
+																} else {
+																	?>
+																	<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-$template_key.jpg" ); ?>"></a>
+																	<?php
+
+																}
+																?>
+																<?php
+
+															}
+
+															?>
+															
 														</div>
 
 														<div class="wps_upsell_offer_action">
@@ -1012,9 +1102,15 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 															<?php else : ?>
 
 																<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+																<?php
+																if ( ! wps_upsell_divi_builder_plugin_active() ) {
+																	?>
+																			<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-																<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
-
+																		<?php
+																}
+																?>
+																
 															<?php endif; ?>
 														</div>
 
@@ -1024,185 +1120,216 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 												<!-- Offer templates foreach end-->
 													<?php
 											endforeach;
-											?>
+											if ( wps_upsell_lite_elementor_plugin_active() || wps_upsell_divi_builder_plugin_active() ) {
+												?>
+
+
 
 											<!-- Offer templates 4 foreach start-->
 						
-						<div class="wps_upsell_offer_template ">
+										<div class="wps_upsell_offer_template ">
 
-								<div class="wps_upsell_offer_template_sub_div"> 
+												<div class="wps_upsell_offer_template_sub_div"> 
 
-									<h5> <?php esc_html_e( 'FITNESS TEMPLATE', 'woo-one-click-upsell-funnel' ); ?></h5>
+													<h5> <?php esc_html_e( 'FITNESS TEMPLATE', 'woo-one-click-upsell-funnel' ); ?></h5>
 
-									<div class="wps_upsell_offer_preview">
+													<div class="wps_upsell_offer_preview">
 
-										<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="four" >
-											<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-four.png" ); ?>"></a>
-									</div>
+														<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="four" >
+															<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-thumbnails/offer-template-four.png' ); ?>"></a>
+													</div>
 
-									<div class="wps_upsell_offer_action">
+													<div class="wps_upsell_offer_action">
 
-										<?php if ( $template_key !== $offer_template_active ) : ?>
+														<?php if ( $template_key !== $offer_template_active ) : ?>
+
+															<input type="button" class=" wps_upsell_activate_offer_template_pro ubo_offer_input" value="<?php esc_html_e( 'Upgrade To Pro', 'woo-one-click-upsell-funnel' ); ?>"/>
+
+											
+														<?php else : ?>
+
+															<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+
+															<?php
+															if ( ! wps_upsell_divi_builder_plugin_active() ) {
+																?>
+																		<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+
+																	<?php
+															}
+															?>
+														<?php endif; ?>
+													</div>
+												</div>	
+										</div>
+
+										<!-- Offer templates 4 foreach start-->
+
+
+										<!-- Offer templates 5 foreach start-->
+										
+										<div class="wps_upsell_offer_template ">
+
+											<div class="wps_upsell_offer_template_sub_div"> 
+
+												<h5> <?php esc_html_e( 'PET SHOP TEMPLATE', 'woo-one-click-upsell-funnel' ); ?></h5>
+
+												<div class="wps_upsell_offer_preview">
+
+													<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="five" >
+													<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-thumbnails/offer-template-five.png' ); ?>"></a>
+												</div>
+
+												<div class="wps_upsell_offer_action">
+
+														<?php if ( $template_key !== $offer_template_active ) : ?>
+
+															<input type="button" class=" wps_upsell_activate_offer_template_pro ubo_offer_input" value="<?php esc_html_e( 'Upgrade To Pro', 'woo-one-click-upsell-funnel' ); ?>"/>
+
+														<?php else : ?>
+
+															<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+
+															<?php
+															if ( ! wps_upsell_divi_builder_plugin_active() ) {
+																?>
+																		<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+
+																	<?php
+															}
+															?>
+														<?php endif; ?>
+												</div>
+											</div>	
+										</div>
+
+											<!-- Offer templates 5 foreach start-->
+
+
+											
+
+											<!-- Offer templates 7 foreach start-->
+
+											<div class="wps_upsell_offer_template ">
+
+											<div class="wps_upsell_offer_template_sub_div"> 
+
+											<h5> <?php esc_html_e( 'BEAUTY & MAKEUP TEMPLATE', 'woo-one-click-upsell-funnel' ); ?></h5>
+
+											<div class="wps_upsell_offer_preview">
+
+											<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="seven" >
+											<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-thumbnails/offer-template-seven.png' ); ?>"></a>
+											</div>
+
+											<div class="wps_upsell_offer_action">
+
+																					<?php if ( $template_key !== $offer_template_active ) : ?>
 
 											<input type="button" class=" wps_upsell_activate_offer_template_pro ubo_offer_input" value="<?php esc_html_e( 'Upgrade To Pro', 'woo-one-click-upsell-funnel' ); ?>"/>
 
-							
-										<?php else : ?>
+
+																					<?php else : ?>
 
 											<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-											<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+																						<?php
+																						if ( ! wps_upsell_divi_builder_plugin_active() ) {
+																							?>
+														<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-										<?php endif; ?>
-									</div>
-								</div>	
-						</div>
+																							<?php
+																						}
+																						?>
+																																<?php endif; ?>
+											</div>
+											</div>	
+											</div>
 
-						<!-- Offer templates 4 foreach start-->
+											<!-- Offer templates 7 foreach start-->
+											<!-- Offer templates 6 foreach start-->
 
+											<div class="wps_upsell_offer_template ">
 
-						<!-- Offer templates 5 foreach start-->
-						
-						<div class="wps_upsell_offer_template ">
+											<div class="wps_upsell_offer_template_sub_div"> 
 
-<div class="wps_upsell_offer_template_sub_div"> 
+											<h5> <?php esc_html_e( 'ROSE PINK TEMPLATE', 'woo-one-click-upsell-funnel' ); ?></h5>
 
-	<h5> <?php esc_html_e( 'PET SHOP TEMPLATE', 'woo-one-click-upsell-funnel' ); ?></h5>
+											<div class="wps_upsell_offer_preview">
 
-	<div class="wps_upsell_offer_preview">
+											<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="six" >
+											<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-thumbnails/offer-template-six.png' ); ?>"></a>
+											</div>
 
-		<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="five" >
-		<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-five.png" ); ?>"></a>
-	</div>
+											<div class="wps_upsell_offer_action">
 
-	<div class="wps_upsell_offer_action">
+																					<?php if ( $template_key !== $offer_template_active ) : ?>
 
-		<?php if ( $template_key !== $offer_template_active ) : ?>
+											<input type="button" class=" wps_upsell_activate_offer_template_pro ubo_offer_input" value="<?php esc_html_e( 'Upgrade To Pro', 'woo-one-click-upsell-funnel' ); ?>"/>
 
-			<input type="button" class=" wps_upsell_activate_offer_template_pro ubo_offer_input" value="<?php esc_html_e( 'Upgrade To Pro', 'woo-one-click-upsell-funnel' ); ?>"/>
 
+																					<?php else : ?>
 
-		<?php else : ?>
+											<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-			<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+																						<?php
+																						if ( ! wps_upsell_divi_builder_plugin_active() ) {
+																							?>
+														<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-			<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+																							<?php
+																						}
+																						?>
+																					<?php endif; ?>
+											</div>
+											</div>	
+											</div>
 
-		<?php endif; ?>
-	</div>
-</div>	
-</div>
+											<!-- Offer templates 6 foreach start-->
 
-<!-- Offer templates 5 foreach start-->
 
+											<!-- Offer templates 8 foreach start-->
 
-<!-- Offer templates 6 foreach start-->
+											<div class="wps_upsell_offer_template ">
 
-<div class="wps_upsell_offer_template ">
+											<div class="wps_upsell_offer_template_sub_div"> 
 
-<div class="wps_upsell_offer_template_sub_div"> 
+											<h5> <?php esc_html_e( 'JULIUS-SCISSOR TEMPLATE', 'woo-one-click-upsell-funnel' ); ?></h5>
 
-<h5> <?php esc_html_e( 'ROSE PINK TEMPLATE', 'woo-one-click-upsell-funnel' ); ?></h5>
+											<div class="wps_upsell_offer_preview">
 
-<div class="wps_upsell_offer_preview">
+											<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="eight" >
+											<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-thumbnails/offer-template-eight.png' ); ?>"></a>
+											</div>
 
-<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="six" >
-<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-six.png" ); ?>"></a>
-</div>
+											<div class="wps_upsell_offer_action">
 
-<div class="wps_upsell_offer_action">
+																					<?php if ( $template_key !== $offer_template_active ) : ?>
 
-<?php if ( $template_key !== $offer_template_active ) : ?>
+											<input type="button" class=" wps_upsell_activate_offer_template_pro ubo_offer_input" value="<?php esc_html_e( 'Upgrade To Pro', 'woo-one-click-upsell-funnel' ); ?>"/>
 
-<input type="button" class=" wps_upsell_activate_offer_template_pro ubo_offer_input" value="<?php esc_html_e( 'Upgrade To Pro', 'woo-one-click-upsell-funnel' ); ?>"/>
 
+																					<?php else : ?>
 
-<?php else : ?>
+											<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+																						<?php
+																						if ( ! wps_upsell_divi_builder_plugin_active() ) {
+																							?>
+														<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+																							<?php
+																						}
+																						?>
+																					<?php endif; ?>
+											</div>
+											</div>	
+											</div>
+											<!-- Offer templates 8 foreach start-->
+												<?php
+											}
+											?>
 
-<?php endif; ?>
-</div>
-</div>	
-</div>
-
-<!-- Offer templates 6 foreach start-->
-
-
-
-
-
-
-<!-- Offer templates 7 foreach start-->
-
-<div class="wps_upsell_offer_template ">
-
-<div class="wps_upsell_offer_template_sub_div"> 
-
-<h5> <?php esc_html_e( 'BEAUTY & MAKEUP TEMPLATE', 'woo-one-click-upsell-funnel' ); ?></h5>
-
-<div class="wps_upsell_offer_preview">
-
-<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="seven" >
-<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-seven.png" ); ?>"></a>
-</div>
-
-<div class="wps_upsell_offer_action">
-
-<?php if ( $template_key !== $offer_template_active ) : ?>
-
-<input type="button" class=" wps_upsell_activate_offer_template_pro ubo_offer_input" value="<?php esc_html_e( 'Upgrade To Pro', 'woo-one-click-upsell-funnel' ); ?>"/>
-
-
-<?php else : ?>
-
-<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
-
-<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
-
-<?php endif; ?>
-</div>
-</div>	
-</div>
-
-<!-- Offer templates 7 foreach start-->
-
-
-<!-- Offer templates 8 foreach start-->
-
-<div class="wps_upsell_offer_template ">
-
-<div class="wps_upsell_offer_template_sub_div"> 
-
-<h5> <?php esc_html_e( 'BEAUTY & MAKEUP TEMPLATE', 'woo-one-click-upsell-funnel' ); ?></h5>
-
-<div class="wps_upsell_offer_preview">
-
-<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="eight" >
-<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-eight.png" ); ?>"></a>
-</div>
-
-<div class="wps_upsell_offer_action">
-
-<?php if ( $template_key !== $offer_template_active ) : ?>
-
-<input type="button" class=" wps_upsell_activate_offer_template_pro ubo_offer_input" value="<?php esc_html_e( 'Upgrade To Pro', 'woo-one-click-upsell-funnel' ); ?>"/>
-
-
-<?php else : ?>
-
-<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
-
-<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
-
-<?php endif; ?>
-</div>
-</div>	
-</div>
-
-<!-- Offer templates 8 foreach start-->
 
 											<!-- Offer link to custom page start-->
 											<div class="wps_upsell_offer_template wps_upsell_custom_page_link_div <?php echo esc_html( 'custom' === $offer_template_active ? 'active' : '' ); ?>">
@@ -1234,7 +1361,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 										<div class="wps_upsell_offer_template_unsupported">
 
-										<h4><?php esc_html_e( 'Please activate Elementor if you want to use our Pre-defined Templates, else make a custom page yourself and add link below.', 'woo-one-click-upsell-funnel' ); ?></h4>
+										<h4><?php esc_html_e( 'Please activate Elementor / Divi Theme if you want to use our Pre-defined Templates, else make a custom page yourself and add link below.', 'woo-one-click-upsell-funnel' ); ?></h4>
 										</div>
 
 										<?php
@@ -1288,7 +1415,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 		</div>
 
 		<!-- Save Changes for whole funnel -->
-		<p class="submit">
+		<p class="submit wps-wocuf-sticky-btn">
 			<input type="submit" value="<?php esc_html_e( 'Save Changes', 'woo-one-click-upsell-funnel' ); ?>" class="button-primary woocommerce-save-button" name="wps_wocuf_pro_creation_setting_save" id="wps_wocuf_pro_creation_setting_save" >
 		</p>
 	</div>

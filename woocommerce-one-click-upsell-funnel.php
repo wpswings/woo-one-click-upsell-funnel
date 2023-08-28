@@ -15,12 +15,12 @@
  * Plugin Name:           One Click Upsell Funnel for Woocommerce
  * Plugin URI:            https://wordpress.org/plugins/woo-one-click-upsell-funnel/
  * Description:           One Click Upsell Funnel for WooCommerce allows showing post-checkout offers to customers which helps to increase Average Order Value & Revenue. <a href="https://wpswings.com/woocommerce-plugins/?utm_source=wpswings-upsell-shop&utm_medium=upsell-org-backend&utm_campaign=shop-page" target="_blank" >Elevate your e-commerce store by exploring more on <strong>WP Swings</strong></a>.
- * Version:               3.2.7
+ * Version:               3.3.0
  *
  * Requires at least:     5.5.0
- * Tested up to:          6.2.0
+ * Tested up to:          6.3.0
  * WC requires at least:  5.5.0
- * WC tested up to:       7.6.1
+ * WC tested up to:       8.0.2
  *
  * Author:                WP Swings
  * Author URI:            https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-org-backend&utm_campaign=official
@@ -162,39 +162,6 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 	// If pro plugin not active, then load Org Plugin else Don't.
 	if ( ! wps_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
 
-		if ( empty( get_option( 'wocuf_lite_migration_status', false ) ) ) {
-			add_action( 'after_plugin_row_' . plugin_basename( __FILE__ ), 'wps_wocuf_lite_migrate_notice', 0, 3 );
-
-		}
-		/**
-		 * Migration to new domain notice.
-		 *
-		 * @param string $plugin_file Path to the plugin file relative to the plugins directory.
-		 * @param array  $plugin_data An array of plugin data.
-		 * @param string $status Status filter currently applied to the plugin list.
-		 */
-		function wps_wocuf_lite_migrate_notice( $plugin_file, $plugin_data, $status ) {
-
-			?>
-			<tr class="plugin-update-tr active notice-warning notice-alt">
-				<td colspan="4" class="plugin-update colspanchange">
-					<div class="notice notice-error inline update-message notice-alt">
-						<p class='wps-notice-title wps-notice-section'>
-							<?php esc_html_e( 'Heads up. The latest update includes some substantial changes across different areas of the plugin. Please visit your dashboard and ', 'woo-one-click-upsell-funnel' ); ?>
-							<a href="<?php echo esc_url( admin_url( 'admin.php?page=wps-wocuf-setting&tab=funnels-list' ) ); ?>"><?php esc_html_e( 'Click Here', 'woo-one-click-upsell-funnel' ); ?></a>
-							<?php esc_html_e( 'migrate now button.', 'woo-one-click-upsell-funnel' ); ?>
-						</p>
-					</div>
-				</td>
-			</tr>
-			<style>
-				.wps-notice-section > p:before {
-					content: none;
-				}
-			</style>
-			<?php
-		}
-
 		define( 'WPS_WOCUF_URL', plugin_dir_url( __FILE__ ) );
 
 		define( 'WPS_WOCUF_DIRPATH', plugin_dir_path( __FILE__ ) );
@@ -254,7 +221,7 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 				$row_meta = array(
 					'demo'    => '<a href="https://demo.wpswings.com/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=wpswings-upsell-demo&utm_medium=upsell-org-backend&utm_campaign=upsell-demo" target="_blank"><img class="wps-info-img" src="' . esc_url( WPS_WOCUF_URL ) . 'admin/resources/icons/Demo.svg" class="wps-info-img" alt="Demo image">' . esc_html__( 'Demo', 'woo-one-click-upsell-funnel' ) . '</a>',
 					'doc'     => '<a href="https://docs.wpswings.com/one-click-upsell-funnel-for-woocommerce/?utm_source=wpswings-upsell-doc&utm_medium=upsell-org-backend&utm_campaign=upsell-doc" target="_blank"><img class="wps-info-img" src="' . esc_url( WPS_WOCUF_URL ) . 'admin/resources/icons/Documentation.svg" class="wps-info-img" alt="Documentation image">' . esc_html__( 'Documentation', 'woo-one-click-upsell-funnel' ) . '</a>',
-					'video'     => '<a href="https://www.youtube.com/watch?v=PvyKF8WEkAk" target="_blank"><img class="wps-info-img" src="' . esc_url( WPS_WOCUF_URL ) . 'admin/resources/icons/video.png" class="wps-info-img" alt="Documentation image">' . esc_html__( 'Video', 'woo-one-click-upsell-funnel' ) . '</a>',	
+					'video'     => '<a href="https://www.youtube.com/watch?v=PvyKF8WEkAk" target="_blank"><img class="wps-info-img" src="' . esc_url( WPS_WOCUF_URL ) . 'admin/resources/icons/video.png" class="wps-info-img" alt="Documentation image">' . esc_html__( 'Video', 'woo-one-click-upsell-funnel' ) . '</a>',
 					'support' => '<a href="https://wpswings.com/submit-query/?utm_source=wpswings-upsell-support&utm_medium=upsell-org-backend&utm_campaign=support" target="_blank"><img class="wps-info-img" src="' . esc_url( WPS_WOCUF_URL ) . 'admin/resources/icons/Support.svg" class="wps-info-img" alt="DeSupportmo image">' . esc_html__( 'Support', 'woo-one-click-upsell-funnel' ) . '</a>',
 					'services' => '<a href="https://wpswings.com/woocommerce-services/?utm_source=wpswings-upsell-services&utm_medium=upsell-org-backend&utm_campaign=woocommerce-services" target="_blank"><img class="wps-info-img" src="' . esc_url( WPS_WOCUF_URL ) . 'admin/resources/icons/Services.svg" class="wps-info-img" alt="DeServicesmo image">' . esc_html__( 'Services', 'woo-one-click-upsell-funnel' ) . '</a>',
 
@@ -339,5 +306,7 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 		<?php endif;
 	}
 }
+
+
 
 ?>

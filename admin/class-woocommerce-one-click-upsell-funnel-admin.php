@@ -325,7 +325,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 			$funnel_offer_template_section_html = '';
 			$funnel_offer_post_id               = '';
 
-			if ( wps_upsell_lite_elementor_plugin_active() ) {
+			if ( wps_upsell_lite_elementor_plugin_active() || wps_upsell_divi_builder_plugin_active() ) {
 
 				// Create post for corresponding funnel and offer id.
 				$funnel_offer_post_id = wp_insert_post(
@@ -343,9 +343,40 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 				if ( $funnel_offer_post_id ) {
 
-					$elementor_data = wps_upsell_lite_elementor_offer_template_1();
-					update_post_meta( $funnel_offer_post_id, '_elementor_data', $elementor_data );
-					update_post_meta( $funnel_offer_post_id, '_elementor_edit_mode', 'builder' );
+					if ( wps_upsell_lite_elementor_plugin_active() ) {
+						$elementor_data = wps_upsell_lite_elementor_offer_template_1();
+						update_post_meta( $funnel_offer_post_id, '_elementor_data', $elementor_data );
+						update_post_meta( $funnel_offer_post_id, '_elementor_edit_mode', 'builder' );
+					} elseif ( wps_upsell_divi_builder_plugin_active() ) {
+
+						delete_post_meta( $funnel_offer_post_id, '_elementor_css' );
+						delete_post_meta( $funnel_offer_post_id, '_elementor_data' );
+						global $post;
+						$get_post_contents = '[et_pb_section fb_built="1" _builder_version="4.18.1" _module_preset="default" global_colors_info="{}"][et_pb_row column_structure="1_2,1_2" make_equal="on" _builder_version="4.18.1" _module_preset="default" custom_css_main_element="align-items: center" global_colors_info="{}"][et_pb_column type="1_2" _builder_version="4.18.1" _module_preset="default" global_colors_info="{}"][wps_upsell_image][/et_pb_column][et_pb_column type="1_2" _builder_version="4.18.1" _module_preset="default" global_colors_info="{}"][et_pb_text _builder_version="4.18.1" _module_preset="default" header_font="|700|||||||" header_text_color="#000000" header_font_size="40px" header_line_height="1.9em" header_2_font="|600|||||||" header_2_text_color="#000000" header_2_font_size="36px" header_2_line_height="1.6em" header_5_font="|700|||||||" header_5_text_color="#000000" header_5_line_height="2.3em" global_colors_info="{}"]<h2>[wps_upsell_title]</h2>
+						<p>[wps_upsell_desc]</p>
+						<h5>EXPIRING SOON</h5>
+						<h1>[wps_upsell_price]</h1>[/et_pb_text][et_pb_code _builder_version="4.18.1" _module_preset="default" global_colors_info="{}"]<style><!-- [et_pb_line_break_holder] -->  .custom-btn{<!-- [et_pb_line_break_holder] -->    background-color: #3ebf2e;<!-- [et_pb_line_break_holder] -->    padding: 14px 50px;<!-- [et_pb_line_break_holder] -->    color: #ffffff;<!-- [et_pb_line_break_holder] -->    display: inline-block;<!-- [et_pb_line_break_holder] -->    <!-- [et_pb_line_break_holder] -->  }<!-- [et_pb_line_break_holder] --></style><!-- [et_pb_line_break_holder] --><a href="[wps_upsell_yes]" style="background-color: #3ebf2e; padding: 10px 28px; display: inline-block; color: #fff; border-radius: 5px; margin-right: 20px; font-weight: 600;">ADD THIS TO MY ORDER</a><a href="[wps_upsell_no]" style="color: #05063d; text-decoration: underline;">No, I’m not interested</a>[/et_pb_code][/et_pb_column][/et_pb_row][/et_pb_section][et_pb_section fb_built="1" _builder_version="4.18.1" _module_preset="default" custom_padding="||0px||false|false" global_colors_info="{}"][et_pb_row _builder_version="4.18.1" _module_preset="default" global_colors_info="{}"][et_pb_column type="4_4" _builder_version="4.18.1" _module_preset="default" global_colors_info="{}"][et_pb_text _builder_version="4.18.1" _module_preset="default" header_3_font="|600|||||||" header_3_text_color="#000000" header_3_font_size="28px" width="61%" module_alignment="center" global_colors_info="{}"]<h3 style="text-align: center;">Amazing Features</h3>
+						<div>
+						<div style="text-align: center;"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tristique sit ut id cursus bibendum et. At ut odio tincidunt ipsum hac amet.Lorem</span></div>
+						</div>[/et_pb_text][/et_pb_column][/et_pb_row][/et_pb_section][et_pb_section fb_built="1" _builder_version="4.18.1" _module_preset="default" custom_padding="0px||||false|false" global_colors_info="{}"][et_pb_row column_structure="1_3,1_3,1_3" _builder_version="4.18.1" _module_preset="default" global_colors_info="{}"][et_pb_column type="1_3" _builder_version="4.18.1" _module_preset="default" global_colors_info="{}"][et_pb_text _builder_version="4.18.1" _module_preset="default" header_3_font="|600|||||||" header_3_text_color="#000000" header_3_font_size="24px" header_3_line_height="2em" global_colors_info="{}"]<h3 style="text-align: center;">Features #1</h3>
+						<p style="text-align: center;">Your content goes here. Edit or remove this text inline or in the module Content settings. You can also style every aspect of this content.</p>[/et_pb_text][/et_pb_column][et_pb_column type="1_3" _builder_version="4.18.1" _module_preset="default" global_colors_info="{}"][et_pb_text _builder_version="4.18.1" _module_preset="default" header_3_font="|600|||||||" header_3_text_color="#000000" header_3_font_size="24px" header_3_line_height="2em" global_colors_info="{}"]<h3 style="text-align: center;">Features #1</h3>
+						<p style="text-align: center;">Your content goes here. Edit or remove this text inline or in the module Content settings. You can also style every aspect of this content.</p>[/et_pb_text][/et_pb_column][et_pb_column type="1_3" _builder_version="4.18.1" _module_preset="default" global_colors_info="{}"][et_pb_text _builder_version="4.18.1" _module_preset="default" header_3_font="|600|||||||" header_3_text_color="#000000" header_3_font_size="24px" header_3_line_height="2em" global_colors_info="{}"]<h3 style="text-align: center;">Features #1</h3>
+						<p style="text-align: center;">Your content goes here. Edit or remove this text inline or in the module Content settings. You can also style every aspect of this content.</p>[/et_pb_text][/et_pb_column][/et_pb_row][/et_pb_section][et_pb_section fb_built="1" _builder_version="4.18.1" _module_preset="default" hover_enabled="0" global_colors_info="{}" sticky_enabled="0"][et_pb_row _builder_version="4.18.1" _module_preset="default" custom_css_main_element="text-align: center" width="500px" hover_enabled="0" sticky_enabled="0" border_radii="on|7px|7px|7px|7px" border_color_all="#c6c6c6" box_shadow_style="preset1" custom_padding="40px|30px|40px|30px|false|false"][et_pb_column _builder_version="4.18.1" _module_preset="default" type="4_4"][et_pb_text _builder_version="4.18.1" _module_preset="default" custom_css_main_element="text-align: center;" hover_enabled="0" sticky_enabled="0" header_3_font_size="21px" header_3_font="|700|||||||" header_3_line_height="0.6em"]<div style="display: flex; justify-content: center; margin-bottom: 15px;"><svg width="22" height="20" viewbox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5245 0.463526C10.6741 0.00287054 11.3259 0.00287005 11.4755 0.463525L13.5819 6.9463C13.6488 7.15232 13.8408 7.2918 14.0574 7.2918H20.8738C21.3582 7.2918 21.5596 7.9116 21.1677 8.1963L15.6531 12.2029C15.4779 12.3302 15.4046 12.5559 15.4715 12.7619L17.5779 19.2447C17.7276 19.7053 17.2003 20.0884 16.8085 19.8037L11.2939 15.7971C11.1186 15.6698 10.8814 15.6698 10.7061 15.7971L5.19153 19.8037C4.79967 20.0884 4.27243 19.7053 4.42211 19.2447L6.52849 12.7619C6.59542 12.5559 6.5221 12.3302 6.34685 12.2029L0.832272 8.1963C0.440415 7.9116 0.641802 7.2918 1.12616 7.2918H7.94256C8.15917 7.2918 8.35115 7.15232 8.41809 6.9463L10.5245 0.463526Z" fill="#FDD600"></path></svg><br /><svg width="22" height="20" viewbox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5245 0.463526C10.6741 0.00287054 11.3259 0.00287005 11.4755 0.463525L13.5819 6.9463C13.6488 7.15232 13.8408 7.2918 14.0574 7.2918H20.8738C21.3582 7.2918 21.5596 7.9116 21.1677 8.1963L15.6531 12.2029C15.4779 12.3302 15.4046 12.5559 15.4715 12.7619L17.5779 19.2447C17.7276 19.7053 17.2003 20.0884 16.8085 19.8037L11.2939 15.7971C11.1186 15.6698 10.8814 15.6698 10.7061 15.7971L5.19153 19.8037C4.79967 20.0884 4.27243 19.7053 4.42211 19.2447L6.52849 12.7619C6.59542 12.5559 6.5221 12.3302 6.34685 12.2029L0.832272 8.1963C0.440415 7.9116 0.641802 7.2918 1.12616 7.2918H7.94256C8.15917 7.2918 8.35115 7.15232 8.41809 6.9463L10.5245 0.463526Z" fill="#FDD600"></path></svg><br /><svg width="22" height="20" viewbox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5245 0.463526C10.6741 0.00287054 11.3259 0.00287005 11.4755 0.463525L13.5819 6.9463C13.6488 7.15232 13.8408 7.2918 14.0574 7.2918H20.8738C21.3582 7.2918 21.5596 7.9116 21.1677 8.1963L15.6531 12.2029C15.4779 12.3302 15.4046 12.5559 15.4715 12.7619L17.5779 19.2447C17.7276 19.7053 17.2003 20.0884 16.8085 19.8037L11.2939 15.7971C11.1186 15.6698 10.8814 15.6698 10.7061 15.7971L5.19153 19.8037C4.79967 20.0884 4.27243 19.7053 4.42211 19.2447L6.52849 12.7619C6.59542 12.5559 6.5221 12.3302 6.34685 12.2029L0.832272 8.1963C0.440415 7.9116 0.641802 7.2918 1.12616 7.2918H7.94256C8.15917 7.2918 8.35115 7.15232 8.41809 6.9463L10.5245 0.463526Z" fill="#FDD600"></path></svg><br /><svg width="22" height="20" viewbox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5245 0.463526C10.6741 0.00287054 11.3259 0.00287005 11.4755 0.463525L13.5819 6.9463C13.6488 7.15232 13.8408 7.2918 14.0574 7.2918H20.8738C21.3582 7.2918 21.5596 7.9116 21.1677 8.1963L15.6531 12.2029C15.4779 12.3302 15.4046 12.5559 15.4715 12.7619L17.5779 19.2447C17.7276 19.7053 17.2003 20.0884 16.8085 19.8037L11.2939 15.7971C11.1186 15.6698 10.8814 15.6698 10.7061 15.7971L5.19153 19.8037C4.79967 20.0884 4.27243 19.7053 4.42211 19.2447L6.52849 12.7619C6.59542 12.5559 6.5221 12.3302 6.34685 12.2029L0.832272 8.1963C0.440415 7.9116 0.641802 7.2918 1.12616 7.2918H7.94256C8.15917 7.2918 8.35115 7.15232 8.41809 6.9463L10.5245 0.463526Z" fill="#FDD600"></path></svg><br /><svg width="11" height="19" viewbox="0 0 11 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.19161 18.8037L10.794 14.7333C10.9235 14.6393 11.0001 14.4889 11.0001 14.3288V1.15688C11.0001 0.587488 10.2005 0.460849 10.0246 1.00237L8.41817 5.9463C8.35123 6.15232 8.15925 6.2918 7.94264 6.2918H1.12624C0.641882 6.2918 0.440495 6.9116 0.832352 7.1963L6.34693 11.2029C6.52218 11.3302 6.59551 11.5559 6.52857 11.7619L4.42219 18.2447C4.27251 18.7053 4.79975 19.0884 5.19161 18.8037Z" fill="#FDD600"></path></svg></div>
+						<p style="text-align: center;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tristique sit ut id cursus bibendum et. At ut odio tincidunt ipsum hac amet.Lorem</p>
+						<h3 style="text-align: center;">JANE AUSTIN</h3>
+						<p style="text-align: center;">FASHON BLOGGER</p>[/et_pb_text][/et_pb_column][/et_pb_row][/et_pb_section][et_pb_section fb_built="1" theme_builder_area="post_content" _builder_version="4.18.1" _module_preset="default"][et_pb_row _builder_version="4.18.1" _module_preset="default" column_structure="1_3,1_3,1_3" theme_builder_area="post_content"][et_pb_column _builder_version="4.18.1" _module_preset="default" type="1_3" theme_builder_area="post_content"][et_pb_text _builder_version="4.18.1" _module_preset="default" theme_builder_area="post_content" hover_enabled="0" sticky_enabled="0"]<h3>Fast Delivery</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tristique sit ut id cursus bibendum et. At ut odio tincidunt ipsum hac amet.Lorem</p>[/et_pb_text][/et_pb_column][et_pb_column _builder_version="4.18.1" _module_preset="default" type="1_3" theme_builder_area="post_content"][et_pb_text _builder_version="4.18.1" _module_preset="default" theme_builder_area="post_content" hover_enabled="0" sticky_enabled="0"]<h3>Fast Delivery</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tristique sit ut id cursus bibendum et. At ut odio tincidunt ipsum hac amet.Lorem</p>[/et_pb_text][/et_pb_column][et_pb_column _builder_version="4.18.1" _module_preset="default" type="1_3" theme_builder_area="post_content"][et_pb_text _builder_version="4.18.1" _module_preset="default" theme_builder_area="post_content" hover_enabled="0" sticky_enabled="0"]<h3>Fast Delivery</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tristique sit ut id cursus bibendum et. At ut odio tincidunt ipsum hac amet.Lorem</p>[/et_pb_text][/et_pb_column][/et_pb_row][/et_pb_section][et_pb_section fb_built="1" theme_builder_area="post_content" _builder_version="4.18.1" _module_preset="default" custom_padding="0px||0px||false|false" hover_enabled="0" sticky_enabled="0"][et_pb_row _builder_version="4.18.1" _module_preset="default" theme_builder_area="post_content"][et_pb_column _builder_version="4.18.1" _module_preset="default" type="4_4" theme_builder_area="post_content"][et_pb_text _builder_version="4.18.1" _module_preset="default" theme_builder_area="post_content" hover_enabled="0" sticky_enabled="0" header_5_font_size="12px" header_2_font="|700|||||||" header_2_font_size="31px" header_2_text_color="#000000"]<h5 style="text-align: center;">QUALITY YOU CAN TRUST</h5>
+					<h2 style="text-align: center;">Porduct details</h2>[/et_pb_text][et_pb_tabs _builder_version="4.18.1" _module_preset="default" theme_builder_area="post_content" custom_css_main_element="border: solid 0px||" custom_css_tabs_controls="  background-color: transparent;||  display: flex;||||" custom_css_tab="border: solid 0px;||margin-bottom: 0px;||color: #B8822C !important;||font-size: 24px" custom_css_active_tab="background-color: transparent;||color: #B8822C !important;" hover_enabled="0" sticky_enabled="0"][et_pb_tab title="info" _builder_version="4.18.1" _module_preset="default" theme_builder_area="post_content" hover_enabled="0" sticky_enabled="0"]<p>Your content goes here. Edit or remove this text inline or in the module Content settings. You can also style every aspect of this content in the module Design settings and even apply custom CSS to this text in the module Advanced settings.</p>[/et_pb_tab][et_pb_tab title="Size" _builder_version="4.18.1" _module_preset="default" theme_builder_area="post_content" hover_enabled="0" sticky_enabled="0"]<p>Your content goes here. Edit or remove this text inline or in the module Content settings. You can also style every aspect of this content in the module Design settings and even apply custom CSS to this text in the module Advanced settings.</p>[/et_pb_tab][et_pb_tab title="order" _builder_version="4.18.1" _module_preset="default" theme_builder_area="post_content" hover_enabled="0" sticky_enabled="0"]<p>Your content goes here. Edit or remove this text inline or in the module Content settings. You can also style every aspect of this content in the module Design settings and even apply custom CSS to this text in the module Advanced settings.</p>[/et_pb_tab][/et_pb_tabs][/et_pb_column][/et_pb_row][/et_pb_section][et_pb_section fb_built="1" theme_builder_area="post_content" _builder_version="4.18.1" _module_preset="default" disabled_on="off|off|off" hover_enabled="0" sticky_enabled="0"][et_pb_row _builder_version="4.18.1" _module_preset="default" theme_builder_area="post_content"][et_pb_column _builder_version="4.18.1" _module_preset="default" type="4_4" theme_builder_area="post_content"][et_pb_text _builder_version="4.18.1" _module_preset="default" theme_builder_area="post_content" header_2_font="|700|||||||" header_2_text_color="#000000" header_2_font_size="48px" hover_enabled="0" sticky_enabled="0"]<h2 style="text-align: center;"><strong>[wps_upsell_price]</strong></h2>[/et_pb_text][/et_pb_column][/et_pb_row][et_pb_row _builder_version="4.18.1" _module_preset="default" column_structure="1_6,1_6,1_6,1_6,1_6,1_6" theme_builder_area="post_content" hover_enabled="0" sticky_enabled="0" custom_css_main_element="display: flex;" width="500px" custom_padding="0px||0px||false|false"][et_pb_column _builder_version="4.18.1" _module_preset="default" type="1_6" theme_builder_area="post_content" hover_enabled="0" sticky_enabled="0"][et_pb_icon _builder_version="4.18.1" _module_preset="default" theme_builder_area="post_content" font_icon="&#xf1f3;||fa||400" hover_enabled="0" sticky_enabled="0" icon_width="60px" icon_color="#848484"][/et_pb_icon][/et_pb_column][et_pb_column _builder_version="4.18.1" _module_preset="default" type="1_6" theme_builder_area="post_content"][et_pb_icon _builder_version="4.18.1" _module_preset="default" theme_builder_area="post_content" font_icon="&#xf1f0;||fa||400" hover_enabled="0" sticky_enabled="0" icon_width="60px" icon_color="#848484"][/et_pb_icon][/et_pb_column][et_pb_column _builder_version="4.18.1" _module_preset="default" type="1_6" theme_builder_area="post_content"][et_pb_icon _builder_version="4.18.1" _module_preset="default" theme_builder_area="post_content" font_icon="&#xf1f2;||fa||400" hover_enabled="0" sticky_enabled="0" icon_width="60px" icon_color="#848484"][/et_pb_icon][/et_pb_column][et_pb_column _builder_version="4.18.1" _module_preset="default" type="1_6" theme_builder_area="post_content"][et_pb_icon _builder_version="4.18.1" _module_preset="default" theme_builder_area="post_content" font_icon="&#xf1f4;||fa||400" hover_enabled="0" sticky_enabled="0" icon_width="60px" icon_color="#848484"][/et_pb_icon][/et_pb_column][et_pb_column _builder_version="4.18.1" _module_preset="default" type="1_6" theme_builder_area="post_content"][et_pb_icon _builder_version="4.18.1" _module_preset="default" theme_builder_area="post_content" font_icon="&#xf1f5;||fa||400" hover_enabled="0" sticky_enabled="0" icon_width="60px" icon_color="#848484"][/et_pb_icon][/et_pb_column][et_pb_column _builder_version="4.18.1" _module_preset="default" type="1_6" theme_builder_area="post_content"][et_pb_icon _builder_version="4.18.1" _module_preset="default" theme_builder_area="post_content" font_icon="&#xf1f1;||fa||400" hover_enabled="0" sticky_enabled="0" icon_width="60px" icon_color="#848484"][/et_pb_icon][/et_pb_column][/et_pb_row][et_pb_row _builder_version="4.18.1" _module_preset="default" theme_builder_area="post_content"][et_pb_column _builder_version="4.18.1" _module_preset="default" type="4_4" theme_builder_area="post_content"][et_pb_code _builder_version="4.18.1" _module_preset="default" theme_builder_area="post_content" hover_enabled="0" sticky_enabled="0"]<style><!-- [et_pb_line_break_holder] -->  .custom-btn-full{<!-- [et_pb_line_break_holder] -->    width: 100%;<!-- [et_pb_line_break_holder] -->    text-align: center;<!-- [et_pb_line_break_holder] -->        border-radius: 5px;<!-- [et_pb_line_break_holder] -->  }.custom-btn-full-not{<!-- [et_pb_line_break_holder] -->    width: 80%;background:red;<!-- [et_pb_line_break_holder] -->    text-align: center;<!-- [et_pb_line_break_holder] -->        border-radius: 5px;<!-- [et_pb_line_break_holder] -->  }<!-- [et_pb_line_break_holder] --></style><!-- [et_pb_line_break_holder] --><a href="[wps_upsell_yes]" class="custom-btn custom-btn-full">Add This To My Order</a>[/et_pb_code][/et_pb_column][/et_pb_row][et_pb_row _builder_version="4.18.1" _module_preset="default" theme_builder_area="post_content" width="48%" hover_enabled="0" sticky_enabled="0"][et_pb_column _builder_version="4.18.1" _module_preset="default" type="4_4" theme_builder_area="post_content"][et_pb_text _builder_version="4.18.1" _module_preset="default" theme_builder_area="post_content" hover_enabled="0" sticky_enabled="0"]<p style="text-align: center;">Your content goes here. Edit or remove this text inline or in the module Content settings. You can also style every aspect of this content in the module Design settings and even apply custom CSS to this text in the module Advanced settings.</p>[/et_pb_text][et_pb_code _builder_version="4.18.1" _module_preset="default" theme_builder_area="post_content" hover_enabled="0" sticky_enabled="0"]<style><!-- [et_pb_line_break_holder] -->  .custom-btn-half{<!-- [et_pb_line_break_holder] -->    width: 100%;<!-- [et_pb_line_break_holder] -->    text-align: center;<!-- [et_pb_line_break_holder] -->        border-radius: 5px;<!-- [et_pb_line_break_holder] -->        background-color: #f00;<!-- [et_pb_line_break_holder] -->  }<!-- [et_pb_line_break_holder] --></style><!-- [et_pb_line_break_holder] --><a href="[wps_upsell_no]" class="custom-btn custom-btn-full-not">No, I’m not interested</a>[/et_pb_code][/et_pb_column][/et_pb_row][/et_pb_section]}';
+
+						$my_post = array();
+						$my_post['ID'] = $funnel_offer_post_id;
+						$my_post['post_content'] = $get_post_contents;
+						wp_update_post( $my_post );
+						// Delete temporary meta key.
+						delete_post_meta( $funnel_offer_post_id, 'divi_content' );
+					}
 
 					$wps_upsell_funnel_data = array(
 						'funnel_id' => $funnel_id,
@@ -489,6 +520,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 			$assigned_post_id        = ! empty( $funnel_offer_post_id ) ? $funnel_offer_post_id : '';
 			$current_offer_id        = $offer_index;
 			$wps_wocuf_pro_funnel_id = $funnel_id;
+
 			?>
 			<td>
 
@@ -514,6 +546,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 						<?php
 
 						foreach ( $offer_templates_array as $template_key => $template_name ) :
+
 							?>
 							<!-- Offer templates foreach start-->
 
@@ -529,27 +562,63 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 									<div class="wps_upsell_offer_preview">
 
-										<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-$template_key.jpg" ); ?>"></a>
+										<?php
+										if ( 'one' == $template_key || 'two' == $template_key || 'three' == $template_key ) {
+
+											if ( wps_upsell_divi_builder_plugin_active() ) {
+												?>
+												<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/divi/offer-template-$template_key.png" ); ?>"></a>
+												<?php
+											} else {
+												?>
+												<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-$template_key.jpg" ); ?>"></a>
+												<?php
+
+											}
+										} else {
+
+											?>
+											<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" ><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-$template_key.png" ); ?>"></a>
+											<?php
+
+										}
+
+										?>
+															
+									
 									</div>
 
 									<div class="wps_upsell_offer_action">
 
-										<?php if ( $template_key !== $offer_template_active ) : ?>
+															<?php if ( (string) $template_key !== (string) $offer_template_active ) : ?>
 
-										
-										<?php else : ?>
+															<button class="button-primary wps_upsell_activate_offer_template" data-template-id="<?php echo esc_html( $template_key ); ?>" data-offer-id="<?php echo esc_html( $current_offer_id ); ?>" data-funnel-id="<?php echo esc_html( $wps_wocuf_pro_funnel_id ); ?>" data-offer-post-id="<?php echo esc_html( $assigned_post_id ); ?>" ><?php esc_html_e( 'Insert and Activate', 'woo-one-click-upsell-funnel' ); ?></button>
 
-											<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+															<?php else : ?>
 
-											<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+																<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-										<?php endif; ?>
-									</div>
+
+																<?php
+																if ( ! wps_upsell_divi_builder_plugin_active() ) {
+																	?>
+																			<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+
+																		<?php
+																}
+																?>
+																
+															<?php endif; ?>
+														</div>
 								</div>	
 							</div>
 							<!-- Offer templates foreach end-->
-						<?php endforeach; ?>
-						
+							<?php
+						endforeach;
+
+						if ( wps_upsell_lite_elementor_plugin_active() || wps_upsell_divi_builder_plugin_active() ) {
+							?>
+
 						<!-- Offer templates 4 foreach start-->
 						
 						<div class="wps_upsell_offer_template ">
@@ -561,7 +630,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 									<div class="wps_upsell_offer_preview">
 
 										<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="four" >
-											<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-four.png" ); ?>"></a>
+											<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-thumbnails/offer-template-four.png' ); ?>"></a>
 									</div>
 
 									<div class="wps_upsell_offer_action">
@@ -575,8 +644,14 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 											<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-											<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+											<?php
+											if ( ! wps_upsell_divi_builder_plugin_active() ) {
+												?>
+														<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
+													<?php
+											}
+											?>
 										<?php endif; ?>
 									</div>
 								</div>	
@@ -596,7 +671,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 									<div class="wps_upsell_offer_preview">
 
 										<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="five" >
-										<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-five.png" ); ?>"></a>
+										<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-thumbnails/offer-template-five.png' ); ?>"></a>
 									</div>
 
 									<div class="wps_upsell_offer_action">
@@ -610,8 +685,14 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 											<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-											<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+											<?php
+											if ( ! wps_upsell_divi_builder_plugin_active() ) {
+												?>
+														<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
+													<?php
+											}
+											?>
 										<?php endif; ?>
 									</div>
 								</div>	
@@ -631,12 +712,12 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 	<div class="wps_upsell_offer_preview">
 
 		<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="six" >
-		<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-six.png" ); ?>"></a>
+		<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-thumbnails/offer-template-six.png' ); ?>"></a>
 	</div>
 
 	<div class="wps_upsell_offer_action">
 
-		<?php if ( $template_key !== $offer_template_active ) : ?>
+							<?php if ( $template_key !== $offer_template_active ) : ?>
 
 			<input type="button" class=" wps_upsell_activate_offer_template_pro ubo_offer_input" value="<?php esc_html_e( 'Upgrade To Pro', 'woo-one-click-upsell-funnel' ); ?>"/>
 
@@ -645,8 +726,14 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 			<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-			<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+			<?php
+			if ( ! wps_upsell_divi_builder_plugin_active() ) {
+				?>
+						<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
+					<?php
+			}
+			?>
 		<?php endif; ?>
 	</div>
 </div>	
@@ -670,12 +757,12 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 	<div class="wps_upsell_offer_preview">
 
 		<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="seven" >
-		<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-seven.png" ); ?>"></a>
+		<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-thumbnails/offer-template-seven.png' ); ?>"></a>
 	</div>
 
 	<div class="wps_upsell_offer_action">
 
-		<?php if ( $template_key !== $offer_template_active ) : ?>
+							<?php if ( $template_key !== $offer_template_active ) : ?>
 
 			<input type="button" class=" wps_upsell_activate_offer_template_pro ubo_offer_input" value="<?php esc_html_e( 'Upgrade To Pro', 'woo-one-click-upsell-funnel' ); ?>"/>
 
@@ -684,8 +771,14 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 			<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-			<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+			<?php
+			if ( ! wps_upsell_divi_builder_plugin_active() ) {
+				?>
+						<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
+					<?php
+			}
+			?>
 		<?php endif; ?>
 	</div>
 </div>	
@@ -705,12 +798,12 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 	<div class="wps_upsell_offer_preview">
 
 		<a href="javascript:void(0)" class="wps_upsell_view_offer_template" data-template-id="eight" >
-		<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span><img src="<?php echo esc_url( WPS_WOCUF_URL . "admin/resources/offer-thumbnails/offer-template-eight.png" ); ?>"></a>
+		<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span><img src="<?php echo esc_url( WPS_WOCUF_URL . 'admin/resources/offer-thumbnails/offer-template-eight.png' ); ?>"></a>
 	</div>
 
 	<div class="wps_upsell_offer_action">
 
-		<?php if ( $template_key !== $offer_template_active ) : ?>
+							<?php if ( $template_key !== $offer_template_active ) : ?>
 
 			<input type="button" class=" wps_upsell_activate_offer_template_pro ubo_offer_input" value="<?php esc_html_e( 'Upgrade To Pro', 'woo-one-click-upsell-funnel' ); ?>"/>
 
@@ -719,14 +812,23 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 			<a class="button" href="<?php echo esc_url( get_permalink( $assigned_post_id ) ); ?>" target="_blank"><?php esc_html_e( 'View &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
-			<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+			<?php
+			if ( ! wps_upsell_divi_builder_plugin_active() ) {
+				?>
+						<a class="button" href="<?php echo esc_url( admin_url( "post.php?post=$assigned_post_id&action=elementor" ) ); ?>" target="_blank"><?php esc_html_e( 'Customize &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 
+					<?php
+			}
+			?>
 		<?php endif; ?>
 	</div>
 </div>	
 </div>
 
 <!-- Offer templates 8 foreach start-->
+							<?php
+						}
+						?>
 						
 						<!-- Offer link to custom page start-->
 						<div class="wps_upsell_offer_template wps_upsell_custom_page_link_div <?php echo esc_html( 'custom' === $offer_template_active ? 'active' : '' ); ?>">
@@ -751,7 +853,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 				<?php else : ?>
 
 					<div class="wps_upsell_offer_template_unsupported">	
-					<h4><?php esc_html_e( 'Please activate Elementor if you want to use our Pre-defined Templates, else make a custom page yourself and add link below.', 'woo-one-click-upsell-funnel' ); ?></h4>
+					<h4><?php esc_html_e( 'Please activate Elementor/Divi Theme if you want to use our Pre-defined Templates, else make a custom page yourself and add link below.', 'woo-one-click-upsell-funnel' ); ?></h4>
 					</div>
 
 				<?php endif; ?>
@@ -794,14 +896,35 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 		foreach ( $offer_templates_array as $template_key => $callback_function ) {
 
 			if ( $template_id === $template_key ) {
+				if ( wps_upsell_lite_elementor_plugin_active() ) {
 
-				// Delete previous elementor css.
-				delete_post_meta( $offer_post_id, '_elementor_css' );
+					// Delete previous elementor css.
+					delete_post_meta( $offer_post_id, '_elementor_css' );
+					delete_post_meta( $offer_post_id, 'ct_builder_shortcodes' );
+					$my_post = array();
+					$my_post['ID'] = $offer_post_id;
+					$my_post['post_content'] = '';
+					wp_update_post( $my_post );
+					$elementor_data = $callback_function();
+					update_post_meta( $offer_post_id, '_elementor_data', $elementor_data );
 
-				$elementor_data = $callback_function();
-				update_post_meta( $offer_post_id, '_elementor_data', $elementor_data );
+					break;
 
-				break;
+				} elseif ( wps_upsell_divi_builder_plugin_active() ) {
+
+					delete_post_meta( $offer_post_id, '_elementor_css' );
+					delete_post_meta( $offer_post_id, '_elementor_data' );
+					$get_post_contents = $callback_function();
+					global $post;
+					$my_post = array();
+					$my_post['ID'] = $offer_post_id;
+					$my_post['post_content'] = $get_post_contents;
+					wp_update_post( $my_post );
+					// Delete temporary meta key.
+					delete_post_meta( $offer_post_id, 'divi_content' );
+					break;
+
+				}
 			}
 		}
 
