@@ -998,6 +998,15 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				$offer_price           = $currency_switcher_obj->wps_mmcsfw_get_price_of_product( $offer_price, $temp_product->get_id() );
 			}
 
+			if (class_exists('WOOCS')) {
+				global $WOOCS;
+				$currency = $WOOCS->current_currency;
+				if ($currency != $WOOCS->default_currency) {
+					$currencies = $WOOCS->get_currencies();
+					$offer_price = $WOOCS->back_convert($offer_price, $currencies[$currency]['rate']);
+				}
+			}
+
 			$temp_product->set_price( $offer_price );
 		} else {
 			/**
@@ -1402,6 +1411,10 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		$shipping_price_order = 0;
 		if ( ! empty( $order ) ) {
 			$shipping_price_order = floatval( get_post_meta( $order_id, 'wps_upsell_simple_shipping_product_', true ) );
+		}
+		if ( class_exists( 'WOOCS' ) ) {
+			global $WOOCS; // phpcs:ignore issues due to plugin compatibility.
+			$shipping_price_order = $WOOCS->woocs_exchange_value( $shipping_price_order ); // phpcs:ignore issues due to plugin compatibility.	
 		}
 
 		if ( 0 != $shipping_price_order && ! empty( $shipping_price_order ) ) {
@@ -1916,6 +1929,11 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			$class = $atts['class'];
 			$style = $atts['style'];
 			$upsell_shipping_product = get_post_meta( $product_id, 'wps_upsell_simple_shipping_product_' . $product_id, true );
+
+			if ( class_exists( 'WOOCS' ) ) {
+				global $WOOCS; // phpcs:ignore issues due to plugin compatibility.
+				$upsell_shipping_product = $WOOCS->woocs_exchange_value( $upsell_shipping_product ); // phpcs:ignore issues due to plugin compatibility.
+			}
 
 			$upsell_product_price_html_div = "Shipping Price <br> <div id='$id' class='wps_upsell_offer_product_price $class' style='$style'>
 						" . wc_price( $upsell_shipping_product ) . '</div>';

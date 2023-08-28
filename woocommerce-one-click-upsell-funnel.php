@@ -166,7 +166,7 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 
 		define( 'WPS_WOCUF_DIRPATH', plugin_dir_path( __FILE__ ) );
 
-		define( 'WPS_WOCUF_VERSION', 'v3.2.7' );
+		define( 'WPS_WOCUF_VERSION', 'v3.2.9' );
 
 		/**
 		 * The code that runs during plugin activation.
@@ -306,7 +306,11 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 		<?php endif;
 	}
 }
+<<<<<<< HEAD
 
 
 
 ?>
+=======
+?>
+>>>>>>> d33f8c36531d6af2e2cdb6813e1c653acf263480
