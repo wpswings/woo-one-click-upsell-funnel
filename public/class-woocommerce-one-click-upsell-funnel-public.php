@@ -1151,7 +1151,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 					$url = '';
 
 					/**
-					 * After v3.3.0 :: Smart offer upgraded.
+					 * After v3.4.1 :: Smart offer upgraded.
 					 * If target product is removed, then process the payment.
 					 */
 					if ( ! empty( $force_payment ) && true === $force_payment ) {
