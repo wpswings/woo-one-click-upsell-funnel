@@ -569,6 +569,9 @@ function wps_upsell_lite_elementor_offer_template_2() {
 	return $elementor_data;
 }
 
+
+
+
 /**
  * Elementor Upsell offer template 3.
  *
