@@ -1825,3 +1825,11 @@ button.button-primary.wps_upsell_activate_offer_template:focus {
     background-color: #fff;
     padding: 20px 0px !important;
 }
+
+:root {
+  --wp-admin-theme-color: #2271b1;
+}
+
+.wp-admin.wp-core-ui .select2-container--default .select2-results .select2-results__option--highlighted[aria-selected], .wp-admin.wp-core-ui .select2-container--default .select2-results .select2-results__option--highlighted[data-selected]{
+	background-color: var(--wp-admin-theme-color) !important;
+}
