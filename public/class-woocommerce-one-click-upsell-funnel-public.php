@@ -104,6 +104,34 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				'upsell_actions_message' => ! empty( $show_upsell_loader ) ? $upsell_loader_message : '',
 			)
 		);
+
+
+		$is_upsell_page = '';
+		if ( isset(  $_GET['ocuf_ns'] ) ) {
+			$is_upsell_page = true;
+		}
+		
+		if ( ! empty($is_upsell_page )){
+			$upsell_global_options = get_option( 'wps_upsell_lite_global_options', array() );
+			$upsell_skip_function = ! empty( $upsell_global_options['wps_wocuf_pro_skip_exit_intent_toggle'] ) ? sanitize_text_field( $upsell_global_options['wps_wocuf_pro_skip_exit_intent_toggle'] ) : '';
+			$upsell_exit_intent_message = __( 'Enhance your shopping experience! Explore additional products at a discount before you exit.', 'one-click-upsell-funnel-for-woocommerce-pro' );
+			
+
+			wp_enqueue_script( 'woocommerce-one-click-upsell-public-exit-intent-script', plugin_dir_url( __FILE__ ) . 'js/woocommerce-one-click-upsell-funnel-public-exit-intent_lite.js', array( 'jquery' ), $this->version, true );
+
+
+			wp_localize_script(
+				'woocommerce-one-click-upsell-public-exit-intent-script',
+				'wps_upsell_public_exit',
+				array(
+					'ajaxurl'                => admin_url( 'admin-ajax.php' ),
+					'nonce'                  => wp_create_nonce( 'wps_wocuf_nonce' ),
+					'skip_enabled'           => $upsell_skip_function,
+					'skip_message'           => $upsell_exit_intent_message,
+				)
+			);
+		}
+
 	}
 
 	/**

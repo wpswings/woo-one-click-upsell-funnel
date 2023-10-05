@@ -44,6 +44,10 @@ if ( isset( $_POST['wps_wocuf_pro_common_settings_save'] ) ) {
 	// Skip similar offer.
 	$wps_upsell_global_options['skip_similar_offer'] = ! empty( $_POST['skip_similar_offer'] ) ? sanitize_text_field( wp_unslash( $_POST['skip_similar_offer'] ) ) : '';
 
+	// Exit Intent offer.
+	$wps_upsell_global_options['wps_wocuf_pro_skip_exit_intent_toggle'] = ! empty( $_POST['wps_wocuf_pro_skip_exit_intent_toggle'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_wocuf_pro_skip_exit_intent_toggle'] ) ) : '';
+
+	
 	// Remove all styles.
 	$wps_upsell_global_options['remove_all_styles'] = ! empty( $_POST['remove_all_styles'] ) ? sanitize_text_field( wp_unslash( $_POST['remove_all_styles'] ) ) : '';
 
@@ -238,6 +242,31 @@ $wps_upsell_global_settings = get_option( 'wps_upsell_lite_global_options', arra
 					</td>
 				</tr>
 				<!-- Smart skip end -->
+
+				<!-- Exit Intent starts  -->
+				<tr valign="top">
+
+					<th scope="row" class="titledesc">
+						<label for="wps_wocuf_enable_plugin"><?php esc_html_e( 'Enable Popup Exit-Intent', 'woo-one-click-upsell-funnel' ); ?></label>
+					</th>
+
+					<td class="forminp forminp-text">
+						<?php
+						$attribut_description = esc_html__( 'Triggered the popup on leavng browser on upsell offer page.', 'woo-one-click-upsell-funnel' );
+						wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped.
+
+						$wps_wocuf_pro_skip_exit_intent_toggle = ! empty( $wps_upsell_global_settings['wps_wocuf_pro_skip_exit_intent_toggle'] ) ? $wps_upsell_global_settings['wps_wocuf_pro_skip_exit_intent_toggle'] : '';
+						
+						
+						?>
+
+						<label class="wps_wocuf_pro_enable_plugin_label">
+							<input class="wps_wocuf_pro_enable_plugin_input" type="checkbox" <?php echo ( 'on' === $wps_wocuf_pro_skip_exit_intent_toggle ) ? "checked='checked'" : ''; ?> name="wps_wocuf_pro_skip_exit_intent_toggle" >	
+							<span class="wps_wocuf_pro_enable_plugin_span"></span>
+						</label>		
+					</td>
+				</tr>
+				<!--  Exit Intent skip end -->
 
 				<!-- Global product start -->
 				<tr valign="top">
