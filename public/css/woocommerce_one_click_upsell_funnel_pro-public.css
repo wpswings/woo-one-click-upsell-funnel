@@ -500,7 +500,7 @@ background-color: #bf0000 !important;
 body {font-family: Arial, Helvetica, sans-serif;}
 
 /* The Modal (background) */
-.modal {
+.wps_lite_modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -515,7 +515,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 
 /* Modal Content */
-.modal-content {
+.wps_lite_modal-content {
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
@@ -524,15 +524,15 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 
 /* The Close Button */
-.close {
+.wps_lite_close {
   color: #aaaaaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.wps_lite_close:hover,
+.wps_lite_close:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
