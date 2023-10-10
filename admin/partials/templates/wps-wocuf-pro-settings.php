@@ -47,7 +47,7 @@ if ( isset( $_POST['wps_wocuf_pro_common_settings_save'] ) ) {
 	// Exit Intent offer.
 	$wps_upsell_global_options['wps_wocuf_pro_skip_exit_intent_toggle'] = ! empty( $_POST['wps_wocuf_pro_skip_exit_intent_toggle'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_wocuf_pro_skip_exit_intent_toggle'] ) ) : '';
 
-	
+
 	// Remove all styles.
 	$wps_upsell_global_options['remove_all_styles'] = ! empty( $_POST['remove_all_styles'] ) ? sanitize_text_field( wp_unslash( $_POST['remove_all_styles'] ) ) : '';
 
@@ -256,8 +256,8 @@ $wps_upsell_global_settings = get_option( 'wps_upsell_lite_global_options', arra
 						wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped.
 
 						$wps_wocuf_pro_skip_exit_intent_toggle = ! empty( $wps_upsell_global_settings['wps_wocuf_pro_skip_exit_intent_toggle'] ) ? $wps_upsell_global_settings['wps_wocuf_pro_skip_exit_intent_toggle'] : '';
-						
-						
+
+
 						?>
 
 						<label class="wps_wocuf_pro_enable_plugin_label">
