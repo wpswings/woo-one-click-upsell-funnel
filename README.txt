@@ -3,10 +3,10 @@ Contributors: wpswings
 Donate link: https://wpswings.com/
 Tags: upsell, boost sales, cross-sell, sales funnel, post-purchase offers, woocommerce upsell, related products
 Requires at least: 5.5.0
-Tested up to: 6.3.0
+Tested up to: 6.3.2
 WC requires at least: 5.5.0
-WC tested up to: 8.0.2
-Stable tag: 3.4.1
+WC tested up to: 8.2.0
+Stable tag: 3.3.1
 Requires PHP: 7.0.0
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -21,13 +21,14 @@ One Click Upsell Funnel for WooCommerce plugin allows the merchants to create po
 
 Our plugin is compatible with Divi Theme and Elementor Page Builder, allowing you to create seamless upsell funnels with advanced designs. 
 
+
 Essentially, you can offer fantastic deals to customers, increasing their satisfaction with their purchase, and ultimately elevating SALES.
 
 Create an endless number of upsell offers using the [**WooCommerce upsell plugin**](https://wpswings.com/product/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=wpswings-upsell-pro&utm_medium=upsell-org-page&utm_campaign=upsell-pro), and examine a track report for each sales funnel. Additionally, you may use pre-made templates to easily set up and provide upsell for WooCommerce on your online store. Encourage customers to purchase more!
 
 [**WooCommerce Upsell Demo**](https://demo.wpswings.com/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=wpswings-upsell-demo&utm_medium=upsell-org-page&utm_campaign=frontend-demo) |  [**Documentation**](https://docs.wpswings.com/one-click-upsell-funnel-for-woocommerce/?utm_source=wpswings-upsell-doc&utm_medium=upsell-org-page&utm_campaign=upsell-doc) | [**Contact Us**](https://wpswings.com/contact-us/?utm_source=wpswings-upsell-contactus&utm_medium=upsell-org-page&utm_campaign=contactus)
 
-[youtube https://www.youtube.com/watch?v=Wa3NL4oy-tE&w=560&h=315&rel=0]
+[youtube https://www.youtube.com/watch?v=S4fv2YwLxQk&rel=0]
 
 == With One-Click Upsell Funnel For WooCommerce Plugin, You Can:  ==
 
@@ -50,25 +51,27 @@ Create an endless number of upsell offers using the [**WooCommerce upsell plugin
 
 == WHAT’S INCLUDED IN OUR FREE ONE CLICK UPSELL FUNNEL WORDPRESS PLUGIN ==
 
-**1) Unlimited Funnels with an Unlimited Number of Offers**: With the WooCommerce Upsell Plugin, you can create unlimited sales funnels with any number of Upsell and Cross-Sell Offers. Show your customers multiple post-purchase offers in a single sales funnel which increases the impulse buys, average order value, and revenue of your store.
+**1) Pop-Up on Exit Intent**: Using The WooCommerce Upsell Plugin You can enable the pop-up on exit intent feature, allowing you to show a pop-up on upsell offer pages when a customer tries to exit the browser, this can be an ultimate upselling hack for you business.
 
-**2) Add the Shipping Price on COD One Click Upsells**: You can set the shipping price for the cash-on-delivery payment method for upsell offers. This allows you to cover operational costs for delivering the COD upsell products and maintain your profits. 
+**2) Unlimited Funnels with an Unlimited Number of Offers**: With the WooCommerce Upsell Plugin, you can create unlimited sales funnels with any number of Upsell and Cross-Sell Offers. Show your customers multiple post-purchase offers in a single sales funnel which increases the impulse buys, average order value, and revenue of your store.
 
-**3) Generate Reports for Upsell Funnel Tracking**: The WooCommerce post-purchase upsell plugin renders funnel reports that include trigger frequency, accepted & rejected offers, conversion rates, overall sales, etc. This information emphasizes the preferences of customers for particular funnels. Moreover, using both Google Analytics and Facebook Pixel, you can also track WooCommerce upsell
+**3) Add the Shipping Price on COD One Click Upsells**: You can set the shipping price for the cash-on-delivery payment method for upsell offers. This allows you to cover operational costs for delivering the COD upsell products and maintain your profits. 
 
-**4) Global Funnels: Independent WooCommerce Upsells**: Create global one click funnels that trigger independently without needing target products. You can use the universal WooCommerce one-click upsell to show offers to your customers every time they purchase in your online store.
+**4) Generate Reports for Upsell Funnel Tracking**: The WooCommerce post-purchase upsell plugin renders funnel reports that include trigger frequency, accepted & rejected offers, conversion rates, overall sales, etc. This information emphasizes the preferences of customers for particular funnels. Moreover, using both Google Analytics and Facebook Pixel, you can also track WooCommerce upsell
 
-**5) Smart Offer Upgrade**: The Smart Offer Upgrade feature replaces the existing product (customer is buying) with the offer product as soon as they accept the WooCommerce upsell offer. This intelligent feature removes manual work and makes switching to upsell products seamless.
+**5) Global Funnels: Independent WooCommerce Upsells**: Create global one click funnels that trigger independently without needing target products. You can use the universal WooCommerce one-click upsell to show offers to your customers every time they purchase in your online store.
 
-**6) Exclusive Offer Feature**: The upsell sales funnel builder creates exclusive offers for the customers, which will be shown to customers only once based on the order email. Such one click upsell offers garner higher conversion rates.
+**6) Smart Offer Upgrade**: The Smart Offer Upgrade feature replaces the existing product (customer is buying) with the offer product as soon as they accept the WooCommerce upsell offer. This intelligent feature removes manual work and makes switching to upsell products seamless.
 
-**7) Test Product Upsell Offers in Sandbox Mode**: In the Sandbox mode, the Upsell funnel builder triggers only for the admin and not for Live Customers. This enables store owners to freely view, test, and customize their Upsell funnel offers before making them live. 
+**7) Exclusive Offer Feature**: The upsell sales funnel builder creates exclusive offers for the customers, which will be shown to customers only once based on the order email. Such one click upsell offers garner higher conversion rates.
 
-**8) Page Builder Support to Build Responsive Offer Pages**: Build the one-click upsell funnel for WooCommerce with Elementor Page Builder and other top builders available on WordPress. Our plugin allows you to easily create and customize your offer pages without coding knowledge. 
+**8) Test Product Upsell Offers in Sandbox Mode**: In the Sandbox mode, the Upsell funnel builder triggers only for the admin and not for Live Customers. This enables store owners to freely view, test, and customize their Upsell funnel offers before making them live. 
 
-**9) Shortcodes to Build Useful Offer Page Elements**: This WordPress upsell plugin provides various shortcodes to create different offer page elements. The plugin offers shortcodes for Buy Now, No Thanks, Product Title, Description, Short Description, Image, Price, Variations, Offer Quantity, and Urgency Timer.
+**9) Page Builder Support to Build Responsive Offer Pages**: Build the one-click upsell funnel for WooCommerce with Elementor Page Builder and other top builders available on WordPress. Our plugin allows you to easily create and customize your offer pages without coding knowledge. 
 
-**10) Ability to Simplify The Buying Process**: Streamline your purchase process with additional products that customers can buy with one click checkout, without re-entering their payment details. These 1 click upsell deals minimize churn, improve the shopping experience, and speed up the checkout process.
+**10) Shortcodes to Build Useful Offer Page Elements**: This WordPress upsell plugin provides various shortcodes to create different offer page elements. The plugin offers shortcodes for Buy Now, No Thanks, Product Title, Description, Short Description, Image, Price, Variations, Offer Quantity, and Urgency Timer.
+
+**11) Ability to Simplify The Buying Process**: Streamline your purchase process with additional products that customers can buy with one click checkout, without re-entering their payment details. These 1 click upsell deals minimize churn, improve the shopping experience, and speed up the checkout process.
 
 Visit [**One Click Upsell Funnel for WooCommerce**](https://docs.wpswings.com/one-click-upsell-funnel-for-woocommerce/?utm_source=wpswings-upsell-doc&utm_medium=upsell-org-page&utm_campaign=upsell-doc) Documentation and learn more about the features and workings of the plugin.
 
@@ -261,7 +264,11 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Changelog ==
 
-= 3.4.1 - Released on 25 August 2023 = 
+= 3.3.1 - Released on 13 October 2023 =
+* New: Exit Intent Popup
+* New: Latest WP [6.3.2] and WC [8.2.0] update
+
+= 3.3.0 - Released on 25 August 2023 = 
 * New: Compatibility with Divi Theme
 * New: Added three templates for Divi Theme
 * New: Compatibility with WP[6.3.0] and WC[8.0.2]
@@ -391,9 +398,6 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Upgrade Notice ==
 
-= 3.4.1 - Released on 25 August 2023 = 
-* New: Compatibility with Divi Theme
-* New: Added three templates for Divi Theme
-* New: Compatibility with WP[6.3.0] and WC[8.0.2]
-* Fix: Issue fix in case of variation upsell product
- 
+= 3.3.1 - Released on 13 October 2023 =
+* New: Exit Intent Popup
+* New: Latest WP [6.3.2] and WC [8.2.0] update 
