@@ -268,6 +268,67 @@ $wps_upsell_global_settings = get_option( 'wps_upsell_lite_global_options', arra
 				</tr>
 				<!--  Exit Intent skip end -->
 
+				<!-- V3.5.0 :: Exit Intent start -->
+				<tr valign="top">
+
+					<th scope="row" class="titledesc">
+					<span class="wps_wupsell_premium_strip">Pro</span>
+						<label for="wps_wocuf_pro_smart_skip_toggle"><?php esc_html_e( 'Enable Accept/Reject Button For Exit-Intent', 'woo-one-click-upsell-funnel' ); ?></label>
+					</th>
+
+					<td class="forminp forminp-text">
+						<?php
+						$attribut_description = esc_html__( 'Triggered the popup button on leavng browser on upsell offer page.', 'woo-one-click-upsell-funnel' );
+						wps_upsell_lite_wc_help_tip( $attribut_description );
+
+
+
+						?>
+
+						<label class="wps_wocuf_pro_enable_plugin_label">
+							<input class="wps_wocuf_pro_enable_plugin_input" type="checkbox"  name="" >	
+							<span class="wps_wocuf_pro_enable_plugin_span"></span>
+						</label>		
+					</td>
+				</tr>
+				<!-- V3.5.0 :: Exit Intent end -->
+
+				<!-- Upsell Exit Intent Message start -->
+				<tr valign="top">
+
+					<th scope="row" class="titledesc">
+					<span class="wps_wupsell_premium_strip">Pro</span>
+						<label><?php esc_html_e( 'Upsell Exit Intent Message', 'woo-one-click-upsell-funnel' ); ?></label>
+					</th>
+
+					<td>
+
+						<div class="wps_upsell_attribute_description">
+						
+							<?php
+							$attribut_description = esc_html__( 'This message will be shown on popup when leaving upsell offer page and closing browser.', 'woo-one-click-upsell-funnel' );
+							wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							?>
+
+							<?php
+
+							$upsell_exit_intent_message = isset( $wps_upsell_global_settings['upsell_exit_intent_message'] ) ? $wps_upsell_global_settings['upsell_exit_intent_message'] : __( 'Enhance your shopping experience! Explore additional products at a discount before you exit.', 'woo-one-click-upsell-funnel' );
+
+
+							if ( empty( $upsell_exit_intent_message ) ) {
+								$upsell_exit_intent_message = __( 'Enhance your shopping experience! Explore additional products at a discount before you exit.', 'woo-one-click-upsell-funnel' );
+							}
+							?>
+
+							<textarea name="upsell_exit_intent_message" rows="4" cols="50"><?php echo esc_html( wp_unslash( $upsell_exit_intent_message ) ); ?></textarea>
+						</div>
+						<span class="wps_upsell_global_description"><?php esc_html_e( 'Add a custom message on for popup when user close browser.', 'woo-one-click-upsell-funnel' ); ?></span>
+					</td>
+				</tr>
+				<!-- Upsell Exit Intent Message end -->
+
+				<!-- -->
+
 				<!-- Global product start -->
 				<tr valign="top">
 
