@@ -83,8 +83,11 @@ if ( isset( $_POST['wps_wocuf_pro_common_settings_save'] ) ) {
 $wps_wocuf_enable_plugin = get_option( 'wps_wocuf_enable_plugin', 'on' );
 
 $wps_upsell_global_settings = get_option( 'wps_upsell_lite_global_options', array() );
-
+wps_upsee_lite_go_pro( 'pro' );
 ?>
+<input type='hidden' id='wps_ubo_pro_status' value='inactive'>
+<?php wps_upsee_lite_product_offer_go_pro( 'pro' ); ?>
+
 
 <form action="" method="POST">
 	<div class="wps_upsell_table">
@@ -286,7 +289,7 @@ $wps_upsell_global_settings = get_option( 'wps_upsell_lite_global_options', arra
 						?>
 
 						<label class="wps_wocuf_pro_enable_plugin_label">
-							<input class="wps_wocuf_pro_enable_plugin_input" type="checkbox"  name="" >	
+							<input class="wps_wocuf_pro_enable_plugin_input ubo_offer_input " type="checkbox"  name="" >	
 							<span class="wps_wocuf_pro_enable_plugin_span"></span>
 						</label>		
 					</td>
