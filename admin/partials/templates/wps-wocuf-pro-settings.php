@@ -270,6 +270,7 @@ wps_upsee_lite_go_pro( 'pro' );
 					</td>
 				</tr>
 				<!--  Exit Intent skip end -->
+				
 
 				<!-- V3.5.0 :: Exit Intent start -->
 				<tr valign="top">
