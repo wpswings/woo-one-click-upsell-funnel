@@ -255,7 +255,7 @@ wps_upsee_lite_go_pro( 'pro' );
 
 					<td class="forminp forminp-text">
 						<?php
-						$attribut_description = esc_html__( 'Triggered the popup on leavng browser on upsell offer page.', 'woo-one-click-upsell-funnel' );
+						$attribut_description = esc_html__( 'Triggered the popup on leaving browser on upsell offer page.', 'woo-one-click-upsell-funnel' );
 						wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped.
 
 						$wps_wocuf_pro_skip_exit_intent_toggle = ! empty( $wps_upsell_global_settings['wps_wocuf_pro_skip_exit_intent_toggle'] ) ? $wps_upsell_global_settings['wps_wocuf_pro_skip_exit_intent_toggle'] : '';
@@ -281,7 +281,7 @@ wps_upsee_lite_go_pro( 'pro' );
 
 					<td class="forminp forminp-text">
 						<?php
-						$attribut_description = esc_html__( 'Triggered the popup button on leavng browser on upsell offer page.', 'woo-one-click-upsell-funnel' );
+						$attribut_description = esc_html__( 'Triggered the popup button on leaving browser on upsell offer page.', 'woo-one-click-upsell-funnel' );
 						wps_upsell_lite_wc_help_tip( $attribut_description );
 
 
