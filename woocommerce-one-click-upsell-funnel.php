@@ -36,6 +36,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
+use Automattic\WooCommerce\Utilities\OrderUtil;
+
 
 /**
  * Plugin Active Detection.
@@ -262,6 +264,91 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 		// Return and Load nothing.
 		run_woocommerce_one_click_upsell_funnel();
 	}
+
+
+		/**
+	 * This function is used to check hpos enable.
+	 *
+	 * @return boolean
+	 */
+	function wps_wocfo_is_hpos_enabled() {
+
+		$is_hpos_enable = false;
+		if ( class_exists( 'Automattic\WooCommerce\Utilities\OrderUtil' ) && OrderUtil::custom_orders_table_usage_is_enabled() ) {
+
+			$is_hpos_enable = true;
+		}
+		return $is_hpos_enable;
+	}
+
+
+	/**
+	 * This function is used to get post meta data.
+	 *
+	 * @param  string $id        id.
+	 * @param  string $meta_key  meta key.
+	 * @param  bool   $bool meta bool.
+	 * @return string
+	 */
+	function wps_wocfo_hpos_get_meta_data( $id, $meta_key, $bool ) {
+
+		$meta_value = '';
+		if ( 'shop_order' === OrderUtil::get_order_type( $id ) && wps_wocfo_is_hpos_enabled() ) {
+
+			$order      = wc_get_order( $id );
+			$meta_value = $order->get_meta( $meta_key, $bool );
+		} else {
+
+			$meta_value = get_post_meta( $id, $meta_key, $bool );
+		}
+		return $meta_value;
+	}
+
+
+	/**
+	 * This function is used to update meta data.
+	 *
+	 * @param string $id id.
+	 * @param string $meta_key meta_key.
+	 * @param string $meta_value meta_value.
+	 * @return void
+	 */
+	function wps_wocfo_hpos_update_meta_data( $id, $meta_key, $meta_value ) {
+
+		if ( 'shop_order' === OrderUtil::get_order_type( $id ) && wps_wocfo_is_hpos_enabled() ) {
+
+			$order = wc_get_order( $id );
+			$order->update_meta_data( $meta_key, $meta_value );
+			$order->save();
+		} else {
+
+			update_post_meta( $id, $meta_key, $meta_value );
+		}
+	}
+
+
+	/**
+	 * This function is used delete meta data.
+	 *
+	 * @param string $id       id.
+	 * @param string $meta_key meta_key.
+	 * @return void
+	 */
+	function wps_wocfo_hpos_delete_meta_data( $id, $meta_key ) {
+
+		if ( 'shop_order' === OrderUtil::get_order_type( $id ) && wps_wocfo_is_hpos_enabled() ) {
+
+			$order = wc_get_order( $id );
+			$order->delete_meta_data( $meta_key );
+			$order->save();
+		} else {
+
+			delete_post_meta( $id, $meta_key );
+		}
+	}
+
+
+
 } else {
 
 	// Deactivation of plugin at dependency failed.
@@ -307,6 +394,13 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 	}
 }
 
-
+add_action(
+	'before_woocommerce_init',
+	function() {
+		if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+		}
+	}
+);
 
 ?>
