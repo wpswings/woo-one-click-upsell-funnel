@@ -20,7 +20,7 @@
  * Requires at least:     5.5.0
  * Tested up to:          6.3.2
  * WC requires at least:  5.5.0
- * WC tested up to:       8.2.0
+ * WC tested up to:       8.2.1
  *
  * Author:                WP Swings
  * Author URI:            https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-org-backend&utm_campaign=official
