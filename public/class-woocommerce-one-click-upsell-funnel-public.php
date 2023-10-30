@@ -1159,12 +1159,10 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 							$order->save();
 						}
-
-						//wc_add_order_item_meta( $upsell_item_id, 'is_upsell_purchase', 'true' );
-						foreach ($order->get_items() as $item_id => $item) {
+						foreach ( $order->get_items() as $item_id => $item ) {
 							// Check if this is the product you want to add custom meta to (optional).
-							if ($item_id == $upsell_item_id ) {
-								$item->add_meta_data( 'is_upsell_purchase', 'true');
+							if ( $item_id == $upsell_item_id ) {
+								$item->add_meta_data( 'is_upsell_purchase', 'true' );
 							}
 						}
 
@@ -1821,7 +1819,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 						$id    = $atts['id'];
 						$class = $atts['class'];
 						$style = $atts['style'];
-						
+
 						$upsell_product_image_src_div =
 							"<div id='$id' class='wps_upsell_offer_product_image $class' style='$style'>
 								<img src='$upsell_product_image_src'>
@@ -1871,7 +1869,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 							$id    = $atts['id'];
 							$class = $atts['class'];
 							$style = $atts['style'];
-							
+
 							$upsell_product_image_src_div =
 								"<div id='$id' class='wps_upsell_offer_product_image $class' style='$style'>
 									<img src='$upsell_product_image_src'>
@@ -2896,7 +2894,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 					$upsell_purchased   = true;
 					$upsell_item_total_data = $single_item->get_meta( '_line_total' );
-					$upsell_item_total =$upsell_item_total+ intval($upsell_item_total_data);
+					$upsell_item_total = $upsell_item_total + intval( $upsell_item_total_data );
 				}
 			}
 		}

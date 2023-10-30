@@ -423,7 +423,7 @@ wps_upsee_lite_go_pro( 'pro' );
 
 							<textarea name="upsell_actions_message" rows="4" cols="50"><?php echo esc_html( wp_unslash( $upsell_actions_message ) ); ?></textarea>
 						</div>
-						<span class="wps_upsell_global_description"><?php esc_html_e( 'Add a custom message on after upsell accept or reject button.', 'woo-one-click-upsell-funnel' ); ?></span>
+						<span class="wps_upsell_global_description"><?php esc_html_e( 'Add a custom message on after upsell accept button.', 'woo-one-click-upsell-funnel' ); ?></span>
 					</td>
 				</tr>
 				<!-- Upsell Actions Message end -->

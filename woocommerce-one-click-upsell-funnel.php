@@ -267,10 +267,10 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 
 
 		/**
-	 * This function is used to check hpos enable.
-	 *
-	 * @return boolean
-	 */
+		 * This function is used to check hpos enable.
+		 *
+		 * @return boolean
+		 */
 	function wps_wocfo_is_hpos_enabled() {
 
 		$is_hpos_enable = false;
@@ -346,9 +346,6 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 			delete_post_meta( $id, $meta_key );
 		}
 	}
-
-
-
 } else {
 
 	// Deactivation of plugin at dependency failed.
