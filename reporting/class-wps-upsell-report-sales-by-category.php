@@ -247,7 +247,7 @@ class WPS_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 			wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
 		}
 
-		$categories = get_terms( 'product_cat', array( 'orderby' => 'name' ) );
+		$categories = get_terms( 'product_cat' );
 		?>
 	<form method="GET">
 	<div>

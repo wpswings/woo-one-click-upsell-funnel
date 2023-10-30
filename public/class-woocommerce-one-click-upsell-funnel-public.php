@@ -228,7 +228,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 										// For Admin Funnel Will trigger for both Live and Sandbox statuses.
 
-										if ( ! current_user_can( 'administrator' ) ) {
+										if ( ! current_user_can( 'manage_options' ) ) {
 
 											if ( 'yes' !== $funnel_status ) {
 
