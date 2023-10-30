@@ -411,7 +411,7 @@ wps_upsee_lite_go_pro( 'pro' );
 						<div class="wps_upsell_attribute_description">
 
 							<?php
-							$attribut_description = esc_html__( '( For Live Offer only ) This message will be shown along with a loader on clicking upsell Accept / Reject message.', 'woo-one-click-upsell-funnel' );
+							$attribut_description = esc_html__( '( For Live Offer only ) This message will be shown along with a loader on clicking upsell Accept message.', 'woo-one-click-upsell-funnel' );
 							wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							?>
 
