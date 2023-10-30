@@ -893,7 +893,6 @@ function wps_upselllite_allowed_html() {
 		'del'     => '',
 		'h2'      => '',
 		'h3'      => '',
-		'h4'      => '',
 		'h5'      => array(
 			'class' => array(
 				'add_offer_in_cart_text',
