@@ -168,7 +168,6 @@ function wps_upsell_lite_allowed_html() {
 			'data-thumb'                         => array(),
 			'data-thumb-alt'                     => array(),
 			'woocommerce-product-gallery__image' => array(),
-			'data-thumb'                         => array(),
 			'data-scroll-id'                     => array(),
 			'style'                              => array(),
 		),
@@ -192,8 +191,6 @@ function wps_upsell_lite_allowed_html() {
 			'id'                      => array(),
 			'src'                     => array(),
 			'style'                   => array(),
-			'data-id'                 => array(),
-			'data-id'                 => array(),
 			'data-id'                 => array(),
 			'width'                   => array(),
 			'height'                  => array(),
@@ -569,6 +566,9 @@ function wps_upsell_lite_elementor_offer_template_2() {
 	return $elementor_data;
 }
 
+
+
+
 /**
  * Elementor Upsell offer template 3.
  *
@@ -893,7 +893,6 @@ function wps_upselllite_allowed_html() {
 		'del'     => '',
 		'h2'      => '',
 		'h3'      => '',
-		'h4'      => '',
 		'h5'      => array(
 			'class' => array(
 				'add_offer_in_cart_text',
@@ -929,7 +928,6 @@ function wps_upselllite_allowed_html() {
 			'data-thumb'                         => array(),
 			'data-thumb-alt'                     => array(),
 			'woocommerce-product-gallery__image' => array(),
-			'data-thumb'                         => array(),
 		),
 		'svg'     => array(
 			'xmlns'   => array(),
@@ -959,8 +957,6 @@ function wps_upselllite_allowed_html() {
 			'id'                      => array(),
 			'src'                     => array(),
 			'style'                   => array(),
-			'data-id'                 => array(),
-			'data-id'                 => array(),
 			'data-id'                 => array(),
 			'width'                   => array(),
 			'height'                  => array(),

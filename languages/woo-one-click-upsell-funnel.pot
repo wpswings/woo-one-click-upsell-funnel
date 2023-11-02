@@ -1,8 +1,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: One Click Upsell Funnel for Woocommerce 3.3.0\n"
-"POT-Creation-Date: 2023-08-24 15:41+0530\n"
+"Project-Id-Version: One Click Upsell Funnel for Woocommerce 3.4.0\n"
+"POT-Creation-Date: 2023-10-30 18:03+0530\n"
 "PO-Revision-Date: 2022-08-23 13:50+0530\n"
 "Last-Translator: \n"
 "Language-Team: WP Swings\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.4.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_n;_x;_ex;_nx;esc_attr__;esc_attr_e;esc_attr_x;"
 "esc_html;esc_html__;esc_html_e;esc_html_x;_n_noop;_nx_noop;esc_textarea;"
@@ -62,26 +62,26 @@ msgstr ""
 #: admin/class-woocommerce-one-click-upsell-funnel-admin.php:1142
 #: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:28
 #: includes/class-woocommerce-one-click-upsell-funnel-global-functions.php:79
-#: includes/class-woocommerce-one-click-upsell-funnel-global-functions.php:258
-#: includes/class-woocommerce-one-click-upsell-funnel-global-functions.php:323
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:600
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:1627
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2086
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2140
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2307
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2348
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2443
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2560
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:3055
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:3458
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:3829
+#: includes/class-woocommerce-one-click-upsell-funnel-global-functions.php:255
+#: includes/class-woocommerce-one-click-upsell-funnel-global-functions.php:320
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:625
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:1656
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2115
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2169
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2336
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2377
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2472
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2589
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:3085
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:3488
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:3859
 #: reporting/class-wps-upsell-report-sales-by-category.php:63
 #: reporting/class-wps-upsell-report-sales-by-category.php:143
 #: reporting/class-wps-upsell-report-sales-by-category.php:247
 #: reporting/class-wps-upsell-report-sales-by-category.php:307
 #: reporting/class-wps-upsell-report-sales-by-product.php:187
 #: reporting/class-wps-upsell-report-sales-by-product.php:479
-#: woocommerce-one-click-upsell-funnel.php:292
+#: woocommerce-one-click-upsell-funnel.php:376
 msgid "Nonce Not verified"
 msgstr ""
 
@@ -114,7 +114,7 @@ msgstr ""
 
 #: admin/class-woocommerce-one-click-upsell-funnel-admin.php:441
 #: admin/partials/templates/wps-wocuf-pro-creation.php:920
-#: admin/partials/templates/wps-wocuf-pro-settings.php:256
+#: admin/partials/templates/wps-wocuf-pro-settings.php:350
 #: reporting/class-wps-upsell-report-sales-by-product.php:257
 msgid "Search for a product&hellip;"
 msgstr ""
@@ -126,7 +126,7 @@ msgstr ""
 
 #: admin/class-woocommerce-one-click-upsell-funnel-admin.php:447
 #: admin/partials/templates/wps-wocuf-pro-creation.php:966
-#: admin/partials/templates/wps-wocuf-pro-settings.php:303
+#: admin/partials/templates/wps-wocuf-pro-settings.php:397
 msgid "Specify new offer price or discount %"
 msgstr ""
 
@@ -332,8 +332,8 @@ msgid "Upsell Supported"
 msgstr ""
 
 #: admin/class-woocommerce-one-click-upsell-funnel-admin.php:1263
-#: admin/partials/templates/wps-wocuf-pro-settings.php:153
-#: admin/partials/templates/wps-wocuf-pro-settings.php:183
+#: admin/partials/templates/wps-wocuf-pro-settings.php:160
+#: admin/partials/templates/wps-wocuf-pro-settings.php:190
 msgid "Yes"
 msgstr ""
 
@@ -342,8 +342,8 @@ msgid "pro"
 msgstr ""
 
 #: admin/class-woocommerce-one-click-upsell-funnel-admin.php:1273
-#: admin/partials/templates/wps-wocuf-pro-settings.php:154
-#: admin/partials/templates/wps-wocuf-pro-settings.php:184
+#: admin/partials/templates/wps-wocuf-pro-settings.php:161
+#: admin/partials/templates/wps-wocuf-pro-settings.php:191
 #: admin/reporting-and-tracking/templates/pixel-settings.php:242
 msgid "No"
 msgstr ""
@@ -426,7 +426,7 @@ msgid "Upgrade to Premium"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-creation.php:285
-#: admin/partials/templates/wps-wocuf-pro-settings.php:73
+#: admin/partials/templates/wps-wocuf-pro-settings.php:77
 #: admin/reporting-and-tracking/templates/ga-settings.php:59
 #: admin/reporting-and-tracking/templates/pixel-settings.php:63
 msgid "Settings saved"
@@ -602,7 +602,7 @@ msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-creation.php:712
 msgid ""
-"This option Will add custom form feilds on upsell pages. Applicable to first "
+"This option Will add custom form fields on upsell pages. Applicable to first "
 "offer page only."
 msgstr ""
 
@@ -649,7 +649,7 @@ msgid "Add New Offer"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-creation.php:1419
-#: admin/partials/templates/wps-wocuf-pro-settings.php:397
+#: admin/partials/templates/wps-wocuf-pro-settings.php:491
 #: admin/reporting-and-tracking/templates/ga-settings.php:219
 #: admin/reporting-and-tracking/templates/pixel-settings.php:320
 msgid "Save Changes"
@@ -709,129 +709,167 @@ msgstr ""
 msgid "Sorry, due to some security issue, your settings could not be saved."
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:97
+#: admin/partials/templates/wps-wocuf-pro-settings.php:104
 msgid "Enable Upsell"
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:102
+#: admin/partials/templates/wps-wocuf-pro-settings.php:109
 msgid "Enable Upsell plugin."
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:118
+#: admin/partials/templates/wps-wocuf-pro-settings.php:125
 msgid "Payment Gateways"
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:123
+#: admin/partials/templates/wps-wocuf-pro-settings.php:130
 msgid ""
 "Please set up and activate Upsell supported payment gateways as offers will "
 "only appear through them."
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:126
+#: admin/partials/templates/wps-wocuf-pro-settings.php:133
 msgid "Manage Upsell supported payment gateways &rarr;"
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:135
+#: admin/partials/templates/wps-wocuf-pro-settings.php:142
 msgid "Skip Funnel for Same Offer"
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:141
+#: admin/partials/templates/wps-wocuf-pro-settings.php:148
 msgid ""
 "Skip funnel if any offer product in funnel is already present during "
 "checkout."
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:165
+#: admin/partials/templates/wps-wocuf-pro-settings.php:172
 msgid "Remove Styles from Offer Pages"
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:171
+#: admin/partials/templates/wps-wocuf-pro-settings.php:178
 msgid ""
 "Remove theme and other plugin styles from offer pages. (Not applicable for "
 "Custom Offer pages)"
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:195
+#: admin/partials/templates/wps-wocuf-pro-settings.php:202
 msgid "Price html format"
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:201
+#: admin/partials/templates/wps-wocuf-pro-settings.php:208
 msgid "Select the format for price html to be shown."
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:212
+#: admin/partials/templates/wps-wocuf-pro-settings.php:219
 msgid "̶R̶e̶g̶u̶l̶a̶r̶ ̶P̶r̶i̶c̶e̶ Offer Price"
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:213
+#: admin/partials/templates/wps-wocuf-pro-settings.php:220
 msgid "̶S̶a̶l̶e̶ ̶P̶r̶i̶c̶e̶  Offer Price"
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:223
+#: admin/partials/templates/wps-wocuf-pro-settings.php:230
 msgid "Smart Skip If Already Purchased"
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:228
+#: admin/partials/templates/wps-wocuf-pro-settings.php:235
 msgid ""
 "The upsell funnel will be skipped if any of the offer product is already "
 "been purchased in previous orders. This will only work for logged in users."
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:246
+#: admin/partials/templates/wps-wocuf-pro-settings.php:253
+msgid "Enable Popup Exit-Intent"
+msgstr ""
+
+#: admin/partials/templates/wps-wocuf-pro-settings.php:258
+msgid "Triggered the popup on leaving browser on upsell offer page."
+msgstr ""
+
+#: admin/partials/templates/wps-wocuf-pro-settings.php:280
+msgid "Enable Accept/Reject Button For Exit-Intent"
+msgstr ""
+
+#: admin/partials/templates/wps-wocuf-pro-settings.php:285
+msgid "Triggered the popup button on leaving browser on upsell offer page."
+msgstr ""
+
+#: admin/partials/templates/wps-wocuf-pro-settings.php:305
+msgid "Upsell Exit Intent Message"
+msgstr ""
+
+#: admin/partials/templates/wps-wocuf-pro-settings.php:313
+msgid ""
+"This message will be shown on popup when leaving upsell offer page and "
+"closing browser."
+msgstr ""
+
+#: admin/partials/templates/wps-wocuf-pro-settings.php:319
+#: admin/partials/templates/wps-wocuf-pro-settings.php:323
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:116
+msgid ""
+"Enhance your shopping experience! Explore additional products at a discount "
+"before you exit."
+msgstr ""
+
+#: admin/partials/templates/wps-wocuf-pro-settings.php:329
+msgid "Add a custom message on for popup when user close browser."
+msgstr ""
+
+#: admin/partials/templates/wps-wocuf-pro-settings.php:340
 msgid "Global Offer Product"
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:252
+#: admin/partials/templates/wps-wocuf-pro-settings.php:346
 msgid ""
 "( Not for Live Offer ) Set Global Offer Product for Sandbox View of Custom "
 "Offer Page."
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:274
+#: admin/partials/templates/wps-wocuf-pro-settings.php:368
 msgid "Clear"
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:274
+#: admin/partials/templates/wps-wocuf-pro-settings.php:368
 msgid "Clear Offer Product"
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:283
+#: admin/partials/templates/wps-wocuf-pro-settings.php:377
 msgid "Global Offer Discount"
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:291
+#: admin/partials/templates/wps-wocuf-pro-settings.php:385
 msgid ""
 "( Not for Live Offer ) Set Global Offer Discount in product price for "
 "Sandbox View of Custom Offer Page."
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:312
+#: admin/partials/templates/wps-wocuf-pro-settings.php:406
 msgid "Upsell Actions Message"
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:320
+#: admin/partials/templates/wps-wocuf-pro-settings.php:414
 msgid ""
 "( For Live Offer only ) This message will be shown along with a loader on "
-"clicking upsell Accept / Reject message."
+"clicking upsell Accept message."
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:332
-msgid "Add a custom message on after upsell accept or reject button."
+#: admin/partials/templates/wps-wocuf-pro-settings.php:426
+msgid "Add a custom message on after upsell accept button."
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:341
+#: admin/partials/templates/wps-wocuf-pro-settings.php:435
 msgid "Global Custom CSS"
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:349
+#: admin/partials/templates/wps-wocuf-pro-settings.php:443
 msgid "Enter your Custom CSS without style tags."
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:369
+#: admin/partials/templates/wps-wocuf-pro-settings.php:463
 msgid "Global Custom JS"
 msgstr ""
 
-#: admin/partials/templates/wps-wocuf-pro-settings.php:377
+#: admin/partials/templates/wps-wocuf-pro-settings.php:471
 msgid "Enter your Custom JS without script tags."
 msgstr ""
 
@@ -1055,42 +1093,27 @@ msgstr ""
 
 #: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:75
 #: admin/reporting-and-tracking/upsell-reporting-and-tracking-config-panel.php:41
-#: woocommerce-one-click-upsell-funnel.php:303
+#: woocommerce-one-click-upsell-funnel.php:387
 msgid "One Click Upsell Funnel for WooCommerce"
 msgstr ""
 
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:78
-#: admin/reporting-and-tracking/upsell-reporting-and-tracking-config-panel.php:44
-msgid "Connect with Us in one click"
-msgstr ""
-
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:80
-#: admin/reporting-and-tracking/upsell-reporting-and-tracking-config-panel.php:46
-msgid "Connect"
+#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:81
+msgid "Create Funnel"
 msgstr ""
 
 #: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:82
-#: admin/reporting-and-tracking/upsell-reporting-and-tracking-config-panel.php:48
-msgid "Regarding any issue, query or feature request for Upsell"
-msgstr ""
-
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:88
-msgid "Save Funnel"
-msgstr ""
-
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:89
 msgid "Funnels List"
 msgstr ""
 
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:90
+#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:83
 msgid "Shortcodes"
 msgstr ""
 
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:91
+#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:84
 msgid "Global Settings"
 msgstr ""
 
-#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:92
+#: admin/partials/woocommerce-one-click-upsell-funnel-pro-admin-display.php:85
 #: admin/reporting-and-tracking/upsell-reporting-and-tracking-config-panel.php:57
 msgid "Overview"
 msgstr ""
@@ -1250,7 +1273,7 @@ msgstr ""
 #: admin/reporting-and-tracking/templates/pixel-settings.php:213
 #: admin/reporting-and-tracking/templates/pixel-settings.php:245
 #: admin/reporting-and-tracking/templates/pixel-settings.php:257
-#: woocommerce-one-click-upsell-funnel.php:303
+#: woocommerce-one-click-upsell-funnel.php:387
 msgid "."
 msgstr ""
 
@@ -1370,7 +1393,7 @@ msgid "By weDevs"
 msgstr ""
 
 #: admin/reporting-and-tracking/templates/pixel-settings.php:204
-#: woocommerce-one-click-upsell-funnel.php:303
+#: woocommerce-one-click-upsell-funnel.php:387
 msgid "WooCommerce"
 msgstr ""
 
@@ -1391,7 +1414,7 @@ msgid "By Night Shift Apps"
 msgstr ""
 
 #: admin/reporting-and-tracking/templates/pixel-settings.php:232
-#: woocommerce-one-click-upsell-funnel.php:199
+#: woocommerce-one-click-upsell-funnel.php:201
 msgid "Settings"
 msgstr ""
 
@@ -1484,6 +1507,18 @@ msgstr ""
 
 #: admin/reporting-and-tracking/templates/tracking-overview.php:24
 msgid "Supported Analytics Tools"
+msgstr ""
+
+#: admin/reporting-and-tracking/upsell-reporting-and-tracking-config-panel.php:44
+msgid "Connect with Us in one click"
+msgstr ""
+
+#: admin/reporting-and-tracking/upsell-reporting-and-tracking-config-panel.php:46
+msgid "Connect"
+msgstr ""
+
+#: admin/reporting-and-tracking/upsell-reporting-and-tracking-config-panel.php:48
+msgid "Regarding any issue, query or feature request for Upsell"
 msgstr ""
 
 #: admin/reporting-and-tracking/upsell-reporting-and-tracking-config-panel.php:54
@@ -2013,7 +2048,7 @@ msgid "Enter upsell variation shortcode"
 msgstr ""
 
 #: public/class-woocommerce-one-click-upsell-funnel-public.php:101
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:1585
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:1614
 msgid "One Click Upsell"
 msgstr ""
 
@@ -2021,83 +2056,83 @@ msgstr ""
 msgid "This is Preview Mode, please checkout to see Live Offers."
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:779
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:804
 msgid "Buy Now"
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:781
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2575
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:806
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2604
 msgid "No,thanks"
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:783
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2363
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:808
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2392
 msgid "Special Offer Price"
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:795
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:820
 msgid "Special Offer For You Only"
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:874
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:889
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:899
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:914
 msgid "You ran out of the special offers session."
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:876
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:891
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:901
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:916
 msgid "Go to the \"Order details\" page."
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:906
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:931
 msgid "Sorry, you have no offers"
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:910
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:935
 msgid "Return to Shop"
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:1283
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:1312
 msgid "Once every 20 minutes"
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:1590
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:1619
 msgid ""
 "Offer Product is not selected, please save a Offer Product in Funnel Offer "
 "settings."
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:1594
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:1623
 msgid ""
 "Custom Offer page - detected! Please save a global Offer product in Global "
 "settings for testing purpose."
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2299
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2328
 msgid "Show Order Details"
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2433
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2462
 msgid "Add to my order"
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2791
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2820
 msgid "Sorry, Offer expired."
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2791
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2820
 msgid "Return to Shop "
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:3808
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:3838
 msgid "Time is not specified correctly."
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:3897
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:3927
 msgid "minutes"
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:3904
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:3934
 msgid "seconds"
 msgstr ""
 
@@ -2276,41 +2311,41 @@ msgstr ""
 msgid "Sales amount"
 msgstr ""
 
-#: woocommerce-one-click-upsell-funnel.php:88
+#: woocommerce-one-click-upsell-funnel.php:90
 msgid ""
 "Your One Click Upsell Funnel Pro plugin update is here! Please Update it now "
 "via plugins page."
 msgstr ""
 
-#: woocommerce-one-click-upsell-funnel.php:120
+#: woocommerce-one-click-upsell-funnel.php:122
 msgid ""
 "Your One Click Upsell Funnel Pro plugin update is here! Please Update it now."
 msgstr ""
 
-#: woocommerce-one-click-upsell-funnel.php:204
+#: woocommerce-one-click-upsell-funnel.php:206
 msgid "GO PRO"
 msgstr ""
 
-#: woocommerce-one-click-upsell-funnel.php:222
+#: woocommerce-one-click-upsell-funnel.php:224
 msgid "Demo"
 msgstr ""
 
-#: woocommerce-one-click-upsell-funnel.php:223
+#: woocommerce-one-click-upsell-funnel.php:225
 msgid "Documentation"
 msgstr ""
 
-#: woocommerce-one-click-upsell-funnel.php:224
+#: woocommerce-one-click-upsell-funnel.php:226
 msgid "Video"
 msgstr ""
 
-#: woocommerce-one-click-upsell-funnel.php:225
+#: woocommerce-one-click-upsell-funnel.php:227
 msgid "Support"
 msgstr ""
 
-#: woocommerce-one-click-upsell-funnel.php:226
+#: woocommerce-one-click-upsell-funnel.php:228
 msgid "Services"
 msgstr ""
 
-#: woocommerce-one-click-upsell-funnel.php:303
+#: woocommerce-one-click-upsell-funnel.php:387
 msgid " is not activated, Please activate WooCommerce first to activate "
 msgstr ""

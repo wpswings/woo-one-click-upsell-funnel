@@ -127,7 +127,7 @@ if ( isset( $_POST['wps_wocuf_pro_creation_setting_save'] ) ) {
 	 * Get each associated to funnel sanitized in its own.
 	 */
 
-	// Sanitize and strip slashes for normal single value feilds.
+	// Sanitize and strip slashes for normal single value fields.
 	$wps_wocuf_pro_funnel['wps_upsell_funnel_status'] = ! empty( $_POST['wps_upsell_funnel_status'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_upsell_funnel_status'] ) ) : '';
 	$wps_wocuf_pro_funnel['wps_wocuf_funnel_id']      = ! empty( $_POST['wps_wocuf_funnel_id'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_wocuf_funnel_id'] ) ) : '';
 	$wps_wocuf_pro_funnel['wps_upsell_fsav3']         = ! empty( $_POST['wps_upsell_fsav3'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_upsell_fsav3'] ) ) : '';
@@ -709,7 +709,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 						<td class="forminp forminp-text">
 							<?php
 
-							$attribut_description = esc_html__( 'This option Will add custom form feilds on upsell pages. Applicable to first offer page only.', 'woo-one-click-upsell-funnel' );
+							$attribut_description = esc_html__( 'This option Will add custom form fields on upsell pages. Applicable to first offer page only.', 'woo-one-click-upsell-funnel' );
 
 							wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 

@@ -15,12 +15,12 @@
  * Plugin Name:           One Click Upsell Funnel for Woocommerce
  * Plugin URI:            https://wordpress.org/plugins/woo-one-click-upsell-funnel/
  * Description:           One Click Upsell Funnel for WooCommerce allows showing post-checkout offers to customers which helps to increase Average Order Value & Revenue. <a href="https://wpswings.com/woocommerce-plugins/?utm_source=wpswings-upsell-shop&utm_medium=upsell-org-backend&utm_campaign=shop-page" target="_blank" >Elevate your e-commerce store by exploring more on <strong>WP Swings</strong></a>.
- * Version:               3.3.0
+ * Version:               3.4.0
  *
  * Requires at least:     5.5.0
- * Tested up to:          6.3.0
+ * Tested up to:          6.3.2
  * WC requires at least:  5.5.0
- * WC tested up to:       8.0.2
+ * WC tested up to:       8.2.1
  *
  * Author:                WP Swings
  * Author URI:            https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-org-backend&utm_campaign=official
@@ -36,6 +36,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
+use Automattic\WooCommerce\Utilities\OrderUtil;
+
 
 /**
  * Plugin Active Detection.
@@ -166,7 +168,7 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 
 		define( 'WPS_WOCUF_DIRPATH', plugin_dir_path( __FILE__ ) );
 
-		define( 'WPS_WOCUF_VERSION', 'v3.2.9' );
+		define( 'WPS_WOCUF_VERSION', 'v3.4.0' );
 
 		/**
 		 * The code that runs during plugin activation.
@@ -262,6 +264,88 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 		// Return and Load nothing.
 		run_woocommerce_one_click_upsell_funnel();
 	}
+
+
+		/**
+		 * This function is used to check hpos enable.
+		 *
+		 * @return boolean
+		 */
+	function wps_wocfo_is_hpos_enabled() {
+
+		$is_hpos_enable = false;
+		if ( class_exists( 'Automattic\WooCommerce\Utilities\OrderUtil' ) && OrderUtil::custom_orders_table_usage_is_enabled() ) {
+
+			$is_hpos_enable = true;
+		}
+		return $is_hpos_enable;
+	}
+
+
+	/**
+	 * This function is used to get post meta data.
+	 *
+	 * @param  string $id        id.
+	 * @param  string $meta_key  meta key.
+	 * @param  bool   $bool meta bool.
+	 * @return string
+	 */
+	function wps_wocfo_hpos_get_meta_data( $id, $meta_key, $bool ) {
+
+		$meta_value = '';
+		if ( 'shop_order' === OrderUtil::get_order_type( $id ) && wps_wocfo_is_hpos_enabled() ) {
+
+			$order      = wc_get_order( $id );
+			$meta_value = $order->get_meta( $meta_key, $bool );
+		} else {
+
+			$meta_value = get_post_meta( $id, $meta_key, $bool );
+		}
+		return $meta_value;
+	}
+
+
+	/**
+	 * This function is used to update meta data.
+	 *
+	 * @param string $id id.
+	 * @param string $meta_key meta_key.
+	 * @param string $meta_value meta_value.
+	 * @return void
+	 */
+	function wps_wocfo_hpos_update_meta_data( $id, $meta_key, $meta_value ) {
+
+		if ( 'shop_order' === OrderUtil::get_order_type( $id ) && wps_wocfo_is_hpos_enabled() ) {
+
+			$order = wc_get_order( $id );
+			$order->update_meta_data( $meta_key, $meta_value );
+			$order->save();
+		} else {
+
+			update_post_meta( $id, $meta_key, $meta_value );
+		}
+	}
+
+
+	/**
+	 * This function is used delete meta data.
+	 *
+	 * @param string $id       id.
+	 * @param string $meta_key meta_key.
+	 * @return void
+	 */
+	function wps_wocfo_hpos_delete_meta_data( $id, $meta_key ) {
+
+		if ( 'shop_order' === OrderUtil::get_order_type( $id ) && wps_wocfo_is_hpos_enabled() ) {
+
+			$order = wc_get_order( $id );
+			$order->delete_meta_data( $meta_key );
+			$order->save();
+		} else {
+
+			delete_post_meta( $id, $meta_key );
+		}
+	}
 } else {
 
 	// Deactivation of plugin at dependency failed.
@@ -306,11 +390,14 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 		<?php endif;
 	}
 }
-<<<<<<< HEAD
 
-
+add_action(
+	'before_woocommerce_init',
+	function() {
+		if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+		}
+	}
+);
 
 ?>
-=======
-?>
->>>>>>> d33f8c36531d6af2e2cdb6813e1c653acf263480

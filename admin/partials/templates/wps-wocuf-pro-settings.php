@@ -44,6 +44,10 @@ if ( isset( $_POST['wps_wocuf_pro_common_settings_save'] ) ) {
 	// Skip similar offer.
 	$wps_upsell_global_options['skip_similar_offer'] = ! empty( $_POST['skip_similar_offer'] ) ? sanitize_text_field( wp_unslash( $_POST['skip_similar_offer'] ) ) : '';
 
+	// Exit Intent offer.
+	$wps_upsell_global_options['wps_wocuf_pro_skip_exit_intent_toggle'] = ! empty( $_POST['wps_wocuf_pro_skip_exit_intent_toggle'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_wocuf_pro_skip_exit_intent_toggle'] ) ) : '';
+
+
 	// Remove all styles.
 	$wps_upsell_global_options['remove_all_styles'] = ! empty( $_POST['remove_all_styles'] ) ? sanitize_text_field( wp_unslash( $_POST['remove_all_styles'] ) ) : '';
 
@@ -79,8 +83,11 @@ if ( isset( $_POST['wps_wocuf_pro_common_settings_save'] ) ) {
 $wps_wocuf_enable_plugin = get_option( 'wps_wocuf_enable_plugin', 'on' );
 
 $wps_upsell_global_settings = get_option( 'wps_upsell_lite_global_options', array() );
-
+wps_upsee_lite_go_pro( 'pro' );
 ?>
+<input type='hidden' id='wps_ubo_pro_status' value='inactive'>
+<?php wps_upsee_lite_product_offer_go_pro( 'pro' ); ?>
+
 
 <form action="" method="POST">
 	<div class="wps_upsell_table">
@@ -239,6 +246,93 @@ $wps_upsell_global_settings = get_option( 'wps_upsell_lite_global_options', arra
 				</tr>
 				<!-- Smart skip end -->
 
+				<!-- Exit Intent starts  -->
+				<tr valign="top">
+
+					<th scope="row" class="titledesc">
+						<label for="wps_wocuf_enable_plugin"><?php esc_html_e( 'Enable Popup Exit-Intent', 'woo-one-click-upsell-funnel' ); ?></label>
+					</th>
+
+					<td class="forminp forminp-text">
+						<?php
+						$attribut_description = esc_html__( 'Triggered the popup on leaving browser on upsell offer page.', 'woo-one-click-upsell-funnel' );
+						wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped.
+
+						$wps_wocuf_pro_skip_exit_intent_toggle = ! empty( $wps_upsell_global_settings['wps_wocuf_pro_skip_exit_intent_toggle'] ) ? $wps_upsell_global_settings['wps_wocuf_pro_skip_exit_intent_toggle'] : '';
+
+
+						?>
+
+						<label class="wps_wocuf_pro_enable_plugin_label">
+							<input class="wps_wocuf_pro_enable_plugin_input" type="checkbox" <?php echo ( 'on' === $wps_wocuf_pro_skip_exit_intent_toggle ) ? "checked='checked'" : ''; ?> name="wps_wocuf_pro_skip_exit_intent_toggle" >	
+							<span class="wps_wocuf_pro_enable_plugin_span"></span>
+						</label>		
+					</td>
+				</tr>
+				<!--  Exit Intent skip end -->
+				
+
+				<!-- V3.5.0 :: Exit Intent start -->
+				<tr valign="top">
+
+					<th scope="row" class="titledesc">
+					<span class="wps_wupsell_premium_strip">Pro</span>
+						<label for="wps_wocuf_pro_smart_skip_toggle"><?php esc_html_e( 'Enable Accept/Reject Button For Exit-Intent', 'woo-one-click-upsell-funnel' ); ?></label>
+					</th>
+
+					<td class="forminp forminp-text">
+						<?php
+						$attribut_description = esc_html__( 'Triggered the popup button on leaving browser on upsell offer page.', 'woo-one-click-upsell-funnel' );
+						wps_upsell_lite_wc_help_tip( $attribut_description );
+
+
+
+						?>
+
+						<label class="wps_wocuf_pro_enable_plugin_label">
+							<input class="wps_wocuf_pro_enable_plugin_input ubo_offer_input " type="checkbox"  name="" >	
+							<span class="wps_wocuf_pro_enable_plugin_span"></span>
+						</label>		
+					</td>
+				</tr>
+				<!-- V3.5.0 :: Exit Intent end -->
+
+				<!-- Upsell Exit Intent Message start -->
+				<tr valign="top">
+
+					<th scope="row" class="titledesc">
+					<span class="wps_wupsell_premium_strip">Pro</span>
+						<label><?php esc_html_e( 'Upsell Exit Intent Message', 'woo-one-click-upsell-funnel' ); ?></label>
+					</th>
+
+					<td>
+
+						<div class="wps_upsell_attribute_description">
+						
+							<?php
+							$attribut_description = esc_html__( 'This message will be shown on popup when leaving upsell offer page and closing browser.', 'woo-one-click-upsell-funnel' );
+							wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							?>
+
+							<?php
+
+							$upsell_exit_intent_message = isset( $wps_upsell_global_settings['upsell_exit_intent_message'] ) ? $wps_upsell_global_settings['upsell_exit_intent_message'] : __( 'Enhance your shopping experience! Explore additional products at a discount before you exit.', 'woo-one-click-upsell-funnel' );
+
+
+							if ( empty( $upsell_exit_intent_message ) ) {
+								$upsell_exit_intent_message = __( 'Enhance your shopping experience! Explore additional products at a discount before you exit.', 'woo-one-click-upsell-funnel' );
+							}
+							?>
+
+							<textarea name="upsell_exit_intent_message" rows="4" cols="50"><?php echo esc_html( wp_unslash( $upsell_exit_intent_message ) ); ?></textarea>
+						</div>
+						<span class="wps_upsell_global_description"><?php esc_html_e( 'Add a custom message on for popup when user close browser.', 'woo-one-click-upsell-funnel' ); ?></span>
+					</td>
+				</tr>
+				<!-- Upsell Exit Intent Message end -->
+
+				<!-- -->
+
 				<!-- Global product start -->
 				<tr valign="top">
 
@@ -317,7 +411,7 @@ $wps_upsell_global_settings = get_option( 'wps_upsell_lite_global_options', arra
 						<div class="wps_upsell_attribute_description">
 
 							<?php
-							$attribut_description = esc_html__( '( For Live Offer only ) This message will be shown along with a loader on clicking upsell Accept / Reject message.', 'woo-one-click-upsell-funnel' );
+							$attribut_description = esc_html__( '( For Live Offer only ) This message will be shown along with a loader on clicking upsell Accept message.', 'woo-one-click-upsell-funnel' );
 							wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							?>
 
@@ -329,7 +423,7 @@ $wps_upsell_global_settings = get_option( 'wps_upsell_lite_global_options', arra
 
 							<textarea name="upsell_actions_message" rows="4" cols="50"><?php echo esc_html( wp_unslash( $upsell_actions_message ) ); ?></textarea>
 						</div>
-						<span class="wps_upsell_global_description"><?php esc_html_e( 'Add a custom message on after upsell accept or reject button.', 'woo-one-click-upsell-funnel' ); ?></span>
+						<span class="wps_upsell_global_description"><?php esc_html_e( 'Add a custom message on after upsell accept button.', 'woo-one-click-upsell-funnel' ); ?></span>
 					</td>
 				</tr>
 				<!-- Upsell Actions Message end -->

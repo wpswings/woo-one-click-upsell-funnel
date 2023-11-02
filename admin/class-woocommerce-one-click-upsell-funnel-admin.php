@@ -1071,7 +1071,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 	 */
 	public function wps_wocuf_pro_populate_upsell_order_column( $column, $post_id ) {
 
-		$upsell_order = get_post_meta( $post_id, 'wps_wocuf_upsell_order', true );
+		$upsell_order = wps_wocfo_hpos_get_meta_data( $post_id, 'wps_wocuf_upsell_order', true );
 
 		switch ( $column ) {
 

@@ -70,7 +70,7 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		if ( defined( 'WPS_WOCUF_VERSION' ) ) {
 			$this->version = WPS_WOCUF_VERSION;
 		} else {
-			$this->version = '3.2.9';
+			$this->version = '3.4.0';
 		}
 
 		$this->plugin_name = 'woocommerce-one-click-upsell-funnel';
@@ -229,6 +229,9 @@ class Woocommerce_One_Click_Upsell_Funnel {
 
 			// Populating Upsell Orders column with Single Order or Upsell order.
 			$this->loader->add_action( 'manage_shop_order_posts_custom_column', $plugin_admin, 'wps_wocuf_pro_populate_upsell_order_column', 10, 2 );
+
+			$this->loader->add_action( 'woocommerce_shop_order_list_table_custom_column', $plugin_admin, 'wps_wocuf_pro_populate_upsell_order_column', 10, 2 );
+			$this->loader->add_filter( 'woocommerce_shop_order_list_table_columns', $plugin_admin, 'wps_wocuf_pro_add_columns_to_admin_orders', 99 );
 
 			// Add Upsell Filtering dropdown for All Orders, No Upsell Orders, Only Upsell Orders.
 			$this->loader->add_filter( 'restrict_manage_posts', $plugin_admin, 'wps_wocuf_pro_restrict_manage_posts' );
