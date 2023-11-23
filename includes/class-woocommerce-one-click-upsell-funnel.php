@@ -70,7 +70,7 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		if ( defined( 'WPS_WOCUF_VERSION' ) ) {
 			$this->version = WPS_WOCUF_VERSION;
 		} else {
-			$this->version = '3.4.0';
+			$this->version = '3.4.1';
 		}
 
 		$this->plugin_name = 'woocommerce-one-click-upsell-funnel';
@@ -308,7 +308,12 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		if ( 'on' === $wps_wocuf_enable_plugin ) {
 
 			// Initiate Upsell Orders before processing payment.
-			$this->loader->add_action( 'woocommerce_checkout_order_processed', $plugin_public, 'wps_wocuf_initiate_upsell_orders' );
+			$this->loader->add_action( 'woocommerce_checkout_order_processed', $plugin_public, 'wps_wocuf_initate_upsell_orders_shortcode_checkout_org' );
+
+			// Initiate Upsell Orders before processing payment.
+			$this->loader->add_action( 'woocommerce_store_api_checkout_order_processed', $plugin_public, 'wps_wocuf_initate_upsell_orders_api_checkout_org', 90 );
+
+			//$this->loader->add_filter( 'woocommerce_get_checkout_order_received_url', $plugin_public, 'wps_wocuf_redirect_order_while_upsell' );
 
 			// When user clicks on No thanks for Upsell offer.
 			! is_admin() && $this->loader->add_action( 'wp_loaded', $plugin_public, 'wps_wocuf_pro_process_the_funnel' );
@@ -402,4 +407,18 @@ class Woocommerce_One_Click_Upsell_Funnel {
 	public function get_version() {
 		return $this->version;
 	}
+}
+
+add_filter('woocommerce_get_checkout_order_received_url', 'wps_wocuf_redirect_order_while_upsell_org',10,2);
+
+function wps_wocuf_redirect_order_while_upsell_org($order_received_url, $data){
+
+	wps_wocfo_hpos_update_meta_data( $data->id, 'wps_wocuf_upsell_funnel_order_redirection_link', $order_received_url );
+
+	$order_received_url_data = wps_wocfo_hpos_get_meta_data( $data->id, 'wps_wocfo_upsell_funnel_redirection_link_org', true );
+
+	if ( ! empty( $order_received_url_data ) ) {
+		$order_received_url = $order_received_url_data;
+	}
+	return $order_received_url;
 }
