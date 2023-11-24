@@ -139,7 +139,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 *
 	 * @throws Exception Throws exception when error.
 	 */
-	public function wps_wocuf_initate_upsell_orders_shortcode_checkout( $order_id ) {
+	public function wps_wocuf_initate_upsell_orders_shortcode_checkout_org( $order_id ) {
 		if ( empty( $_GET['wc-ajax'] ) || 'checkout' !== $_GET['wc-ajax'] ) {
 			die($_GET['wc-ajax']);
 			return;
