@@ -131,25 +131,24 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	}
 
 		/**
-	 * Initiate Upsell Orders before processing payment in case of checkout shortcode.
-	 *
-	 * @param int $order_id order id.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @throws Exception Throws exception when error.
-	 */
+		 * Initiate Upsell Orders before processing payment in case of checkout shortcode.
+		 *
+		 * @param int $order_id order id.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @throws Exception Throws exception when error.
+		 */
 	public function wps_wocuf_initate_upsell_orders_shortcode_checkout_org( $order_id ) {
 		if ( empty( $_GET['wc-ajax'] ) || 'checkout' !== $_GET['wc-ajax'] ) {
-			die($_GET['wc-ajax']);
 			return;
 		}
-		$order = wc_get_order( $order_id);
+		$order = wc_get_order( $order_id );
 		$this->wps_wocuf_initiate_upsell_orders( $order );
 
 	}
 
-	
+
 	/**
 	 * Initiate Upsell Orders before processing payment in case of checkout block.
 	 *
@@ -160,25 +159,24 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 * @throws Exception Throws exception when error.
 	 */
 	public function wps_wocuf_initate_upsell_orders_api_checkout_org( $order ) {
-		$order_id =$order->get_id();
+		$order_id = $order->get_id();
 		wps_wocfo_hpos_update_meta_data( $order_id, '_wps_wocfo_org_checkout_through_block', 'block_checkout' );
-								
+
 		$this->wps_wocuf_initiate_upsell_orders( $order );
 
 	}
 
-	
+
 
 	/**
 	 * Initiate Upsell Orders before processing payment.
 	 *
-	 * @param int $order_id Order id.
+	 * @param object $order Order data.
 	 * @since    1.0.0
 	 */
 	public function wps_wocuf_initiate_upsell_orders( $order ) {
 
-		//$order = new WC_Order( $order_id );
-		$order_id =$order->get_id();
+		$order_id = $order->get_id();
 		$payment_method = $order->get_payment_method();
 
 		$supported_gateways = wps_upsell_lite_supported_gateways();
@@ -640,11 +638,11 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		);
 
 		$is_block_checkout = wps_wocfo_hpos_get_meta_data( $order_id, '_wps_wocfo_org_checkout_through_block', true );
-		
-		if ( 'block_checkout' == $is_block_checkout ){
+
+		if ( 'block_checkout' == $is_block_checkout ) {
 			wps_wocfo_hpos_update_meta_data( $order_id, 'wps_wocfo_upsell_funnel_redirection_link_org', $upsell_offer_link );
-			
-		} else{
+
+		} else {
 			// Redirect to upsell offer page.
 			if ( ! is_ajax() ) {
 				wp_redirect( $upsell_result['redirect'] ); //phpcs:ignore
@@ -654,8 +652,6 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			wp_send_json( $upsell_result );
 
 		}
-		
-
 
 	}
 
@@ -814,7 +810,6 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				// Add Offer View Count for the current Funnel.
 				$sales_by_funnel = new WPS_Upsell_Report_Sales_By_Funnel( $funnel_id );
 				$sales_by_funnel->add_offer_view_count();
-
 
 				wp_redirect( $url ); //phpcs:ignore
 				exit();
@@ -1139,7 +1134,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 					$already_processed_order_statuses = array(
 						'failed',
 					);
-				
+
 					// If order or payment is already processed.
 					if ( in_array( $order->get_status(), $already_processed_order_statuses, true ) || $this->expire_further_offers( $order_id ) ) {
 
@@ -1436,21 +1431,17 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 		$result = $this->upsell_order_final_payment( $order_id );
 
-
-
 		$is_block_checkout = wps_wocfo_hpos_get_meta_data( $order_id, '_wps_wocfo_org_checkout_through_block', true );
-		
-		if ( 'block_checkout' == $is_block_checkout ){
+
+		if ( 'block_checkout' == $is_block_checkout ) {
 
 			$url    = wps_wocfo_hpos_get_meta_data( $order_id, 'wps_wocuf_upsell_funnel_order_redirection_link', true );
-			
+
 			wp_redirect( $url ); //phpcs:ignore
 			exit();
 		}
 
 		$url = $order->get_checkout_order_received_url();
-
-
 
 		if ( isset( $result['result'] ) && 'success' === $result['result'] ) {
 
@@ -4146,15 +4137,15 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		$order_statuses = array( 'wc-on-hold', 'wc-processing', 'wc-completed' );
 
 		$customer_user_id = get_current_user_id();
-        $customer_orders = wc_get_orders(
-            array(
-                'customer' => $customer_user_id,
-                'order' => 'DESC',
-                'status' => array( 'wc-on-hold', 'wc-processing', 'wc-completed' ),
-                'return'   => 'ids',
-                'numberposts' => -1,
-            )
-        );
+		$customer_orders = wc_get_orders(
+			array(
+				'customer' => $customer_user_id,
+				'order' => 'DESC',
+				'status' => array( 'wc-on-hold', 'wc-processing', 'wc-completed' ),
+				'return'   => 'ids',
+				'numberposts' => -1,
+			)
+		);
 
 		// Past Orders.
 		foreach ( $customer_orders as $key => $single_order_id ) {

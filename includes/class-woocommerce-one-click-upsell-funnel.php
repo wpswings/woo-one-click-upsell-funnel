@@ -313,7 +313,7 @@ class Woocommerce_One_Click_Upsell_Funnel {
 			// Initiate Upsell Orders before processing payment.
 			$this->loader->add_action( 'woocommerce_store_api_checkout_order_processed', $plugin_public, 'wps_wocuf_initate_upsell_orders_api_checkout_org', 90 );
 
-			//$this->loader->add_filter( 'woocommerce_get_checkout_order_received_url', $plugin_public, 'wps_wocuf_redirect_order_while_upsell' );
+			// $this->loader->add_filter( 'woocommerce_get_checkout_order_received_url', $plugin_public, 'wps_wocuf_redirect_order_while_upsell' );
 
 			// When user clicks on No thanks for Upsell offer.
 			! is_admin() && $this->loader->add_action( 'wp_loaded', $plugin_public, 'wps_wocuf_pro_process_the_funnel' );
@@ -409,9 +409,16 @@ class Woocommerce_One_Click_Upsell_Funnel {
 	}
 }
 
-add_filter('woocommerce_get_checkout_order_received_url', 'wps_wocuf_redirect_order_while_upsell_org',10,2);
+add_filter( 'woocommerce_get_checkout_order_received_url', 'wps_wocuf_redirect_order_while_upsell_org', 10, 2 );
 
-function wps_wocuf_redirect_order_while_upsell_org($order_received_url, $data){
+/**
+ * Function to save redirection.
+ *
+ * @param [type] $order_received_url is the order url.
+ * @param [type] $data is the order data.
+ * @return mixed
+ */
+function wps_wocuf_redirect_order_while_upsell_org( $order_received_url, $data ) {
 
 	wps_wocfo_hpos_update_meta_data( $data->id, 'wps_wocuf_upsell_funnel_order_redirection_link', $order_received_url );
 
