@@ -691,9 +691,6 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				$order = wc_get_order( $order_id );
 
 				$already_processed_order_statuses = array(
-					'processing',
-					//'completed',
-					'on-hold',
 					'failed',
 				);
 
@@ -1140,9 +1137,6 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 					$order = wc_get_order( $order_id );
 
 					$already_processed_order_statuses = array(
-						//'processing',
-						//'completed',
-						//'on-hold',
 						'failed',
 					);
 				
@@ -4151,17 +4145,28 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		// Getting current customer orders.
 		$order_statuses = array( 'wc-on-hold', 'wc-processing', 'wc-completed' );
 
-		$customer_orders = get_posts(
-			array(
-				'numberposts' => -1,
-				'fields'      => 'ids', // Return only order ids.
-				'meta_key'    => '_customer_user', //phpcs:ignore
-				'meta_value'  => $customer_user_id, //phpcs:ignore
-				'post_type'   => wc_get_order_types(),
-				'post_status' => $order_statuses,
-				'order'       => 'DESC', // Get last order first.
-			)
-		);
+		// $customer_orders = get_posts(
+		// 	array(
+		// 		'numberposts' => -1,
+		// 		'fields'      => 'ids', // Return only order ids.
+		// 		'meta_key'    => '_customer_user', //phpcs:ignore
+		// 		'meta_value'  => $customer_user_id, //phpcs:ignore
+		// 		'post_type'   => wc_get_order_types(),
+		// 		'post_status' => $order_statuses,
+		// 		'order'       => 'DESC', // Get last order first.
+		// 	)
+		// );
+
+		$customer_user_id = get_current_user_id();
+        $customer_orders = wc_get_orders(
+            array(
+                'customer' => $customer_user_id,
+                'order' => 'DESC',
+                'status' => array( 'wc-on-hold', 'wc-processing', 'wc-completed' ),
+                'return'   => 'ids',
+                'numberposts' => -1,
+            )
+        );
 
 		// Past Orders.
 		foreach ( $customer_orders as $key => $single_order_id ) {
