@@ -415,7 +415,7 @@ add_filter( 'woocommerce_get_checkout_order_received_url', 'wps_wocuf_redirect_o
  * Function to save redirection.
  *
  * @param string    $order_received_url is the order url.
- * @param [type] $data is the order data.
+ * @param object $data is the order data.
  * @return string
  */
 function wps_wocuf_redirect_order_while_upsell_org( $order_received_url, $data ) {
