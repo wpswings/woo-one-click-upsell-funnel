@@ -3,9 +3,9 @@ Contributors: wpswings
 Donate link: https://wpswings.com/
 Tags: upsell, boost sales, cross-sell, sales funnel, post-purchase offers, woocommerce upsell, related products
 Requires at least: 5.5.0
-Tested up to: 6.3.2
+Tested up to: 6.4.1
 WC requires at least: 5.5.0
-WC tested up to: 8.2.1
+WC tested up to: 8.3.1
 Stable tag: 3.4.1
 Requires PHP: 7.0.0
 License: GPLv3 or later 
@@ -45,8 +45,7 @@ Essentially, you can offer fantastic deals to customers, increasing their satisf
 [**Download Now!!**](https://downloads.wordpress.org/plugin/woo-one-click-upsell-funnel.zip)
 
 == WHAT’S INCLUDED IN OUR FREE ONE CLICK UPSELL FUNNEL WORDPRESS PLUGIN ==
-
-**1) Pop-Up on Exit Intent**: Using The WooCommerce Upsell Plugin You can enable the pop-up on exit intent feature, allowing you to show a pop-up on upsell offer pages when a customer tries to exit the browser, this can be an ultimate upselling hack for your business.
+**1) Pop-Up on Exit Intent**: Using the WooCommerce Upsell Plugin you can enable the pop-up on exit intent feature, allowing you to show a pop-up on upsell offer pages when a customer tries to exit the browser, this can be an ultimate upselling hack for your business.
 
 **2) Unlimited Funnels with an Unlimited Number of Offers**: With the Wordpress Sales Funnel plugin, you can create unlimited sales funnels with any number of Upsell and Cross-Sell Offers. Show your customers multiple post-purchase offers in a single sales funnel which increases the impulse buys, average order value, and revenue of your store.
 
@@ -261,7 +260,11 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Changelog ==
 
-= 3.4.1 - Released on 31 October 2023 =
+= 3.4.1 - Released on 29 November 2023 =
+* New: Cart and Checkout Block compatibility
+* New: Compatibility with WP(6.4.1) and WC(8.3.1)
+
+= 3.4.0 - Released on 31 October 2023 =
 * New: HPOS compatibility
 * New: Latest WP [6.3.2] and WC [8.2.1] update 
 
@@ -398,7 +401,6 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Upgrade Notice ==
 
-= 3.4.1 - Released on 31 October 2023 =
-* New: HPOS compatibility
-* New: Latest WP [6.3.2] and WC [8.2.1] update 
-
+= 3.4.1 - Released on 29 November 2023 =
+* New: Cart and Checkout Block compatibility
+* New: Compatibility with WP(6.4.1) and WC(8.3.1)
