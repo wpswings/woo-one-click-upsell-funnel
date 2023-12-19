@@ -358,10 +358,9 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 	 */
 	function wps_wocuf_redirect_order_while_upsell_org( $order_received_url, $data ) {
 
-		wps_wocfo_hpos_update_meta_data( $data->id, 'wps_wocuf_upsell_funnel_order_redirection_link', $order_received_url );
+		wps_wocfo_hpos_update_meta_data( $data->get_id(), 'wps_wocuf_upsell_funnel_order_redirection_link', $order_received_url );
 
-		$order_received_url_data = wps_wocfo_hpos_get_meta_data( $data->id, 'wps_wocfo_upsell_funnel_redirection_link_org', true );
-
+        $order_received_url_data = wps_wocfo_hpos_get_meta_data( $data->get_id(), 'wps_wocfo_upsell_funnel_redirection_link_org', true );
 		if ( ! empty( $order_received_url_data ) ) {
 			$order_received_url = $order_received_url_data;
 		}
@@ -481,7 +480,8 @@ function wps_wocuf_banner_notification_html() {
 	if ( isset( $screen->id ) ) {
 		$pagescreen = $screen->id;
 	}
-	if ( ( isset( $_GET['page'] ) && 'wps-wocuf-setting' === $_GET['page'] ) ) {
+	
+	if ( ( isset( $_GET['page'] ) && 'wps-wocuf-setting' === isset( $_GET['page'] ) ? $_GET['page'] : '' ) || 'wps-wocuf-pro-setting' === isset( $_GET['page'] ) ? $_GET['page'] : '' ) {
 		$banner_id = get_option( 'wps_wgm_notify_new_banner_id', false );
 		if ( isset( $banner_id ) && '' !== $banner_id ) {
 			$hidden_banner_id            = get_option( 'wps_wgm_notify_hide_baneer_notification', false );

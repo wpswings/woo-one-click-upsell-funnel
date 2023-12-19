@@ -319,8 +319,6 @@ class Woocommerce_One_Click_Upsell_Funnel {
 			// Initiate Upsell Orders before processing payment.
 			$this->loader->add_action( 'woocommerce_store_api_checkout_order_processed', $plugin_public, 'wps_wocuf_initate_upsell_orders_api_checkout_org', 90 );
 
-			// $this->loader->add_filter( 'woocommerce_get_checkout_order_received_url', $plugin_public, 'wps_wocuf_redirect_order_while_upsell' );
-
 			// When user clicks on No thanks for Upsell offer.
 			! is_admin() && $this->loader->add_action( 'wp_loaded', $plugin_public, 'wps_wocuf_pro_process_the_funnel' );
 
