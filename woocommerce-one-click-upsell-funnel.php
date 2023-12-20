@@ -505,3 +505,4 @@ function wps_wocuf_banner_notification_html() {
 		}
 	}
 }
+
