@@ -131,7 +131,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 		if ( isset( $screen->id ) ) {
 			$pagescreen = $screen->id;
-			//banner
+			//banner.
 			$wps_wocuf_branner_notice = array(
 				'ajaxurl'       => admin_url( 'admin-ajax.php' ),
 				'wps_wocuf_nonce' => wp_create_nonce( 'wps-wocuf-verify-notice-nonce' ),
@@ -1597,6 +1597,11 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 		return $wps_notification_data;
 	}
 
+	/**
+	 * function to dismiss banner.
+	 *
+	 * @return void
+	 */
 	public function wps_wocuf_dismiss_notice_banner_callback(){
 		if ( isset( $_REQUEST['wps_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['wps_nonce'] ) ), 'wps-wocuf-verify-notice-nonce' ) ) {
 

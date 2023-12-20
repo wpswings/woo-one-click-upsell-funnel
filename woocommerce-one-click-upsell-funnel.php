@@ -480,8 +480,8 @@ function wps_wocuf_banner_notification_html() {
 	if ( isset( $screen->id ) ) {
 		$pagescreen = $screen->id;
 	}
-	
-	if ( ( isset( $_GET['page'] ) && 'wps-wocuf-setting' == isset( $_GET['page'] ) ? $_GET['page'] : '' ) || 'wps-wocuf-pro-setting' == isset( $_GET['page'] ) ? $_GET['page'] : '' ) {
+
+	if ( ( isset( $_GET['page'] ) && 'wps-wocuf-setting' == ( sanitize_text_field( wp_unslash( $_GET['page'] ) ) ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '' ) || 'wps-wocuf-pro-setting' == ( sanitize_text_field( wp_unslash( $_GET['page'] ) ) ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ): '' ) {
 		$banner_id = get_option( 'wps_wgm_notify_new_banner_id', false );
 		if ( isset( $banner_id ) && '' !== $banner_id ) {
 			$hidden_banner_id            = get_option( 'wps_wgm_notify_hide_baneer_notification', false );
