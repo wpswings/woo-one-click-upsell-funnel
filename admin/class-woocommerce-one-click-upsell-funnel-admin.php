@@ -131,18 +131,17 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 		if ( isset( $screen->id ) ) {
 			$pagescreen = $screen->id;
-			//banner.
+			// banner.
 			$wps_wocuf_branner_notice = array(
 				'ajaxurl'       => admin_url( 'admin-ajax.php' ),
 				'wps_wocuf_nonce' => wp_create_nonce( 'wps-wocuf-verify-notice-nonce' ),
 			);
 			wp_register_script( $this->plugin_name . 'admin-notice', plugin_dir_url( __FILE__ ) . 'js/wps-wocuf-card-notices.js', array( 'jquery' ), $this->version, false );
-	
+
 			wp_localize_script( $this->plugin_name . 'admin-notice', 'wps_wocuf_branner_notice', $wps_wocuf_branner_notice );
 			wp_enqueue_script( $this->plugin_name . 'admin-notice' );
 
-			//banner.
-
+			// banner.
 
 			if ( 'woocommerce_page_wc-settings' === $pagescreen ) {
 				wp_enqueue_script( 'wps_wocuf_pro_banner_admin_script', plugin_dir_url( __FILE__ ) . 'js/woocommerce_one_click_upsell_funnel_pro-banner-admin.js', array( 'jquery' ), $this->version, false );
@@ -1536,7 +1535,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 	 *
 	 * @return void
 	 */
-	public function wps_upsell_set_cron_for_plugin_notification(){
+	public function wps_upsell_set_cron_for_plugin_notification() {
 		$wps_upsell_offset = get_option( 'gmt_offset' );
 		$wps_upsell_time   = time() + $wps_upsell_offset * 60 * 60;
 		if ( ! wp_next_scheduled( 'wps_wgm_check_for_notification_update' ) ) {
@@ -1549,7 +1548,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 	 *
 	 * @return void
 	 */
-	public function wps_upsell_save_notice_message(){
+	public function wps_upsell_save_notice_message() {
 		$wps_notification_data = $this->wps_upsell_get_update_notification_data();
 		if ( is_array( $wps_notification_data ) && ! empty( $wps_notification_data ) ) {
 			$banner_id      = array_key_exists( 'notification_id', $wps_notification_data[0] ) ? $wps_notification_data[0]['wps_banner_id'] : '';
@@ -1598,11 +1597,11 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 	}
 
 	/**
-	 * function to dismiss banner.
+	 * Function to dismiss banner.
 	 *
 	 * @return void
 	 */
-	public function wps_wocuf_dismiss_notice_banner_callback(){
+	public function wps_wocuf_dismiss_notice_banner_callback() {
 		if ( isset( $_REQUEST['wps_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['wps_nonce'] ) ), 'wps-wocuf-verify-notice-nonce' ) ) {
 
 			$banner_id = get_option( 'wps_wgm_notify_new_banner_id', false );

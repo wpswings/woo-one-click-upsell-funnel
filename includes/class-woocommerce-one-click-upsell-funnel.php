@@ -253,7 +253,6 @@ class Woocommerce_One_Click_Upsell_Funnel {
 
 		$this->loader->add_filter( 'woocommerce_admin_reports', $plugin_admin, 'add_upsell_reporting' );
 
-
 		/*cron for notification*/
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'wps_upsell_set_cron_for_plugin_notification' );
 		$this->loader->add_action( 'wps_wgm_check_for_notification_update', $plugin_admin, 'wps_upsell_save_notice_message' );
