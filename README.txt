@@ -3,10 +3,10 @@ Contributors: wpswings
 Donate link: https://wpswings.com/
 Tags: upsell, boost sales, cross-sell, sales funnel, post-purchase offers, woocommerce upsell, related products
 Requires at least: 5.5.0
-Tested up to: 6.3.2
+Tested up to: 6.4.2
 WC requires at least: 5.5.0
-WC tested up to: 8.2.1
-Stable tag: 3.4.0
+WC tested up to: 8.4.0
+Stable tag: 3.4.2
 Requires PHP: 7.0.0
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -45,8 +45,7 @@ Essentially, you can offer fantastic deals to customers, increasing their satisf
 [**Download Now!!**](https://downloads.wordpress.org/plugin/woo-one-click-upsell-funnel.zip)
 
 == WHAT’S INCLUDED IN OUR FREE ONE CLICK UPSELL FUNNEL WORDPRESS PLUGIN ==
-
-**1) Pop-Up on Exit Intent**: Using The WooCommerce Upsell Plugin You can enable the pop-up on exit intent feature, allowing you to show a pop-up on upsell offer pages when a customer tries to exit the browser, this can be an ultimate upselling hack for your business.
+**1) Pop-Up on Exit Intent**: Using the WooCommerce Upsell Plugin you can enable the pop-up on exit intent feature, allowing you to show a pop-up on upsell offer pages when a customer tries to exit the browser, this can be an ultimate upselling hack for your business.
 
 **2) Unlimited Funnels with an Unlimited Number of Offers**: With the Wordpress Sales Funnel plugin, you can create unlimited sales funnels with any number of Upsell and Cross-Sell Offers. Show your customers multiple post-purchase offers in a single sales funnel which increases the impulse buys, average order value, and revenue of your store.
 
@@ -144,7 +143,7 @@ If you need support or have questions, kindly use our online chat window [**here
 
 
 
-> Get Huge Discounts on WooCommerce Upsell plugin during BFCM Sales 2023 – [**Get More Offers**](https://wpswings.com/offers/?utm_source=wpswings-upsell-offers&utm_medium=upsell-org-page&utm_campaign=offers)
+> Get Huge Discounts on WooCommerce Upsell plugin during Christmas/New Year Sales 2023 – [**Get More Offers**](https://wpswings.com/offers/?utm_source=wpswings-upsell-offers&utm_medium=upsell-org-page&utm_campaign=offers)
 
 > If our documentation doesn’t contain the solution to your problem, you can visit the [**Forums Community**](https://forums.wpswings.com/?utm_source=wpswings-forums&utm_medium=upsell-org-page&utm_campaign=forum) or [**Generate a ticket**](https://wpswings.com/submit-query/?utm_source=wpswings-submit-query&utm_medium=upsell-org-page&utm_campaign=query)
 
@@ -260,6 +259,14 @@ Most of the major WordPress page builders like Elementor, WPBakery, Divibuilders
 Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.com/wordpress-plugins-knowledge-base/category/one-click-upsell-funnel-for-woocommerce/?utm_source=wpswings-upsell-kb&utm_medium=upsell-org-page&utm_campaign=upsell-kb)
 
 == Changelog ==
+
+= 3.4.2 - Released on 21 December 2023 =
+* New: Banner section added in org
+* New: Compatibility with WP(6.4.2) and WC(8.4.0)
+
+= 3.4.1 - Released on 29 November 2023 =
+* New: Cart and Checkout Block compatibility
+* New: Compatibility with WP(6.4.1) and WC(8.3.1)
 
 = 3.4.0 - Released on 31 October 2023 =
 * New: HPOS compatibility
@@ -398,7 +405,6 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Upgrade Notice ==
 
-= 3.4.0 - Released on 31 October 2023 =
-* New: HPOS compatibility
-* New: Latest WP [6.3.2] and WC [8.2.1] update 
-
+= 3.4.2 - Released on 21 December 2023 =
+* New: Banner section added in org
+* New: Compatibility with WP(6.4.2) and WC(8.4.0)

@@ -70,7 +70,7 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		if ( defined( 'WPS_WOCUF_VERSION' ) ) {
 			$this->version = WPS_WOCUF_VERSION;
 		} else {
-			$this->version = '3.4.0';
+			$this->version = '3.4.2';
 		}
 
 		$this->plugin_name = 'woocommerce-one-click-upsell-funnel';
@@ -252,6 +252,11 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		}
 
 		$this->loader->add_filter( 'woocommerce_admin_reports', $plugin_admin, 'add_upsell_reporting' );
+
+		/*cron for notification*/
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'wps_upsell_set_cron_for_plugin_notification' );
+		$this->loader->add_action( 'wps_wgm_check_for_notification_update', $plugin_admin, 'wps_upsell_save_notice_message' );
+		$this->loader->add_action( 'wp_ajax_wps_wocuf_dismiss_notice_banner', $plugin_admin, 'wps_wocuf_dismiss_notice_banner_callback' );
 	}
 
 	/**
@@ -308,7 +313,10 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		if ( 'on' === $wps_wocuf_enable_plugin ) {
 
 			// Initiate Upsell Orders before processing payment.
-			$this->loader->add_action( 'woocommerce_checkout_order_processed', $plugin_public, 'wps_wocuf_initiate_upsell_orders' );
+			$this->loader->add_action( 'woocommerce_checkout_order_processed', $plugin_public, 'wps_wocuf_initate_upsell_orders_shortcode_checkout_org' );
+
+			// Initiate Upsell Orders before processing payment.
+			$this->loader->add_action( 'woocommerce_store_api_checkout_order_processed', $plugin_public, 'wps_wocuf_initate_upsell_orders_api_checkout_org', 90 );
 
 			// When user clicks on No thanks for Upsell offer.
 			! is_admin() && $this->loader->add_action( 'wp_loaded', $plugin_public, 'wps_wocuf_pro_process_the_funnel' );
@@ -403,3 +411,4 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		return $this->version;
 	}
 }
+
