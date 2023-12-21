@@ -1,4 +1,4 @@
-![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg)![Active installs](https://img.shields.io/badge/Active-1000%2B-brightgreen)![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-6.3.0-brightgreen)![WC tested](https://img.shields.io/badge/WC%20tested-8.0.2-brightgreen)![Requires PHP](https://img.shields.io/badge/Requires%20PHP-7.0.0-blue)
+![Build Status](https://img.shields.io/travis/twbs/bootstrap/master.svg)![Active installs](https://img.shields.io/badge/Active-1000%2B-brightgreen)![License](https://img.shields.io/badge/License-GPLv3%20or%20later-yellowgreen) ![WP tested](https://img.shields.io/badge/WP%20tested-6.4.2-brightgreen)![WC tested](https://img.shields.io/badge/WC%20tested-8.4.0-brightgreen)![Requires PHP](https://img.shields.io/badge/Requires%20PHP-7.0.0-blue)
 # One Click Upsell Funnel for WooCommerce – Post-Purchase Upsell & Cross-Sell Offers, Boost Sales & Increase Profits
 ![One Click Upsell Funnel for WooCommerce](https://ps.w.org/woo-one-click-upsell-funnel/assets/banner-772x250.png?rev=2672029)
 * Contributors: WP Swings
@@ -132,11 +132,13 @@ If you need support or have questions, kindly use our online chat window [**here
 
 > Create and Revamp your eCommerce store with [**WooCommerce Services**](https://wpswings.com/woocommerce-services/?utm_source=wpswings-upsell-services&utm_medium=upsell-github-page&utm_campaign=woocommerce-services)
 
-> Get Huge Discounts on WooCommerce Upsell plugin during BFCM Sales 2023 – [**Get More Offers**](https://wpswings.com/offers/?utm_source=wpswings-upsell-offers&utm_medium=upsell-github-page&utm_campaign=offers)
+> Get Huge Discounts on WooCommerce Upsell plugin during Christmas/New Year Sales 2023 – [**Get More Offers**](https://wpswings.com/offers/?utm_source=wpswings-upsell-offers&utm_medium=upsell-github-page&utm_campaign=offers)
 ## MORE ABOUT WP SWINGS
  
 * [**Our Official Website**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-github-page&utm_campaign=official)
 * [**Follow us on Facebook Page**](https://www.facebook.com/wpswings)
 * [**Tweet us on @WPSwings**](https://twitter.com/wpswings)
 * [**Visit our LinkedIn Account**](https://www.linkedin.com/company/wpswings/)
+
+
 
