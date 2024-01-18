@@ -91,7 +91,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			$show_upsell_loader    = true;
 			$upsell_global_options = get_option( 'wps_upsell_lite_global_options', array() );
 
-			$upsell_loader_message = ! empty( $upsell_global_options['upsell_actions_message'] ) ? sanitize_text_field( $upsell_global_options['upsell_actions_message'] ) : '';
+			$upsell_loader_redirect_link = ! empty( $upsell_global_options['upsell_actions_message'] ) ? sanitize_text_field( $upsell_global_options['upsell_actions_message'] ) : '';
 		}
 
 		wp_localize_script(
@@ -101,7 +101,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				'alert_preview_title'    => esc_html__( 'One Click Upsell', 'woo-one-click-upsell-funnel' ),
 				'alert_preview_content'  => esc_html__( 'This is Preview Mode, please checkout to see Live Offers.', 'woo-one-click-upsell-funnel' ),
 				'show_upsell_loader'     => $show_upsell_loader,
-				'upsell_actions_message' => ! empty( $show_upsell_loader ) ? $upsell_loader_message : '',
+				'upsell_actions_message' => ! empty( $show_upsell_loader ) ? $upsell_loader_redirect_link : '',
 			)
 		);
 
@@ -2864,10 +2864,26 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	private function expire_offer() {
 
 		$shop_page_url = function_exists( 'wc_get_page_id' ) ? get_permalink( wc_get_page_id( 'shop' ) ) : get_permalink( woocommerce_get_page_id( 'shop' ) );
+		$upsell_global_options = get_option( 'wps_upsell_lite_global_options', array() );
 
-		?>
-		<div style="text-align: center;margin-top: 30px;" id="wps_upsell_offer_expired"><h2 style="font-weight: 200;"><?php esc_html_e( 'Sorry, Offer expired.', 'woo-one-click-upsell-funnel' ); ?></h2><a class="button wc-backward" href="<?php echo esc_url( $shop_page_url ); ?>"><?php esc_html_e( 'Return to Shop ', 'woo-one-click-upsell-funnel' ); ?>&rarr;</a></div>
-		<?php
+		$upsell_loader_redirect_link = ! empty( $upsell_global_options['upsell_redirect_expire_link'] ) ? sanitize_text_field( $upsell_global_options['upsell_redirect_expire_link'] ) : '';
+		$custom_redirect = true;
+		if ( $upsell_loader_redirect_link == $shop_page_url ) {
+			$custom_redirect = true;
+		}else{
+			$custom_redirect = false;
+		}
+
+		if ( $custom_redirect ) {
+			?>
+			<div style="text-align: center;margin-top: 30px;" id="wps_upsell_offer_expired"><h2 style="font-weight: 200;"><?php esc_html_e( 'Sorry, Offer expired.', 'woo-one-click-upsell-funnel' ); ?></h2><a class="button wc-backward" href="<?php echo esc_url( $shop_page_url ); ?>"><?php esc_html_e( 'Return to Shop ', 'woo-one-click-upsell-funnel' ); ?>&rarr;</a></div>
+			<?php
+		}else{
+			?>
+			<div style="text-align: center;margin-top: 30px;" id="wps_upsell_offer_expired"><h2 style="font-weight: 200;"><?php esc_html_e( 'Sorry, Offer expired.', 'woo-one-click-upsell-funnel' ); ?></h2><a class="button wc-backward" href="<?php echo esc_url( $upsell_loader_redirect_link ); ?>"><?php esc_html_e( 'Return', 'woo-one-click-upsell-funnel' ); ?>&rarr;</a></div>
+			<?php
+		}
+		
 		// It just displayes the html itself. Content in it is already escaped.
 
 		wp_die();

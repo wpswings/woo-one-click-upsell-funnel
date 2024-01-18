@@ -70,7 +70,7 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		if ( defined( 'WPS_WOCUF_VERSION' ) ) {
 			$this->version = WPS_WOCUF_VERSION;
 		} else {
-			$this->version = '3.4.2';
+			$this->version = '3.4.3';
 		}
 
 		$this->plugin_name = 'woocommerce-one-click-upsell-funnel';
