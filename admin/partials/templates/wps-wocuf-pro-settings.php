@@ -337,7 +337,7 @@ wps_upsee_lite_go_pro( 'pro' );
 				<tr valign="top">
 
 					<th scope="row" class="titledesc">
-					
+					<span class="wps_wupsell_premium_strip">Pro</span>
 						<label><?php esc_html_e( 'Upsell redirect on Offer Expire Link', 'woo-one-click-upsell-funnel' ); ?></label>
 					</th>
 
@@ -360,9 +360,9 @@ wps_upsee_lite_go_pro( 'pro' );
 								$upsell_redirect_expire_link = $shop_page_url ;
 							}
 							?>
-							<input class="wps_wocuf_pro_enable_plugin_input " type="text" value="<?php echo esc_html( wp_unslash( $upsell_redirect_expire_link ) ); ?>"  name="upsell_redirect_expire_link" >	
+							<input class="wps_wocuf_pro_enable_plugin_input ubo_offer_input" type="text" placeholder="<?php echo esc_html( wp_unslash( $upsell_redirect_expire_link ) ); ?>"  name="" >	
 						</div>
-						<span class="wps_upsell_global_description"><?php esc_html_e( 'Add a custom message on for popup when user close browser.', 'woo-one-click-upsell-funnel' ); ?></span>
+						<span class="wps_upsell_global_description"><?php esc_html_e( 'Add the url where you want to redirect user after offer expire.', 'woo-one-click-upsell-funnel' ); ?></span>
 					</td>
 				</tr>
 				<!-- Upsell redirect when offer expire end -->
