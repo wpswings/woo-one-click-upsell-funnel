@@ -260,7 +260,7 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Changelog ==
 
-= 3.4.3 - Released on 25 January 2024 =
+= 3.4.3 - Released on 29 January 2024 =
 * New: Latest WP(6.4.2) and WC(8.5.1)
 * Fix: Stock update issue fixed
 
@@ -409,6 +409,6 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Upgrade Notice ==
 
-= 3.4.3 - Released on 25 January 2024 =
+= 3.4.3 - Released on 29 January 2024 =
 * New: Latest WP(6.4.2) and WC(8.5.1)
 * Fix: Stock update issue fixed
