@@ -5,7 +5,7 @@ Tags: upsell, boost sales, cross-sell, sales funnel, post-purchase offers, wooco
 Requires at least: 5.5.0
 Tested up to: 6.4.2
 WC requires at least: 5.5.0
-WC tested up to: 8.4.0
+WC tested up to: 8.5.1
 Stable tag: 3.4.3
 Requires PHP: 7.0.0
 License: GPLv3 or later 
@@ -260,7 +260,11 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Changelog ==
 
-= 3.4.3 - Released on 21 December 2023 =
+= 3.4.3 - Released on 25 January 2024 =
+* New: Latest WP(6.4.2) and WC(8.5.1)
+* Fix: Stock update issue fixed
+
+= 3.4.2 - Released on 21 December 2023 =
 * New: Banner section added in org
 * New: Compatibility with WP(6.4.2) and WC(8.4.0)
 
@@ -405,6 +409,6 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Upgrade Notice ==
 
-= 3.4.3 - Released on 21 December 2023 =
-* New: Banner section added in org
-* New: Compatibility with WP(6.4.2) and WC(8.4.0)
+= 3.4.3 - Released on 25 January 2024 =
+* New: Latest WP(6.4.2) and WC(8.5.1)
+* Fix: Stock update issue fixed
