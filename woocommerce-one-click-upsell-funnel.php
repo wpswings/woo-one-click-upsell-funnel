@@ -15,12 +15,12 @@
  * Plugin Name:           One Click Upsell Funnel for Woocommerce
  * Plugin URI:            https://wordpress.org/plugins/woo-one-click-upsell-funnel/
  * Description:           One Click Upsell Funnel for WooCommerce allows showing post-checkout offers to customers which helps to increase Average Order Value & Revenue. <a href="https://wpswings.com/woocommerce-plugins/?utm_source=wpswings-upsell-shop&utm_medium=upsell-org-backend&utm_campaign=shop-page" target="_blank" >Elevate your e-commerce store by exploring more on <strong>WP Swings</strong></a>.
- * Version:               3.4.3
+ * Version:               3.4.4
  *
  * Requires at least:     5.5.0
- * Tested up to:          6.4.2
- * WC requires at least:  5.5.0
- * WC tested up to:       8.5.2
+ * Tested up to:          6.4.3
+ * WC requires at least:  6.5.0
+ * WC tested up to:       8.6.1
  *
  * Author:                WP Swings
  * Author URI:            https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-org-backend&utm_campaign=official
@@ -168,7 +168,7 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 
 		define( 'WPS_WOCUF_DIRPATH', plugin_dir_path( __FILE__ ) );
 
-		define( 'WPS_WOCUF_VERSION', 'v3.4.3' );
+		define( 'WPS_WOCUF_VERSION', 'v3.4.4' );
 
 		/**
 		 * The code that runs during plugin activation.
@@ -196,9 +196,10 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 		 * @param mixed $links links.
 		 */
 		function wps_upsell_lite_plugin_settings_link( $links ) {
+			$nonce = wp_create_nonce( 'view_upsell_setting' ); // Create nonce.
 
 			$plugin_links = array(
-				'<a href="' . admin_url( 'admin.php?page=wps-wocuf-setting&tab=overview' ) . '">' . esc_html__( 'Settings', 'woo-one-click-upsell-funnel' ) . '</a>',
+				'<a href="' . admin_url( 'admin.php?page=wps-wocuf-setting&tab=overview&nonce=' . $nonce ) . '">' . esc_html__( 'Settings', 'woo-one-click-upsell-funnel' ) . '</a>',
 			);
 
 			$wps_site_plugins = get_plugins();
@@ -352,7 +353,7 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 	/**
 	 * Function to save redirection.
 	 *
-	 * @param string    $order_received_url is the order url.
+	 * @param string $order_received_url is the order url.
 	 * @param object $data is the order data.
 	 * @return string
 	 */
@@ -360,7 +361,7 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 
 		wps_wocfo_hpos_update_meta_data( $data->get_id(), 'wps_wocuf_upsell_funnel_order_redirection_link', $order_received_url );
 
-        $order_received_url_data = wps_wocfo_hpos_get_meta_data( $data->get_id(), 'wps_wocfo_upsell_funnel_redirection_link_org', true );
+		$order_received_url_data = wps_wocfo_hpos_get_meta_data( $data->get_id(), 'wps_wocfo_upsell_funnel_redirection_link_org', true );
 		if ( ! empty( $order_received_url_data ) ) {
 			$order_received_url = $order_received_url_data;
 		}
@@ -407,7 +408,8 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 				<p><strong><?php esc_html_e( 'WooCommerce', 'woo-one-click-upsell-funnel' ); ?></strong><?php esc_html_e( ' is not activated, Please activate WooCommerce first to activate ', 'woo-one-click-upsell-funnel' ); ?><strong><?php esc_html_e( 'One Click Upsell Funnel for WooCommerce', 'woo-one-click-upsell-funnel' ); ?></strong><?php esc_html_e( '.', 'woo-one-click-upsell-funnel' ); ?></p>
 			</div>
 
-		<?php endif;
+				<?php
+		endif;
 	}
 }
 
@@ -420,15 +422,18 @@ add_action(
 	}
 );
 
-add_action( 'before_woocommerce_init', function() {
- 
-    if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
- 
-        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'cart_checkout_blocks', __FILE__, true );
- 
-    }
- 
-} );
+add_action(
+	'before_woocommerce_init',
+	function() {
+
+		if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
+
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'cart_checkout_blocks', __FILE__, true );
+
+		}
+
+	}
+);
 
 
 add_action( 'admin_notices', 'wps_banner_notification_plugin_html' );
@@ -480,18 +485,21 @@ function wps_wocuf_banner_notification_html() {
 	if ( isset( $screen->id ) ) {
 		$pagescreen = $screen->id;
 	}
+	$nonce = isset( $_GET['nonce'] ) ? sanitize_text_field( wp_unslash( $_GET['nonce'] ) ) : null;
 
-	if ( ( isset( $_GET['page'] ) && 'wps-wocuf-setting' == isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '' ) || 'wps-wocuf-pro-setting' == isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ): '' ) {
-		$banner_id = get_option( 'wps_wgm_notify_new_banner_id', false );
-		if ( isset( $banner_id ) && '' !== $banner_id ) {
-			$hidden_banner_id            = get_option( 'wps_wgm_notify_hide_baneer_notification', false );
-			$banner_image = get_option( 'wps_wgm_notify_new_banner_image', '' );
-			$banner_url = get_option( 'wps_wgm_notify_new_banner_url', '' );
-			if ( isset( $hidden_banner_id ) && $hidden_banner_id < $banner_id ) {
+	if ( isset( $nonce ) && wp_verify_nonce( $nonce, 'view_upsell_setting' ) ) {
 
-				if ( '' !== $banner_image && '' !== $banner_url ) {
+		if ( ( isset( $_GET['page'] ) && 'wps-wocuf-setting' == isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '' ) || 'wps-wocuf-pro-setting' == isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '' ) {
+			$banner_id = get_option( 'wps_wgm_notify_new_banner_id', false );
+			if ( isset( $banner_id ) && '' !== $banner_id ) {
+				$hidden_banner_id            = get_option( 'wps_wgm_notify_hide_baneer_notification', false );
+				$banner_image = get_option( 'wps_wgm_notify_new_banner_image', '' );
+				$banner_url = get_option( 'wps_wgm_notify_new_banner_url', '' );
+				if ( isset( $hidden_banner_id ) && $hidden_banner_id < $banner_id ) {
 
-					?>
+					if ( '' !== $banner_image && '' !== $banner_url ) {
+
+						?>
 							<div class="wps-offer-notice notice notice-warning is-dismissible">
 								<div class="notice-container">
 									<a href="<?php echo esc_url( $banner_url ); ?>"target="_blank"><img src="<?php echo esc_url( $banner_image ); ?>" alt="Subscription cards"/></a>
@@ -500,6 +508,7 @@ function wps_wocuf_banner_notification_html() {
 							</div>
 							
 						<?php
+					}
 				}
 			}
 		}

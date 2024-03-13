@@ -238,7 +238,30 @@ if ( ! empty( $wps_wocuf_pro_funnels_list ) ) {
 <!-- Create New Funnel -->
 <div class="wps_wocuf_pro_create_new_funnel">
 	<a href="?page=wps-wocuf-setting&manage_nonce=<?php echo esc_html( wp_create_nonce( 'manage_funnel' ) ); ?>&tab=creation-setting&funnel_id=<?php echo esc_html( $wps_wocuf_pro_funnel_number + 1 ); ?>"><?php esc_html_e( '+Create New Funnel', 'woo-one-click-upsell-funnel' ); ?></a>
+	<?php
+	$installed_plugins = get_plugins();
+
+	if ( array_key_exists( 'upsell-order-bump-offer-for-woocommerce/upsell-order-bump-offer-for-woocommerce.php', $installed_plugins ) ) {
+
+
+		?>
+<a href="?page=upsell-order-bump-offer-for-woocommerce-setting&tab=bump-list"><?php esc_html_e( '+Create New Order Bump', 'woo-one-click-upsell-funnel' ); ?></a>
+
+			<?php
+	} else {
+		$url = admin_url( 'plugin-install.php?s=Upsell%2520Order%2520Bump%2520Offer%2520for%2520WooCommerce%2520%25E2%2580%2593%2520Increase%2520Sales%2520and%2520AOV%252C%2520Upsell%2520%2526%2520Cross-sell%2520Offers%2520on%2520Checkout%2520Page%2520%2520wp%2520swings&tab=search&type=term' );
+
+		?>
+<a id="wps_wocuf_order_bump" href="<?php echo esc_url( $url ); ?> "><?php esc_html_e( '+ Create New Order Bump', 'woo-one-click-upsell-funnel' ); ?></a>
+
+			<?php
+	}
+	?>
+
+	
+	
 </div>
+
 
 
 <?php do_action( 'wps_wocuf_pro_extend_funnels_listing' ); ?>

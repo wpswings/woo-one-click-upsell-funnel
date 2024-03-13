@@ -70,7 +70,7 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		if ( defined( 'WPS_WOCUF_VERSION' ) ) {
 			$this->version = WPS_WOCUF_VERSION;
 		} else {
-			$this->version = '3.4.3';
+			$this->version = '3.4.4';
 		}
 
 		$this->plugin_name = 'woocommerce-one-click-upsell-funnel';
@@ -309,7 +309,7 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		$wps_wocuf_enable_plugin = get_option( 'wps_wocuf_enable_plugin', 'on' );
 
 		$this->loader->add_filter( 'wp_kses_allowed_html', $plugin_public, 'wocuf_lite_allow_script_tags' );
-
+		
 		if ( 'on' === $wps_wocuf_enable_plugin ) {
 
 			// Initiate Upsell Orders before processing payment.
@@ -368,7 +368,10 @@ class Woocommerce_One_Click_Upsell_Funnel {
 			$this->loader->add_action( 'woocommerce_init', $plugin_public, 'upsell_fbp_compatibility_for_ffw' );
 
 			// Google Analytics and Facebook Pixel Tracking - End.
+			$this->loader->add_action( 'woocommerce_after_checkout_billing_form', $plugin_public, 'wps_upsell_add_nonce_field_at_checkout' );
 		}
+
+		
 	}
 
 	/**

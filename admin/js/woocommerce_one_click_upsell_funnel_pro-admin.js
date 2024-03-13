@@ -175,8 +175,78 @@ jQuery(document).ready( function($) {
 	});
 
 	
+// Get the modal
+var modal = document.getElementById("myModal");
 
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+	var canvas = document.getElementById('funnelCanvas');
+    var ctx = canvas.getContext('2d');
+
+    // Define funnel steps
+    var funnelSteps = [
+        { name: 'Checkout Page', x: 100, y: 200 },
+        { name: 'Upsell Page', x: 350, y: 100 },
+        { name: 'Thank You Page', x: 600, y: 200 }
+    ];
+
+    // Draw funnel steps
+    function drawFunnelSteps() {
+        ctx.font = 'bold 16px Arial';
+        ctx.fillStyle = '#333';
+        for (var i = 0; i < funnelSteps.length; i++) {
+            var step = funnelSteps[i];
+            ctx.fillText(step.name, step.x, step.y);
+            ctx.beginPath();
+            ctx.arc(step.x + 50, step.y, 25, 0, Math.PI * 2);
+            ctx.fillStyle = '#ddd';
+            ctx.fill();
+            ctx.stroke();
+        }
+    }
+
+    // Draw arrows between steps
+    function drawArrows() {
+        ctx.strokeStyle = '#999';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(funnelSteps[0].x + 50, funnelSteps[0].y);
+        ctx.lineTo(funnelSteps[1].x - 20, funnelSteps[1].y - 30);
+        ctx.lineTo(funnelSteps[2].x + 50, funnelSteps[2].y);
+        ctx.stroke();
+    }
+
+    // Draw funnel
+    function drawFunnel() {
+        drawFunnelSteps();
+        drawArrows();
+    }
+
+    // Call function to draw funnel
+    drawFunnel();
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
 	
+
+
 
 
 // END OF SCRIPT,

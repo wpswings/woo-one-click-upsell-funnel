@@ -1,6 +1,8 @@
 var wps_wocuf_pro_custom_offer_bought = false;
 
 jQuery(document).ready(function($){
+
+	
 	
 	jQuery('#wps_wocuf_pro_offer_loader').hide();
 
@@ -107,3 +109,5 @@ jQuery(document).ready(function($){
 	}
 
 });
+
+
