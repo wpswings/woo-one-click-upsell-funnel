@@ -766,7 +766,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 						<td class="forminp forminp-text">
 							<?php
 
-							$attribut_description = esc_html__( 'This option will add Additional offer producs on upsell pages', 'woo-one-click-upsell-funnel' );
+							$attribut_description = esc_html__( 'Enable AB testing to verify which templates will work better for you funnel', 'woo-one-click-upsell-funnel' );
 
 							wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
@@ -1419,28 +1419,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 								</td>
 							</tr>
 							<!-- Delete current offer ( Saved one ) -->
-							<tr>
-								<td colspan="2">
-								</head>
-									<body>
-
-									
-
-									<!-- Trigger/Open The Modal -->
-									<span id="myBtn">Open Modal</span>
-
-									<!-- The Modal -->
-									<div id="myModal" class="modal">
-
-									<!-- Modal content -->
-									<div class="modal-content">
-									<canvas id="funnelCanvas" width="800" height="500"></canvas>
-									
-									</div>
-
-									</div>
-								</td>
-							</tr>
+						
 
 						</table>
 
