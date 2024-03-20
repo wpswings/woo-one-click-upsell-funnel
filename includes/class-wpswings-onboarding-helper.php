@@ -209,7 +209,7 @@ class WPSwings_Onboarding_Helper {
 	 * @since    3.0.0
 	 */
 	public function add_onboarding_popup_screen() {
-
+		
 		if ( $this->is_valid_page_screen() && $this->can_show_onboarding_popup() ) {
 			require_once WPS_WOCUF_DIRPATH . 'extra-templates/wpswings-onboarding-template-display.php';
 		}
@@ -242,10 +242,15 @@ class WPSwings_Onboarding_Helper {
 
 		$is_valid = false;
 
-		if ( ! empty( $screen->id ) ) {
+		// if ( ! empty( $screen->id ) ) {
 
-			$is_valid = in_array( $screen->id, apply_filters( 'wps_helper_valid_frontend_screens', array() ), true ) && $this->add_wps_additional_validation();
+		// 	$is_valid = in_array( $screen->id, 'toplevel_page_wps-wocuf-setting' ) && $this->add_wps_additional_validation();
+		// }
+
+		if ( isset( $screen->id ) && 'toplevel_page_wps-wocuf-setting' == $screen->id ) {
+			$is_valid = true;
 		}
+		
 
 		if ( empty( $is_valid ) && 'plugins.php' === $pagenow ) {
 			$is_valid = true;
@@ -930,7 +935,8 @@ class WPSwings_Onboarding_Helper {
 		$response = $this->hic_post( $url, $form_data, $headers );
 
 		if ( 200 === $response['status_code'] ) {
-			$result            = json_decode( $response['response'], true );
+			
+			$result            = json_decode( $response['response']->inlineMessage );
 			$result['success'] = true;
 		} else {
 
@@ -968,3 +974,5 @@ class WPSwings_Onboarding_Helper {
 
 	// End of Class.
 }
+
+

@@ -57,6 +57,15 @@ class Woocommerce_One_Click_Upsell_Funnel {
 	protected $version;
 
 	/**
+	 * The current onboard of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @var      string    $onboard    The current version of the plugin.
+	 */
+	protected $onboard;
+
+	/**
 	 * Define the core functionality of the plugin.
 	 *
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
@@ -126,12 +135,13 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		 * The file responsible for defining global plugin functions.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce-one-click-upsell-funnel-global-functions.php';
-
+		
+		
 		/**
 		 * The class responsible for the Onboarding functionality.
 		 */
 		if ( ! class_exists( 'WPSwings_Onboarding_Helper' ) ) {
-
+			
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wpswings-onboarding-helper.php';
 		}
 
