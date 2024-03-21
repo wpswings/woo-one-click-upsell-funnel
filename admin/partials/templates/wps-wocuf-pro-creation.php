@@ -727,18 +727,18 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 
 
-		<div class="wps_wocuf_pro_offers"><h1><?php esc_html_e( 'Additional Funnel Offers', 'woo-one-click-upsell-funnel' ); ?></h1>
+		<div class="wps_wocuf_pro_offers"><h1><?php esc_html_e( 'Frequently Bought Offers', 'woo-one-click-upsell-funnel' ); ?></h1>
 			<table class="form-table wps_wocuf_pro_creation_setting">
 				<tbody>
 					<tr valign="top">
 						<th scope="row" class="titledesc">
 						<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span>
-							<label for="wps_wocuf_add_products"><?php esc_html_e( 'Add Additional offers', 'woo-one-click-upsell-funnel' ); ?></label>
+							<label for="wps_wocuf_add_products"><?php esc_html_e( 'Enable Frequently Bought Offers', 'woo-one-click-upsell-funnel' ); ?></label>
 						</th>
 						<td class="forminp forminp-text">
 							<?php
 
-							$attribut_description = esc_html__( 'This option will add Additional offer producs on upsell pages', 'woo-one-click-upsell-funnel' );
+							$attribut_description = esc_html__( 'This option will enable Frequently offer producs on upsell pages', 'woo-one-click-upsell-funnel' );
 
 							wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
