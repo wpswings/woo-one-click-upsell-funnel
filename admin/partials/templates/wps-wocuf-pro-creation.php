@@ -738,7 +738,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 						<td class="forminp forminp-text">
 							<?php
 
-							$attribut_description = esc_html__( 'This option will enable Frequently offer producs on upsell pages', 'woo-one-click-upsell-funnel' );
+							$attribut_description = esc_html__( 'This option will enable Frequently Bought offer producs on upsell pages', 'woo-one-click-upsell-funnel' );
 
 							wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
