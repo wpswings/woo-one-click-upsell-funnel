@@ -11,7 +11,6 @@
  * @subpackage Makewebbetter_Onboarding/extra-templates
  */
 
-
 $form_fields = apply_filters( 'wps_on_boarding_form_fields', array() );
 
 ?>

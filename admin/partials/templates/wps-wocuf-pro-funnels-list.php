@@ -242,7 +242,7 @@ if ( ! empty( $wps_wocuf_pro_funnels_list ) ) {
 
 
 	$installed_plugins = (array) get_option( 'active_plugins', array() );
-	
+
 	if ( ! wps_upsell_lite_is_plugin_active( 'upsell-order-bump-offer-for-woocommerce/upsell-order-bump-offer-for-woocommerce.php' ) ) {
 		$url = admin_url( 'plugin-install.php?s=Upsell%2520Order%2520Bump%2520Offer%2520for%2520WooCommerce%2520%25E2%2580%2593%2520Increase%2520Sales%2520and%2520AOV%252C%2520Upsell%2520%2526%2520Cross-sell%2520Offers%2520on%2520Checkout%2520Page%2520%2520wp%2520swings&tab=search&type=term' );
 
@@ -251,13 +251,13 @@ if ( ! empty( $wps_wocuf_pro_funnels_list ) ) {
 
 			<?php
 
-	} else{
+	} else {
 		?>
 <a href="?page=upsell-order-bump-offer-for-woocommerce-setting&tab=bump-list"><?php esc_html_e( '+Create New Order Bump', 'woo-one-click-upsell-funnel' ); ?></a>
 
 			<?php
 	}
-	
+
 	?>
 
 	

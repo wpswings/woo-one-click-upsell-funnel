@@ -242,11 +242,6 @@ class WPSwings_Onboarding_Helper {
 
 		$is_valid = false;
 
-		// if ( ! empty( $screen->id ) ) {
-
-		// 	$is_valid = in_array( $screen->id, 'toplevel_page_wps-wocuf-setting' ) && $this->add_wps_additional_validation();
-		// }
-
 		if ( isset( $screen->id ) && 'toplevel_page_wps-wocuf-setting' == $screen->id ) {
 			$is_valid = true;
 		}
