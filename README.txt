@@ -6,7 +6,7 @@ Requires at least: 5.5.0
 Tested up to: 6.4.3
 WC requires at least: 6.5.0
 WC tested up to: 8.7.0
-Stable tag: 3.4.4
+Stable tag: 3.4.5
 Requires PHP: 7.0.0
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -227,7 +227,7 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Changelog ==
 
-= 3.4.4 - Released on 21 March 2024 =
+= 3.4.5 - Released on 21 March 2024 =
 * New: Latest WP (6.4.3) and WC (8.7.0)
 * New: Order bump option added in Org plugin
 
@@ -379,6 +379,6 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Upgrade Notice ==
 
-= 3.4.4 - Released on 21 March 2024 =
+= 3.4.5 - Released on 21 March 2024 =
 * New: Latest WP (6.4.3) and WC (8.7.0)
 * New: Order bump option added in Org plugin
