@@ -1,11 +1,11 @@
 === One Click Upsell Funnel for WooCommerce - Post-Purchase Upsell & Cross-Sell Offers, Boost Sales & Increase Profits ===
 Contributors: wpswings
 Donate link: https://wpswings.com/
-Tags: upsell, boost sales, cross-sell, sales funnel, post-purchase offers, woocommerce upsell, related products
+Tags: Upsell for WooCommerce, cross-sell, sales funnel, post-purchase offers, woocommerce upsell,
 Requires at least: 5.5.0
-Tested up to: 6.4.3
+Tested up to: 6.5.3
 WC requires at least: 6.5.0
-WC tested up to: 8.7.0
+WC tested up to: 8.9.0
 Stable tag: 3.4.5
 Requires PHP: 7.0.0
 License: GPLv3 or later 
@@ -21,7 +21,7 @@ One Click Upsell Funnel for WooCommerce plugin allows the merchants to create po
 
 Our plugin is compatible with Divi Theme and Elementor Page Builder, allowing you to create seamless upsell funnels with advanced designs. 
 
-Create unlimited upsell offers using the [**WooCommerce upsell plugin**](https://wpswings.com/product/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=wpswings-upsell-pro&utm_medium=upsell-org-page&utm_campaign=upsell-pro), and examine a track report for each sales funnel. Additionally, you may use pre-made templates to easily set up and provide upsell for WooCommerce on your online store. Encourage customers to purchase more!
+Create unlimited upsell for woocommerce offers using the [**WooCommerce upsell plugin**](https://wpswings.com/product/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=wpswings-upsell-pro&utm_medium=upsell-org-page&utm_campaign=upsell-pro), and examine a track report for each sales funnel. Additionally, you may use pre-made templates to easily set up and provide upsell for WooCommerce on your online store. Encourage customers to purchase more!
 
 [**WooCommerce Upsell Demo**](https://demo.wpswings.com/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=wpswings-upsell-demo&utm_medium=upsell-org-page&utm_campaign=frontend-demo) |  [**Documentation**](https://docs.wpswings.com/one-click-upsell-funnel-for-woocommerce/?utm_source=wpswings-upsell-doc&utm_medium=upsell-org-page&utm_campaign=upsell-doc) | [**Contact Us**](https://wpswings.com/contact-us/?utm_source=wpswings-upsell-contactus&utm_medium=upsell-org-page&utm_campaign=contactus)
 
@@ -39,7 +39,7 @@ Create unlimited upsell offers using the [**WooCommerce upsell plugin**](https:/
 
 **5) Generate Reports for Upsell Funnel Tracking**:  The WooCommerce post-purchase upsell plugin renders funnel reports that include trigger frequency, accepted & rejected offers, conversion rates, overall sales, etc. This information emphasizes the preferences of customers for particular WordPress funnels. Moreover, using both Google Analytics and Facebook Pixel, you can also track WooCommerce upsell 
 
-**6) Global Funnels: Create global one-click funnels that trigger independently without needing target products. You can use the universal WooCommerce one-click upsell to show offers to your customers every time they purchase in your online store.
+**6) Global Funnels**: Create global one-click funnels that trigger independently without needing target products. You can use the universal WooCommerce one-click upsell to show offers to your customers every time they purchase in your online store.
 
 **7) Smart Offer Upgrade**: The Smart Offer Upgrade feature replaces the existing product (customer is buying) with the offer product as soon as they accept the WooCommerce upsell offer. This intelligent feature removes manual work and makes switching to upsell products seamless.
 
@@ -227,7 +227,10 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Changelog ==
 
-= 3.4.5 - Released on 21 March 2024 =
+= 3.4.5 - Released on 15 May 2024 =
+* New: Latest WP (6.5.3) and WC (8.9.0)
+
+= 3.4.4 - Released on 21 March 2024 =
 * New: Latest WP (6.4.3) and WC (8.7.0)
 * New: Order bump option added in Org plugin
 
@@ -379,6 +382,5 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Upgrade Notice ==
 
-= 3.4.5 - Released on 21 March 2024 =
-* New: Latest WP (6.4.3) and WC (8.7.0)
-* New: Order bump option added in Org plugin
+= 3.4.5 - Released on 15 May 2024 =
+* New: Latest WP (6.5.3) and WC (8.9.0)
