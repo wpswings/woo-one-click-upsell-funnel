@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'ONBOARD_PLUGIN_NAME', 'One Click Upsell Funnel for Woocommerce' );
 
 if ( class_exists( 'WPSwings_Onboarding_Helper' ) ) {
-	$this->onboard = new WPSwings_Onboarding_Helper();
+	$onboard = new WPSwings_Onboarding_Helper();
 }
 
 $secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );

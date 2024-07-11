@@ -173,11 +173,5 @@ jQuery(document).ready( function($) {
 		jQuery('#all_offers_ubo_lite').hide();
 		
 	});
-
-	
-
-	
-
-
 // END OF SCRIPT,
 });

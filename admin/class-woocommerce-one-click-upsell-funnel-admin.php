@@ -1618,5 +1618,3 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 
 
-
-?>

@@ -104,10 +104,14 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				'upsell_actions_message' => ! empty( $show_upsell_loader ) ? $upsell_loader_redirect_link : '',
 			)
 		);
+		$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
+		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
 
-		$is_upsell_page = '';
-		if ( isset( $_GET['ocuf_ns'] ) ) {
-			$is_upsell_page = true;
+		if ( $id_nonce_verified ) {
+			$is_upsell_page = '';
+			if ( isset( $_GET['ocuf_ns'] ) ) {
+				$is_upsell_page = true;
+			}
 		}
 
 		if ( ! empty( $is_upsell_page ) ) {
@@ -140,8 +144,12 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		 * @throws Exception Throws exception when error.
 		 */
 	public function wps_wocuf_initate_upsell_orders_shortcode_checkout_org( $order_id ) {
-		if ( empty( $_GET['wc-ajax'] ) || 'checkout' !== $_GET['wc-ajax'] ) {
-			return;
+		$checkout_nonce = ! empty( $_POST['checkout_order_processed_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['checkout_order_processed_nonce'] ) ) : '';
+
+		if ( isset( $_POST['checkout_order_processed_nonce'] ) && wp_verify_nonce( $checkout_nonce, 'checkout_order_processed_nonce' ) ) {
+			if ( empty( $_GET['wc-ajax'] ) || 'checkout' !== $_GET['wc-ajax'] ) {
+				return;
+			}
 		}
 		$order = wc_get_order( $order_id );
 		$this->wps_wocuf_initiate_upsell_orders( $order );
@@ -2867,7 +2875,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		?>
 			<div style="text-align: center;margin-top: 30px;" id="wps_upsell_offer_expired"><h2 style="font-weight: 200;"><?php esc_html_e( 'Sorry, Offer expired.', 'woo-one-click-upsell-funnel' ); ?></h2><a class="button wc-backward" href="<?php echo esc_url( $shop_page_url ); ?>"><?php esc_html_e( 'Return to Shop ', 'woo-one-click-upsell-funnel' ); ?>&rarr;</a></div>
 		<?php
-		
+
 		// It just displayes the html itself. Content in it is already escaped.
 
 		wp_die();
@@ -4267,6 +4275,18 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		}
 	}
 
+	/**
+	 * Add custom nonce for checkout field.
+	 *
+	 * @return void
+	 */
+	public function wps_upsell_add_nonce_field_at_checkout() {
+		wp_nonce_field( 'checkout_order_processed_nonce', 'checkout_order_processed_nonce' );
+
+	}
+
+
 
 } // End of class.
-?>
+
+

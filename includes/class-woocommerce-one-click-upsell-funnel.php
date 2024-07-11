@@ -57,6 +57,15 @@ class Woocommerce_One_Click_Upsell_Funnel {
 	protected $version;
 
 	/**
+	 * The current onboard of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @var      string    $onboard    The current version of the plugin.
+	 */
+	protected $onboard;
+
+	/**
 	 * Define the core functionality of the plugin.
 	 *
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
@@ -70,7 +79,7 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		if ( defined( 'WPS_WOCUF_VERSION' ) ) {
 			$this->version = WPS_WOCUF_VERSION;
 		} else {
-			$this->version = '3.4.3';
+			$this->version = '3.4.5';
 		}
 
 		$this->plugin_name = 'woocommerce-one-click-upsell-funnel';
@@ -126,12 +135,13 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		 * The file responsible for defining global plugin functions.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce-one-click-upsell-funnel-global-functions.php';
-
+		
+		
 		/**
 		 * The class responsible for the Onboarding functionality.
 		 */
 		if ( ! class_exists( 'WPSwings_Onboarding_Helper' ) ) {
-
+			
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wpswings-onboarding-helper.php';
 		}
 
@@ -309,7 +319,7 @@ class Woocommerce_One_Click_Upsell_Funnel {
 		$wps_wocuf_enable_plugin = get_option( 'wps_wocuf_enable_plugin', 'on' );
 
 		$this->loader->add_filter( 'wp_kses_allowed_html', $plugin_public, 'wocuf_lite_allow_script_tags' );
-
+		
 		if ( 'on' === $wps_wocuf_enable_plugin ) {
 
 			// Initiate Upsell Orders before processing payment.
@@ -368,7 +378,10 @@ class Woocommerce_One_Click_Upsell_Funnel {
 			$this->loader->add_action( 'woocommerce_init', $plugin_public, 'upsell_fbp_compatibility_for_ffw' );
 
 			// Google Analytics and Facebook Pixel Tracking - End.
+			$this->loader->add_action( 'woocommerce_after_checkout_billing_form', $plugin_public, 'wps_upsell_add_nonce_field_at_checkout' );
 		}
+
+		
 	}
 
 	/**

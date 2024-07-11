@@ -11,12 +11,6 @@
  * @subpackage Makewebbetter_Onboarding/extra-templates
  */
 
-$screen   = get_current_screen();
-$is_valid = in_array( $screen->id, apply_filters( 'wps_helper_valid_frontend_screens', array() ), true );
-if ( ! $is_valid ) {
-	return false;
-}
-
 $form_fields = apply_filters( 'wps_on_boarding_form_fields', array() );
 
 ?>

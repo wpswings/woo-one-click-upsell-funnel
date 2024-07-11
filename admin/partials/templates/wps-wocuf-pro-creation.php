@@ -727,18 +727,18 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 
 
-		<div class="wps_wocuf_pro_offers"><h1><?php esc_html_e( 'Additional Funnel Offers', 'woo-one-click-upsell-funnel' ); ?></h1>
+		<div class="wps_wocuf_pro_offers"><h1><?php esc_html_e( 'Frequently Bought Offers', 'woo-one-click-upsell-funnel' ); ?></h1>
 			<table class="form-table wps_wocuf_pro_creation_setting">
 				<tbody>
 					<tr valign="top">
 						<th scope="row" class="titledesc">
 						<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span>
-							<label for="wps_wocuf_add_products"><?php esc_html_e( 'Add Additional offers', 'woo-one-click-upsell-funnel' ); ?></label>
+							<label for="wps_wocuf_add_products"><?php esc_html_e( 'Enable Frequently Bought Offers', 'woo-one-click-upsell-funnel' ); ?></label>
 						</th>
 						<td class="forminp forminp-text">
 							<?php
 
-							$attribut_description = esc_html__( 'This option will add Additional offer producs on upsell pages', 'woo-one-click-upsell-funnel' );
+							$attribut_description = esc_html__( 'This option will enable Frequently Bought offer products on upsell pages', 'woo-one-click-upsell-funnel' );
 
 							wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
@@ -747,6 +747,34 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 
 							<label class="wps_wocuf_pro_enable_plugin_label">
 								<input class="wps_wocuf_pro_enable_plugin_input ubo_offer_input" id="wps_wocuf_pro_add_products_tick" type="checkbox" <?php echo ( 'yes' === $wps_wocuf_add_product_tick ) ? "checked='checked'" : ''; ?> name="wps_wocuf_add_products" >	
+								<span class="wps_wocuf_pro_enable_plugin_span"></span>
+							</label>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="wps_wocuf_pro_offers"><h1><?php esc_html_e( 'AB Testing Section', 'woo-one-click-upsell-funnel' ); ?></h1>
+			<table class="form-table wps_wocuf_pro_creation_setting">
+				<tbody>
+					<tr valign="top">
+						<th scope="row" class="titledesc">
+						<span class="wps_wupsell_premium_strip"><?php esc_html_e( 'Pro', 'woo-one-click-upsell-funnel' ); ?></span>
+							<label for="wps_wocuf_add_products"><?php esc_html_e( 'Enable AB Testing', 'woo-one-click-upsell-funnel' ); ?></label>
+						</th>
+						<td class="forminp forminp-text">
+							<?php
+
+							$attribut_description = esc_html__( 'Enable AB testing to verify which templates will work better for you funnel', 'woo-one-click-upsell-funnel' );
+
+							wps_upsell_lite_wc_help_tip( $attribut_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
+							$wps_wocuf_ab_testing = ! empty( $wps_wocuf_pro_funnel_data[ $wps_wocuf_pro_funnel_id ]['wps_wocuf_ab_testing'] ) ? 'yes' : 'no';
+							?>
+
+							<label class="wps_wocuf_pro_enable_plugin_label">
+								<input class="wps_wocuf_pro_enable_plugin_input ubo_offer_input" id="wps_wocuf_ab_testing" type="checkbox" <?php echo ( 'yes' === $wps_wocuf_add_product_tick ) ? "checked='checked'" : ''; ?> name="wps_wocuf_ab_testing" >	
 								<span class="wps_wocuf_pro_enable_plugin_span"></span>
 							</label>
 						</td>
@@ -1375,12 +1403,13 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 							<!-- Custom offer page url start -->
 							<tr>
 								<th><label><h4><?php esc_html_e( 'Offer Custom Page Link', 'woo-one-click-upsell-funnel' ); ?></h4></label>
-								</th>
+								</th> 
 
 								<td>
 								<input type="text" class="wps_upsell_custom_offer_page_url" name="wps_wocuf_offer_custom_page_url[<?php echo esc_html( $current_offer_id ); ?>]" value="<?php echo esc_url( $wps_wocuf_pro_offer_custom_page_url[ $current_offer_id ] ); ?>">
 								</td>
 							</tr>
+														
 							<!-- Custom offer page url end -->
 
 							<!-- Delete current offer ( Saved one ) -->
@@ -1390,6 +1419,7 @@ $wps_wocuf_pro_funnel_schedule_options = array(
 								</td>
 							</tr>
 							<!-- Delete current offer ( Saved one ) -->
+						
 
 						</table>
 

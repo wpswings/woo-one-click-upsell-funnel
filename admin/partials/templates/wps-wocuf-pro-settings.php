@@ -65,7 +65,7 @@ if ( isset( $_POST['wps_wocuf_pro_common_settings_save'] ) ) {
 
 	// Custom JS.
 	$wps_upsell_global_options['global_custom_js'] = ! empty( $_POST['global_custom_js'] ) ? sanitize_textarea_field( wp_unslash( $_POST['global_custom_js'] ) ) : '';
-	
+
 	// Custom JS.
 	$wps_upsell_global_options['upsell_redirect_expire_link'] = ! empty( $_POST['upsell_redirect_expire_link'] ) ? sanitize_textarea_field( wp_unslash( $_POST['upsell_redirect_expire_link'] ) ) : '';
 
@@ -357,7 +357,7 @@ wps_upsee_lite_go_pro( 'pro' );
 
 
 							if ( empty( $upsell_redirect_expire_link ) ) {
-								$upsell_redirect_expire_link = $shop_page_url ;
+								$upsell_redirect_expire_link = $shop_page_url;
 							}
 							?>
 							<input class="wps_wocuf_pro_enable_plugin_input ubo_offer_input" type="text" placeholder="<?php echo esc_html( wp_unslash( $upsell_redirect_expire_link ) ); ?>"  name="" >	
