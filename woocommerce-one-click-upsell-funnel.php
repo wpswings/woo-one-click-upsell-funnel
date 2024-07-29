@@ -15,12 +15,12 @@
  * Plugin Name:           One Click Upsell Funnel for Woocommerce
  * Plugin URI:            https://wordpress.org/plugins/woo-one-click-upsell-funnel/
  * Description:           One Click Upsell Funnel for WooCommerce allows showing post-checkout offers to customers which helps to increase Average Order Value & Revenue. <a href="https://wpswings.com/woocommerce-plugins/?utm_source=wpswings-upsell-shop&utm_medium=upsell-org-backend&utm_campaign=shop-page" target="_blank" >Elevate your e-commerce store by exploring more on <strong>WP Swings</strong></a>.
- * Version:               3.4.5
+ * Version:               3.4.6
  *
  * Requires at least:     5.5.0
- * Tested up to:          6.5.3
+ * Tested up to:          6.6.1
  * WC requires at least:  6.5.0
- * WC tested up to:       8.9.0
+ * WC tested up to:       9.1.4
  *
  * Author:                WP Swings
  * Author URI:            https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-org-backend&utm_campaign=official
@@ -168,7 +168,7 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 
 		define( 'WPS_WOCUF_DIRPATH', plugin_dir_path( __FILE__ ) );
 
-		define( 'WPS_WOCUF_VERSION', 'v3.4.5' );
+		define( 'WPS_WOCUF_VERSION', 'v3.4.6' );
 
 		/**
 		 * The code that runs during plugin activation.
