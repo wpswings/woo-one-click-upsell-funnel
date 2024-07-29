@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: One Click Upsell Funnel for Woocommerce 3.4.6\n"
-"POT-Creation-Date: 2024-05-15 16:18+0530\n"
+"POT-Creation-Date: 2024-07-29 16:09+0530\n"
 "PO-Revision-Date: 2022-08-23 13:50+0530\n"
 "Last-Translator: \n"
 "Language-Team: WP Swings\n"
@@ -66,16 +66,16 @@ msgstr ""
 #: includes/class-woocommerce-one-click-upsell-funnel-global-functions.php:255
 #: includes/class-woocommerce-one-click-upsell-funnel-global-functions.php:320
 #: public/class-woocommerce-one-click-upsell-funnel-public.php:678
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:1713
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2172
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2226
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2393
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2434
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2529
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2646
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:3142
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:3545
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:3916
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:1712
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2171
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2225
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2392
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2433
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2528
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2645
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:3141
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:3544
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:3915
 #: reporting/class-wps-upsell-report-sales-by-category.php:63
 #: reporting/class-wps-upsell-report-sales-by-category.php:143
 #: reporting/class-wps-upsell-report-sales-by-category.php:247
@@ -2072,7 +2072,7 @@ msgid "Enter upsell variation shortcode"
 msgstr ""
 
 #: public/class-woocommerce-one-click-upsell-funnel-public.php:101
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:1671
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:1670
 msgid "One Click Upsell"
 msgstr ""
 
@@ -2085,12 +2085,12 @@ msgid "Buy Now"
 msgstr ""
 
 #: public/class-woocommerce-one-click-upsell-funnel-public.php:856
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2661
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2660
 msgid "No,thanks"
 msgstr ""
 
 #: public/class-woocommerce-one-click-upsell-funnel-public.php:858
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2449
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2448
 msgid "Special Offer Price"
 msgstr ""
 
@@ -2120,43 +2120,43 @@ msgstr ""
 msgid "Once every 20 minutes"
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:1676
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:1675
 msgid ""
 "Offer Product is not selected, please save a Offer Product in Funnel Offer "
 "settings."
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:1680
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:1679
 msgid ""
 "Custom Offer page - detected! Please save a global Offer product in Global "
 "settings for testing purpose."
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2385
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2384
 msgid "Show Order Details"
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2519
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2518
 msgid "Add to my order"
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2876
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2875
 msgid "Sorry, Offer expired."
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:2876
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:2875
 msgid "Return to Shop "
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:3895
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:3894
 msgid "Time is not specified correctly."
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:3984
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:3983
 msgid "minutes"
 msgstr ""
 
-#: public/class-woocommerce-one-click-upsell-funnel-public.php:3991
+#: public/class-woocommerce-one-click-upsell-funnel-public.php:3990
 msgid "seconds"
 msgstr ""
 
