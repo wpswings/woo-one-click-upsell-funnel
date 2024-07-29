@@ -1,17 +1,17 @@
-=== One Click Upsell Funnel for WooCommerce - Post-Purchase Upsell & Cross-Sell Offers, Boost Sales & Increase Profits ===
+=== One Click Upsell Funnel for WooCommerce – Post-Purchase Upsell & Cross-Sell Offers, Boost Sales & Increase Profits ===
 Contributors: wpswings
 Donate link: https://wpswings.com/
-Tags: Upsell for WooCommerce, cross-sell, sales funnel, post-purchase offers, woocommerce upsell,
+Tags: upsell for wooocommerce, cross-sell, sales funnel, funnel builder, woocommerce checkout,
 Requires at least: 5.5.0
-Tested up to: 6.5.3
+Tested up to: 6.6.1
 WC requires at least: 6.5.0
-WC tested up to: 8.9.0
+WC tested up to: 9.1.4
 Stable tag: 3.4.6
 Requires PHP: 7.0.0
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Boost Sales & increase the Average Order Value (AOV) of your WooCommerce Store with the help of Post-Purchase Upsell and Cross-Sell Offers.
+Create WooCommerce Upsell at Checkout, Post-Purchase Funnel, Cross-Sell and Order Bump that Boost Sales, Increases AOV of your WooCommerce Store
 
 == Description ==
 
@@ -117,6 +117,25 @@ The One Click Upsell Funnel For WooCommerce Pro plugin, is designed to help merc
 If you need support or have questions, kindly use our online chat window [**here**](https://wpswings.com/contact-us/?utm_source=wpswings-contact&utm_medium=upsell-org-page&utm_campaign=contact-us) and discover all types of [**WooCommerce Extensions**](https://wpswings.com/woocommerce-plugins/?utm_source=wpswings-upsell-shop&utm_medium=upsell-org-page&utm_campaign=woocommerce-plugins) for your eCommerce store.
 
 
+== Installation ==
+
+= Automatic Installation =
+
+Automatic installation is the easiest option handled by WordPress. Follow these steps for automatic installation:
+
+Type “One-Click Upsell For WooCommerce” and hit on Search Plugins. Once you find ‘One-Click Upsell For WooCommerce’ by WP Swings you can view the details about it such as the point release, rating, and description. One can install it, simply by clicking “Install Now”.
+
+
+= Manual Installation =
+
+Manual installation of the plugin is another option to install the plugin in the seller's WordPress environment. 
+
+The manual installation method involves downloading our One-Click Upsell For WooCommerce Extension and uploading it to the web server via their favorite FTP application. The steps for manual installation are as follows:
+
+1) Upload the One-Click Upsell For WooCommerce folder to the /WP-content/plugins/ directory.
+
+2) Activate the plugin through the ‘Plugins’ menu in WordPress.
+
 == Screenshots ==
 
 1. Create a new Funnel: Create a new upsell funnel by clicking on Create New Funnel button
@@ -177,11 +196,11 @@ If you want to make a custom offer page for upsell of your own without our pre-d
 
 = How can I use Custom Page Shortcodes for BUY NOW and NO THANKS? =
 
-For the **“Buy Now”** shortcode: You need to copy this **Buy Now → [wps_upsell_yes]** and place it at a suitable place on your page.
+For the **“Buy Now”** shortcode: You need to copy this **Buy Now <span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji">→</span></span></span></span></span></span></span></span></span></span> [wps_upsell_yes]** and place it at a suitable place on your page.
 
 **Description:** This shortcode only returns the link so it has to be used in the link section. In HTML use it as href=”[wps_upsell_yes]” of an anchor tag.
 
-For the **“No thanks”** shortcode: You need to copy this **No Thanks → [wps_upsell_no]** and place it at a suitable place on your page.
+For the **“No thanks”** shortcode: You need to copy this **No Thanks <span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji">→</span></span></span></span></span></span></span></span></span></span> [wps_upsell_no]** and place it at a suitable place on your page.
 
 **Description:** This shortcode only returns the link so it has to be used in the link section. In HTML use it as href=”[wps_upsell_no]” of an anchor tag.
 
@@ -227,94 +246,98 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Changelog ==
 
-= 3.4.6 - Released on 15 May 2024 =
+= 3.4.6 – Released on 29 July 2024 =
+* New: Latest WP (6.6.1) and WC (9.1.4)
+* Fixes: Issue with shortcode redirection. 
+
+= 3.4.5 – Released on 15 May 2024 =
 * New: Latest WP (6.5.3) and WC (8.9.0)
 
-= 3.4.4 - Released on 21 March 2024 =
+= 3.4.4 – Released on 21 March 2024 =
 * New: Latest WP (6.4.3) and WC (8.7.0)
 * New: Order bump option added in Org plugin
 
-= 3.4.3 - Released on 29 January 2024 =
+= 3.4.3 – Released on 29 January 2024 =
 * New: Latest WP(6.4.2) and WC(8.5.2)
 * Fix: Stock update issue fixed
 
-= 3.4.2 - Released on 21 December 2023 =
+= 3.4.2 – Released on 21 December 2023 =
 * New: Banner section added in org
 * New: Compatibility with WP(6.4.2) and WC(8.4.0)
 
-= 3.4.1 - Released on 29 November 2023 =
+= 3.4.1 – Released on 29 November 2023 =
 * New: Cart and Checkout Block compatibility
 * New: Compatibility with WP(6.4.1) and WC(8.3.1)
 
-= 3.4.0 - Released on 31 October 2023 =
+= 3.4.0 – Released on 31 October 2023 =
 * New: HPOS compatibility
 * New: Latest WP [6.3.2] and WC [8.2.1] update 
 
-= 3.3.1 - Released on 13 October 2023 =
+= 3.3.1 – Released on 13 October 2023 =
 * New: Exit Intent Popup
 * New: Latest WP [6.3.2] and WC [8.2.0] update
 
-= 3.3.0 - Released on 25 August 2023 = 
+= 3.3.0 – Released on 25 August 2023 = 
 * New: Compatibility with Divi Theme
 * New: Added three templates for Divi Theme
 * New: Compatibility with WP[6.3.0] and WC[8.0.2]
 * Fix: Issue fix in case of variation upsell product
 
-= 3.2.9 - Released on 8 August 2023 = 
+= 3.2.9 – Released on 8 August 2023 = 
 * New: Compatible with WP(6.3) and WC(8.0.0)
 
-= 3.2.8 - Released on 8 June 2023 = 
+= 3.2.8 – Released on 8 June 2023 = 
 * New: Compatibility with Currency Switcher
 * New: Compatible with the latest WP(6.2.2) and WC(7.7.2)
 
-= 3.2.7 - Released on 28 April 2023 =
+= 3.2.7 – Released on 28 April 2023 =
 * New: Compatible with the latest WP(6.2) and WC(7.6.1)
 
-= 3.2.6 - Released on 16 March 2023 =
+= 3.2.6 – Released on 16 March 2023 =
 * New: Compatible with the latest WP(6.1.1) and WC(7.5.0)
 
-= 3.2.5 - Released on 02 February 2023 =
+= 3.2.5 – Released on 02 February 2023 =
 * Feature: Add the shipping price on COD
 * New: Compatible with the latest WP and WC
 
-= 3.2.4 - Released on 20 December 2022 =
+= 3.2.4 – Released on 20 December 2022 =
 * Enhancement: Show pro features in the free version with an upgraded label [Appearance section].
 * New: Compatible with the latest WP and WC
 
-= 3.2.3 - Released on 10 November 2022 =
+= 3.2.3 – Released on 10 November 2022 =
 * New: Compatible with the latest WP and WC
 
-= 3.2.2 - Released on 23 August 2022 =
+= 3.2.2 – Released on 23 August 2022 =
 * New: Minor bug fixes
 * New: Compatible with the latest WP and WC
 
-= 3.2.1 - Released on 30 May 2022 =
+= 3.2.1 – Released on 30 May 2022 =
 * New: Minor bug fixes
 
-= 3.2.0 - Released on 31 March 2022 =
+= 3.2.0 – Released on 31 March 2022 =
 * New: Some substantial changes across different areas of the plugin.
 * New: Minor Bug Fixes
 * New: Inbuilt Migrator for existing users to import all plugin data at once.
 * New: Compatible with the latest WP and WC
 
-= 3.1.3 - Released on 03 Feb 2022 =
+= 3.1.3 – Released on 03 Feb 2022 =
 * New: Change author from MakeWebBetter to WP Swings
 * New: Notice display of current version for [**WP Swings**](https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-org-page&utm_campaign=official)
 * New: Minor Bug fixes
 * New: Compatible with the latest WP and WC
 
-= 3.1.2 - Released on 16 Dec 2021 =
+= 3.1.2 – Released on 16 Dec 2021 =
 * Bug Fixes 
 * New: Elementor Widgets with shortcodes
 * Compatibility with WooCommerce (6.0.0)
 
-= 3.1.1 - Released on 22 Nov 2021 =
+= 3.1.1 – Released on 22 Nov 2021 =
 * Bug Fixes 
 * Compatibility with MWB Currency switcher.
 * Compatibility with MWB Currency Switcher Pro.
 * Compatibility with Invoice System for WooCommerce.
  
-= 3.1.0 - Released on 2 Nov 2021 =
+= 3.1.0 – Released on 2 Nov 2021 =
 * Dependency with Free Plugin
 * Bug fixes
 * Guest Nonce Error Fix
@@ -325,11 +348,11 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 * Improved: Compatibility with the latest WP(5.8) and WC(5.6.0)
 * Other: Issues and Bugs Fixed.
 
-= 3.0.3 - Released on 6 April 2021 =
+= 3.0.3 – Released on 6 April 2021 =
 * Improved: Compatibility with the latest WP(5.7) and WC(5.1.0)
 * Other: Issues and Bugs Fixed.
 
-= 3.0.2 - Released on 19 December 2020 =
+= 3.0.2 – Released on 19 December 2020 =
 * Improved: Compatibility with the latest WP(5.6) and WC(4.8.0)
 
 = 3.0.1 =
@@ -337,11 +360,11 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 * Other: Issues and Bugs Fixed.
 
 = 3.0.0 =
-* New: Funnel features - Global Funnel, Exclusive Offer, and Smart Offer Upgrade.
-* New: Global feature - Smart Skip If Already Purchased.
-* New: Offer feature - Offer Image.
-* New: Shortcodes - Offer Quantity and Urgency Timer.
-* New: Upsell Sales - Reports and Upsell Sales by Funnel - Stats.
+* New: Funnel features – Global Funnel, Exclusive Offer, and Smart Offer Upgrade.
+* New: Global feature – Smart Skip If Already Purchased.
+* New: Offer feature – Offer Image.
+* New: Shortcodes – Offer Quantity and Urgency Timer.
+* New: Upsell Sales – Reports and Upsell Sales by Funnel – Stats.
 * New: Google Analytics and Facebook Pixel compatibility.
 * Improved: Alert Messages and Upsell Action Buttons Loader. 
 * Other: Issues and Bugs Fixed.
@@ -382,5 +405,6 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Upgrade Notice ==
 
-= 3.4.6 - Released on 15 May 2024 =
-* New: Latest WP (6.5.3) and WC (8.9.0)
+= 3.4.6 – Released on 29 July 2024 =
+* New: Latest WP (6.6.1) and WC (9.1.4)
+* Fixes: Issue with shortcode redirection. 
