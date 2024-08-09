@@ -175,3 +175,272 @@ jQuery(document).ready( function($) {
 	});
 // END OF SCRIPT,
 });
+
+
+
+(function($) {
+	// here $ would be point to jQuery object
+	$(document).ready(function() {
+		$('.wps-ufw_store-checkout').parents('body').addClass('wps-ufw_sc-body');
+		$(document).on('click', '.wps-ufw_btn-act-main', function() {
+			$(this).nextAll('.wps-ufw_btn-act-desc').toggleClass('wps-ufw_btn-active');
+			$(this).toggleClass('wps-ufw_btn-active');
+		});
+		$(document).on('click', '.wps-ufw_btn-act-desc span', function() {
+			$('.wps-ufw_btn-act-desc-pop').show();
+			$(this).parent().toggleClass('wps-ufw_btn-active');
+			$(this).parent().prev().toggleClass('wps-ufw_btn-active');
+		});
+		$(document).on('click', '.wps-ufw_adp-head .dashicons,.wps-ufw_adpf-btn.wps-ufw_adpf-cancel', function() {
+			$('.wps-ufw_btn-act-desc-pop').hide();
+		});
+		$(document).on('click', '.wps-ufw_ms-btn-link', function() {
+			$(this).nextAll('.wps-ufw_ms-main').show();
+		});
+		$(document).on('click', '.wps-ufw_msm-head>.dashicons-arrow-left-alt', function() {
+			$('.wps-ufw_ms-main').hide();
+		});
+		$(document).on('click', '.wps-ufw_ms-buttons .dashicons', function() {
+			$(this).nextAll('.wps-ufw_btn-ms-desc').toggleClass('wps-ufw_btn-active');
+		});
+		$(document).on('click', '.wps-ufw_btn-ms-desc span', function() {
+			$(this).parent().toggleClass('wps-ufw_btn-active');
+		});
+
+
+		// Draggable UI
+
+		$(".wps-ufw_msmsmr-item").draggable({
+			revert: "invalid",
+			start: function(event, ui) {
+				$(this).data("origPosition", $(this).position());
+			}
+		});
+
+		$(".wps-ufw_msmsmli-wrap").droppable({
+			accept: ".wps-ufw_msmsmr-item",
+			drop: function(event, ui) {
+				var draggableElement = ui.draggable;
+				$(this).append(draggableElement);
+				$(draggableElement).css({
+					top: 0,
+					left: 0,
+					position: 'relative'
+				});
+			}
+		});
+
+		loadState();
+
+		function saveState() {
+			var state = {};
+			$(".wps-ufw_msmsmli-wrap").each(function() {
+				var wrapperId = $(this).attr("id");
+				state[wrapperId] = [];
+				$(this).find(".wps-ufw_msmsmr-item").each(function() {
+					state[wrapperId].push($(this).data("id"));
+				});
+			});
+			localStorage.setItem("dragDropState", JSON.stringify(state));
+		}
+
+		function loadState() {
+			var state = localStorage.getItem("dragDropState");
+			if (state) {
+				state = JSON.parse(state);
+				for (var wrapperId in state) {
+					if (state.hasOwnProperty(wrapperId)) {
+						var items = state[wrapperId];
+						var $wrapper = $('#' + wrapperId);
+						for (var i = 0; i < items.length; i++) {
+							var $item = $('[data-id="' + items[i] + '"]').detach();
+							$wrapper.append($item);
+							$item.draggable({
+								revert: "invalid",
+								start: function(event, ui) {
+									$(this).data("origPosition", $(this).position());
+								}
+							});
+						}
+					}
+				}
+			}
+		}
+
+		function resetState() {
+			localStorage.removeItem("dragDropState");
+			localStorage.removeItem("removedItems");
+		}
+
+		
+		$(document).on('click', '.notice-dismiss', function() {
+			jQuery('.notice-settings').html('');
+		});
+		
+
+
+		// Save content to local storage when the save button is clicked
+		$('.wps-ufw_msmh-in-btn').on('click', function() {
+			debugger;
+			var shippingdataIds = [];
+			var shippingdatamethod = [];
+			var order_summary = [];
+			var billingbasicwrapid = [];
+			var shippingbasicwrapid =[];
+			var shipping_information_title = jQuery('#billing-information-wrap-editable').html();
+			var shipping_method_title = jQuery('#shipping-method-wrap-editable').html();
+			var order_summary_title = jQuery('#order-Summary-wrap-editable').html();
+			var payment_method_title = jQuery('#payment-gateway-wrap-editable').html();
+			jQuery('#billing-information-wrap-id span').each(function() {
+    			debugger;
+				// Get the data-id attribute of the current span element
+				dataId = jQuery(this).attr('data-id');
+				
+				// Add the data-id to the array
+				if (dataId) {
+					shippingdataIds.push(dataId);
+				}
+			});
+			jQuery('#shipping-information-wrap-id span').each(function() {
+    			debugger;
+				// Get the data-id attribute of the current span element
+				dataId = jQuery(this).attr('data-id');
+				
+				// Add the data-id to the array
+				if (dataId) {
+					shippingdatamethod.push(dataId);
+				}
+			});
+			
+			jQuery('#billing-basic-wrap-id span').each(function() {
+    			debugger;
+				// Get the data-id attribute of the current span element
+				dataId = jQuery(this).attr('data-id');
+				
+				// Add the data-id to the array
+				if (dataId) {
+					billingbasicwrapid.push(dataId);
+				}
+			});
+
+			jQuery('#shipping-basic-wrap-id span').each(function() {
+    			debugger;
+				// Get the data-id attribute of the current span element
+				dataId = jQuery(this).attr('data-id');
+				
+				// Add the data-id to the array
+				if (dataId) {
+					shippingbasicwrapid.push(dataId);
+				}
+			});
+
+			var checkout_coupon_enabled = jQuery('#coupon_field_checkout').prop('checked');
+			var checkout_order_note_enabled = jQuery('#order_note_checkout').prop('checked');
+
+			$.ajax({
+				type:'POST',
+				url :wps_wocuf_pro_obj.ajaxUrl,
+				data:{
+					action: 'wps_upsell_save_store_checkout_page_data',
+					nonce : wps_wocuf_pro_obj_form.nonce,
+					shippingdatamethod : shippingdatamethod, 
+					shippingdataIds : shippingdataIds,
+					billingbasicwrapid : billingbasicwrapid,
+					shippingbasicwrapid : shippingbasicwrapid,
+					shipping_information_title : shipping_information_title,
+					shipping_method_title : shipping_method_title,
+					order_summary_title : order_summary_title,
+					payment_method_title : payment_method_title,
+					checkout_coupon_enabled : checkout_coupon_enabled,
+					checkout_order_note_enabled : checkout_order_note_enabled,
+
+				},
+
+				success:function(data) {
+
+					
+				if (data == 'success' ) {
+					
+					jQuery('.wps-ufw_confirmation').show();
+					setTimeout(function() {
+						jQuery('.wps-ufw_confirmation').hide();
+					}, 1000);
+
+				}
+				}
+		});	
+
+
+
+
+		
+		});
+
+
+
+		
+		
+		$('.wps-ufw_msmhthy-in-btn').on('click', function() {
+			debugger;
+			var wps_wocuf_content_before_order_details = jQuery('#wps_wocuf_content_before_order_details').val();
+			var wps_wocuf_content_page_header_title = jQuery('#wps_wocuf_content_page_header_title').val();
+			var wps_wocuf_content_after_order_details = jQuery('#wps_wocuf_content_after_order_details').val();
+			var wps_wocuf_content_billing_and_shipping = jQuery('#wps_wocuf_content_billing_and_shipping').val();
+			
+			$.ajax({
+				type:'POST',
+				url :wps_wocuf_pro_obj.ajaxUrl,
+				data:{
+					action: 'wps_upsell_save_store_thankyou_page_data',
+					nonce : wps_wocuf_pro_obj_form.nonce,
+					wps_wocuf_content_before_order_details:wps_wocuf_content_before_order_details,
+					wps_wocuf_content_page_header_title:wps_wocuf_content_page_header_title,
+					wps_wocuf_content_after_order_details:wps_wocuf_content_after_order_details,
+					wps_wocuf_content_billing_and_shipping:wps_wocuf_content_billing_and_shipping,
+				},
+				success:function(data) {
+					
+					jQuery('.wps-ufw_confirmation').show();
+					setTimeout(function() {
+						jQuery('.wps-ufw_confirmation').hide();
+					}, 1000);
+				}
+			});	
+
+		});
+
+			
+		
+
+
+	
+	
+
+		document.getElementById("defaultOpen").click();
+
+	
+
+	});
+ })(jQuery);
+
+ function openTab(evt, tabName) {
+	var i, tabcontent, tablinks;
+
+	// Hide all tab content by default
+	tabcontent = document.getElementsByClassName("tabcontent");
+	for (i = 0; i < tabcontent.length; i++) {
+		tabcontent[i].style.display = "none";
+	}
+
+	// Remove the active class from all tab links
+	tablinks = document.getElementsByClassName("tablinks");
+	for (i = 0; i < tablinks.length; i++) {
+		tablinks[i].className = tablinks[i].className.replace(" active", "");
+	}
+
+	// Show the current tab's content, and add an "active" class to the clicked tab link
+	document.getElementById(tabName).style.display = "block";
+	evt.currentTarget.className += " active";
+}
+
+// Set the default open tab
