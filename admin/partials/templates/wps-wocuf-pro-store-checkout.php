@@ -105,14 +105,14 @@ $billing_basic_address_data = get_option('wps_wocuf_store_checkout_basic_fields_
 				</header>
 				<div class="notice-settings"> </div>
 				
-				<div class="tab">
-    <button class="tablinks" onclick="openTab(event, 'Tab1')" id="defaultOpen"> <?php esc_html_e('Billing Information', 'one-click-upsell-funnel-for-woocommerce-pro' );?></button>
-    <button class="tablinks" onclick="openTab(event, 'Tab2')"> <?php esc_html_e('Shipping Information', 'one-click-upsell-funnel-for-woocommerce-pro' );?></button>
-    <button class="tablinks" onclick="openTab(event, 'Tab3')"> <?php esc_html_e('Other Settings', 'one-click-upsell-funnel-for-woocommerce-pro' );?></button>
-    <button class="tablinks" onclick="openTab(event, 'Tab4')"> <?php esc_html_e('Payment Gateway', 'one-click-upsell-funnel-for-woocommerce-pro' );?></button>
+				<div class="wps_wocuf_tab">
+    <button class="wps_wocuf_tablinks" onclick="openTab(event, 'Tab1')" id="defaultOpen"> <?php esc_html_e('Billing Information', 'one-click-upsell-funnel-for-woocommerce-pro' );?></button>
+    <button class="wps_wocuf_tablinks" onclick="openTab(event, 'Tab2')"> <?php esc_html_e('Shipping Information', 'one-click-upsell-funnel-for-woocommerce-pro' );?></button>
+    <button class="wps_wocuf_tablinks" onclick="openTab(event, 'Tab3')"> <?php esc_html_e('Other Settings', 'one-click-upsell-funnel-for-woocommerce-pro' );?></button>
+    <button class="wps_wocuf_tablinks" onclick="openTab(event, 'Tab4')"> <?php esc_html_e('Payment Gateway', 'one-click-upsell-funnel-for-woocommerce-pro' );?></button>
 </div>
 
-		<div id="Tab1" class="tabcontent">
+		<div id="Tab1" class="wps_wocuf_tabcontent">
 
 
 				<section class="wps-ufw_msm-sec">
@@ -176,7 +176,7 @@ $billing_basic_address_data = get_option('wps_wocuf_store_checkout_basic_fields_
   
 		</div>
 
-		<div id="Tab2" class="tabcontent">
+		<div id="Tab2" class="wps_wocuf_tabcontent">
 		
 			<section class="wps-ufw_msm-sec">
 					
@@ -245,7 +245,7 @@ $billing_basic_address_data = get_option('wps_wocuf_store_checkout_basic_fields_
 			
 
 		?>
-		<div id="Tab3" class="tabcontent">
+		<div id="Tab3" class="wps_wocuf_tabcontent">
 			<h3>
 			<?php esc_html_e('Other Setting For Checkout Page', 'one-click-upsell-funnel-for-woocommerce-pro' );?>
 			</h3>
@@ -265,8 +265,8 @@ $billing_basic_address_data = get_option('wps_wocuf_store_checkout_basic_fields_
 								</p>
 		</div>
 
-<div id="Tab4" class="tabcontent">
-    <h3>Tab 4</h3>
+<div id="Tab4" class="wps_wocuf_tabcontent">
+ 
 	<section class="wps-ufw_msm-sec">
 					
 					<div class="wps-ufw_msms-main" id="wps-ufw_msms-main">
@@ -350,7 +350,7 @@ $billing_basic_address_data = get_option('wps_wocuf_store_checkout_basic_fields_
 		</article>
 	</section>
 </main>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> -->
 <script>
 
 </script>

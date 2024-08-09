@@ -2584,12 +2584,12 @@ main.wps-ufw_ms-main {
   margin: 0 6px 6px 0;
 }
 
-.tab {
+.wps_wocuf_tab {
           overflow: hidden;
           border-bottom: 1px solid #ccc;
       }
 
-      .tab button {
+      .wps_wocuf_tab button {
           background-color: inherit;
           float: left;
           border: none;
@@ -2599,22 +2599,22 @@ main.wps-ufw_ms-main {
           transition: 0.3s;
       }
 
-      .tab button:hover {
+      .wps_wocuf_tab button:hover {
           background-color: #ddd;
       }
 
-      .tab button.active {
+      .wps_wocuf_tab button.active {
           background-color: #ccc;
       }
 
-      .tabcontent {
+      .wps_wocuf_tabcontent {
           display: none;
           padding: 16px;
           border: 1px solid #ccc;
           border-top: none;
       }
 
-      .tabcontent.show {
+      .wps_wocuf_tabcontent.show {
           display: block;
       }
 

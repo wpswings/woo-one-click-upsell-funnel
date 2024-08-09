@@ -140,8 +140,10 @@ class Woocommerce_One_Click_Upsell_Funnel_Admin {
 
 			wp_localize_script( $this->plugin_name . 'admin-notice', 'wps_wocuf_branner_notice', $wps_wocuf_branner_notice );
 			wp_enqueue_script( $this->plugin_name . 'admin-notice' );
+			
+			wp_enqueue_script( 'wps_wocuf_store_checkout_script', 'https://code.jquery.com/ui/1.12.1/jquery-ui.min.js', array( 'jquery' ), $this->version, false );
 
-			// banner.
+
 
 			if ( 'woocommerce_page_wc-settings' === $pagescreen ) {
 				wp_enqueue_script( 'wps_wocuf_pro_banner_admin_script', plugin_dir_url( __FILE__ ) . 'js/woocommerce_one_click_upsell_funnel_pro-banner-admin.js', array( 'jquery' ), $this->version, false );

@@ -427,13 +427,13 @@ jQuery(document).ready( function($) {
 	var i, tabcontent, tablinks;
 
 	// Hide all tab content by default
-	tabcontent = document.getElementsByClassName("tabcontent");
+	tabcontent = document.getElementsByClassName("wps_wocuf_tabcontent");
 	for (i = 0; i < tabcontent.length; i++) {
 		tabcontent[i].style.display = "none";
 	}
 
 	// Remove the active class from all tab links
-	tablinks = document.getElementsByClassName("tablinks");
+	tablinks = document.getElementsByClassName("wps_wocuf_tablinks");
 	for (i = 0; i < tablinks.length; i++) {
 		tablinks[i].className = tablinks[i].className.replace(" active", "");
 	}
