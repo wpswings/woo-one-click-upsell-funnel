@@ -305,8 +305,8 @@ $billing_basic_address_data = get_option('wps_wocuf_store_checkout_basic_fields_
 				<header class="wps-ufw_msm-head">
 					<span class="dashicons dashicons-arrow-left-alt"></span> <?php esc_html_e('ThankYou', 'one-click-upsell-funnel-for-woocommerce-pro' );?>
 					<div class="wps-ufw_msmh-in">
-						<span class="wps-ufw_pri-txt-btn wps-ufw_thanks-reset-confirmation"><?php esc_html_e('Reset', 'one-click-upsell-funnel-for-woocommerce-pro' );?></span>
-						<span class="wps-ufw_pri-btn wps-ufw_msmhthy-in-btn"><?php esc_html_e('Save', 'one-click-upsell-funnel-for-woocommerce-pro' );?></span>
+						<span class="wps-ufw_pri-txt-btn wps-ufw_thanks-reset-confirmation ubo_offer_input"><?php esc_html_e('Reset', 'one-click-upsell-funnel-for-woocommerce-pro' );?></span>
+						<span class="wps-ufw_pri-btn wps-ufw_msmhthy-in-btn ubo_offer_input"><?php esc_html_e('Save', 'one-click-upsell-funnel-for-woocommerce-pro' );?></span>
 					</div>
 					<div class="wps-ufw_confirmation">Saved!</div>
 				</header>
