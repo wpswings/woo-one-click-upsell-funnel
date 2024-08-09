@@ -6,7 +6,7 @@ Requires at least: 5.5.0
 Tested up to: 6.6.1
 WC requires at least: 6.5.0
 WC tested up to: 9.1.4
-Stable tag: 3.4.6
+Stable tag: 3.4.7
 Requires PHP: 7.0.0
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -246,7 +246,7 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Changelog ==
 
-= 3.4.6 – Released on 29 July 2024 =
+= 3.4.7 – Released on 29 July 2024 =
 * New: Latest WP (6.6.1) and WC (9.1.4)
 * Fixes: Issue with shortcode redirection. 
 
@@ -405,6 +405,6 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Upgrade Notice ==
 
-= 3.4.6 – Released on 29 July 2024 =
+= 3.4.7 – Released on 29 July 2024 =
 * New: Latest WP (6.6.1) and WC (9.1.4)
 * Fixes: Issue with shortcode redirection. 
