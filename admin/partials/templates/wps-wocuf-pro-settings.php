@@ -517,7 +517,45 @@ wps_upsee_lite_go_pro( 'pro' );
 						</div>
 					</td>
 				</tr>
-				<!-- Global Custom JS end -->	
+				<!-- Global Custom JS end -->
+
+				<!-- Upsell Stripe Issues Notice start -->
+				<tr valign="top">
+					<th scope="row" class="titledesc">
+					<span class="wps_wupsell_premium_strip">Pro</span>
+						<label for="wps_wocuf_pro_smart_skip_toggle"><?php esc_html_e( 'Enable Stripe Notice For Checkout Page', 'one-click-upsell-funnel-for-woocommerce-pro' ); ?></label>
+					</th>
+					<td class="forminp forminp-text">
+						<?php
+							$attribut_description = esc_html__( 'By enabling this setting you can show notice on the Checkout Page.', 'one-click-upsell-funnel-for-woocommerce-pro' );
+							wps_upsell_lite_wc_help_tip( $attribut_description );
+						?>
+						<label class="wps_wocuf_pro_enable_plugin_label">
+							<input class="wps_wocuf_pro_enable_plugin_input ubo_offer_input" type="checkbox" name="">
+							<span class="wps_wocuf_pro_enable_plugin_span"></span>
+						</label>
+					</td>
+				</tr>
+
+				<tr valign="top">
+					<th scope="row" class="titledesc">
+						<span class="wps_wupsell_premium_strip">Pro</span>
+						<label><?php esc_html_e( 'Enter Stripe Checkout Notice', 'one-click-upsell-funnel-for-woocommerce-pro' ); ?></label>
+					</th>
+					<td>
+						<div class="wps_upsell_attribute_description">
+							<?php
+							$attribut_description = __( 'A notice will be shown on the Checkout page when Stripe is selected as the payment method.', 'one-click-upsell-funnel-for-woocommerce-pro' );
+							wps_upsell_lite_wc_help_tip( $attribut_description );
+							?>
+							<?php
+							$wps_stripe_checkout_notice = ! empty( $wps_upsell_global_settings['wps_stripe_checkout_notice'] ) ? $wps_upsell_global_settings['wps_stripe_checkout_notice'] : esc_html__( 'Please click on Stripe Save payment information button to get Upsell Offer.', 'one-click-upsell-funnel-for-woocommerce-pro' );
+							?>
+							<textarea name="wps_stripe_checkout_notice" rows="4" cols="50"><?php echo esc_html( ( $wps_stripe_checkout_notice ) ); ?></textarea>
+						</div>
+					</td>
+				</tr>
+				<!-- Upsell Stripe Issues Notice end -->
 				<?php do_action( 'wps_wocuf_pro_create_more_settings' ); ?>
 			</tbody>
 		</table>
