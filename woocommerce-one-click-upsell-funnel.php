@@ -385,6 +385,7 @@ if ( $activated ) {
 	 */
 	function wps_upsell_lite_plugin_activation_admin_notice() {
 
+		global $activated;
 		$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
 		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
 
