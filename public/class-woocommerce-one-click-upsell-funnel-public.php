@@ -1586,13 +1586,18 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 */
 	public function filter_upsell_shortcodes_content( $content = '' ) {
 
+		$upsell_yes_shortcode = array( 'http://?wps_wocuf_pro_buy', 'https://?wps_wocuf_pro_buy' );
+		$upsell_no_shortcode  = array( 'http://?ocuf_ns', 'https://?ocuf_ns' );
+		
+		$content = str_replace( $upsell_yes_shortcode, '?wps_wocuf_pro_buy', $content );
+		$content = str_replace( $upsell_no_shortcode, '?ocuf_ns', $content );
+
 		$upsell_yes_shortcode = array( 'http://[wps_upsell_yes]', 'https://[wps_upsell_yes]' );
 		$upsell_no_shortcode  = array( 'http://[wps_upsell_no]', 'https://[wps_upsell_no]' );
 
 		$content = str_replace( $upsell_yes_shortcode, '[wps_upsell_yes]', $content );
-
 		$content = str_replace( $upsell_no_shortcode, '[wps_upsell_no]', $content );
-
+		
 		return $content;
 	}
 

@@ -15,12 +15,13 @@
  * Plugin Name:           One Click Upsell Funnel for Woocommerce
  * Plugin URI:            https://wordpress.org/plugins/woo-one-click-upsell-funnel/
  * Description:           One Click Upsell Funnel for WooCommerce allows showing post-checkout offers to customers which helps to increase Average Order Value & Revenue. <a href="https://wpswings.com/woocommerce-plugins/?utm_source=wpswings-upsell-shop&utm_medium=upsell-org-backend&utm_campaign=shop-page" target="_blank" >Elevate your e-commerce store by exploring more on <strong>WP Swings</strong></a>.
- * Version:               3.4.5
+ * Version:               3.4.8
  *
+ * Requires Plugins: woocommerce
  * Requires at least:     5.5.0
- * Tested up to:          6.5.3
+ * Tested up to:          6.6.2
  * WC requires at least:  6.5.0
- * WC tested up to:       8.9.0
+ * WC tested up to:       9.3.3
  *
  * Author:                WP Swings
  * Author URI:            https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-org-backend&utm_campaign=official
@@ -127,27 +128,23 @@ if ( true === $old_pro_present ) {
 	}
 }
 
+$activated         = false;
+$wps_woo_plugin    = 'woocommerce/woocommerce.php';
 /**
- * The code that runs during plugin activation.
- * This action is for woocommerce dependency check.
+ * Checking if WooCommerce is active.
  */
-function wps_upsell_lite_plugin_activation() {
-	$activation['status']  = true;
-	$activation['message'] = '';
-
-	// Dependant plugin.
-	if ( ! wps_upsell_lite_is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
-
-		$activation['status']  = false;
-		$activation['message'] = 'woo_inactive';
+if ( function_exists( 'is_multisite' ) && is_multisite() ) {
+	include_once ABSPATH . 'wp-admin/includes/plugin.php';
+	if ( file_exists( WP_PLUGIN_DIR . '/' . $wps_woo_plugin ) && is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+		$activated = true;
 	}
-
-	return $activation;
+} else {
+	if ( file_exists( WP_PLUGIN_DIR . '/' . $wps_woo_plugin ) && in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
+		$activated = true;
+	}
 }
 
-$wps_upsell_lite_plugin_activation = wps_upsell_lite_plugin_activation();
-
-if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
+if ( $activated ) {
 
 	$wps_wocuf_pro_license_key = get_option( 'wps_wocuf_pro_license_key', '' );
 	$mwb_wocuf_pro_license_key = get_option( 'mwb_wocuf_pro_license_key', '' );
@@ -168,7 +165,7 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 
 		define( 'WPS_WOCUF_DIRPATH', plugin_dir_path( __FILE__ ) );
 
-		define( 'WPS_WOCUF_VERSION', 'v3.4.5' );
+		define( 'WPS_WOCUF_VERSION', 'v3.4.8' );
 
 		/**
 		 * The code that runs during plugin activation.
@@ -388,8 +385,7 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 	 */
 	function wps_upsell_lite_plugin_activation_admin_notice() {
 
-		global $wps_upsell_lite_plugin_activation;
-
+		global $activated;
 		$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
 		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
 
@@ -402,7 +398,7 @@ if ( true === $wps_upsell_lite_plugin_activation['status'] ) {
 
 		?>
 
-			<?php if ( 'woo_inactive' === $wps_upsell_lite_plugin_activation['message'] ) : ?>
+			<?php if ( ! $activated ) : ?>
 
 			<div class="notice notice-error is-dismissible">
 				<p><strong><?php esc_html_e( 'WooCommerce', 'woo-one-click-upsell-funnel' ); ?></strong><?php esc_html_e( ' is not activated, Please activate WooCommerce first to activate ', 'woo-one-click-upsell-funnel' ); ?><strong><?php esc_html_e( 'One Click Upsell Funnel for WooCommerce', 'woo-one-click-upsell-funnel' ); ?></strong><?php esc_html_e( '.', 'woo-one-click-upsell-funnel' ); ?></p>

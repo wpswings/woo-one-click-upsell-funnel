@@ -25,7 +25,7 @@ $secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
 $id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
 
 if ( ! $id_nonce_verified ) {
-	wp_die( esc_html__( 'Nonce Not verified', ' woo-one-click-upsell-funnel' ) );
+	wp_die( esc_html__( 'Nonce Not verified', 'woo-one-click-upsell-funnel' ) );
 }
 
 $active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'funnels-list';
@@ -81,6 +81,7 @@ if ( 'overview' === get_transient( 'wps_upsell_default_settings_tab' ) ) {
 		<a class="nav-tab <?php echo 'creation-setting' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=wps-wocuf-setting&tab=creation-setting"><?php esc_html_e( 'Create Funnel', 'woo-one-click-upsell-funnel' ); ?></a>
 		<a class="nav-tab <?php echo 'funnels-list' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=wps-wocuf-setting&tab=funnels-list"><?php esc_html_e( 'Funnels List', 'woo-one-click-upsell-funnel' ); ?></a>
 		<a class="nav-tab <?php echo 'shortcodes' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=wps-wocuf-setting&tab=shortcodes"><?php esc_html_e( 'Shortcodes', 'woo-one-click-upsell-funnel' ); ?></a>
+		<a class="nav-tab <?php echo 'store_checkout' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=wps-wocuf-setting&tab=store_checkout"><?php esc_html_e( 'Store Checkout', 'woo-one-click-upsell-funnel' ); ?></a>
 		<a class="nav-tab <?php echo 'settings' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=wps-wocuf-setting&tab=settings"><?php esc_html_e( 'Global Settings', 'woo-one-click-upsell-funnel' ); ?></a>
 		<a class="nav-tab <?php echo 'overview' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=wps-wocuf-setting&tab=overview"><?php esc_html_e( 'Overview', 'woo-one-click-upsell-funnel' ); ?></a>
 
@@ -98,6 +99,8 @@ if ( 'overview' === get_transient( 'wps_upsell_default_settings_tab' ) ) {
 		include_once 'templates/wps-wocuf-pro-settings.php';
 	} elseif ( 'overview' === $active_tab ) {
 		include_once 'templates/wps-wocuf-overview.php';
+	} elseif ( 'store_checkout' === $active_tab ) {
+		include_once 'templates/wps-wocuf-pro-store-checkout.php';
 	}
 
 		do_action( 'wps_wocuf_pro_setting_tab_html' );
