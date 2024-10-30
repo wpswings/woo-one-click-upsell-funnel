@@ -1,4 +1,4 @@
-=== One Click Upsell Funnel for WooCommerce – #1 Funnel Builder for WordPress, Create WooCommerce Upsell, Post-Purchase Upsell & Cross Sell Offers that Boost Sales & Increase Profits with Sales Funnel Builder ===
+=== One Click Upsell Funnel for WooCommerce –  Funnel Builder for WordPress, Create WooCommerce Upsell, Post-Purchase Upsell & Cross Sell Offers that Boost Sales & Increase Profits with Sales Funnel Builder ===
 
 Contributors: wpswings
 Donate link: https://wpswings.com/
@@ -7,7 +7,7 @@ Requires at least: 5.5.0
 Tested up to: 6.6.2
 WC requires at least: 6.5.0
 WC tested up to: 9.3.3
-Stable tag: 3.4.8
+Stable tag: 3.4.9
 Requires PHP: 7.0.0
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -26,11 +26,17 @@ Customers can add these upsell products in just 1 click upsell to their cart wit
 
 Our plugin is compatible with Elementor, Divi, Themify, WP Bakery, Beaver, Site Origin, and Gutenberg page builder, allowing you to create, edit, and import upsell funnel templates, Customize checkout pages, and thank you pages with advanced designs.
 
-Create unlimited upsell for woocommerce offers using the [**WooCommerce upsell plugin**](https://wpswings.com/product/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=upsell-org-page&utm_medium=referral&utm_campaign=upsell-pro), and examine a track report for each sales funnel. Additionally, you may use pre-made sales funnel templates to easily set up and provide upsell for WooCommerce on your online store. Encourage customers to purchase more!
+Create unlimited upsell for woocommerce offers using the WooCommerce upsell plugin, and examine a track report for each sales funnel. Additionally, you may use pre-made sales funnel templates to easily set up and provide upsell for WooCommerce on your online store. Encourage customers to purchase more!
 
 [**WooCommerce Upsell Demo**](https://demo.wpswings.com/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=upsell-org-page&utm_medium=referral&utm_campaign=frontend-demo) |  [**Documentation**](https://docs.wpswings.com/one-click-upsell-funnel-for-woocommerce/?utm_source=upsell-org-page&utm_medium=referral&utm_campaign=upsell-doc) | [**Contact Us**](https://wpswings.com/contact-us/?utm_source=upsell-org-page&utm_medium=referral&utm_campaign=contactus)
 
 [youtube https://www.youtube.com/watch?v=S4fv2YwLxQk&rel=0]
+
+=== Why Choose Our One Click Upsell Funnel Builder Plugin? ===
+
+The One Click Upsell Funnel for WooCommerce Pro boosts sales with quick one-click post-purchase upsell offers.
+
+Don’t miss our 🎃 Halloween Sale—grab the [**One Click Upsell Funnel PRO**](https://wpswings.com/product/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=upsell-org-page&utm_medium=referral&utm_campaign=upsell-pro-halloween-24) today at 25% Off! 🎉👻
 
 == ⭐ KEY FEATURES OF FREE ONE-CLICK UPSELL FUNNEL FOR WOOCOMMERCE PLUGIN: ==
 
@@ -104,6 +110,7 @@ Visit [**One Click Upsell Funnel for WooCommerce Documentation**](https://docs.w
 == WHAT PREMIUM VERSION OF ONE CLICK UPSELL FUNNEL FOR WOOCOMMERCE OFFERS ==
 
 * Customize Checkout and Thank You Page Fields
+* Checkout Page Design Template
 * Fully Customizable and highly Converting Sales Funnel Kit Templates
 * Variable Products
 * Subscription Products
@@ -308,6 +315,10 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Changelog ==
 
+= 3.4.9 – Released on 29 Oct 2024 =
+* New : Compatible with latest WP ( 6.6.2 ) & WC ( 9.3.3 )
+* Fix : Minor bug fixes
+
 = 3.4.8 – Released on 04 Oct 2024 =
 * New: Compatible with latest WP ( 6.6.2 ) & WC ( 9.3.3 )
 * Fix: Minor Issues
@@ -475,6 +486,6 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Upgrade Notice ==
 
-= 3.4.8 – Released on 04 Oct 2024 =
+= 3.4.9 – Released on 29 Oct 2024 =
 * New : Compatible with latest WP ( 6.6.2 ) & WC ( 9.3.3 )
-* Fix : Minor Issues
+* Fix : Minor bug fixes
