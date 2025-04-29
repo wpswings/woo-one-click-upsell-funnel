@@ -276,7 +276,7 @@ wps_upsee_lite_go_pro( 'pro' );
 				<!--  Exit Intent skip end -->
 				
 
-				<!-- V3.5.0 :: Exit Intent start -->
+				<!-- V3.6.0 :: Exit Intent start -->
 				<tr valign="top">
 
 					<th scope="row" class="titledesc">
@@ -297,7 +297,7 @@ wps_upsee_lite_go_pro( 'pro' );
 						</label>		
 					</td>
 				</tr>
-				<!-- V3.5.0 :: Exit Intent end -->
+				<!-- V3.6.0 :: Exit Intent end -->
 
 				<!-- Upsell Exit Intent Message start -->
 				<tr valign="top">

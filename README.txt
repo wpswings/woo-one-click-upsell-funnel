@@ -7,7 +7,7 @@ Requires at least: 5.5.0
 Tested up to: 6.7.1
 WC requires at least: 6.5.0
 WC tested up to: 9.6.0
-Stable tag: 3.5.0
+Stable tag: 3.6.0
 Requires PHP: 7.0.0
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -375,7 +375,7 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Changelog ==
 
-= 3.5.0 – Released on 31 Jan 2025 =
+= 3.6.0 – Released on 31 Jan 2025 =
 * New : Compatible with latest WP ( 6.7.1 ) & WC ( 9.6.0 )
 * New: Stripe Payment Gateway Support 
 * New: Support of Variable Products 
@@ -557,7 +557,7 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Upgrade Notice ==
 
-= 3.5.0 – Released on 31 Jan 2025 =
+= 3.6.0 – Released on 31 Jan 2025 =
 * New : Compatible with latest WP ( 6.7.1 ) & WC ( 9.6.0 )
 * New: Stripe Payment Gateway Support 
 * New: Support of Variable Products 

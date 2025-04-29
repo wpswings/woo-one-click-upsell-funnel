@@ -521,7 +521,7 @@ function wps_upsell_org_subs_set_price_accordingly( $product ) {
  *
  * @param array $order_items Order items.
  *
- * @since    3.5.0
+ * @since    3.6.0
  */
 function wps_upsell_org_offer_is_subscription( $order_items = array() ) {
 
@@ -550,7 +550,7 @@ function wps_upsell_org_offer_is_subscription( $order_items = array() ) {
  * @param string $order_id Order id.
  * @param array  $offer_products Order items.
  *
- * @since    3.5.0
+ * @since    3.6.0
  */
 function wps_upsell_org_funnel_contains_any_subscription( $order_id = false, $offer_products = false ) {
 

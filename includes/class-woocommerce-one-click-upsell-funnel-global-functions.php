@@ -31,7 +31,7 @@ function wps_upsell_lite_elementor_plugin_active() {
  * Some payment methods process the order before upsell.
  * Smart offer upgrade works diffrently for this.
  *
- * @since    3.5.0
+ * @since    3.6.0
  */
 function wps_supported_gateways_with_upsell_parent_order() {
 
