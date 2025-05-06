@@ -4485,8 +4485,5 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 	}
 
-
-
-} // End of class.
-
+}
 

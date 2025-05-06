@@ -286,105 +286,109 @@ class Woocommerce_One_Click_Upsell_Funnel {
 
 		$plugin_public = new Woocommerce_One_Click_Upsell_Funnel_Public( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+		if ( ! wps_upsell_lite_is_plugin_active( 'upsell-order-bump-offer-for-woocommerce/upsell-order-bump-offer-for-woocommerce.php' ) ) {
+			
+			
+			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+			$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
-		$this->loader->add_action( 'woocommerce_init', $plugin_public, 'check_compatibltiy_instance_cs' );
+			$this->loader->add_action( 'woocommerce_init', $plugin_public, 'check_compatibltiy_instance_cs' );
 
-		// Set cron recurrence time for 'wps_wocuf_twenty_minutes' schedule.
-		$this->loader->add_filter( 'cron_schedules', $plugin_public, 'set_cron_schedule_time' );
+			// Set cron recurrence time for 'wps_wocuf_twenty_minutes' schedule.
+			$this->loader->add_filter( 'cron_schedules', $plugin_public, 'set_cron_schedule_time' );
 
-		// Redirect upsell offer pages if not admin or upsell nonce expired.
-		$this->loader->add_action( 'template_redirect', $plugin_public, 'upsell_offer_page_redirect' );
+			// Redirect upsell offer pages if not admin or upsell nonce expired.
+			$this->loader->add_action( 'template_redirect', $plugin_public, 'upsell_offer_page_redirect' );
 
-		// Hide upsell offer pages from nav menu front-end.
-		$this->loader->add_filter( 'wp_page_menu_args', $plugin_public, 'exclude_pages_from_front_end', 99 );
+			// Hide upsell offer pages from nav menu front-end.
+			$this->loader->add_filter( 'wp_page_menu_args', $plugin_public, 'exclude_pages_from_front_end', 99 );
 
-		// Hide upsell offer pages from added menu list in customizer and admin panel.
-		$this->loader->add_filter( 'wp_get_nav_menu_items', $plugin_public, 'exclude_pages_from_menu_list', 10, 3 );
+			// Hide upsell offer pages from added menu list in customizer and admin panel.
+			$this->loader->add_filter( 'wp_get_nav_menu_items', $plugin_public, 'exclude_pages_from_menu_list', 10, 3 );
 
-		$wps_upsell_global_settings = get_option( 'wps_upsell_lite_global_options', array() );
+			$wps_upsell_global_settings = get_option( 'wps_upsell_lite_global_options', array() );
 
-		$remove_all_styles = ! empty( $wps_upsell_global_settings['remove_all_styles'] ) ? $wps_upsell_global_settings['remove_all_styles'] : 'yes';
+			$remove_all_styles = ! empty( $wps_upsell_global_settings['remove_all_styles'] ) ? $wps_upsell_global_settings['remove_all_styles'] : 'yes';
 
-		if ( 'yes' === $remove_all_styles && wps_upsell_lite_elementor_plugin_active() ) {
+			if ( 'yes' === $remove_all_styles && wps_upsell_lite_elementor_plugin_active() ) {
 
-			// Remove styles from offer pages.
-			$this->loader->add_action( 'wp_print_styles', $plugin_public, 'remove_styles_offer_pages' );
-		}
+				// Remove styles from offer pages.
+				$this->loader->add_action( 'wp_print_styles', $plugin_public, 'remove_styles_offer_pages' );
+			}
 
-		$this->loader->add_action( 'init', $plugin_public, 'upsell_shortcodes' );
+			$this->loader->add_action( 'init', $plugin_public, 'upsell_shortcodes' );
 
-		// Hide currency switcher on any page.
-		$this->loader->add_filter( 'wps_currency_switcher_side_switcher_after_html', $plugin_public, 'hide_switcher_on_upsell_page' );
+			// Hide currency switcher on any page.
+			$this->loader->add_filter( 'wps_currency_switcher_side_switcher_after_html', $plugin_public, 'hide_switcher_on_upsell_page' );
 
-		// Remove http and https from Upsell Action shortcodes added by Page Builders.
-		$this->loader->add_filter( 'the_content', $plugin_public, 'filter_upsell_shortcodes_content' );
+			// Remove http and https from Upsell Action shortcodes added by Page Builders.
+			$this->loader->add_filter( 'the_content', $plugin_public, 'filter_upsell_shortcodes_content' );
 
-		$wps_wocuf_enable_plugin = get_option( 'wps_wocuf_enable_plugin', 'on' );
+			$wps_wocuf_enable_plugin = get_option( 'wps_wocuf_enable_plugin', 'on' );
 
-		$this->loader->add_filter( 'wp_kses_allowed_html', $plugin_public, 'wocuf_lite_allow_script_tags' );
-		
-		if ( 'on' === $wps_wocuf_enable_plugin ) {
+			$this->loader->add_filter( 'wp_kses_allowed_html', $plugin_public, 'wocuf_lite_allow_script_tags' );
+			
+			if ( 'on' === $wps_wocuf_enable_plugin ) {
 
-			// Initiate Upsell Orders before processing payment.
-			$this->loader->add_action( 'woocommerce_checkout_order_processed', $plugin_public, 'wps_wocuf_initate_upsell_orders_shortcode_checkout_org' );
+				// Initiate Upsell Orders before processing payment.
+				$this->loader->add_action( 'woocommerce_checkout_order_processed', $plugin_public, 'wps_wocuf_initate_upsell_orders_shortcode_checkout_org' );
 
-			// Initiate Upsell Orders before processing payment.
-			$this->loader->add_action( 'woocommerce_store_api_checkout_order_processed', $plugin_public, 'wps_wocuf_initate_upsell_orders_api_checkout_org', 90 );
+				// Initiate Upsell Orders before processing payment.
+				$this->loader->add_action( 'woocommerce_store_api_checkout_order_processed', $plugin_public, 'wps_wocuf_initate_upsell_orders_api_checkout_org', 90 );
 
-			// When user clicks on No thanks for Upsell offer.
-			! is_admin() && $this->loader->add_action( 'wp_loaded', $plugin_public, 'wps_wocuf_pro_process_the_funnel' );
+				// When user clicks on No thanks for Upsell offer.
+				! is_admin() && $this->loader->add_action( 'wp_loaded', $plugin_public, 'wps_wocuf_pro_process_the_funnel' );
 
-			// When user clicks on Add upsell product to my Order.
-			! is_admin() && $this->loader->add_action( 'wp_loaded', $plugin_public, 'wps_wocuf_pro_charge_the_offer' );
+				// When user clicks on Add upsell product to my Order.
+				! is_admin() && $this->loader->add_action( 'wp_loaded', $plugin_public, 'wps_wocuf_pro_charge_the_offer' );
 
-			// Define Cron schedule fire Event for Order payment process.
-			$this->loader->add_action( 'wps_wocuf_lite_order_cron_schedule', $plugin_public, 'order_payment_cron_fire_event' );
+				// Define Cron schedule fire Event for Order payment process.
+				$this->loader->add_action( 'wps_wocuf_lite_order_cron_schedule', $plugin_public, 'order_payment_cron_fire_event' );
 
-			// Global Custom CSS.
-			$this->loader->add_action( 'wp_head', $plugin_public, 'global_custom_css' );
+				// Global Custom CSS.
+				$this->loader->add_action( 'wp_head', $plugin_public, 'global_custom_css' );
 
-			// Global custom JS.
-			$this->loader->add_action( 'wp_footer', $plugin_public, 'global_custom_js' );
+				// Global custom JS.
+				$this->loader->add_action( 'wp_footer', $plugin_public, 'global_custom_js' );
 
-			// Reset Timer session for Timer shortcode.
-			$this->loader->add_action( 'wp_footer', $plugin_public, 'reset_timer_session_data' );
+				// Reset Timer session for Timer shortcode.
+				$this->loader->add_action( 'wp_footer', $plugin_public, 'reset_timer_session_data' );
 
-			// Hide the upsell meta for Upsell order item for Customers.
-			! is_admin() && $this->loader->add_filter( 'woocommerce_order_item_get_formatted_meta_data', $plugin_public, 'hide_order_item_formatted_meta_data' );
+				// Hide the upsell meta for Upsell order item for Customers.
+				! is_admin() && $this->loader->add_filter( 'woocommerce_order_item_get_formatted_meta_data', $plugin_public, 'hide_order_item_formatted_meta_data' );
 
-			// Handle Upsell Orders on Thankyou for Success Rate and Stats.
-			$this->loader->add_action( 'woocommerce_thankyou', $plugin_public, 'upsell_sales_by_funnel_handling' );
+				// Handle Upsell Orders on Thankyou for Success Rate and Stats.
+				$this->loader->add_action( 'woocommerce_thankyou', $plugin_public, 'upsell_sales_by_funnel_handling' );
 
-			// Google Analytics and Facebook Pixel Tracking - Start.
+				// Google Analytics and Facebook Pixel Tracking - Start.
 
-			// GA and FB Pixel Base Code.
-			$this->loader->add_action( 'wp_head', $plugin_public, 'add_ga_and_fb_pixel_base_code' );
+				// GA and FB Pixel Base Code.
+				$this->loader->add_action( 'wp_head', $plugin_public, 'add_ga_and_fb_pixel_base_code' );
 
-			// GA and FB Pixel Purchase Event - Track Parent Order on 1st Upsell Offer Page.
-			$this->loader->add_action( 'wp_head', $plugin_public, 'ga_and_fb_pixel_purchase_event_for_parent_order', 100 );
+				// GA and FB Pixel Purchase Event - Track Parent Order on 1st Upsell Offer Page.
+				$this->loader->add_action( 'wp_head', $plugin_public, 'ga_and_fb_pixel_purchase_event_for_parent_order', 100 );
 
-			// GA and FB Pixel Purchase Event - Track Order on Thankyou page.
-			$this->loader->add_action( 'woocommerce_thankyou', $plugin_public, 'ga_and_fb_pixel_purchase_event' );
+				// GA and FB Pixel Purchase Event - Track Order on Thankyou page.
+				$this->loader->add_action( 'woocommerce_thankyou', $plugin_public, 'ga_and_fb_pixel_purchase_event' );
 
-			/**
-			 * Compatibility for Enhanced Ecommerce Google Analytics Plugin by Tatvic.
-			 * Remove plugin's Purchase Event from Thankyou page when
-			 * Upsell Purchase is enabled.
-			 */
-			$this->loader->add_action( 'wp_loaded', $plugin_public, 'upsell_ga_compatibility_for_eega' );
+				/**
+				 * Compatibility for Enhanced Ecommerce Google Analytics Plugin by Tatvic.
+				 * Remove plugin's Purchase Event from Thankyou page when
+				 * Upsell Purchase is enabled.
+				 */
+				$this->loader->add_action( 'wp_loaded', $plugin_public, 'upsell_ga_compatibility_for_eega' );
 
-			/**
-			 * Compatibility for Facebook for WooCommerce plugin.
-			 * Remove plugin's Purchase Event from Thankyou page when
-			 * Upsell Purchase is enabled.
-			 */
-			$this->loader->add_action( 'woocommerce_init', $plugin_public, 'upsell_fbp_compatibility_for_ffw' );
+				/**
+				 * Compatibility for Facebook for WooCommerce plugin.
+				 * Remove plugin's Purchase Event from Thankyou page when
+				 * Upsell Purchase is enabled.
+				 */
+				$this->loader->add_action( 'woocommerce_init', $plugin_public, 'upsell_fbp_compatibility_for_ffw' );
 
-			// Google Analytics and Facebook Pixel Tracking - End.
-			$this->loader->add_action( 'woocommerce_after_checkout_billing_form', $plugin_public, 'wps_upsell_add_nonce_field_at_checkout' );
+				// Google Analytics and Facebook Pixel Tracking - End.
+				$this->loader->add_action( 'woocommerce_after_checkout_billing_form', $plugin_public, 'wps_upsell_add_nonce_field_at_checkout' );
+			}
 		}
 
 		
