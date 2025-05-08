@@ -96,7 +96,7 @@ jQuery(document).ready( function($) {
 
 	/* Open Popup */
 	function wps_show_onboard_popup() {
-		jQuery( '.wps-onboarding-section' ).show();
+		jQuery( '.wps-onboarding-section-one-click-upsell' ).show();
 		jQuery( '.wps-on-boarding-wrapper-background' ).addClass( 'onboard-popup-show' );
 
 	    if( ! jQuery( 'body' ).hasClass( 'mobile-device' ) ) {
@@ -107,7 +107,7 @@ jQuery(document).ready( function($) {
 	/* Close Popup */
 	function wps_hide_onboard_popup() {
 		jQuery( '.wps-on-boarding-wrapper-background' ).removeClass( 'onboard-popup-show' );
-		jQuery( '.wps-onboarding-section' ).hide();
+		jQuery( '.wps-onboarding-section-one-click-upsell' ).hide();
 		if( ! jQuery( 'body' ).hasClass( 'mobile-device' ) ) {
 	    	jQuery( 'body' ).removeClass( 'wps-on-boarding-wrapper-control' );
 	    }

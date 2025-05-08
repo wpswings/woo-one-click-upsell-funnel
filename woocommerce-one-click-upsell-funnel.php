@@ -19,9 +19,9 @@
  *
  * Requires Plugins: woocommerce
  * Requires at least:     5.5.0
- * Tested up to:          6.7.1
+ * Tested up to:          6.8.1
  * WC requires at least:  6.5.0
- * WC tested up to:       9.6.0
+ * WC tested up to:       9.8.4
  *
  * Author:                WP Swings
  * Author URI:            https://wpswings.com/?utm_source=wpswings-official&utm_medium=upsell-org-backend&utm_campaign=official
@@ -515,54 +515,3 @@ function wps_wocuf_banner_notification_html() {
 
 
 
-// Load necessary WordPress core files first
-require_once ABSPATH . 'wp-admin/includes/plugin.php';
-require_once ABSPATH . 'wp-admin/includes/file.php';
-require_once ABSPATH . 'wp-admin/includes/misc.php';
-require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
-
-// Now you can safely define the Silent_Upgrader_Skin
-class Silent_Upgrader_Skin extends WP_Upgrader_Skin {
-    public function feedback($string, ...$args) {
-        // Silence all output
-    }
-}
-
-// Now your function
-function check_and_install_upsell_plugin() {
-    $current_pro_plugin = 'woo-one-click-upsell-funnel/woocommerce-one-click-upsell-funnel.php';
-    $plugin_slug = 'upsell-order-bump-offer-for-woocommerce/upsell-order-bump-offer-for-woocommerce.php';
-    $plugin_zip  = 'https://downloads.wordpress.org/plugin/upsell-order-bump-offer-for-woocommerce.zip';
-
-    if (file_exists(WP_PLUGIN_DIR . '/' . $plugin_slug)) {
-        return;
-    }
-
-    if (is_plugin_active($current_pro_plugin)) {
-
-        if (file_exists(WP_PLUGIN_DIR . '/' . $plugin_slug)) {
-            if (!is_plugin_active($plugin_slug)) {
-                activate_plugin($plugin_slug);
-            }
-            run_custom_code_after_plugin_active();
-            update_option('upsell_plugin_installed', true);
-        } else {
-            $skin = new Silent_Upgrader_Skin();
-            $upgrader = new Plugin_Upgrader($skin);
-            $result = $upgrader->install($plugin_zip);
-
-            if (is_wp_error($result)) {
-                error_log('Plugin installation failed: ' . $result->get_error_message());
-            } else {
-                activate_plugin($plugin_slug);
-                run_custom_code_after_plugin_active();
-                update_option('upsell_plugin_installed', true);
-            }
-        }
-    }
-}
-add_action('admin_init', 'check_and_install_upsell_plugin');
-
-function run_custom_code_after_plugin_active() {
-    error_log('Upsell Funnel Builder plugin is active.');
-}

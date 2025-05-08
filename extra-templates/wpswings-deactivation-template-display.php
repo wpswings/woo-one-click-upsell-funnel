@@ -22,7 +22,7 @@ if ( empty( $pagenow ) || 'plugins.php' !== $pagenow ) {
 $form_fields = apply_filters( 'wps_deactivation_form_fields', array() );
 ?>
 <?php if ( ! empty( $form_fields ) ) : ?>
-	<div class="wps-onboarding-section">
+	<div class="wps-onboarding-section-one-click-upsell">
 		<div class="wps-on-boarding-wrapper-background">
 		<div class="wps-on-boarding-wrapper">
 			<div class="wps-on-boarding-close-btn">

@@ -135,7 +135,7 @@ jQuery(document).ready( function($) {
 	 */
 	$('.ubo_offer_input').on( 'click', function (e) {
 		var data_offer = jQuery(e.currentTarget).attr('product_offer');
-		debugger;
+		
 		// Add popup to unlock pro features.
 		var pro_status = document.getElementById( 'wps_ubo_pro_status' );
 		if( null != pro_status ) {
@@ -165,7 +165,7 @@ jQuery(document).ready( function($) {
 	});
 
 	$('.wps_ubo_lite_go_pro_popup_close').on( 'click', function (e) {
-		debugger;
+		
 		jQuery('#product_features_ubo_lite').hide();
 		$( '.wps_ubo_lite_go_pro_popup_wrap' ).removeClass( 'wps_ubo_lite_go_pro_popup_show' );
 		$( 'body' ).removeClass( 'wps_ubo_lite_go_pro_popup_body' );
@@ -281,7 +281,7 @@ jQuery(document).ready( function($) {
 
 		// Save content to local storage when the save button is clicked
 		$('.wps-ufw_msmh-in-btn').on('click', function() {
-			debugger;
+			
 			var shippingdataIds = [];
 			var shippingdatamethod = [];
 			var order_summary = [];
@@ -292,7 +292,7 @@ jQuery(document).ready( function($) {
 			var order_summary_title = jQuery('#order-Summary-wrap-editable').html();
 			var payment_method_title = jQuery('#payment-gateway-wrap-editable').html();
 			jQuery('#billing-information-wrap-id span').each(function() {
-    			debugger;
+    			
 				// Get the data-id attribute of the current span element
 				dataId = jQuery(this).attr('data-id');
 				
@@ -302,7 +302,7 @@ jQuery(document).ready( function($) {
 				}
 			});
 			jQuery('#shipping-information-wrap-id span').each(function() {
-    			debugger;
+    			
 				// Get the data-id attribute of the current span element
 				dataId = jQuery(this).attr('data-id');
 				
@@ -313,7 +313,7 @@ jQuery(document).ready( function($) {
 			});
 			
 			jQuery('#billing-basic-wrap-id span').each(function() {
-    			debugger;
+    			
 				// Get the data-id attribute of the current span element
 				dataId = jQuery(this).attr('data-id');
 				
@@ -324,7 +324,7 @@ jQuery(document).ready( function($) {
 			});
 
 			jQuery('#shipping-basic-wrap-id span').each(function() {
-    			debugger;
+    			
 				// Get the data-id attribute of the current span element
 				dataId = jQuery(this).attr('data-id');
 				
@@ -381,7 +381,7 @@ jQuery(document).ready( function($) {
 		
 		
 		$('.wps-ufw_msmhthy-in-btn').on('click', function() {
-			debugger;
+			
 			var wps_wocuf_content_before_order_details = jQuery('#wps_wocuf_content_before_order_details').val();
 			var wps_wocuf_content_page_header_title = jQuery('#wps_wocuf_content_page_header_title').val();
 			var wps_wocuf_content_after_order_details = jQuery('#wps_wocuf_content_after_order_details').val();
