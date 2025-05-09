@@ -1,12 +1,12 @@
-=== One Click Upsell Funnel for WooCommerce – Free Funnel Builder to create WooCommerce Upsell, Post-Purchase Upsell, Cross Sell, and Order Bump. ===
+=== One Click Upsell Funnel for WooCommerce ===
 
 Contributors: wpswings
 Donate link: https://wpswings.com/
 Tags: upsell, cross-sell, sales funnel, funnel builder, woocommerce checkout,
 Requires at least: 5.5.0
-Tested up to: 6.7.1
+Tested up to: 6.8.1
 WC requires at least: 6.5.0
-WC tested up to: 9.6.0
+WC tested up to: 9.8.4
 Stable tag: 3.6.0
 Requires PHP: 7.0.0
 License: GPLv3 or later 
@@ -375,7 +375,10 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Changelog ==
 
-= 3.6.0 – Released on 31 Jan 2025 =
+= 3.6.0 – Released on 09 March 2025 =
+* New: Latest compatibility with WP (6.8.1) and WC (9.8.4).
+
+= 3.5.0 – Released on 31 Jan 2025 =
 * New : Compatible with latest WP ( 6.7.1 ) & WC ( 9.6.0 )
 * New: Stripe Payment Gateway Support 
 * New: Support of Variable Products 
@@ -557,9 +560,5 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Upgrade Notice ==
 
-= 3.6.0 – Released on 31 Jan 2025 =
-* New : Compatible with latest WP ( 6.7.1 ) & WC ( 9.6.0 )
-* New: Stripe Payment Gateway Support 
-* New: Support of Variable Products 
-* New: Support of Category 
-* New: Upsell of Zero Order Total
+= 3.6.0 – Released on 09 March 2025 =
+* New: Latest compatibility with WP (6.8.1) and WC (9.8.4).
