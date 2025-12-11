@@ -1015,61 +1015,54 @@ function wps_upselllite_allowed_html() {
 			'value'    => array(),
 			'selected' => array(),
 		),
-	);
-	?>
+		);
+		?>
 
-	<?php
-	return $allowed_html;
-}
+		<?php
+		return $allowed_html;
+	}
 
-
-
-
-// Load necessary WordPress core files first
-require_once ABSPATH . 'wp-admin/includes/plugin.php';
-require_once ABSPATH . 'wp-admin/includes/file.php';
-require_once ABSPATH . 'wp-admin/includes/misc.php';
-require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
-
-// Now you can safely define the Silent_Upgrader_Skin
-class Silent_Upgrader_Skin extends WP_Upgrader_Skin {
-    public function feedback($string, ...$args) {
-        // Silence all output
-    }
-}
-
-// Now your function
+/**
+ * Install and activate order bump plugin when upsell plugin is active.
+ *
+ * @return void
+ */
 function check_and_install_upsell_plugin() {
-    $current_pro_plugin = 'woo-one-click-upsell-funnel/woocommerce-one-click-upsell-funnel.php';
-    $plugin_slug = 'upsell-order-bump-offer-for-woocommerce/upsell-order-bump-offer-for-woocommerce.php';
-    $plugin_zip  = 'https://downloads.wordpress.org/plugin/upsell-order-bump-offer-for-woocommerce.zip';
+	$current_pro_plugin = 'woo-one-click-upsell-funnel/woocommerce-one-click-upsell-funnel.php';
+	$plugin_slug        = 'upsell-order-bump-offer-for-woocommerce/upsell-order-bump-offer-for-woocommerce.php';
+	$plugin_zip         = 'https://downloads.wordpress.org/plugin/upsell-order-bump-offer-for-woocommerce.zip';
 
-    if (file_exists(WP_PLUGIN_DIR . '/' . $plugin_slug)) {
-        return;
-    }
+	require_once ABSPATH . 'wp-admin/includes/plugin.php';
+	require_once ABSPATH . 'wp-admin/includes/file.php';
+	require_once ABSPATH . 'wp-admin/includes/misc.php';
+	require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+	require_once __DIR__ . '/class-silent-upgrader-skin.php';
 
-    if (is_plugin_active($current_pro_plugin)) {
+	if ( file_exists( WP_PLUGIN_DIR . '/' . $plugin_slug ) ) {
+		return;
+	}
 
-        if (file_exists(WP_PLUGIN_DIR . '/' . $plugin_slug)) {
+	if ( is_plugin_active( $current_pro_plugin ) ) {
+
+		if ( file_exists( WP_PLUGIN_DIR . '/' . $plugin_slug ) ) {
 			if ( ! is_plugin_active( $plugin_slug ) ) {
 				activate_plugin( $plugin_slug );
 			}
-	
-			// Redirect to plugins page to refresh view
+
+			// Redirect to plugins page to refresh view.
 			wp_safe_redirect( admin_url( 'plugins.php' ) );
 			exit;
-	 
-        } else {
-            $skin = new Silent_Upgrader_Skin();
-            $upgrader = new Plugin_Upgrader($skin);
-            $result = $upgrader->install($plugin_zip);
+		} else {
+			$skin     = new Silent_Upgrader_Skin();
+			$upgrader = new Plugin_Upgrader( $skin );
+			$result   = $upgrader->install( $plugin_zip );
 
-            if (is_wp_error($result)) {
-                error_log('Plugin installation failed: ' . $result->get_error_message());
-            } else {
-                activate_plugin($plugin_slug);
-            }
-        }
-    }
+			if ( is_wp_error( $result ) ) {
+				error_log( 'Plugin installation failed: ' . $result->get_error_message() );
+			} else {
+				activate_plugin( $plugin_slug );
+			}
+		}
+	}
 }
-add_action('admin_init', 'check_and_install_upsell_plugin');
+add_action( 'admin_init', 'check_and_install_upsell_plugin' );
