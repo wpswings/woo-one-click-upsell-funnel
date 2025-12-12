@@ -4,10 +4,10 @@ Contributors: wpswings
 Donate link: https://wpswings.com/
 Tags: upsell, cross-sell, sales funnel, funnel builder, woocommerce checkout,
 Requires at least: 5.5.0
-Tested up to: 6.8.1
+Tested up to: 6.9.0
 WC requires at least: 6.5.0
-WC tested up to: 9.8.4
-Stable tag: 3.6.0
+WC tested up to: 10.4.0
+Stable tag: 3.6.1
 Requires PHP: 7.0.0
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -19,22 +19,19 @@ Create WooCommerce Upsells in One Click, Increase Sales with Related Products, P
 
 **ONE CLICK UPSELL FUNNEL FOR WOOCOMMERCE IS A FREE FUNNEL BUILDER THAT INCREASES SALES, AND AOV WITH UPSELL, CROSS-SELL, ORDER BUMP, AND FREQUENTLY BOUGHT TOGETHER**
 
-💰 WooCommerce Upsell Funnel Creator 🛍️ Maximize Sales with eCommerce Upsells  📈 Increase Ads ROAS with Upsell Funnels
+#### 📢 Important Update: Plugin Merger Announcement
+We’ve officially merged **One-Click Upsell** and **Order Bump Plugin** into a single powerhouse plugin — [**Upsell Funnel Builder plugin**](https://wpswings.com/product/upsell-order-bump-offer-for-woocommerce-pro/?utm_source=one-click-upsell-org-page&utm_medium=referral&utm_campaign=upsell-funnel-builder-pro).
 
 
-**Looking for the best funnel builder for WordPress to skyrocket your sales?** One Click Upsell Funnel for WooCommerce allows merchants to create WooCommerce Upsell, post-purchase upsell, Order Bumps, and cross-sell offers. Easily show related products with upsell pop-ups into WooCommerce checkout pages, Cart Pages, and thank you pages, allowing merchants to create engaging sales funnels that convert.
-
-
-Customers can add these upsell products in just 1 click to their cart with no hassle of re-entering the payment details. It is a complete solution for building Sales Funnels for WordPress and WooCommerce as it facilitates creating, testing, and maintaining post purchase / aftersell funnels.
+One Click Upsell Funnel for WooCommerce allows merchants to create WooCommerce Upsell, post-purchase upsell, Order Bumps, and cross-sell offers. Easily show related products with upsell pop-ups into WooCommerce checkout pages, Cart Pages, and thank you pages, allowing merchants to create engaging sales funnels that convert.
 
 
 Our plugin is compatible with **Elementor**, **Divi**, **Themify**, **WP Bakery**, **Beaver**, **Site Origin**, and **Gutenberg** page builders, allowing you to create, edit, and import upsell funnel templates, customize checkout pages, and thank you pages with advanced designs.
 
+Additionally, you may **import third party pre-made sales funnel templates** to easily set up and provide upsell for WooCommerce on your online store. 
 
-Create unlimited upsell for woocommerce offers using the [**WooCommerce upsell plugin**](https://wpswings.com/product/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=upsell-org-page&utm_medium=referral&utm_campaign=upsell-pro), and examine a track report for each sales funnel. Additionally, you may **import third party pre-made sales funnel templates** to easily set up and provide upsell for WooCommerce on your online store. 
 
-
-[**WooCommerce Upsell Demo**](https://demo.wpswings.com/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=upsell-org-page&utm_medium=referral&utm_campaign=frontend-demo) |  [**Documentation**](https://docs.wpswings.com/one-click-upsell-funnel-for-woocommerce/?utm_source=upsell-org-page&utm_medium=referral&utm_campaign=upsell-doc) | [**Contact Us**](https://wpswings.com/contact-us/?utm_source=upsell-org-page&utm_medium=referral&utm_campaign=contactus)
+[**WooCommerce Upsell Demo**](https://demo.wpswings.com/upsell-order-bump-offer-for-woocommerce-pro/?utm_source=upsell-org-page&utm_medium=referral&utm_campaign=frontend-demo) |  [**Documentation**](https://docs.wpswings.com/one-click-upsell-funnel-for-woocommerce/?utm_source=upsell-org-page&utm_medium=referral&utm_campaign=upsell-doc) | [**Contact Us**](https://wpswings.com/contact-us/?utm_source=upsell-org-page&utm_medium=referral&utm_campaign=contactus)
 
 [youtube https://www.youtube.com/watch?v=S4fv2YwLxQk&rel=0]
 
@@ -55,7 +52,7 @@ The WooCommerce Upsell Funnel plugin allows you to create Order Bump Offers dire
 
 
 #### 4) Exit Intent Pop-Up: 
-Using the WooCommerce Upsell Plugin you can enable the [**pop-up on exit intent feature**](https://docs.wpswings.com/one-click-upsell-funnel-for-woocommerce/#pop-up-on-exit-intent-2), allowing you to show a pop-up on upsell offer pages when a customer tries to exit the browser, this can be an ultimate upselling hack for your business.
+Using the WooCommerce Upsell Plugin you can enable the pop-up on exit intent feature, allowing you to show a pop-up on upsell offer pages when a customer tries to exit the browser, this can be an ultimate upselling hack for your business.
 
 
 #### 5) Unlimited Funnels with an Unlimited Number of Offers: 
@@ -108,9 +105,9 @@ Visit [**One Click Upsell Funnel for WooCommerce Documentation**](https://docs.w
 
 == LIVE DEMO OF ONE CLICK UPSELL FUNNEL PLUGIN  ==
 
-* [**One Click Upsell Funnel for WooCommerce Frontend Demo**](https://demo.wpswings.com/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=upsell-org-page&utm_medium=referral&utm_campaign=upsell-frontend-demo)
+* [**One Click Upsell Funnel for WooCommerce Frontend Demo**](https://demo.wpswings.com/upsell-order-bump-offer-for-woocommerce-pro/?utm_source=upsell-org-page&utm_medium=referral&utm_campaign=upsell-frontend-demo)
 
-* [**One Click Upsell Funnel for WooCommerce Backend Demo**](https://demo.wpswings.com/one-click-upsell-funnel-for-woocommerce-pro/request-for-personal-demo/?utm_source=upsell-org-page&utm_medium=referral&utm_campaign=upsell-backend-demo)
+* [**One Click Upsell Funnel for WooCommerce Backend Demo**](https://demo.wpswings.com/upsell-order-bump-offer-for-woocommerce-pro/request-for-personal-demo/?utm_source=upsell-org-page&utm_medium=referral&utm_campaign=upsell-backend-demo)
 
 
 
@@ -325,11 +322,11 @@ If you want to make a custom offer page for upsell of your own without our pre-d
 
 = How can I use Custom Page Shortcodes for BUY NOW and NO THANKS? =
 
-For the **“Buy Now”** shortcode: You need to copy this **Buy Now <span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji">→</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span> [wps_upsell_yes]** and place it at a suitable place on your page.
+For the **“Buy Now”** shortcode: You need to copy this **Buy Now <span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji">→</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span> [wps_upsell_yes]** and place it at a suitable place on your page.
 
 **Description:** This shortcode only returns the link so it has to be used in the link section. In HTML use it as href=”[wps_upsell_yes]” of an anchor tag.
 
-For the **“No thanks”** shortcode: You need to copy this **No Thanks <span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji">→</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span> [wps_upsell_no]** and place it at a suitable place on your page.
+For the **“No thanks”** shortcode: You need to copy this **No Thanks <span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji"><span aria-hidden="true" class="wp-exclude-emoji">→</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span> [wps_upsell_no]** and place it at a suitable place on your page.
 
 **Description:** This shortcode only returns the link so it has to be used in the link section. In HTML use it as href=”[wps_upsell_no]” of an anchor tag.
 
@@ -371,9 +368,12 @@ Most of the major WordPress page builders like Elementor, WPBakery, Divibuilders
 
 = My Question is Not Listed. =
 
-Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.com/wordpress-plugins-knowledge-base/category/one-click-upsell-funnel-for-woocommerce/?utm_source=upsell-org-page&utm_medium=referral&utm_campaign=upsell-kb)
+Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.com/wordpress-plugins-knowledge-base/category/upsell-order-bump-offer-for-woocommerce/?utm_source=upsell-org-page&utm_medium=referral&utm_campaign=upsell-kb)
 
 == Changelog ==
+
+= 3.6.1 – Released on 9 January 2026 =
+* New: Latest compatibility with WP (6.9.0) and WC (10.4.0)
 
 = 3.6.0 – Released on 09 March 2025 =
 * New: Latest compatibility with WP (6.8.1) and WC (9.8.4).
@@ -524,7 +524,6 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 * Improved: Alert Messages and Upsell Action Buttons Loader. 
 * Other: Issues and Bugs Fixed.
 
-
 = 2.0.3 =
 * Fix: Upsell Action Links Issue with Elementor fixed.
 * Fix: Changed Text Domain according to WordPress standards.
@@ -560,5 +559,5 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Upgrade Notice ==
 
-= 3.6.0 – Released on 09 March 2025 =
-* New: Latest compatibility with WP (6.8.1) and WC (9.8.4).
+= 3.6.1 – Released on 9 January 2026 =
+* New: Latest compatibility with WP (6.9.0) and WC (10.4.0)
