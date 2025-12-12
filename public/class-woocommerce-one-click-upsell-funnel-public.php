@@ -520,7 +520,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 										wps_wocfo_hpos_delete_meta_data( $funnel_offer_post_id_assigned, '_elementor_element_cache' );
 
 										// When funnel is saved since v3.0.0 and offer post id is assigned and elementor active.
-										if ( ! empty( $funnel_offer_post_id_assigned ) && ( 'true' === $funnel_saved_after_version_3 && wps_upsell_lite_elementor_plugin_active() ) || wps_upsell_divi_builder_plugin_active() ) {
+										if ( ! empty( $funnel_offer_post_id_assigned ) && ( ( 'true' === $funnel_saved_after_version_3 && wps_upsell_lite_elementor_plugin_active() ) || wps_upsell_divi_builder_plugin_active() ) ) {
 
 											$redirect_to_upsell = false;
 
@@ -827,7 +827,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				$funnel_offer_post_id_assigned = ! empty( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_upsell_post_id_assigned'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_upsell_post_id_assigned'][ $offer_id ] : '';
 
 				// When funnel is saved since v3.0.0 and offer post id is assigned and elementor active.
-				if ( ! empty( $funnel_offer_post_id_assigned ) && ( 'true' === $funnel_saved_after_version_3 && wps_upsell_lite_elementor_plugin_active() ) || wps_upsell_divi_builder_plugin_active() ) {
+				if ( ! empty( $funnel_offer_post_id_assigned ) && ( ( 'true' === $funnel_saved_after_version_3 && wps_upsell_lite_elementor_plugin_active() ) || wps_upsell_divi_builder_plugin_active() ) ) {
 
 					$redirect_to_upsell = false;
 
@@ -1180,7 +1180,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 		$add_product_nonce = ! empty( $_POST['wps_wocuf_post_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_wocuf_post_nonce'] ) ) : '';
 
-		if ( ( isset( $add_product_nonce ) ) && ( wp_verify_nonce( $add_product_nonce, 'wps_wocuf_field_post_nonce' ) && isset( $_POST['wps_wocuf_pro_buy'] ) ) || isset( $_GET['wps_wocuf_pro_buy'] ) ) {
+		if ( ( isset( $add_product_nonce ) && wp_verify_nonce( $add_product_nonce, 'wps_wocuf_field_post_nonce' ) && isset( $_POST['wps_wocuf_pro_buy'] ) ) || isset( $_GET['wps_wocuf_pro_buy'] ) ) {
 
 			unset( $_POST['wps_wocuf_pro_buy'] );
 
@@ -1342,7 +1342,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 							$funnel_offer_post_id_assigned = ! empty( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_upsell_post_id_assigned'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_upsell_post_id_assigned'][ $offer_id ] : '';
 
 							// When funnel is saved since v3.0.0 and offer post id is assigned and elementor active.
-							if ( ! empty( $funnel_offer_post_id_assigned ) && ( 'true' === $funnel_saved_after_version_3 && wps_upsell_lite_elementor_plugin_active() ) || wps_upsell_divi_builder_plugin_active() ) {
+							if ( ! empty( $funnel_offer_post_id_assigned ) && ( ( 'true' === $funnel_saved_after_version_3 && wps_upsell_lite_elementor_plugin_active() ) || wps_upsell_divi_builder_plugin_active() ) ) {
 
 								$redirect_to_upsell = false;
 
@@ -4486,4 +4486,3 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	}
 
 }
-
