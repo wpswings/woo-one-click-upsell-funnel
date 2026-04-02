@@ -111,11 +111,13 @@ class WPSwings_Onboarding_Helper {
 		add_filter( 'wpswocuf_on_boarding_form_fields', array( $this, 'add_on_boarding_form_fields' ) );
 		add_filter( 'wpswocuf_deactivation_form_fields', array( $this, 'add_deactivation_form_fields' ) );
 
-		// Ajax to send data.
-		add_action( 'wp_ajax_send_onboarding_data', array( $this, 'send_onboarding_data' ) );
+		// Ajax to send data (prefixed + legacy hook for compatibility).
+		add_action( 'wp_ajax_wpswocuf_send_onboarding_data', array( $this, 'send_onboarding_data' ) );
+		add_action( 'wp_ajax_send_onboarding_data', array( $this, 'send_onboarding_data' ) ); // backward compat.
 
-		// Ajax to Skip popup.
-		add_action( 'wp_ajax_skip_onboarding_popup', array( $this, 'skip_onboarding_popup' ) );
+		// Ajax to Skip popup (prefixed + legacy hook for compatibility).
+		add_action( 'wp_ajax_wpswocuf_skip_onboarding_popup', array( $this, 'skip_onboarding_popup' ) );
+		add_action( 'wp_ajax_skip_onboarding_popup', array( $this, 'skip_onboarding_popup' ) ); // backward compat.
 	}
 
 	/**

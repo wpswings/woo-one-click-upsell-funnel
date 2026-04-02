@@ -212,30 +212,37 @@ class Wpswocuf_Plugin {
 
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'wpswocuf_pro_admin_menu' );
 
-		$this->loader->add_action( 'wp_ajax_seach_products_for_offers', $plugin_admin, 'seach_products_for_offers' );
+		$this->loader->add_action( 'wp_ajax_wpswocuf_search_products_for_offers', $plugin_admin, 'seach_products_for_offers' );
 		$this->loader->add_action( 'wp_ajax_wpswocufseach_products_for_offers', $plugin_admin, 'seach_products_for_offers' );
+		$this->loader->add_action( 'wp_ajax_seach_products_for_offers', $plugin_admin, 'seach_products_for_offers' ); // legacy.
 
-		$this->loader->add_action( 'wp_ajax_seach_products_for_funnel', $plugin_admin, 'seach_products_for_funnel' );
+		$this->loader->add_action( 'wp_ajax_wpswocuf_search_products_for_funnel', $plugin_admin, 'seach_products_for_funnel' );
 		$this->loader->add_action( 'wp_ajax_wpswocufseach_products_for_funnel', $plugin_admin, 'seach_products_for_funnel' );
-		$this->loader->add_action( 'wp_ajax_search_product_categories_for_funnel', $plugin_admin, 'search_product_categories_for_funnel' );
+		$this->loader->add_action( 'wp_ajax_seach_products_for_funnel', $plugin_admin, 'seach_products_for_funnel' ); // legacy.
+
+		$this->loader->add_action( 'wp_ajax_wpswocuf_search_product_categories_for_funnel', $plugin_admin, 'search_product_categories_for_funnel' );
 		$this->loader->add_action( 'wp_ajax_wpswocufsearch_product_categories_for_funnel', $plugin_admin, 'search_product_categories_for_funnel' );
+		$this->loader->add_action( 'wp_ajax_search_product_categories_for_funnel', $plugin_admin, 'search_product_categories_for_funnel' ); // legacy.
 
 		// Dismiss Elementor inactive notice.
 		$this->loader->add_action( 'wp_ajax_wpswocuf_upsell_dismiss_elementor_inactive_notice', $plugin_admin, 'dismiss_elementor_inactive_notice' );
 		$this->loader->add_action( 'wp_ajax_wpswocufdismiss_elementor_inactive_notice', $plugin_admin, 'dismiss_elementor_inactive_notice' );
+		$this->loader->add_action( 'wp_ajax_wpswocuf_dismiss_elementor_inactive_notice', $plugin_admin, 'dismiss_elementor_inactive_notice' );
 
 		// Hide Upsell offer pages in admin panel 'Pages'.
 		$this->loader->add_action( 'pre_get_posts', $plugin_admin, 'hide_upsell_offer_pages_in_admin' );
 
 		$this->loader->add_filter( 'page_template', $plugin_admin, 'wpswocuf_pro_page_template' );
 
-		// Create new offer - ajax handle function.
+		// Create new offer - ajax handle function (prefixed + legacy).
 		$this->loader->add_action( 'wp_ajax_wpswocuf_pro_return_offer_content', $plugin_admin, 'return_funnel_offer_section_content' );
 		$this->loader->add_action( 'wp_ajax_wpswocufreturn_offer_content', $plugin_admin, 'return_funnel_offer_section_content' );
+		$this->loader->add_action( 'wp_ajax_wpswocuf_return_offer_content', $plugin_admin, 'return_funnel_offer_section_content' );
 
-		// Insert and Activate respective template ajax handle function.
+		// Insert and Activate respective template ajax handle function (prefixed + legacy).
 		$this->loader->add_action( 'wp_ajax_wpswocuf_upsell_activate_offer_template_ajax', $plugin_admin, 'activate_respective_offer_template' );
 		$this->loader->add_action( 'wp_ajax_wpswocufactivate_offer_template', $plugin_admin, 'activate_respective_offer_template' );
+		$this->loader->add_action( 'wp_ajax_wpswocuf_activate_offer_template', $plugin_admin, 'activate_respective_offer_template' );
 
 		// Add attribute to styles allowed properties.
 		$this->loader->add_filter( 'safe_style_css', $plugin_admin, 'wocuf_lite_add_style_attribute' );
