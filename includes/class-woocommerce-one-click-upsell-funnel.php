@@ -161,7 +161,7 @@ class Wpswocuf_Plugin {
 		/**
 		 * The file responsible for Upsell Sales by Funnel - Data handling and Stats.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'reporting/class-wps-upsell-report-sales-by-funnel.php';
+		// require_once plugin_dir_path( dirname( __FILE__ ) ) . 'reporting/class-wps-upsell-report-sales-by-funnel.php';
 
 		$this->loader = new Wpswocuf_Loader();
 
@@ -309,8 +309,8 @@ class Wpswocuf_Plugin {
 			// Redirect upsell offer pages if not admin or upsell nonce expired.
 			$this->loader->add_action( 'template_redirect', $plugin_public, 'upsell_offer_page_redirect' );
 
-			// Hide upsell offer pages from nav menu front-end.
-			$this->loader->add_filter( 'wp_page_menu_args', $plugin_public, 'exclude_pages_from_front_end', 99 );
+				// Hide upsell offer pages from nav menu front-end.
+				$this->loader->add_filter( 'wp_list_pages_excludes', $plugin_public, 'exclude_pages_from_front_end', 99 );
 
 			// Hide upsell offer pages from added menu list in customizer and admin panel.
 			$this->loader->add_filter( 'wp_get_nav_menu_items', $plugin_public, 'exclude_pages_from_menu_list', 10, 3 );

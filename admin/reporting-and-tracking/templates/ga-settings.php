@@ -68,7 +68,7 @@ $wpswocuf_upsell_fb_pixel_config = ! empty( $wpswocuf_upsell_analytics_options['
 $wpswocuf_upsell_ga_analytics_config = ! empty( $wpswocuf_upsell_analytics_options['google-analytics'] ) ? $wpswocuf_upsell_analytics_options['google-analytics'] : array();
 
 // Form Fields Mapping.
-$google_analytics_fields = array(
+$wpswocuf_google_analytics_fields = array(
 
 	'wpswocuf_ga_account_id'         => array(
 		'name'                  => 'ga_account_id',
@@ -179,32 +179,32 @@ $google_analytics_fields = array(
 				<!-- Nonce field here. -->
 				<?php wp_nonce_field( 'wpswocuf_pro_setting_nonce', 'wpswocuf_pro_nonce' ); ?>
 
-				<?php if ( ! empty( $google_analytics_fields ) && is_array( $google_analytics_fields ) ) : ?>
-					<?php foreach ( $google_analytics_fields as $field_id => $field_data ) : ?>
+		<?php if ( ! empty( $wpswocuf_google_analytics_fields ) && is_array( $wpswocuf_google_analytics_fields ) ) : ?>
+			<?php foreach ( $wpswocuf_google_analytics_fields as $wpswocuf_field_id => $wpswocuf_field_data ) : ?>
 
 						<tr valign="top">
 							<th scope="row" class="titledesc">
-								<label for="<?php echo esc_html( $field_id ); ?>"><?php echo esc_html( $field_data['label'] ); ?></label>
+					<label for="<?php echo esc_html( $wpswocuf_field_id ); ?>"><?php echo esc_html( $wpswocuf_field_data['label'] ); ?></label>
 							</th>
 
 							<td class="forminp forminp-text">
-								<?php wpswocuf_upsell_lite_wc_help_tip( $field_data['attribute_description'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					<?php wpswocuf_upsell_lite_wc_help_tip( $wpswocuf_field_data['attribute_description'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
-								<?php if ( 'text' === $field_data['type'] ) : ?>
+						<?php if ( 'text' === $wpswocuf_field_data['type'] ) : ?>
 
-									<input <?php echo( ! empty( $field_data['required'] ) ? esc_html( 'required' ) : '' ); ?> class="wpswocuf_pro_enable_plugin_input" type="text"  name="<?php echo esc_html( $field_data['name'] ); ?>" value="<?php echo esc_html( $field_data['value'] ); ?>" id="<?php echo esc_html( $field_id ); ?>"
-									placeholder="<?php echo ! empty( $field_data['placeholder'] ) ? esc_html( $field_data['placeholder'] ) : ''; ?>">
+							<input <?php echo( ! empty( $wpswocuf_field_data['required'] ) ? esc_html( 'required' ) : '' ); ?> class="wpswocuf_pro_enable_plugin_input" type="text"  name="<?php echo esc_html( $wpswocuf_field_data['name'] ); ?>" value="<?php echo esc_html( $wpswocuf_field_data['value'] ); ?>" id="<?php echo esc_html( $wpswocuf_field_id ); ?>"
+							placeholder="<?php echo ! empty( $wpswocuf_field_data['placeholder'] ) ? esc_html( $wpswocuf_field_data['placeholder'] ) : ''; ?>">
 
-								<?php else : ?>
+						<?php else : ?>
 
-									<label class="wpswocuf_pro_enable_plugin_label">
-										<input <?php echo( ! empty( $field_data['required'] ) ? esc_html( 'required' ) : '' ); ?> class="wpswocuf_pro_enable_plugin_input" type="checkbox" name="<?php echo esc_html( $field_data['name'] ); ?>" id="<?php echo esc_html( $field_id ); ?>" <?php checked( 'yes', $field_data['value'] ); ?>>
-										<span class="wpswocuf_pro_enable_plugin_span"></span>
-									</label>
+							<label class="wpswocuf_pro_enable_plugin_label">
+								<input <?php echo( ! empty( $wpswocuf_field_data['required'] ) ? esc_html( 'required' ) : '' ); ?> class="wpswocuf_pro_enable_plugin_input" type="checkbox" name="<?php echo esc_html( $wpswocuf_field_data['name'] ); ?>" id="<?php echo esc_html( $wpswocuf_field_id ); ?>" <?php checked( 'yes', $wpswocuf_field_data['value'] ); ?>>
+								<span class="wpswocuf_pro_enable_plugin_span"></span>
+							</label>
 
-								<?php endif; ?>
+						<?php endif; ?>
 
-								<span class="wpswocuf_upsell_global_description"><?php echo ! empty( $field_data['note'] ) ? esc_html( $field_data['note'] ) : ''; ?></span>
+						<span class="wpswocuf_upsell_global_description"><?php echo ! empty( $wpswocuf_field_data['note'] ) ? esc_html( $wpswocuf_field_data['note'] ) : ''; ?></span>
 							</td>
 						</tr>
 

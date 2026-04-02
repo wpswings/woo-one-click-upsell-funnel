@@ -100,7 +100,10 @@ class WPSwings_Onboarding_Helper {
 		self::$store_name = get_bloginfo( 'name' );
 		self::$store_url  = home_url();
 
-		if ( defined( 'ONBOARD_PLUGIN_NAME' ) ) {
+		if ( defined( 'WPSWOCUF_ONBOARD_PLUGIN_NAME' ) ) {
+			self::$plugin_name = WPSWOCUF_ONBOARD_PLUGIN_NAME;
+		} elseif ( defined( 'ONBOARD_PLUGIN_NAME' ) ) {
+			// Backward compatibility for older constant name.
 			self::$plugin_name = ONBOARD_PLUGIN_NAME;
 		}
 
@@ -111,13 +114,11 @@ class WPSwings_Onboarding_Helper {
 		add_filter( 'wpswocuf_on_boarding_form_fields', array( $this, 'add_on_boarding_form_fields' ) );
 		add_filter( 'wpswocuf_deactivation_form_fields', array( $this, 'add_deactivation_form_fields' ) );
 
-		// Ajax to send data (prefixed + legacy hook for compatibility).
+		// Ajax to send data (prefixed only).
 		add_action( 'wp_ajax_wpswocuf_send_onboarding_data', array( $this, 'send_onboarding_data' ) );
-		add_action( 'wp_ajax_send_onboarding_data', array( $this, 'send_onboarding_data' ) ); // backward compat.
 
-		// Ajax to Skip popup (prefixed + legacy hook for compatibility).
+		// Ajax to Skip popup (prefixed only).
 		add_action( 'wp_ajax_wpswocuf_skip_onboarding_popup', array( $this, 'skip_onboarding_popup' ) );
-		add_action( 'wp_ajax_skip_onboarding_popup', array( $this, 'skip_onboarding_popup' ) ); // backward compat.
 	}
 
 	/**

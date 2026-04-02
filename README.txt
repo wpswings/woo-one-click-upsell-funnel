@@ -28,6 +28,8 @@ One Click Upsell Funnel for WooCommerce allows merchants to create WooCommerce U
 
 Our plugin is compatible with **Elementor**, **Divi**, **Themify**, **WP Bakery**, **Beaver**, **Site Origin**, and **Gutenberg** page builders, allowing you to create, edit, and import upsell funnel templates, customize checkout pages, and thank you pages with advanced designs.
 
+Tracking integrations such as Google Analytics and Facebook Pixel are optional and only enabled when explicitly configured by the store owner. No tracking or data is sent by default.
+
 Additionally, you may **import third party pre-made sales funnel templates** to easily set up and provide upsell for WooCommerce on your online store. 
 
 
@@ -41,7 +43,7 @@ Additionally, you may **import third party pre-made sales funnel templates** to 
 * HubSpot Forms API (`api.hsforms.com`) – used to submit optional onboarding/deactivation feedback; data sent: form fields entered by the site admin at submit time; Terms: https://legal.hubspot.com/terms-of-service; Privacy: https://legal.hubspot.com/privacy-policy.
 * Facebook/Meta Pixel (`connect.facebook.net`, `www.facebook.com`) – loaded only when store owner enables pixel tracking; data sent: standard Pixel events and configured pixel ID; Terms: https://www.facebook.com/legal/terms; Privacy: https://www.facebook.com/policy.php.
 * Google Analytics / Google Tag Manager (`www.googletagmanager.com`) – loaded only when store owner enables GA tracking; data sent: page view tracking events with configured Tracking ID; Terms: https://marketingplatform.google.com/about/analytics/terms/us/; Privacy: https://policies.google.com/privacy.
-* WP Swings notification service (`demo.wpswings.com`) – previously used for optional admin banner updates; remote requests have been disabled by default to avoid unsolicited calls. Service privacy: https://wpswings.com/privacy-policy; Terms: https://wpswings.com/terms-conditions/.
+* WP Swings notification service (`demo.wpswings.com`) – previously used for optional admin banner updates; remote requests have been disabled by default to avoid unsolicited calls. Service privacy: https://wpswings.com/privacy-policy;.
 
 == Source code for bundled assets ==
 
@@ -66,8 +68,8 @@ The WooCommerce Upsell Funnel plugin allows you to create Order Bump Offers dire
 Using the WooCommerce Upsell Plugin you can enable the pop-up on exit intent feature, allowing you to show a pop-up on upsell offer pages when a customer tries to exit the browser, this can be an ultimate upselling hack for your business.
 
 
-#### 5) Unlimited Funnels with an Unlimited Number of Offers: 
-With the WordPress Sales Funnel plugin, you can create unlimited sales funnels with any number of Upsell and Cross-Sell Offers. Show your customers multiple post-purchase or aftersell offers in a single sales funnel which increases the impulse buys, average order value, and revenue of your store.
+#### 5) Multiple Funnels and Offers: 
+The WordPress Sales Funnel plugin lets you create multiple sales funnels with upsell and cross-sell offers. Show customers post-purchase or aftersell offers in a single sales funnel to increase impulse buys, average order value, and revenue.
 
 
 #### 6) Add the Shipping Price on COD: 
@@ -125,7 +127,6 @@ Visit [**One Click Upsell Funnel for WooCommerce Documentation**](https://docs.w
 == Create Multiple Sales Funnels with One-Click Upsell Funnel For WooCommerce ==
 
 * One Click Upsell Free Version Supports Stripe Payment Method for creating Upsell Offers. 
-* Create unlimited WordPress funnels with an unlimited number of WooCommerce upselling and cross-selling offers.
 * Get a comprehensive tracking report for every sales funnel.
 * Track your WordPress upsell funnel data on Google Analytics and Facebook Pixel.
 * Create global woofunnels that trigger regardless of any product or category.
@@ -150,37 +151,17 @@ Visit [**One Click Upsell Funnel for WooCommerce Documentation**](https://docs.w
 
 **4)** Compatibility with WooCommerce HPOS
 
-**5)** Compatibility With Multiple Payment Gateways [**WooCommerce Stripe Payment Gateway (PRO)**](https://wordpress.org/plugins/woocommerce-gateway-stripe/), [**WooCommerce PayPal Payments (PRO)**](https://wordpress.org/plugins/woocommerce-paypal-payments/), [**Mollie Payments (PRO)**](https://wordpress.org/plugins/mollie-payments-for-woocommerce/), [**Square (PRO)**](https://wordpress.org/plugins/woocommerce-square/), [**Authorize.net (PRO)**](https://www.authorize.net/),  [**Braintree (PRO)**](https://www.paypal.com/us/braintree), [**Payments Plugin for Stripe WooCommerce (ORG/PRO)**](https://wordpress.org/plugins/woo-stripe-payment/)
+**5)** Compatibility With Multiple Payment Gateways: WooCommerce Stripe, WooCommerce PayPal Payments, Mollie Payments, Square, Authorize.net, Braintree, and other popular gateways supported by WooCommerce.
 
-**Also, we can do customization for our users to add other payment gateways.**
+== Notes ==
 
-
-== 🏆 WHAT PREMIUM VERSION OF ONE CLICK UPSELL FUNNEL FOR WOOCOMMERCE OFFERS ==
-
-#### 1. Frequently Bought Together Offers: 
-You can guide customers' journey by redirecting them to another upsell offer once they complete the previous one, maximizing sales opportunities.
-
-#### 2. Subscription Product Types: 
-The WooCommerce Upsell plugin allows you to create multiple one-time upsell offers specifically for subscription products.
-
-#### 3. Customize Checkout and Thank You Pages: 
-WooCommerce Upsell plugin allows you to fully customize your checkout and thank you pages. You can hide, disable, or rearrange fields to show only what's necessary.
-
-
-#### 4. Multiple Payment Gateways: 
- Upsell Pro plugin is compatible with popular payment gateways like WooCommerce Stripe, PayPal, Braintree, Square, Mollie, and more.
-
-#### 5. Bundled Products Support: 
-The Upsell Pro plugin allows you to create multiple one-time upsell offers specifically for bundled products
-
-#### 6. Unlimited Funnels: 
-Create unlimited upselling and downselling funnels that trigger after a customer completes their purchase. 
+This plugin provides core upsell funnel functionality. Additional advanced features are available in a separate Pro version.
 
 
 
 == Take Advantage of the Exclusive Features of the One Click Upsell Funnel For WooCommerce Pro Plugin ==
 
-The One Click Upsell Funnel For WooCommerce Pro plugin is designed to help merchants create exclusive post-purchase upsell offers in WooCommerce. It allows you to create unlimited one-click upsell, cross-sell, down-sell, one-time offers, sales funnels, and exclusive customized offers. It also offers features like WooCommerce A/B testing to test offers effectiveness, mobile responsive templates, and the option to build custom templates from scratch. 
+The One Click Upsell Funnel For WooCommerce Pro plugin is designed to help merchants create exclusive post-purchase upsell offers in WooCommerce.It offers features like WooCommerce A/B testing to test offers effectiveness, mobile responsive templates, and the option to build custom templates from scratch. 
 
 > **Note:** 👉  Get [**One Click Upsell Funnel for WooCommerce Pro**](https://wpswings.com/product/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=upsell-org-page&utm_medium=referral&utm_campaign=upsell-pro)
 
@@ -268,9 +249,6 @@ This allows you to create a sales funnel for free using the plugin’s basic fea
 
 For more details, you can check the full guide [**here**](https://docs.wpswings.com/one-click-upsell-funnel-for-woocommerce/?utm_source=upsell-org-page&utm_medium=referral&utm_campaign=upsell-doc)
 
-= How many sales funnels can I create with One Click Upsell? = 
-
-With the free version of the One Click Upsell Funnel for WooCommerce, you can create unlimited sales funnels. This allows you to set up multiple upsell and downsell offers for different products or categories, giving you flexibility in your sales strategies.
 
 For more detailed information, you can check the official guide [**here**](https://docs.wpswings.com/one-click-upsell-funnel-for-woocommerce/?utm_source=upsell-org-page&utm_medium=referral&utm_campaign=upsell-doc)
 

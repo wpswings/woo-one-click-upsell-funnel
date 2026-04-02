@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Get all funnels.
-$funnels_list = get_option( 'wpswocuf_funnels_list' );
+$wpswocuf_funnels_list = get_option( 'wpswocuf_funnels_list' );
 
 ?>
 
@@ -35,13 +35,13 @@ $funnels_list = get_option( 'wpswocuf_funnels_list' );
 
 	<div class="wpswocuf_uspell_stats_heading" ><h2><?php esc_html_e( 'Upsell - Behavioral Analytics', 'woo-one-click-upsell-funnel' ); ?></h2></div>
 
-	<?php if ( empty( $funnels_list ) ) : ?>
+	<?php if ( empty( $wpswocuf_funnels_list ) ) : ?>
 
 		<p class="wpswocuf_pro_no_funnel"><?php esc_html_e( 'No Upsell Data found', 'woo-one-click-upsell-funnel' ); ?></p>
 
 	<?php endif; ?>
 
-	<?php if ( ! empty( $funnels_list ) ) : ?>
+	<?php if ( ! empty( $wpswocuf_funnels_list ) ) : ?>
 		<table>
 			<tr>
 				<th><?php esc_html_e( 'Funnel Name', 'woo-one-click-upsell-funnel' ); ?></th>
@@ -56,126 +56,126 @@ $funnels_list = get_option( 'wpswocuf_funnels_list' );
 			</tr>
 
 			<!-- Foreach Funnel start -->
-			<?php
-			foreach ( $funnels_list as $key => $value ) :
+		<?php
+		foreach ( $wpswocuf_funnels_list as $wpswocuf_funnel_key => $wpswocuf_funnel_data ) :
 
-				?>
+			?>
 
 				<tr>		
-					<!-- Funnel Name -->
-					<td><a class="wpswocuf_upsell_funnel_list_name" href="?page=wps-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $key ); ?>"><?php echo esc_html( $value['wpswocuf_funnel_name'] ); ?></a></td>
+				<!-- Funnel Name -->
+				<td><a class="wpswocuf_upsell_funnel_list_name" href="?page=wps-wocuf-setting&tab=creation-setting&funnel_id=<?php echo esc_html( $wpswocuf_funnel_key ); ?>"><?php echo esc_html( $wpswocuf_funnel_data['wpswocuf_funnel_name'] ); ?></a></td>
 
 					<!-- Trigger Count -->
 					<td>
 
-						<?php
+					<?php
 
-						$funnel_triggered_count = ! empty( $value['funnel_triggered_count'] ) ? $value['funnel_triggered_count'] : 0;
+					$wpswocuf_funnel_triggered_count = ! empty( $wpswocuf_funnel_data['funnel_triggered_count'] ) ? $wpswocuf_funnel_data['funnel_triggered_count'] : 0;
 
-						echo esc_html( $funnel_triggered_count );
+					echo esc_html( $wpswocuf_funnel_triggered_count );
 
-						?>
+					?>
 
 					</td>
 
 					<!-- Success Count -->
 					<td>
 
-						<?php
+					<?php
 
-						$funnel_success_count = ! empty( $value['funnel_success_count'] ) ? $value['funnel_success_count'] : 0;
+					$wpswocuf_funnel_success_count = ! empty( $wpswocuf_funnel_data['funnel_success_count'] ) ? $wpswocuf_funnel_data['funnel_success_count'] : 0;
 
-						echo esc_html( $funnel_success_count );
+					echo esc_html( $wpswocuf_funnel_success_count );
 
-						?>
+					?>
 
 					</td>
 
 					<!-- Offers Viewed -->
 					<td>
 
-						<?php
+					<?php
 
-						$offers_view_count = ! empty( $value['offers_view_count'] ) ? $value['offers_view_count'] : 0;
+					$wpswocuf_offers_view_count = ! empty( $wpswocuf_funnel_data['offers_view_count'] ) ? $wpswocuf_funnel_data['offers_view_count'] : 0;
 
-						echo esc_html( $offers_view_count );
+					echo esc_html( $wpswocuf_offers_view_count );
 
-						?>
+					?>
 
 					</td>
 
 					<!-- Offers Accepted -->
 					<td>
 
-						<?php
+					<?php
 
-						$offers_accept_count = ! empty( $value['offers_accept_count'] ) ? $value['offers_accept_count'] : 0;
+					$wpswocuf_offers_accept_count = ! empty( $wpswocuf_funnel_data['offers_accept_count'] ) ? $wpswocuf_funnel_data['offers_accept_count'] : 0;
 
-						echo esc_html( $offers_accept_count );
+					echo esc_html( $wpswocuf_offers_accept_count );
 
-						?>
+					?>
 
 					</td>
 
 					<!-- Offers Rejected -->
 					<td>
 
-						<?php
+					<?php
 
-						$offers_reject_count = ! empty( $value['offers_reject_count'] ) ? $value['offers_reject_count'] : 0;
+					$wpswocuf_offers_reject_count = ! empty( $wpswocuf_funnel_data['offers_reject_count'] ) ? $wpswocuf_funnel_data['offers_reject_count'] : 0;
 
-						echo esc_html( $offers_reject_count );
+					echo esc_html( $wpswocuf_offers_reject_count );
 
-						?>
+					?>
 
 					</td>
 
 					<!-- Offers Pending -->
 					<td>
 
-						<?php
+					<?php
 
-						$offers_pending_count = $offers_view_count - $offers_accept_count - $offers_reject_count;
+					$wpswocuf_offers_pending_count = $wpswocuf_offers_view_count - $wpswocuf_offers_accept_count - $wpswocuf_offers_reject_count;
 
-						echo esc_html( $offers_pending_count );
+					echo esc_html( $wpswocuf_offers_pending_count );
 
-						?>
+					?>
 
 					</td>
 
 					<!-- Conversion Rate -->
 					<td>
 
-						<?php
+					<?php
 
-						if ( ! empty( $funnel_triggered_count ) ) {
+					if ( ! empty( $wpswocuf_funnel_triggered_count ) ) {
 
-							$conversion_rate = ( $funnel_success_count * 100 ) / $funnel_triggered_count;
-						} else {
+						$wpswocuf_conversion_rate = ( $wpswocuf_funnel_success_count * 100 ) / $wpswocuf_funnel_triggered_count;
+					} else {
 
-							$conversion_rate = 0;
-						}
+						$wpswocuf_conversion_rate = 0;
+					}
 
-						$conversion_rate = number_format( (float) $conversion_rate, 2 );
+					$wpswocuf_conversion_rate = number_format( (float) $wpswocuf_conversion_rate, 2 );
 
-						echo '<div class="wpswocuf_upsell_stats_conversion_rate"><p>' . esc_html( $conversion_rate ) . esc_html__( '%', 'woo-one-click-upsell-funnel' ) . '</p><div>';
+					echo '<div class="wpswocuf_upsell_stats_conversion_rate"><p>' . esc_html( $wpswocuf_conversion_rate ) . esc_html__( '%', 'woo-one-click-upsell-funnel' ) . '</p><div>';
 
-						?>
+					?>
 
 					</td>
 
 					<!-- Total Sales -->
 					<td>
 
-						<?php
+					<?php
 
-						$funnel_total_sales = ! empty( $value['funnel_total_sales'] ) ? $value['funnel_total_sales'] : 0;
+					$wpswocuf_funnel_total_sales = ! empty( $wpswocuf_funnel_data['funnel_total_sales'] ) ? $wpswocuf_funnel_data['funnel_total_sales'] : 0;
 
-						$funnel_total_sales = number_format( (float) $funnel_total_sales, 2 );
+					$wpswocuf_funnel_total_sales = number_format( (float) $wpswocuf_funnel_total_sales, 2 );
 
-						echo '<div class="wpswocuf_upsell_stats_total_sales"><p>' . esc_html( get_woocommerce_currency_symbol() ) . esc_html( $funnel_total_sales ) . '</p><div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo '<div class="wpswocuf_upsell_stats_total_sales"><p>' . esc_html( get_woocommerce_currency_symbol() ) . esc_html( $wpswocuf_funnel_total_sales ) . '</p><div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
-						?>
+					?>
 
 					</td>
 

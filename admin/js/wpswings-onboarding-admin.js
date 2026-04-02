@@ -82,7 +82,7 @@ jQuery(document).ready( function($) {
             url: wpswocuf_onboarding.ajaxurl,
             data: {
                 nonce : wpswocuf_onboarding.auth_nonce, 
-                action: 'send_onboarding_data' ,
+                action: 'wpswocuf_send_onboarding_data' ,
                 form_data: form_data,  
             },
             success: function( msg ){

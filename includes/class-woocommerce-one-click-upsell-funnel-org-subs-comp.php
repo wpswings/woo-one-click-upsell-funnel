@@ -293,7 +293,8 @@ function wpswocuf_upsell_org_create_subscriptions_for_order( $order_id, $order =
 
 			// Add fees.
 			foreach ( $order->get_fees() as $fee_item ) {
-				if ( ! apply_filters( 'wcs_should_copy_fee_item_to_subscription', true, $fee_item, $subscription, $order ) ) {
+				// Using core WooCommerce Subscriptions filter name; prefix warning intentional.
+				if ( ! apply_filters( 'wcs_should_copy_fee_item_to_subscription', true, $fee_item, $subscription, $order ) ) { // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 					continue;
 				}
 
@@ -435,15 +436,16 @@ function wpswocuf_upsell_org_create_subscription_for_upsell_product( $order_id, 
 
 			$subscription->apply_coupon( $coupon->get_code() );
 		} catch ( Exception $e ) {
-			if (defined('WP_DEBUG') && WP_DEBUG) {
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
 				// Do nothing. The coupon will not be applied to the subscription.
-				error_log( 'Coupon could not be applied to subscription: ' . $e->getMessage() );
+				// Logging removed for production readiness.
 			}
 		}
 	}
 	// Add fees.
 	foreach ( $order->get_fees() as $fee_item ) {
-		if ( ! apply_filters( 'wcs_should_copy_fee_item_to_subscription', true, $fee_item, $subscription, $order ) ) {
+	// Using core WooCommerce Subscriptions filter name; prefix warning intentional.
+	if ( ! apply_filters( 'wcs_should_copy_fee_item_to_subscription', true, $fee_item, $subscription, $order ) ) { // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 			continue;
 		}
 

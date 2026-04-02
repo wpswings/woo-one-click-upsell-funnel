@@ -15,21 +15,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$secure_nonce      = wp_create_nonce( 'wps-upsell-tracking-nonce' );
-$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-tracking-nonce' );
-if ( ! $id_nonce_verified ) {
+$wpswocuf_secure_nonce      = wp_create_nonce( 'wps-upsell-tracking-nonce' );
+$wpswocuf_id_nonce_verified = wp_verify_nonce( $wpswocuf_secure_nonce, 'wps-upsell-tracking-nonce' );
+if ( ! $wpswocuf_id_nonce_verified ) {
 	wp_die( esc_html__( 'Nonce Not verified', 'woo-one-click-upsell-funnel' ) );
 }
-$active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'reporting';
+$wpswocuf_active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'reporting';
 
 if ( 'overview' === get_transient( 'wpswocuf_upsell_default_settings_tab' ) ) {
 
-	$active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'overview';
+	$wpswocuf_active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'overview';
 }
-$nonce_reporting = wp_create_nonce( 'view_upsell_tracking_reporting' ); // Create nonce.
-$nonce_ga = wp_create_nonce( 'view_upsell_tracking_ga' ); // Create nonce.
-$nonce_pixel = wp_create_nonce( 'view_upsell_tracking_pixel' ); // Create nonce.
-$nonce_overview = wp_create_nonce( 'view_upsell_tracking_over' ); // Create nonce.
+$wpswocuf_nonce_reporting = wp_create_nonce( 'view_upsell_tracking_reporting' ); // Create nonce.
+$wpswocuf_nonce_ga = wp_create_nonce( 'view_upsell_tracking_ga' ); // Create nonce.
+$wpswocuf_nonce_pixel = wp_create_nonce( 'view_upsell_tracking_pixel' ); // Create nonce.
+$wpswocuf_nonce_overview = wp_create_nonce( 'view_upsell_tracking_over' ); // Create nonce.
 
 ?>
 
@@ -54,24 +54,24 @@ $nonce_overview = wp_create_nonce( 'view_upsell_tracking_over' ); // Create nonc
 
 	<nav class="nav-tab-wrapper woo-nav-tab-wrapper">
 
-		<a class="nav-tab <?php echo 'reporting' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=wps-wocuf-setting-tracking&tab=reporting&nonce=<?php echo esc_html( $nonce_reporting ); ?>"><?php esc_html_e( 'Sales Reports', 'woo-one-click-upsell-funnel' ); ?></a>
-		<a class="nav-tab <?php echo 'ga-setting' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=wps-wocuf-setting-tracking&tab=ga-setting&nonce=<?php echo esc_html( $nonce_ga ); ?>"><?php esc_html_e( 'Google Analytics', 'woo-one-click-upsell-funnel' ); ?></a>
-		<a class="nav-tab <?php echo 'pixel-setting' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=wps-wocuf-setting-tracking&tab=pixel-setting&nonce=<?php echo esc_html( $nonce_pixel ); ?>"><?php esc_html_e( 'FB Pixel', 'woo-one-click-upsell-funnel' ); ?></a>
-		<a class="nav-tab <?php echo 'overview' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=wps-wocuf-setting-tracking&tab=overview&nonce=<?php echo esc_html( $nonce_overview ); ?>"><?php esc_html_e( 'Overview', 'woo-one-click-upsell-funnel' ); ?></a>
+			<a class="nav-tab <?php echo 'reporting' === $wpswocuf_active_tab ? 'nav-tab-active' : ''; ?>" href="?page=wps-wocuf-setting-tracking&tab=reporting&nonce=<?php echo esc_html( $wpswocuf_nonce_reporting ); ?>"><?php esc_html_e( 'Sales Reports', 'woo-one-click-upsell-funnel' ); ?></a>
+			<a class="nav-tab <?php echo 'ga-setting' === $wpswocuf_active_tab ? 'nav-tab-active' : ''; ?>" href="?page=wps-wocuf-setting-tracking&tab=ga-setting&nonce=<?php echo esc_html( $wpswocuf_nonce_ga ); ?>"><?php esc_html_e( 'Google Analytics', 'woo-one-click-upsell-funnel' ); ?></a>
+			<a class="nav-tab <?php echo 'pixel-setting' === $wpswocuf_active_tab ? 'nav-tab-active' : ''; ?>" href="?page=wps-wocuf-setting-tracking&tab=pixel-setting&nonce=<?php echo esc_html( $wpswocuf_nonce_pixel ); ?>"><?php esc_html_e( 'FB Pixel', 'woo-one-click-upsell-funnel' ); ?></a>
+			<a class="nav-tab <?php echo 'overview' === $wpswocuf_active_tab ? 'nav-tab-active' : ''; ?>" href="?page=wps-wocuf-setting-tracking&tab=overview&nonce=<?php echo esc_html( $wpswocuf_nonce_overview ); ?>"><?php esc_html_e( 'Overview', 'woo-one-click-upsell-funnel' ); ?></a>
 
 		<?php do_action( 'wpswocuf_pro_setting_tab' ); ?>	
 	</nav>
 	<?php
 
-	if ( 'reporting' === $active_tab ) {
-		include_once 'templates/reporting.php';
-	} elseif ( 'ga-setting' === $active_tab ) {
-		include_once 'templates/ga-settings.php';
-	} elseif ( 'pixel-setting' === $active_tab ) {
-		include_once 'templates/pixel-settings.php';
-	} elseif ( 'overview' === $active_tab ) {
-		include_once 'templates/tracking-overview.php';
-	}
+		if ( 'reporting' === $wpswocuf_active_tab ) {
+			include_once 'templates/reporting.php';
+		} elseif ( 'ga-setting' === $wpswocuf_active_tab ) {
+			include_once 'templates/ga-settings.php';
+		} elseif ( 'pixel-setting' === $wpswocuf_active_tab ) {
+			include_once 'templates/pixel-settings.php';
+		} elseif ( 'overview' === $wpswocuf_active_tab ) {
+			include_once 'templates/tracking-overview.php';
+		}
 
 	do_action( 'wpswocuf_pro_setting_tab_html' );
 	?>

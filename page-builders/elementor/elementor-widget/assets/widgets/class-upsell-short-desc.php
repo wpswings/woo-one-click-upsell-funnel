@@ -405,9 +405,6 @@ class Wpswocuf_Upsell_Short_Desc extends Widget_Base {
 			array(
 				'name'     => 'drop_cap_typography',
 				'selector' => '{{WRAPPER}} .elementor-drop-cap-letter',
-				'exclude'  => array(
-					'letter_spacing',
-				),
 			)
 		);
 

@@ -404,16 +404,13 @@ class Wpswocuf_Upsell_Price extends Widget_Base {
 			)
 		);
 
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			array(
-				'name'     => 'drop_cap_typography',
-				'selector' => '{{WRAPPER}} .elementor-drop-cap-letter',
-				'exclude'  => array(
-					'letter_spacing',
-				),
-			)
-		);
+			$this->add_group_control(
+				Group_Control_Typography::get_type(),
+				array(
+					'name'     => 'drop_cap_typography',
+					'selector' => '{{WRAPPER}} .elementor-drop-cap-letter',
+				)
+			);
 
 		$this->end_controls_section();
 	}

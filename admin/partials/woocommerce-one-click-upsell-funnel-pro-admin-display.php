@@ -15,24 +15,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ONBOARD_PLUGIN_NAME', 'One Click Upsell Funnel for Woocommerce' );
+define( 'WPSWOCUF_ONBOARD_PLUGIN_NAME', 'One Click Upsell Funnel for Woocommerce' );
 
 if ( class_exists( 'WPSwings_Onboarding_Helper' ) ) {
-	$onboard = new WPSwings_Onboarding_Helper();
+	$wpswocuf_onboard = new WPSwings_Onboarding_Helper();
 }
 
-$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
-$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
+$wpswocuf_secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
+$wpswocuf_id_nonce_verified = wp_verify_nonce( $wpswocuf_secure_nonce, 'wps-upsell-auth-nonce' );
 
-if ( ! $id_nonce_verified ) {
+if ( ! $wpswocuf_id_nonce_verified ) {
 	wp_die( esc_html__( 'Nonce Not verified', 'woo-one-click-upsell-funnel' ) );
 }
 
-$active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'funnels-list';
+$wpswocuf_active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'funnels-list';
 
 if ( 'overview' === get_transient( 'wpswocuf_upsell_default_settings_tab' ) ) {
 
-	$active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'overview';
+	$wpswocuf_active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'overview';
 }
 
 
@@ -111,37 +111,22 @@ echo '<div class="notice notice-info is-dismissible">';
 	<?php
 
 		?>
-		<a class="nav-tab <?php echo 'creation-setting' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=upsell-order-bump-offer-for-woocommerce-setting&tab=one-click-section&sub_tab=post-save-offer-section"><?php esc_html_e( 'Create Funnel', 'woo-one-click-upsell-funnel' ); ?></a>
+			<a class="nav-tab <?php echo 'creation-setting' === $wpswocuf_active_tab ? 'nav-tab-active' : ''; ?>" href="?page=upsell-order-bump-offer-for-woocommerce-setting&tab=one-click-section&sub_tab=post-save-offer-section"><?php esc_html_e( 'Create Funnel', 'woo-one-click-upsell-funnel' ); ?></a>
 		<?php
 	?>
 
 
 
 
-		<a class="nav-tab <?php echo 'funnels-list' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=upsell-order-bump-offer-for-woocommerce-setting&tab=one-click-section&sub_tab=post-list-offer-section"><?php esc_html_e( 'Funnels List', 'woo-one-click-upsell-funnel' ); ?></a>
-		<a class="nav-tab <?php echo 'shortcodes' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=upsell-order-bump-offer-for-woocommerce-setting&tab=shortcode-section"><?php esc_html_e( 'Shortcodes', 'woo-one-click-upsell-funnel' ); ?></a>
-		<a class="nav-tab <?php echo 'store_checkout' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=upsell-order-bump-offer-for-woocommerce-setting&tab=store-checkout-section"><?php esc_html_e( 'Store Checkout', 'woo-one-click-upsell-funnel' ); ?></a>
-		<a class="nav-tab <?php echo 'settings' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=upsell-order-bump-offer-for-woocommerce-setting&tab=global-setting&sub_tab=post-global-sect"><?php esc_html_e( 'Global Settings', 'woo-one-click-upsell-funnel' ); ?></a>
-		<a class="nav-tab <?php echo 'overview' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=upsell-order-bump-offer-for-woocommerce-setting&tab=overview"><?php esc_html_e( 'Overview', 'woo-one-click-upsell-funnel' ); ?></a>
+			<a class="nav-tab <?php echo 'funnels-list' === $wpswocuf_active_tab ? 'nav-tab-active' : ''; ?>" href="?page=upsell-order-bump-offer-for-woocommerce-setting&tab=one-click-section&sub_tab=post-list-offer-section"><?php esc_html_e( 'Funnels List', 'woo-one-click-upsell-funnel' ); ?></a>
+			<a class="nav-tab <?php echo 'shortcodes' === $wpswocuf_active_tab ? 'nav-tab-active' : ''; ?>" href="?page=upsell-order-bump-offer-for-woocommerce-setting&tab=shortcode-section"><?php esc_html_e( 'Shortcodes', 'woo-one-click-upsell-funnel' ); ?></a>
+			<a class="nav-tab <?php echo 'store_checkout' === $wpswocuf_active_tab ? 'nav-tab-active' : ''; ?>" href="?page=upsell-order-bump-offer-for-woocommerce-setting&tab=store-checkout-section"><?php esc_html_e( 'Store Checkout', 'woo-one-click-upsell-funnel' ); ?></a>
+			<a class="nav-tab <?php echo 'settings' === $wpswocuf_active_tab ? 'nav-tab-active' : ''; ?>" href="?page=upsell-order-bump-offer-for-woocommerce-setting&tab=global-setting&sub_tab=post-global-sect"><?php esc_html_e( 'Global Settings', 'woo-one-click-upsell-funnel' ); ?></a>
+			<a class="nav-tab <?php echo 'overview' === $wpswocuf_active_tab ? 'nav-tab-active' : ''; ?>" href="?page=upsell-order-bump-offer-for-woocommerce-setting&tab=overview"><?php esc_html_e( 'Overview', 'woo-one-click-upsell-funnel' ); ?></a>
 
 		<?php do_action( 'wpswocuf_pro_setting_tab' ); ?>	
 	</nav>
 	<?php
-
-	if ( 'creation-setting' === $active_tab ) {
-		include_once 'templates/wps-wocuf-pro-creation.php';
-	} elseif ( 'funnels-list' === $active_tab ) {
-		include_once 'templates/wps-wocuf-pro-funnels-list.php';
-	} elseif ( 'shortcodes' === $active_tab ) {
-		include_once 'templates/wps-wocuf-pro-shortcodes.php';
-	} elseif ( 'settings' === $active_tab ) {
-		include_once 'templates/wps-wocuf-pro-settings.php';
-	} elseif ( 'overview' === $active_tab ) {
-		include_once 'templates/wps-wocuf-overview.php';
-	} elseif ( 'store_checkout' === $active_tab ) {
-		include_once 'templates/wps-wocuf-pro-store-checkout.php';
-	}
-
 		do_action( 'wpswocuf_pro_setting_tab_html' );
 	?>
 </div>

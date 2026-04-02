@@ -1022,12 +1022,3 @@ function wpswocuf_upselllite_allowed_html() {
 		<?php
 		return $allowed_html;
 	}
-
-/**
- * Install and activate order bump plugin when upsell plugin is active.
- *
- * @return void
- */
-function check_and_install_upsell_plugin() {
-	// Intentionally left empty to comply with WP.org guideline: plugins must not install/activate other plugins automatically.
-}

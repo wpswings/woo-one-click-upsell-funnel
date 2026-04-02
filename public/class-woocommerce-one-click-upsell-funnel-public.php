@@ -131,22 +131,23 @@ class Wpswocuf_Public {
 					'ajaxurl'                => admin_url( 'admin-ajax.php' ),
 					'nonce'                  => wp_create_nonce( 'wpswocuf_nonce' ),
 					'skip_enabled'           => $upsell_skip_function,
-					'skip_message'           => $upsell_exit_intent_message,
-				)
-			);
+						'skip_message'           => $upsell_exit_intent_message,
+					)
+				);
+			}
+
 		}
-	}
 
 		/**
-		 * Initiate Upsell Orders before processing payment in case of checkout shortcode.
-		 *
-		 * @param int $order_id order id.
-		 *
-		 * @since 1.0.0
-		 *
-		 * @throws Exception Throws exception when error.
-		 */
-	public function wpswocuf_initate_upsell_orders_shortcode_checkout_org( $order_id ) {
+			 * Initiate Upsell Orders before processing payment in case of checkout shortcode.
+			 *
+			 * @param int $order_id order id.
+			 *
+			 * @since 1.0.0
+			 *
+			 * @throws Exception Throws exception when error.
+			 */
+		public function wpswocuf_initate_upsell_orders_shortcode_checkout_org( $order_id ) {
 		$checkout_nonce = ! empty( $_POST['checkout_order_processed_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['checkout_order_processed_nonce'] ) ) : '';
 
 		if ( isset( $_POST['checkout_order_processed_nonce'] ) && wp_verify_nonce( $checkout_nonce, 'checkout_order_processed_nonce' ) ) {
@@ -761,22 +762,24 @@ class Wpswocuf_Public {
 	 */
 	public function wpswocuf_pro_process_the_funnel() {
 
-		if ( isset( $_GET['ocuf_th'] ) && 1 === (int) $_GET['ocuf_th'] && isset( $_GET['ocuf_ofd'] ) && isset( $_GET['ocuf_fid'] ) && isset( $_GET['ocuf_ok'] ) && isset( $_GET['ocuf_ns'] ) ) {
+		$nonce     = filter_input( INPUT_GET, 'ocuf_ns', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+		$opt_out   = filter_input( INPUT_GET, 'ocuf_th', FILTER_VALIDATE_INT );
+		$offer_id  = filter_input( INPUT_GET, 'ocuf_ofd', FILTER_VALIDATE_INT );
+		$funnel_id = filter_input( INPUT_GET, 'ocuf_fid', FILTER_VALIDATE_INT );
+		$order_key = filter_input( INPUT_GET, 'ocuf_ok', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 
-			$wp_nonce = sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) );
+		if ( 1 !== (int) $opt_out || ! $offer_id || ! $funnel_id || empty( $order_key ) ) {
+			return;
+		}
 
-			if ( ! wp_verify_nonce( $wp_nonce, 'wps-upsell-auth-nonce' ) ) {
-				return;
-			}
+		if ( empty( $nonce ) || ! wp_verify_nonce( $nonce, 'wps-upsell-auth-nonce' ) ) {
+			return;
+		}
 
-			$offer_id  = isset( $_GET['ocuf_ofd'] ) ? absint( $_GET['ocuf_ofd'] ) : 0;
-			$funnel_id = isset( $_GET['ocuf_fid'] ) ? absint( $_GET['ocuf_fid'] ) : 0;
-			$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) ) : '';
-
-			$order_id = $order_key ? wc_get_order_id_by_order_key( $order_key ) : 0;
-			if ( empty( $order_id ) ) {
-				return;
-			}
+		$order_id = wc_get_order_id_by_order_key( $order_key );
+		if ( empty( $order_id ) ) {
+			return;
+		}
 
 			if ( ! empty( $order_id ) ) {
 
@@ -911,7 +914,6 @@ class Wpswocuf_Public {
 				exit();
 			}
 		}
-	}
 
 	/**
 	 * Mwb_wocuf_pro_funnel_offers_shortcode.
@@ -925,7 +927,8 @@ class Wpswocuf_Public {
 			$wpswocuf_pro_no_offer_text = get_option( 'wpswocuf_pro_no_offer_text', esc_html__( 'Sorry, you have no offers', 'woo-one-click-upsell-funnel' ) );
 
 			$result .= '<div class="wps-wocuf_pro-no-offer"><h2>' . trim( $wpswocuf_pro_no_offer_text, '"' ) . '</h2>';
-			$result .= '<a class="button wc-backward" href="' . esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ) . '">' . esc_html__( 'Return to Shop', 'woo-one-click-upsell-funnel' ) . '</a></div>';
+				// Using core WooCommerce hook; safe to ignore prefix rule for this call.
+				$result .= '<a class="button wc-backward" href="' . esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ) . '">' . esc_html__( 'Return to Shop', 'woo-one-click-upsell-funnel' ) . '</a></div>'; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 			return $result;
 		}
 
@@ -1848,12 +1851,10 @@ class Wpswocuf_Public {
 	 */
 	public function validate_shortcode() {
 
-		if ( isset( $_GET['ocuf_ns'] ) && isset( $_GET['ocuf_ok'] ) && isset( $_GET['ocuf_ofd'] ) && isset( $_GET['ocuf_fid'] ) ) {
+		$nonce = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) ) : '';
 
-			if ( wpswocuf_upsell_lite_validate_upsell_nonce() ) {
-
-				return 'live_offer';
-			}
+		if ( ! empty( $nonce ) && wp_verify_nonce( $nonce, 'wps-upsell-auth-nonce' ) && isset( $_GET['ocuf_ok'], $_GET['ocuf_ofd'], $_GET['ocuf_fid'] ) ) {
+			return 'live_offer';
 		} elseif ( current_user_can( 'manage_options' ) ) {
 
 			return 'admin_view';
@@ -2880,38 +2881,21 @@ class Wpswocuf_Public {
 	 * @param mixed $args args.
 	 * @since    3.0.0
 	 */
-	public function exclude_pages_from_front_end( $args ) {
+	public function exclude_pages_from_front_end( $exclude_ids ) {
 
 		$saved_offer_post_ids = get_option( 'wpswocuf_upsell_lite_offer_post_ids', array() );
 
-		if ( ! empty( $saved_offer_post_ids ) && is_array( $saved_offer_post_ids ) && count( $saved_offer_post_ids ) ) {
-
-			$exclude_pages     = $saved_offer_post_ids;
-			$exclude_pages_ids = '';
-
-			foreach ( $exclude_pages as $_post_id ) {
-
-				if ( ! empty( $exclude_pages_ids ) ) {
-
-					$exclude_pages_ids .= ', ';
-				}
-
-				$exclude_pages_ids .= $_post_id;
-			}
-
-			if ( ! empty( $args['exclude'] ) ) {
-
-				$args['exclude'] .= ',';
-			} else {
-
-				$args['exclude'] = '';
-			}
-
-			$args['exclude'] .= $exclude_pages_ids;
-
+		if ( empty( $saved_offer_post_ids ) || ! is_array( $saved_offer_post_ids ) ) {
+			return $exclude_ids;
 		}
 
-		return $args;
+		$wpswocuf_exclude_ids = array_map( 'absint', $saved_offer_post_ids );
+
+		if ( empty( $exclude_ids ) || ! is_array( $exclude_ids ) ) {
+			return $wpswocuf_exclude_ids;
+		}
+
+		return array_unique( array_merge( $exclude_ids, $wpswocuf_exclude_ids ) );
 	}
 
 	/**
@@ -3949,20 +3933,8 @@ class Wpswocuf_Public {
 			return;
 		}
 
-			$wpswocuf_upsell_global_settings = get_option( 'wpswocuf_upsell_lite_global_options', array() );
-
-			$global_custom_css = ! empty( $wpswocuf_upsell_global_settings['global_custom_css'] ) ? $wpswocuf_upsell_global_settings['global_custom_css'] : '';
-
-			if ( empty( $global_custom_css ) ) {
-
-				return;
-			}
-
-			$global_custom_css = wp_kses( $global_custom_css, array() );
-
-			wp_register_style( 'wpswocuf_upsell_pro_global_custom_css', false, array(), WC_VERSION, 'all' );
-			wp_enqueue_style( 'wpswocuf_upsell_pro_global_custom_css' );
-			wp_add_inline_style( 'wpswocuf_upsell_pro_global_custom_css', $global_custom_css );
+			// Disabled in .org build to avoid arbitrary inline CSS injection.
+			return;
 
 	}
 
@@ -3979,19 +3951,8 @@ class Wpswocuf_Public {
 			return;
 		}
 
-			$wpswocuf_upsell_global_settings = get_option( 'wpswocuf_upsell_lite_global_options', array() );
-
-			$global_custom_js = ! empty( $wpswocuf_upsell_global_settings['global_custom_js'] ) ? $wpswocuf_upsell_global_settings['global_custom_js'] : '';
-
-			if ( empty( $global_custom_js ) ) {
-				return;
-			}
-
-			$global_custom_js = wp_kses( $global_custom_js, array() );
-
-			wp_register_script( 'wpswocuf_upsell_pro_global_custom_js', false, array( 'jquery' ), WC_VERSION, false );
-			wp_enqueue_script( 'wpswocuf_upsell_pro_global_custom_js' );
-			wp_add_inline_script( 'wpswocuf_upsell_pro_global_custom_js', $global_custom_js );
+			// Disabled in .org build to avoid arbitrary inline JS injection.
+			return;
 	}
 
 	/**

@@ -1,4 +1,5 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals
 /**
  * Provide a admin area view for the plugin
  *
@@ -62,8 +63,10 @@ if ( isset( $_POST['wpswocuf_pro_common_settings_save'] ) ) {
 	<div class="notice notice-success is-dismissible"> 
 		<p><strong><?php esc_html_e( 'Settings saved', 'woo-one-click-upsell-funnel' ); ?></strong></p>
 	</div>
-	<?php
+<?php
 }
+
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals
 
 $wpswocuf_upsell_analytics_options = get_option( 'wpswocuf_upsell_analytics_configuration', array() );
 
@@ -72,7 +75,7 @@ $wpswocuf_upsell_fb_pixel_config = ! empty( $wpswocuf_upsell_analytics_options['
 $wpswocuf_upsell_ga_analytics_config = ! empty( $wpswocuf_upsell_analytics_options['google-analytics'] ) ? $wpswocuf_upsell_analytics_options['google-analytics'] : array();
 
 // Form Fields Mapping.
-$google_analytics_fields = array(
+$wpswocuf_google_analytics_fields = array(
 
 	'wpswocuf_pixel_account_id'      => array(
 		'name'                  => 'pixel_account_id',
@@ -271,40 +274,40 @@ $google_analytics_fields = array(
 				<!-- Nonce field here. -->
 				<?php wp_nonce_field( 'wpswocuf_pro_setting_nonce', 'wpswocuf_pro_nonce' ); ?>
 
-				<?php if ( ! empty( $google_analytics_fields ) && is_array( $google_analytics_fields ) ) : ?>
-					<?php foreach ( $google_analytics_fields as $field_id => $field_data ) : ?>
+	<?php if ( ! empty( $wpswocuf_google_analytics_fields ) && is_array( $wpswocuf_google_analytics_fields ) ) : ?>
+		<?php foreach ( $wpswocuf_google_analytics_fields as $wpswocuf_field_id => $wpswocuf_field_data ) : ?>
 
 						<tr valign="top">
 							<th scope="row" class="titledesc">
-								<label for="<?php echo esc_html( $field_id ); ?>"><?php echo esc_html( $field_data['label'] ); ?></label>
+					<label for="<?php echo esc_html( $wpswocuf_field_id ); ?>"><?php echo esc_html( $wpswocuf_field_data['label'] ); ?></label>
 							</th>
 
 							<td class="forminp forminp-text">
-								<?php wpswocuf_upsell_lite_wc_help_tip( $field_data['attribute_description'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					<?php wpswocuf_upsell_lite_wc_help_tip( $wpswocuf_field_data['attribute_description'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
-								<?php if ( 'text' === $field_data['type'] ) : ?>
+						<?php if ( 'text' === $wpswocuf_field_data['type'] ) : ?>
 
-									<input <?php echo( ! empty( $field_data['required'] ) ? esc_html( 'required' ) : '' ); ?> class="wpswocuf_pro_enable_plugin_input" type="text"  name="<?php echo esc_html( $field_data['name'] ); ?>" value="<?php echo esc_html( $field_data['value'] ); ?>" id="<?php echo esc_html( $field_id ); ?>">
+							<input <?php echo( ! empty( $wpswocuf_field_data['required'] ) ? esc_html( 'required' ) : '' ); ?> class="wpswocuf_pro_enable_plugin_input" type="text"  name="<?php echo esc_html( $wpswocuf_field_data['name'] ); ?>" value="<?php echo esc_html( $wpswocuf_field_data['value'] ); ?>" id="<?php echo esc_html( $wpswocuf_field_id ); ?>">
 
-								<?php else : ?>
+						<?php else : ?>
 
-									<label class="wpswocuf_pro_enable_plugin_label">
-										<input <?php echo( ! empty( $field_data['required'] ) ? esc_html( 'required' ) : '' ); ?> class="wpswocuf_pro_enable_plugin_input" type="checkbox" name="<?php echo esc_html( $field_data['name'] ); ?>" id="<?php echo esc_html( $field_id ); ?>" <?php checked( 'yes', $field_data['value'] ); ?>>
+							<label class="wpswocuf_pro_enable_plugin_label">
+								<input <?php echo( ! empty( $wpswocuf_field_data['required'] ) ? esc_html( 'required' ) : '' ); ?> class="wpswocuf_pro_enable_plugin_input" type="checkbox" name="<?php echo esc_html( $wpswocuf_field_data['name'] ); ?>" id="<?php echo esc_html( $wpswocuf_field_id ); ?>" <?php checked( 'yes', $wpswocuf_field_data['value'] ); ?>>
 										<span class="wpswocuf_pro_enable_plugin_span"></span>
 									</label>
 
-								<?php endif; ?>
+						<?php endif; ?>
 
-								<span class="wpswocuf_upsell_global_description">
-								<?php
-								echo ! empty( $field_data['note'] ) ? esc_html( $field_data['note'] ) : '';
-								echo ! empty( $field_data['note_html'] ) ? ' ' . esc_url( $field_data['note_html'] ) : '';
-								?>
-								<?php
-								if ( ! empty( $field_data['note_html'] ) ) :
-									?>
-									<a href="<?php echo esc_url( $field_data['note_html'] ); ?>" target="_blank"><?php esc_html_e( 'here', 'woo-one-click-upsell-funnel' ); ?></a>
-								<?php endif; ?>
+						<span class="wpswocuf_upsell_global_description">
+						<?php
+						echo ! empty( $wpswocuf_field_data['note'] ) ? esc_html( $wpswocuf_field_data['note'] ) : '';
+						echo ! empty( $wpswocuf_field_data['note_html'] ) ? ' ' . esc_url( $wpswocuf_field_data['note_html'] ) : '';
+						?>
+						<?php
+						if ( ! empty( $wpswocuf_field_data['note_html'] ) ) :
+							?>
+							<a href="<?php echo esc_url( $wpswocuf_field_data['note_html'] ); ?>" target="_blank"><?php esc_html_e( 'here', 'woo-one-click-upsell-funnel' ); ?></a>
+						<?php endif; ?>
 								</span>
 							</td>
 						</tr>

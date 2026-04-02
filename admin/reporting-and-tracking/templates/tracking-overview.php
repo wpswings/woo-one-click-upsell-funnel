@@ -14,8 +14,8 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-$nonce = wp_create_nonce( 'view_upsell_tracking' ); // Create nonce.
-$nonce_facebook = wp_create_nonce( 'view_upsell_tracking_fb' ); // Create nonce.
+$wpswocuf_nonce          = wp_create_nonce( 'view_upsell_tracking' ); // Create nonce.
+$wpswocuf_nonce_facebook = wp_create_nonce( 'view_upsell_tracking_fb' ); // Create nonce.
 
 ?>
 
@@ -26,13 +26,13 @@ $nonce_facebook = wp_create_nonce( 'view_upsell_tracking_fb' ); // Create nonce.
 		<h3><?php esc_html_e( 'Supported Analytics Tools', 'woo-one-click-upsell-funnel' ); ?></h3>
 
 		<div class="wpswocuf_upsell_overview_supported_product">
-			<div class="wpswocuf_upsell_overview_product_icon simple">
-				<a href="<?php echo esc_url( admin_url( 'admin.php?page=wps-wocuf-setting-tracking&tab=ga-setting&nonce=' . $nonce ) ); ?>">
+				<div class="wpswocuf_upsell_overview_product_icon simple">
+					<a href="<?php echo esc_url( admin_url( 'admin.php?page=wps-wocuf-setting-tracking&tab=ga-setting&nonce=' . $wpswocuf_nonce ) ); ?>">
 					<img class="wpswocuf_upsell_lite_tool_ga" src="<?php echo esc_url( wpswocuf_URL . 'admin/reporting-and-tracking/resources/icons/google-analytics.svg' ); ?>">
 				</a>
 			</div>
-			<div class="wpswocuf_upsell_overview_product_icon simple">
-				<a href="<?php echo esc_url( admin_url( 'admin.php?page=wps-wocuf-setting-tracking&tab=pixel-setting&nonce=' . $nonce_facebook ) ); ?>">
+				<div class="wpswocuf_upsell_overview_product_icon simple">
+					<a href="<?php echo esc_url( admin_url( 'admin.php?page=wps-wocuf-setting-tracking&tab=pixel-setting&nonce=' . $wpswocuf_nonce_facebook ) ); ?>">
 					<img class="wpswocuf_upsell_lite_tool_fb" src="<?php echo esc_url( wpswocuf_URL . 'admin/reporting-and-tracking/resources/icons/facebook-pixel.png' ); ?>">
 				</a>
 			</div>
