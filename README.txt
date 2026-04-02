@@ -6,8 +6,8 @@ Tags: upsell, cross-sell, sales funnel, funnel builder, woocommerce checkout,
 Requires at least: 5.5.0
 Tested up to: 6.9
 WC requires at least: 6.5.0
-WC tested up to: 10.4.0
-Stable tag: 3.6.1
+WC tested up to: 10.6.2
+Stable tag: 3.6.2
 Requires PHP: 7.0.0
 License: GPLv3 or later 
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -361,8 +361,11 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Changelog ==
 
+= 3.6.2 – Released on 2 April 2026 =
+* New: Latest compatibility with WP(6.9.4) WC (10.6.2)
+
 = 3.6.1 – Released on 9 January 2026 =
-* New: Latest compatibility with WP (6.9.0) and WC (10.4.0)
+* New: Latest compatibility with WP (6.9.0) and WC (10.6.2)
 
 = 3.6.0 – Released on 09 March 2025 =
 * New: Latest compatibility with WP (6.8.1) and WC (9.8.4).
@@ -548,5 +551,5 @@ Please visit [**WooCommerce Upsell Knowledge Base**](https://support.wpswings.co
 
 == Upgrade Notice ==
 
-= 3.6.1 – Released on 9 January 2026 =
-* New: Latest compatibility with WP (6.9.0) and WC (10.4.0)
+= 3.6.2 – Released on 2 April 2026 =
+* New: Latest compatibility with WP(6.9.4) WC (10.6.2)
