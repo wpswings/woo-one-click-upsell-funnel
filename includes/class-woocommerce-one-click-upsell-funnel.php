@@ -109,34 +109,10 @@ class Wpswocuf_Plugin {
 	 */
 	private function load_dependencies() {
 
-		/**
-		 * The class responsible for orchestrating the actions and filters of the
-		 * core plugin.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce-one-click-upsell-funnel-loader.php';
-
-		/**
-		 * The class responsible for defining internationalization functionality
-		 * of the plugin.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce-one-click-upsell-funnel-i18n.php';
-
-
 		if ( class_exists( 'WPSwings_Onboarding_Helper' ) ) {
 
 			$this->onboard = new WPSwings_Onboarding_Helper();
 		}
-		
-		/**
-		 * The file responsible for defining Woocommerce Subscriptions compatibility
-		 * and handling functions.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-woocommerce-one-click-upsell-funnel-org-subs-comp.php';
-
-		/**
-		 * The file responsible for Upsell Sales by Funnel - Data handling and Stats.
-		 */
-		// require_once plugin_dir_path( dirname( __FILE__ ) ) . 'reporting/class-wps-upsell-report-sales-by-funnel.php';
 
 		$this->loader = new Wpswocuf_Loader();
 
