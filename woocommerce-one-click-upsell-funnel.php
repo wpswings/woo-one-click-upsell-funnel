@@ -94,40 +94,6 @@ if ( true === $wpswocuf_old_pro_present ) {
 		<?php
 	}
 
-	add_action( 'admin_notices', 'wpswocuf_check_and_inform_update' );
-
-	/**
-	 * Check update if pro is old.
-	 */
-	function wpswocuf_check_and_inform_update() {
-		$update_file = plugin_dir_path( dirname( __FILE__ ) ) . 'woocommerce-one-click-upsell-funnel-pro/class-mwb-wocuf-pro-update.php';
-
-		// If present but not active.
-		if ( ! wpswocuf_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
-			if ( file_exists( $update_file ) ) {
-				$mwb_wocuf_pro_license_key = get_option( 'mwb_wocuf_pro_license_key', '' );
-				// Legacy constant names retained for compatibility.
-				! defined( 'MWB_WOCUF_PRO_LICENSE_KEY' ) && define( 'MWB_WOCUF_PRO_LICENSE_KEY', $mwb_wocuf_pro_license_key ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
-				! defined( 'MWB_WOCUF_PRO_BASE_FILE' ) && define( 'MWB_WOCUF_PRO_BASE_FILE', 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound
-			}
-			require_once $update_file;
-		}
-
-			if ( defined( 'MWB_WOCUF_PRO_BASE_FILE' ) ) {
-				do_action( 'mwb_wocuf_pro_check_event' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
-			$is_update_fetched = get_option( 'mwb_wocuf_plugin_update', 'false' );
-			$plugin_transient  = get_site_transient( 'update_plugins' );
-			$update_obj        = ! empty( $plugin_transient->response[ MWB_WOCUF_PRO_BASE_FILE ] ) ? $plugin_transient->response[ MWB_WOCUF_PRO_BASE_FILE ] : false;
-
-			if ( ! empty( $update_obj ) ) :
-				?>
-				<div class="notice notice-error is-dismissible">
-					<p><?php esc_html_e( 'Your One Click Upsell Funnel Pro plugin update is here! Please Update it now.', 'woo-one-click-upsell-funnel' ); ?></p>
-				</div>
-				<?php
-			endif;
-		}
-	}
 }
 
 $wpswocuf_activated         = false;
@@ -147,141 +113,6 @@ if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 }
 
 if ( $wpswocuf_activated ) {
-
-		$wpswocuf_pro_license_key  = get_option( 'wpswocuf_pro_license_key', '' );
-		// Legacy option names retained for migration; ignore prefix sniff.
-		$mwb_wocuf_pro_license_key = get_option( 'mwb_wocuf_pro_license_key', '' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-		$thirty_days               = get_option( 'mwb_wocuf_pro_activated_timestamp', 0 ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-		$license_check             = get_option( 'mwb_wocuf_pro_license_check', false ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-
-	if ( ! empty( $mwb_wocuf_pro_license_key ) && empty( $wpswocuf_pro_license_key ) ) {
-		update_option( 'wpswocuf_pro_license_key', $mwb_wocuf_pro_license_key );
-		update_option( 'wpswocuf_pro_activated_timestamp', $thirty_days );
-		update_option( 'wpswocuf_pro_license_check', $license_check );
-		$wpswocuf_pro_license_key = get_option( 'wpswocuf_pro_license_key', '' );
-	}
-
-		// If pro plugin not active, then load Org Plugin else Don't.
-		if ( ! wpswocuf_upsell_lite_is_plugin_active( 'woocommerce-one-click-upsell-funnel-pro/woocommerce-one-click-upsell-funnel-pro.php' ) ) {
-
-		define( 'wpswocuf_URL', plugin_dir_url( __FILE__ ) );
-
-		define( 'wpswocuf_DIRPATH', plugin_dir_path( __FILE__ ) );
-
-		define( 'wpswocuf_VERSION', 'v3.6.1' );
-
-		/**
-		 * The code that runs during plugin activation.
-		 * This action is documented in includes/class-woocommerce_one_click_upsell_funnel_pro-activator.php
-		 */
-			function wpswocuf_activate_woocommerce_one_click_upsell_funnel() {
-			include_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-one-click-upsell-funnel-activator.php';
-			Wpswocuf_Activator::activate();
-		}
-
-		/**
-		 * The code that runs during plugin deactivation.
-		 * This action is documented in includes/class-woocommerce_one_click_upsell_funnel_pro-deactivator.php
-		 */
-		function wpswocuf_deactivate_woocommerce_one_click_upsell_funnel() {
-			include_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-one-click-upsell-funnel-deactivator.php';
-			Wpswocuf_Deactivator::deactivate();
-		}
-
-		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'wpswocuf_upsell_lite_plugin_settings_link' );
-
-		/**
-		 * This action is for woocommerce dependency check.
-		 *
-		 * @param mixed $links links.
-		 */
-			function wpswocuf_upsell_lite_plugin_settings_link( $links ) {
-			$nonce = wp_create_nonce( 'view_upsell_setting' ); // Create nonce.
-
-			$plugin_links = array(
-				'<a href="' . admin_url( 'admin.php?page=upsell-order-bump-offer-for-woocommerce-setting&tab=general-setting&nonce=' . $nonce ) . '">' . esc_html__( 'Settings', 'woo-one-click-upsell-funnel' ) . '</a>',
-			);
-
-			// Ensure Deactivate link is visible even if other filters modify defaults.
-			if ( ! isset( $links['deactivate'] ) && current_user_can( 'activate_plugins' ) ) {
-				$deactivate_url = wp_nonce_url(
-					admin_url( 'plugins.php?action=deactivate&plugin=' . plugin_basename( __FILE__ ) ),
-					'deactivate-plugin_' . plugin_basename( __FILE__ )
-				);
-				$plugin_links[] = '<a href="' . esc_url( $deactivate_url ) . '">' . esc_html__( 'Deactivate', 'woo-one-click-upsell-funnel' ) . '</a>';
-			}
-
-			return array_merge( $plugin_links, $links );
-		}
-
-		add_filter( 'plugin_row_meta', 'wpswocuf_upsell_lite_add_doc_and_premium_link', 10, 2 );
-
-		/**
-		 * This action is for add premium version link.
-		 *
-		 * @param mixed $links links.
-		 * @param mixed $file file.
-		 */
-			function wpswocuf_upsell_lite_add_doc_and_premium_link( $links, $file ) {
-
-			if ( false !== strpos( $file, 'woocommerce-one-click-upsell-funnel.php' ) ) {
-
-				$row_meta = array(
-					'demo'    => '<a href="https://demo.wpswings.com/one-click-upsell-funnel-for-woocommerce-pro/?utm_source=wpswings-upsell-demo&utm_medium=upsell-org-backend&utm_campaign=upsell-demo" target="_blank"><img class="wps-info-img" src="' . esc_url( wpswocuf_URL ) . 'admin/resources/icons/Demo.svg" class="wps-info-img" alt="Demo image">' . esc_html__( 'Demo', 'woo-one-click-upsell-funnel' ) . '</a>',
-					'doc'     => '<a href="https://docs.wpswings.com/one-click-upsell-funnel-for-woocommerce/?utm_source=wpswings-upsell-doc&utm_medium=upsell-org-backend&utm_campaign=upsell-doc" target="_blank"><img class="wps-info-img" src="' . esc_url( wpswocuf_URL ) . 'admin/resources/icons/Documentation.svg" class="wps-info-img" alt="Documentation image">' . esc_html__( 'Documentation', 'woo-one-click-upsell-funnel' ) . '</a>',
-					'video'     => '<a href="https://www.youtube.com/watch?v=PvyKF8WEkAk" target="_blank"><img class="wps-info-img" src="' . esc_url( wpswocuf_URL ) . 'admin/resources/icons/video.png" class="wps-info-img" alt="Documentation image">' . esc_html__( 'Video', 'woo-one-click-upsell-funnel' ) . '</a>',
-					'support' => '<a href="https://wpswings.com/submit-query/?utm_source=wpswings-upsell-support&utm_medium=upsell-org-backend&utm_campaign=support" target="_blank"><img class="wps-info-img" src="' . esc_url( wpswocuf_URL ) . 'admin/resources/icons/Support.svg" class="wps-info-img" alt="Demo Support image">' . esc_html__( 'Support', 'woo-one-click-upsell-funnel' ) . '</a>',
-					'services' => '<a href="https://wpswings.com/woocommerce-services/?utm_source=wpswings-upsell-services&utm_medium=upsell-org-backend&utm_campaign=woocommerce-services" target="_blank"><img class="wps-info-img" src="' . esc_url( wpswocuf_URL ) . 'admin/resources/icons/Services.svg" class="wps-info-img" alt="Demo Services image">' . esc_html__( 'Services', 'woo-one-click-upsell-funnel' ) . '</a>',
-
-				);
-
-				return array_merge( $links, $row_meta );
-			}
-
-			return (array) $links;
-		}
-
-			register_activation_hook( __FILE__, 'wpswocuf_activate_woocommerce_one_click_upsell_funnel' );
-
-			register_deactivation_hook( __FILE__, 'wpswocuf_deactivate_woocommerce_one_click_upsell_funnel' );
-
-		/**
-		 * Ensure required core classes are loaded before bootstrapping.
-		 * These require_once calls are defensive so Plugin Check and early
-		 * loading contexts don't hit "class not found" fatals.
-		 */
-		require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-one-click-upsell-funnel-loader.php';
-		require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-one-click-upsell-funnel-i18n.php';
-		require_once plugin_dir_path( __FILE__ ) . 'admin/class-woocommerce-one-click-upsell-funnel-admin.php';
-		require_once plugin_dir_path( __FILE__ ) . 'public/class-woocommerce-one-click-upsell-funnel-public.php';
-		require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-one-click-upsell-funnel-global-functions.php';
-
-		/**
-		 * The core plugin class that is used to define internationalization,
-		 * admin-specific hooks, and public-facing site hooks.
-		 */
-		require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-one-click-upsell-funnel.php';
-
-		/**
-		 * Begins execution of the plugin.
-		 *
-		 * Since everything within the plugin is registered via hooks,
-		 * then kicking off the plugin from this point in the file does
-		 * not affect the page life cycle.
-		 *
-		 * @since 1.0.0
-		 */
-		function wpswocuf_run_woocommerce_one_click_upsell_funnel() {
-
-			$plugin = new Wpswocuf_Plugin();
-			$plugin->run();
-
-		}
-
-		// Return and Load nothing.
-		wpswocuf_run_woocommerce_one_click_upsell_funnel();
-	}
-
 
 		/**
 		 * This function is used to check hpos enable.
@@ -489,43 +320,28 @@ if ( ! function_exists( 'wpswocuf_banner_notification_plugin_html' ) ) {
 	}
 }
 
-add_action( 'admin_notices', 'wpswocuf_banner_notification_html' );
-/**
- * Function to show banner image based on subscription.
- *
- * @return void
- */
-function wpswocuf_banner_notification_html() {
-	$screen = get_current_screen();
-	if ( isset( $screen->id ) ) {
-		$pagescreen = $screen->id;
-	}
-	$nonce = isset( $_GET['nonce'] ) ? sanitize_text_field( wp_unslash( $_GET['nonce'] ) ) : null;
+	add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'wpswocuf_upsell_lite_plugin_settings_link' );
 
-	if ( isset( $nonce ) && wp_verify_nonce( $nonce, 'view_upsell_setting' ) ) {
+		/**
+		 * This action is for woocommerce dependency check.
+		 *
+		 * @param mixed $links links.
+		 */
+			function wpswocuf_upsell_lite_plugin_settings_link( $links ) {
+			$nonce = wp_create_nonce( 'view_upsell_setting' ); // Create nonce.
 
-		if ( ( isset( $_GET['page'] ) && 'wps-wocuf-setting' == isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '' ) || 'wps-wocuf-pro-setting' == isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '' ) {
-			$banner_id = get_option( 'wpswocuf_wgm_notify_new_banner_id', false );
-			if ( isset( $banner_id ) && '' !== $banner_id ) {
-				$hidden_banner_id            = get_option( 'wpswocuf_wgm_notify_hide_baneer_notification', false );
-				$banner_image = get_option( 'wpswocuf_wgm_notify_new_banner_image', '' );
-				$banner_url = get_option( 'wpswocuf_wgm_notify_new_banner_url', '' );
-				if ( isset( $hidden_banner_id ) && $hidden_banner_id < $banner_id ) {
+			$plugin_links = array(
+				'<a href="' . admin_url( 'admin.php?page=upsell-order-bump-offer-for-woocommerce-setting&tab=general-setting&nonce=' . $nonce ) . '">' . esc_html__( 'Settings', 'woo-one-click-upsell-funnel' ) . '</a>',
+			);
 
-					if ( '' !== $banner_image && '' !== $banner_url ) {
-
-						?>
-							<div class="wps-offer-notice notice notice-warning is-dismissible">
-								<div class="notice-container">
-									<a href="<?php echo esc_url( $banner_url ); ?>"target="_blank"><img src="<?php echo esc_url( $banner_image ); ?>" alt="Subscription cards"/></a>
-								</div>
-								<button type="button" class="notice-dismiss dismiss_banner" id="dismiss-banner"><span class="screen-reader-text">Dismiss this notice.</span></button>
-							</div>
-							
-						<?php
-					}
-				}
+			// Ensure Deactivate link is visible even if other filters modify defaults.
+			if ( ! isset( $links['deactivate'] ) && current_user_can( 'activate_plugins' ) ) {
+				$deactivate_url = wp_nonce_url(
+					admin_url( 'plugins.php?action=deactivate&plugin=' . plugin_basename( __FILE__ ) ),
+					'deactivate-plugin_' . plugin_basename( __FILE__ )
+				);
+				$plugin_links[] = '<a href="' . esc_url( $deactivate_url ) . '">' . esc_html__( 'Deactivate', 'woo-one-click-upsell-funnel' ) . '</a>';
 			}
+
+			return array_merge( $plugin_links, $links );
 		}
-	}
-}
