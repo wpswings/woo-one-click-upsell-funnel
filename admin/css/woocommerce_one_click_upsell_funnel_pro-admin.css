@@ -2,25 +2,25 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
-#wps_wocuf_pro_setting_wrapper *{
+#wpswocuf_pro_setting_wrapper *{
   box-sizing: border-box;
 }
-#wps_wocuf_pro_setting_wrapper p{
+#wpswocuf_pro_setting_wrapper p{
   color: #000;
   text-align: left;
   padding: 10px;
 }
-.wps_wocuf_pro_funnels_list table{
+.wpswocuf_pro_funnels_list table{
   table-layout: fixed;
 }
-.wps_wocuf_pro_funnels_list table tr:nth-child(2n+1) {
+.wpswocuf_pro_funnels_list table tr:nth-child(2n+1) {
     background-color: #f7f5f5;
 }
-.wps_wocuf_pro_shortcodes p,
-.wps_upsell_slide_down p {
+.wpswocuf_pro_shortcodes p,
+.wpswocuf_upsell_slide_down p {
   display: inline-block;
 }
-#wps_wocuf_pro_setting_wrapper h1{
+#wpswocuf_pro_setting_wrapper h1{
   padding: 7px 20px;
   font-size: 20px;
   border-radius: 10px 0px;
@@ -43,17 +43,17 @@
  padding: 20px 10px;
 }
 
-.wps_wocuf_pro_funnel_links{
+.wpswocuf_pro_funnel_links{
   background-color:#73c4c1;
   padding:5px;
   border-radius:20px;
   color:white;
 }
-.wps_wocuf_pro_funnels_list{
+.wpswocuf_pro_funnels_list{
   margin-top: 30px;
   overflow-x: auto;
 }
-.wps_wocuf_pro_funnels_list h1, .wps_upsell_table .new_created_offers h2, .wps_upsell_table  h1 {
+.wpswocuf_pro_funnels_list h1, .wpswocuf_upsell_table .new_created_offers h2, .wpswocuf_upsell_table  h1 {
   background-color: #1894AC;
   color: #fff;
   font-size: 32px;
@@ -62,60 +62,60 @@
   text-align: center;
   text-transform: capitalize;
 }
-.wps_upsell_table  h1{
+.wpswocuf_upsell_table  h1{
   margin:30px 0 0;
 }
-.wps_upsell_table .new_created_offers h2{
+.wpswocuf_upsell_table .new_created_offers h2{
   background-color: #B6B8B5;
   color: #000;
 }
-.wps_wocuf_pro_funnels_list table {
+.wpswocuf_pro_funnels_list table {
   border: 2px solid #e4e4e4;
   width: 100%;
   border-collapse: collapse;
 }
-.wps_wocuf_pro_creation_setting tr td {
+.wpswocuf_pro_creation_setting tr td {
   padding: 15px 20px;
 }
-#wps_wocuf_pro_setting_wrapper tr td .wps_wocuf_pro_funnel_links {
+#wpswocuf_pro_setting_wrapper tr td .wpswocuf_pro_funnel_links {
   background-color: #2196f3;
   display: inline-block;
   padding: 6px 10px;
   margin: 5px 0px
 }
-#wps_wocuf_pro_setting_wrapper tr td .wps_wocuf_pro_funnel_links:hover {
+#wpswocuf_pro_setting_wrapper tr td .wpswocuf_pro_funnel_links:hover {
   color: #fff;
   background-color: #3854bb;
 }
-.wps_wocuf_pro_funnels_list table th, .wps_upsell_table table th, .wps_upsell_table table th label h4{
+.wpswocuf_pro_funnels_list table th, .wpswocuf_upsell_table table th, .wpswocuf_upsell_table table th label h4{
   color: #000;
   font-size: 15px;
   font-weight: 500;
   padding: 15px!important;
   text-align: left;
 }
-.wps_wocuf_pro_funnels_list table td,.wps_upsell_table table td {
+.wpswocuf_pro_funnels_list table td,.wpswocuf_upsell_table table td {
   font-size: 16px;
   padding: 15px;
   text-align: left;
 }
-.wps_wocuf_pro_funnels_list table td a{
+.wpswocuf_pro_funnels_list table td a{
   font-size: 15px;
   font-weight: 400;
   cursor: pointer;
   border: none;
   text-decoration: none;
 }
-#wps_wocuf_pro_setting_wrapper .nav-tab:hover,.wps_wocuf_pro_funnels_list table td a:hover{
+#wpswocuf_pro_setting_wrapper .nav-tab:hover,.wpswocuf_pro_funnels_list table td a:hover{
   background-color: #3854bb;
 }
-.wps_wocuf_pro_create_new_funnel a {
+.wpswocuf_pro_create_new_funnel a {
   font-size: 24px;
   margin-bottom: 15px;
   padding: 15px;
   display: inline-block;
 }
-#wps_wocuf_pro_setting_wrapper{
+#wpswocuf_pro_setting_wrapper{
   background: #fff none repeat scroll 0 0;
   padding: 0 20px;
 }
@@ -127,23 +127,23 @@
   background-color:#011b44;
   color:white; 
 }
-#wps_wocuf_pro_setting_wrapper .nav-tab-active{
+#wpswocuf_pro_setting_wrapper .nav-tab-active{
   background: white none repeat scroll 0 0;
   color: black ;
 }
 
-#wps_wocuf_pro_setting_wrapper #wps_wocuf_pro_setting_form .titledesc {
+#wpswocuf_pro_setting_wrapper #wpswocuf_pro_setting_form .titledesc {
   padding-left: 19px;
 }
 
-#wps_wocuf_pro_setting_form tr:nth-child(2n+1) {
+#wpswocuf_pro_setting_form tr:nth-child(2n+1) {
   background: #fff none repeat scroll 0 0;
 }
-#wps_wocuf_pro_setting_form .wps_upsell_table {
+#wpswocuf_pro_setting_form .wpswocuf_upsell_table {
   border: 1px solid #ccc;
   overflow-x:auto; 
 }
-#wps_wocuf_pro_setting_form .submit input {
+#wpswocuf_pro_setting_form .submit input {
   background: #592e48 none repeat scroll 0 0;
   border: 1px solid #592e48 ;
   color: #fff;
@@ -151,11 +151,11 @@
   box-shadow: none !important;
   text-shadow: none !important;
 }
-#wps_wocuf_pro_setting_wrapper {
+#wpswocuf_pro_setting_wrapper {
   background: #fff none repeat scroll 0 0;
   padding: 20px;
 }
-#wps_wocuf_pro_setting_form tr:nth-child(2n) {
+#wpswocuf_pro_setting_form tr:nth-child(2n) {
   background: #f1f1f1 none repeat scroll 0 0;
 }
 .hide
@@ -166,7 +166,7 @@
 {
   display: inline !important;
 }
-#wps_wocuf_pro_setting_wrapper {
+#wpswocuf_pro_setting_wrapper {
   background: #fff none repeat scroll 0 0;
   margin: 0;
   padding: 20px;
@@ -177,14 +177,14 @@
   padding: 5px;
   padding-top: 30px;
 }
-.wps_wocuf_pro_create_new_funnel{
+.wpswocuf_pro_create_new_funnel{
   margin:0 auto;
   text-align: center;
   padding-bottom: 20px;
   font-size: 30px;
 }
 /*custom style*/
-#wps_wocuf_pro_setting_wrapper .nav-tab {
+#wpswocuf_pro_setting_wrapper .nav-tab {
   background: #2196f3;
   border: 0;
   padding: 10px 50px 10px 50px;
@@ -192,49 +192,49 @@
   border-radius: 20px 0px 20px 0px;
 }
 
-#wps_wocuf_pro_setting_wrapper .nav-tab.nav-tab-active {
+#wpswocuf_pro_setting_wrapper .nav-tab.nav-tab-active {
   background-color: #3854bb;
   color: #fff;
 }
-.wps_wocuf_pro_funnels_list table td, .wps_wocuf_pro_funnels_list table th,.wps_upsell_table table th,.wps_upsell_table table td{
+.wpswocuf_pro_funnels_list table td, .wpswocuf_pro_funnels_list table th,.wpswocuf_upsell_table table th,.wpswocuf_upsell_table table td{
   border: 1px solid #f1f1f1;
   padding:15px;
 
 }
 
-.wps_wocuf_pro_funnels_list table th {
+.wpswocuf_pro_funnels_list table th {
   border: 1px solid #d0cccc;
 }
 
 /*edit create funnel style*/
-.wps_upsell_table table {
+.wpswocuf_upsell_table table {
   border-collapse: collapse;
   width: 100%;
 }
-.wps_upsell_table table th{
+.wpswocuf_upsell_table table th{
   width: 30%;
 }
-.wps_upsell_table .new_created_offers h2{
+.wpswocuf_upsell_table .new_created_offers h2{
   font-size: 22px;
 }
-.wps_upsell_table select {
+.wpswocuf_upsell_table select {
   height: 40px !important;
   padding-left: 10px;
   width: 50%;
 }
-.wps_upsell_table select option{
+.wpswocuf_upsell_table select option{
   padding: 10px;
 }
-.wps_upsell_table table th label h4{
+.wpswocuf_upsell_table table th label h4{
   padding:15px 0;
 }
-.wps_wocuf_pro_create_new_offer::before,.wps_wocuf_pro_create_new_funnel a::before {
+.wpswocuf_pro_create_new_offer::before,.wpswocuf_pro_create_new_funnel a::before {
   background-color:#2196f3;
   left: -48%;
   transform-origin: 100% 50% 0;
   width: 100%;
 }
-.wps_wocuf_pro_create_new_offer::before, .wps_wocuf_pro_create_new_offer::after ,.wps_wocuf_pro_create_new_funnel a::before,.wps_wocuf_pro_create_new_funnel a::after{
+.wpswocuf_pro_create_new_offer::before, .wpswocuf_pro_create_new_offer::after ,.wpswocuf_pro_create_new_funnel a::before,.wpswocuf_pro_create_new_funnel a::after{
   bottom: -200%;
   content: "";
   display: block;
@@ -244,14 +244,14 @@
   transition: width 600ms cubic-bezier(0.23, 1, 0.32, 1) 0s;
   z-index: -1;
 }
-.wps_wocuf_pro_create_new_offer::after,.wps_wocuf_pro_create_new_funnel a::after {
+.wpswocuf_pro_create_new_offer::after,.wpswocuf_pro_create_new_funnel a::after {
   background-color: #2196f3;
   right: -48%;
   transform-origin: 0 50% 0;
   width: 100%;
 }
 
-.wps_wocuf_pro_create_new_offer,.wps_wocuf_pro_create_new_funnel a{
+.wpswocuf_pro_create_new_offer,.wpswocuf_pro_create_new_funnel a{
   background-color: #fff;
   box-sizing: border-box;
   display: inline-block;
@@ -270,46 +270,46 @@
   text-decoration: none;
   color:#fff;
 }
-.wps_wocuf_pro_create_new_offer:hover,.wps_wocuf_pro_create_new_funnel a:hover{
+.wpswocuf_pro_create_new_offer:hover,.wpswocuf_pro_create_new_funnel a:hover{
   color: #000;
   border: 1px solid #000;
 }
-.wps_wocuf_pro_create_new_offer:hover::before, .wps_wocuf_pro_create_new_offer.active::before, .wps_wocuf_pro_create_new_offer:hover::after, .wps_wocuf_pro_create_new_offer.active::after {
+.wpswocuf_pro_create_new_offer:hover::before, .wpswocuf_pro_create_new_offer.active::before, .wpswocuf_pro_create_new_offer:hover::after, .wpswocuf_pro_create_new_offer.active::after {
   transform: rotate(45deg);
   width: 0;
   color: #000;
 }
-.wps_wocuf_pro_create_new_offer:hover, .wps_wocuf_pro_create_new_offer.active {
+.wpswocuf_pro_create_new_offer:hover, .wpswocuf_pro_create_new_offer.active {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.13) inset;
 }
-.wps_wocuf_pro_create_new_funnel a:hover::before, .wps_wocuf_pro_create_new_funnel a.active::before, .wps_wocuf_pro_create_new_funnel a:hover::after, .wps_wocuf_pro_create_new_funnel a.active::after {
+.wpswocuf_pro_create_new_funnel a:hover::before, .wpswocuf_pro_create_new_funnel a.active::before, .wpswocuf_pro_create_new_funnel a:hover::after, .wpswocuf_pro_create_new_funnel a.active::after {
   transform: rotate(45deg);
   width: 0;
   color: #000;
 }
-#wps_wocuf_pro_creation_setting_save {
+#wpswocuf_pro_creation_setting_save {
   background-color: #1d424b;
   border: medium none;
   box-shadow: 0 1px 0 #c1c3c0;
   color: #fff;
   text-shadow: none;
 }
-#wps_wocuf_pro_creation_setting_save:hover {
+#wpswocuf_pro_creation_setting_save:hover {
   opacity: 0.75
 }
-#wps_wocuf_pro_setting_wrapper p,#wps_wocuf_pro_setting_wrapper span{
+#wpswocuf_pro_setting_wrapper p,#wpswocuf_pro_setting_wrapper span{
   font-size: 16px;
   font-weight: 400;
 }
-#wps_wocuf_pro_setting_wrapper p.submit {
+#wpswocuf_pro_setting_wrapper p.submit {
   padding: 15px 0 !important;
 }
-h1.wps_wocuf_pro_setting_title .wps-wocuf-pro-wrap h1 {
+h1.wpswocuf_pro_setting_title .wps-wocuf-pro-wrap h1 {
   padding: 10px 10px;
   font-weight: 400;
   border-radius: 10px 0px;
 }
-.wps_wocuf_pro_license_text p.submit #wps_wocuf_pro_license_activate {
+.wpswocuf_pro_license_text p.submit #wpswocuf_pro_license_activate {
   background-color: #2196f3 !important;
   border: 0;
   box-shadow: 0px 0px;
@@ -317,28 +317,28 @@ h1.wps_wocuf_pro_setting_title .wps-wocuf-pro-wrap h1 {
   padding: 5px 20px;
   height: auto;
 }
-#wps_wocuf_pro_setting_wrapper .wps_wocuf_pro_funnels_list p {
+#wpswocuf_pro_setting_wrapper .wpswocuf_pro_funnels_list p {
   margin: 0;
 }
-table.form-table.wps_wocuf_pro_shortcodes .wps_upsell_shortcode_div {
+table.form-table.wpswocuf_pro_shortcodes .wpswocuf_upsell_shortcode_div {
   margin: 10px 0px;
 }
-table.form-table.wps_wocuf_pro_shortcodes tr td, table.form-table.wps_wocuf_pro_shortcodes tr th,
-table.form-table.wps_upsell_slide_down_table tr td, table.form-table.wps_upsell_slide_down_table tr th {
+table.form-table.wpswocuf_pro_shortcodes tr td, table.form-table.wpswocuf_pro_shortcodes tr th,
+table.form-table.wpswocuf_upsell_slide_down_table tr td, table.form-table.wpswocuf_upsell_slide_down_table tr th {
   vertical-align: middle;
 }
-table.form-table.wps_wocuf_pro_shortcodes,
-table.form-table.wps_upsell_slide_down_table {
+table.form-table.wpswocuf_pro_shortcodes,
+table.form-table.wpswocuf_upsell_slide_down_table {
   margin-top: 20px;
 }
-.wps_wocuf_pro_new_offer {
+.wpswocuf_pro_new_offer {
   margin: 30px 0;
   text-align: center;
 }
-#wps_wocuf_pro_setting_wrapper .wps_wocuf_pro_no_funnel{
+#wpswocuf_pro_setting_wrapper .wpswocuf_pro_no_funnel{
   text-align: center;
 }
-#wps_wocuf_pro_loader {
+#wpswocuf_pro_loader {
  background-color: rgba(255, 255, 255, 0.6);
  bottom: 0;
  height: 100%;
@@ -349,7 +349,7 @@ table.form-table.wps_upsell_slide_down_table {
  width: 100%;
  z-index: 99999;
 }
-#wps_wocuf_pro_loader img {
+#wpswocuf_pro_loader img {
   display: block;
   left: 0;
   margin: 0 auto;
@@ -358,11 +358,11 @@ table.form-table.wps_upsell_slide_down_table {
   top: 50%;
   transform: translateY(-50%);
 }
-.wps_upsell_table .wp-picker-container {
+.wpswocuf_upsell_table .wp-picker-container {
  display: inline-block;
 }
 
-span.wps_wocuf_pro_span label {
+span.wpswocuf_pro_span label {
   background-color: #d9edf7 ;
   border-left: 3px solid #0073aa ;
   color: #31708f ;
@@ -374,7 +374,7 @@ span.wps_wocuf_pro_span label {
   position: relative;
 }
 
-span.wps_wocuf_pro_span label::after {
+span.wpswocuf_pro_span label::after {
   border-bottom: 8px solid transparent;
   border-left: 10px solid #0073aa ;
   border-top: 8px solid transparent;
@@ -385,7 +385,7 @@ span.wps_wocuf_pro_span label::after {
   transform: translateY(-50%);
 }
 /*mycss*/
-.wps_wocuf_pro_delete_new_created_offers {
+.wpswocuf_pro_delete_new_created_offers {
   border: 0;
 }
 .new_created_offers span {
@@ -399,7 +399,7 @@ span.wps_wocuf_pro_span label::after {
 }
 
 /*updated*/
-.wps_wocuf_pro_commone_class {
+.wpswocuf_pro_commone_class {
   height: 45px !important;
 }
 
@@ -411,7 +411,7 @@ span.wps_wocuf_pro_span label::after {
 
  /*since v2.0.0 - Global Settings - Start*/
 
- .wps_wocuf_pro_creation_setting textarea {
+ .wpswocuf_pro_creation_setting textarea {
   max-width: 100% !important;
 }
 
@@ -419,17 +419,17 @@ span.wps_wocuf_pro_span label::after {
 
 /*since v2.0.0 - Funnel status - Start*/
 
-.wps_upsell_funnel_status_on.active,
-.wps_upsell_funnel_status_off.active {
+.wpswocuf_upsell_funnel_status_on.active,
+.wpswocuf_upsell_funnel_status_off.active {
   display: inline-block;
 }
 
-.wps_upsell_funnel_status_on,
-.wps_upsell_funnel_status_off {
+.wpswocuf_upsell_funnel_status_on,
+.wpswocuf_upsell_funnel_status_off {
   display: none;
 }
 
-#wps_upsell_funnel_status .woocommerce-help-tip {
+#wpswocuf_upsell_funnel_status .woocommerce-help-tip {
   bottom: 2px;
 }
 
@@ -437,18 +437,18 @@ span.wps_wocuf_pro_span label::after {
 
 /*since v2.0.0 - Shortcodes - Start*/
 
-.wps_upsell_tip_tip {
+.wpswocuf_upsell_tip_tip {
   font-size: 11px;
 }
 
-.wps_upsell_shortcode {
+.wpswocuf_upsell_shortcode {
   background-color: #f1f1f1 ;
   padding: 10px;
   margin: 20px 0px;
   border-radius: 10px;
 }
 
-.wps_upsell_slide_down_link {
+.wpswocuf_upsell_slide_down_link {
   overflow: hidden;
   display: inline-block;
   width: 27px;
@@ -457,33 +457,33 @@ span.wps_wocuf_pro_span label::after {
   position: absolute;
 }
 
-.wps_upsell_slide_down_title {
+.wpswocuf_upsell_slide_down_title {
   position: relative;
   background-color: #f1f1f1;
   margin-top: 30px;
 }
-.wps_upsell_slide_down_title h2 {
+.wpswocuf_upsell_slide_down_title h2 {
   color: #5f5555;
   padding-left: 20px;
 }
 
-.wps_upsell_slide_down_content {
+.wpswocuf_upsell_slide_down_content {
   display: none;
 }
 
-.wps_upsell_slide_down_title h2 {
+.wpswocuf_upsell_slide_down_title h2 {
   display: inline-block;
 }
 
-.wps_upsell_slide_down_link:focus {
+.wpswocuf_upsell_slide_down_link:focus {
   box-shadow: 0px 0px 0px 0px;
 }
 
-.wps_upsell_slide_down_link img {
+.wpswocuf_upsell_slide_down_link img {
   width: 100%;
 }
 
-.wps_upsell_shortcodes_hr {
+.wpswocuf_upsell_shortcodes_hr {
   height: auto;
   color: inherit;
   background-color: inherit;
@@ -498,22 +498,22 @@ span.wps_wocuf_pro_span label::after {
 /*since v2.0.0 - Offer preview - Start*/
 
 
-.wps_upsell_offer_template_preview_eight,
-.wps_upsell_offer_template_preview_seven,
-.wps_upsell_offer_template_preview_six,
-.wps_upsell_offer_template_preview_five,
-.wps_upsell_offer_template_preview_four,
-.wps_upsell_offer_template_preview_one,
-.wps_upsell_offer_template_preview_two,
-.wps_upsell_offer_template_preview_three {
+.wpswocuf_upsell_offer_template_preview_eight,
+.wpswocuf_upsell_offer_template_preview_seven,
+.wpswocuf_upsell_offer_template_preview_six,
+.wpswocuf_upsell_offer_template_preview_five,
+.wpswocuf_upsell_offer_template_preview_four,
+.wpswocuf_upsell_offer_template_preview_one,
+.wpswocuf_upsell_offer_template_preview_two,
+.wpswocuf_upsell_offer_template_preview_three {
   display: none;
 }
 
-.wps_upsell_preview_body {
+.wpswocuf_upsell_preview_body {
   overflow: hidden;
 }
 
-.wps_upsell_offer_template_previews {
+.wpswocuf_upsell_offer_template_previews {
   display: none;
 }
 
@@ -521,7 +521,7 @@ span.wps_wocuf_pro_span label::after {
 
 /*since v2.0.0 - Offer template not supported - End*/
 
-.wps_upsell_offer_template_unsupported h4 {
+.wpswocuf_upsell_offer_template_unsupported h4 {
   font-weight: 400;
   font-size: 17px;
 }
@@ -530,23 +530,23 @@ span.wps_wocuf_pro_span label::after {
 
 /*since v2.0.0 - Funnel list - Start*/
 
-.wps_upsell_funnel_list_name {
+.wpswocuf_upsell_funnel_list_name {
   font-size: 16px !important;
   font-weight: 200px !important;
 }
 
-.wps_wocuf_pro_funnels_list p {
+.wpswocuf_pro_funnels_list p {
 
   color: #444 !important  ;
 }
 
-.wps_upsell_funnel_list_targets {
+.wpswocuf_upsell_funnel_list_targets {
   background-color: #eaeaea;
   border-radius: 10px 10px;
 }
 
-.wps_upsell_funnel_list_live,
-.wps_upsell_funnel_list_sandbox {
+.wpswocuf_upsell_funnel_list_live,
+.wpswocuf_upsell_funnel_list_sandbox {
   height: 25px;
   width: 25px;
   border-radius: 50%;
@@ -555,32 +555,32 @@ span.wps_wocuf_pro_span label::after {
   top: 6px;
 }
 
-.wps_upsell_funnel_list_live {
+.wpswocuf_upsell_funnel_list_live {
   background-color: #6dbe45;
 }
 
-.wps_upsell_funnel_list_sandbox {
+.wpswocuf_upsell_funnel_list_sandbox {
   background-color: #fc7626;
 }
 
-.wps_upsell_funnel_list_live_name,
-.wps_upsell_funnel_list_sandbox_name {
+.wpswocuf_upsell_funnel_list_live_name,
+.wpswocuf_upsell_funnel_list_sandbox_name {
   padding-left: 10px;
   line-height: 35px;
   display: inline-block;
 }
 
-.wps_upsell_funnel_list_live_name {
+.wpswocuf_upsell_funnel_list_live_name {
   color: #6dbe45;
   font-weight: 500 !important;
 }
 
-.wps_upsell_funnel_list_sandbox_name {
+.wpswocuf_upsell_funnel_list_sandbox_name {
   color: #fc7626;
   font-weight: 500 !important;
 }
 
-#wps_upsell_funnel_list_target_th {
+#wpswocuf_upsell_funnel_list_target_th {
   width: 25%;
 }
 
@@ -600,16 +600,16 @@ span.wps_wocuf_pro_span label::after {
 
 /*since v2.0.0 - Buton focus- Start*/
 
-.wps_wocuf_pro_create_new_offer:focus, .wps_wocuf_pro_create_new_funnel a:focus {
+.wpswocuf_pro_create_new_offer:focus, .wpswocuf_pro_create_new_funnel a:focus {
  border: 0;
  box-shadow: 0px 0px;
  outline: solid 1px #ccc;
 }
 
-.wps_wocuf_pro_create_new_offer:focus {
+.wpswocuf_pro_create_new_offer:focus {
   outline: solid 1px #ccc;
 }
-#wps_wocuf_pro_setting_wrapper tr td .wps_wocuf_pro_funnel_links:focus {
+#wpswocuf_pro_setting_wrapper tr td .wpswocuf_pro_funnel_links:focus {
   outline: none;
   box-shadow: 0px 0px;
   color: #fff;
@@ -619,30 +619,30 @@ span.wps_wocuf_pro_span label::after {
 
 /*since v2.0.0 - Elementor notice - Start*/
 
-#wps_upsell_elementor_notice p {
+#wpswocuf_upsell_elementor_notice p {
   font-size: 15px;
   font-weight: 300;
 }
 
-#wps_upsell_elementor_notice .submit {
+#wpswocuf_upsell_elementor_notice .submit {
   font-weight: inherit;
 }
 
-#wps_upsell_elementor_notice .wps_upsell_heading_span {
+#wpswocuf_upsell_elementor_notice .wpswocuf_upsell_heading_span {
   color: #6d6666;
   font-weight: 600 !important;
 }
 
-#wps_upsell_dismiss_elementor_inactive_notice {
+#wpswocuf_upsell_dismiss_elementor_inactive_notice {
   margin-top: 10px;
 }
 
-#wps_upsell_elementor_notice {
+#wpswocuf_upsell_elementor_notice {
   border-left-color: #2196f3;
   margin-top: 15px;
 }
 
-#wps_upsell_activate_elementor {
+#wpswocuf_upsell_activate_elementor {
   background-color: #2196f3;
   color: #fff;
   font-size: 14px;
@@ -653,7 +653,7 @@ span.wps_wocuf_pro_span label::after {
   height: auto; 
 }
 
-#wps_upsell_dismiss_elementor_inactive_notice {
+#wpswocuf_upsell_dismiss_elementor_inactive_notice {
   border: 1px solid #e0e0e0;
   box-shadow: 0px 0px;
   height: auto;
@@ -663,7 +663,7 @@ span.wps_wocuf_pro_span label::after {
 
 /*since v2.0.0 - Overview - Start*/
 
-#wps_upsell_lite_overview #wps_upsell_lite_overview_video h2 {
+#wpswocuf_upsell_lite_overview #wpswocuf_upsell_lite_overview_video h2 {
   text-align: center;
   font-size: 30px;
   color: #76807e;
@@ -671,43 +671,43 @@ span.wps_wocuf_pro_span label::after {
   margin-top: 30px;
 }
 
-#wps_upsell_lite_overview #wps_upsell_lite_overview_pro_version h2 {
+#wpswocuf_upsell_lite_overview #wpswocuf_upsell_lite_overview_pro_version h2 {
   text-align: center;
   font-size: 30px;
   color: #76807e;
   line-height: 1em;
 }
 
-.wps_upsell_overview_product_icon.simple, 
-.wps_upsell_overview_product_icon.variable {
+.wpswocuf_upsell_overview_product_icon.simple, 
+.wpswocuf_upsell_overview_product_icon.variable {
   float: left;
   width: 50%;
   text-align: center;
   padding: 0px 15px;
   box-sizing: border-box;
 }
-.wps_upsell_overview_product_icon.subscription {
+.wpswocuf_upsell_overview_product_icon.subscription {
   max-width: 50%;
   margin: 30px auto;
   text-align: center;
   clear: both;
 }
-.wps_upsell_overview_product_icon img {
+.wpswocuf_upsell_overview_product_icon img {
   opacity: 0.9;
 }
 
-.wps_upsell_overview_product_icon img{
+.wpswocuf_upsell_overview_product_icon img{
   max-width: 100%;
 }
-#wps_upsell_lite_overview .wps_upsell_overview_supported_product:after {
+#wpswocuf_upsell_lite_overview .wpswocuf_upsell_overview_supported_product:after {
   display: block;
   clear: both;
   content: '';
 }
-#wps_upsell_lite_overview #wps_upsell_lite_overview_pro_version .wps_upsell_overview_supported_payment_gateways img {
+#wpswocuf_upsell_lite_overview #wpswocuf_upsell_lite_overview_pro_version .wpswocuf_upsell_overview_supported_payment_gateways img {
   width: 100%;
 }
-#wps_upsell_lite_overview #wps_upsell_lite_overview_pro_version .wps_upsell_overview_go_pro a.button {
+#wpswocuf_upsell_lite_overview #wpswocuf_upsell_lite_overview_pro_version .wpswocuf_upsell_overview_go_pro a.button {
   background-color: #78c900;
   color: #fff;
   border: 0;
@@ -717,18 +717,18 @@ span.wps_wocuf_pro_span label::after {
   display: inline-block;
 }
 
-#wps_upsell_lite_overview #wps_upsell_lite_overview_pro_version .wps_upsell_overview_go_pro a.button:hover {
+#wpswocuf_upsell_lite_overview #wpswocuf_upsell_lite_overview_pro_version .wpswocuf_upsell_overview_go_pro a.button:hover {
   background-color: #80d600;
 }
 
-#wps_upsell_lite_overview #wps_upsell_lite_overview_pro_version .wps_upsell_overview_go_pro a.button:focus {
+#wpswocuf_upsell_lite_overview #wpswocuf_upsell_lite_overview_pro_version .wpswocuf_upsell_overview_go_pro a.button:focus {
   box-shadow: 0 0 3px #ccc;
 }
 
-#wps_upsell_lite_overview #wps_upsell_lite_overview_pro_version .wps_upsell_overview_go_pro {
+#wpswocuf_upsell_lite_overview #wpswocuf_upsell_lite_overview_pro_version .wpswocuf_upsell_overview_go_pro {
   text-align: center;
 }
-#wps_upsell_lite_overview #wps_upsell_lite_overview_pro_version h3 {
+#wpswocuf_upsell_lite_overview #wpswocuf_upsell_lite_overview_pro_version h3 {
   background-color: #f1f1f1;
   padding: 10px 10px;
   font-size: 18px;
@@ -737,23 +737,23 @@ span.wps_wocuf_pro_span label::after {
   line-height: 29px;
 }
 
-#wps_upsell_lite_overview #wps_upsell_lite_overview_pro_version h4 {
+#wpswocuf_upsell_lite_overview #wpswocuf_upsell_lite_overview_pro_version h4 {
   font-size: 15px;
 }
 
 @media only screen and (max-width: 480px) {
-  .wps_upsell_overview_product_icon {
+  .wpswocuf_upsell_overview_product_icon {
     width: 100%;
   }
-  .wps_upsell_overview_product_icon img{
+  .wpswocuf_upsell_overview_product_icon img{
     width: 50%;
   }
-  #wps_upsell_lite_overview #wps_upsell_lite_overview_pro_version .wps_upsell_overview_go_pro a.button {
+  #wpswocuf_upsell_lite_overview #wpswocuf_upsell_lite_overview_pro_version .wpswocuf_upsell_overview_go_pro a.button {
     padding: 20px 0px;
     font-size: 20px;
     width: 100%;
   }
-  #wps_upsell_lite_overview #wps_upsell_lite_overview_pro_version h2 {
+  #wpswocuf_upsell_lite_overview #wpswocuf_upsell_lite_overview_pro_version h2 {
     font-size: 20px;
   }
 }
@@ -762,22 +762,22 @@ span.wps_wocuf_pro_span label::after {
 
 /*since v3.0.0 - Upsell Funnel Reporting - Start*/
 
-.wps_uspell_reporting_funnel_stats_hr {
+.wpswocuf_uspell_reporting_funnel_stats_hr {
     margin-top: 30px;
     margin-bottom: 30px;
 }
 
-.wps_upsell_stats_conversion_rate {
+.wpswocuf_upsell_stats_conversion_rate {
   background-color: #b4db65;
   border-radius: 10px 10px;
 }
 
-.wps_upsell_stats_total_sales {
+.wpswocuf_upsell_stats_total_sales {
   background-color: #8eba36;
   border-radius: 10px 10px;
 }
 
-.wps_upsell_stats_conversion_rate p, .wps_upsell_stats_total_sales p {
+.wpswocuf_upsell_stats_conversion_rate p, .wpswocuf_upsell_stats_total_sales p {
   color: #ffffff !important;
 }
 
@@ -785,7 +785,7 @@ span.wps_wocuf_pro_span label::after {
 
 /*since v2.0.0 - Designer CSS - Start*/
 
-#wps_wocuf_pro_setting_wrapper .wps_wocuf_pro_setting_title {
+#wpswocuf_pro_setting_wrapper .wpswocuf_pro_setting_title {
   color: #23282d;
   padding: 6px 20px;
   font-size: 30px;
@@ -794,19 +794,19 @@ span.wps_wocuf_pro_span label::after {
   margin-bottom: 50px;
   padding: 0;
 }
-#wps_wocuf_pro_setting_wrapper .wps_wocuf_pro_setting_title span.wps_wocuf_pro_setting_title_version {
+#wpswocuf_pro_setting_wrapper .wpswocuf_pro_setting_title span.wpswocuf_pro_setting_title_version {
   float: right;
 }
-#wps_wocuf_pro_setting_wrapper p {
+#wpswocuf_pro_setting_wrapper p {
   margin: 0;
 }
-#wps_wocuf_pro_setting_wrapper nav.nav-tab-wrapper.woo-nav-tab-wrapper {
+#wpswocuf_pro_setting_wrapper nav.nav-tab-wrapper.woo-nav-tab-wrapper {
   margin: 0;
   padding: 0px 20px;
   border-bottom: solid 1px #e0e0e0;
 }
 
-#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading h2 {
+#wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table #wpswocuf_upsell_funnel_name_heading h2 {
   margin: 20px 0px;
   margin-left: -15px;
   line-height: normal;
@@ -820,54 +820,54 @@ span.wps_wocuf_pro_span label::after {
 }
 
 
-#wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr th, #wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr td {
+#wpswocuf_pro_setting_wrapper table.form-table.wpswocuf_pro_creation_setting tr th, #wpswocuf_pro_setting_wrapper table.form-table.wpswocuf_pro_creation_setting tr td {
   padding: 15px 10px 10px 35px !important;
   vertical-align: middle;
   position: relative;
 }
-#wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr td .select2.select2-container.select2-container--default .select2-selection.select2-selection--single,
-#wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr td input[type="text"] {
+#wpswocuf_pro_setting_wrapper table.form-table.wpswocuf_pro_creation_setting tr td .select2.select2-container.select2-container--default .select2-selection.select2-selection--single,
+#wpswocuf_pro_setting_wrapper table.form-table.wpswocuf_pro_creation_setting tr td input[type="text"] {
   height: 40px;
 }
-#wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr td .wps_upsell_attribute_description {
+#wpswocuf_pro_setting_wrapper table.form-table.wpswocuf_pro_creation_setting tr td .wpswocuf_upsell_attribute_description {
   position: relative;
 }
-#wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr td .wps_upsell_attribute_description span.woocommerce-help-tip {
+#wpswocuf_pro_setting_wrapper table.form-table.wpswocuf_pro_creation_setting tr td .wpswocuf_upsell_attribute_description span.woocommerce-help-tip {
   left: -25px;
 }
-#wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr td .wps_upsell_global_description {
+#wpswocuf_pro_setting_wrapper table.form-table.wpswocuf_pro_creation_setting tr td .wpswocuf_upsell_global_description {
   font-size: 13px;
   font-style: italic;
   display: block;
 }
-#wps_wocuf_pro_setting_wrapper table.form-table.wps_upsell_slide_down_table tr td .wps_upsell_global_description {
+#wpswocuf_pro_setting_wrapper table.form-table.wpswocuf_upsell_slide_down_table tr td .wpswocuf_upsell_global_description {
   font-size: 13.6px;
 }
-#wps_wocuf_pro_setting_wrapper table.form-table.wps_upsell_slide_down_table .wps_upsell_other_plugin_author_name {
+#wpswocuf_pro_setting_wrapper table.form-table.wpswocuf_upsell_slide_down_table .wpswocuf_upsell_other_plugin_author_name {
   font-size: 14px;
   font-style: italic;
   font-weight: 500;
 }
-#wps_wocuf_pro_setting_wrapper table.form-table.wps_upsell_slide_down_table .wps_upsell_global_description b {
+#wpswocuf_pro_setting_wrapper table.form-table.wpswocuf_upsell_slide_down_table .wpswocuf_upsell_global_description b {
   font-weight: 500;
 }
-.new_created_offers.wps_upsell_single_offer .wps_upsell_offer_templates_parent {
+.new_created_offers.wpswocuf_upsell_single_offer .wpswocuf_upsell_offer_templates_parent {
   display: flex;
   flex-wrap: wrap;
 }
-#wps_wocuf_pro_setting_wrapper .nav-tab:focus {
+#wpswocuf_pro_setting_wrapper .nav-tab:focus {
   box-shadow: 0px 0px;
   color: #fff;
 }
-#wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr td #wps_upsell_funnel_name {
+#wpswocuf_pro_setting_wrapper table.form-table.wpswocuf_pro_creation_setting tr td #wpswocuf_upsell_funnel_name {
   height: 40px !important;
   width: 100%;
   max-width: 400px;
 }
-.wps_upsell_slide_down_title h2 {
+.wpswocuf_upsell_slide_down_title h2 {
   font-size: 14px;
 }
-.wps_wocuf_pro_header {
+.wpswocuf_pro_header {
   display: -webkit-flex;
   display: -moz-flex;
   display: -ms-flex;
@@ -878,7 +878,7 @@ span.wps_wocuf_pro_span label::after {
   margin-bottom: 20px;
   flex-wrap: wrap;
 }
-#wps_wocuf_pro_setting_wrapper .wps_wocuf_pro_setting_title {
+#wpswocuf_pro_setting_wrapper .wpswocuf_pro_setting_title {
   font-size: 25px;
   font-weight: 200;
   line-height: 25px;
@@ -886,14 +886,14 @@ span.wps_wocuf_pro_span label::after {
   margin: 0;
   width: 65%;
 }
-#wps_upsell_skype_connect_with_us {
+#wpswocuf_upsell_skype_connect_with_us {
   text-align: center;
   width: 30%;
   border: 1px solid #dddddd;
   border-radius: 4px;
   margin-left: 1%;
 }
-#wps_upsell_skype_connect_with_us .button {
+#wpswocuf_upsell_skype_connect_with_us .button {
   height: auto;
   background-color: #ffffff;
   border: 1px solid #dddddd;
@@ -902,28 +902,28 @@ span.wps_wocuf_pro_span label::after {
   font-size: 13px;
   transition: 0.2s linear all;
 }
-#wps_upsell_skype_connect_with_us .button:hover,
-#wps_upsell_skype_connect_with_us .button:focus{
+#wpswocuf_upsell_skype_connect_with_us .button:hover,
+#wpswocuf_upsell_skype_connect_with_us .button:focus{
  color: #00aaf2;
  transition: 0.2s linear all;
 }
-#wps_upsell_skype_connect_with_us .button img {
+#wpswocuf_upsell_skype_connect_with_us .button img {
   width: 21px;
   vertical-align: middle;
   margin-right: 5px;
 }
-#wps_upsell_skype_connect_with_us p {
+#wpswocuf_upsell_skype_connect_with_us p {
   text-align: center;
   font-size: 13px;
   color: #474343;
 }
-#wps_upsell_skype_connect_with_us .wps_upsell_skype_connect_title {
+#wpswocuf_upsell_skype_connect_with_us .wpswocuf_upsell_skype_connect_title {
   font-weight: normal;
   font-size: 14px;
   color: #474343;
   margin: 1em 0;
 }
-#wps_wocuf_pro_setting_wrapper .wps_upsell_table .wps_wocuf_pro_offers h1 {
+#wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table .wpswocuf_pro_offers h1 {
   background-color: #f1f1f1;
   padding: 10px 10px;
   font-size: 20px;
@@ -931,13 +931,13 @@ span.wps_wocuf_pro_span label::after {
   text-align: left;
   border-radius: 10px 0px;
 }
-#wps_wocuf_pro_setting_wrapper .wps_upsell_table p.submit #wps_wocuf_pro_creation_setting_save {
+#wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table p.submit #wpswocuf_pro_creation_setting_save {
   background-color: #2196f3;
   padding: 7px 23px;
   height: auto;
   font-size: 14px;
 }
-    #wps_wocuf_pro_setting_wrapper .wps_upsell_table .new_offers .wps_upsell_offer_title {
+    #wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table .new_offers .wpswocuf_upsell_offer_title {
       display: inline-block;
       border-radius: 10px 0px;
       margin: 0;
@@ -946,12 +946,12 @@ span.wps_wocuf_pro_span label::after {
       background-color: #2196f3;
       color: #fff;
     }
-    #wps_wocuf_pro_setting_wrapper .wps_upsell_table .new_offers tr th label h4 {
+    #wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table .new_offers tr th label h4 {
       padding: 0px !important;
       margin: 0;
       font-size: 14px;
     }
-    .wps_upsell_offer_templates_parent .wps_upsell_offer_template {
+    .wpswocuf_upsell_offer_templates_parent .wpswocuf_upsell_offer_template {
      float: left;
      width: 33.333%;
      padding: 0px 10px;
@@ -959,12 +959,12 @@ span.wps_wocuf_pro_span label::after {
      margin-bottom: 15px;
    }
 
-   .wps_upsell_offer_templates_parent .wps_upsell_offer_template .wps_upsell_offer_template_sub_div {
+   .wpswocuf_upsell_offer_templates_parent .wpswocuf_upsell_offer_template .wpswocuf_upsell_offer_template_sub_div {
     position: relative;
     padding: 5px;
   }
 
-  .wps_upsell_offer_templates_parent .wps_upsell_offer_template h5 {
+  .wpswocuf_upsell_offer_templates_parent .wpswocuf_upsell_offer_template h5 {
    text-align: center;
    background-color: #f1f1f1;
    padding: 12px 0px;
@@ -972,7 +972,7 @@ span.wps_wocuf_pro_span label::after {
    margin-bottom: 10px;
  }
 
- .new_created_offers.wps_upsell_single_offer button.button.wps_wocuf_pro_delete_old_created_offers {
+ .new_created_offers.wpswocuf_upsell_single_offer button.button.wpswocuf_pro_delete_old_created_offers {
   color: #ffffff;
   background-color: #f91d1d;
   border: 0px;
@@ -980,7 +980,7 @@ span.wps_wocuf_pro_span label::after {
   height: auto;
 }
 
-.new_created_offers.wps_upsell_single_offer button.button.wps_wocuf_pro_delete_new_created_offers {
+.new_created_offers.wpswocuf_upsell_single_offer button.button.wpswocuf_pro_delete_new_created_offers {
   color: #ffffff;
   background-color: #f91d1d;
   border: 0px;
@@ -988,26 +988,26 @@ span.wps_wocuf_pro_span label::after {
   height: auto;
 }
 
-.wps_upsell_offer_templates_parent .wps_upsell_offer_template .wps_upsell_offer_preview img {
+.wpswocuf_upsell_offer_templates_parent .wpswocuf_upsell_offer_template .wpswocuf_upsell_offer_preview img {
   width: 100%;
 
 }
-.wps_upsell_offer_templates_parent .wps_upsell_offer_template .wps_upsell_offer_preview{
+.wpswocuf_upsell_offer_templates_parent .wpswocuf_upsell_offer_template .wpswocuf_upsell_offer_preview{
   margin-bottom: 20px;
 }
-.wps_upsell_offer_templates_parent .wps_upsell_offer_template .wps_upsell_offer_preview a {
+.wpswocuf_upsell_offer_templates_parent .wpswocuf_upsell_offer_template .wpswocuf_upsell_offer_preview a {
   display: block;
   position: relative;
   border: 1px solid #e0e0e0
 }
-.wps_upsell_offer_templates_parent .wps_upsell_offer_template.active .wps_upsell_view_offer_template {
+.wpswocuf_upsell_offer_templates_parent .wpswocuf_upsell_offer_template.active .wpswocuf_upsell_view_offer_template {
   border: solid 2px #2196f3;
 }
-.wps_upsell_offer_templates_parent .wps_upsell_offer_template.active h5 {
+.wpswocuf_upsell_offer_templates_parent .wpswocuf_upsell_offer_template.active h5 {
   background-color: #2196f3;
   color: #fff;
 }
-.wps_upsell_offer_templates_parent .wps_upsell_offer_template .wps_upsell_offer_preview a:hover:after {
+.wpswocuf_upsell_offer_templates_parent .wpswocuf_upsell_offer_template .wpswocuf_upsell_offer_preview a:hover:after {
   background-color: rgba(0, 0, 0, 0.63);
   width: 100%;
   top: 0px;
@@ -1016,90 +1016,90 @@ span.wps_wocuf_pro_span label::after {
   position: absolute;
   left: 0;
 }
-.new_created_offers.wps_upsell_single_offer .wps_upsell_offer_description {
+.new_created_offers.wpswocuf_upsell_single_offer .wpswocuf_upsell_offer_description {
   font-size: 13px !important;
   font-style: italic;
 }
-.wps_upsell_offer_template.wps_upsell_custom_page_link_div.active h6 {
+.wpswocuf_upsell_offer_template.wpswocuf_upsell_custom_page_link_div.active h6 {
   text-align: center;
   font-size: 16px;
   margin: 20px 0px;
 }
-#wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr th label {
+#wpswocuf_pro_setting_wrapper table.form-table.wpswocuf_pro_creation_setting tr th label {
   font-size: 15px;
 }
-.wps_upsell_offer_template.wps_upsell_custom_page_link_div.active {
+.wpswocuf_upsell_offer_template.wpswocuf_upsell_custom_page_link_div.active {
   border: solid 2px #2196f3;
 }
-.wps_upsell_offer_template.wps_upsell_custom_page_link_div p {
+.wpswocuf_upsell_offer_template.wpswocuf_upsell_custom_page_link_div p {
   text-align: center !important;
   font-size: 14px !important;
 }
-.new_created_offers.wps_upsell_single_offer table {
+.new_created_offers.wpswocuf_upsell_single_offer table {
   border: solid 2px #2196f3;
   margin-bottom: 30px !important;
   border-collapse: collapse;
 }
-#wps_wocuf_pro_setting_wrapper .wps_upsell_table .new_offers tr td select, #wps_wocuf_pro_setting_wrapper .wps_upsell_table .new_offers tr td input {
+#wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table .new_offers tr td select, #wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table .new_offers tr td input {
   width: 100%;
   height: 40px;
 }
-#wps_wocuf_pro_setting_wrapper .wps_upsell_table .new_offers tr td .select2-container.select2-container--default.select2-container--focus {
+#wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table .new_offers tr td .select2-container.select2-container--default.select2-container--focus {
   width: 100% !important;
 }
-.new_created_offers.wps_upsell_single_offer .wps_upsell_offer_templates_parent:after {
+.new_created_offers.wpswocuf_upsell_single_offer .wpswocuf_upsell_offer_templates_parent:after {
   content: '';
   display: block;
   clear: both;
 }
-#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading div#wps_upsell_funnel_status {
+#wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table #wpswocuf_upsell_funnel_name_heading div#wpswocuf_upsell_funnel_status {
   float: right;
   padding: 40px 10px;
   width: 200px;
 }
-#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading div#wps_upsell_funnel_status span {
+#wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table #wpswocuf_upsell_funnel_name_heading div#wpswocuf_upsell_funnel_status span {
   padding: 7px 10px;
 }
-#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading div#wps_upsell_funnel_status label{
+#wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table #wpswocuf_upsell_funnel_name_heading div#wpswocuf_upsell_funnel_status label{
   position: relative;
   display: inline-block;
   width: 60px;
   height: 34px;
   top: -3px;
 }
-#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading 
-div#wps_upsell_funnel_status input{
+#wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table #wpswocuf_upsell_funnel_name_heading 
+div#wpswocuf_upsell_funnel_status input{
   opacity: 0;
   width: 0;
   height: 0;
 }
-#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading 
-div#wps_upsell_funnel_status input:checked + .wps_upsell_funnel_span {
+#wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table #wpswocuf_upsell_funnel_name_heading 
+div#wpswocuf_upsell_funnel_status input:checked + .wpswocuf_upsell_funnel_span {
   background-color: #6dbe45;
 }
 
-#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading 
-div#wps_upsell_funnel_status input:focus + .wps_upsell_funnel_span {
+#wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table #wpswocuf_upsell_funnel_name_heading 
+div#wpswocuf_upsell_funnel_status input:focus + .wpswocuf_upsell_funnel_span {
   box-shadow: 0 0 1px #2196f3;
 }
 
-#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading 
-div#wps_upsell_funnel_status input:checked + .wps_upsell_funnel_span:before {
+#wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table #wpswocuf_upsell_funnel_name_heading 
+div#wpswocuf_upsell_funnel_status input:checked + .wpswocuf_upsell_funnel_span:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
 
-#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading 
-div#wps_upsell_funnel_status .wps_upsell_funnel_span {
+#wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table #wpswocuf_upsell_funnel_name_heading 
+div#wpswocuf_upsell_funnel_status .wpswocuf_upsell_funnel_span {
 
   border-radius: 34px;
 }
-#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading 
-div#wps_upsell_funnel_status .wps_upsell_funnel_span:before {
+#wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table #wpswocuf_upsell_funnel_name_heading 
+div#wpswocuf_upsell_funnel_status .wpswocuf_upsell_funnel_span:before {
   border-radius: 50%;
 }
-#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading div#wps_upsell_funnel_status .wps_upsell_funnel_span{
+#wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table #wpswocuf_upsell_funnel_name_heading div#wpswocuf_upsell_funnel_status .wpswocuf_upsell_funnel_span{
  position: absolute;
  cursor: pointer;
  top: 0;
@@ -1110,7 +1110,7 @@ div#wps_upsell_funnel_status .wps_upsell_funnel_span:before {
  -webkit-transition: .4s;
  transition: .4s;
 }
-#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading div#wps_upsell_funnel_status .wps_upsell_funnel_span:before {
+#wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table #wpswocuf_upsell_funnel_name_heading div#wpswocuf_upsell_funnel_status .wpswocuf_upsell_funnel_span:before {
   position: absolute;
   content: "";
   height: 26px;
@@ -1122,7 +1122,7 @@ div#wps_upsell_funnel_status .wps_upsell_funnel_span:before {
   transition: .4s;
 }
 
-.wps_upsell_offer_templates_parent .wps_upsell_offer_template button, .wps_upsell_offer_templates_parent .wps_upsell_offer_template .wps_upsell_offer_template_sub_div .wps_upsell_offer_action button, .wps_upsell_offer_templates_parent .wps_upsell_offer_template .wps_upsell_offer_template_sub_div .wps_upsell_offer_action .button {
+.wpswocuf_upsell_offer_templates_parent .wpswocuf_upsell_offer_template button, .wpswocuf_upsell_offer_templates_parent .wpswocuf_upsell_offer_template .wpswocuf_upsell_offer_template_sub_div .wpswocuf_upsell_offer_action button, .wpswocuf_upsell_offer_templates_parent .wpswocuf_upsell_offer_template .wpswocuf_upsell_offer_template_sub_div .wpswocuf_upsell_offer_action .button {
   background-color: #f1f1f1;
   border: 1px solid #e0e0e0;
   box-shadow: 0px 0px;
@@ -1132,19 +1132,19 @@ div#wps_upsell_funnel_status .wps_upsell_funnel_span:before {
   height: auto;
 
 }
-.wps_upsell_offer_templates_parent .wps_upsell_offer_template.active .button {
+.wpswocuf_upsell_offer_templates_parent .wpswocuf_upsell_offer_template.active .button {
   background-color: #2196f3 !important;
   color: #fff !important;
 }
 
-.wps_upsell_offer_template_preview_eight.active,
-.wps_upsell_offer_template_preview_seven.active ,
-.wps_upsell_offer_template_preview_six.active ,
-.wps_upsell_offer_template_preview_five.active ,
-.wps_upsell_offer_template_preview_four.active,
-.wps_upsell_offer_template_preview_three.active,
-.wps_upsell_offer_template_preview_two.active,
-.wps_upsell_offer_template_preview_one.active {
+.wpswocuf_upsell_offer_template_preview_eight.active,
+.wpswocuf_upsell_offer_template_preview_seven.active ,
+.wpswocuf_upsell_offer_template_preview_six.active ,
+.wpswocuf_upsell_offer_template_preview_five.active ,
+.wpswocuf_upsell_offer_template_preview_four.active,
+.wpswocuf_upsell_offer_template_preview_three.active,
+.wpswocuf_upsell_offer_template_preview_two.active,
+.wpswocuf_upsell_offer_template_preview_one.active {
   display: block;
   position: fixed;
   top: 0px;
@@ -1157,31 +1157,31 @@ div#wps_upsell_funnel_status .wps_upsell_funnel_span:before {
 }
 
 
-.wps_upsell_offer_template_preview_eight.active .wps_upsell_offer_template_preview_eight_sub_div ,
-.wps_upsell_offer_template_preview_seven.active .wps_upsell_offer_template_preview_seven_sub_div ,
-.wps_upsell_offer_template_preview_six.active .wps_upsell_offer_template_preview_six_sub_div ,
-.wps_upsell_offer_template_preview_five.active .wps_upsell_offer_template_preview_five_sub_div ,
-.wps_upsell_offer_template_preview_four.active .wps_upsell_offer_template_preview_four_sub_div,
-.wps_upsell_offer_template_preview_three.active .wps_upsell_offer_template_preview_three_sub_div,
-.wps_upsell_offer_template_preview_two.active .wps_upsell_offer_template_preview_two_sub_div,
-.wps_upsell_offer_template_preview_one.active .wps_upsell_offer_template_preview_one_sub_div {
+.wpswocuf_upsell_offer_template_preview_eight.active .wpswocuf_upsell_offer_template_preview_eight_sub_div ,
+.wpswocuf_upsell_offer_template_preview_seven.active .wpswocuf_upsell_offer_template_preview_seven_sub_div ,
+.wpswocuf_upsell_offer_template_preview_six.active .wpswocuf_upsell_offer_template_preview_six_sub_div ,
+.wpswocuf_upsell_offer_template_preview_five.active .wpswocuf_upsell_offer_template_preview_five_sub_div ,
+.wpswocuf_upsell_offer_template_preview_four.active .wpswocuf_upsell_offer_template_preview_four_sub_div,
+.wpswocuf_upsell_offer_template_preview_three.active .wpswocuf_upsell_offer_template_preview_three_sub_div,
+.wpswocuf_upsell_offer_template_preview_two.active .wpswocuf_upsell_offer_template_preview_two_sub_div,
+.wpswocuf_upsell_offer_template_preview_one.active .wpswocuf_upsell_offer_template_preview_one_sub_div {
   width: 100%;
   max-width: 1020px;
   margin: 90px auto;
 }
 
-.wps_upsell_offer_template_preview_eight.active .wps_upsell_offer_template_preview_eight_sub_div img,
-.wps_upsell_offer_template_preview_seven.active .wps_upsell_offer_template_preview_seven_sub_div img,
-.wps_upsell_offer_template_preview_six.active .wps_upsell_offer_template_preview_six_sub_div img,
-.wps_upsell_offer_template_preview_five.active .wps_upsell_offer_template_preview_five_sub_div img,
-.wps_upsell_offer_template_preview_four.active .wps_upsell_offer_template_preview_four_sub_div img,
-.wps_upsell_offer_template_preview_three.active .wps_upsell_offer_template_preview_three_sub_div img,
-.wps_upsell_offer_template_preview_two.active .wps_upsell_offer_template_preview_two_sub_div img,
-.wps_upsell_offer_template_preview_one.active .wps_upsell_offer_template_preview_one_sub_div img {
+.wpswocuf_upsell_offer_template_preview_eight.active .wpswocuf_upsell_offer_template_preview_eight_sub_div img,
+.wpswocuf_upsell_offer_template_preview_seven.active .wpswocuf_upsell_offer_template_preview_seven_sub_div img,
+.wpswocuf_upsell_offer_template_preview_six.active .wpswocuf_upsell_offer_template_preview_six_sub_div img,
+.wpswocuf_upsell_offer_template_preview_five.active .wpswocuf_upsell_offer_template_preview_five_sub_div img,
+.wpswocuf_upsell_offer_template_preview_four.active .wpswocuf_upsell_offer_template_preview_four_sub_div img,
+.wpswocuf_upsell_offer_template_preview_three.active .wpswocuf_upsell_offer_template_preview_three_sub_div img,
+.wpswocuf_upsell_offer_template_preview_two.active .wpswocuf_upsell_offer_template_preview_two_sub_div img,
+.wpswocuf_upsell_offer_template_preview_one.active .wpswocuf_upsell_offer_template_preview_one_sub_div img {
   width: 100%;
 }
 
-.wps_upsell_offer_template_previews .wps_upsell_offer_preview_close {
+.wpswocuf_upsell_offer_template_previews .wpswocuf_upsell_offer_preview_close {
   z-index: 9999999;
   pointer-events: auto;
   transform: scale(1);
@@ -1196,13 +1196,13 @@ div#wps_upsell_funnel_status .wps_upsell_funnel_span:before {
   border: solid 1px #fff !important;
   border-radius: 50%;
 }
-.wps_upsell_offer_template_previews .wps_upsell_offer_preview_close .wps_upsell_offer_preview_close_span:before {
+.wpswocuf_upsell_offer_template_previews .wpswocuf_upsell_offer_preview_close .wpswocuf_upsell_offer_preview_close_span:before {
   transform: rotate(45deg);
 }
-.wps_upsell_offer_template_previews .wps_upsell_offer_preview_close .wps_upsell_offer_preview_close_span:after {
+.wpswocuf_upsell_offer_template_previews .wpswocuf_upsell_offer_preview_close .wpswocuf_upsell_offer_preview_close_span:after {
   transform: rotate(-45deg);
 }
-.wps_upsell_offer_template_previews .wps_upsell_offer_preview_close .wps_upsell_offer_preview_close_span:before, .wps_upsell_offer_template_previews .wps_upsell_offer_preview_close .wps_upsell_offer_preview_close_span:after {
+.wpswocuf_upsell_offer_template_previews .wpswocuf_upsell_offer_preview_close .wpswocuf_upsell_offer_preview_close_span:before, .wpswocuf_upsell_offer_template_previews .wpswocuf_upsell_offer_preview_close .wpswocuf_upsell_offer_preview_close_span:after {
   background: #ffffff;
   content: "";
   margin: auto;
@@ -1219,16 +1219,16 @@ div#wps_upsell_funnel_status .wps_upsell_funnel_span:before {
   transition: transform 250ms cubic-bezier(0.785,0.135,0.15,0.86);
   will-change: transform;
 }
-#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading div#wps_upsell_funnel_status span.wps_upsell_funnel_status_on {
+#wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table #wpswocuf_upsell_funnel_name_heading div#wpswocuf_upsell_funnel_status span.wpswocuf_upsell_funnel_status_on {
   color: #6dbe45;
 }
-#wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading div#wps_upsell_funnel_status span.wps_upsell_funnel_status_off {
+#wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table #wpswocuf_upsell_funnel_name_heading div#wpswocuf_upsell_funnel_status span.wpswocuf_upsell_funnel_status_off {
   color: #fc7626;
 }
-#wps_upsell_funnel_status span {
+#wpswocuf_upsell_funnel_status span {
   font-weight: 500;
 }
-.wps_upsell_offer_templates_parent .wps_upsell_offer_template .wps_upsell_offer_preview a:hover:before {
+.wpswocuf_upsell_offer_templates_parent .wpswocuf_upsell_offer_template .wpswocuf_upsell_offer_preview a:hover:before {
   width: 100%;
   top: 50%;
   content: 'Preview';
@@ -1239,50 +1239,50 @@ div#wps_upsell_funnel_status .wps_upsell_funnel_span:before {
   right: 0px;
   text-align: center;
 }
-.wps_wocuf_pro_funnels_list table td a:hover {
+.wpswocuf_pro_funnels_list table td a:hover {
   background-color: transparent;
 }
-.wps_wocuf_pro_funnels_list tr th {
+.wpswocuf_pro_funnels_list tr th {
   background-color: #f1f1f1;
   color: #23282d;
 }
-table.form-table.wps_wocuf_pro_creation_setting {
+table.form-table.wpswocuf_pro_creation_setting {
   margin-top: 30px !important;
   margin-bottom: 15px !important;
   border: solid 2px #ccc;
 }
-div#wps_wocuf_pro_setting_wrapper .submit #wps_wocuf_pro_creation_setting_save {
+div#wpswocuf_pro_setting_wrapper .submit #wpswocuf_pro_creation_setting_save {
   background-color: #2196f3;
   padding: 7px 23px;
   height: auto;
   font-size: 14px;
 }
-table.form-table.wps_wocuf_pro_shortcodes,
-table.form-table.wps_upsell_slide_down_table {
+table.form-table.wpswocuf_pro_shortcodes,
+table.form-table.wpswocuf_upsell_slide_down_table {
   margin-top: 30px !important;
   border: solid 2px #ccc;
 }
-.wps_upsell_offer_templates_parent .wps_upsell_offer_template button:hover,
-.wps_upsell_offer_templates_parent .wps_upsell_offer_template .wps_upsell_offer_template_sub_div .wps_upsell_offer_action button:hover,
-.wps_upsell_offer_templates_parent .wps_upsell_offer_template .wps_upsell_offer_template_sub_div .wps_upsell_offer_action .button:hover{
+.wpswocuf_upsell_offer_templates_parent .wpswocuf_upsell_offer_template button:hover,
+.wpswocuf_upsell_offer_templates_parent .wpswocuf_upsell_offer_template .wpswocuf_upsell_offer_template_sub_div .wpswocuf_upsell_offer_action button:hover,
+.wpswocuf_upsell_offer_templates_parent .wpswocuf_upsell_offer_template .wpswocuf_upsell_offer_template_sub_div .wpswocuf_upsell_offer_action .button:hover{
   background: #2196f3;
   color: #fff;
   box-shadow: 0px 0px;
   border: 1px solid #e0e0e0;
 }
-table.form-table.wps_wocuf_pro_creation_setting .wps_wocuf_pro_enable_plugin_label {
+table.form-table.wpswocuf_pro_creation_setting .wpswocuf_pro_enable_plugin_label {
   position: relative;
   display: inline-block;
   width: 60px;
   height: 34px;
   top: -3px;
 }
-table.form-table.wps_wocuf_pro_creation_setting .wps_wocuf_pro_enable_plugin_label .wps_wocuf_pro_enable_plugin_input {
+table.form-table.wpswocuf_pro_creation_setting .wpswocuf_pro_enable_plugin_label .wpswocuf_pro_enable_plugin_input {
   opacity: 0;
   width: 0;
   height: 0;
 }
-table.form-table.wps_wocuf_pro_creation_setting .wps_wocuf_pro_enable_plugin_label span.wps_wocuf_pro_enable_plugin_span {
+table.form-table.wpswocuf_pro_creation_setting .wpswocuf_pro_enable_plugin_label span.wpswocuf_pro_enable_plugin_span {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -1294,7 +1294,7 @@ table.form-table.wps_wocuf_pro_creation_setting .wps_wocuf_pro_enable_plugin_lab
   transition: .4s;
   border-radius: 30px;
 }
-table.form-table.wps_wocuf_pro_creation_setting .wps_wocuf_pro_enable_plugin_label span.wps_wocuf_pro_enable_plugin_span:before {
+table.form-table.wpswocuf_pro_creation_setting .wpswocuf_pro_enable_plugin_label span.wpswocuf_pro_enable_plugin_span:before {
   position: absolute;
   content: "";
   height: 26px;
@@ -1306,15 +1306,15 @@ table.form-table.wps_wocuf_pro_creation_setting .wps_wocuf_pro_enable_plugin_lab
   transition: .4s;
   border-radius: 50%;
 }
-table.form-table.wps_wocuf_pro_creation_setting .wps_wocuf_pro_enable_plugin_label .wps_wocuf_pro_enable_plugin_input:checked + .wps_wocuf_pro_enable_plugin_span:before {
+table.form-table.wpswocuf_pro_creation_setting .wpswocuf_pro_enable_plugin_label .wpswocuf_pro_enable_plugin_input:checked + .wpswocuf_pro_enable_plugin_span:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
-table.form-table.wps_wocuf_pro_creation_setting .wps_wocuf_pro_enable_plugin_label .wps_wocuf_pro_enable_plugin_input:checked + .wps_wocuf_pro_enable_plugin_span {
+table.form-table.wpswocuf_pro_creation_setting .wpswocuf_pro_enable_plugin_label .wpswocuf_pro_enable_plugin_input:checked + .wpswocuf_pro_enable_plugin_span {
   background-color: #6dbe45;
 }
-button.button-primary.wps_upsell_activate_offer_template:focus {
+button.button-primary.wpswocuf_upsell_activate_offer_template:focus {
   background-color: #2196f3 !important;
   border: 0;
   box-shadow: 0px 0px;
@@ -1322,34 +1322,34 @@ button.button-primary.wps_upsell_activate_offer_template:focus {
 .wps-wocuf-pro-wrap {
   margin-top: 30px;
 }
-.wps-wocuf-pro-wrap .wps_wocuf_pro_license_text {
+.wps-wocuf-pro-wrap .wpswocuf_pro_license_text {
   border: solid 2px #ccc;
   margin-top: 10px;
   padding: 10px 15px;
 }
-.wps-wocuf-pro-wrap .wps_wocuf_pro_license_text #wps_wocuf_pro_license_form .submit {
+.wps-wocuf-pro-wrap .wpswocuf_pro_license_text #wpswocuf_pro_license_form .submit {
   padding: 0px 5px !important;
 }
-.wps-wocuf-pro-wrap .wps_wocuf_pro_license_text table.wps-wocuf-pro-form-table tr {
+.wps-wocuf-pro-wrap .wpswocuf_pro_license_text table.wps-wocuf-pro-form-table tr {
   padding: 0;
 }
-.wps-wocuf-pro-wrap .wps_wocuf_pro_license_text table.wps-wocuf-pro-form-table {
+.wps-wocuf-pro-wrap .wpswocuf_pro_license_text table.wps-wocuf-pro-form-table {
   width: 100%;
 }
-.wps-wocuf-pro-wrap .wps_wocuf_pro_license_text table.wps-wocuf-pro-form-table tr th {
+.wps-wocuf-pro-wrap .wpswocuf_pro_license_text table.wps-wocuf-pro-form-table tr th {
   width: 12%;
   text-align: left;
 }
-.wps-wocuf-pro-wrap .wps_wocuf_pro_license_text table.wps-wocuf-pro-form-table tr td {
+.wps-wocuf-pro-wrap .wpswocuf_pro_license_text table.wps-wocuf-pro-form-table tr td {
   width: 60%;
   display: block;
 }
-.wps-wocuf-pro-wrap .wps_wocuf_pro_license_text table.wps-wocuf-pro-form-table tr #wps_wocuf_pro_license_key {
+.wps-wocuf-pro-wrap .wpswocuf_pro_license_text table.wps-wocuf-pro-form-table tr #wpswocuf_pro_license_key {
   height: 38px;
   width: 100%;
   max-width: 380px !important;
 } 
-.wps-wocuf-pro-wrap .wps_wocuf_pro_license_text p.submit {
+.wps-wocuf-pro-wrap .wpswocuf_pro_license_text p.submit {
   padding: 20px 10px !important;
 }
 .wps-wocuf-pro-wrap h1 {
@@ -1358,22 +1358,22 @@ button.button-primary.wps_upsell_activate_offer_template:focus {
   padding: 10px 10px;
   border-radius: 10px 0px;
 }
-.wps-wocuf-pro-wrap .wps_wocuf_pro_license_text {
+.wps-wocuf-pro-wrap .wpswocuf_pro_license_text {
   border: solid 2px #ccc;
   margin-top: 10px;
   padding: 10px 15px;
 }
-#wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr td .woocommerce-help-tip {
+#wpswocuf_pro_setting_wrapper table.form-table.wpswocuf_pro_creation_setting tr td .woocommerce-help-tip {
   margin: 0;
   top: 50%;
   position: absolute;
   left: 10px;
   transform: translateY(-50%);
 }
-#wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr td span.select2-selection__rendered {
+#wpswocuf_pro_setting_wrapper table.form-table.wpswocuf_pro_creation_setting tr td span.select2-selection__rendered {
   line-height: 38px;
 }
-#wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr td .select2.select2-container.select2-container--default .select2-selection.select2-selection--single .select2-selection__arrow {
+#wpswocuf_pro_setting_wrapper table.form-table.wpswocuf_pro_creation_setting tr td .select2.select2-container.select2-container--default .select2-selection.select2-selection--single .select2-selection__arrow {
   height: 38px;
 }
 .select2-container--default.select2-container--focus .select2-selection--multiple {
@@ -1381,28 +1381,28 @@ button.button-primary.wps_upsell_activate_offer_template:focus {
   box-shadow: 0 0 2px rgba(30,140,190,.8);
   outline: 0;
 }
-.wps-wocuf-pro-wrap .wps_wocuf_pro_license_text table.wps-wocuf-pro-form-table tr td #wps_wocuf_pro_license_key {
+.wps-wocuf-pro-wrap .wpswocuf_pro_license_text table.wps-wocuf-pro-form-table tr td #wpswocuf_pro_license_key {
   width: calc(100% - 30px) !important;
   float: left;
 }
-.wps-wocuf-pro-wrap .wps_wocuf_pro_license_text table.wps-wocuf-pro-form-table tr td #wps_upsell_license_ajax_loader {
+.wps-wocuf-pro-wrap .wpswocuf_pro_license_text table.wps-wocuf-pro-form-table tr td #wpswocuf_upsell_license_ajax_loader {
   float: left;
   left: 10px;
   top: 10px;
   position: relative;
 }
-.wps_upsell_overview_supported_woo_addons_banner img {
+.wpswocuf_upsell_overview_supported_woo_addons_banner img {
   max-width: 100%;
   width: auto;
 }
-.wps_upsell_overview_go_pro {
+.wpswocuf_upsell_overview_go_pro {
   margin: 40px 0;
 }
 
 /**
  * Notice Cross button fix. 
  */
-#wps_wocuf_pro_setting_wrapper .notice-dismiss {
+#wpswocuf_pro_setting_wrapper .notice-dismiss {
   top: 4px;
 }
 
@@ -1420,7 +1420,7 @@ button.button-primary.wps_upsell_activate_offer_template:focus {
 /**
  * Custom Offer Image.
  */
-.wps_wocuf_saved_custom_image a:focus{
+.wpswocuf_saved_custom_image a:focus{
   box-shadow: unset !important;
 }
 
@@ -1428,15 +1428,15 @@ button.button-primary.wps_upsell_activate_offer_template:focus {
               Version : 3.0.0
  ============================================*/
 
-.wps_upsell_lite_tool_ga {
+.wpswocuf_upsell_lite_tool_ga {
   margin-top: 50px;
   width: 500px;
 }
-.wps_upsell_lite_tool_fb {
+.wpswocuf_upsell_lite_tool_fb {
   width: 439px !important;
   margin-top: 20px;
 }
-.wps_upsell_overview_product_icon a:focus {
+.wpswocuf_upsell_overview_product_icon a:focus {
   color: #ffffff;
   box-shadow: none;
   outline: none;
@@ -1448,73 +1448,73 @@ button.button-primary.wps_upsell_activate_offer_template:focus {
 
 
 @media only screen and (max-width:1024px)  {
-  .wps_wocuf_pro_funnels_list table {
+  .wpswocuf_pro_funnels_list table {
     width: 1024px;
   }
 }
 
 @media only screen and (max-width:867px)  {
-  #wps_wocuf_pro_setting_wrapper .nav-tab {
+  #wpswocuf_pro_setting_wrapper .nav-tab {
     padding: 10px 35px 10px 35px;
   }
-  #wps_wocuf_pro_setting_wrapper .nav-tab {
+  #wpswocuf_pro_setting_wrapper .nav-tab {
     margin-top: 17px;
   }
-  #wps_wocuf_pro_setting_wrapper .nav-tab:nth-child(1){
+  #wpswocuf_pro_setting_wrapper .nav-tab:nth-child(1){
     margin-top: 17px !important;
   }
-  #wps_wocuf_pro_setting_wrapper nav.nav-tab-wrapper.woo-nav-tab-wrapper {
+  #wpswocuf_pro_setting_wrapper nav.nav-tab-wrapper.woo-nav-tab-wrapper {
    display: flex;
    flex-wrap: wrap;
  }
- .wps_upsell_offer_templates_parent .wps_upsell_offer_template {
+ .wpswocuf_upsell_offer_templates_parent .wpswocuf_upsell_offer_template {
   width: 50%;
 }
-.new_created_offers.wps_upsell_single_offer th, .new_created_offers.wps_upsell_single_offer td {
+.new_created_offers.wpswocuf_upsell_single_offer th, .new_created_offers.wpswocuf_upsell_single_offer td {
   display: block;
 }
- #wps_wocuf_pro_setting_wrapper .wps_wocuf_pro_setting_title,
-  #wps_upsell_skype_connect_with_us{
+ #wpswocuf_pro_setting_wrapper .wpswocuf_pro_setting_title,
+  #wpswocuf_upsell_skype_connect_with_us{
     width: 100%;
   }
-  #wps_upsell_skype_connect_with_us{
+  #wpswocuf_upsell_skype_connect_with_us{
     margin-top: 10px;
     margin-right: 0;
   }
 }
 @media only screen and (max-width:767px)  {
-  .wps-wocuf-pro-wrap .wps_wocuf_pro_license_text table.wps-wocuf-pro-form-table tr td{
+  .wps-wocuf-pro-wrap .wpswocuf_pro_license_text table.wps-wocuf-pro-form-table tr td{
     width: 100%;
     display: block;
   }
-  .wps-wocuf-pro-wrap .wps_wocuf_pro_license_text table.wps-wocuf-pro-form-table tr th {
+  .wps-wocuf-pro-wrap .wpswocuf_pro_license_text table.wps-wocuf-pro-form-table tr th {
     width: 100%;
   }
 
-  #wps_upsell_dismiss_elementor_inactive_notice,
-  #wps_upsell_activate_elementor {
+  #wpswocuf_upsell_dismiss_elementor_inactive_notice,
+  #wpswocuf_upsell_activate_elementor {
     font-size: 13px;
     padding: 8px 10px;
   }
   
-  #wps_upsell_lite_overview #wps_upsell_lite_overview_video h2 {
+  #wpswocuf_upsell_lite_overview #wpswocuf_upsell_lite_overview_video h2 {
     font-size: 21px;
   }
 
 }
 @media only screen and (max-width:600px)  {
 
-  .wps_wocuf_pro_funnels_list {
+  .wpswocuf_pro_funnels_list {
     overflow-x: auto;
     width: 100%;
   }
-  table.form-table.wps_wocuf_pro_creation_setting select#wps_wocuf_pro_applied_rule {
+  table.form-table.wpswocuf_pro_creation_setting select#wpswocuf_pro_applied_rule {
     width: 100%;
   }
-  table.form-table.wps_wocuf_pro_creation_setting span.select2.select2-container.select2-container--default.select2-container--focus.select2-container--below {
+  table.form-table.wpswocuf_pro_creation_setting span.select2.select2-container.select2-container--default.select2-container--focus.select2-container--below {
     width: 100% !important;
   }
-  table.form-table.wps_wocuf_pro_creation_sett
+  table.form-table.wpswocuf_pro_creation_sett
   .new_created_offers {
     overflow-x: auto;
     width: 100%;
@@ -1522,7 +1522,7 @@ button.button-primary.wps_upsell_activate_offer_template:focus {
   #wpbody select {
     height: auto;
   }
-  .wps_upsell_table select {
+  .wpswocuf_upsell_table select {
     width: 100%;
   }
 
@@ -1530,101 +1530,101 @@ button.button-primary.wps_upsell_activate_offer_template:focus {
 
 
 @media only screen and (max-width:500px)  {
-  #wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading h2 {
+  #wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table #wpswocuf_upsell_funnel_name_heading h2 {
     width: 100%;
     font-size: 28px;
   }
-  .wps_upsell_offer_templates_parent .wps_upsell_offer_template {
+  .wpswocuf_upsell_offer_templates_parent .wpswocuf_upsell_offer_template {
     width: 100%;
   }
-  #wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_upsell_funnel_name_heading div#wps_upsell_funnel_status {
+  #wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table #wpswocuf_upsell_funnel_name_heading div#wpswocuf_upsell_funnel_status {
     float: left;
     padding: 10px 10px;
     width: 100%;
   }
-  #wps_wocuf_pro_setting_wrapper .wps_upsell_table .select2-container .select2-search__field {
+  #wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table .select2-container .select2-search__field {
     font-size: 11px !important;
     width: 80% !important;
   }
-  #wps_wocuf_pro_setting_wrapper .wps_upsell_table .new_created_offers input {
+  #wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table .new_created_offers input {
     width: 85% !important;
     font-size: 10px !important;
   }
-  #wps_wocuf_pro_setting_wrapper .wps_upsell_table .new_created_offers select {
+  #wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table .new_created_offers select {
     font-size: 11px !important;
     height: 39px !important;
     width: 80% !important;
   }
-  #wps_wocuf_pro_setting_wrapper .wps_upsell_table .new_offers .wps_upsell_offer_title {
+  #wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table .new_offers .wpswocuf_upsell_offer_title {
     padding: 10px 24px;
   }
-  .wps_upsell_table table th label h4{
+  .wpswocuf_upsell_table table th label h4{
     padding:0 !important;
   }
-  #wps_wocuf_pro_setting_wrapper p, #wps_wocuf_pro_setting_wrapper span{
+  #wpswocuf_pro_setting_wrapper p, #wpswocuf_pro_setting_wrapper span{
     font-size: 14px !important; 
   }
 
-  #wps_wocuf_pro_setting_wrapper .wps_upsell_table .select2-selection.select2-selection--multiple {
+  #wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table .select2-selection.select2-selection--multiple {
     width: 65% !important;
   }
-  #wps_wocuf_pro_setting_wrapper .wps_upsell_table select{
+  #wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table select{
     width: 64% !important;
   }
-  #wps_wocuf_pro_setting_wrapper .wps_wocuf_pro_common_class {
+  #wpswocuf_pro_setting_wrapper .wpswocuf_pro_common_class {
     width: 95% !important;
   }
 
-  #wps_wocuf_pro_setting_wrapper .wps_wocuf_pro_common_class {
+  #wpswocuf_pro_setting_wrapper .wpswocuf_pro_common_class {
     font-size: 12px !important;
   }
 
   /*updated*/
-  #wps_wocuf_pro_setting_wrapper .wps_upsell_table #wps_wocuf_pro_funnel_name {
+  #wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table #wpswocuf_pro_funnel_name {
     width: 100% !important;
   }
 
-  #wps_wocuf_pro_setting_wrapper .wps_upsell_table select {
+  #wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table select {
     width: 100% !important;
   }
 
-    .form-table.wps_wocuf_pro_creation_setting .select2.select2-container.select2-container--default {
+    .form-table.wpswocuf_pro_creation_setting .select2.select2-container.select2-container--default {
       min-width: 100% !important;
       width: 100% !important;
     }
 
-    #wps_wocuf_pro_setting_wrapper .wps_upsell_table .select2-selection.select2-selection--multiple {
+    #wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table .select2-selection.select2-selection--multiple {
       width: 100% !important;
     }
 
-    #wps_wocuf_pro_setting_wrapper .wps_upsell_table .select2-container .select2-search__field {
+    #wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table .select2-container .select2-search__field {
       font-size: 15px !important;
       height: 33px;
     }
-    #wps_wocuf_pro_setting_wrapper table.form-table.wps_wocuf_pro_creation_setting tr td input[type="text"]{
+    #wpswocuf_pro_setting_wrapper table.form-table.wpswocuf_pro_creation_setting tr td input[type="text"]{
       width: 100%;
     }
 
-    #wps_upsell_dismiss_elementor_inactive_notice,
-    #wps_upsell_activate_elementor {
+    #wpswocuf_upsell_dismiss_elementor_inactive_notice,
+    #wpswocuf_upsell_activate_elementor {
       font-size: 13px;
       padding: 8px 10px;
     }
-    #wps_wocuf_pro_setting_wrapper .nav-tab{
+    #wpswocuf_pro_setting_wrapper .nav-tab{
       text-align: center;
       width: 100%;
     }
   }
 
   /* Update 3.2.1 starts*/
-  #wps_wocuf_pro_setting_wrapper .wps_upsell_single_offer input, #wps_wocuf_pro_setting_wrapper .wps_upsell_single_offer select, #wps_wocuf_pro_setting_wrapper .wps_upsell_single_offer .select2 {
+  #wpswocuf_pro_setting_wrapper .wpswocuf_upsell_single_offer input, #wpswocuf_pro_setting_wrapper .wpswocuf_upsell_single_offer select, #wpswocuf_pro_setting_wrapper .wpswocuf_upsell_single_offer .select2 {
     width: 100% !important;
     max-width: 400px;
     color: #005646;
     margin: 0;
 }
 
-#wps_wocuf_pro_setting_wrapper .wps_upsell_table .new_offers tr td select, #wps_wocuf_pro_setting_wrapper .wps_upsell_table .new_offers tr td input {
+#wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table .new_offers tr td select, #wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table .new_offers tr td input {
     height: 40px;
 }
   /* Update 3.2.1 ends*/
@@ -1637,7 +1637,7 @@ button.button-primary.wps_upsell_activate_offer_template:focus {
  *
  */
  
- .wps_wocuf_pro_desc {
+ .wpswocuf_pro_desc {
    text-align: center !important;
  }
 
@@ -1645,7 +1645,7 @@ button.button-primary.wps_upsell_activate_offer_template:focus {
 
  /* Pro banner
  */
- .wps_wupsell_premium_strip:after {
+ .wpswocuf_wupsell_premium_strip:after {
   width: 0;
   height: 0;
   border-left: 6px solid transparent;
@@ -1658,7 +1658,7 @@ button.button-primary.wps_upsell_activate_offer_template:focus {
   transform: rotate(27deg);
   z-index: -1;
 }
-.wps_wupsell_premium_strip {
+.wpswocuf_wupsell_premium_strip {
   border: 1px solid #78c900;
   color: #ffffff;
   background-color: #78c900;
@@ -1678,12 +1678,12 @@ button.button-primary.wps_upsell_activate_offer_template:focus {
 
 
 /* Go pro popup - Start */
-.wps_ubo_lite_go_pro_popup_wrap.wps_ubo_lite_go_pro_popup_show {
+.wpswocuf_ubo_lite_go_pro_popup_wrap.wpswocuf_ubo_lite_go_pro_popup_show {
   opacity: 1;
   visibility: visible;
   transition: 0.3s linear all;
 }
-.wps_ubo_lite_go_pro_popup_wrap {
+.wpswocuf_ubo_lite_go_pro_popup_wrap {
   align-items: center;
   background-color: rgba(0,0,0,0.5); 
   bottom: 0;
@@ -1700,7 +1700,7 @@ button.button-primary.wps_upsell_activate_offer_template:focus {
   width: 100%; 
   z-index: 999; 
 }
-.wps_ubo_lite_go_pro_popup {
+.wpswocuf_ubo_lite_go_pro_popup {
   background-color: #ffffff;
   max-width: 800px;
   border-radius: 4px;
@@ -1709,13 +1709,13 @@ button.button-primary.wps_upsell_activate_offer_template:focus {
   position: relative;
   margin-left: 160px;
 }
-.wps_ubo_lite_go_pro_popup_body {
+.wpswocuf_ubo_lite_go_pro_popup_body {
   overflow: hidden;
 }
-.wps_ubo_lite_go_pro_popup_head {
+.wpswocuf_ubo_lite_go_pro_popup_head {
   position: relative;
 }
-.wps_ubo_lite_go_pro_popup_close {
+.wpswocuf_ubo_lite_go_pro_popup_close {
   position: absolute;
   right: -11px;
   top: 6px;
@@ -1729,23 +1729,23 @@ button.button-primary.wps_upsell_activate_offer_template:focus {
   line-height: 21px;
   border-radius: 50%;
 }
-#wps_upsell_bump_setting_wrapper .wps_ubo_lite_go_pro_popup_close span {
+#wpswocuf_upsell_bump_setting_wrapper .wpswocuf_ubo_lite_go_pro_popup_close span {
     font-size: 25px !important;
     line-height: 19px;
 }
-.wps_ubo_lite_go_pro_popup_close:focus,
-.wps_ubo_lite_go_pro_popup_close:hover{
+.wpswocuf_ubo_lite_go_pro_popup_close:focus,
+.wpswocuf_ubo_lite_go_pro_popup_close:hover{
   outline: 0;
   box-shadow: none;
   color: #ffffff;
   border-color: #ffffff;
 }
-.wps_ubo_lite_go_pro_popup img {
+.wpswocuf_ubo_lite_go_pro_popup img {
   max-width: 100%;
   width: auto;
 }
-.wps_ubo_lite_go_pro_popup_button .wps_ubo_lite_overview_go_pro_button,
-.button.wps_ubo_lite_overview_go_pro_button {
+.wpswocuf_ubo_lite_go_pro_popup_button .wpswocuf_ubo_lite_overview_go_pro_button,
+.button.wpswocuf_ubo_lite_overview_go_pro_button {
   background-color: #78c900;
   color: #ffffff;
   padding: 14px 36px;
@@ -1757,24 +1757,24 @@ button.button-primary.wps_upsell_activate_offer_template:focus {
   text-transform: capitalize;
   box-shadow: none;
 }
-.wps_ubo_lite_go_pro_popup_button .wps_ubo_lite_overview_go_pro_button span, .button.wps_ubo_lite_overview_go_pro_button span{
+.wpswocuf_ubo_lite_go_pro_popup_button .wpswocuf_ubo_lite_overview_go_pro_button span, .button.wpswocuf_ubo_lite_overview_go_pro_button span{
   vertical-align: middle;
   margin-left: 5px;
 }
-.wps_ubo_lite_go_pro_popup_button .wps_ubo_lite_overview_go_pro_button:focus,
-.wps_ubo_lite_go_pro_popup_button .wps_ubo_lite_overview_go_pro_button:hover,
-.button.wps_ubo_lite_overview_go_pro_button:focus,
-.button.wps_ubo_lite_overview_go_pro_button:hover{
+.wpswocuf_ubo_lite_go_pro_popup_button .wpswocuf_ubo_lite_overview_go_pro_button:focus,
+.wpswocuf_ubo_lite_go_pro_popup_button .wpswocuf_ubo_lite_overview_go_pro_button:hover,
+.button.wpswocuf_ubo_lite_overview_go_pro_button:focus,
+.button.wpswocuf_ubo_lite_overview_go_pro_button:hover{
   background-color:#78c900;
   box-shadow: none;
   color: #ffffff;
   opacity: 0.8;
   outline: 0;
 }
-.wps_ubo_lite_go_pro_popup_button {
+.wpswocuf_ubo_lite_go_pro_popup_button {
     text-align: center;
 }
-.wps_ubo_lite_go_pro_popup_head h2 {
+.wpswocuf_ubo_lite_go_pro_popup_head h2 {
   background-color: #7979f6;
   border-radius: 5px 5px 0 0;
   color: #ffffff;
@@ -1784,32 +1784,32 @@ button.button-primary.wps_upsell_activate_offer_template:focus {
   margin: -20px -20px 30px -20px;
   padding: 10px;
 }
-.wps_ubo_lite_go_pro_popup_content p {
+.wpswocuf_ubo_lite_go_pro_popup_content p {
   font-size: 15px;
   line-height: 1.7;
 }
 /* Go pro popup - End */
 
-#wps_wocuf_pro_setting_wrapper .wps_upsell_table .wps_upsell_single_offer .wps-upsell-tabset input {
+#wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table .wpswocuf_upsell_single_offer .wps-upsell-tabset input {
 	display: none;
   }
-  #wps_wocuf_pro_setting_wrapper .wps_upsell_table .wps_upsell_single_offer .wps-upsell-tabset input:checked + label {
+  #wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table .wpswocuf_upsell_single_offer .wps-upsell-tabset input:checked + label {
 	background-color: #16bca4;
 	color: #fff;
   }
-  #wps_wocuf_pro_setting_wrapper .wps_upsell_table .wps_upsell_single_offer .wps-upsell-tabset input ~ label {
+  #wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table .wpswocuf_upsell_single_offer .wps-upsell-tabset input ~ label {
 	padding: 18px 80px;
 	display: inline-block;
 	border-radius: 5px 5px 0px 0px;
 	background-color: #e9e9e9;
   }
-  .wps_upsell_table .wps_upsell_single_offer .tab-panel{
+  .wpswocuf_upsell_table .wpswocuf_upsell_single_offer .tab-panel{
 	display: none !important;
   }
-  #wps_wocuf_pro_setting_wrapper .wps_upsell_table .wps_upsell_single_offer .wps-upsell-tabset input:checked + label.wps-elementer-tabs ~ .tab-panels-wrapper #wps-elementer-template {
+  #wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table .wpswocuf_upsell_single_offer .wps-upsell-tabset input:checked + label.wps-elementer-tabs ~ .tab-panels-wrapper #wps-elementer-template {
 	display: block !important;
   }
-  #wps_wocuf_pro_setting_wrapper .wps_upsell_table .wps_upsell_single_offer .wps-upsell-tabset input:checked + label.wps-divi-tabs + .tab-panels-wrapper #wps-divi-template {
+  #wpswocuf_pro_setting_wrapper .wpswocuf_upsell_table .wpswocuf_upsell_single_offer .wps-upsell-tabset input:checked + label.wps-divi-tabs + .tab-panels-wrapper #wps-divi-template {
 	display: block !important;
   }
   .wps-upsell-tabset .tab-panels-wrapper {
@@ -2559,7 +2559,7 @@ main.wps-ufw_ms-main {
 
 
 
-#wps-ufw_main.wps-ufw_store-checkout .wps_wocuf_pro_creation_setting {
+#wps-ufw_main.wps-ufw_store-checkout .wpswocuf_pro_creation_setting {
     box-shadow: none;
     margin: 0 0 15px!important;
 }
@@ -2644,12 +2644,12 @@ main.wps-ufw_ms-main {
   margin: 0 6px 6px 0;
 }
 
-.wps_wocuf_tab {
+.wpswocuf_tab {
           overflow: hidden;
           border-bottom: 1px solid #ccc;
       }
 
-      .wps_wocuf_tab button {
+      .wpswocuf_tab button {
           background-color: inherit;
           float: left;
           border: none;
@@ -2659,22 +2659,22 @@ main.wps-ufw_ms-main {
           transition: 0.3s;
       }
 
-      .wps_wocuf_tab button:hover {
+      .wpswocuf_tab button:hover {
           background-color: #ddd;
       }
 
-      .wps_wocuf_tab button.active {
+      .wpswocuf_tab button.active {
           background-color: #ccc;
       }
 
-      .wps_wocuf_tabcontent {
+      .wpswocuf_tabcontent {
           display: none;
           padding: 16px;
           border: 1px solid #ccc;
           border-top: none;
       }
 
-      .wps_wocuf_tabcontent.show {
+      .wpswocuf_tabcontent.show {
           display: block;
       }
 

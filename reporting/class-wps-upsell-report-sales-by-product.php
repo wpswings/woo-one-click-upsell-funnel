@@ -14,14 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( class_exists( 'WPS_Upsell_Report_Sales_By_Product' ) ) {
+if ( class_exists( 'wpswocuf_Upsell_Report_Sales_By_Product' ) ) {
 	return;
 }
 
 /**
- * WPS_Upsell_Report_Sales_By_Product.
+ * wpswocuf_Upsell_Report_Sales_By_Product.
  */
-class WPS_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
+class wpswocuf_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 
 	/**
 	 * Chart colors.
@@ -80,16 +80,16 @@ class WPS_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 						'function'        => 'SUM',
 						'name'            => 'order_item_amount',
 					),
-					'wps_wocuf_upsell_order' => array(
+					'wpswocuf_upsell_order' => array(
 						'type'     => 'meta',
 						'function' => '',
-						'name'     => 'wps_wocuf_pro_upsell_meta',
+						'name'     => 'wpswocuf_pro_upsell_meta',
 					),
 					'is_upsell_purchase'     => array(
 						'type'            => 'order_item_meta',
 						'order_item_type' => 'line_item',
 						'function'        => '',
-						'name'            => 'wps_wocuf_pro_upsell_item_meta',
+						'name'            => 'wpswocuf_pro_upsell_item_meta',
 					),
 				),
 				'where_meta'   => array(
@@ -118,16 +118,16 @@ class WPS_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 							'function'        => 'SUM',
 							'name'            => 'order_item_count',
 						),
-						'wps_wocuf_upsell_order' => array(
+						'wpswocuf_upsell_order' => array(
 							'type'     => 'meta',
 							'function' => '',
-							'name'     => 'wps_wocuf_pro_upsell_meta',
+							'name'     => 'wpswocuf_pro_upsell_meta',
 						),
 						'is_upsell_purchase'     => array(
 							'type'            => 'order_item_meta',
 							'order_item_type' => 'line_item',
 							'function'        => '',
-							'name'            => 'wps_wocuf_pro_upsell_item_meta',
+							'name'            => 'wpswocuf_pro_upsell_item_meta',
 						),
 					),
 					'where_meta'   => array(
@@ -528,7 +528,7 @@ class WPS_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 							'type'            => 'order_item_meta',
 							'order_item_type' => 'line_item',
 							'function'        => '',
-							'name'            => 'wps_wocuf_pro_upsell_item_meta',
+							'name'            => 'wpswocuf_pro_upsell_item_meta',
 						),
 					),
 					'where_meta'   => array(
@@ -573,7 +573,7 @@ class WPS_Upsell_Report_Sales_By_Product extends WC_Admin_Report {
 							'type'            => 'order_item_meta',
 							'order_item_type' => 'line_item',
 							'function'        => '',
-							'name'            => 'wps_wocuf_pro_upsell_item_meta',
+							'name'            => 'wpswocuf_pro_upsell_item_meta',
 						),
 					),
 					'where_meta'   => array(

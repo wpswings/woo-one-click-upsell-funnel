@@ -29,7 +29,7 @@ use Elementor\Group_Control_Text_Shadow;
  *
  * @since 1.0.0
  */
-class Upsell_Desc extends Widget_Base {
+class Wpswocuf_Upsell_Desc extends Widget_Base {
 
 	/**
 	 * Get widget name.
@@ -42,7 +42,7 @@ class Upsell_Desc extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'Upsell-product-desc';
+		return 'wpswocuf-product-desc';
 	}
 
 	/**
@@ -124,7 +124,7 @@ class Upsell_Desc extends Widget_Base {
 			array(
 				'label'   => '',
 				'type'    => Controls_Manager::WYSIWYG,
-				'default' => '<p>[wps_upsell_desc]</p>',
+				'default' => '<p>[wpswocuf_upsell_desc]</p>',
 			)
 		);
 
@@ -442,7 +442,7 @@ class Upsell_Desc extends Widget_Base {
 		<?php
 		// PHPCS - the main text of a widget should not be escaped.
 
-			echo wp_kses( $editor_content, wps_upsell_lite_allowed_html() );
+			echo wp_kses( $editor_content, wpswocuf_upsell_lite_allowed_html() );
 		?>
 		<?php if ( $should_render_inline_editing ) { ?>
 			</div>

@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * Provide a admin area view for the plugin
  *
@@ -11,11 +14,11 @@
  * @subpackage Makewebbetter_Onboarding/extra-templates
  */
 
-$form_fields = apply_filters( 'wps_on_boarding_form_fields', array() );
+$wpswocuf_form_fields = apply_filters( 'wpswocuf_on_boarding_form_fields', array() );
 
 ?>
 
-<?php if ( ! empty( $form_fields ) ) : ?>
+<?php if ( ! empty( $wpswocuf_form_fields ) ) : ?>
 	<div class="wps-onboarding-section-one-click-upsell">
 		<div class="wps-on-boarding-wrapper-background">
 		<div class="wps-on-boarding-wrapper">
@@ -27,8 +30,8 @@ $form_fields = apply_filters( 'wps_on_boarding_form_fields', array() );
 			<h3 class="wps-on-boarding-heading">Welcome to WP Swings </h3>
 			<p class="wps-on-boarding-desc">We love making new friends! Subscribe below and we promise to keep you up-to-date with our latest new plugins, updates, awesome deals and a few special offers.</p>
 			<form action="#" method="post" class="wps-on-boarding-form">
-				<?php foreach ( $form_fields as $key => $field_attr ) : ?>
-					<?php $this->render_field_html( $field_attr ); ?>
+				<?php foreach ( $wpswocuf_form_fields as $wpswocuf_field_key => $wpswocuf_field_attr ) : ?>
+					<?php $this->render_field_html( $wpswocuf_field_attr ); ?>
 				<?php endforeach; ?> 
 				<div class="wps-on-boarding-form-btn__wrapper">
 					<div class="wps-on-boarding-form-submit wps-on-boarding-form-verify ">

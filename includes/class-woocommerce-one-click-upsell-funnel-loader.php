@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * Register all actions and filters for the plugin
  *
@@ -20,7 +23,7 @@
  * @subpackage woo_one_click_upsell_funnel/includes
  * @author     wpswings <webmaster@wpswings.com>
  */
-class Woocommerce_One_Click_Upsell_Funnel_Loader {
+class Wpswocuf_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.
@@ -123,4 +126,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Loader {
 			add_action( $hook['hook'], array( $hook['component'], $hook['callback'] ), $hook['priority'], $hook['accepted_args'] );
 		}
 	}
+}
+if ( ! class_exists( 'Woocommerce_One_Click_Upsell_Funnel_Loader' ) ) {
+	class_alias( 'Wpswocuf_Loader', 'Woocommerce_One_Click_Upsell_Funnel_Loader' );
 }

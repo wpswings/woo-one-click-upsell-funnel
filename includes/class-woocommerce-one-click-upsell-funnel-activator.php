@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * Fired during plugin activation
  *
@@ -19,7 +22,7 @@
  * @subpackage woo_one_click_upsell_funnel/includes
  * @author     wpswings <webmaster@wpswings.com>
  */
-class Woocommerce_One_Click_Upsell_Funnel_Activator {
+class Wpswocuf_Activator {
 
 	/**
 	 * Short Description. (use period)
@@ -33,13 +36,13 @@ class Woocommerce_One_Click_Upsell_Funnel_Activator {
 		/**
 		 * Generating default offer page at the time of plugin activation
 		 */
-		$wps_wocuf_pro_offer_default_page_id = get_option( 'wps_wocuf_pro_funnel_default_offer_page', '' );
+		$wpswocuf_pro_offer_default_page_id = get_option( 'wpswocuf_pro_funnel_default_offer_page', '' );
 
 		// For WordPress 5 and + versions, Guttenberg content will be used for default offer page.
-		$post_content = '5' <= get_bloginfo( 'version' ) ? wps_upsell_lite_gutenberg_offer_content() : '[wps_wocuf_pro_funnel_default_offer_page]';
+		$post_content = '5' <= get_bloginfo( 'version' ) ? wpswocuf_upsell_lite_gutenberg_offer_content() : '[wpswocuf_pro_funnel_default_offer_page]';
 
-		if ( empty( $wps_wocuf_pro_offer_default_page_id ) || 'publish' !== get_post_status( $wps_wocuf_pro_offer_default_page_id ) ) {
-			$wps_wocuf_pro_funnel_page = array(
+		if ( empty( $wpswocuf_pro_offer_default_page_id ) || 'publish' !== get_post_status( $wpswocuf_pro_offer_default_page_id ) ) {
+			$wpswocuf_pro_funnel_page = array(
 				'comment_status' => 'closed',
 				'ping_status'    => 'closed',
 				'post_content'   => $post_content,
@@ -49,18 +52,21 @@ class Woocommerce_One_Click_Upsell_Funnel_Activator {
 				'post_type'      => 'page',
 			);
 
-			$wps_wocuf_pro_post = wp_insert_post( $wps_wocuf_pro_funnel_page );
+			$wpswocuf_pro_post = wp_insert_post( $wpswocuf_pro_funnel_page );
 
-			update_option( 'wps_wocuf_pro_funnel_default_offer_page', $wps_wocuf_pro_post );
+			update_option( 'wpswocuf_pro_funnel_default_offer_page', $wpswocuf_pro_post );
 		}
 
 		// Schedule cron for Order payment process If redirected for upsell and still pending.
-		if ( ! wp_next_scheduled( 'wps_wocuf_lite_order_cron_schedule' ) ) {
+		if ( ! wp_next_scheduled( 'wpswocuf_lite_order_cron_schedule' ) ) {
 
-			wp_schedule_event( time(), 'wps_wocuf_twenty_minutes', 'wps_wocuf_lite_order_cron_schedule' );
+			wp_schedule_event( time(), 'wpswocuf_twenty_minutes', 'wpswocuf_lite_order_cron_schedule' );
 		}
 
 		// Set default settings tab to Overview for five minutes.
-		set_transient( 'wps_upsell_default_settings_tab', 'overview', 300 );
+		set_transient( 'wpswocuf_upsell_default_settings_tab', 'overview', 300 );
 	}
+}
+if ( ! class_exists( 'Woocommerce_One_Click_Upsell_Funnel_Activator' ) ) {
+	class_alias( 'Wpswocuf_Activator', 'Woocommerce_One_Click_Upsell_Funnel_Activator' );
 }

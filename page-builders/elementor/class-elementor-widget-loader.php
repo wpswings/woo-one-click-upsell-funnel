@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Widgets loader for elementor.
  */
-final class Elementor_Widget_Loader {
+final class Wpswocuf_Elementor_Widget_Loader {
 
 	/**
 	 * Minimum Elementor Version
@@ -110,4 +110,9 @@ final class Elementor_Widget_Loader {
 }
 
 // Instantiate Elementor Widgets.
-new Elementor_Widget_Loader();
+new Wpswocuf_Elementor_Widget_Loader();
+
+// Backward compatibility alias.
+if ( ! class_exists( 'Elementor_Widget_Loader' ) ) {
+	class_alias( 'Wpswocuf_Elementor_Widget_Loader', 'Elementor_Widget_Loader' );
+}

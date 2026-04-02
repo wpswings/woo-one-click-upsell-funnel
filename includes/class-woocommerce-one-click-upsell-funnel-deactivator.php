@@ -19,7 +19,7 @@
  * @subpackage woo_one_click_upsell_funnel/includes
  * @author     wpswings <webmaster@wpswings.com>
  */
-class Woocommerce_One_Click_Upsell_Funnel_Deactivator {
+class Wpswocuf_Deactivator {
 
 	/**
 	 * Short Description. (use period)
@@ -31,17 +31,20 @@ class Woocommerce_One_Click_Upsell_Funnel_Deactivator {
 	public static function deactivate() {
 
 		// Clear scheduled cron for User update.
-		if ( wp_next_scheduled( 'wps_wocuf_lite_order_cron_schedule' ) ) {
+		if ( wp_next_scheduled( 'wpswocuf_lite_order_cron_schedule' ) ) {
 
-			wp_clear_scheduled_hook( 'wps_wocuf_lite_order_cron_schedule' );
+			wp_clear_scheduled_hook( 'wpswocuf_lite_order_cron_schedule' );
 		}
 
 		// Clear scheduled cron for User update.
-		if ( wp_next_scheduled( 'wps_wocuf_lite_order_cron_schedule' ) ) {
+		if ( wp_next_scheduled( 'wpswocuf_lite_order_cron_schedule' ) ) {
 
-			wp_clear_scheduled_hook( 'wps_wocuf_lite_order_cron_schedule' );
+			wp_clear_scheduled_hook( 'wpswocuf_lite_order_cron_schedule' );
 		}
 
 	}
 
+}
+if ( ! class_exists( 'Woocommerce_One_Click_Upsell_Funnel_Deactivator' ) ) {
+	class_alias( 'Wpswocuf_Deactivator', 'Woocommerce_One_Click_Upsell_Funnel_Deactivator' );
 }

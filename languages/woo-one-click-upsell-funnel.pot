@@ -943,7 +943,7 @@ msgstr ""
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:35
 msgid ""
 "This shortcode only returns the link so it has to be used in the link "
-"section. In html use it as href=\"[wps_upsell_yes]\" of anchor tag."
+"section. In html use it as href=\"[wpswocuf_upsell_yes]\" of anchor tag."
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:39
@@ -951,7 +951,7 @@ msgid "Buy Now &rarr;"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:40
-msgid "[wps_upsell_yes]"
+msgid "[wpswocuf_upsell_yes]"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:46
@@ -961,7 +961,7 @@ msgstr ""
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:46
 msgid ""
 "This shortcode only returns the link so it has to be used in the link "
-"section. In html use it as href=\"[wps_upsell_no]\" of anchor tag."
+"section. In html use it as href=\"[wpswocuf_upsell_no]\" of anchor tag."
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:50
@@ -969,7 +969,7 @@ msgid "No Thanks &rarr;"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:51
-msgid "[wps_upsell_no]"
+msgid "[wpswocuf_upsell_no]"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:61
@@ -986,7 +986,7 @@ msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:72
 #: page-builders/elementor/elementor-widget/assets/widgets/class-upsell-title.php:135
-msgid "[wps_upsell_title]"
+msgid "[wpswocuf_upsell_title]"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:78
@@ -998,7 +998,7 @@ msgid "Product Description &rarr;"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:83
-msgid "[wps_upsell_desc]"
+msgid "[wpswocuf_upsell_desc]"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:89
@@ -1010,7 +1010,7 @@ msgid "Product Short Description &rarr;"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:94
-msgid "[wps_upsell_desc_short]"
+msgid "[wpswocuf_upsell_desc_short]"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:100
@@ -1022,7 +1022,7 @@ msgid "Product Upsell Shipping Price &rarr;"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:105
-msgid "[wps_upsell_product_shipping_price]"
+msgid "[wpswocuf_upsell_product_shipping_price]"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:112
@@ -1034,7 +1034,7 @@ msgid "Product Image &rarr;"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:117
-msgid "[wps_upsell_image]"
+msgid "[wpswocuf_upsell_image]"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:123
@@ -1046,7 +1046,7 @@ msgid "Product Price &rarr;"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:128
-msgid "[wps_upsell_price]"
+msgid "[wpswocuf_upsell_price]"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:134
@@ -1060,7 +1060,7 @@ msgid "Product Variations &rarr;"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:139
-msgid "[wps_upsell_variations]"
+msgid "[wpswocuf_upsell_variations]"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:149
@@ -1070,7 +1070,7 @@ msgstr ""
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:155
 msgid ""
 "This shortcode returns Star ratings. You can specify the number of stars "
-"like [wps_upsell_star_review stars=4.5] ."
+"like [wpswocuf_upsell_star_review stars=4.5] ."
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:158
@@ -1078,13 +1078,13 @@ msgid "Star Ratings &rarr;"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:159
-msgid "[wps_upsell_star_review]"
+msgid "[wpswocuf_upsell_star_review]"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:166
 msgid ""
 "This shortcode returns quantity field. You can restrict the customer to "
-"select the quantity offered. [wps_upsell_quantity max=4 min=1 ] ."
+"select the quantity offered. [wpswocuf_upsell_quantity max=4 min=1 ] ."
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:170
@@ -1092,13 +1092,13 @@ msgid "Offer Quantity &rarr;"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:171
-msgid "[wps_upsell_quantity]"
+msgid "[wpswocuf_upsell_quantity]"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:178
 msgid ""
 "This shortcode returns urgency timer. You can specify the timer limit as "
-"[wps_upsell_timer minutes=5] ."
+"[wpswocuf_upsell_timer minutes=5] ."
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:182
@@ -1106,7 +1106,7 @@ msgid "Urgency Timer &rarr;"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-shortcodes.php:183
-msgid "[wps_upsell_timer]"
+msgid "[wpswocuf_upsell_timer]"
 msgstr ""
 
 #: admin/partials/templates/wps-wocuf-pro-store-checkout.php:83

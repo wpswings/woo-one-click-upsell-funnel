@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * The file defines the Woocommerce subscriptions compatibility and handling functions.
  *
@@ -17,7 +20,7 @@
  *
  * @since    3.1.0
  */
-function wps_upsell_org_subs_plugin_active() {
+function wpswocuf_upsell_org_subs_plugin_active() {
 
 	if ( class_exists( 'WC_Subscriptions_Order' ) ) {
 
@@ -36,9 +39,9 @@ function wps_upsell_org_subs_plugin_active() {
  *
  * @since    3.1.0
  */
-function wps_upsell_org_order_contains_subscription( $order_id ) {
+function wpswocuf_upsell_org_order_contains_subscription( $order_id ) {
 
-	if ( empty( $order_id ) || ! wps_upsell_org_subs_plugin_active() ) {
+	if ( empty( $order_id ) || ! wpswocuf_upsell_org_subs_plugin_active() ) {
 
 		return false;
 	}
@@ -74,9 +77,9 @@ function wps_upsell_org_order_contains_subscription( $order_id ) {
  * @param string $product Product id.
  * @since    3.1.0
  */
-function wps_upsell_org_is_subscription_product( $product ) {
+function wpswocuf_upsell_org_is_subscription_product( $product ) {
 
-	if ( empty( $product ) || ! wps_upsell_org_subs_plugin_active() ) {
+	if ( empty( $product ) || ! wpswocuf_upsell_org_subs_plugin_active() ) {
 
 		return false;
 	}
@@ -95,13 +98,13 @@ function wps_upsell_org_is_subscription_product( $product ) {
  *
  * @since    3.1.0
  */
-function wps_upsell_org_subs_supported_gateways() {
+function wpswocuf_upsell_org_subs_supported_gateways() {
 
 	$subs_supported_gateways = array(
 		'stripe', // Official Stripe-CC.
 	);
 
-	return apply_filters( 'wps_wocuf_pro_subs_supported_gateways', $subs_supported_gateways );
+	return apply_filters( 'wpswocuf_pro_subs_supported_gateways', $subs_supported_gateways );
 }
 
 /**
@@ -110,7 +113,7 @@ function wps_upsell_org_subs_supported_gateways() {
  * @param string $order_id order_id.
  * @since    3.1.0
  */
-function wps_upsell_org_pg_supports_subs( $order_id ) {
+function wpswocuf_upsell_org_pg_supports_subs( $order_id ) {
 
 	if ( empty( $order_id ) ) {
 
@@ -121,7 +124,7 @@ function wps_upsell_org_pg_supports_subs( $order_id ) {
 
 	$payment_gateway = $order->get_payment_method();
 
-	if ( in_array( $payment_gateway, wps_upsell_org_subs_supported_gateways(), true ) ) {
+	if ( in_array( $payment_gateway, wpswocuf_upsell_org_subs_supported_gateways(), true ) ) {
 
 		return true;
 	} else {
@@ -135,12 +138,12 @@ function wps_upsell_org_pg_supports_subs( $order_id ) {
  *
  * @since    3.1.0
  */
-function wps_upsell_org_subscription_error() {
+function wpswocuf_upsell_org_subscription_error() {
 
 	$shop_page_url = function_exists( 'wc_get_page_id' ) ? get_permalink( wc_get_page_id( 'shop' ) ) : get_permalink( woocommerce_get_page_id( 'shop' ) );
 
 	?>
-	<div style="text-align: center;margin-top: 30px;" id="wps_upsell_offer_expired"><h2 style="font-weight: 200;"><?php esc_html_e( 'Sorry, Could not create Subscription',  'woo-one-click-upsell-funnel' ); ?></h2><a class="button wc-backward" href="<?php echo esc_url( $shop_page_url ); ?>"><?php esc_html_e( 'Return to Shop ',  'woo-one-click-upsell-funnel' ); ?>&rarr;</a></div>
+	<div style="text-align: center;margin-top: 30px;" id="wpswocuf_upsell_offer_expired"><h2 style="font-weight: 200;"><?php esc_html_e( 'Sorry, Could not create Subscription',  'woo-one-click-upsell-funnel' ); ?></h2><a class="button wc-backward" href="<?php echo esc_url( $shop_page_url ); ?>"><?php esc_html_e( 'Return to Shop ',  'woo-one-click-upsell-funnel' ); ?>&rarr;</a></div>
 	<?php
 	wp_die();
 }
@@ -152,7 +155,7 @@ function wps_upsell_org_subscription_error() {
  * @param object $order WC order.
  * @since    3.1.0
  */
-function wps_upsell_org_create_subscriptions_for_order( $order_id, $order = '' ) {
+function wpswocuf_upsell_org_create_subscriptions_for_order( $order_id, $order = '' ) {
 
 	if ( empty( $order_id ) && empty( $order ) ) {
 
@@ -179,7 +182,7 @@ function wps_upsell_org_create_subscriptions_for_order( $order_id, $order = '' )
 	if ( empty( $order->get_user_id() ) ) {
 
 		// Create and auth/login the user.
-		function_exists( 'wps_upsell_org_create_and_auth_customer' ) && wps_upsell_org_create_and_auth_customer( $order_id );
+		function_exists( 'wpswocuf_upsell_org_create_and_auth_customer' ) && wpswocuf_upsell_org_create_and_auth_customer( $order_id );
 	}
 
 	if ( ! empty( $order_items ) && is_array( $order_items ) ) {
@@ -225,17 +228,17 @@ function wps_upsell_org_create_subscriptions_for_order( $order_id, $order = '' )
 			);
 
 			// Smart offer upgrade.
-			$target_item_id   = wps_wocufp_hpos_get_meta_data( $order_id, '_wps_wocufpro_replace_target', true );
-			$target_item_subs = wps_wocufp_hpos_get_meta_data( $order_id, '_wps_wocufpro_replace_target_subs_id', true );
+			$target_item_id   = wpswocufp_hpos_get_meta_data( $order_id, '_wpswocufpro_replace_target', true );
+			$target_item_subs = wpswocufp_hpos_get_meta_data( $order_id, '_wpswocufpro_replace_target_subs_id', true );
 
 			if ( empty( $target_item_subs ) && ! empty( $target_item_id ) && (int) $single_item_id === (int) $target_item_id ) {
 
-				wps_wocufp_hpos_update_meta_data( $order_id, '_wps_wocufpro_replace_target_subs_id', $subscription->get_id() );
+				wpswocufp_hpos_update_meta_data( $order_id, '_wpswocufpro_replace_target_subs_id', $subscription->get_id() );
 			}
 
 			if ( is_wp_error( $subscription ) ) {
 
-				wps_upsell_org_subscription_error();
+				wpswocuf_upsell_org_subscription_error();
 			}
 
 			$subscription->add_product( $product, $quantity );
@@ -283,11 +286,7 @@ function wps_upsell_org_create_subscriptions_for_order( $order_id, $order = '' )
 
 					$subscription->apply_coupon( $coupon->get_code() );
 				} catch ( Exception $e ) {
-					if (defined('WP_DEBUG') && WP_DEBUG) {
-
-						// Do nothing. The coupon will not be applied to the subscription.
-						error_log( 'Coupon could not be applied to subscription: ' . $e->getMessage() );
-					}
+					// Do nothing. The coupon will not be applied to the subscription.
 				}
 			}
 			$subscription = wcs_get_subscription( $subscription->get_id() );
@@ -336,7 +335,7 @@ function wps_upsell_org_create_subscriptions_for_order( $order_id, $order = '' )
  * @param string $quantity Order id.
  * @since    3.1.0
  */
-function wps_upsell_org_create_subscription_for_upsell_product( $order_id, $product, $quantity = 1 ) {
+function wpswocuf_upsell_org_create_subscription_for_upsell_product( $order_id, $product, $quantity = 1 ) {
 
 	if ( empty( $order_id ) || empty( $product ) ) {
 
@@ -364,7 +363,7 @@ function wps_upsell_org_create_subscription_for_upsell_product( $order_id, $prod
 	if ( empty( $order->get_user_id() ) ) {
 
 		// Create and auth/login the user.
-		function_exists( 'wps_upsell_org_create_and_auth_customer' ) && wps_upsell_org_create_and_auth_customer( $order_id );
+		function_exists( 'wpswocuf_upsell_org_create_and_auth_customer' ) && wpswocuf_upsell_org_create_and_auth_customer( $order_id );
 		$order = wc_get_order( $order_id );
 	}
 
@@ -388,7 +387,7 @@ function wps_upsell_org_create_subscription_for_upsell_product( $order_id, $prod
 
 	if ( is_wp_error( $subscription ) ) {
 
-		wps_upsell_org_subscription_error();
+		wpswocuf_upsell_org_subscription_error();
 	}
 
 	$subscription->add_product( $product, $quantity );
@@ -473,7 +472,7 @@ function wps_upsell_org_create_subscription_for_upsell_product( $order_id, $prod
  * @param object $product product.
  * @since    3.1.0
  */
-function wps_upsell_org_subs_set_price_accordingly( $product ) {
+function wpswocuf_upsell_org_subs_set_price_accordingly( $product ) {
 
 	if ( empty( $product ) ) {
 
@@ -506,10 +505,10 @@ function wps_upsell_org_subs_set_price_accordingly( $product ) {
 			$product->set_price( $product_price );
 		}
 	}
-	$upsell_offered_discount = wps_upsell_org_get_product_discount();
+	$upsell_offered_discount = wpswocuf_upsell_org_get_product_discount();
 	if ( $product_price_change ) {
 
-		$product = wps_upsell_org_change_product_price( $product, $upsell_offered_discount );
+		$product = wpswocuf_upsell_org_change_product_price( $product, $upsell_offered_discount );
 	}
 
 	return $product;
@@ -523,7 +522,7 @@ function wps_upsell_org_subs_set_price_accordingly( $product ) {
  *
  * @since    3.6.0
  */
-function wps_upsell_org_offer_is_subscription( $order_items = array() ) {
+function wpswocuf_upsell_org_offer_is_subscription( $order_items = array() ) {
 
 	$contains_subscription = false;
 
@@ -552,9 +551,9 @@ function wps_upsell_org_offer_is_subscription( $order_items = array() ) {
  *
  * @since    3.6.0
  */
-function wps_upsell_org_funnel_contains_any_subscription( $order_id = false, $offer_products = false ) {
+function wpswocuf_upsell_org_funnel_contains_any_subscription( $order_id = false, $offer_products = false ) {
 
-	if ( empty( $order_id ) || ! wps_upsell_org_subs_plugin_active() ) {
+	if ( empty( $order_id ) || ! wpswocuf_upsell_org_subs_plugin_active() ) {
 
 		return false;
 	}
@@ -564,12 +563,12 @@ function wps_upsell_org_funnel_contains_any_subscription( $order_id = false, $of
 	 */
 	$result = false;
 
-	if ( wps_upsell_org_order_contains_subscription( $order_id ) && wps_upsell_org_pg_supports_subs( $order_id ) ) {
+	if ( wpswocuf_upsell_org_order_contains_subscription( $order_id ) && wpswocuf_upsell_org_pg_supports_subs( $order_id ) ) {
 
 		$result = true;
 	}
 
-	if ( false === $result && wps_upsell_org_offer_is_subscription( $offer_products ) && wps_upsell_org_pg_supports_subs( $order_id ) ) {
+	if ( false === $result && wpswocuf_upsell_org_offer_is_subscription( $offer_products ) && wpswocuf_upsell_org_pg_supports_subs( $order_id ) ) {
 
 		$result = true;
 	}

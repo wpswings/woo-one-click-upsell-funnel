@@ -22,7 +22,7 @@ if ( ! $id_nonce_verified ) {
 }
 $active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'reporting';
 
-if ( 'overview' === get_transient( 'wps_upsell_default_settings_tab' ) ) {
+if ( 'overview' === get_transient( 'wpswocuf_upsell_default_settings_tab' ) ) {
 
 	$active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'overview';
 }
@@ -34,20 +34,20 @@ $nonce_overview = wp_create_nonce( 'view_upsell_tracking_over' ); // Create nonc
 ?>
 
 <div class="wps-notice-wrapper">
-<?php do_action( 'wps_wocuf_pro_setting_tab_active', '', '', '' ); ?>
+<?php do_action( 'wpswocuf_pro_setting_tab_active', '', '', '' ); ?>
 </div>
 
-<div class="wrap woocommerce" id="wps_wocuf_pro_setting_wrapper">
+<div class="wrap woocommerce" id="wpswocuf_pro_setting_wrapper">
 
 	<!-- To make WordPress notice appear at this place. As it searchs from top and appears at the 1st heading tag-->
 	<h1></h1>
 
-	<div class="hide"  id="wps_wocuf_pro_loader">	
+	<div class="hide"  id="wpswocuf_pro_loader">	
 		<img id="wps-wocuf-loading-image" src="<?php echo 'images/spinner-2x.gif'; ?>" >
 	</div>
 
-	<div class="wps_wocuf_pro_header">
-		<div class="wps_wocuf_pro_setting_title"><?php esc_html_e( 'One Click Upsell Funnel for WooCommerce', 'woo-one-click-upsell-funnel' ); ?></div>
+	<div class="wpswocuf_pro_header">
+		<div class="wpswocuf_pro_setting_title"><?php esc_html_e( 'One Click Upsell Funnel for WooCommerce', 'woo-one-click-upsell-funnel' ); ?></div>
 
 
 	</div>
@@ -59,7 +59,7 @@ $nonce_overview = wp_create_nonce( 'view_upsell_tracking_over' ); // Create nonc
 		<a class="nav-tab <?php echo 'pixel-setting' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=wps-wocuf-setting-tracking&tab=pixel-setting&nonce=<?php echo esc_html( $nonce_pixel ); ?>"><?php esc_html_e( 'FB Pixel', 'woo-one-click-upsell-funnel' ); ?></a>
 		<a class="nav-tab <?php echo 'overview' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=wps-wocuf-setting-tracking&tab=overview&nonce=<?php echo esc_html( $nonce_overview ); ?>"><?php esc_html_e( 'Overview', 'woo-one-click-upsell-funnel' ); ?></a>
 
-		<?php do_action( 'wps_wocuf_pro_setting_tab' ); ?>	
+		<?php do_action( 'wpswocuf_pro_setting_tab' ); ?>	
 	</nav>
 	<?php
 
@@ -73,6 +73,6 @@ $nonce_overview = wp_create_nonce( 'view_upsell_tracking_over' ); // Create nonc
 		include_once 'templates/tracking-overview.php';
 	}
 
-	do_action( 'wps_wocuf_pro_setting_tab_html' );
+	do_action( 'wpswocuf_pro_setting_tab_html' );
 	?>
 </div>

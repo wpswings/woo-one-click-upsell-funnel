@@ -54,15 +54,14 @@ $shipping_address_default = array(
 );
 
 
-$billing_address_data = get_option( 'wps_wocuf_store_checkout_fields_billing_data', $billing_address_default );
-$shipping_address_data = get_option( 'wps_wocuf_store_checkout_fields_shipping_data', $shipping_address_default );
-$shipping_basic_address_data = get_option( 'wps_wocuf_store_checkout_basic_fields_shipping_data', $default_basic_shipping_field );
-$billing_basic_address_data = get_option( 'wps_wocuf_store_checkout_basic_fields_billing_data', $default_basic_billing_field );
+$billing_address_data = get_option( 'wpswocuf_store_checkout_fields_billing_data', $billing_address_default );
+$shipping_address_data = get_option( 'wpswocuf_store_checkout_fields_shipping_data', $shipping_address_default );
+$shipping_basic_address_data = get_option( 'wpswocuf_store_checkout_basic_fields_shipping_data', $default_basic_shipping_field );
+$billing_basic_address_data = get_option( 'wpswocuf_store_checkout_basic_fields_billing_data', $default_basic_billing_field );
 
- wps_upsee_lite_go_pro( 'pro' );
+ wpswocuf_upsee_lite_go_pro( 'pro' );
 
 ?>
-<input type='hidden' id='wps_ubo_pro_status' value='inactive'>
 <main id="wps-ufw_main" class="wps-ufw_main wps-ufw_store-checkout">
 	<h2 class="wps-ufw_main-h2">
 		
@@ -72,26 +71,25 @@ $billing_basic_address_data = get_option( 'wps_wocuf_store_checkout_basic_fields
 	<?php
 	$is_store_checkout_enabled = 'off';
 	?>
-	<table class="form-table wps_wocuf_pro_creation_setting" style="border:0 ! important;">
+	<table class="form-table wpswocuf_pro_creation_setting" style="border:0 ! important;">
 		<tbody>
 
 			<!-- Enable Plugin start -->
 			<tr valign="top">
 
 				<th scope="row" class="titledesc">
-				<span class="wps_wupsell_premium_strip">Pro</span>
-					<label for="wps_wocuf_pro_enable_plugin_store_checkout"><?php esc_html_e( 'Enable Upsell Store Checkout', 'woo-one-click-upsell-funnel' ); ?></label>
+					<label for="wpswocuf_pro_enable_plugin_store_checkout"><?php esc_html_e( 'Enable Upsell Store Checkout', 'woo-one-click-upsell-funnel' ); ?></label>
 				</th>
 
 				<td class="forminp forminp-text">
 					<?php
 					$attribut_description = esc_html__( 'Enable store checkout functionality to use our custom checkout for upsell.', 'woo-one-click-upsell-funnel' );
-					wps_upsell_lite_wc_help_tip( $attribut_description );
+					wpswocuf_upsell_lite_wc_help_tip( $attribut_description );
 					?>
 
-					<label class="wps_wocuf_pro_enable_plugin_label">
-						<input class="wps_wocuf_pro_enable_plugin_input ubo_offer_input"  type="checkbox" <?php echo ( 'enabled' === $is_store_checkout_enabled ) ? esc_html( "checked='checked'" ) : ''; ?> name="wps_wocuf_pro_enable_plugin_store_checkout" id="wps_wocuf_pro_enable_plugin_store_checkout" >	
-						<span class="wps_wocuf_pro_enable_plugin_span"></span>
+					<label class="wpswocuf_pro_enable_plugin_label">
+						<input class="wpswocuf_pro_enable_plugin_input ubo_offer_input"  type="checkbox" <?php echo ( 'enabled' === $is_store_checkout_enabled ) ? esc_html( "checked='checked'" ) : ''; ?> name="wpswocuf_pro_enable_plugin_store_checkout" id="wpswocuf_pro_enable_plugin_store_checkout" >	
+						<span class="wpswocuf_pro_enable_plugin_span"></span>
 					</label>
 				</td>
 			</tr>
@@ -124,14 +122,14 @@ $billing_basic_address_data = get_option( 'wps_wocuf_store_checkout_basic_fields
 				</header>
 				<div class="notice-settings"> </div>
 				
-				<div class="wps_wocuf_tab">
-	<button class="wps_wocuf_tablinks" onclick="openTab(event, 'Tab1')" id="defaultOpen"> <?php esc_html_e( 'Billing Information', 'woo-one-click-upsell-funnel' ); ?></button>
-	<button class="wps_wocuf_tablinks" onclick="openTab(event, 'Tab2')"> <?php esc_html_e( 'Shipping Information', 'woo-one-click-upsell-funnel' ); ?></button>
-	<button class="wps_wocuf_tablinks" onclick="openTab(event, 'Tab3')"> <?php esc_html_e( 'Other Settings', 'woo-one-click-upsell-funnel' ); ?></button>
-	<button class="wps_wocuf_tablinks" onclick="openTab(event, 'Tab4')"> <?php esc_html_e( 'Payment Gateway', 'woo-one-click-upsell-funnel' ); ?></button>
+				<div class="wpswocuf_tab">
+	<button class="wpswocuf_tablinks" onclick="openTab(event, 'Tab1')" id="defaultOpen"> <?php esc_html_e( 'Billing Information', 'woo-one-click-upsell-funnel' ); ?></button>
+	<button class="wpswocuf_tablinks" onclick="openTab(event, 'Tab2')"> <?php esc_html_e( 'Shipping Information', 'woo-one-click-upsell-funnel' ); ?></button>
+	<button class="wpswocuf_tablinks" onclick="openTab(event, 'Tab3')"> <?php esc_html_e( 'Other Settings', 'woo-one-click-upsell-funnel' ); ?></button>
+	<button class="wpswocuf_tablinks" onclick="openTab(event, 'Tab4')"> <?php esc_html_e( 'Payment Gateway', 'woo-one-click-upsell-funnel' ); ?></button>
 </div>
 
-		<div id="Tab1" class="wps_wocuf_tabcontent">
+		<div id="Tab1" class="wpswocuf_tabcontent">
 
 
 				<section class="wps-ufw_msm-sec">
@@ -187,7 +185,7 @@ $billing_basic_address_data = get_option( 'wps_wocuf_store_checkout_basic_fields
   
 		</div>
 
-		<div id="Tab2" class="wps_wocuf_tabcontent">
+		<div id="Tab2" class="wpswocuf_tabcontent">
 		
 			<section class="wps-ufw_msm-sec">
 					
@@ -246,7 +244,7 @@ $billing_basic_address_data = get_option( 'wps_wocuf_store_checkout_basic_fields
 
 
 		?>
-		<div id="Tab3" class="wps_wocuf_tabcontent">
+		<div id="Tab3" class="wpswocuf_tabcontent">
 			<h3>
 			<?php esc_html_e( 'Other Setting For Checkout Page', 'woo-one-click-upsell-funnel' ); ?>
 			</h3>
@@ -266,7 +264,7 @@ $billing_basic_address_data = get_option( 'wps_wocuf_store_checkout_basic_fields
 								</p>
 		</div>
 
-<div id="Tab4" class="wps_wocuf_tabcontent">
+<div id="Tab4" class="wpswocuf_tabcontent">
  
 	<section class="wps-ufw_msm-sec">
 					
@@ -311,10 +309,10 @@ $billing_basic_address_data = get_option( 'wps_wocuf_store_checkout_basic_fields
 						
 
 						<?php
-							$wps_wocuf_content_before_order_details = '';
-							$wps_wocuf_content_page_header_title = '';
-							$wps_wocuf_content_after_order_details = '';
-							$wps_wocuf_content_billing_and_shipping = '';
+							$wpswocuf_content_before_order_details = '';
+							$wpswocuf_content_page_header_title = '';
+							$wpswocuf_content_after_order_details = '';
+							$wpswocuf_content_billing_and_shipping = '';
 						?>
 						
 					</div>
@@ -323,19 +321,19 @@ $billing_basic_address_data = get_option( 'wps_wocuf_store_checkout_basic_fields
 						<section class="wps-ufw_msmsmt-sec">
 							<article class="wps-ufw_msmsmts-art">
 								<label for="wps-ufw_msmsmtsa-input"><?php esc_html_e( 'Modify Thank You Page Header Text', 'woo-one-click-upsell-funnel' ); ?></label>
-								<input type="text" class="ubo_offer_input" id="wps_wocuf_content_page_header_title" name="wps_wocuf_content_page_header_title"  value="<?php esc_attr_e( 'Thank you. Your order has been received.', 'woo-one-click-upsell-funnel' ); ?>" />
+								<input type="text" class="ubo_offer_input" id="wpswocuf_content_page_header_title" name="wpswocuf_content_page_header_title"  value="<?php esc_attr_e( 'Thank you. Your order has been received.', 'woo-one-click-upsell-funnel' ); ?>" />
 							</article>
 							<article class="wps-ufw_msmsmts-art">
 								<label for="wps-ufw_msmsmtsa-input"> <?php esc_html_e( 'Add Content Before Order Details', 'woo-one-click-upsell-funnel' ); ?></label>
-								<textarea id="wps_wocuf_content_before_order_details" class="ubo_offer_input" name="wps_wocuf_content_before_order_details" rows="4" cols="50" placeholder="Enter your text here..." ></textarea>
+								<textarea id="wpswocuf_content_before_order_details" class="ubo_offer_input" name="wpswocuf_content_before_order_details" rows="4" cols="50" placeholder="Enter your text here..." ></textarea>
 							</article>
 							<article class="wps-ufw_msmsmts-art">
 								<label for="wps-ufw_msmsmtsa-input"><?php esc_html_e( 'Add Content After Order Details', 'woo-one-click-upsell-funnel' ); ?></label>
-								<textarea id="wps_wocuf_content_after_order_details" class="ubo_offer_input" name="wps_wocuf_content_after_order_details" rows="4" cols="50" placeholder="Enter your text here..." ></textarea>
+								<textarea id="wpswocuf_content_after_order_details" class="ubo_offer_input" name="wpswocuf_content_after_order_details" rows="4" cols="50" placeholder="Enter your text here..." ></textarea>
 							</article>
 							<article class="wps-ufw_msmsmts-art">
 								<label for="wps-ufw_msmsmtsa-input"><?php esc_html_e( 'Add Content After Billing or Shipping Address', 'woo-one-click-upsell-funnel' ); ?></label>
-								<textarea id="wps_wocuf_content_billing_and_shipping" class="ubo_offer_input" name="wps_wocuf_content_billing_and_shipping" rows="4" cols="50" placeholder="Enter your text here..."></textarea>
+								<textarea id="wpswocuf_content_billing_and_shipping" class="ubo_offer_input" name="wpswocuf_content_billing_and_shipping" rows="4" cols="50" placeholder="Enter your text here..."></textarea>
 							</article>
 						</section>
 					</div>

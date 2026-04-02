@@ -1,7 +1,7 @@
 jQuery(document).ready( function($) {
 
 	// Remove Saved Offers.
-	jQuery('.wps_wocuf_pro_delete_old_created_offers').on( 'click', function(e) {
+	jQuery('.wpswocuf_pro_delete_old_created_offers').on( 'click', function(e) {
 		e.preventDefault();
     	var btn_id = $(this).data( 'id' );
 		jQuery(".new_created_offers[data-id='" + btn_id + "']").slideUp( 'slow', function() { $(this).remove(); } );
@@ -28,14 +28,14 @@ jQuery(document).ready( function($) {
 
 	jQuery('.wc-funnel-product-search').select2({
   		ajax:{
-    			url :wps_upsell_lite_js_obj.ajaxurl,
+    			url :wpswocuf_upsell_lite_js_obj.ajaxurl,
     			dataType: 'json',
     			delay: 200,
     			data: function (params) {
       				return {
-        				q: params.term,
-        				nonce : wps_upsell_lite_js_obj.auth_nonce,
-        				action: 'seach_products_for_funnel'
+                q: params.term,
+                nonce : wpswocuf_upsell_lite_js_obj.auth_nonce,
+                action: 'wpswocufseach_products_for_funnel'
       				};
     			},
     			processResults: function( data ) {
@@ -65,8 +65,9 @@ jQuery(document).ready( function($) {
 			  delay: 200,
 			  data: function (params) {
 					return {
-					  q: params.term,
-					  action: 'search_product_categories_for_funnel'
+          q: params.term,
+          action: 'wpswocufsearch_product_categories_for_funnel',
+          nonce : wpswocuf_upsell_lite_js_obj.auth_nonce
 					};
 			  },
 			  processResults: function( data ) {
@@ -90,13 +91,13 @@ jQuery(document).ready( function($) {
 
 	jQuery('.wc-offer-product-search').select2({
   		ajax:{
-    			url :wps_upsell_lite_js_obj.ajaxurl,
+    			url :wpswocuf_upsell_lite_js_obj.ajaxurl,
     			dataType: 'json',
     			delay: 200,
     			data: function (params) {
       				return {
         				q: params.term,
-        				nonce : wps_upsell_lite_js_obj.auth_nonce,
+        				nonce : wpswocuf_upsell_lite_js_obj.auth_nonce,
         				action: 'seach_products_for_offers'
       				};
     			},
@@ -120,7 +121,7 @@ jQuery(document).ready( function($) {
 	});
 
 	// Create New Offer.
-	jQuery( '#wps_upsell_create_new_offer' ).on( 'click', function(e) {
+	jQuery( '#wpswocuf_upsell_create_new_offer' ).on( 'click', function(e) {
 
 		e.preventDefault();
 
@@ -131,8 +132,8 @@ jQuery(document).ready( function($) {
 		var funnel = $(this).data('id');
 
 		// Show loading icon.
-		$('#wps_wocuf_pro_loader').removeClass('hide');
-		$('#wps_wocuf_pro_loader').addClass('show');
+		$('#wpswocuf_pro_loader').removeClass('hide');
+		$('#wpswocuf_pro_loader').addClass('show');
 
 		upsell_create_new_offer_post_request( index, funnel );		
 	});
@@ -144,19 +145,19 @@ jQuery(document).ready( function($) {
 
 		$.ajax({
 		    type:'POST',
-		    url :wps_upsell_lite_js_obj.ajaxurl,
+		    url :wpswocuf_upsell_lite_js_obj.ajaxurl,
 		    data:{
-		    	action: 'wps_wocuf_pro_return_offer_content',
-		    	nonce : wps_upsell_lite_js_obj.auth_nonce,
-		    	wps_wocuf_pro_flag: index,
-		    	wps_wocuf_pro_funnel: funnel
+            action: 'wpswocufreturn_offer_content',
+		    	nonce : wpswocuf_upsell_lite_js_obj.auth_nonce,
+		    	wpswocuf_pro_flag: index,
+		    	wpswocuf_pro_funnel: funnel
 		    },
 
 		    success:function( data ) {
 
 		    	// Hide loading icon.
-		    	jQuery('#wps_wocuf_pro_loader').removeClass('show');
-				jQuery('#wps_wocuf_pro_loader').addClass('hide');
+		    	jQuery('#wpswocuf_pro_loader').removeClass('show');
+				jQuery('#wpswocuf_pro_loader').addClass('hide');
 
 		    	jQuery('.new_offers').append(data);
 
@@ -169,7 +170,7 @@ jQuery(document).ready( function($) {
 
 
 	    		// Remove Added Offers.
-		    	jQuery('.wps_wocuf_pro_delete_new_created_offers').on( 'click', function(e) {
+		    	jQuery('.wpswocuf_pro_delete_new_created_offers').on( 'click', function(e) {
 		    		e.preventDefault();
 			    	var btn_id = $(this).data( 'id' );
 					jQuery("div.new_created_offers[data-id='" + btn_id + "']").slideUp( 'slow', function() { $(this).remove(); } );
@@ -178,13 +179,13 @@ jQuery(document).ready( function($) {
 		    	// Reinitialize product search in new offer.
 		    	jQuery('.wc-offer-product-search').select2({
 			  		ajax:{
-			    			url :wps_upsell_lite_js_obj.ajaxurl,
+			    			url :wpswocuf_upsell_lite_js_obj.ajaxurl,
 			    			dataType: 'json',
 			    			delay: 200,
 			    			data: function (params) {
 			      				return {
 			        				q: params.term,
-			        				nonce : wps_upsell_lite_js_obj.auth_nonce,
+			        				nonce : wpswocuf_upsell_lite_js_obj.auth_nonce,
 			        				action: 'seach_products_for_offers'
 			      				};
 			    			},
@@ -212,7 +213,7 @@ jQuery(document).ready( function($) {
     }
 
     // Insert and Activate respective template.
-	$(document).on('click', '.wps_upsell_activate_offer_template', function(e) {
+	$(document).on('click', '.wpswocuf_upsell_activate_offer_template', function(e) {
 
 		e.preventDefault();
 
@@ -229,15 +230,15 @@ jQuery(document).ready( function($) {
 		var offer_post_id = $(this).data( 'offer-post-id' );
 
 		// Show loading icon.
-		$('#wps_wocuf_pro_loader').removeClass('hide');
-		$('#wps_wocuf_pro_loader').addClass('show');
+		$('#wpswocuf_pro_loader').removeClass('hide');
+		$('#wpswocuf_pro_loader').addClass('show');
 
 		$.ajax({
 		    type:'POST',
-		    url :wps_upsell_lite_js_obj.ajaxurl,
+		    url :wpswocuf_upsell_lite_js_obj.ajaxurl,
 		    data:{
-		    	action: 'wps_upsell_activate_offer_template_ajax',
-				nonce : wps_upsell_lite_js_obj.auth_nonce,
+		    	action: 'wpswocuf_upsell_activate_offer_template_ajax',
+				nonce : wpswocuf_upsell_lite_js_obj.auth_nonce,
 		    	funnel_id: funnel_id,
 		    	offer_id: offer_id,
 		    	template_id: template_id,
@@ -251,7 +252,7 @@ jQuery(document).ready( function($) {
 				if( true === data.status ) {
 
 		    		// Update Offer template value to current template id. 
-		    		current_button.closest('.wps_upsell_offer_templates_parent').find('.wps_wocuf_pro_offer_template_input').val(template_id);
+		    		current_button.closest('.wpswocuf_upsell_offer_templates_parent').find('.wpswocuf_pro_offer_template_input').val(template_id);
 
 		    		/**
 		    		 * Append offer section parameter in current url, so after form submit we can scroll back to
@@ -262,11 +263,11 @@ jQuery(document).ready( function($) {
 					window.history.replaceState( {}, '', href_funnel_offer_url );
 
 					// Hide loading icon.
-		    		$('#wps_wocuf_pro_loader').removeClass('show');
-					$('#wps_wocuf_pro_loader').addClass('hide');
+		    		$('#wpswocuf_pro_loader').removeClass('show');
+					$('#wpswocuf_pro_loader').addClass('hide');
 
 					// Submit form ( Save upsell funnel ).
-		    		$("#wps_wocuf_pro_creation_setting_save").click();
+		    		$("#wpswocuf_pro_creation_setting_save").click();
 		    	} 
 			 }
 	   });		

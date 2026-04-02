@@ -34,7 +34,7 @@
     padding: 7px 10px;
     display: none;
 }
-.wps_product_custom_field h4 {
+.wpswocuf_product_custom_field h4 {
     position: relative;
     background-color: #ebebeb;
     padding: 10px 15px;
@@ -45,7 +45,7 @@
 .wps-help-tip:hover ~ p {
     display: block;
 }
-.wps_product_custom_field input {
+.wpswocuf_product_custom_field input {
     width: 100%;
     margin-top: 5px;
 }

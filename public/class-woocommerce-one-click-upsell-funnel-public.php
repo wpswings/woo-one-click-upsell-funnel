@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * The public-facing functionality of the plugin.
  *
@@ -19,7 +22,7 @@
  * @subpackage woo_one_click_upsell_funnel/public
  * @author     wpswings <webmaster@wpswings.com>
  */
-class Woocommerce_One_Click_Upsell_Funnel_Public {
+class Wpswocuf_Public {
 
 	/**
 	 * The ID of this plugin.
@@ -89,14 +92,14 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		if ( $this->validate_shortcode() ) {
 
 			$show_upsell_loader    = true;
-			$upsell_global_options = get_option( 'wps_upsell_lite_global_options', array() );
+			$upsell_global_options = get_option( 'wpswocuf_upsell_lite_global_options', array() );
 
 			$upsell_loader_redirect_link = ! empty( $upsell_global_options['upsell_actions_message'] ) ? sanitize_text_field( $upsell_global_options['upsell_actions_message'] ) : '';
 		}
 
 		wp_localize_script(
 			'woocommerce-one-click-upsell-public-script',
-			'wps_upsell_public',
+			'wpswocuf_upsell_public',
 			array(
 				'alert_preview_title'    => esc_html__( 'One Click Upsell', 'woo-one-click-upsell-funnel' ),
 				'alert_preview_content'  => esc_html__( 'This is Preview Mode, please checkout to see Live Offers.', 'woo-one-click-upsell-funnel' ),
@@ -115,18 +118,18 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		}
 
 		if ( ! empty( $is_upsell_page ) ) {
-			$upsell_global_options = get_option( 'wps_upsell_lite_global_options', array() );
-			$upsell_skip_function = ! empty( $upsell_global_options['wps_wocuf_pro_skip_exit_intent_toggle'] ) ? sanitize_text_field( $upsell_global_options['wps_wocuf_pro_skip_exit_intent_toggle'] ) : '';
+			$upsell_global_options = get_option( 'wpswocuf_upsell_lite_global_options', array() );
+			$upsell_skip_function = ! empty( $upsell_global_options['wpswocuf_pro_skip_exit_intent_toggle'] ) ? sanitize_text_field( $upsell_global_options['wpswocuf_pro_skip_exit_intent_toggle'] ) : '';
 			$upsell_exit_intent_message = __( 'Enhance your shopping experience! Explore additional products at a discount before you exit.',  'woo-one-click-upsell-funnel' );
 
 			wp_enqueue_script( 'woocommerce-one-click-upsell-public-exit-intent-script', plugin_dir_url( __FILE__ ) . 'js/woocommerce-one-click-upsell-funnel-public-exit-intent_lite.js', array( 'jquery' ), $this->version, true );
 
 			wp_localize_script(
 				'woocommerce-one-click-upsell-public-exit-intent-script',
-				'wps_upsell_public_exit',
+				'wpswocuf_upsell_public_exit',
 				array(
 					'ajaxurl'                => admin_url( 'admin-ajax.php' ),
-					'nonce'                  => wp_create_nonce( 'wps_wocuf_nonce' ),
+					'nonce'                  => wp_create_nonce( 'wpswocuf_nonce' ),
 					'skip_enabled'           => $upsell_skip_function,
 					'skip_message'           => $upsell_exit_intent_message,
 				)
@@ -143,7 +146,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		 *
 		 * @throws Exception Throws exception when error.
 		 */
-	public function wps_wocuf_initate_upsell_orders_shortcode_checkout_org( $order_id ) {
+	public function wpswocuf_initate_upsell_orders_shortcode_checkout_org( $order_id ) {
 		$checkout_nonce = ! empty( $_POST['checkout_order_processed_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['checkout_order_processed_nonce'] ) ) : '';
 
 		if ( isset( $_POST['checkout_order_processed_nonce'] ) && wp_verify_nonce( $checkout_nonce, 'checkout_order_processed_nonce' ) ) {
@@ -152,7 +155,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			}
 		}
 		$order = wc_get_order( $order_id );
-		$this->wps_wocuf_initiate_upsell_orders( $order );
+		$this->wpswocuf_initiate_upsell_orders( $order );
 
 	}
 
@@ -166,11 +169,11 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 *
 	 * @throws Exception Throws exception when error.
 	 */
-	public function wps_wocuf_initate_upsell_orders_api_checkout_org( $order ) {
+	public function wpswocuf_initate_upsell_orders_api_checkout_org( $order ) {
 		$order_id = $order->get_id();
-		wps_wocfo_hpos_update_meta_data( $order_id, '_wps_wocfo_org_checkout_through_block', 'block_checkout' );
+		wpswocuf_wocfo_hpos_update_meta_data( $order_id, '_wpswocuf_wocfo_org_checkout_through_block', 'block_checkout' );
 
-		$this->wps_wocuf_initiate_upsell_orders( $order );
+		$this->wpswocuf_initiate_upsell_orders( $order );
 
 	}
 
@@ -183,22 +186,22 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 * @since    1.0.0
 	 * @throws Exception Throws exception when error.
 	 */
-	public function wps_wocuf_initiate_upsell_orders( $order ) {
+	public function wpswocuf_initiate_upsell_orders( $order ) {
 
 		$order_id = $order->get_id();
 		$payment_method = $order->get_payment_method();
 
-		$supported_gateways = wps_upsell_lite_supported_gateways();
+		$supported_gateways = wpswocuf_upsell_lite_supported_gateways();
 
 		if ( in_array( $payment_method, $supported_gateways, true ) ) {
 
-			$wps_wocuf_pro_all_funnels = get_option( 'wps_wocuf_funnels_list', array() );
+			$wpswocuf_pro_all_funnels = get_option( 'wpswocuf_funnels_list', array() );
 
-			$wps_wocuf_pro_flag = 0;
+			$wpswocuf_pro_flag = 0;
 
-			$wps_wocuf_pro_proceed = false;
+			$wpswocuf_pro_proceed = false;
 
-			if ( empty( $wps_wocuf_pro_all_funnels ) ) {
+			if ( empty( $wpswocuf_pro_all_funnels ) ) {
 
 				return;
 			} elseif ( empty( $order ) ) {
@@ -213,61 +216,61 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 					return;
 				}
 
-				$wps_wocuf_pro_placed_order_items = $order->get_items();
+				$wpswocuf_pro_placed_order_items = $order->get_items();
 
 				$ocuf_ok = $order->get_order_key();
 
 				$ocuf_ofd = 0;
 
-				if ( is_array( $wps_wocuf_pro_all_funnels ) ) {
+				if ( is_array( $wpswocuf_pro_all_funnels ) ) {
 
 					// Move Global Funnels at the last of the array while maintaining it's key, so they execute at last.
-					foreach ( $wps_wocuf_pro_all_funnels as $funnel_key => $single_funnel_array ) {
+					foreach ( $wpswocuf_pro_all_funnels as $funnel_key => $single_funnel_array ) {
 
-						$global_funnel = ! empty( $single_funnel_array['wps_wocuf_global_funnel'] ) ? $single_funnel_array['wps_wocuf_global_funnel'] : '';
+						$global_funnel = ! empty( $single_funnel_array['wpswocuf_global_funnel'] ) ? $single_funnel_array['wpswocuf_global_funnel'] : '';
 
 						// Check if global funnel.
 						if ( 'yes' === $global_funnel ) {
 
 							// Unset.
-							unset( $wps_wocuf_pro_all_funnels[ $funnel_key ] );
+							unset( $wpswocuf_pro_all_funnels[ $funnel_key ] );
 
 							// Append at last with the same key.
-							$wps_wocuf_pro_all_funnels[ $funnel_key ] = $single_funnel_array;
+							$wpswocuf_pro_all_funnels[ $funnel_key ] = $single_funnel_array;
 						}
 					}
 
 					// Main Foreach for Triggering Upsell Offers.
-					foreach ( $wps_wocuf_pro_all_funnels as $wps_wocuf_pro_single_funnel => $wps_wocuf_pro_funnel_data ) {
+					foreach ( $wpswocuf_pro_all_funnels as $wpswocuf_pro_single_funnel => $wpswocuf_pro_funnel_data ) {
 
-						$is_global_funnel = ! empty( $wps_wocuf_pro_funnel_data['wps_wocuf_global_funnel'] ) && 'yes' === $wps_wocuf_pro_funnel_data['wps_wocuf_global_funnel'] ? $wps_wocuf_pro_funnel_data['wps_wocuf_global_funnel'] : false;
+						$is_global_funnel = ! empty( $wpswocuf_pro_funnel_data['wpswocuf_global_funnel'] ) && 'yes' === $wpswocuf_pro_funnel_data['wpswocuf_global_funnel'] ? $wpswocuf_pro_funnel_data['wpswocuf_global_funnel'] : false;
 
-						$wps_wocuf_pro_funnel_target_products = ! empty( $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_wocuf_target_pro_ids'] ) ? $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_wocuf_target_pro_ids'] : array();
-						$funnel_target_product_categories = ! empty( $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['target_categories_ids'] ) ? $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['target_categories_ids'] : array();
+						$wpswocuf_pro_funnel_target_products = ! empty( $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_target_pro_ids'] ) ? $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_target_pro_ids'] : array();
+						$funnel_target_product_categories = ! empty( $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['target_categories_ids'] ) ? $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['target_categories_ids'] : array();
 
-						$wps_wocuf_pro_existing_offers = ! empty( $wps_wocuf_pro_funnel_data['wps_wocuf_applied_offer_number'] ) ? $wps_wocuf_pro_funnel_data['wps_wocuf_applied_offer_number'] : array();
+						$wpswocuf_pro_existing_offers = ! empty( $wpswocuf_pro_funnel_data['wpswocuf_applied_offer_number'] ) ? $wpswocuf_pro_funnel_data['wpswocuf_applied_offer_number'] : array();
 
 						// To get the first offer from current funnel.
-						if ( count( $wps_wocuf_pro_existing_offers ) ) {
+						if ( count( $wpswocuf_pro_existing_offers ) ) {
 
-							foreach ( $wps_wocuf_pro_existing_offers as $key => $value ) {
+							foreach ( $wpswocuf_pro_existing_offers as $key => $value ) {
 
 								$ocuf_ofd = $key;
 								break;
 							}
 						}
 
-						if ( is_array( $wps_wocuf_pro_placed_order_items ) && count( $wps_wocuf_pro_placed_order_items ) ) {
-							foreach ( $wps_wocuf_pro_placed_order_items as $item_key => $wps_wocuf_pro_single_item ) {
-								$wps_wocuf_pro_variation_id = $wps_wocuf_pro_single_item->get_variation_id();
+						if ( is_array( $wpswocuf_pro_placed_order_items ) && count( $wpswocuf_pro_placed_order_items ) ) {
+							foreach ( $wpswocuf_pro_placed_order_items as $item_key => $wpswocuf_pro_single_item ) {
+								$wpswocuf_pro_variation_id = $wpswocuf_pro_single_item->get_variation_id();
 
-								$wps_wocuf_pro_product_id = $wps_wocuf_pro_single_item->get_product_id();
+								$wpswocuf_pro_product_id = $wpswocuf_pro_single_item->get_product_id();
 
 								$product_categories = array();
 
 								if ( ! empty( $funnel_target_product_categories ) ) {
 
-									$product_cat_obj_array = get_the_terms( $wps_wocuf_pro_product_id, 'product_cat' );
+									$product_cat_obj_array = get_the_terms( $wpswocuf_pro_product_id, 'product_cat' );
 
 									if ( ! empty( $product_cat_obj_array ) && is_array( $product_cat_obj_array ) && count( $product_cat_obj_array ) ) {
 
@@ -281,16 +284,16 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 									}
 								}
 
-								if ( in_array( (string) $wps_wocuf_pro_product_id, $wps_wocuf_pro_funnel_target_products, true ) || ( ! empty( $wps_wocuf_pro_variation_id ) && in_array( (string) $wps_wocuf_pro_variation_id, $wps_wocuf_pro_funnel_target_products, true ) ) || ( $is_global_funnel ) || ( ! empty( $product_categories ) && ! empty( array_intersect( $product_categories, $funnel_target_product_categories ) ) ) ) {
+								if ( in_array( (string) $wpswocuf_pro_product_id, $wpswocuf_pro_funnel_target_products, true ) || ( ! empty( $wpswocuf_pro_variation_id ) && in_array( (string) $wpswocuf_pro_variation_id, $wpswocuf_pro_funnel_target_products, true ) ) || ( $is_global_funnel ) || ( ! empty( $product_categories ) && ! empty( array_intersect( $product_categories, $funnel_target_product_categories ) ) ) ) {
 
 									// Check if funnel is saved after version 3.0.0.
-									$funnel_saved_after_version_3 = ! empty( $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_upsell_fsav3'] ) ? $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_upsell_fsav3'] : '';
+									$funnel_saved_after_version_3 = ! empty( $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_upsell_fsav3'] ) ? $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_upsell_fsav3'] : '';
 
 									// For funnels saved after version 3.0.0.
 									if ( 'true' === $funnel_saved_after_version_3 ) {
 
 										// Check if funnel is live or not.
-										$funnel_status = ! empty( $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_upsell_funnel_status'] ) ? $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_upsell_funnel_status'] : '';
+										$funnel_status = ! empty( $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_upsell_funnel_status'] ) ? $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_upsell_funnel_status'] : '';
 
 										// For Admin Funnel Will trigger for both Live and Sandbox statuses.
 
@@ -308,50 +311,50 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 									 * Check for funnel schedule.
 									 * Since v3.0.0 convert data into array first.
 									 */
-									$wps_wocuf_pro_funnel_schedule = ! empty( $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_wocuf_pro_funnel_schedule'] ) ? $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_wocuf_pro_funnel_schedule'] : array( '7' );
+									$wpswocuf_pro_funnel_schedule = ! empty( $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_pro_funnel_schedule'] ) ? $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_pro_funnel_schedule'] : array( '7' );
 
-									if ( '0' === $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_wocuf_pro_funnel_schedule'] ) {
+									if ( '0' === $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_pro_funnel_schedule'] ) {
 
-										$wps_wocuf_pro_funnel_schedule = array( '0' );
-									} elseif ( ! is_array( $wps_wocuf_pro_funnel_schedule ) ) {
+										$wpswocuf_pro_funnel_schedule = array( '0' );
+									} elseif ( ! is_array( $wpswocuf_pro_funnel_schedule ) ) {
 
-										$wps_wocuf_pro_funnel_schedule = array( $wps_wocuf_pro_funnel_schedule );
+										$wpswocuf_pro_funnel_schedule = array( $wpswocuf_pro_funnel_schedule );
 									}
 
 									// In order to use server time only.
 									$current_schedule = gmdate( 'w' );
 
-									if ( in_array( '7', $wps_wocuf_pro_funnel_schedule, true ) ) {
+									if ( in_array( '7', $wpswocuf_pro_funnel_schedule, true ) ) {
 
-										$wps_wocuf_pro_proceed = true;
+										$wpswocuf_pro_proceed = true;
 
-									} elseif ( in_array( (string) $current_schedule, $wps_wocuf_pro_funnel_schedule, true ) ) {
+									} elseif ( in_array( (string) $current_schedule, $wpswocuf_pro_funnel_schedule, true ) ) {
 
-										$wps_wocuf_pro_proceed = true;
+										$wpswocuf_pro_proceed = true;
 									}
 
-									if ( false === $wps_wocuf_pro_proceed ) {
+									if ( false === $wpswocuf_pro_proceed ) {
 
 										// Break from placed order items loop and move to next funnel.
 										break;
 									}
 
 									// Array of offers with product id.
-									if ( ! empty( $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_wocuf_products_in_offer'] ) && is_array( $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_wocuf_products_in_offer'] ) ) {
+									if ( ! empty( $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_products_in_offer'] ) && is_array( $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_products_in_offer'] ) ) {
 
 										/**
 										 * Set funnel as shown if is exclusive offer funnel.
 										 * Do it just after checking target.
 										 * Exclusive Offer
 										 */
-										if ( ! empty( $wps_wocuf_pro_funnel_data['wps_wocuf_exclusive_offer'] ) && 'yes' === $wps_wocuf_pro_funnel_data['wps_wocuf_exclusive_offer'] ) {
+										if ( ! empty( $wpswocuf_pro_funnel_data['wpswocuf_exclusive_offer'] ) && 'yes' === $wpswocuf_pro_funnel_data['wpswocuf_exclusive_offer'] ) {
 
 											// Check if funnel still exists.
-											if ( ! empty( $wps_wocuf_pro_funnel_data ) ) {
+											if ( ! empty( $wpswocuf_pro_funnel_data ) ) {
 
-												if ( ! empty( $wps_wocuf_pro_funnel_data['wps_wocuf_exclusive_offer'] ) && 'yes' === $wps_wocuf_pro_funnel_data['wps_wocuf_exclusive_offer'] ) {
+												if ( ! empty( $wpswocuf_pro_funnel_data['wpswocuf_exclusive_offer'] ) && 'yes' === $wpswocuf_pro_funnel_data['wpswocuf_exclusive_offer'] ) {
 
-													$offer_already_shown_to_users = ! empty( $wps_wocuf_pro_funnel_data['offer_already_shown_to_users'] ) ? $wps_wocuf_pro_funnel_data['offer_already_shown_to_users'] : array();
+													$offer_already_shown_to_users = ! empty( $wpswocuf_pro_funnel_data['offer_already_shown_to_users'] ) ? $wpswocuf_pro_funnel_data['offer_already_shown_to_users'] : array();
 
 													$current_customer = ! empty( $order ) ? $order->get_billing_email() : '';
 
@@ -363,16 +366,16 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 													// Not skipped. Mark as shown to this customer.
 													array_push( $offer_already_shown_to_users, $current_customer );
-													$wps_wocuf_pro_funnel_data['offer_already_shown_to_users'] = $offer_already_shown_to_users;
+													$wpswocuf_pro_funnel_data['offer_already_shown_to_users'] = $offer_already_shown_to_users;
 
-													$wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ] = $wps_wocuf_pro_funnel_data;
+													$wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ] = $wpswocuf_pro_funnel_data;
 
 													// Sort Funnels before saving.
-													$sorted_upsell_funnels = $wps_wocuf_pro_all_funnels;
+													$sorted_upsell_funnels = $wpswocuf_pro_all_funnels;
 
 													ksort( $sorted_upsell_funnels );
 
-													update_option( 'wps_wocuf_funnels_list', $sorted_upsell_funnels );
+													update_option( 'wpswocuf_funnels_list', $sorted_upsell_funnels );
 												}
 											}
 										}
@@ -380,24 +383,24 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 										/**
 										 * Smart Offer Upgrade. ( Will not work for Global Funnel )
 										 */
-										if ( ! empty( $wps_wocuf_pro_funnel_data['wps_wocuf_smart_offer_upgrade'] ) && 'yes' === $wps_wocuf_pro_funnel_data['wps_wocuf_smart_offer_upgrade'] && ! $is_global_funnel ) {
+										if ( ! empty( $wpswocuf_pro_funnel_data['wpswocuf_smart_offer_upgrade'] ) && 'yes' === $wpswocuf_pro_funnel_data['wpswocuf_smart_offer_upgrade'] && ! $is_global_funnel ) {
 
 											if ( ! empty( $item_key ) ) {
 
-												wps_wocfo_hpos_update_meta_data( $order_id, '__smart_offer_upgrade_target_key', $item_key );
+												wpswocuf_wocfo_hpos_update_meta_data( $order_id, '__smart_offer_upgrade_target_key', $item_key );
 											}
 										}
 
 										// To skip funnel if any funnel offer product is already present during checkout ( Order Items ).
-										$wps_upsell_global_settings = get_option( 'wps_upsell_lite_global_options', array() );
+										$wpswocuf_upsell_global_settings = get_option( 'wpswocuf_upsell_lite_global_options', array() );
 
-										$skip_similar_offer = ! empty( $wps_upsell_global_settings['skip_similar_offer'] ) ? $wps_upsell_global_settings['skip_similar_offer'] : 'yes';
+										$skip_similar_offer = ! empty( $wpswocuf_upsell_global_settings['skip_similar_offer'] ) ? $wpswocuf_upsell_global_settings['skip_similar_offer'] : 'yes';
 
 										if ( 'yes' === $skip_similar_offer ) {
 
 											$offer_product_in_cart = false;
 
-											foreach ( $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_wocuf_products_in_offer'] as $product_in_funnel_id_array ) {
+											foreach ( $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_products_in_offer'] as $product_in_funnel_id_array ) {
 
 												if ( ! empty( $product_in_funnel_id_array ) ) {
 
@@ -406,13 +409,13 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 														foreach ( $product_in_funnel_id_array as $product_in_funnel_id ) {
 
-															foreach ( $wps_wocuf_pro_placed_order_items as $item_key => $wps_wocuf_pro_single_item ) {
+															foreach ( $wpswocuf_pro_placed_order_items as $item_key => $wpswocuf_pro_single_item ) {
 
 																/**
 																 * Get get_product()->get_id() will return actual id, no need to call
 																 * get_variation_id() separately.
 																 */
-																if ( (int) $wps_wocuf_pro_single_item->get_product()->get_id() === absint( $product_in_funnel_id ) ) {
+																if ( (int) $wpswocuf_pro_single_item->get_product()->get_id() === absint( $product_in_funnel_id ) ) {
 
 																	$offer_product_in_cart = true;
 																	break 3;
@@ -422,13 +425,13 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 														}
 													} else {
 
-														foreach ( $wps_wocuf_pro_placed_order_items as $item_key => $wps_wocuf_pro_single_item ) {
+														foreach ( $wpswocuf_pro_placed_order_items as $item_key => $wpswocuf_pro_single_item ) {
 
 															/**
 															 * Get get_product()->get_id() will return actual id, no need to call
 															 * get_variation_id() separately.
 															 */
-															if ( (int) $wps_wocuf_pro_single_item->get_product()->get_id() === absint( $product_in_funnel_id_array ) ) {
+															if ( (int) $wpswocuf_pro_single_item->get_product()->get_id() === absint( $product_in_funnel_id_array ) ) {
 
 																$offer_product_in_cart = true;
 																break 2;
@@ -449,17 +452,17 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 										 * Smart Skip if already purchased.
 										 * since v3.0.0
 										 */
-										$smart_skip_if_purchased = ! empty( $wps_upsell_global_settings['smart_skip_if_purchased'] ) ? $wps_upsell_global_settings['smart_skip_if_purchased'] : '';
+										$smart_skip_if_purchased = ! empty( $wpswocuf_upsell_global_settings['smart_skip_if_purchased'] ) ? $wpswocuf_upsell_global_settings['smart_skip_if_purchased'] : '';
 
 										if ( is_user_logged_in() && 'yes' === $smart_skip_if_purchased ) {
 
 											$offer_product_already_purchased = false;
 
-											if ( ! empty( $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_wocuf_products_in_offer'] ) && is_array( $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_wocuf_products_in_offer'] ) ) {
+											if ( ! empty( $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_products_in_offer'] ) && is_array( $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_products_in_offer'] ) ) {
 
-												foreach ( $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_wocuf_products_in_offer'] as $single_offer_id ) {
+												foreach ( $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_products_in_offer'] as $single_offer_id ) {
 
-													if ( true === self::wps_wocuf_skip_for_pre_order( $single_offer_id ) ) {
+													if ( true === self::wpswocuf_skip_for_pre_order( $single_offer_id ) ) {
 
 														// If already purchased.
 														$offer_product_already_purchased = true;
@@ -477,7 +480,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 										// To skip funnel if any offer product in funnel is out of stock.
 
 										$product_in_funnel_stock_out = false;
-										foreach ( $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_wocuf_products_in_offer'] as $product_in_funnel_id_array ) {
+										foreach ( $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_products_in_offer'] as $product_in_funnel_id_array ) {
 
 											if ( ! empty( $product_in_funnel_id_array ) ) {
 
@@ -514,22 +517,22 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 									}
 
 									// $ocuf_ofd is first offer id in funnel, check if product id is set in it.
-									if ( ! empty( $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_wocuf_products_in_offer'][ $ocuf_ofd ] ) ) {
+									if ( ! empty( $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_products_in_offer'][ $ocuf_ofd ] ) ) {
 
-										$funnel_offer_post_id_assigned = ! empty( $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_upsell_post_id_assigned'][ $ocuf_ofd ] ) ? $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_upsell_post_id_assigned'][ $ocuf_ofd ] : '';
-										wps_wocfo_hpos_delete_meta_data( $funnel_offer_post_id_assigned, '_elementor_element_cache' );
+										$funnel_offer_post_id_assigned = ! empty( $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_upsell_post_id_assigned'][ $ocuf_ofd ] ) ? $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_upsell_post_id_assigned'][ $ocuf_ofd ] : '';
+										wpswocuf_wocfo_hpos_delete_meta_data( $funnel_offer_post_id_assigned, '_elementor_element_cache' );
 
 										// When funnel is saved since v3.0.0 and offer post id is assigned and elementor active.
-										if ( ! empty( $funnel_offer_post_id_assigned ) && ( ( 'true' === $funnel_saved_after_version_3 && wps_upsell_lite_elementor_plugin_active() ) || wps_upsell_divi_builder_plugin_active() ) ) {
+										if ( ! empty( $funnel_offer_post_id_assigned ) && ( ( 'true' === $funnel_saved_after_version_3 && wpswocuf_upsell_lite_elementor_plugin_active() ) || wpswocuf_upsell_divi_builder_plugin_active() ) ) {
 
 											$redirect_to_upsell = false;
 
-											$offer_template = ! empty( $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_wocuf_pro_offer_template'][ $ocuf_ofd ] ) ? $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_wocuf_pro_offer_template'][ $ocuf_ofd ] : '';
+											$offer_template = ! empty( $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_pro_offer_template'][ $ocuf_ofd ] ) ? $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_pro_offer_template'][ $ocuf_ofd ] : '';
 
 											// When template is set to custom.
 											if ( 'custom' === $offer_template ) {
 
-												$custom_offer_page_url = ! empty( $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_wocuf_offer_custom_page_url'][ $ocuf_ofd ] ) ? $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_wocuf_offer_custom_page_url'][ $ocuf_ofd ] : '';
+												$custom_offer_page_url = ! empty( $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_offer_custom_page_url'][ $ocuf_ofd ] ) ? $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_offer_custom_page_url'][ $ocuf_ofd ] : '';
 
 												if ( ! empty( $custom_offer_page_url ) ) {
 
@@ -539,7 +542,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 											} elseif ( ! empty( $offer_template ) ) {
 
 												// When template is set to one, two or three.
-												$offer_assigned_post_id = ! empty( $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_upsell_post_id_assigned'][ $ocuf_ofd ] ) ? $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_upsell_post_id_assigned'][ $ocuf_ofd ] : '';
+												$offer_assigned_post_id = ! empty( $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_upsell_post_id_assigned'][ $ocuf_ofd ] ) ? $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_upsell_post_id_assigned'][ $ocuf_ofd ] : '';
 												if ( ! empty( $offer_assigned_post_id ) && 'publish' === get_post_status( $offer_assigned_post_id ) ) {
 
 													$redirect_to_upsell = true;
@@ -551,30 +554,30 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 												$funnel_redirect = true;
 
-												$wps_wocuf_pro_nonce = wp_create_nonce( 'funnel_offers' );
+												$wpswocuf_pro_nonce = wp_create_nonce( 'funnel_offers' );
 
 												$result = add_query_arg(
 													array(
-														'ocuf_ns' => $wps_wocuf_pro_nonce,
-														'ocuf_fid' => $wps_wocuf_pro_single_funnel,
+														'ocuf_ns' => $wpswocuf_pro_nonce,
+														'ocuf_fid' => $wpswocuf_pro_single_funnel,
 														'ocuf_ok' => $ocuf_ok,
 														'ocuf_ofd' => $ocuf_ofd,
 													),
 													$redirect_to_url
 												);
 
-												$wps_wocuf_pro_flag = 1;
+												$wpswocuf_pro_flag = 1;
 
 												// Break from placed order items loop with both funnel redirect and pro flag as true.
 												break;
 											}
 										} else { // When funnel is saved before v3.0.0.
-											$wps_wocuf_pro_offer_page_id = get_option( 'wps_wocuf_pro_funnel_default_offer_page', '' );
+											$wpswocuf_pro_offer_page_id = get_option( 'wpswocuf_pro_funnel_default_offer_page', '' );
 
-											if ( isset( $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_wocuf_offer_custom_page_url'][ $ocuf_ofd ] ) && ! empty( $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_wocuf_offer_custom_page_url'][ $ocuf_ofd ] ) ) {
-												$redirect_to_url = $wps_wocuf_pro_all_funnels[ $wps_wocuf_pro_single_funnel ]['wps_wocuf_offer_custom_page_url'][ $ocuf_ofd ];
-											} elseif ( ! empty( $wps_wocuf_pro_offer_page_id ) && 'publish' === get_post_status( $wps_wocuf_pro_offer_page_id ) ) {
-												$redirect_to_url = get_page_link( $wps_wocuf_pro_offer_page_id );
+											if ( isset( $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_offer_custom_page_url'][ $ocuf_ofd ] ) && ! empty( $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_offer_custom_page_url'][ $ocuf_ofd ] ) ) {
+												$redirect_to_url = $wpswocuf_pro_all_funnels[ $wpswocuf_pro_single_funnel ]['wpswocuf_offer_custom_page_url'][ $ocuf_ofd ];
+											} elseif ( ! empty( $wpswocuf_pro_offer_page_id ) && 'publish' === get_post_status( $wpswocuf_pro_offer_page_id ) ) {
+												$redirect_to_url = get_page_link( $wpswocuf_pro_offer_page_id );
 											} else {
 
 												// Break from placed order items loop and move to next funnel.
@@ -583,19 +586,19 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 											$funnel_redirect = true;
 
-											$wps_wocuf_pro_nonce = wp_create_nonce( 'funnel_offers' );
+											$wpswocuf_pro_nonce = wp_create_nonce( 'funnel_offers' );
 
 											$result = add_query_arg(
 												array(
-													'ocuf_ns' => $wps_wocuf_pro_nonce,
-													'ocuf_fid' => $wps_wocuf_pro_single_funnel,
+													'ocuf_ns' => $wpswocuf_pro_nonce,
+													'ocuf_fid' => $wpswocuf_pro_single_funnel,
 													'ocuf_ok' => $ocuf_ok,
 													'ocuf_ofd' => $ocuf_ofd,
 												),
 												$redirect_to_url
 											);
 
-											$wps_wocuf_pro_flag = 1;
+											$wpswocuf_pro_flag = 1;
 
 											// Break from placed order items loop with both funnel redirect and pro flag as true.
 											break;
@@ -605,7 +608,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 							}
 						}
 
-						if ( 1 === $wps_wocuf_pro_flag ) {
+						if ( 1 === $wpswocuf_pro_flag ) {
 
 							// Break from 'all funnels' loop.
 							break;
@@ -626,7 +629,8 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 								return;
 							}
 						}
-						wps_wocfo_hpos_update_meta_data( $order_id, '_post_data', $_POST );
+							$sanitized_post = wc_clean( $_POST );
+							wpswocuf_wocfo_hpos_update_meta_data( $order_id, '_post_data', $sanitized_post );
 
 
 						
@@ -638,9 +642,9 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 						} else {
 
 							// Process Subscriptions for pre upsell products from Order.
-							if ( wps_upsell_org_order_contains_subscription( $order_id ) && wps_upsell_org_pg_supports_subs( $order_id ) ) {
+							if ( wpswocuf_upsell_org_order_contains_subscription( $order_id ) && wpswocuf_upsell_org_pg_supports_subs( $order_id ) ) {
 
-								wps_upsell_org_create_subscriptions_for_order( $order_id, $order );
+								wpswocuf_upsell_org_create_subscriptions_for_order( $order_id, $order );
 							}
 
 							/**
@@ -655,31 +659,31 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 									wp_die( esc_html__( 'Nonce Not verified',  'woo-one-click-upsell-funnel' ) );
 								}
 
-								$compat_class = new Subscriptions_For_Woocommerce_Compatiblity( 'Subscriptions_For_Woocommerce_Compatiblity', '1.0.0' );
-								$compat_class->create_subscriptions_for_order( $order_id, $_POST );
+									$compat_class = new Subscriptions_For_Woocommerce_Compatiblity( 'Subscriptions_For_Woocommerce_Compatiblity', '1.0.0' );
+									$compat_class->create_subscriptions_for_order( $order_id, $sanitized_post );
 							}
 
-							$is_block_checkout = wps_wocfo_hpos_get_meta_data( $order_id, '_wps_wocfo_org_checkout_through_block', true );
+							$is_block_checkout = wpswocuf_wocfo_hpos_get_meta_data( $order_id, '_wpswocuf_wocfo_org_checkout_through_block', true );
 
 							if ( 'block_checkout' == $is_block_checkout ) {
 
-								$this->initial_redirection_to_upsell_offer_and_triggers( $order_id, $wps_wocuf_pro_single_funnel, $result );
+								$this->initial_redirection_to_upsell_offer_and_triggers( $order_id, $wpswocuf_pro_single_funnel, $result );
 								return;
 
 							} else {
 
 
 
-								$this->initial_redirection_to_upsell_offer_and_triggers( $order_id, $wps_wocuf_pro_single_funnel, $result );
+								$this->initial_redirection_to_upsell_offer_and_triggers( $order_id, $wpswocuf_pro_single_funnel, $result );
 								return;
 								
 							}
 						}
 					} else {
 						// For cron - Upsell is initialized. As just going to Redirect.
-						wps_wocfo_hpos_update_meta_data( $order_id, 'wps_ocufp_upsell_initialized', time() );
+						wpswocuf_wocfo_hpos_update_meta_data( $order_id, 'wpswocuf_ocufp_upsell_initialized', time() );
 
-						$this->initial_redirection_to_upsell_offer_and_triggers( $order_id, $wps_wocuf_pro_single_funnel, $result );
+						$this->initial_redirection_to_upsell_offer_and_triggers( $order_id, $wpswocuf_pro_single_funnel, $result );
 
 					}
 				} else {
@@ -713,13 +717,13 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		 * This can be used to track upsell orders in which browser window was closed
 		 * and other purposes.
 		 */
-		wps_wocfo_hpos_update_meta_data( $order_id, 'wps_upsell_order_started', 'true' );
+		wpswocuf_wocfo_hpos_update_meta_data( $order_id, 'wpswocuf_upsell_order_started', 'true' );
 
 		// Add Upsell Funnel Id to order meta for Sales by Funnel tracking.
-		wps_wocfo_hpos_update_meta_data( $order_id, 'wps_upsell_funnel_id', $funnel_id );
+		wpswocuf_wocfo_hpos_update_meta_data( $order_id, 'wpswocuf_upsell_funnel_id', $funnel_id );
 
 		// Add Funnel Triggered count and Offer View Count for the current Funnel.
-		$sales_by_funnel = new WPS_Upsell_Report_Sales_By_Funnel( $funnel_id );
+		$sales_by_funnel = new wpswocuf_Upsell_Report_Sales_By_Funnel( $funnel_id );
 		$sales_by_funnel->add_funnel_triggered_count();
 		$sales_by_funnel->add_offer_view_count();
 
@@ -731,10 +735,10 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			'redirect' => $upsell_offer_link,
 		);
 
-		$is_block_checkout = wps_wocfo_hpos_get_meta_data( $order_id, '_wps_wocfo_org_checkout_through_block', true );
+		$is_block_checkout = wpswocuf_wocfo_hpos_get_meta_data( $order_id, '_wpswocuf_wocfo_org_checkout_through_block', true );
 
 		if ( 'block_checkout' == $is_block_checkout ) {
-			wps_wocfo_hpos_update_meta_data( $order_id, 'wps_wocfo_upsell_funnel_redirection_link_org', $upsell_offer_link );
+			wpswocuf_wocfo_hpos_update_meta_data( $order_id, 'wpswocuf_wocfo_upsell_funnel_redirection_link_org', $upsell_offer_link );
 
 		} else {
 			// Redirect to upsell offer page.
@@ -755,26 +759,24 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	public function wps_wocuf_pro_process_the_funnel() {
-
-		$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
-		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
-
-		if ( ! $id_nonce_verified ) {
-			wp_die( esc_html__( 'Nonce Not verified', 'woo-one-click-upsell-funnel' ) );
-		}
+	public function wpswocuf_pro_process_the_funnel() {
 
 		if ( isset( $_GET['ocuf_th'] ) && 1 === (int) $_GET['ocuf_th'] && isset( $_GET['ocuf_ofd'] ) && isset( $_GET['ocuf_fid'] ) && isset( $_GET['ocuf_ok'] ) && isset( $_GET['ocuf_ns'] ) ) {
 
-			$offer_id = sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) );
-
-			$funnel_id = sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) );
-
-			$order_key = sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) );
-
 			$wp_nonce = sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) );
 
-			$order_id = wc_get_order_id_by_order_key( $order_key );
+			if ( ! wp_verify_nonce( $wp_nonce, 'wps-upsell-auth-nonce' ) ) {
+				return;
+			}
+
+			$offer_id  = isset( $_GET['ocuf_ofd'] ) ? absint( $_GET['ocuf_ofd'] ) : 0;
+			$funnel_id = isset( $_GET['ocuf_fid'] ) ? absint( $_GET['ocuf_fid'] ) : 0;
+			$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) ) : '';
+
+			$order_id = $order_key ? wc_get_order_id_by_order_key( $order_key ) : 0;
+			if ( empty( $order_id ) ) {
+				return;
+			}
 
 			if ( ! empty( $order_id ) ) {
 
@@ -796,47 +798,47 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			}
 
 			// Add Offer Reject Count for the current Funnel.
-			$sales_by_funnel = new WPS_Upsell_Report_Sales_By_Funnel( $funnel_id );
+			$sales_by_funnel = new wpswocuf_Upsell_Report_Sales_By_Funnel( $funnel_id );
 			$sales_by_funnel->add_offer_reject_count();
 
-			$wps_wocuf_pro_all_funnels = get_option( 'wps_wocuf_funnels_list', array() );
+			$wpswocuf_pro_all_funnels = get_option( 'wpswocuf_funnels_list', array() );
 
-			$wps_wocuf_pro_action_on_no = isset( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_attached_offers_on_no'] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_attached_offers_on_no'] : array();
+			$wpswocuf_pro_action_on_no = isset( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_attached_offers_on_no'] ) ? $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_attached_offers_on_no'] : array();
 
-			$wps_wocuf_pro_check_action = isset( $wps_wocuf_pro_action_on_no[ $offer_id ] ) ? $wps_wocuf_pro_action_on_no[ $offer_id ] : '';
+			$wpswocuf_pro_check_action = isset( $wpswocuf_pro_action_on_no[ $offer_id ] ) ? $wpswocuf_pro_action_on_no[ $offer_id ] : '';
 
-			if ( 'thanks' === $wps_wocuf_pro_check_action ) {
+			if ( 'thanks' === $wpswocuf_pro_check_action ) {
 
 				$this->initiate_order_payment_and_redirect( $order_id );
-			} elseif ( 'thanks' !== $wps_wocuf_pro_check_action ) {
+			} elseif ( 'thanks' !== $wpswocuf_pro_check_action ) {
 
 				// Next offer id.
-				$offer_id = $wps_wocuf_pro_check_action;
+				$offer_id = $wpswocuf_pro_check_action;
 
 				// Check if next offer has product.
-				$wps_wocuf_pro_upcoming_offer = isset( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_products_in_offer'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_products_in_offer'][ $offer_id ] : array();
+				$wpswocuf_pro_upcoming_offer = isset( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_products_in_offer'][ $offer_id ] ) ? $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_products_in_offer'][ $offer_id ] : array();
 
 				// If next offer has no product then redirect.
-				if ( empty( $wps_wocuf_pro_upcoming_offer ) ) {
+				if ( empty( $wpswocuf_pro_upcoming_offer ) ) {
 
 					$this->initiate_order_payment_and_redirect( $order_id );
 				}
 
-				$funnel_saved_after_version_3 = ! empty( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_upsell_fsav3'] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_upsell_fsav3'] : '';
+				$funnel_saved_after_version_3 = ! empty( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_upsell_fsav3'] ) ? $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_upsell_fsav3'] : '';
 
-				$funnel_offer_post_id_assigned = ! empty( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_upsell_post_id_assigned'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_upsell_post_id_assigned'][ $offer_id ] : '';
+				$funnel_offer_post_id_assigned = ! empty( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_upsell_post_id_assigned'][ $offer_id ] ) ? $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_upsell_post_id_assigned'][ $offer_id ] : '';
 
 				// When funnel is saved since v3.0.0 and offer post id is assigned and elementor active.
-				if ( ! empty( $funnel_offer_post_id_assigned ) && ( ( 'true' === $funnel_saved_after_version_3 && wps_upsell_lite_elementor_plugin_active() ) || wps_upsell_divi_builder_plugin_active() ) ) {
+				if ( ! empty( $funnel_offer_post_id_assigned ) && ( ( 'true' === $funnel_saved_after_version_3 && wpswocuf_upsell_lite_elementor_plugin_active() ) || wpswocuf_upsell_divi_builder_plugin_active() ) ) {
 
 					$redirect_to_upsell = false;
 
-					$offer_template = ! empty( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_pro_offer_template'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_pro_offer_template'][ $offer_id ] : '';
+					$offer_template = ! empty( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_pro_offer_template'][ $offer_id ] ) ? $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_pro_offer_template'][ $offer_id ] : '';
 
 					// When template is set to custom.
 					if ( 'custom' === $offer_template ) {
 
-						$custom_offer_page_url = ! empty( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_offer_custom_page_url'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_offer_custom_page_url'][ $offer_id ] : '';
+						$custom_offer_page_url = ! empty( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_offer_custom_page_url'][ $offer_id ] ) ? $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_offer_custom_page_url'][ $offer_id ] : '';
 
 						if ( ! empty( $custom_offer_page_url ) ) {
 
@@ -845,8 +847,8 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 						}
 					} elseif ( ! empty( $offer_template ) ) {
 						// When template is set to one, two or three.
-						$offer_assigned_post_id = ! empty( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_upsell_post_id_assigned'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_upsell_post_id_assigned'][ $offer_id ] : '';
-						wps_wocfo_hpos_delete_meta_data( $funnel_offer_post_id_assigned, '_elementor_element_cache' );
+						$offer_assigned_post_id = ! empty( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_upsell_post_id_assigned'][ $offer_id ] ) ? $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_upsell_post_id_assigned'][ $offer_id ] : '';
+						wpswocuf_wocfo_hpos_delete_meta_data( $funnel_offer_post_id_assigned, '_elementor_element_cache' );
 						if ( ! empty( $offer_assigned_post_id ) && 'publish' === get_post_status( $offer_assigned_post_id ) ) {
 
 							$redirect_to_upsell = true;
@@ -875,34 +877,34 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 					}
 				} else { // When funnel is saved before v3.0.0.
 
-					$wps_wocuf_pro_offer_page_id = get_option( 'wps_wocuf_pro_funnel_default_offer_page', '' );
+					$wpswocuf_pro_offer_page_id = get_option( 'wpswocuf_pro_funnel_default_offer_page', '' );
 
-					if ( isset( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_offer_custom_page_url'][ $offer_id ] ) && ! empty( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_offer_custom_page_url'][ $offer_id ] ) ) {
+					if ( isset( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_offer_custom_page_url'][ $offer_id ] ) && ! empty( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_offer_custom_page_url'][ $offer_id ] ) ) {
 
-						$wps_wocuf_pro_next_offer_url = $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_offer_custom_page_url'][ $offer_id ];
-					} elseif ( ! empty( $wps_wocuf_pro_offer_page_id ) && get_post_status( 'publish' === $wps_wocuf_pro_offer_page_id ) ) {
+						$wpswocuf_pro_next_offer_url = $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_offer_custom_page_url'][ $offer_id ];
+					} elseif ( ! empty( $wpswocuf_pro_offer_page_id ) && get_post_status( 'publish' === $wpswocuf_pro_offer_page_id ) ) {
 
-						$wps_wocuf_pro_next_offer_url = get_page_link( $wps_wocuf_pro_offer_page_id );
+						$wpswocuf_pro_next_offer_url = get_page_link( $wpswocuf_pro_offer_page_id );
 					} else {
 
 						$this->initiate_order_payment_and_redirect( $order_id );
 					}
 
-					$wps_wocuf_pro_next_offer_url = add_query_arg(
+					$wpswocuf_pro_next_offer_url = add_query_arg(
 						array(
 							'ocuf_ns'  => $wp_nonce,
 							'ocuf_fid' => $funnel_id,
 							'ocuf_ok'  => $order_key,
 							'ocuf_ofd' => $offer_id,
 						),
-						$wps_wocuf_pro_next_offer_url
+						$wpswocuf_pro_next_offer_url
 					);
 
-					$url = $wps_wocuf_pro_next_offer_url;
+					$url = $wpswocuf_pro_next_offer_url;
 				}
 
 				// Add Offer View Count for the current Funnel.
-				$sales_by_funnel = new WPS_Upsell_Report_Sales_By_Funnel( $funnel_id );
+				$sales_by_funnel = new wpswocuf_Upsell_Report_Sales_By_Funnel( $funnel_id );
 				$sales_by_funnel->add_offer_view_count();
 
 				wp_redirect( $url ); //phpcs:ignore
@@ -916,161 +918,90 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 *
 	 * @return $result
 	 */
-	public function wps_wocuf_pro_funnel_offers_shortcode() {
+	public function wpswocuf_pro_funnel_offers_shortcode() {
 		$result = '';
 
-		if ( isset( $_GET['ocuf_ok'] ) ) {
-			$order_key = sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) );
+		if ( ! isset( $_GET['ocuf_ok'], $_GET['ocuf_ofd'], $_GET['ocuf_fid'], $_GET['ocuf_ns'] ) ) {
+			$wpswocuf_pro_no_offer_text = get_option( 'wpswocuf_pro_no_offer_text', esc_html__( 'Sorry, you have no offers', 'woo-one-click-upsell-funnel' ) );
 
-			$order_id = wc_get_order_id_by_order_key( $order_key );
+			$result .= '<div class="wps-wocuf_pro-no-offer"><h2>' . trim( $wpswocuf_pro_no_offer_text, '"' ) . '</h2>';
+			$result .= '<a class="button wc-backward" href="' . esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ) . '">' . esc_html__( 'Return to Shop', 'woo-one-click-upsell-funnel' ) . '</a></div>';
+			return $result;
+		}
 
-			if ( isset( $_GET['ocuf_ofd'] ) && isset( $_GET['ocuf_fid'] ) ) {
-				$offer_id = sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) );
+		$order_key = sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) );
+		$offer_id  = absint( $_GET['ocuf_ofd'] );
+		$funnel_id = absint( $_GET['ocuf_fid'] );
+		$wp_nonce  = sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) );
 
-				$funnel_id = sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) );
+		if ( empty( $wp_nonce ) || ! wp_verify_nonce( $wp_nonce, 'funnel_offers' ) ) {
+			return $result;
+		}
 
-				if ( isset( $_GET['ocuf_ns'] ) ) {
+		$order_id = $order_key ? wc_get_order_id_by_order_key( $order_key ) : 0;
+		if ( empty( $order_id ) ) {
+			return $result;
+		}
 
-					$wp_nonce = sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) );
+		$wpswocuf_pro_all_funnels = get_option( 'wpswocuf_funnels_list', array() );
+		$wpswocuf_pro_buy_text = get_option( 'wpswocuf_pro_buy_text', esc_html__( 'Buy Now', 'woo-one-click-upsell-funnel' ) );
+		$wpswocuf_pro_no_text = get_option( 'wpswocuf_pro_no_text', esc_html__( 'No,thanks', 'woo-one-click-upsell-funnel' ) );
+		$wpswocuf_pro_before_offer_price_text = get_option( 'wpswocuf_pro_before_offer_price_text', esc_html__( 'Special Offer Price', 'woo-one-click-upsell-funnel' ) );
+		$wpswocuf_pro_offered_products = isset( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_products_in_offer'] ) ? $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_products_in_offer'] : array();
+		$wpswocuf_pro_offered_discount = isset( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_offer_discount_price'] ) ? $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_offer_discount_price'] : array();
+		$wpswocuf_pro_buy_button_color = get_option( 'wpswocuf_pro_buy_button_color', '' );
+		$ocuf_th_button_color = get_option( 'wpswocuf_pro_thanks_button_color', '' );
 
-					wp_verify_nonce( $wp_nonce, 'funnel_offers' );
+		$result .= '<div style="display:none;" id="wpswocuf_pro_offer_loader"><img id="wps-wocuf-loading-offer" src="' . wpswocuf_URL . 'public/images/ajax-loader.gif"></div><div class="wpswocuf_pro_offer_container"><div class="woocommerce"><div class="wpswocuf_pro_special_offers_for_you">';
+		$wpswocuf_pro_offer_banner_text = get_option( 'wpswocuf_pro_offer_banner_text', esc_html__( 'Special Offer For You Only', 'woo-one-click-upsell-funnel' ) );
+		$result .= '<div class="wpswocuf_pro_special_offer_banner"><h1>' . trim( $wpswocuf_pro_offer_banner_text, '"' ) . '</h1></div>';
 
-					$wps_wocuf_pro_all_funnels = get_option( 'wps_wocuf_funnels_list', array() );
-
-					$wps_wocuf_pro_buy_text = get_option( 'wps_wocuf_pro_buy_text', esc_html__( 'Buy Now', 'woo-one-click-upsell-funnel' ) );
-
-					$wps_wocuf_pro_no_text = get_option( 'wps_wocuf_pro_no_text', esc_html__( 'No,thanks', 'woo-one-click-upsell-funnel' ) );
-
-					$wps_wocuf_pro_before_offer_price_text = get_option( 'wps_wocuf_pro_before_offer_price_text', esc_html__( 'Special Offer Price', 'woo-one-click-upsell-funnel' ) );
-
-					$wps_wocuf_pro_offered_products = isset( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_products_in_offer'] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_products_in_offer'] : array();
-
-					$wps_wocuf_pro_offered_discount = isset( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_offer_discount_price'] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_offer_discount_price'] : array();
-
-					$wps_wocuf_pro_buy_button_color = get_option( 'wps_wocuf_pro_buy_button_color', '' );
-
-					$ocuf_th_button_color = get_option( 'wps_wocuf_pro_thanks_button_color', '' );
-
-					$result .= '<div style="display:none;" id="wps_wocuf_pro_offer_loader"><img id="wps-wocuf-loading-offer" src="' . WPS_WOCUF_URL . 'public/images/ajax-loader.gif"></div><div class="wps_wocuf_pro_offer_container"><div class="woocommerce"><div class="wps_wocuf_pro_special_offers_for_you">';
-
-					$wps_wocuf_pro_offer_banner_text = get_option( 'wps_wocuf_pro_offer_banner_text', esc_html__( 'Special Offer For You Only', 'woo-one-click-upsell-funnel' ) );
-
-					$result .= '<div class="wps_wocuf_pro_special_offer_banner">
-								<h1>' . trim( $wps_wocuf_pro_offer_banner_text, '"' ) . '</h1></div>';
-
-					$wps_wocuf_pro_single_offered_product = '';
-
-					if ( ! empty( $wps_wocuf_pro_offered_products[ $offer_id ] ) ) {
-
-						// In v2.0.0, it was array so handling to get the first product id.
-						if ( is_array( $wps_wocuf_pro_offered_products[ $offer_id ] ) && count( $wps_wocuf_pro_offered_products[ $offer_id ] ) ) {
-
-							foreach ( $wps_wocuf_pro_offered_products[ $offer_id ] as $handling_offer_product_id ) {
-
-								$wps_wocuf_pro_single_offered_product = absint( $handling_offer_product_id );
-								break;
-							}
-						} else {
-
-							$wps_wocuf_pro_single_offered_product = absint( $wps_wocuf_pro_offered_products[ $offer_id ] );
-						}
-					}
-
-					$wps_wocuf_pro_original_offered_product = wc_get_product( $wps_wocuf_pro_single_offered_product );
-
-					$original_price = $wps_wocuf_pro_original_offered_product->get_price_html();
-
-					$product = $wps_wocuf_pro_original_offered_product;
-
-					if ( ! $wps_wocuf_pro_original_offered_product->is_type( 'variable' ) ) {
-						$wps_wocuf_pro_offered_product = $this->wps_wocuf_pro_change_offered_product_price( $wps_wocuf_pro_original_offered_product, $wps_wocuf_pro_offered_discount[ $offer_id ] );
-
-						$product = $wps_wocuf_pro_offered_product;
-					}
-
-					$result .= '<div class="wps_wocuf_pro_main_wrapper">';
-
-					$image = wp_get_attachment_image_src( get_post_thumbnail_id( $wps_wocuf_pro_single_offered_product ), 'full' );
-
-					if ( empty( $image[0] ) ) {
-						$image[0] = wc_placeholder_img_src();
-					}
-
-					$result .= '<div class="wps_wocuf_pro_product_image"><img src="' . $image[0] . '"></div>';
-
-					$result .= '<div class="wps_wocuf_pro_offered_product"><div class="wps_wocuf_pro_product_title"><h2>' . $product->get_title() . '</h2></div>';
-
-					$result .= '<div class="wps_wocuf_pro_offered_product_description">
-							    <p class="wps_wocuf_pro_product_desc">' . $product->get_description() . '</p></div>';
-
-					$result .= '<div class="wps_wocuf_pro_product_price">
-						    	<h4>' . $wps_wocuf_pro_before_offer_price_text . ' :
-									 ' . $product->get_price_html() . '</h4></div></div></div>';
-
-					$result .= '<div class="wps_wocuf_pro_offered_product_actions">
-				    			<form class="wps_wocuf_pro_offer_form" method="post">
-								<input type="hidden" name="ocuf_ns" value="' . $wp_nonce . '">
-								<input type="hidden" name="ocuf_fid" value="' . $funnel_id . '">
-								<input type="hidden" class="wps_wocuf_pro_variation_id" name="product_id" value="' . absint( $product->get_id() ) . '">
-								<div id="wps_wocuf_pro_variation_attributes" ></div>
-								<input type="hidden" name="ocuf_ofd" value="' . $offer_id . '">
-								<input type="hidden" name="ocuf_ok" value="' . $order_key . '">
-								<input type="hidden" name="wps_wocuf_post_nonce" value="' . wp_create_nonce( 'wps_wocuf_field_post_nonce' ) . '">
-								<input type="hidden" name="wps_wocuf_after_post_nonce" value="' . wp_create_nonce( 'wps_wocuf_after_field_post_nonce' ) . '">
-								<button data-id="' . $funnel_id . '" style="background-color:' . $wps_wocuf_pro_buy_button_color . '" class="wps_wocuf_pro_buy wps_wocuf_pro_custom_buy" type="submit" name="wps_wocuf_pro_buy">' . $wps_wocuf_pro_buy_text . '</button></form>
-								<a style="color:' . $ocuf_th_button_color . '" 
-								class="wps_wocuf_pro_skip wps_wocuf_pro_no" 
-								href="?ocuf_ns=' . $wp_nonce . '
-								&ocuf_th=1&ocuf_ok=' . $order_key . '
-								&ocuf_ofd=' . $offer_id . '
-								&ocuf_fid=' . $funnel_id . '">
-								' . $wps_wocuf_pro_no_text . '</a>
-								</div>
-				    		</div></div>';
-
-					$result .= '</div>';
-
-					$result .= '</div></div></div>';
-				} else {
-					$error_msg = esc_html__( 'You ran out of the special offers session.', 'woo-one-click-upsell-funnel' );
-
-					$link_text = esc_html__( 'Go to the "Order details" page.', 'woo-one-click-upsell-funnel' );
-
-					$error_msg = apply_filters( 'wps_wocuf_pro_error_message', $error_msg );
-
-					$link_text = apply_filters( 'wps_wocuf_pro_order_details_link_text', $link_text );
-
-					$order_received_url = wc_get_endpoint_url( 'order-received', $order_id, wc_get_page_permalink( 'checkout' ) );
-
-					$order_received_url = add_query_arg( 'key', $order_key, $order_received_url );
-
-					$result .= $error_msg . '<a href="' . $order_received_url . '" class="button">' . $link_text . '</a>';
+		$wpswocuf_pro_single_offered_product = '';
+		if ( ! empty( $wpswocuf_pro_offered_products[ $offer_id ] ) ) {
+			if ( is_array( $wpswocuf_pro_offered_products[ $offer_id ] ) && count( $wpswocuf_pro_offered_products[ $offer_id ] ) ) {
+				foreach ( $wpswocuf_pro_offered_products[ $offer_id ] as $handling_offer_product_id ) {
+					$wpswocuf_pro_single_offered_product = absint( $handling_offer_product_id );
+					break;
 				}
 			} else {
-				$error_msg = esc_html__( 'You ran out of the special offers session.', 'woo-one-click-upsell-funnel' );
-
-				$link_text = esc_html__( 'Go to the "Order details" page.', 'woo-one-click-upsell-funnel' );
-
-				$error_msg = apply_filters( 'wps_wocuf_pro_error_message', $error_msg );
-
-				$link_text = apply_filters( 'wps_wocuf_pro_order_details_link_text', $link_text );
-
-				$order_received_url = wc_get_endpoint_url( 'order-received', $order_id, wc_get_page_permalink( 'checkout' ) );
-
-				$order_received_url = add_query_arg( 'key', $order_key, $order_received_url );
-
-				$result .= $error_msg . '<a href="' . $order_received_url . '" class="button">' . $link_text . '</a>';
+				$wpswocuf_pro_single_offered_product = absint( $wpswocuf_pro_offered_products[ $offer_id ] );
 			}
 		}
 
-		if ( ! isset( $_GET['ocuf_ok'] ) || ! isset( $_GET['ocuf_ofd'] ) || ! isset( $_GET['ocuf_fid'] ) ) {
-			$wps_wocuf_pro_no_offer_text = get_option( 'wps_wocuf_pro_no_offer_text', esc_html__( 'Sorry, you have no offers', 'woo-one-click-upsell-funnel' ) );
+		$wpswocuf_pro_original_offered_product = wc_get_product( $wpswocuf_pro_single_offered_product );
+		$product = $wpswocuf_pro_original_offered_product;
 
-			$result .= '<div class="wps-wocuf_pro-no-offer"><h2>' . trim( $wps_wocuf_pro_no_offer_text, '"' ) . '</h2>';
-
-			$result .= '<a class="button wc-backward" href="' . esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ) . '">' . esc_html__( 'Return to Shop', 'woo-one-click-upsell-funnel' ) . '</a></div>';
-
+		if ( ! $wpswocuf_pro_original_offered_product->is_type( 'variable' ) ) {
+			$product = $this->wpswocuf_pro_change_offered_product_price( $wpswocuf_pro_original_offered_product, $wpswocuf_pro_offered_discount[ $offer_id ] );
 		}
+
+		$result .= '<div class="wpswocuf_pro_main_wrapper">';
+		$image = wp_get_attachment_image_src( get_post_thumbnail_id( $wpswocuf_pro_single_offered_product ), 'full' );
+		if ( empty( $image[0] ) ) {
+			$image[0] = wc_placeholder_img_src();
+		}
+		$result .= '<div class="wpswocuf_pro_product_image"><img src="' . esc_url( $image[0] ) . '" alt="' . esc_attr( $product->get_title() ) . '"></div>';
+		$result .= '<div class="wpswocuf_pro_offered_product"><div class="wpswocuf_pro_product_title"><h2>' . esc_html( $product->get_title() ) . '</h2></div>';
+		$result .= '<div class="wpswocuf_pro_offered_product_description"><p class="wpswocuf_pro_product_desc">' . wp_kses_post( $product->get_description() ) . '</p></div>';
+		$result .= '<div class="wpswocuf_pro_product_price"><h4>' . esc_html( $wpswocuf_pro_before_offer_price_text ) . ' : ' . wp_kses_post( $product->get_price_html() ) . '</h4></div></div></div>';
+
+		$result .= '<div class="wpswocuf_pro_offered_product_actions">
+			<form class="wpswocuf_pro_offer_form" method="post">
+			<input type="hidden" name="ocuf_ns" value="' . $wp_nonce . '">
+			<input type="hidden" name="ocuf_fid" value="' . $funnel_id . '">
+			<input type="hidden" class="wpswocuf_pro_variation_id" name="product_id" value="' . absint( $product->get_id() ) . '">
+			<div id="wpswocuf_pro_variation_attributes" ></div>
+			<input type="hidden" name="ocuf_ofd" value="' . $offer_id . '">
+			<input type="hidden" name="ocuf_ok" value="' . $order_key . '">
+			<input type="hidden" name="wpswocuf_post_nonce" value="' . wp_create_nonce( 'wpswocuf_field_post_nonce' ) . '">
+			<input type="hidden" name="wpswocuf_after_post_nonce" value="' . wp_create_nonce( 'wpswocuf_after_field_post_nonce' ) . '">
+			<button data-id="' . $funnel_id . '" style="background-color:' . $wpswocuf_pro_buy_button_color . '" class="wpswocuf_pro_buy wpswocuf_pro_custom_buy" type="submit" name="wpswocuf_pro_buy">' . $wpswocuf_pro_buy_text . '</button></form>
+			<a style="color:' . $ocuf_th_button_color . '" class="wpswocuf_pro_skip wpswocuf_pro_no" href="?ocuf_ns=' . $wp_nonce . '&ocuf_th=1&ocuf_ok=' . $order_key . '&ocuf_ofd=' . $offer_id . '&ocuf_fid=' . $funnel_id . '">' . $wpswocuf_pro_no_text . '</a>
+			</div>
+			</div></div>';
+
+		$result .= '</div>';
+		$result .= '</div></div></div>';
 
 		return $result;
 	}
@@ -1083,7 +1014,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 * @param    string $price           Offer price.
 	 * @return   object     $temp_product    Object of product with new offer price.
 	 */
-	public function wps_wocuf_pro_change_offered_product_price( $temp_product, $price ) {
+	public function wpswocuf_pro_change_offered_product_price( $temp_product, $price ) {
 
 		if ( ! empty( $price ) && ! empty( $temp_product ) ) {
 
@@ -1093,9 +1024,9 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			$is_fixed      = false;
 
 			// Change amount in case of chargeable currency is different.
-			if ( ! empty( WC()->session ) && WC()->session->__isset( 's_selected_currency' ) && function_exists( 'wps_wmcs_fixed_price_for_simple_sales_price' ) ) {
-				$_regular_price = wps_wmcs_fixed_price_for_simple_regular_price( $temp_product->get_id() );
-				$_sale_price    = wps_wmcs_fixed_price_for_simple_sales_price( $temp_product->get_id() );
+			if ( ! empty( WC()->session ) && WC()->session->__isset( 's_selected_currency' ) && function_exists( 'wpswocuf_wmcs_fixed_price_for_simple_sales_price' ) ) {
+				$_regular_price = wpswocuf_wmcs_fixed_price_for_simple_regular_price( $temp_product->get_id() );
+				$_sale_price    = wpswocuf_wmcs_fixed_price_for_simple_sales_price( $temp_product->get_id() );
 
 				$sale_price    = ! empty( $_sale_price ) ? $_sale_price : $sale_price;
 				$regular_price = ! empty( $_regular_price ) ? $_regular_price : $regular_price;
@@ -1131,9 +1062,9 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			 * Regular price : $regular_price.
 			 * Offer price : $offer_price.
 			 */
-			$wps_upsell_global_settings = get_option( 'wps_upsell_lite_global_options', array() );
+			$wpswocuf_upsell_global_settings = get_option( 'wpswocuf_upsell_lite_global_options', array() );
 
-			$price_html_format = ! empty( $wps_upsell_global_settings['offer_price_html_type'] ) ? $wps_upsell_global_settings['offer_price_html_type'] : 'regular';
+			$price_html_format = ! empty( $wpswocuf_upsell_global_settings['offer_price_html_type'] ) ? $wpswocuf_upsell_global_settings['offer_price_html_type'] : 'regular';
 
 			// ̶S̶a̶l̶e̶ ̶P̶r̶i̶c̶e̶  Offer Price.
 			if ( 'sale' === $price_html_format ) {
@@ -1156,7 +1087,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			// Change amount in case of chargeable currency is different.
 			if ( false === $is_fixed && ! empty( WC()->session ) && WC()->session->__isset( 's_selected_currency' ) && class_exists( 'Mwb_Multi_Currency_Switcher_For_Woocommerce_Public' ) ) {
 				$currency_switcher_obj = new Mwb_Multi_Currency_Switcher_For_Woocommerce_Public( 'WPS Multi Currency Switcher For WooCommerce', '1.2.0' );
-				$offer_price           = $currency_switcher_obj->wps_mmcsfw_get_price_of_product( $offer_price, $temp_product->get_id() );
+				$offer_price           = $currency_switcher_obj->wpswocuf_mmcsfw_get_price_of_product( $offer_price, $temp_product->get_id() );
 			}
 
 			$temp_product->set_price( $offer_price );
@@ -1176,15 +1107,23 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	public function wps_wocuf_pro_charge_the_offer() {
+	public function wpswocuf_pro_charge_the_offer() {
 
-		$add_product_nonce = ! empty( $_POST['wps_wocuf_post_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['wps_wocuf_post_nonce'] ) ) : '';
+		$add_product_nonce = ! empty( $_POST['wpswocuf_post_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['wpswocuf_post_nonce'] ) ) : '';
 
-		if ( ( isset( $add_product_nonce ) && wp_verify_nonce( $add_product_nonce, 'wps_wocuf_field_post_nonce' ) && isset( $_POST['wps_wocuf_pro_buy'] ) ) || isset( $_GET['wps_wocuf_pro_buy'] ) ) {
+		if ( isset( $add_product_nonce ) && wp_verify_nonce( $add_product_nonce, 'wpswocuf_field_post_nonce' ) && isset( $_POST['wpswocuf_pro_buy'] ) ) {
 
-			unset( $_POST['wps_wocuf_pro_buy'] );
+			unset( $_POST['wpswocuf_pro_buy'] );
 
-			$live_offer_url_params = wps_upsell_lite_live_offer_url_params();
+			$live_offer_url_params = wpswocuf_upsell_lite_live_offer_url_params();
+
+			// Strictly require validated params.
+			if ( empty( $live_offer_url_params['status'] ) || 'true' !== $live_offer_url_params['status'] ) {
+				return;
+			}
+			if ( empty( $live_offer_url_params['upsell_nonce'] ) || ! wp_verify_nonce( $live_offer_url_params['upsell_nonce'], 'wps-upsell-auth-nonce' ) ) {
+				return;
+			}
 
 			if ( 'true' === $live_offer_url_params['status'] ) {
 
@@ -1204,22 +1143,25 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 				$wp_nonce = $live_offer_url_params['upsell_nonce'];
 
-				$offer_id = $live_offer_url_params['offer_id'];
+				$offer_id = absint( $live_offer_url_params['offer_id'] );
 
-				$funnel_id = $live_offer_url_params['funnel_id'];
+				$funnel_id = absint( $live_offer_url_params['funnel_id'] );
 
-				$product_id = $live_offer_url_params['product_id'];
-				$order_key = $live_offer_url_params['order_key'];
-				$order_id = wc_get_order_id_by_order_key( $order_key );
-				 $shipping_price = floatval( get_post_meta( $product_id, 'wps_upsell_simple_shipping_product_' . $product_id, true ) );
+				$product_id = absint( $live_offer_url_params['product_id'] );
+				$order_key = sanitize_text_field( $live_offer_url_params['order_key'] );
+				$order_id = $order_key ? wc_get_order_id_by_order_key( $order_key ) : 0;
+				if ( empty( $order_id ) ) {
+					return;
+				}
+				 $shipping_price = floatval( get_post_meta( $product_id, 'wpswocuf_upsell_simple_shipping_product_' . $product_id, true ) );
 				if ( ! empty( $shipping_price ) ) {
-					$shipping_price_order = floatval( wps_wocfo_hpos_get_meta_data( $order_id, 'wps_upsell_simple_shipping_product_', true ) );
+					$shipping_price_order = floatval( wpswocuf_wocfo_hpos_get_meta_data( $order_id, 'wpswocuf_upsell_simple_shipping_product_', true ) );
 					$shipping_price_order += $shipping_price;
-					wps_wocfo_hpos_update_meta_data( $order_id, 'wps_upsell_simple_shipping_product_', $shipping_price_order );
+					wpswocuf_wocfo_hpos_update_meta_data( $order_id, 'wpswocuf_upsell_simple_shipping_product_', $shipping_price_order );
 
 				}
 
-				$offer_quantity = ! empty( $live_offer_url_params['quantity'] ) ? $live_offer_url_params['quantity'] : '1';
+				$offer_quantity = ! empty( $live_offer_url_params['quantity'] ) ? max( 1, absint( $live_offer_url_params['quantity'] ) ) : 1;
 
 				if ( ! empty( $order_id ) ) {
 
@@ -1245,11 +1187,11 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 					if ( ! empty( $upsell_product ) && $upsell_product->is_purchasable() ) {
 
-						$wps_wocuf_pro_all_funnels = get_option( 'wps_wocuf_funnels_list' );
+						$wpswocuf_pro_all_funnels = get_option( 'wpswocuf_funnels_list' );
 
-						$wps_wocuf_pro_offered_discount = ! empty( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_offer_discount_price'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_offer_discount_price'][ $offer_id ] : '';
+						$wpswocuf_pro_offered_discount = ! empty( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_offer_discount_price'][ $offer_id ] ) ? $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_offer_discount_price'][ $offer_id ] : '';
 
-						$upsell_product = $this->wps_wocuf_pro_change_offered_product_price( $upsell_product, $wps_wocuf_pro_offered_discount );
+						$upsell_product = $this->wpswocuf_pro_change_offered_product_price( $upsell_product, $wpswocuf_pro_offered_discount );
 
 						if ( $is_product_with_variations ) {
 
@@ -1271,10 +1213,10 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 						$upsell_item_id = $order->add_product( $upsell_product, $offer_quantity );
 
 						// Add Offer Accept Count for the current Funnel.
-						$sales_by_funnel = new WPS_Upsell_Report_Sales_By_Funnel( $funnel_id );
+						$sales_by_funnel = new wpswocuf_Upsell_Report_Sales_By_Funnel( $funnel_id );
 						$sales_by_funnel->add_offer_accept_count();
 
-						$target_item_id = wps_wocfo_hpos_get_meta_data( $order_id, '__smart_offer_upgrade_target_key', true );
+						$target_item_id = wpswocuf_wocfo_hpos_get_meta_data( $order_id, '__smart_offer_upgrade_target_key', true );
 
 						$force_payment = false;
 
@@ -1285,7 +1227,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 								if ( (int) $item_id === (int) $target_item_id ) {
 
 									$order->remove_item( $item_id );
-									wps_wocfo_hpos_delete_meta_data( $order_id, '__smart_offer_upgrade_target_key' );
+									wpswocuf_wocfo_hpos_delete_meta_data( $order_id, '__smart_offer_upgrade_target_key' );
 									$force_payment = true;
 								}
 							}
@@ -1302,13 +1244,13 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 						$order->calculate_totals();
 
 						// Upsell product was purchased for this order.
-						wps_wocfo_hpos_update_meta_data( $order_id, 'wps_wocuf_upsell_order', 'true' );
+						wpswocuf_wocfo_hpos_update_meta_data( $order_id, 'wpswocuf_upsell_order', 'true' );
 
 					}
 
-					$wps_wocuf_pro_all_funnels = get_option( 'wps_wocuf_funnels_list', array() );
+					$wpswocuf_pro_all_funnels = get_option( 'wpswocuf_funnels_list', array() );
 
-					$wps_wocuf_pro_buy_action = isset( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_attached_offers_on_buy'] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_attached_offers_on_buy'] : '';
+					$wpswocuf_pro_buy_action = isset( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_attached_offers_on_buy'] ) ? $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_attached_offers_on_buy'] : '';
 
 					$url = '';
 
@@ -1319,39 +1261,39 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 					if ( ! empty( $force_payment ) && true === $force_payment ) {
 
 						$this->initiate_order_payment_and_redirect( $order_id );
-					} elseif ( isset( $wps_wocuf_pro_buy_action[ $offer_id ] ) && 'thanks' === $wps_wocuf_pro_buy_action[ $offer_id ] ) {
+					} elseif ( isset( $wpswocuf_pro_buy_action[ $offer_id ] ) && 'thanks' === $wpswocuf_pro_buy_action[ $offer_id ] ) {
 
 						$this->initiate_order_payment_and_redirect( $order_id );
 
-					} elseif ( isset( $wps_wocuf_pro_buy_action[ $offer_id ] ) && 'thanks' !== $wps_wocuf_pro_buy_action[ $offer_id ] ) {
+					} elseif ( isset( $wpswocuf_pro_buy_action[ $offer_id ] ) && 'thanks' !== $wpswocuf_pro_buy_action[ $offer_id ] ) {
 						// Next offer id.
-						$offer_id = $wps_wocuf_pro_buy_action[ $offer_id ];
+						$offer_id = $wpswocuf_pro_buy_action[ $offer_id ];
 
 						// Check if next offer has product.
-						$wps_wocuf_pro_upcoming_offer = isset( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_products_in_offer'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_products_in_offer'][ $offer_id ] : '';
+						$wpswocuf_pro_upcoming_offer = isset( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_products_in_offer'][ $offer_id ] ) ? $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_products_in_offer'][ $offer_id ] : '';
 
 						// If next offer has no product then redirect.
-						if ( empty( $wps_wocuf_pro_upcoming_offer ) ) {
+						if ( empty( $wpswocuf_pro_upcoming_offer ) ) {
 
 							$this->initiate_order_payment_and_redirect( $order_id );
 
 						} else {
 
-							$funnel_saved_after_version_3 = ! empty( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_upsell_fsav3'] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_upsell_fsav3'] : '';
+							$funnel_saved_after_version_3 = ! empty( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_upsell_fsav3'] ) ? $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_upsell_fsav3'] : '';
 
-							$funnel_offer_post_id_assigned = ! empty( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_upsell_post_id_assigned'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_upsell_post_id_assigned'][ $offer_id ] : '';
+							$funnel_offer_post_id_assigned = ! empty( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_upsell_post_id_assigned'][ $offer_id ] ) ? $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_upsell_post_id_assigned'][ $offer_id ] : '';
 
 							// When funnel is saved since v3.0.0 and offer post id is assigned and elementor active.
-							if ( ! empty( $funnel_offer_post_id_assigned ) && ( ( 'true' === $funnel_saved_after_version_3 && wps_upsell_lite_elementor_plugin_active() ) || wps_upsell_divi_builder_plugin_active() ) ) {
+							if ( ! empty( $funnel_offer_post_id_assigned ) && ( ( 'true' === $funnel_saved_after_version_3 && wpswocuf_upsell_lite_elementor_plugin_active() ) || wpswocuf_upsell_divi_builder_plugin_active() ) ) {
 
 								$redirect_to_upsell = false;
 
-								$offer_template = ! empty( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_pro_offer_template'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_pro_offer_template'][ $offer_id ] : '';
+								$offer_template = ! empty( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_pro_offer_template'][ $offer_id ] ) ? $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_pro_offer_template'][ $offer_id ] : '';
 
 								// When template is set to custom.
 								if ( 'custom' === $offer_template ) {
 
-									$custom_offer_page_url = ! empty( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_offer_custom_page_url'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_offer_custom_page_url'][ $offer_id ] : '';
+									$custom_offer_page_url = ! empty( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_offer_custom_page_url'][ $offer_id ] ) ? $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_offer_custom_page_url'][ $offer_id ] : '';
 
 									if ( ! empty( $custom_offer_page_url ) ) {
 
@@ -1360,7 +1302,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 									}
 								} elseif ( ! empty( $offer_template ) ) { // When template is set to one, two or three.
 
-									$offer_assigned_post_id = ! empty( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_upsell_post_id_assigned'][ $offer_id ] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_upsell_post_id_assigned'][ $offer_id ] : '';
+									$offer_assigned_post_id = ! empty( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_upsell_post_id_assigned'][ $offer_id ] ) ? $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_upsell_post_id_assigned'][ $offer_id ] : '';
 
 									if ( ! empty( $offer_assigned_post_id ) && 'publish' === get_post_status( $offer_assigned_post_id ) ) {
 
@@ -1390,14 +1332,14 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 								}
 							} else {
 								// When funnel is saved before v3.0.0.
-								$wps_wocuf_pro_offer_page_id = get_option( 'wps_wocuf_pro_funnel_default_offer_page', '' );
+								$wpswocuf_pro_offer_page_id = get_option( 'wpswocuf_pro_funnel_default_offer_page', '' );
 
-								if ( isset( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_offer_custom_page_url'][ $offer_id ] ) && ! empty( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_offer_custom_page_url'][ $offer_id ] ) ) {
+								if ( isset( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_offer_custom_page_url'][ $offer_id ] ) && ! empty( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_offer_custom_page_url'][ $offer_id ] ) ) {
 
-									$wps_wocuf_pro_next_offer_url = $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_offer_custom_page_url'][ $offer_id ];
-								} elseif ( ! empty( $wps_wocuf_pro_offer_page_id ) && 'publish' === get_post_status( $wps_wocuf_pro_offer_page_id ) ) {
+									$wpswocuf_pro_next_offer_url = $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_offer_custom_page_url'][ $offer_id ];
+								} elseif ( ! empty( $wpswocuf_pro_offer_page_id ) && 'publish' === get_post_status( $wpswocuf_pro_offer_page_id ) ) {
 
-									$wps_wocuf_pro_next_offer_url = get_page_link( $wps_wocuf_pro_offer_page_id );
+									$wpswocuf_pro_next_offer_url = get_page_link( $wpswocuf_pro_offer_page_id );
 								} else {
 
 									$this->initiate_order_payment_and_redirect( $order_id );
@@ -1410,13 +1352,13 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 										'ocuf_ok'  => $order_key,
 										'ocuf_ofd' => $offer_id,
 									),
-									$wps_wocuf_pro_next_offer_url
+									$wpswocuf_pro_next_offer_url
 								);
 							}
 						}
 
 						// Add Offer View Count for the current Funnel.
-						$sales_by_funnel = new WPS_Upsell_Report_Sales_By_Funnel( $funnel_id );
+						$sales_by_funnel = new wpswocuf_Upsell_Report_Sales_By_Funnel( $funnel_id );
 						$sales_by_funnel->add_offer_view_count();
 
 						wp_redirect( $url ); //phpcs:ignore
@@ -1438,9 +1380,9 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 */
 	public function set_cron_schedule_time( $schedules ) {
 
-		if ( ! isset( $schedules['wps_wocuf_twenty_minutes'] ) ) {
+		if ( ! isset( $schedules['wpswocuf_twenty_minutes'] ) ) {
 
-			$schedules['wps_wocuf_twenty_minutes'] = array(
+			$schedules['wpswocuf_twenty_minutes'] = array(
 				'interval' => 20 * 60,
 				'display'  => esc_html__( 'Once every 20 minutes', 'woo-one-click-upsell-funnel' ),
 			);
@@ -1462,7 +1404,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				'numberposts' => -1,
 				'post_status' => 'wc-pending',
 				'fields'      => 'ids', // return only ids.
-				'meta_key'    => 'wps_ocufp_upsell_initialized', // phpcs:ignore
+				'meta_key'    => 'wpswocuf_ocufp_upsell_initialized', // phpcs:ignore
 				'post_type'   => 'shop_order',
 				'order'       => 'ASC',
 			)
@@ -1472,7 +1414,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 			foreach ( $pending_upsell_orders as $order_id ) {
 
-				$time_stamp = wps_wocfo_hpos_get_meta_data( $order_id, 'wps_ocufp_upsell_initialized', true );
+				$time_stamp = wpswocuf_wocfo_hpos_get_meta_data( $order_id, 'wpswocuf_ocufp_upsell_initialized', true );
 
 				if ( ! empty( $time_stamp ) ) {
 
@@ -1491,7 +1433,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 						$order = new WC_Order( $order_id );
 
 						// For cron - Payment initialized.
-						wps_wocfo_hpos_delete_meta_data( $order_id, 'wps_ocufp_upsell_initialized' );
+						wpswocuf_wocfo_hpos_delete_meta_data( $order_id, 'wpswocuf_ocufp_upsell_initialized' );
 
 						$payment_method = $order->get_payment_method();
 
@@ -1518,18 +1460,18 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		}
 
 		// As Order Payment is initiated so Expire further Offers.
-		wps_wocfo_hpos_update_meta_data( $order_id, '_wps_upsell_expire_further_offers', true );
+		wpswocuf_wocfo_hpos_update_meta_data( $order_id, '_wpswocuf_upsell_expire_further_offers', true );
 
 		// Delete Offers Processed data as now we don't need it.
-		wps_wocfo_hpos_delete_meta_data( $order_id, '_wps_upsell_offers_processed' );
+		wpswocuf_wocfo_hpos_delete_meta_data( $order_id, '_wpswocuf_upsell_offers_processed' );
 
 		$result = $this->upsell_order_final_payment( $order_id );
 
-		$is_block_checkout = wps_wocfo_hpos_get_meta_data( $order_id, '_wps_wocfo_org_checkout_through_block', true );
+		$is_block_checkout = wpswocuf_wocfo_hpos_get_meta_data( $order_id, '_wpswocuf_wocfo_org_checkout_through_block', true );
 
 		if ( 'block_checkout' == $is_block_checkout ) {
 
-			$url    = wps_wocfo_hpos_get_meta_data( $order_id, 'wps_wocuf_upsell_funnel_order_redirection_link', true );
+			$url    = wpswocuf_wocfo_hpos_get_meta_data( $order_id, 'wpswocuf_upsell_funnel_order_redirection_link', true );
 
 			wp_redirect( $url ); //phpcs:ignore
 			exit();
@@ -1573,7 +1515,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		$order = new WC_Order( $order_id );
 		$shipping_price_order = 0;
 		if ( ! empty( $order ) ) {
-			$shipping_price_order = floatval( wps_wocfo_hpos_get_meta_data( $order_id, 'wps_upsell_simple_shipping_product_', true ) );
+			$shipping_price_order = floatval( wpswocuf_wocfo_hpos_get_meta_data( $order_id, 'wpswocuf_upsell_simple_shipping_product_', true ) );
 		}
 
 		if ( 0 != $shipping_price_order && ! empty( $shipping_price_order ) ) {
@@ -1594,7 +1536,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 		
 		if( 'stripe_cc' === $payment_method  ) {
-			$_POST = wps_wocfo_hpos_get_meta_data( $order_id, '_post_data', true );
+			$_POST = wpswocuf_wocfo_hpos_get_meta_data( $order_id, '_post_data', true );
 
 			$available_gateways = WC()->payment_gateways->get_available_payment_gateways();
 			$stripe_class = $available_gateways[ $payment_method ];
@@ -1605,7 +1547,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		} 
 		else {
 			// For cron - Payment initialized.
-			wps_wocfo_hpos_delete_meta_data( $order_id, 'wps_ocufp_upsell_initialized' );
+			wpswocuf_wocfo_hpos_delete_meta_data( $order_id, 'wpswocuf_ocufp_upsell_initialized' );
 			$result = '';
 			$payment_method = $order->get_payment_method();
 
@@ -1630,14 +1572,14 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 *
 	 * @since 3.2.0
 	 */
-	public function wps_wocuf_pro_expire_offer_on_failed_upsell_payment( $order, $set_processing = true ) {
+	public function wpswocuf_pro_expire_offer_on_failed_upsell_payment( $order, $set_processing = true ) {
 		// If order is not from upsell Stripe.
-		if ( ! in_array( $order->get_payment_method(), wps_supported_gateways_with_upsell_parent_order(), true ) ) {
+		if ( ! in_array( $order->get_payment_method(), wpswocuf_supported_gateways_with_upsell_parent_order(), true ) ) {
 
 			$this->expire_offer();
 		}
 
-		$is_target_upgraded = wps_wocfo_hpos_get_meta_data( $order->get_id(), '_wps_wocufpro_replace_target', true );
+		$is_target_upgraded = wpswocuf_wocfo_hpos_get_meta_data( $order->get_id(), '_wpswocufpro_replace_target', true );
 
 		if ( ! empty( $is_target_upgraded ) && 'upgraded' === $is_target_upgraded ) {
 
@@ -1649,7 +1591,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		}
 
 		// Remove all upsell offer products.
-		$upsell_items = wps_wocfo_hpos_get_meta_data( $order->get_id(), '_upsell_remove_items_on_fail', true );
+		$upsell_items = wpswocuf_wocfo_hpos_get_meta_data( $order->get_id(), '_upsell_remove_items_on_fail', true );
 
 		if ( ! empty( $upsell_items ) && is_array( $upsell_items ) ) {
 
@@ -1684,7 +1626,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		// Just Redirect for parent Order!
 		if ( 'wps-wocuf-pro-stripe-gateway' === $order->get_payment_method() ) {
 
-			$gateway = new WPS_Wocuf_Pro_Stripe_Gateway_Admin();
+			$gateway = new wpswocuf_Pro_Stripe_Gateway_Admin();
 
 		} elseif ( 'stripe_cc' === $order->get_payment_method() ) {
 
@@ -1705,7 +1647,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	private function failed_upsell_payment() {
 		$shop_page_url = function_exists( 'wc_get_page_id' ) ? get_permalink( wc_get_page_id( 'shop' ) ) : get_permalink( woocommerce_get_page_id( 'shop' ) );
 		?>
-		<div style="text-align: center;margin-top: 30px;" id="wps_upsell_offer_expired"><h2 style="font-weight: 200;"><?php esc_html_e( 'Sorry, Your Offer Payment is failed.',  'woo-one-click-upsell-funnel' ); ?></h2><a class="button wc-backward" href="<?php echo esc_url( $shop_page_url ); ?>"><?php esc_html_e( 'Return to Shop ',  'woo-one-click-upsell-funnel' ); ?>&rarr;</a></div>
+		<div style="text-align: center;margin-top: 30px;" id="wpswocuf_upsell_offer_expired"><h2 style="font-weight: 200;"><?php esc_html_e( 'Sorry, Your Offer Payment is failed.',  'woo-one-click-upsell-funnel' ); ?></h2><a class="button wc-backward" href="<?php echo esc_url( $shop_page_url ); ?>"><?php esc_html_e( 'Return to Shop ',  'woo-one-click-upsell-funnel' ); ?>&rarr;</a></div>
 		<?php
 		wp_die();
 	}
@@ -1721,55 +1663,55 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		// OLD shortcodes.
 
 		// Creating shortcode for accept link on custom page.
-		add_shortcode( 'wps_wocuf_pro_yes', array( $this, 'wps_wocuf_pro_custom_page_action_link_yes' ) );
+		add_shortcode( 'wpswocuf_pro_yes', array( $this, 'wpswocuf_pro_custom_page_action_link_yes' ) );
 
 		// creating shortcode for thanks link on custom page.
-		add_shortcode( 'wps_wocuf_pro_no', array( $this, 'wps_wocuf_pro_custom_page_action_link_no' ) );
+		add_shortcode( 'wpswocuf_pro_no', array( $this, 'wpswocuf_pro_custom_page_action_link_no' ) );
 
 		// creating shortcode for showing product price on custom page.
-		add_shortcode( 'wps_wocuf_pro_offer_price', array( $this, 'wps_wocuf_pro_custom_page_product_offer_price' ) );
+		add_shortcode( 'wpswocuf_pro_offer_price', array( $this, 'wpswocuf_pro_custom_page_product_offer_price' ) );
 		// creating shortcode for showing order details link on custom page.
-		add_shortcode( 'wps_wocuf_pro_order_details', array( $this, 'wps_wocuf_pro_custom_page_order_details_link' ) );
+		add_shortcode( 'wpswocuf_pro_order_details', array( $this, 'wpswocuf_pro_custom_page_order_details_link' ) );
 
 		// adding shortcode for default funnel offer page.
-		add_shortcode( 'wps_wocuf_pro_funnel_default_offer_page', array( $this, 'wps_wocuf_pro_funnel_offers_shortcode' ) );
+		add_shortcode( 'wpswocuf_pro_funnel_default_offer_page', array( $this, 'wpswocuf_pro_funnel_offers_shortcode' ) );
 
 		// New shortcodes.
 
 		// Upsell Action.
 
-		add_shortcode( 'wps_upsell_yes', array( $this, 'buy_now_shortcode_content' ) );
+		add_shortcode( 'wpswocuf_upsell_yes', array( $this, 'buy_now_shortcode_content' ) );
 
-		add_shortcode( 'wps_upsell_no', array( $this, 'no_thanks_shortcode_content' ) );
+		add_shortcode( 'wpswocuf_upsell_no', array( $this, 'no_thanks_shortcode_content' ) );
 
 		// Product.
-		add_shortcode( 'wps_upsell_title', array( $this, 'product_title_shortcode_content' ) );
+		add_shortcode( 'wpswocuf_upsell_title', array( $this, 'product_title_shortcode_content' ) );
 
-		add_shortcode( 'wps_upsell_desc', array( $this, 'product_description_shortcode_content' ) );
+		add_shortcode( 'wpswocuf_upsell_desc', array( $this, 'product_description_shortcode_content' ) );
 
-		add_shortcode( 'wps_upsell_desc_short', array( $this, 'product_short_description_shortcode_content' ) );
+		add_shortcode( 'wpswocuf_upsell_desc_short', array( $this, 'product_short_description_shortcode_content' ) );
 
-		add_shortcode( 'wps_upsell_image', array( $this, 'product_image_shortcode_content' ) );
+		add_shortcode( 'wpswocuf_upsell_image', array( $this, 'product_image_shortcode_content' ) );
 
-		add_shortcode( 'wps_upsell_price', array( $this, 'product_price_shortcode_content' ) );
+		add_shortcode( 'wpswocuf_upsell_price', array( $this, 'product_price_shortcode_content' ) );
 
-		add_shortcode( 'wps_upsell_product_shipping_price', array( $this, 'upsell_product_shipping_price_shortcode_content' ) );
+		add_shortcode( 'wpswocuf_upsell_product_shipping_price', array( $this, 'upsell_product_shipping_price_shortcode_content' ) );
 
-		add_shortcode( 'wps_upsell_variations', array( $this, 'variations_selector_shortcode_content' ) );
+		add_shortcode( 'wpswocuf_upsell_variations', array( $this, 'variations_selector_shortcode_content' ) );
 
 		// Review.
-		add_shortcode( 'wps_upsell_star_review', array( $this, 'product_star_review' ) );
+		add_shortcode( 'wpswocuf_upsell_star_review', array( $this, 'product_star_review' ) );
 
 		// Default Gutenberg offer.
-		add_shortcode( 'wps_upsell_default_offer_identification', array( $this, 'default_offer_identification' ) );
+		add_shortcode( 'wpswocuf_upsell_default_offer_identification', array( $this, 'default_offer_identification' ) );
 
 		/**
 		 * Shortcodes since v3.0.0.
 		 * Quantity Field and Timer Shortcode.
 		 */
-		add_shortcode( 'wps_upsell_timer', array( $this, 'timer_shortcode_content' ) );
+		add_shortcode( 'wpswocuf_upsell_timer', array( $this, 'timer_shortcode_content' ) );
 
-		add_shortcode( 'wps_upsell_quantity', array( $this, 'quantity_shortcode_content' ) );
+		add_shortcode( 'wpswocuf_upsell_quantity', array( $this, 'quantity_shortcode_content' ) );
 	}
 
 	/**
@@ -1781,17 +1723,17 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 */
 	public function filter_upsell_shortcodes_content( $content = '' ) {
 
-		$upsell_yes_shortcode = array( 'http://?wps_wocuf_pro_buy', 'https://?wps_wocuf_pro_buy' );
+		$upsell_yes_shortcode = array( 'http://?wpswocuf_pro_buy', 'https://?wpswocuf_pro_buy' );
 		$upsell_no_shortcode  = array( 'http://?ocuf_ns', 'https://?ocuf_ns' );
 
-		$content = str_replace( $upsell_yes_shortcode, '?wps_wocuf_pro_buy', $content );
+		$content = str_replace( $upsell_yes_shortcode, '?wpswocuf_pro_buy', $content );
 		$content = str_replace( $upsell_no_shortcode, '?ocuf_ns', $content );
 
-		$upsell_yes_shortcode = array( 'http://[wps_upsell_yes]', 'https://[wps_upsell_yes]' );
-		$upsell_no_shortcode  = array( 'http://[wps_upsell_no]', 'https://[wps_upsell_no]' );
+		$upsell_yes_shortcode = array( 'http://[wpswocuf_upsell_yes]', 'https://[wpswocuf_upsell_yes]' );
+		$upsell_no_shortcode  = array( 'http://[wpswocuf_upsell_no]', 'https://[wpswocuf_upsell_no]' );
 
-		$content = str_replace( $upsell_yes_shortcode, '[wps_upsell_yes]', $content );
-		$content = str_replace( $upsell_no_shortcode, '[wps_upsell_no]', $content );
+		$content = str_replace( $upsell_yes_shortcode, '[wpswocuf_upsell_yes]', $content );
+		$content = str_replace( $upsell_no_shortcode, '[wpswocuf_upsell_no]', $content );
 
 		return $content;
 	}
@@ -1805,7 +1747,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 		// Firstly try to get product id from url offer and funnel id i.e. the case of live offer.
 
-		$product_id_from_get = wps_upsell_lite_get_pid_from_url_params();
+		$product_id_from_get = wpswocuf_upsell_lite_get_pid_from_url_params();
 
 		// When it is live offer.
 		if ( 'true' === $product_id_from_get['status'] ) {
@@ -1814,9 +1756,9 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			$offer_id  = $product_id_from_get['offer_id'];
 
 			// Get all funnels.
-			$all_funnels = get_option( 'wps_wocuf_funnels_list', array() );
+			$all_funnels = get_option( 'wpswocuf_funnels_list', array() );
 
-			$product_id = ! empty( $all_funnels[ $funnel_id ]['wps_wocuf_products_in_offer'][ $offer_id ] ) ? $all_funnels[ $funnel_id ]['wps_wocuf_products_in_offer'][ $offer_id ] : '';
+			$product_id = ! empty( $all_funnels[ $funnel_id ]['wpswocuf_products_in_offer'][ $offer_id ] ) ? $all_funnels[ $funnel_id ]['wpswocuf_products_in_offer'][ $offer_id ] : '';
 
 			return $product_id;
 		}
@@ -1828,7 +1770,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		$offer_page_id = $post->ID;
 
 		// Means this is Upsell offer template.
-		$funnel_data = get_post_meta( $offer_page_id, 'wps_upsell_funnel_data', true );
+		$funnel_data = get_post_meta( $offer_page_id, 'wpswocuf_upsell_funnel_data', true );
 
 		$product_found_in_funnel = false;
 
@@ -1838,9 +1780,9 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			$offer_id  = $funnel_data['offer_id'];
 
 			// Get all funnels.
-			$all_funnels = get_option( 'wps_wocuf_funnels_list', array() );
+			$all_funnels = get_option( 'wpswocuf_funnels_list', array() );
 
-			$product_id = ! empty( $all_funnels[ $funnel_id ]['wps_wocuf_products_in_offer'][ $offer_id ] ) ? $all_funnels[ $funnel_id ]['wps_wocuf_products_in_offer'][ $offer_id ] : '';
+			$product_id = ! empty( $all_funnels[ $funnel_id ]['wpswocuf_products_in_offer'][ $offer_id ] ) ? $all_funnels[ $funnel_id ]['wpswocuf_products_in_offer'][ $offer_id ] : '';
 
 			if ( ! empty( $product_id ) ) {
 
@@ -1852,9 +1794,9 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		// Get global product only for Custom Offer page and not for Upsell offer templates.
 		if ( empty( $funnel_data ) && ! $product_found_in_funnel ) {
 
-			$wps_upsell_global_settings = get_option( 'wps_upsell_lite_global_options', array() );
+			$wpswocuf_upsell_global_settings = get_option( 'wpswocuf_upsell_lite_global_options', array() );
 
-			$product_id = ! empty( $wps_upsell_global_settings['global_product_id'] ) ? $wps_upsell_global_settings['global_product_id'] : '';
+			$product_id = ! empty( $wpswocuf_upsell_global_settings['global_product_id'] ) ? $wpswocuf_upsell_global_settings['global_product_id'] : '';
 
 			if ( ! empty( $product_id ) ) {
 
@@ -1866,7 +1808,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		 * Product not selected? show alert! Will run one time in one reload.
 		 * Run this alert only on a page.
 		 */
-		if ( is_page() && false === wp_cache_get( 'wps_upsell_no_product_in_offer' ) ) {
+		if ( is_page() && false === wp_cache_get( 'wpswocuf_upsell_no_product_in_offer' ) ) {
 
 			$product_not_selected_alert = esc_html__( 'One Click Upsell', 'woo-one-click-upsell-funnel' );
 
@@ -1894,7 +1836,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			<?php
 		}
 
-		wp_cache_set( 'wps_upsell_no_product_in_offer', 'true' );
+		wp_cache_set( 'wpswocuf_upsell_no_product_in_offer', 'true' );
 
 	}
 
@@ -1906,16 +1848,9 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 */
 	public function validate_shortcode() {
 
-		$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
-		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
-
-		if ( ! $id_nonce_verified ) {
-			wp_die( esc_html__( 'Nonce Not verified', 'woo-one-click-upsell-funnel' ) );
-		}
-
 		if ( isset( $_GET['ocuf_ns'] ) && isset( $_GET['ocuf_ok'] ) && isset( $_GET['ocuf_ofd'] ) && isset( $_GET['ocuf_fid'] ) ) {
 
-			if ( wps_upsell_lite_validate_upsell_nonce() ) {
+			if ( wpswocuf_upsell_lite_validate_upsell_nonce() ) {
 
 				return 'live_offer';
 			}
@@ -1952,10 +1887,10 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 				$upsell_product = wc_get_product( $product_id );
 
-				$upsell_product_title = $upsell_product->get_title();
-				$upsell_product_title = ! empty( $upsell_product_title ) ? $upsell_product_title : '';
+					$upsell_product_title = $upsell_product->get_title();
+					$upsell_product_title = ! empty( $upsell_product_title ) ? $upsell_product_title : '';
 
-				return $upsell_product_title;
+					return esc_html( $upsell_product_title );
 			}
 		}
 
@@ -1986,10 +1921,10 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 				$upsell_product = wc_get_product( $product_id );
 
-				$upsell_product_desc = $upsell_product->get_description();
-				$upsell_product_desc = ! empty( $upsell_product_desc ) ? $upsell_product_desc : '';
+					$upsell_product_desc = $upsell_product->get_description();
+					$upsell_product_desc = ! empty( $upsell_product_desc ) ? $upsell_product_desc : '';
 
-				return $upsell_product_desc;
+					return wp_kses_post( $upsell_product_desc );
 			}
 		}
 
@@ -2020,10 +1955,10 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 				$upsell_product = wc_get_product( $product_id );
 
-				$upsell_product_short_desc = $upsell_product->get_short_description();
-				$upsell_product_short_desc = ! empty( $upsell_product_short_desc ) ? $upsell_product_short_desc : '';
+					$upsell_product_short_desc = $upsell_product->get_short_description();
+					$upsell_product_short_desc = ! empty( $upsell_product_short_desc ) ? $upsell_product_short_desc : '';
 
-				return $upsell_product_short_desc;
+					return wp_kses_post( $upsell_product_short_desc );
 			}
 		}
 
@@ -2040,7 +1975,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		$validate_shortcode = $this->validate_shortcode();
 		if ( $validate_shortcode ) {
 
-			$live_params_from_url = wps_upsell_lite_get_pid_from_url_params();
+			$live_params_from_url = wpswocuf_upsell_lite_get_pid_from_url_params();
 
 			// When Live Offer.
 			if ( ! empty( $live_params_from_url['status'] ) && 'true' === $live_params_from_url['status'] ) {
@@ -2050,9 +1985,9 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 				if ( ! empty( $funnel_id ) && ! empty( $offer_id ) ) {
 
-					$all_funnels = get_option( 'wps_wocuf_funnels_list', array() );
+					$all_funnels = get_option( 'wpswocuf_funnels_list', array() );
 
-					$upsell_product_image_post_id = ! empty( $all_funnels[ $funnel_id ]['wps_upsell_offer_image'][ $offer_id ] ) ? $all_funnels[ $funnel_id ]['wps_upsell_offer_image'][ $offer_id ] : '';
+					$upsell_product_image_post_id = ! empty( $all_funnels[ $funnel_id ]['wpswocuf_upsell_offer_image'][ $offer_id ] ) ? $all_funnels[ $funnel_id ]['wpswocuf_upsell_offer_image'][ $offer_id ] : '';
 
 					if ( ! empty( $upsell_product_image_post_id ) ) {
 
@@ -2073,14 +2008,18 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 							$atts
 						);
 
-						$id    = $atts['id'];
-						$class = $atts['class'];
-						$style = $atts['style'];
+						$id    = esc_attr( $atts['id'] );
+						$class = esc_attr( $atts['class'] );
+						$style = esc_attr( $atts['style'] );
+						$upsell_product_image_src = esc_url( $upsell_product_image_src );
 
-						$upsell_product_image_src_div =
-							"<div id='$id' class='wps_upsell_offer_product_image $class' style='$style'>
-								<img src='$upsell_product_image_src'>
-							</div>";
+						$upsell_product_image_src_div = sprintf(
+							'<div id=\"%1$s\" class=\"wpswocuf_upsell_offer_product_image %2$s\" style=\"%3$s\"><img src=\"%4$s\" /></div>',
+							$id,
+							$class,
+							$style,
+							$upsell_product_image_src
+						);
 
 						return $upsell_product_image_src_div;
 					}
@@ -2091,7 +2030,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				$offer_page_id = $post->ID;
 
 				// Means this is Upsell offer template.
-				$funnel_data = get_post_meta( $offer_page_id, 'wps_upsell_funnel_data', true );
+				$funnel_data = get_post_meta( $offer_page_id, 'wpswocuf_upsell_funnel_data', true );
 
 				if ( ! empty( $funnel_data ) && is_array( $funnel_data ) ) {
 
@@ -2100,9 +2039,9 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 					if ( ! empty( $funnel_id ) && ! empty( $offer_id ) ) {
 
-						$all_funnels = get_option( 'wps_wocuf_funnels_list', array() );
+						$all_funnels = get_option( 'wpswocuf_funnels_list', array() );
 
-						$upsell_product_image_post_id = ! empty( $all_funnels[ $funnel_id ]['wps_upsell_offer_image'][ $offer_id ] ) ? $all_funnels[ $funnel_id ]['wps_upsell_offer_image'][ $offer_id ] : '';
+						$upsell_product_image_post_id = ! empty( $all_funnels[ $funnel_id ]['wpswocuf_upsell_offer_image'][ $offer_id ] ) ? $all_funnels[ $funnel_id ]['wpswocuf_upsell_offer_image'][ $offer_id ] : '';
 
 						if ( ! empty( $upsell_product_image_post_id ) ) {
 
@@ -2123,14 +2062,18 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 								$atts
 							);
 
-							$id    = $atts['id'];
-							$class = $atts['class'];
-							$style = $atts['style'];
+							$id    = esc_attr( $atts['id'] );
+							$class = esc_attr( $atts['class'] );
+							$style = esc_attr( $atts['style'] );
+							$upsell_product_image_src = esc_url( $upsell_product_image_src );
 
-							$upsell_product_image_src_div =
-								"<div id='$id' class='wps_upsell_offer_product_image $class' style='$style'>
-									<img src='$upsell_product_image_src'>
-								</div>";
+							$upsell_product_image_src_div = sprintf(
+								'<div id=\"%1$s\" class=\"wpswocuf_upsell_offer_product_image %2$s\" style=\"%3$s\"><img src=\"%4$s\" /></div>',
+								$id,
+								$class,
+								$style,
+								$upsell_product_image_src
+							);
 
 							return $upsell_product_image_src_div;
 						}
@@ -2163,14 +2106,18 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 					$atts
 				);
 
-				$id    = $atts['id'];
-				$class = $atts['class'];
-				$style = $atts['style'];
+				$id    = esc_attr( $atts['id'] );
+				$class = esc_attr( $atts['class'] );
+				$style = esc_attr( $atts['style'] );
+				$upsell_product_image_src = esc_url( $upsell_product_image_src );
 
-				$upsell_product_image_src_div =
-					"<div id='$id' class='wps_upsell_offer_product_image $class' style='$style'>
-						<img src='$upsell_product_image_src'>
-					</div>";
+				$upsell_product_image_src_div = sprintf(
+					'<div id=\"%1$s\" class=\"wpswocuf_upsell_offer_product_image %2$s\" style=\"%3$s\"><img src=\"%4$s\" /></div>',
+					$id,
+					$class,
+					$style,
+					$upsell_product_image_src
+				);
 				return $upsell_product_image_src_div;
 			}
 		}
@@ -2201,9 +2148,9 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			$id    = $atts['id'];
 			$class = $atts['class'];
 			$style = $atts['style'];
-			$upsell_shipping_product = wps_wocfo_hpos_get_meta_data( $product_id, 'wps_upsell_simple_shipping_product_' . $product_id, true );
+			$upsell_shipping_product = wpswocuf_wocfo_hpos_get_meta_data( $product_id, 'wpswocuf_upsell_simple_shipping_product_' . $product_id, true );
 
-			$upsell_product_price_html_div = "Shipping Price <br> <div id='$id' class='wps_upsell_offer_product_price $class' style='$style'>
+			$upsell_product_price_html_div = "Shipping Price <br> <div id='$id' class='wpswocuf_upsell_offer_product_price $class' style='$style'>
 						" . wc_price( $upsell_shipping_product ) . '</div>';
 
 		}
@@ -2237,27 +2184,27 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				$upsell_product = wc_get_product( $product_id );
 
 				// Get offer discount.
-				$upsell_offered_discount = wps_upsell_lite_get_product_discount();
+				$upsell_offered_discount = wpswocuf_upsell_lite_get_product_discount();
 
 				// Apply discount on product.
 				if ( ! empty( $upsell_offered_discount ) ) {
 
-					$upsell_product = $this->wps_wocuf_pro_change_offered_product_price( $upsell_product, $upsell_offered_discount );
+					$upsell_product = $this->wpswocuf_pro_change_offered_product_price( $upsell_product, $upsell_offered_discount );
 				} else {
 					$upsell_product->set_price( 0 );
 				}
 
-				$upsell_product_price_html = $upsell_product->get_price_html();
-				$upsell_product_price_html = ! empty( $upsell_product_price_html ) ? $upsell_product_price_html : '';
+					$upsell_product_price_html = wp_kses_post( $upsell_product->get_price_html() );
+					$upsell_product_price_html = ! empty( $upsell_product_price_html ) ? wp_kses_post( $upsell_product_price_html ) : '';
 
 				/**
 				 * Replaces the currency switcher fixed price.
 				 */
 				if ( ! empty( WC()->session ) && WC()->session->__isset( 's_selected_currency' ) ) {
 
-					if ( function_exists( 'wps_wmcs_fixed_price_for_simple_sales_price' ) ) {
-						$_regular_price = wps_wmcs_fixed_price_for_simple_regular_price( $upsell_product->get_id() );
-						$_sale_price    = wps_wmcs_fixed_price_for_simple_sales_price( $upsell_product->get_id() );
+					if ( function_exists( 'wpswocuf_wmcs_fixed_price_for_simple_sales_price' ) ) {
+						$_regular_price = wpswocuf_wmcs_fixed_price_for_simple_regular_price( $upsell_product->get_id() );
+						$_sale_price    = wpswocuf_wmcs_fixed_price_for_simple_sales_price( $upsell_product->get_id() );
 					} else {
 						$_regular_price = $upsell_product->get_regular_price();
 						$_sale_price    = $upsell_product->get_price();
@@ -2300,12 +2247,17 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 					$atts
 				);
 
-				$id    = $atts['id'];
-				$class = $atts['class'];
-				$style = $atts['style'];
+					$id    = esc_attr( $atts['id'] );
+					$class = esc_attr( $atts['class'] );
+					$style = esc_attr( $atts['style'] );
 
-				$upsell_product_price_html_div = "<div id='$id' class='wps_upsell_offer_product_price $class' style='$style'>
-						$upsell_product_price_html</div>";
+					$upsell_product_price_html_div = sprintf(
+						'<div id=\"%1$s\" class=\"wpswocuf_upsell_offer_product_price %2$s\" style=\"%3$s\">%4$s</div>',
+						$id,
+						$class,
+						$style,
+						$upsell_product_price_html
+					);
 
 				/**
 				 * Replaces the currrency symbol.
@@ -2316,8 +2268,8 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 					$store_currency    = get_woocommerce_currency();
 
 					if ( $selected_currency !== $store_currency ) {
-						$store_currency_symbol    = get_option( 'wps_mmcsfw_symbol_' . $store_currency );
-						$selected_currency_symbol = get_option( 'wps_mmcsfw_symbol_' . $selected_currency );
+						$store_currency_symbol    = get_option( 'wpswocuf_mmcsfw_symbol_' . $store_currency );
+						$selected_currency_symbol = get_option( 'wpswocuf_mmcsfw_symbol_' . $selected_currency );
 
 						// Remove default currency into selected currency.
 						$upsell_product_price_html_div = str_replace( $store_currency_symbol, $selected_currency_symbol, $upsell_product_price_html_div );
@@ -2362,22 +2314,20 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 					if ( $upsell_product->is_type( 'variable' ) ) {
 
 						// In this case buy now form ( in variation selector shortcode ) will be posted from js.
-						$buy_now_link = '#wps_upsell';
+						$buy_now_link = '#wpswocuf_upsell';
 					} else {
-
-						$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
-						$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
-
-						if ( ! $id_nonce_verified ) {
-							wp_die( esc_html__( 'Nonce Not verified', 'woo-one-click-upsell-funnel' ) );
-						}
 
 						$wp_nonce  = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) ) : '';
 						$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) ) : '';
-						$offer_id  = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) ) : '';
-						$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) ) : '';
+						$offer_id  = isset( $_GET['ocuf_ofd'] ) ? absint( $_GET['ocuf_ofd'] ) : 0;
+						$funnel_id = isset( $_GET['ocuf_fid'] ) ? absint( $_GET['ocuf_fid'] ) : 0;
+						$order_id  = $order_key ? wc_get_order_id_by_order_key( $order_key ) : 0;
 
-						$buy_now_link = '?wps_wocuf_pro_buy
+						if ( empty( $order_id ) || empty( $wp_nonce ) || ! wp_verify_nonce( $wp_nonce, 'wps-upsell-auth-nonce' ) ) {
+							return '';
+						}
+
+						$buy_now_link = '?wpswocuf_pro_buy
 						=true&ocuf_ns=' . $wp_nonce . '
 						&ocuf_ok=' . $order_key . '
 						&ocuf_ofd=' . $offer_id . '
@@ -2419,16 +2369,15 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 				if ( 'live_offer' === $validate_shortcode ) {
 
-					$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
-					$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
-
-					if ( ! $id_nonce_verified ) {
-						wp_die( esc_html__( 'Nonce Not verified', 'woo-one-click-upsell-funnel' ) );
-					}
 					$wp_nonce  = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) ) : '';
 					$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) ) : '';
-					$offer_id  = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) ) : '';
-					$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) ) : '';
+					$offer_id  = isset( $_GET['ocuf_ofd'] ) ? absint( $_GET['ocuf_ofd'] ) : 0;
+					$funnel_id = isset( $_GET['ocuf_fid'] ) ? absint( $_GET['ocuf_fid'] ) : 0;
+					$order_id  = $order_key ? wc_get_order_id_by_order_key( $order_key ) : 0;
+
+					if ( empty( $order_id ) || empty( $wp_nonce ) || ! wp_verify_nonce( $wp_nonce, 'wps-upsell-auth-nonce' ) ) {
+						return '';
+					}
 
 					$no_thanks_link = '?ocuf_ns=' . $wp_nonce . '
 					&ocuf_th=1&ocuf_ok=' . $order_key . '
@@ -2495,7 +2444,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 * @param mixed $atts attributes of the shortcode.
 	 * @param mixed $content content under wrapping mode.
 	 */
-	public function wps_wocuf_pro_custom_page_product_offer_price( $atts, $content = '' ) {
+	public function wpswocuf_pro_custom_page_product_offer_price( $atts, $content = '' ) {
 		$atts = shortcode_atts(
 			array(
 				'style' => '',
@@ -2504,7 +2453,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			$atts
 		);
 
-		return $this->wps_wocuf_pro_custom_page_offer_price_for_all(
+		return $this->wpswocuf_pro_custom_page_offer_price_for_all(
 			array(
 				'style' => $atts['style'],
 				'class' => $atts['class'],
@@ -2520,7 +2469,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 * @param mixed $atts attributes of the shortcode.
 	 * @param mixed $content content under wrapping mode.
 	 */
-	public function wps_wocuf_pro_custom_page_action_link_yes( $atts, $content = '' ) {
+	public function wpswocuf_pro_custom_page_action_link_yes( $atts, $content = '' ) {
 		$atts = shortcode_atts(
 			array(
 				'style' => '',
@@ -2529,7 +2478,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			$atts
 		);
 
-		return $this->wps_wocuf_pro_custom_page_yes_link_for_all(
+		return $this->wpswocuf_pro_custom_page_yes_link_for_all(
 			array(
 				'style' => $atts['style'],
 				'class' => $atts['class'],
@@ -2545,7 +2494,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 * @param mixed $atts attributes of the shortcode.
 	 * @param mixed $content content under wrapping mode.
 	 */
-	public function wps_wocuf_pro_custom_page_order_details_link( $atts, $content = '' ) {
+	public function wpswocuf_pro_custom_page_order_details_link( $atts, $content = '' ) {
 		$atts = shortcode_atts(
 			array(
 				'style' => '',
@@ -2554,7 +2503,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			$atts
 		);
 
-		return $this->wps_wocuf_pro_custom_page_order_details_link_for_all(
+		return $this->wpswocuf_pro_custom_page_order_details_link_for_all(
 			array(
 				'style' => $atts['style'],
 				'class' => $atts['class'],
@@ -2570,7 +2519,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 * @param mixed $atts attributes of the shortcode.
 	 * @param mixed $content content under wrapping mode.
 	 */
-	public function wps_wocuf_pro_custom_page_order_details_link_for_all( $atts, $content = '' ) {
+	public function wpswocuf_pro_custom_page_order_details_link_for_all( $atts, $content = '' ) {
 		$result = '';
 
 		if ( empty( $atts['style'] ) ) {
@@ -2583,19 +2532,16 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 		if ( empty( $content ) ) {
 			$content = esc_html__( 'Show Order Details', 'woo-one-click-upsell-funnel' );
-			$content = apply_filters( 'wps_wocuf_pro_order_details_link_text', $content );
-		}
-
-		$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
-		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
-
-		if ( ! $id_nonce_verified ) {
-			wp_die( esc_html__( 'Nonce Not verified', 'woo-one-click-upsell-funnel' ) );
+			$content = apply_filters( 'wpswocuf_pro_order_details_link_text', $content );
 		}
 
 		$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) ) : '';
+		$wp_nonce  = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) ) : '';
 
-		$order_id = wc_get_order_id_by_order_key( $order_key );
+		$order_id = $order_key ? wc_get_order_id_by_order_key( $order_key ) : 0;
+		if ( empty( $order_id ) || empty( $wp_nonce ) || ! wp_verify_nonce( $wp_nonce, 'wps-upsell-auth-nonce' ) ) {
+			return $result;
+		}
 
 		$order_received_url = wc_get_endpoint_url( 'order-received', $order_id, wc_get_page_permalink( 'checkout' ) );
 
@@ -2616,7 +2562,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 * @param mixed $atts attributes of the shortcode.
 	 * @param mixed $content content under wrapping mode.
 	 */
-	public function wps_wocuf_pro_custom_page_offer_price_for_all( $atts, $content = '' ) {
+	public function wpswocuf_pro_custom_page_offer_price_for_all( $atts, $content = '' ) {
 		$result = '';
 
 		if ( empty( $atts['style'] ) ) {
@@ -2627,65 +2573,59 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			$atts['class'] = '';
 		}
 
-		$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
-		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
+		$offer_id  = isset( $_GET['ocuf_ofd'] ) ? absint( $_GET['ocuf_ofd'] ) : 0;
+		$funnel_id = isset( $_GET['ocuf_fid'] ) ? absint( $_GET['ocuf_fid'] ) : 0;
+		$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) ) : '';
+		$wp_nonce  = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) ) : '';
 
-		if ( ! $id_nonce_verified ) {
-			wp_die( esc_html__( 'Nonce Not verified', 'woo-one-click-upsell-funnel' ) );
+		$order_id = $order_key ? wc_get_order_id_by_order_key( $order_key ) : 0;
+
+		if ( empty( $order_id ) || empty( $wp_nonce ) || ! wp_verify_nonce( $wp_nonce, 'wps-upsell-auth-nonce' ) ) {
+			return $result;
 		}
 
-		$offer_id = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) ) : '';
+		$wpswocuf_pro_all_funnels = get_option( 'wpswocuf_funnels_list', array() );
 
-		$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) ) : '';
+		$wpswocuf_pro_before_offer_price_text = get_option( 'wpswocuf_pro_before_offer_price_text', esc_html__( 'Special Offer Price', 'woo-one-click-upsell-funnel' ) );
 
-		$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) ) : '';
+		$wpswocuf_pro_offered_products = isset( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_products_in_offer'] ) ? $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_products_in_offer'] : array();
 
-		$wp_nonce = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) ) : '';
+		$wpswocuf_pro_offered_discount = isset( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_offer_discount_price'] ) ? $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_offer_discount_price'] : array();
 
-		$order_id = wc_get_order_id_by_order_key( $order_key );
+		$wpswocuf_pro_single_offered_product = '';
 
-		$wps_wocuf_pro_all_funnels = get_option( 'wps_wocuf_funnels_list', array() );
-
-		$wps_wocuf_pro_before_offer_price_text = get_option( 'wps_wocuf_pro_before_offer_price_text', esc_html__( 'Special Offer Price', 'woo-one-click-upsell-funnel' ) );
-
-		$wps_wocuf_pro_offered_products = isset( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_products_in_offer'] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_products_in_offer'] : array();
-
-		$wps_wocuf_pro_offered_discount = isset( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_offer_discount_price'] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_offer_discount_price'] : array();
-
-		$wps_wocuf_pro_single_offered_product = '';
-
-		if ( ! empty( $wps_wocuf_pro_offered_products[ $offer_id ] ) ) {
+		if ( ! empty( $wpswocuf_pro_offered_products[ $offer_id ] ) ) {
 
 			// In v2.0.0, it was array so handling to get the first product id.
-			if ( is_array( $wps_wocuf_pro_offered_products[ $offer_id ] ) && count( $wps_wocuf_pro_offered_products[ $offer_id ] ) ) {
+			if ( is_array( $wpswocuf_pro_offered_products[ $offer_id ] ) && count( $wpswocuf_pro_offered_products[ $offer_id ] ) ) {
 
-				foreach ( $wps_wocuf_pro_offered_products[ $offer_id ] as $handling_offer_product_id ) {
+				foreach ( $wpswocuf_pro_offered_products[ $offer_id ] as $handling_offer_product_id ) {
 
-					$wps_wocuf_pro_single_offered_product = absint( $handling_offer_product_id );
+					$wpswocuf_pro_single_offered_product = absint( $handling_offer_product_id );
 					break;
 				}
 			} else {
 
-				$wps_wocuf_pro_single_offered_product = absint( $wps_wocuf_pro_offered_products[ $offer_id ] );
+				$wpswocuf_pro_single_offered_product = absint( $wpswocuf_pro_offered_products[ $offer_id ] );
 			}
 		}
 
-		if ( ! empty( $wps_wocuf_pro_single_offered_product ) ) {
+		if ( ! empty( $wpswocuf_pro_single_offered_product ) ) {
 
-			$wps_wocuf_pro_original_offered_product = wc_get_product( $wps_wocuf_pro_single_offered_product );
+			$wpswocuf_pro_original_offered_product = wc_get_product( $wpswocuf_pro_single_offered_product );
 
-			$wps_wocuf_pro_offered_product = $this->wps_wocuf_pro_change_offered_product_price( $wps_wocuf_pro_original_offered_product, $wps_wocuf_pro_offered_discount[ $offer_id ] );
+			$wpswocuf_pro_offered_product = $this->wpswocuf_pro_change_offered_product_price( $wpswocuf_pro_original_offered_product, $wpswocuf_pro_offered_discount[ $offer_id ] );
 
-			$product = $wps_wocuf_pro_offered_product;
+			$product = $wpswocuf_pro_offered_product;
 
 			$result .= '<div style="' . esc_attr( $atts['style'] ) . '" 
-			class="wps_wocuf_pro_custom_offer_price ' . esc_attr( $atts['class'] ) . '">
-			' . esc_attr( $wps_wocuf_pro_before_offer_price_text ) . ' :
-				 ' . esc_attr( $product->get_price_html() ) . '</div>';
+			class="wpswocuf_pro_custom_offer_price ' . esc_attr( $atts['class'] ) . '">
+			' . esc_html( $wpswocuf_pro_before_offer_price_text ) . ' :
+				 ' . wp_kses_post( $product->get_price_html() ) . '</div>';
 
 		} else {
 			$result .= '<div style="' . esc_attr( $atts['style'] ) . '" 
-			class="wps_wocuf_pro_custom_offer_price ' . esc_attr( $atts['class'] ) . '">
+			class="wpswocuf_pro_custom_offer_price ' . esc_attr( $atts['class'] ) . '">
 			' . esc_attr( $content ) . '</div>';
 		}
 
@@ -2699,7 +2639,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 * @param mixed $atts attributes of the shortcode.
 	 * @param mixed $content content under wrapping mode.
 	 */
-	public function wps_wocuf_pro_custom_page_yes_link_for_all( $atts, $content = '' ) {
+	public function wpswocuf_pro_custom_page_yes_link_for_all( $atts, $content = '' ) {
 		$result = '';
 
 		if ( empty( $atts[0] ) ) {
@@ -2714,82 +2654,79 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			$atts['class'] = '';
 		}
 
-		$wps_wocuf_pro_all_funnels = get_option( 'wps_wocuf_funnels_list', array() );
+		$wpswocuf_pro_all_funnels = get_option( 'wpswocuf_funnels_list', array() );
 
-		$wps_wocuf_pro_buy_text = get_option( 'wps_wocuf_pro_buy_text', esc_html__( 'Add to my order', 'woo-one-click-upsell-funnel' ) );
+		$wpswocuf_pro_buy_text = get_option( 'wpswocuf_pro_buy_text', esc_html__( 'Add to my order', 'woo-one-click-upsell-funnel' ) );
 
-		if ( empty( $content ) ) {
-			$content = $wps_wocuf_pro_buy_text;
-		}
+			if ( empty( $content ) ) {
+				$content = $wpswocuf_pro_buy_text;
+			}
 
-		$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
-		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
-
-		if ( ! $id_nonce_verified ) {
-			wp_die( esc_html__( 'Nonce Not verified', 'woo-one-click-upsell-funnel' ) );
-		}
-
-		$offer_id = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) ) : '';
-
-		$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) ) : '';
-
+		$wp_nonce  = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) ) : '';
+		$offer_id  = isset( $_GET['ocuf_ofd'] ) ? absint( $_GET['ocuf_ofd'] ) : 0;
+		$funnel_id = isset( $_GET['ocuf_fid'] ) ? absint( $_GET['ocuf_fid'] ) : 0;
 		$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) ) : '';
 
-		$wp_nonce = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) ) : '';
+			if ( empty( $wp_nonce ) || ! wp_verify_nonce( $wp_nonce, 'wps-upsell-auth-nonce' ) ) {
+				return $result;
+			}
 
-		$order_id = wc_get_order_id_by_order_key( $order_key );
+			$order_id = $order_key ? wc_get_order_id_by_order_key( $order_key ) : 0;
+			if ( empty( $order_id ) ) {
+				return $result;
+			}
 
-		$wps_wocuf_pro_offered_products = isset( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_products_in_offer'] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_products_in_offer'] : array();
+		$wpswocuf_pro_offered_products = isset( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_products_in_offer'] ) ? $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_products_in_offer'] : array();
 
-		$wps_wocuf_pro_offered_discount = isset( $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_offer_discount_price'] ) ? $wps_wocuf_pro_all_funnels[ $funnel_id ]['wps_wocuf_offer_discount_price'] : array();
+		$wpswocuf_pro_offered_discount = isset( $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_offer_discount_price'] ) ? $wpswocuf_pro_all_funnels[ $funnel_id ]['wpswocuf_offer_discount_price'] : array();
 
-		$wps_wocuf_pro_single_offered_product = '';
+		$wpswocuf_pro_single_offered_product = '';
 
-		if ( ! empty( $wps_wocuf_pro_offered_products[ $offer_id ] ) ) {
+		if ( ! empty( $wpswocuf_pro_offered_products[ $offer_id ] ) ) {
 
 			// In v2.0.0, it was array so handling to get the first product id.
-			if ( is_array( $wps_wocuf_pro_offered_products[ $offer_id ] ) && count( $wps_wocuf_pro_offered_products[ $offer_id ] ) ) {
+			if ( is_array( $wpswocuf_pro_offered_products[ $offer_id ] ) && count( $wpswocuf_pro_offered_products[ $offer_id ] ) ) {
 
-				foreach ( $wps_wocuf_pro_offered_products[ $offer_id ] as $handling_offer_product_id ) {
+				foreach ( $wpswocuf_pro_offered_products[ $offer_id ] as $handling_offer_product_id ) {
 
-					$wps_wocuf_pro_single_offered_product = absint( $handling_offer_product_id );
+					$wpswocuf_pro_single_offered_product = absint( $handling_offer_product_id );
 					break;
 				}
 			} else {
 
-				$wps_wocuf_pro_single_offered_product = absint( $wps_wocuf_pro_offered_products[ $offer_id ] );
+				$wpswocuf_pro_single_offered_product = absint( $wpswocuf_pro_offered_products[ $offer_id ] );
 			}
 		}
 
-		if ( ! empty( $wps_wocuf_pro_single_offered_product ) ) {
+		if ( ! empty( $wpswocuf_pro_single_offered_product ) ) {
 
-			$wps_wocuf_pro_original_offered_product = wc_get_product( $wps_wocuf_pro_single_offered_product );
+			$wpswocuf_pro_original_offered_product = wc_get_product( $wpswocuf_pro_single_offered_product );
 
-			$wps_wocuf_pro_offered_product = $this->wps_wocuf_pro_change_offered_product_price( $wps_wocuf_pro_original_offered_product, $wps_wocuf_pro_offered_discount[ $offer_id ] );
+			$wpswocuf_pro_offered_product = $this->wpswocuf_pro_change_offered_product_price( $wpswocuf_pro_original_offered_product, $wpswocuf_pro_offered_discount[ $offer_id ] );
 
-			$product = $wps_wocuf_pro_offered_product;
+			$product = $wpswocuf_pro_offered_product;
 
-			$result .= '<form method="post" class="wps_wocuf_pro_custom_offer">
+			$result .= '<form method="post" class="wpswocuf_pro_custom_offer">
 							<input type="hidden" name="ocuf_ns" value="' . esc_attr( $wp_nonce ) . '">
 							<input type="hidden" name="ocuf_fid" value="' . esc_attr( $funnel_id ) . '">
-							<input type="hidden" name="product_id" class="wps_wocuf_pro_variation_id" value="' . absint( $product->get_id() ) . '">
+							<input type="hidden" name="product_id" class="wpswocuf_pro_variation_id" value="' . absint( $product->get_id() ) . '">
 							<input type="hidden" name="ocuf_ofd" value="' . esc_attr( $offer_id ) . '">
 							<input type="hidden" name="ocuf_ok" value="' . esc_attr( $order_key ) . '">
-							<input type="hidden" name="wps_wocuf_post_nonce" value="' . esc_attr( wp_create_nonce( 'wps_wocuf_field_post_nonce' ) ) . '">
-							<input type="hidden" name="wps_wocuf_after_post_nonce" value="' . esc_attr( wp_create_nonce( 'wps_wocuf_after_field_post_nonce' ) ) . '">
-							<button style="' . esc_attr( $atts['style'] ) . '" class="wps_wocuf_pro_custom_buy ' . esc_attr( $atts['class'] ) . '" type="submit" onclick="" name="wps_wocuf_pro_buy">' . esc_attr( $content ) . '</button>
+							<input type="hidden" name="wpswocuf_post_nonce" value="' . esc_attr( wp_create_nonce( 'wpswocuf_field_post_nonce' ) ) . '">
+							<input type="hidden" name="wpswocuf_after_post_nonce" value="' . esc_attr( wp_create_nonce( 'wpswocuf_after_field_post_nonce' ) ) . '">
+							<button style="' . esc_attr( $atts['style'] ) . '" class="wpswocuf_pro_custom_buy ' . esc_attr( $atts['class'] ) . '" type="submit" onclick="" name="wpswocuf_pro_buy">' . esc_attr( $content ) . '</button>
 						</form>';
 
 		} else {
-			$result .= '<form method="post" class="wps_wocuf_pro_custom_offer">
+			$result .= '<form method="post" class="wpswocuf_pro_custom_offer">
 						<input type="hidden" name="ocuf_ns" value="' . esc_attr( $wp_nonce ) . '">
 						<input type="hidden" name="ocuf_fid" value="' . esc_attr( $funnel_id ) . '">
-						<input type="hidden" name="product_id" class="wps_wocuf_pro_variation_id" value="">
+						<input type="hidden" name="product_id" class="wpswocuf_pro_variation_id" value="">
 						<input type="hidden" name="ocuf_ofd" value="' . esc_attr( $offer_id ) . '">
 						<input type="hidden" name="ocuf_ok" value="' . esc_attr( $order_key ) . '">
-						<input type="hidden" name="wps_wocuf_post_nonce" value="' . esc_attr( wp_create_nonce( 'wps_wocuf_field_post_nonce' ) ) . '">
-						<input type="hidden" name="wps_wocuf_after_post_nonce" value="' . esc_attr( wp_create_nonce( 'wps_wocuf_after_field_post_nonce' ) ) . '">
-						<button style="' . esc_attr( $atts['style'] ) . '" class="wps_wocuf_pro_custom_buy ' . esc_attr( $atts['class'] ) . '" type="submit" name="wps_wocuf_pro_buy">' . esc_attr( $content ) . '</button>
+						<input type="hidden" name="wpswocuf_post_nonce" value="' . esc_attr( wp_create_nonce( 'wpswocuf_field_post_nonce' ) ) . '">
+						<input type="hidden" name="wpswocuf_after_post_nonce" value="' . esc_attr( wp_create_nonce( 'wpswocuf_after_field_post_nonce' ) ) . '">
+						<button style="' . esc_attr( $atts['style'] ) . '" class="wpswocuf_pro_custom_buy ' . esc_attr( $atts['class'] ) . '" type="submit" name="wpswocuf_pro_buy">' . esc_attr( $content ) . '</button>
 					</form>';
 		}
 
@@ -2803,7 +2740,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 * @param mixed $atts attributes of the shortcode.
 	 * @param mixed $content content under wrapping mode.
 	 */
-	public function wps_wocuf_pro_custom_page_action_link_no( $atts, $content = '' ) {
+	public function wpswocuf_pro_custom_page_action_link_no( $atts, $content = '' ) {
 		$atts = shortcode_atts(
 			array(
 				'style' => '',
@@ -2812,7 +2749,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			$atts
 		);
 
-		return $this->wps_wocuf_pro_custom_page_no_link_for_all(
+		return $this->wpswocuf_pro_custom_page_no_link_for_all(
 			array(
 				'style' => $atts['style'],
 				'class' => $atts['class'],
@@ -2828,7 +2765,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 * @param mixed $atts attributes of the shortcode.
 	 * @param mixed $content content under wrapping mode.
 	 */
-	public function wps_wocuf_pro_custom_page_no_link_for_all( $atts, $content = '' ) {
+	public function wpswocuf_pro_custom_page_no_link_for_all( $atts, $content = '' ) {
 		$result = '';
 
 		if ( empty( $atts['style'] ) ) {
@@ -2846,27 +2783,27 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			wp_die( esc_html__( 'Nonce Not verified', 'woo-one-click-upsell-funnel' ) );
 		}
 
-		$offer_id = isset( $_GET['ocuf_ofd'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ofd'] ) ) : '';
-
-		$funnel_id = isset( $_GET['ocuf_fid'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_fid'] ) ) : '';
-
+		$offer_id  = isset( $_GET['ocuf_ofd'] ) ? absint( $_GET['ocuf_ofd'] ) : 0;
+		$funnel_id = isset( $_GET['ocuf_fid'] ) ? absint( $_GET['ocuf_fid'] ) : 0;
 		$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) ) : '';
+		$wp_nonce  = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) ) : '';
 
-		$wp_nonce = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) ) : '';
-
-		$order_id = wc_get_order_id_by_order_key( $order_key );
+		$order_id = $order_key ? wc_get_order_id_by_order_key( $order_key ) : 0;
+		if ( empty( $order_id ) || empty( $wp_nonce ) || ! wp_verify_nonce( $wp_nonce, 'wps-upsell-auth-nonce' ) ) {
+			return $result;
+		}
 
 		$th = 1;
 
-		$wps_wocuf_pro_no_text = get_option( 'wps_wocuf_pro_no_text', esc_html__( 'No,thanks', 'woo-one-click-upsell-funnel' ) );
+		$wpswocuf_pro_no_text = get_option( 'wpswocuf_pro_no_text', esc_html__( 'No,thanks', 'woo-one-click-upsell-funnel' ) );
 
 		if ( empty( $content ) ) {
-			$content = $wps_wocuf_pro_no_text;
+			$content = $wpswocuf_pro_no_text;
 		}
 
 		if ( ! empty( $offer_id ) && ! empty( $order_key ) && ! empty( $wp_nonce ) ) {
 			$result .= '<a style="' . esc_attr( $atts['style'] ) . '" class=
-			"wps_wocuf_pro_no wps_wocuf_pro_custom_skip ' . esc_attr( $atts['class'] ) . '" 
+			"wpswocuf_pro_no wpswocuf_pro_custom_skip ' . esc_attr( $atts['class'] ) . '" 
 			href="?ocuf_ns=' . esc_attr( $wp_nonce ) . '
 			&ocuf_th=1&ocuf_ok=' . esc_attr( $order_key ) . '
 			&ocuf_ofd=' . esc_attr( $offer_id ) . '
@@ -2874,7 +2811,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			>' . esc_attr( $content ) . '</a>';
 		} else {
 			$result .= '<a style="' . esc_attr( $atts['style'] ) . '" 
-			class="wps_wocuf_pro_custom_skip ' . esc_attr( $atts['class'] ) . '" 
+			class="wpswocuf_pro_custom_skip ' . esc_attr( $atts['class'] ) . '" 
 			href="">' . esc_attr( $content ) . '</a>';
 		}
 
@@ -2888,7 +2825,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 */
 	public function remove_styles_offer_pages() {
 
-		$saved_offer_post_ids = get_option( 'wps_upsell_lite_offer_post_ids', array() );
+		$saved_offer_post_ids = get_option( 'wpswocuf_upsell_lite_offer_post_ids', array() );
 
 		if ( ! empty( $saved_offer_post_ids ) && is_array( $saved_offer_post_ids ) && count( $saved_offer_post_ids ) ) {
 
@@ -2945,7 +2882,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 */
 	public function exclude_pages_from_front_end( $args ) {
 
-		$saved_offer_post_ids = get_option( 'wps_upsell_lite_offer_post_ids', array() );
+		$saved_offer_post_ids = get_option( 'wpswocuf_upsell_lite_offer_post_ids', array() );
 
 		if ( ! empty( $saved_offer_post_ids ) && is_array( $saved_offer_post_ids ) && count( $saved_offer_post_ids ) ) {
 
@@ -2985,7 +2922,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 */
 	public function exclude_pages_from_menu_list( $items ) {
 
-		$saved_offer_post_ids = get_option( 'wps_upsell_lite_offer_post_ids', array() );
+		$saved_offer_post_ids = get_option( 'wpswocuf_upsell_lite_offer_post_ids', array() );
 
 		if ( ! empty( $saved_offer_post_ids ) && is_array( $saved_offer_post_ids ) && count( $saved_offer_post_ids ) ) {
 
@@ -3019,7 +2956,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 */
 	public function upsell_offer_page_redirect() {
 
-		$saved_offer_post_ids = get_option( 'wps_upsell_lite_offer_post_ids', array() );
+		$saved_offer_post_ids = get_option( 'wpswocuf_upsell_lite_offer_post_ids', array() );
 
 		if ( ! empty( $saved_offer_post_ids ) && is_array( $saved_offer_post_ids ) && count( $saved_offer_post_ids ) ) {
 
@@ -3030,7 +2967,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 				$validate_shortcode = $this->validate_shortcode();
 
-				if ( wps_upsell_divi_builder_plugin_active() ) {
+				if ( wpswocuf_upsell_divi_builder_plugin_active() ) {
 
 					// 1833px
 					update_post_meta( $post->ID, '_et_pb_page_layout', 'et_no_sidebar' );
@@ -3073,7 +3010,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 		$shop_page_url = function_exists( 'wc_get_page_id' ) ? get_permalink( wc_get_page_id( 'shop' ) ) : get_permalink( woocommerce_get_page_id( 'shop' ) );
 		?>
-			<div style="text-align: center;margin-top: 30px;" id="wps_upsell_offer_expired"><h2 style="font-weight: 200;"><?php esc_html_e( 'Sorry, Offer expired.', 'woo-one-click-upsell-funnel' ); ?></h2><a class="button wc-backward" href="<?php echo esc_url( $shop_page_url ); ?>"><?php esc_html_e( 'Return to Shop ', 'woo-one-click-upsell-funnel' ); ?>&rarr;</a></div>
+			<div style="text-align: center;margin-top: 30px;" id="wpswocuf_upsell_offer_expired"><h2 style="font-weight: 200;"><?php esc_html_e( 'Sorry, Offer expired.', 'woo-one-click-upsell-funnel' ); ?></h2><a class="button wc-backward" href="<?php echo esc_url( $shop_page_url ); ?>"><?php esc_html_e( 'Return to Shop ', 'woo-one-click-upsell-funnel' ); ?>&rarr;</a></div>
 		<?php
 
 		// It just displayes the html itself. Content in it is already escaped.
@@ -3089,7 +3026,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 */
 	private function expire_further_offers( $order_id = 0 ) {
 
-		$expire_further_offers = wps_wocfo_hpos_get_meta_data( $order_id, '_wps_upsell_expire_further_offers', true );
+		$expire_further_offers = wpswocuf_wocfo_hpos_get_meta_data( $order_id, '_wpswocuf_upsell_expire_further_offers', true );
 
 		if ( ! empty( $expire_further_offers ) ) {
 
@@ -3114,7 +3051,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		}
 
 		// Process once and only for Upsells.
-		$funnel_id = wps_wocfo_hpos_get_meta_data( $order_id, 'wps_upsell_funnel_id', true );
+		$funnel_id = wpswocuf_wocfo_hpos_get_meta_data( $order_id, 'wpswocuf_upsell_funnel_id', true );
 
 		if ( empty( $funnel_id ) ) {
 
@@ -3159,7 +3096,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		if ( $upsell_purchased ) {
 
 			// Add Funnel Success count and Total Sales for the current Funnel.
-			$sales_by_funnel = new WPS_Upsell_Report_Sales_By_Funnel( $funnel_id );
+			$sales_by_funnel = new wpswocuf_Upsell_Report_Sales_By_Funnel( $funnel_id );
 
 			$sales_by_funnel->add_funnel_success_count();
 			$sales_by_funnel->add_funnel_total_sales( $upsell_item_total );
@@ -3169,7 +3106,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		 * Delete Funnel id so that this is processed only once and funnel id
 		 * might change so no need to associate the order with it.
 		 */
-		wps_wocfo_hpos_delete_meta_data( $order_id, 'wps_upsell_funnel_id' );
+		wpswocuf_wocfo_hpos_delete_meta_data( $order_id, 'wpswocuf_upsell_funnel_id' );
 	}
 
 	/**
@@ -3179,7 +3116,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 */
 	public function add_ga_and_fb_pixel_base_code() {
 
-		$upsell_analytics_options = get_option( 'wps_upsell_analytics_configuration', array() );
+		$upsell_analytics_options = get_option( 'wpswocuf_upsell_analytics_configuration', array() );
 
 		$ga_analytics_config = ! empty( $upsell_analytics_options['google-analytics'] ) ? $upsell_analytics_options['google-analytics'] : array();
 		$fb_pixel_config     = ! empty( $upsell_analytics_options['facebook-pixel'] ) ? $upsell_analytics_options['facebook-pixel'] : array();
@@ -3257,7 +3194,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 		if ( 'live_offer' === $validate_shortcode ) {
 
-			$upsell_analytics_options = get_option( 'wps_upsell_analytics_configuration', array() );
+			$upsell_analytics_options = get_option( 'wpswocuf_upsell_analytics_configuration', array() );
 
 			$ga_analytics_config = ! empty( $upsell_analytics_options['google-analytics'] ) ? $upsell_analytics_options['google-analytics'] : array();
 			$fb_pixel_config     = ! empty( $upsell_analytics_options['facebook-pixel'] ) ? $upsell_analytics_options['facebook-pixel'] : array();
@@ -3297,7 +3234,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 */
 	public function ga_and_fb_pixel_purchase_event( $order_id = '' ) {
 
-		$upsell_analytics_options = get_option( 'wps_upsell_analytics_configuration', array() );
+		$upsell_analytics_options = get_option( 'wpswocuf_upsell_analytics_configuration', array() );
 
 		$ga_analytics_config = ! empty( $upsell_analytics_options['google-analytics'] ) ? $upsell_analytics_options['google-analytics'] : array();
 		$fb_pixel_config     = ! empty( $upsell_analytics_options['facebook-pixel'] ) ? $upsell_analytics_options['facebook-pixel'] : array();
@@ -3335,18 +3272,16 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 */
 	public function add_ga_purchase_event_for_parent_order() {
 
-		$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
-		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
-
-		if ( ! $id_nonce_verified ) {
-			wp_die( esc_html__( 'Nonce Not verified', 'woo-one-click-upsell-funnel' ) );
-		}
 		$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) ) : '';
+		$order_id  = $order_key ? wc_get_order_id_by_order_key( $order_key ) : 0;
+		$wp_nonce  = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) ) : '';
 
-		$order_id = wc_get_order_id_by_order_key( $order_key );
+		if ( empty( $order_id ) || empty( $wp_nonce ) || ! wp_verify_nonce( $wp_nonce, 'wps-upsell-auth-nonce' ) ) {
+			return;
+		}
 
 		// Process once and only for Upsells.
-		if ( empty( $order_id ) || ! wps_wocfo_hpos_get_meta_data( $order_id, 'wps_upsell_order_started', true ) === true || ! empty( wps_wocfo_hpos_get_meta_data( $order_id, '_wps_upsell_ga_parent_tracked', true ) ) || wps_wocfo_hpos_get_meta_data( $order_id, '_wps_upsell_ga_tracked', true ) === 1 ) {
+		if ( empty( $order_id ) || ! wpswocuf_wocfo_hpos_get_meta_data( $order_id, 'wpswocuf_upsell_order_started', true ) === true || ! empty( wpswocuf_wocfo_hpos_get_meta_data( $order_id, '_wpswocuf_upsell_ga_parent_tracked', true ) ) || wpswocuf_wocfo_hpos_get_meta_data( $order_id, '_wpswocuf_upsell_ga_tracked', true ) === 1 ) {
 
 			return;
 		}
@@ -3361,7 +3296,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		// Only for those payment gateways with which Parent Order is Secured.
 		$payment_method = $order->get_payment_method();
 
-		$gateways_with_parent_secured = wps_upsell_lite_payment_gateways_with_parent_secured();
+		$gateways_with_parent_secured = wpswocuf_upsell_lite_payment_gateways_with_parent_secured();
 
 		if ( ! in_array( $payment_method, $gateways_with_parent_secured, true ) ) {
 
@@ -3451,7 +3386,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			if ( ! empty( $product_data ) ) {
 
 				// Add Product data json.
-				wc_enqueue_js( 'wps_upsell_ga_pd=' . wp_json_encode( $product_data ) . ';' );
+				wc_enqueue_js( 'wpswocuf_upsell_ga_pd=' . wp_json_encode( $product_data ) . ';' );
 			}
 		}
 
@@ -3479,31 +3414,31 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		);
 
 		// Add Transaction data json.
-		wc_enqueue_js( 'wps_upsell_ga_td=' . wp_json_encode( $transaction_data ) . ';' );
+		wc_enqueue_js( 'wpswocuf_upsell_ga_td=' . wp_json_encode( $transaction_data ) . ';' );
 
 		$ga_purchase_js = '
                  var items = [];
                 //set local currencies
-            gtag("set", {"currency": wps_upsell_ga_td.currency});
-            for(var p_item in wps_upsell_ga_pd){
+            gtag("set", {"currency": wpswocuf_upsell_ga_td.currency});
+            for(var p_item in wpswocuf_upsell_ga_pd){
                 items.push({
-                    "id": wps_upsell_ga_pd[p_item].p_sku,
-                    "name": wps_upsell_ga_pd[p_item].p_name, 
-                    "category": wps_upsell_ga_pd[p_item].p_cat,
-                    "price": wps_upsell_ga_pd[p_item].p_price,
-                    "quantity": wps_upsell_ga_pd[p_item].p_qty,
+                    "id": wpswocuf_upsell_ga_pd[p_item].p_sku,
+                    "name": wpswocuf_upsell_ga_pd[p_item].p_name, 
+                    "category": wpswocuf_upsell_ga_pd[p_item].p_cat,
+                    "price": wpswocuf_upsell_ga_pd[p_item].p_price,
+                    "quantity": wpswocuf_upsell_ga_pd[p_item].p_qty,
                 });
                
             }
             gtag("event", "purchase", {
-                "transaction_id":wps_upsell_ga_td.id,
-                "affiliation": wps_upsell_ga_td.affiliation,
-                "value":wps_upsell_ga_td.revenue,
-                "tax": wps_upsell_ga_td.tax,
-                "shipping": wps_upsell_ga_td.shipping,
-                "coupon": wps_upsell_ga_td.coupon,
+                "transaction_id":wpswocuf_upsell_ga_td.id,
+                "affiliation": wpswocuf_upsell_ga_td.affiliation,
+                "value":wpswocuf_upsell_ga_td.revenue,
+                "tax": wpswocuf_upsell_ga_td.tax,
+                "shipping": wpswocuf_upsell_ga_td.shipping,
+                "coupon": wpswocuf_upsell_ga_td.coupon,
                 "event_category": "ecommerce",
-                "event_label": wps_upsell_ga_td.label,
+                "event_label": wpswocuf_upsell_ga_td.label,
                 "non_interaction": true,
                 "items":items
             });
@@ -3511,7 +3446,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 		wc_enqueue_js( $ga_purchase_js );
 
-		wps_wocfo_hpos_update_meta_data( $order_id, '_wps_upsell_ga_parent_tracked', $upsell_ga_parent_tracked_data );
+		wpswocuf_wocfo_hpos_update_meta_data( $order_id, '_wpswocuf_upsell_ga_parent_tracked', $upsell_ga_parent_tracked_data );
 	}
 
 	/**
@@ -3523,7 +3458,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 */
 	public function add_ga_purchase_event( $order_id = '' ) {
 
-		if ( empty( $order_id ) || wps_wocfo_hpos_get_meta_data( $order_id, '_wps_upsell_ga_tracked', true ) === 1 ) {
+		if ( empty( $order_id ) || wpswocuf_wocfo_hpos_get_meta_data( $order_id, '_wpswocuf_upsell_ga_tracked', true ) === 1 ) {
 
 			return;
 		}
@@ -3577,7 +3512,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		}
 
 		$upsell_ga_parent_tracked      = false;
-		$upsell_ga_parent_tracked_data = wps_wocfo_hpos_get_meta_data( $order_id, '_wps_upsell_ga_parent_tracked', true );
+		$upsell_ga_parent_tracked_data = wpswocuf_wocfo_hpos_get_meta_data( $order_id, '_wpswocuf_upsell_ga_parent_tracked', true );
 
 		if ( ! empty( $upsell_ga_parent_tracked_data ) && is_array( $upsell_ga_parent_tracked_data ) ) {
 
@@ -3640,7 +3575,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			if ( ! empty( $product_data ) ) {
 
 				// Add Product data json.
-				wc_enqueue_js( 'wps_upsell_ga_pd=' . wp_json_encode( $product_data ) . ';' );
+				wc_enqueue_js( 'wpswocuf_upsell_ga_pd=' . wp_json_encode( $product_data ) . ';' );
 			}
 		}
 
@@ -3650,7 +3585,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			// No Upsell Items so return as no need to send any data to GA as it's already tracked.
 			if ( false === $upsell_purchase ) {
 
-				wps_wocfo_hpos_update_meta_data( $order_id, '_wps_upsell_ga_tracked', 1 );
+				wpswocuf_wocfo_hpos_update_meta_data( $order_id, '_wpswocuf_upsell_ga_tracked', 1 );
 				return;
 			}
 		}
@@ -3696,31 +3631,31 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		}
 
 		// Add Transaction data json.
-		wc_enqueue_js( 'wps_upsell_ga_td=' . wp_json_encode( $transaction_data ) . ';' );
+		wc_enqueue_js( 'wpswocuf_upsell_ga_td=' . wp_json_encode( $transaction_data ) . ';' );
 
 		$ga_purchase_js = '
                  var items = [];
                 //set local currencies
-            gtag("set", {"currency": wps_upsell_ga_td.currency});
-            for(var p_item in wps_upsell_ga_pd){
+            gtag("set", {"currency": wpswocuf_upsell_ga_td.currency});
+            for(var p_item in wpswocuf_upsell_ga_pd){
                 items.push({
-                    "id": wps_upsell_ga_pd[p_item].p_sku,
-                    "name": wps_upsell_ga_pd[p_item].p_name, 
-                    "category": wps_upsell_ga_pd[p_item].p_cat,
-                    "price": wps_upsell_ga_pd[p_item].p_price,
-                    "quantity": wps_upsell_ga_pd[p_item].p_qty,
+                    "id": wpswocuf_upsell_ga_pd[p_item].p_sku,
+                    "name": wpswocuf_upsell_ga_pd[p_item].p_name, 
+                    "category": wpswocuf_upsell_ga_pd[p_item].p_cat,
+                    "price": wpswocuf_upsell_ga_pd[p_item].p_price,
+                    "quantity": wpswocuf_upsell_ga_pd[p_item].p_qty,
                 });
                
             }
             gtag("event", "purchase", {
-                "transaction_id":wps_upsell_ga_td.id,
-                "affiliation": wps_upsell_ga_td.affiliation,
-                "value":wps_upsell_ga_td.revenue,
-                "tax": wps_upsell_ga_td.tax,
-                "shipping": wps_upsell_ga_td.shipping,
-                "coupon": wps_upsell_ga_td.coupon,
+                "transaction_id":wpswocuf_upsell_ga_td.id,
+                "affiliation": wpswocuf_upsell_ga_td.affiliation,
+                "value":wpswocuf_upsell_ga_td.revenue,
+                "tax": wpswocuf_upsell_ga_td.tax,
+                "shipping": wpswocuf_upsell_ga_td.shipping,
+                "coupon": wpswocuf_upsell_ga_td.coupon,
                 "event_category": "ecommerce",
-                "event_label": wps_upsell_ga_td.label,
+                "event_label": wpswocuf_upsell_ga_td.label,
                 "non_interaction": true,
                 "items":items
             });
@@ -3728,7 +3663,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 		wc_enqueue_js( $ga_purchase_js );
 
-		wps_wocfo_hpos_update_meta_data( $order_id, '_wps_upsell_ga_tracked', 1 );
+		wpswocuf_wocfo_hpos_update_meta_data( $order_id, '_wpswocuf_upsell_ga_tracked', 1 );
 	}
 
 	/**
@@ -3738,19 +3673,16 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 */
 	public function add_fb_pixel_purchase_event_for_parent_order() {
 
-		$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
-		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
+		$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) ) : '';
+		$order_id  = $order_key ? wc_get_order_id_by_order_key( $order_key ) : 0;
+		$wp_nonce  = isset( $_GET['ocuf_ns'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ns'] ) ) : '';
 
-		if ( ! $id_nonce_verified ) {
-			wp_die( esc_html__( 'Nonce Not verified', 'woo-one-click-upsell-funnel' ) );
+		if ( empty( $order_id ) || empty( $wp_nonce ) || ! wp_verify_nonce( $wp_nonce, 'wps-upsell-auth-nonce' ) ) {
+			return;
 		}
 
-		$order_key = isset( $_GET['ocuf_ok'] ) ? sanitize_text_field( wp_unslash( $_GET['ocuf_ok'] ) ) : '';
-
-		$order_id = wc_get_order_id_by_order_key( $order_key );
-
 		// Process once and only for Upsells.
-		if ( empty( $order_id ) || ! wps_wocfo_hpos_get_meta_data( $order_id, 'wps_upsell_order_started', true ) === true || ! empty( wps_wocfo_hpos_get_meta_data( $order_id, '_wps_upsell_fbp_parent_tracked', true ) ) || wps_wocfo_hpos_get_meta_data( $order_id, '_wps_upsell_fbp_tracked', true ) === true ) {
+		if ( empty( $order_id ) || ! wpswocuf_wocfo_hpos_get_meta_data( $order_id, 'wpswocuf_upsell_order_started', true ) === true || ! empty( wpswocuf_wocfo_hpos_get_meta_data( $order_id, '_wpswocuf_upsell_fbp_parent_tracked', true ) ) || wpswocuf_wocfo_hpos_get_meta_data( $order_id, '_wpswocuf_upsell_fbp_tracked', true ) === true ) {
 
 			return;
 		}
@@ -3765,7 +3697,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		// Only for those payment gateways with which Parent Order is Secured.
 		$payment_method = $order->get_payment_method();
 
-		$gateways_with_parent_secured = wps_upsell_lite_payment_gateways_with_parent_secured();
+		$gateways_with_parent_secured = wpswocuf_upsell_lite_payment_gateways_with_parent_secured();
 
 		if ( ! in_array( $payment_method, $gateways_with_parent_secured, true ) ) {
 
@@ -3804,7 +3736,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			'order_total' => $order_total,
 		);
 
-		wps_wocfo_hpos_update_meta_data( $order_id, '_wps_upsell_fbp_parent_tracked', $upsell_fb_pixel_parent_tracked_data );
+		wpswocuf_wocfo_hpos_update_meta_data( $order_id, '_wpswocuf_upsell_fbp_parent_tracked', $upsell_fb_pixel_parent_tracked_data );
 	}
 
 	/**
@@ -3816,7 +3748,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 */
 	public function add_fb_pixel_purchase_event( $order_id = '' ) {
 
-		if ( empty( $order_id ) || true === wps_wocfo_hpos_get_meta_data( $order_id, '_wps_upsell_fbp_tracked', true ) ) {
+		if ( empty( $order_id ) || true === wpswocuf_wocfo_hpos_get_meta_data( $order_id, '_wpswocuf_upsell_fbp_tracked', true ) ) {
 
 			return;
 		}
@@ -3836,7 +3768,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 		$product_ids  = array();
 
 		$upsell_fb_pixel_parent_tracked      = false;
-		$upsell_fb_pixel_parent_tracked_data = wps_wocfo_hpos_get_meta_data( $order_id, '_wps_upsell_fbp_parent_tracked', true );
+		$upsell_fb_pixel_parent_tracked_data = wpswocuf_wocfo_hpos_get_meta_data( $order_id, '_wpswocuf_upsell_fbp_parent_tracked', true );
 
 		if ( ! empty( $upsell_fb_pixel_parent_tracked_data ) && is_array( $upsell_fb_pixel_parent_tracked_data ) ) {
 
@@ -3874,7 +3806,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			// No Upsell Items so return as no need to send any data.
 			if ( false === $upsell_purchase ) {
 
-				wps_wocfo_hpos_update_meta_data( $order_id, '_wps_upsell_fbp_tracked', true );
+				wpswocuf_wocfo_hpos_update_meta_data( $order_id, '_wpswocuf_upsell_fbp_tracked', true );
 				return;
 			}
 		}
@@ -3906,7 +3838,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 		wc_enqueue_js( $fb_purchase_js );
 
-		wps_wocfo_hpos_update_meta_data( $order_id, '_wps_upsell_fbp_tracked', true );
+		wpswocuf_wocfo_hpos_update_meta_data( $order_id, '_wpswocuf_upsell_fbp_tracked', true );
 	}
 
 
@@ -3924,7 +3856,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			return;
 		}
 
-		$upsell_analytics_options = get_option( 'wps_upsell_analytics_configuration', array() );
+		$upsell_analytics_options = get_option( 'wpswocuf_upsell_analytics_configuration', array() );
 
 		$ga_analytics_config = ! empty( $upsell_analytics_options['google-analytics'] ) ? $upsell_analytics_options['google-analytics'] : array();
 
@@ -3985,7 +3917,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 		if ( isset( $wc_integrations['facebookcommerce'] ) && $wc_integrations['facebookcommerce'] instanceof WC_Facebookcommerce_Integration ) {
 
-			$upsell_analytics_options = get_option( 'wps_upsell_analytics_configuration', array() );
+			$upsell_analytics_options = get_option( 'wpswocuf_upsell_analytics_configuration', array() );
 
 			$fb_pixel_config = ! empty( $upsell_analytics_options['facebook-pixel'] ) ? $upsell_analytics_options['facebook-pixel'] : array();
 
@@ -4017,18 +3949,20 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			return;
 		}
 
-		$wps_upsell_global_settings = get_option( 'wps_upsell_lite_global_options', array() );
+			$wpswocuf_upsell_global_settings = get_option( 'wpswocuf_upsell_lite_global_options', array() );
 
-		$global_custom_css = ! empty( $wps_upsell_global_settings['global_custom_css'] ) ? $wps_upsell_global_settings['global_custom_css'] : '';
+			$global_custom_css = ! empty( $wpswocuf_upsell_global_settings['global_custom_css'] ) ? $wpswocuf_upsell_global_settings['global_custom_css'] : '';
 
-		if ( empty( $global_custom_css ) ) {
+			if ( empty( $global_custom_css ) ) {
 
-			return;
-		}
+				return;
+			}
 
-		wp_register_style( 'wps_upsell_pro_global_custom_css', false, array(), WC_VERSION, 'all' );
-		wp_enqueue_style( 'wps_upsell_pro_global_custom_css' );
-		wp_add_inline_style( 'wps_upsell_pro_global_custom_css', $global_custom_css );
+			$global_custom_css = wp_kses( $global_custom_css, array() );
+
+			wp_register_style( 'wpswocuf_upsell_pro_global_custom_css', false, array(), WC_VERSION, 'all' );
+			wp_enqueue_style( 'wpswocuf_upsell_pro_global_custom_css' );
+			wp_add_inline_style( 'wpswocuf_upsell_pro_global_custom_css', $global_custom_css );
 
 	}
 
@@ -4045,17 +3979,19 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			return;
 		}
 
-		$wps_upsell_global_settings = get_option( 'wps_upsell_lite_global_options', array() );
+			$wpswocuf_upsell_global_settings = get_option( 'wpswocuf_upsell_lite_global_options', array() );
 
-		$global_custom_js = ! empty( $wps_upsell_global_settings['global_custom_js'] ) ? $wps_upsell_global_settings['global_custom_js'] : '';
+			$global_custom_js = ! empty( $wpswocuf_upsell_global_settings['global_custom_js'] ) ? $wpswocuf_upsell_global_settings['global_custom_js'] : '';
 
-		if ( empty( $global_custom_js ) ) {
-			return;
-		}
+			if ( empty( $global_custom_js ) ) {
+				return;
+			}
 
-		wp_register_script( 'wps_upsell_pro_global_custom_js', false, array( 'jquery' ), WC_VERSION, false );
-		wp_enqueue_script( 'wps_upsell_pro_global_custom_js' );
-		wp_add_inline_script( 'wps_upsell_pro_global_custom_js', $global_custom_js );
+			$global_custom_js = wp_kses( $global_custom_js, array() );
+
+			wp_register_script( 'wpswocuf_upsell_pro_global_custom_js', false, array( 'jquery' ), WC_VERSION, false );
+			wp_enqueue_script( 'wpswocuf_upsell_pro_global_custom_js' );
+			wp_add_inline_script( 'wpswocuf_upsell_pro_global_custom_js', $global_custom_js );
 	}
 
 	/**
@@ -4099,7 +4035,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 			<?php ob_start(); ?>
 
-			<?php if ( false === wp_cache_get( 'wps_upsell_countdown_timer' ) ) : ?>
+			<?php if ( false === wp_cache_get( 'wpswocuf_upsell_countdown_timer' ) ) : ?>
 
 				<script type="text/javascript">
 
@@ -4160,9 +4096,9 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 								}
 
-								$('.wps_upsell_lite_display_hours').html( hours );
-								$('.wps_upsell_lite_display_minutes').html( minutes );
-								$('.wps_upsell_lite_display_seconds').html( seconds );
+								$('.wpswocuf_upsell_lite_display_hours').html( hours );
+								$('.wpswocuf_upsell_lite_display_minutes').html( minutes );
+								$('.wpswocuf_upsell_lite_display_seconds').html( seconds );
 
 							}
 
@@ -4173,22 +4109,22 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 
 				</script>
 
-				<?php wp_cache_set( 'wps_upsell_countdown_timer', 'true' ); ?>
+				<?php wp_cache_set( 'wpswocuf_upsell_countdown_timer', 'true' ); ?>
 
 			<?php endif; ?>
 
 			<!-- Countdown timer html. -->
-			<span class="wps_upsell_lite_display_timer_wrap">
-				<span class="wps_upsell_lite_timer_digit">
-					<span class="wps_upsell_lite_display_minutes wps_upsell_lite_display_timer">00</span>
-					<span class="wps_upsell_lite_text"><?php esc_html_e( 'minutes', 'woo-one-click-upsell-funnel' ); ?></span>
+			<span class="wpswocuf_upsell_lite_display_timer_wrap">
+				<span class="wpswocuf_upsell_lite_timer_digit">
+					<span class="wpswocuf_upsell_lite_display_minutes wpswocuf_upsell_lite_display_timer">00</span>
+					<span class="wpswocuf_upsell_lite_text"><?php esc_html_e( 'minutes', 'woo-one-click-upsell-funnel' ); ?></span>
 				</span>
-				<span class="wps_upsell_lite_timer_digit">
-					<span class="wps_upsell_lite_display_timer_col">:</span>
+				<span class="wpswocuf_upsell_lite_timer_digit">
+					<span class="wpswocuf_upsell_lite_display_timer_col">:</span>
 				</span>
-				<span class="wps_upsell_lite_timer_digit">
-					<span class="wps_upsell_lite_display_seconds wps_upsell_lite_display_timer">00</span>
-					<span class="wps_upsell_lite_text"><?php esc_html_e( 'seconds', 'woo-one-click-upsell-funnel' ); ?></span>
+				<span class="wpswocuf_upsell_lite_timer_digit">
+					<span class="wpswocuf_upsell_lite_display_seconds wpswocuf_upsell_lite_display_timer">00</span>
+					<span class="wpswocuf_upsell_lite_text"><?php esc_html_e( 'seconds', 'woo-one-click-upsell-funnel' ); ?></span>
 				</span>
 			</span>
 
@@ -4281,9 +4217,9 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 				?>
 
 					<!-- Countdown timer html. -->
-					<div class="wps_upsell_quantity quantity">
-						<label class="screen-reader-text" for="wps_upsell_quantity_field"><?php echo esc_html( $product->get_title() ); ?></label>
-						<input type="number" id="wps_upsell_quantity_field" class="input-text qty text wps_upsell_quantity_input" step="1" min="<?php echo( esc_html( $minimum ) ); ?>" max="<?php echo( esc_html( $maximum ) ); ?>" value="1" title="Qty" inputmode="numeric">
+					<div class="wpswocuf_upsell_quantity quantity">
+						<label class="screen-reader-text" for="wpswocuf_upsell_quantity_field"><?php echo esc_html( $product->get_title() ); ?></label>
+						<input type="number" id="wpswocuf_upsell_quantity_field" class="input-text qty text wpswocuf_upsell_quantity_input" step="1" min="<?php echo( esc_html( $minimum ) ); ?>" max="<?php echo( esc_html( $maximum ) ); ?>" value="1" title="Qty" inputmode="numeric">
 					</div>
 
 				<?php
@@ -4323,7 +4259,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 *
 	 * @since    3.0.0
 	 */
-	public static function wps_wocuf_skip_for_pre_order( $offer_product_id = '' ) {
+	public static function wpswocuf_skip_for_pre_order( $offer_product_id = '' ) {
 
 		if ( empty( $offer_product_id ) ) {
 
@@ -4404,13 +4340,13 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			return;
 		}
 
-		$offers_processed = wps_wocfo_hpos_get_meta_data( $order_id, '_wps_upsell_offers_processed', true );
+		$offers_processed = wpswocuf_wocfo_hpos_get_meta_data( $order_id, '_wpswocuf_upsell_offers_processed', true );
 
 		$offers_processed = ! empty( $offers_processed ) ? $offers_processed : array();
 
 		$offers_processed[ $current_offer_id ] = $url;
 
-		wps_wocfo_hpos_update_meta_data( $order_id, '_wps_upsell_offers_processed', $offers_processed );
+		wpswocuf_wocfo_hpos_update_meta_data( $order_id, '_wpswocuf_upsell_offers_processed', $offers_processed );
 	}
 
 	/**
@@ -4427,7 +4363,7 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 			return;
 		}
 
-		$offers_processed = wps_wocfo_hpos_get_meta_data( $order_id, '_wps_upsell_offers_processed', true );
+		$offers_processed = wpswocuf_wocfo_hpos_get_meta_data( $order_id, '_wpswocuf_upsell_offers_processed', true );
 
 		if ( ! empty( $offers_processed ) && is_array( $offers_processed ) ) {
 
@@ -4465,8 +4401,8 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 * @since 3.6.3
 	 */
 	public function check_compatibltiy_instance_cs() {
-		if ( function_exists( 'wps_upsell_lite_is_plugin_active' ) ) {
-			$cs_exists = wps_upsell_lite_is_plugin_active( 'wps-multi-currency-switcher-for-woocommerce/wps-multi-currency-switcher-for-woocommerce.php' );
+		if ( function_exists( 'wpswocuf_upsell_lite_is_plugin_active' ) ) {
+			$cs_exists = wpswocuf_upsell_lite_is_plugin_active( 'wps-multi-currency-switcher-for-woocommerce/wps-multi-currency-switcher-for-woocommerce.php' );
 			if ( false === $cs_exists ) {
 				if ( ! empty( WC()->session ) && WC()->session->__isset( 's_selected_currency' ) ) {
 					WC()->session->__unset( 's_selected_currency' );
@@ -4480,9 +4416,13 @@ class Woocommerce_One_Click_Upsell_Funnel_Public {
 	 *
 	 * @return void
 	 */
-	public function wps_upsell_add_nonce_field_at_checkout() {
+	public function wpswocuf_upsell_add_nonce_field_at_checkout() {
 		wp_nonce_field( 'checkout_order_processed_nonce', 'checkout_order_processed_nonce' );
 
 	}
 
+}
+// Backward compatibility for legacy class name.
+if ( ! class_exists( 'Woocommerce_One_Click_Upsell_Funnel_Public' ) ) {
+	class_alias( 'Wpswocuf_Public', 'Woocommerce_One_Click_Upsell_Funnel_Public' );
 }

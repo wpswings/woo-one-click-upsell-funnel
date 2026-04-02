@@ -30,27 +30,27 @@ if ( ! $id_nonce_verified ) {
 
 $active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'funnels-list';
 
-if ( 'overview' === get_transient( 'wps_upsell_default_settings_tab' ) ) {
+if ( 'overview' === get_transient( 'wpswocuf_upsell_default_settings_tab' ) ) {
 
 	$active_tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'overview';
 }
 
 
-$wps_wocuf_pro_funnels_list = get_option( 'wps_wocuf_funnels_list', array() );
-$wps_wocuf_pro_funnel_number = '';
-if ( ! empty( $wps_wocuf_pro_funnels_list ) ) {
+$wpswocuf_pro_funnels_list = get_option( 'wpswocuf_funnels_list', array() );
+$wpswocuf_pro_funnel_number = '';
+if ( ! empty( $wpswocuf_pro_funnels_list ) ) {
 
 	// Temp funnel variable.
-	$wps_wocuf_pro_funnel_duplicate = $wps_wocuf_pro_funnels_list;
+	$wpswocuf_pro_funnel_duplicate = $wpswocuf_pro_funnels_list;
 
 	// Make key pointer point to the end funnel.
-	end( $wps_wocuf_pro_funnel_duplicate );
+	end( $wpswocuf_pro_funnel_duplicate );
 
 	// Now key function will return last funnel key.
-	$wps_wocuf_pro_funnel_number = key( $wps_wocuf_pro_funnel_duplicate );
+	$wpswocuf_pro_funnel_number = key( $wpswocuf_pro_funnel_duplicate );
 } else {
 	// When no funnel is there then new funnel id will be 1 (0+1).
-	$wps_wocuf_pro_funnel_number = 0;
+	$wpswocuf_pro_funnel_number = 0;
 }
 
 echo '<div class="notice notice-info is-dismissible">';
@@ -64,16 +64,16 @@ echo '<div class="notice notice-info is-dismissible">';
 
 <div class="wps-notice-wrapper">
 <?php  
-		do_action( 'wps_wocuf_pro_setting_tab_active', '', '', '' );
+		do_action( 'wpswocuf_pro_setting_tab_active', '', '', '' );
 		
 ?>
 </div>
 
 
-<?php if ( ! wps_upsell_lite_elementor_plugin_active() && false === get_transient( 'wps_upsell_elementor_inactive_notice' ) ) : ?>
+<?php if ( ! wpswocuf_upsell_lite_elementor_plugin_active() && false === get_transient( 'wpswocuf_upsell_elementor_inactive_notice' ) ) : ?>
 
-<div id="wps_upsell_elementor_notice" class="notice notice-info is-dismissible">
-	<p><span class="wps_upsell_heading_span"><?php esc_html_e( 'We have integrated with Elementor', 'woo-one-click-upsell-funnel' ); ?></span><?php esc_html_e( ' – now the most advanced WordPress page builder can be used to completely customize Upsell Offer pages. Moreover, we provide three stunning and beautiful offer templates.', 'woo-one-click-upsell-funnel' ); ?></p>
+<div id="wpswocuf_upsell_elementor_notice" class="notice notice-info is-dismissible">
+	<p><span class="wpswocuf_upsell_heading_span"><?php esc_html_e( 'We have integrated with Elementor', 'woo-one-click-upsell-funnel' ); ?></span><?php esc_html_e( ' – now the most advanced WordPress page builder can be used to completely customize Upsell Offer pages. Moreover, we provide three stunning and beautiful offer templates.', 'woo-one-click-upsell-funnel' ); ?></p>
 
 	<p><?php esc_html_e( 'To completely utilize all features of this plugin please activate Elementor.', 'woo-one-click-upsell-funnel' ); ?></p>
 
@@ -83,25 +83,25 @@ echo '<div class="notice notice-info is-dismissible">';
 
 	<p class="submit">
 
-		<a href="<?php echo esc_url( admin_url( 'plugin-install.php?s=elementor&tab=search&type=term' ) ); ?>" id="wps_upsell_activate_elementor" class="button" target="_blank"><?php esc_html_e( 'Install and activate Elementor now &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
+		<a href="<?php echo esc_url( admin_url( 'plugin-install.php?s=elementor&tab=search&type=term' ) ); ?>" id="wpswocuf_upsell_activate_elementor" class="button" target="_blank"><?php esc_html_e( 'Install and activate Elementor now &rarr;', 'woo-one-click-upsell-funnel' ); ?></a>
 		<br>
-		<a id="wps_upsell_dismiss_elementor_inactive_notice" href="javascript:void(0)" class="button"><?php esc_html_e( 'Dismiss this notice', 'woo-one-click-upsell-funnel' ); ?></a>
+		<a id="wpswocuf_upsell_dismiss_elementor_inactive_notice" href="javascript:void(0)" class="button"><?php esc_html_e( 'Dismiss this notice', 'woo-one-click-upsell-funnel' ); ?></a>
 
 	</p>
 </div>
 
 <?php endif; ?>
 
-<div class="wrap woocommerce" id="wps_wocuf_pro_setting_wrapper">
+<div class="wrap woocommerce" id="wpswocuf_pro_setting_wrapper">
 
 	<!-- To make WordPress notice appear at this place. As it searchs from top and appears at the 1st heading tag-->
 	<h1></h1>
 
-	<div class="hide"  id="wps_wocuf_pro_loader">	
+	<div class="hide"  id="wpswocuf_pro_loader">	
 		<img id="wps-wocuf-loading-image" src="<?php echo 'images/spinner-2x.gif'; ?>" >
 	</div>
-	<div class="wps_wocuf_pro_header">
-		<div class="wps_wocuf_pro_setting_title"><?php esc_html_e( 'One Click Upsell Funnel for WooCommerce', 'woo-one-click-upsell-funnel' ); ?></div>
+	<div class="wpswocuf_pro_header">
+		<div class="wpswocuf_pro_setting_title"><?php esc_html_e( 'One Click Upsell Funnel for WooCommerce', 'woo-one-click-upsell-funnel' ); ?></div>
 
 	</div>
 
@@ -110,18 +110,9 @@ echo '<div class="notice notice-info is-dismissible">';
 
 	<?php
 
-		if (  $wps_wocuf_pro_funnel_number < 1 ){
-
-			?>
-			<a class="nav-tab <?php echo 'creation-setting' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=upsell-order-bump-offer-for-woocommerce-setting&tab=one-click-section&sub_tab=post-save-offer-section"><?php esc_html_e( 'Create Funnel', 'woo-one-click-upsell-funnel' ); ?></a>
-			<?php
-		} else{
-			?>
-			<a class="nav-tab ubo_offer_input <?php echo 'creation-setting' === $active_tab ? 'nav-tab-active' : ''; ?>" href="#"><?php esc_html_e( 'Create Funnel', 'woo-one-click-upsell-funnel' ); ?></a>
-			<span class="wps_wocuf_pro_enable_plugin_span"></span>
-			<?php
-
-		}
+		?>
+		<a class="nav-tab <?php echo 'creation-setting' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=upsell-order-bump-offer-for-woocommerce-setting&tab=one-click-section&sub_tab=post-save-offer-section"><?php esc_html_e( 'Create Funnel', 'woo-one-click-upsell-funnel' ); ?></a>
+		<?php
 	?>
 
 
@@ -133,7 +124,7 @@ echo '<div class="notice notice-info is-dismissible">';
 		<a class="nav-tab <?php echo 'settings' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=upsell-order-bump-offer-for-woocommerce-setting&tab=global-setting&sub_tab=post-global-sect"><?php esc_html_e( 'Global Settings', 'woo-one-click-upsell-funnel' ); ?></a>
 		<a class="nav-tab <?php echo 'overview' === $active_tab ? 'nav-tab-active' : ''; ?>" href="?page=upsell-order-bump-offer-for-woocommerce-setting&tab=overview"><?php esc_html_e( 'Overview', 'woo-one-click-upsell-funnel' ); ?></a>
 
-		<?php do_action( 'wps_wocuf_pro_setting_tab' ); ?>	
+		<?php do_action( 'wpswocuf_pro_setting_tab' ); ?>	
 	</nav>
 	<?php
 
@@ -151,6 +142,6 @@ echo '<div class="notice notice-info is-dismissible">';
 		include_once 'templates/wps-wocuf-pro-store-checkout.php';
 	}
 
-		do_action( 'wps_wocuf_pro_setting_tab_html' );
+		do_action( 'wpswocuf_pro_setting_tab_html' );
 	?>
 </div>

@@ -7,45 +7,45 @@
   margin: 20px auto;
   text-align: center;
 }
- .wps_wocuf_pro_offer_container{
+ .wpswocuf_pro_offer_container{
   padding:50px 150px;
   background: white;
 }
-.wps_wocuf_pro_special_offers_for_you .wps_wocuf_pro_special_offer_banner {
+.wpswocuf_pro_special_offers_for_you .wpswocuf_pro_special_offer_banner {
   margin-bottom: 60px;
   text-align: center;
   font-weight: bold;
 }
-.wps_wocuf_pro_special_offers_for_you .wps_wocuf_pro_main_wrapper .wps_wocuf_pro_product_image img {
+.wpswocuf_pro_special_offers_for_you .wpswocuf_pro_main_wrapper .wpswocuf_pro_product_image img {
   width: 40%;
   margin: 0 auto;
 }
-.wps_wocuf_pro_special_offers_for_you .wps_wocuf_pro_main_wrapper::after {
+.wpswocuf_pro_special_offers_for_you .wpswocuf_pro_main_wrapper::after {
   clear: both;
   content: "";
   display: block;
   position: absolute;
 }
-.wps_wocuf_pro_special_offers_for_you .wps_wocuf_pro_main_wrapper{
+.wpswocuf_pro_special_offers_for_you .wpswocuf_pro_main_wrapper{
   overflow: hidden;
 }
-.wps_wocuf_pro_offered_product_description {
+.wpswocuf_pro_offered_product_description {
   box-sizing: border-box;
   padding: 15px;
   text-align: center;
 }
-.wps_wocuf_pro_special_offers_for_you .wps_wocuf_pro_main_wrapper .wps_wocuf_pro_product_title {
+.wpswocuf_pro_special_offers_for_you .wpswocuf_pro_main_wrapper .wpswocuf_pro_product_title {
   text-align: center;
   width:50%;
   margin: 20px auto;
   font-size: 20px;
 }
-.wps_wocuf_pro_special_offers_for_you .wps_wocuf_pro_product_price > h4 ,.wps_wocuf_pro_variable_price_html.display{
+.wpswocuf_pro_special_offers_for_you .wpswocuf_pro_product_price > h4 ,.wpswocuf_pro_variable_price_html.display{
   box-shadow: 0 2px 5px rgba(0,0,0, 0.25);
   display: inline-block;
   padding: 10px 40px;
 }
-.wps_wocuf_pro_variations .wps_wocuf_offer_variation_select {
+.wpswocuf_pro_variations .wpswocuf_offer_variation_select {
   height: 36px;
   width: 100%;
   border-radius: 0;
@@ -53,29 +53,29 @@
   font-size: 15px;
   background: #fff;
 }
-.wps_wocuf_pro_variations {
+.wpswocuf_pro_variations {
   width:50%;
   margin: 0 auto;
 }
-.wps_wocuf_pro_variations .wps_wocuf_offer_variation_select option {
+.wpswocuf_pro_variations .wpswocuf_offer_variation_select option {
   padding: 10px;
 }
-.wps_wocuf_pro_variations .variations .label label{
+.wpswocuf_pro_variations .variations .label label{
   margin-right: 20px;
   color: black;
   font-size: 20px;
   font-weight: bold;
 }
-.wps_wocuf_pro_special_offers_for_you .woocommerce-Price-amount.amount {
+.wpswocuf_pro_special_offers_for_you .woocommerce-Price-amount.amount {
   font-weight: bold;
 }
-.wps_wocuf_pro_variable_price_html del .woocommerce-Price-amount.amount {
+.wpswocuf_pro_variable_price_html del .woocommerce-Price-amount.amount {
   font-weight: 500;
 }
-.wps_wocuf_pro_variations tr td {
+.wpswocuf_pro_variations tr td {
  border: none;
 }
-.wps_wocuf_pro_product_price h4 {
+.wpswocuf_pro_product_price h4 {
   background-color: #f2f5f7;
   color: #000;
   border: solid 2px #cecece;
@@ -83,21 +83,21 @@
   font-size: 27px;
   text-align: center;
 }
-.wps_wocuf_pro_product_price h4 del {
+.wpswocuf_pro_product_price h4 del {
   color: #000;
   padding-left: 10px;
 }
-.wps_wocuf_pro_product_price h4 ins {
+.wpswocuf_pro_product_price h4 ins {
   background-color: #fff;
   color: #000;
 }
-.wps_wocuf_pro_offered_product_actions {
+.wpswocuf_pro_offered_product_actions {
   overflow: hidden;
   width: 100%;
   text-align: center;
   margin: 15px 0px;
 }
-.wps_wocuf_pro_offered_product_actions button.wps_wocuf_pro_buy{
+.wpswocuf_pro_offered_product_actions button.wpswocuf_pro_buy{
  padding: 15px 25px !important;
  color: #fff !important;
  font-size: 25px !important;
@@ -107,7 +107,7 @@
  cursor: pointer !important;
  border-radius: 10px;
 }
-.wps_wocuf_pro_offered_product_actions a.wps_wocuf_pro_skip{
+.wpswocuf_pro_offered_product_actions a.wpswocuf_pro_skip{
   padding: 5px 20px;
   font-size: 25px;
   cursor: pointer;
@@ -118,28 +118,28 @@
   border-radius: 20px;
   top: -5px;
 }
-.wps_wocuf_pro_variations table {
+.wpswocuf_pro_variations table {
   margin: 0 auto;
 }
-.wps_wocuf_pro_special_offers_for_you .wps_wocuf_pro_product_price {
+.wpswocuf_pro_special_offers_for_you .wpswocuf_pro_product_price {
   margin: 0 auto;
   text-align: center;
 }
-.wps_wocuf_pro_display{
+.wpswocuf_pro_display{
   display: block;
   padding: 15px;
 }
-.wps_wocuf_pro_hide{
+.wpswocuf_pro_hide{
   display: none;
 }
-.wps_wocuf_pro_demotext {
+.wpswocuf_pro_demotext {
  color: #000;
  font-size: 18px;
  margin-bottom: 10px;
  margin-top: 10px;
  text-align: center;
 }
-#wps_wocuf_pro_offer_loader {
+#wpswocuf_pro_offer_loader {
  background-color: rgba(255, 255, 255, 0.6);
  bottom: 0;
  height: 100%;
@@ -150,7 +150,7 @@
  width: 100%;
  z-index: 99999;
 }
-#wps_wocuf_pro_offer_loader img {
+#wpswocuf_pro_offer_loader img {
  display: block;
  left: 0;
  margin: 0 auto;
@@ -168,20 +168,20 @@
   font-weight: bold;
 }
 
-.payment_method_wps_upsell_authorize-dot-net img {
+.payment_method_wpswocuf_upsell_authorize-dot-net img {
 
   width: 90px;
 }
 
 /*Fixing default offer page css*/
-.wps_wocuf_pro_product_image {
+.wpswocuf_pro_product_image {
     text-align: center;
 }
-.wps_wocuf_pro_offered_product_actions {
+.wpswocuf_pro_offered_product_actions {
     margin-top: 30px;
 }
 
-.wps_wocuf_pro_skip.wps_wocuf_pro_no {
+.wpswocuf_pro_skip.wpswocuf_pro_no {
     margin-top: 20px;
 }
 
@@ -192,15 +192,15 @@
 
 /*since v3.0.0 - OFFER Price - Start*/
 
-.wps_upsell_offer_product_price {
+.wpswocuf_upsell_offer_product_price {
     display: inline-block;
 }
 
-.wps_upsell_offer_product_price del {
+.wpswocuf_upsell_offer_product_price del {
     font-size: 85%;
 }
 
-.wps_upsell_offer_product_price ins {
+.wpswocuf_upsell_offer_product_price ins {
     text-decoration: none;
 }
 
@@ -209,16 +209,16 @@
 
 /*since v3.0.0 - OFFER Variations - Start*/
 
-.wps_upsell_offer_product_variations table{
+.wpswocuf_upsell_offer_product_variations table{
    width: 100%;
 }
 
-.wps_upsell_offer_product_variations table td, table th {
+.wpswocuf_upsell_offer_product_variations table td, table th {
    padding: 1em 1.41575em;
    vertical-align: middle;
 }
 
-.wps_upsell_offer_product_variations .wps_upsell_offer_variation_select {
+.wpswocuf_upsell_offer_product_variations .wpswocuf_upsell_offer_variation_select {
     width: 160px;
     background-color: #fff;
     height: 30px;
@@ -230,16 +230,16 @@
     font-family: inherit;
 }
 
-.wps_upsell_offer_product_variations table tbody td,
-.wps_upsell_offer_product_variations table tbody th {
+.wpswocuf_upsell_offer_product_variations table tbody td,
+.wpswocuf_upsell_offer_product_variations table tbody th {
     background-color: transparent !important; 
     text-align: center;
 }
 
-.wps_upsell_offer_product_variations table tbody td:first-child {
+.wpswocuf_upsell_offer_product_variations table tbody td:first-child {
     width: 35%;
 }
-.wps_upsell_offer_product_variations table tbody td:last-child {
+.wpswocuf_upsell_offer_product_variations table tbody td:last-child {
     width: 65%;
 }
 
@@ -247,7 +247,7 @@
 
 /*since v3.0.0 - OFFER Image - Start*/
 
-.wps_upsell_offer_product_image {
+.wpswocuf_upsell_offer_product_image {
     display: inline-block;
 }
 
@@ -307,46 +307,46 @@
 
 /*since v3.0.0 - Default offer ( gutenberg ) - Start */
 
-.wps_upsell_default_offer_buy_now a {
+.wpswocuf_upsell_default_offer_buy_now a {
   width: calc(100% - 40%);
   padding: 15px 10px;
 }
 
-.wps_upsell_default_offer_buy_now,
-.wps_upsell_default_offer_no_thanks {
+.wpswocuf_upsell_default_offer_buy_now,
+.wpswocuf_upsell_default_offer_no_thanks {
   margin: inherit !important;
   text-align:center;
 }
-.wps_upsell_default_offer_no_thanks a {
+.wpswocuf_upsell_default_offer_no_thanks a {
   width: calc(100% - 55%);
 }
-.wps_upsell_default_offer_image {
+.wpswocuf_upsell_default_offer_image {
    text-align: center;
 }
 
-.wps_upsell_default_offer_image .wps_upsell_offer_product_image {
+.wpswocuf_upsell_default_offer_image .wpswocuf_upsell_offer_product_image {
    width: 100%;
    max-width: 400px;
    margin: 0 auto;
 }
 
-.wps_upsell_default_offer_buy_now a:hover{
+.wpswocuf_upsell_default_offer_buy_now a:hover{
 background-color: #80d600 !important;
 }
-.wps_upsell_default_offer_no_thanks a:hover {
+.wpswocuf_upsell_default_offer_no_thanks a:hover {
 background-color: #bf0000 !important;
 }
 
-.wps_upsell_default_offer_variations .wps_upsell_offer_product_variations {
+.wpswocuf_upsell_default_offer_variations .wpswocuf_upsell_offer_product_variations {
   max-width: 700px;
   margin: 0 auto;
 }
 
-.wps_upsell_default_offer_variations .wps_upsell_offer_product_variations table tbody td:first-child {
+.wpswocuf_upsell_default_offer_variations .wpswocuf_upsell_offer_product_variations table tbody td:first-child {
     width: 40%;
 }
 
-.wps_upsell_default_offer_description {
+.wpswocuf_upsell_default_offer_description {
     text-align: center;
     margin: 30px 10%;
 }
@@ -369,12 +369,12 @@ background-color: #bf0000 !important;
  ====================*/
 
  /* Quantity Shortcode */
-.wps_upsell_quantity {
+.wpswocuf_upsell_quantity {
   text-align: center;
 }
 
 /* since v3.0.0 - Upsell Actions loader - Start */
-.wps_upsell_loader {
+.wpswocuf_upsell_loader {
   position: fixed;
   width: 100%;
   left: 0;
@@ -393,7 +393,7 @@ background-color: #bf0000 !important;
   from {transform:rotate(0deg);}
   to {transform:rotate(360deg);}
 }
-.wps_upsell_loader::after {
+.wpswocuf_upsell_loader::after {
   content: '';
   display: block;
   position: absolute;
@@ -411,7 +411,7 @@ background-color: #bf0000 !important;
   animation: spin .8s linear infinite;
   margin: 0 auto;
 }
-.wps_upsell_loader .wps_upsell_loader_text {
+.wpswocuf_upsell_loader .wpswocuf_upsell_loader_text {
   font-size: 22px;
   position: absolute;
   top: 58%;
@@ -431,66 +431,66 @@ background-color: #bf0000 !important;
  *        Media query for here.  
 ==========================================*/
 @media only screen and (max-width: 1200px){
-  .wps_wocuf_pro_offer_container {
+  .wpswocuf_pro_offer_container {
     padding: 50px 50px;
   }
 }
 @media only screen and (max-width: 1024px){
-  .wps_upsell_loader::after {
+  .wpswocuf_upsell_loader::after {
     width: 50px;
     height: 50px;
     border-width: 5px;
   }
-  .wps_upsell_loader .wps_upsell_loader_text {
+  .wpswocuf_upsell_loader .wpswocuf_upsell_loader_text {
     font-size: 19px;
     top: 54%;
   }
 }
 @media only screen and (max-width: 768px){
-  .wps_wocuf_pro_special_offers_for_you .wps_wocuf_pro_main_wrapper .wps_wocuf_pro_product_image {
+  .wpswocuf_pro_special_offers_for_you .wpswocuf_pro_main_wrapper .wpswocuf_pro_product_image {
     float: none;
     max-width: 100%;
   }
-  .wps_wocuf_pro_special_offers_for_you .wps_wocuf_pro_main_wrapper .wps_wocuf_pro_offered_product {
+  .wpswocuf_pro_special_offers_for_you .wpswocuf_pro_main_wrapper .wpswocuf_pro_offered_product {
     float: none;
     padding: 15px;
     width: 100%;
   }
-  .wps_wocuf_pro_variations .wps_wocuf_pro_variations_select {
+  .wpswocuf_pro_variations .wpswocuf_pro_variations_select {
     height: 44px;
     width: 100%;
   }
-  .wps_wocuf_pro_offer_container {
+  .wpswocuf_pro_offer_container {
     padding: 10px;
   }
   /****** Responsive CSS ******/
-  .wps_wocuf_pro_special_offers_for_you * {
+  .wpswocuf_pro_special_offers_for_you * {
     box-sizing: border-box;
   }
-  .wps_wocuf_pro_special_offers_for_you .wps_wocuf_pro_main_wrapper .wps_wocuf_pro_offered_product {
+  .wpswocuf_pro_special_offers_for_you .wpswocuf_pro_main_wrapper .wpswocuf_pro_offered_product {
     padding: 15px 0;
   }
-  .wps_wocuf_pro_variations .wps_wocuf_offer_variation_select {
+  .wpswocuf_pro_variations .wpswocuf_offer_variation_select {
     width: 100%;
   }
 }
 @media only screen and (max-width: 550px){
-  .wps_wocuf_pro_product_price h4{
+  .wpswocuf_pro_product_price h4{
     font-size: 20px !important;
   }
-  .wps_wocuf_pro_special_offers_for_you .wps_wocuf_pro_special_offer_banner{
+  .wpswocuf_pro_special_offers_for_you .wpswocuf_pro_special_offer_banner{
     margin-bottom: 20px !important;
   }
- .wps_wocuf_pro_special_offers_for_you .wps_wocuf_pro_special_offer_banner h1 {
+ .wpswocuf_pro_special_offers_for_you .wpswocuf_pro_special_offer_banner h1 {
     font-size: 20px;
   }
 }
 
-.theme-betheme .wps_upsell_offer_product_price {
+.theme-betheme .wpswocuf_upsell_offer_product_price {
   margin: 15px 0;
 }
 
-.theme-Divi .wps_upsell_offer_product_price {
+.theme-Divi .wpswocuf_upsell_offer_product_price {
   margin: 15px 0;
 }
 
@@ -500,7 +500,7 @@ background-color: #bf0000 !important;
 body {font-family: Arial, Helvetica, sans-serif;}
 
 /* The Modal (background) */
-.wps_lite_modal {
+.wpswocuf_lite_modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -515,7 +515,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 
 /* Modal Content */
-.wps_lite_modal-content {
+.wpswocuf_lite_modal-content {
   background-color: #fefefe;
   margin: auto;
   padding: 20px;
@@ -525,15 +525,15 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 
 /* The Close Button */
-.wps_lite_close {
+.wpswocuf_lite_close {
   color: #aaaaaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-.wps_lite_close:hover,
-.wps_lite_close:focus {
+.wpswocuf_lite_close:hover,
+.wpswocuf_lite_close:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;

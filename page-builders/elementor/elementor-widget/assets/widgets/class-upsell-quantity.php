@@ -25,7 +25,7 @@ use Elementor\Controls_Manager;
  *
  * @since 1.0.0
  */
-class Upsell_Quantity extends Widget_Base {
+class Wpswocuf_Upsell_Quantity extends Widget_Base {
 
 	/**
 	 * Get widget name.
@@ -38,7 +38,7 @@ class Upsell_Quantity extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'eicon-price-table';
+		return 'wpswocuf-upsell-quantity';
 	}
 
 	/**
@@ -121,8 +121,8 @@ class Upsell_Quantity extends Widget_Base {
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'placeholder' => '[wps_upsell_quantity]',
-				'default'     => '[wps_upsell_quantity]',
+				'placeholder' => '[wpswocuf_upsell_quantity]',
+				'default'     => '[wpswocuf_upsell_quantity]',
 			)
 		);
 
@@ -143,7 +143,7 @@ class Upsell_Quantity extends Widget_Base {
 		$shortcode = do_shortcode( shortcode_unautop( $shortcode ) );
 
 		?>
-		<div class="elementor-shortcode"><?php echo wp_kses( $shortcode, wps_upsell_lite_allowed_html() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
+		<div class="elementor-shortcode"><?php echo wp_kses( $shortcode, wpswocuf_upsell_lite_allowed_html() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
 		<?php
 	}
 

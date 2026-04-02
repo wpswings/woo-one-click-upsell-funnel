@@ -1,7 +1,7 @@
 (function($)
 {
     $(function(){
-        $('.wps_wocuf_pro_colorpicker').wpColorPicker();
+        $('.wpswocuf_pro_colorpicker').wpColorPicker();
     });
      
 })(jQuery);

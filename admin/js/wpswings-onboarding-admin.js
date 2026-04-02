@@ -13,12 +13,12 @@ jQuery(document).ready( function($) {
 	});
 
 	// On click of deactivate.
-	if( 'plugins.php' == wps_onboarding.current_screen ) {
+	if( 'plugins.php' == wpswocuf_onboarding.current_screen ) {
 
 		// Add Deactivation id to all deactivation links.
 		embed_id_to_deactivation_urls();
 
-		add_deactivate_slugs_callback( wps_onboarding.current_supported_slug );
+		add_deactivate_slugs_callback( wpswocuf_onboarding.current_supported_slug );
 
 		jQuery( document ).on( 'change','.on-boarding-radio-field' ,function(e){
 
@@ -35,21 +35,21 @@ jQuery(document).ready( function($) {
 
 		// Show Popup after 1 second of entering into the WPS pagescreen.
 		if ( jQuery( '#show-counter' ).length > 0 && jQuery( '#show-counter' ).val() == 'not-sent' ) {
-			setTimeout( wps_show_onboard_popup(), 1000 );
+			setTimeout( wpswocuf_show_onboard_popup(), 1000 );
 		}
 	}
 
 	/* Close Button Click */
 	jQuery( document ).on( 'click','.wps-on-boarding-close-btn a',function(e){
 		e.preventDefault();
-		wps_hide_onboard_popup();
+		wpswocuf_hide_onboard_popup();
 	});
 
 	/* Skip and deactivate. */
 	jQuery( document ).on( 'click','.wps-deactivation-no_thanks',function(e){
 
 		window.location.replace( deactivate_url );
-		wps_hide_onboard_popup();
+		wpswocuf_hide_onboard_popup();
 	});
 
 	/* Skip For a day. */
@@ -58,13 +58,13 @@ jQuery(document).ready( function($) {
 		jQuery.ajax({
             type: 'post',
             dataType: 'json',
-            url: wps_onboarding.ajaxurl,
+            url: wpswocuf_onboarding.ajaxurl,
             data: {
-                nonce : wps_onboarding.auth_nonce, 
+                nonce : wpswocuf_onboarding.auth_nonce, 
                 action: 'skip_onboarding_popup' ,
             },
             success: function( msg ){
-				wps_hide_onboard_popup();
+				wpswocuf_hide_onboard_popup();
             }
         });
 
@@ -79,23 +79,23 @@ jQuery(document).ready( function($) {
 		jQuery.ajax({
             type: 'post',
             dataType: 'json',
-            url: wps_onboarding.ajaxurl,
+            url: wpswocuf_onboarding.ajaxurl,
             data: {
-                nonce : wps_onboarding.auth_nonce, 
+                nonce : wpswocuf_onboarding.auth_nonce, 
                 action: 'send_onboarding_data' ,
                 form_data: form_data,  
             },
             success: function( msg ){
-        		if( 'plugins.php' == wps_onboarding.current_screen ) {
+        		if( 'plugins.php' == wpswocuf_onboarding.current_screen ) {
 					window.location.replace( deactivate_url );
 				}
-                wps_hide_onboard_popup();
+                wpswocuf_hide_onboard_popup();
             }
         });
 	});
 
 	/* Open Popup */
-	function wps_show_onboard_popup() {
+	function wpswocuf_show_onboard_popup() {
 		jQuery( '.wps-onboarding-section-one-click-upsell' ).show();
 		jQuery( '.wps-on-boarding-wrapper-background' ).addClass( 'onboard-popup-show' );
 
@@ -105,7 +105,7 @@ jQuery(document).ready( function($) {
 	}
 
 	/* Close Popup */
-	function wps_hide_onboard_popup() {
+	function wpswocuf_hide_onboard_popup() {
 		jQuery( '.wps-on-boarding-wrapper-background' ).removeClass( 'onboard-popup-show' );
 		jQuery( '.wps-onboarding-section-one-click-upsell' ).hide();
 		if( ! jQuery( 'body' ).hasClass( 'mobile-device' ) ) {
@@ -128,7 +128,7 @@ jQuery(document).ready( function($) {
 				jQuery( '.wps-on-boarding-heading' ).text( plugin_name + ' Feedback' );
 				var placeholder = jQuery( '#deactivation-reason-text' ).attr( 'placeholder' );
 				jQuery( '#deactivation-reason-text' ).attr( 'placeholder', placeholder.replace( '{plugin-name}', plugin_name ) );
-				wps_show_onboard_popup();
+				wpswocuf_show_onboard_popup();
 			});
 		}
 	}

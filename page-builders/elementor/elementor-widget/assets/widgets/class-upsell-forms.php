@@ -25,7 +25,7 @@ use Elementor\Controls_Manager;
  *
  * @since 1.0.0
  */
-class Upsell_Forms extends Widget_Base {
+class Wpswocuf_Upsell_Forms extends Widget_Base {
 
 	/**
 	 * Get widget name.
@@ -38,7 +38,7 @@ class Upsell_Forms extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'eicon-meta-forms';
+		return 'wpswocuf-upsell-forms';
 	}
 
 	/**
@@ -121,8 +121,8 @@ class Upsell_Forms extends Widget_Base {
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'placeholder' => '[wps_form]',
-				'default'     => '[wps_form]',
+				'placeholder' => '[wpswocuf_form]',
+				'default'     => '[wpswocuf_form]',
 			)
 		);
 

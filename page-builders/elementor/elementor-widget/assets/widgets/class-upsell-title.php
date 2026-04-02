@@ -33,7 +33,7 @@ use Elementor\Utils;
  *
  * @since 1.0.0
  */
-class Upsell_Title extends Widget_Base {
+class Wpswocuf_Upsell_Title extends Widget_Base {
 
 	/**
 	 * Get widget name.
@@ -46,7 +46,7 @@ class Upsell_Title extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'upsell_title';
+		return 'wpswocuf_upsell_title';
 	}
 
 	/**
@@ -132,7 +132,7 @@ class Upsell_Title extends Widget_Base {
 					'active' => true,
 				),
 				'placeholder' => esc_html__( 'Enter your title', 'woo-one-click-upsell-funnel' ),
-				'default'     => esc_html__( '[wps_upsell_title]', 'woo-one-click-upsell-funnel' ),
+				'default'     => esc_html__( '[wpswocuf_upsell_title]', 'woo-one-click-upsell-funnel' ),
 			)
 		);
 
@@ -334,7 +334,7 @@ class Upsell_Title extends Widget_Base {
 		$title_html = sprintf( '<%1$s %2$s>%3$s</%1$s>', Utils::validate_html_tag( $settings['header_size'] ), $this->get_render_attribute_string( 'title' ), $title );
 
 		// PHPCS - the variable $title_html holds safe data.
-		echo wp_kses( $title_html, wps_upsell_lite_allowed_html() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo wp_kses( $title_html, wpswocuf_upsell_lite_allowed_html() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**

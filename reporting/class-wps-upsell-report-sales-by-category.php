@@ -14,14 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( class_exists( 'WPS_Upsell_Report_Sales_By_Category' ) ) {
+if ( class_exists( 'wpswocuf_Upsell_Report_Sales_By_Category' ) ) {
 	return;
 }
 
 /**
- * WPS_Upsell_Report_Sales_By_Category.
+ * wpswocuf_Upsell_Report_Sales_By_Category.
  */
-class WPS_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
+class wpswocuf_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 
 	/**
 	 * Chart colors.
@@ -136,14 +136,16 @@ class WPS_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 
 		$this->chart_colours = array( '#8eba36', '#3498db', '#1abc9c', '#34495e', '#2ecc71', '#f1c40f', '#e67e22', '#e74c3c', '#2980b9', '#8e44ad', '#2c3e50', '#16a085', '#27ae60', '#f39c12', '#d35400', '#c0392b' );
 
-		$secure_nonce      = wp_create_nonce( 'wps-upsell-auth-nonce' );
-		$id_nonce_verified = wp_verify_nonce( $secure_nonce, 'wps-upsell-auth-nonce' );
+			$current_range = ! empty( $_GET['range'] ) ? sanitize_text_field( wp_unslash( $_GET['range'] ) ) : '7day';
 
-		if ( ! $id_nonce_verified ) {
-			wp_die( esc_html__( 'Nonce Not verified', 'woo-one-click-upsell-funnel' ) );
-		}
+			// Validate request origin if nonce is provided, otherwise require capability.
+			if ( isset( $_GET['_wpnonce'] ) && ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'wps-upsell-report-range' ) ) {
+				wp_die( esc_html__( 'Security check failed.', 'woo-one-click-upsell-funnel' ) );
+			}
 
-		$current_range = ! empty( $_GET['range'] ) ? sanitize_text_field( wp_unslash( $_GET['range'] ) ) : '7day';
+			if ( ! current_user_can( 'manage_woocommerce' ) ) {
+				wp_die( esc_html__( 'Insufficient permissions', 'woo-one-click-upsell-funnel' ) );
+			}
 
 		if ( ! in_array( $current_range, array( 'custom', 'year', 'last_month', 'month', '7day' ), true ) ) {
 			$current_range = '7day';
@@ -174,16 +176,16 @@ class WPS_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 							'function' => '',
 							'name'     => 'post_date',
 						),
-						'wps_wocuf_upsell_order' => array(
+						'wpswocuf_upsell_order' => array(
 							'type'     => 'meta',
 							'function' => '',
-							'name'     => 'wps_wocuf_pro_upsell_meta',
+							'name'     => 'wpswocuf_pro_upsell_meta',
 						),
 						'is_upsell_purchase'     => array(
 							'type'            => 'order_item_meta',
 							'order_item_type' => 'line_item',
 							'function'        => '',
-							'name'            => 'wps_wocuf_pro_upsell_item_meta',
+							'name'            => 'wpswocuf_pro_upsell_item_meta',
 						),
 					),
 					'group_by'     => 'ID, product_id, post_date',
@@ -262,7 +264,7 @@ class WPS_Upsell_Report_Sales_By_Category extends WC_Admin_Report {
 
 			include_once WC()->plugin_path() . '/includes/walkers/class-wc-product-cat-dropdown-walker.php';
 
-			echo wp_kses( wc_walk_category_dropdown_tree( $categories, 0, $r ), wps_upsell_lite_allowed_html() ); // phpcs:ignore
+			echo wp_kses( wc_walk_category_dropdown_tree( $categories, 0, $r ), wpswocuf_upsell_lite_allowed_html() ); // phpcs:ignore
 		?>
 		</select>
 		<a href="#" class="select_none"><?php esc_html_e( 'None', 'woo-one-click-upsell-funnel' ); ?></a>

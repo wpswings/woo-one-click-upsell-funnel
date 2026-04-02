@@ -1,40 +1,40 @@
-var wps_wocuf_pro_custom_offer_bought = false;
+var wpswocuf_pro_custom_offer_bought = false;
 
 jQuery(document).ready(function($){
 
 	
 	
-	jQuery('#wps_wocuf_pro_offer_loader').hide();
+	jQuery('#wpswocuf_pro_offer_loader').hide();
 
-	jQuery('.wps_wocuf_pro_custom_buy').on('click',function(e) {
+	jQuery('.wpswocuf_pro_custom_buy').on('click',function(e) {
 
-		jQuery('#wps_wocuf_pro_offer_loader').show();
+		jQuery('#wpswocuf_pro_offer_loader').show();
 
-		if( wps_wocuf_pro_custom_offer_bought ) {
+		if( wpswocuf_pro_custom_offer_bought ) {
 			e.preventDefault();
 			return;
 		}
 
-	    wps_wocuf_pro_custom_offer_bought = true;
+	    wpswocuf_pro_custom_offer_bought = true;
 	});
 
-	jQuery('.wps_wocuf_pro_no').on('click',function(e){
+	jQuery('.wpswocuf_pro_no').on('click',function(e){
 
-		jQuery('#wps_wocuf_pro_offer_loader').show();
+		jQuery('#wpswocuf_pro_offer_loader').show();
 		
 	});
 
 	/**
 	 * Shortcode Scripts since v3.0.0
 	 */
-	jQuery( '.wps_upsell_quantity_input' ).on( 'change',function(e) {
+	jQuery( '.wpswocuf_upsell_quantity_input' ).on( 'change',function(e) {
 
 		var updated_quantity = jQuery( this ).val();
 
 		jQuery( 'a' ).map( function() {
             
             // Check if any of them are empty.
-            if( this.href.includes( 'wps_wocuf_pro_buy' ) ) {
+            if( this.href.includes( 'wpswocuf_pro_buy' ) ) {
 
             	if( false == this.href.includes( 'fetch' ) ) {
 
@@ -59,9 +59,9 @@ jQuery(document).ready(function($){
             }
 
             // For variable products.
-            else if( this.href.includes( '#wps_upsell' ) ) {
+            else if( this.href.includes( '#wpswocuf_upsell' ) ) {
 
-            	jQuery( '.wps_wocuf_pro_quantity' ).val( updated_quantity );
+            	jQuery( '.wpswocuf_pro_quantity' ).val( updated_quantity );
             }
         });
 	});
@@ -74,35 +74,35 @@ jQuery(document).ready(function($){
 
 		e.preventDefault();
 
-		swal( wps_upsell_public.alert_preview_title, wps_upsell_public.alert_preview_content, 'info' );
+		swal( wpswocuf_upsell_public.alert_preview_title, wpswocuf_upsell_public.alert_preview_content, 'info' );
 	});
 
 
 	/**
 	 * Adding Upsell Loader since v3.0.0
 	 */
-	if( 'undefined' !== typeof( wps_upsell_public ) ) {
+	if( 'undefined' !== typeof( wpswocuf_upsell_public ) ) {
 
-		if( wps_upsell_public.show_upsell_loader ) {
+		if( wpswocuf_upsell_public.show_upsell_loader ) {
 
-			wps_upsell_loader_message = wps_upsell_public.upsell_actions_message;
+			wpswocuf_upsell_loader_message = wpswocuf_upsell_public.upsell_actions_message;
 
-			wps_upsell_loader_message_html = '';
+			wpswocuf_upsell_loader_message_html = '';
 
-			if( wps_upsell_loader_message.length ) {
+			if( wpswocuf_upsell_loader_message.length ) {
 
-				wps_upsell_loader_message_html = '<p class="wps_upsell_loader_text">' + wps_upsell_loader_message + '</p>';
+				wpswocuf_upsell_loader_message_html = '<p class="wpswocuf_upsell_loader_text">' + wpswocuf_upsell_loader_message + '</p>';
 			}
 
-			jQuery( 'body' ).append( '<div class="wps_upsell_loader">' + wps_upsell_loader_message_html + '</div>' );
+			jQuery( 'body' ).append( '<div class="wpswocuf_upsell_loader">' + wpswocuf_upsell_loader_message_html + '</div>' );
 
 			jQuery( document ).on('click', 'a', function(e) {
 
 				// Check if any of them are empty.
-	            if( this.href.includes( 'wps_wocuf_pro_buy' ) || this.href.includes( '#wps_upsell' ) || this.href.includes( 'ocuf_th' ) ) {
+	            if( this.href.includes( 'wpswocuf_pro_buy' ) || this.href.includes( '#wpswocuf_upsell' ) || this.href.includes( 'ocuf_th' ) ) {
 
 	            	// Show loader on click.
-	            	jQuery( '.wps_upsell_loader' ).show();
+	            	jQuery( '.wpswocuf_upsell_loader' ).show();
 	            }
 			});
 		}

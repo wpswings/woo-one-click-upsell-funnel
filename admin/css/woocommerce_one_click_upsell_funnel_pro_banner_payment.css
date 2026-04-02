@@ -2,16 +2,16 @@
 
  /* Pro banner
  */
- #wps_wocuf_pro_setting_wrapper *{
+ #wpswocuf_pro_setting_wrapper *{
   box-sizing: border-box;
 }
-#wps_wocuf_pro_setting_wrapper p{
+#wpswocuf_pro_setting_wrapper p{
   color: #000;
   text-align: left;
   padding: 10px;
 }
 
-#wps_wocuf_pro_setting_wrapper h1{
+#wpswocuf_pro_setting_wrapper h1{
   padding: 7px 20px;
   font-size: 20px;
   border-radius: 10px 0px;
@@ -19,10 +19,10 @@
   text-align: left;
 }
 
- td.wps_upsell_supported {
+ td.wpswocuf_upsell_supported {
   position: relative;
 }
- .wps_wupsell_premium_strip:after {
+ .wpswocuf_wupsell_premium_strip:after {
     width: 0;
     height: 0;
     border-left: 6px solid transparent;
@@ -35,7 +35,7 @@
     transform: rotate(27deg);
     z-index: -1;
   }
-  .wps_wupsell_premium_strip {
+  .wpswocuf_wupsell_premium_strip {
     border: 1px solid #78c900;
     color: #ffffff;
     background-color: #78c900;
@@ -55,12 +55,12 @@
   
   
   /* Go pro popup - Start */
-  .wps_ubo_lite_go_pro_popup_wrap.wps_ubo_lite_go_pro_popup_show {
+  .wpswocuf_ubo_lite_go_pro_popup_wrap.wpswocuf_ubo_lite_go_pro_popup_show {
     opacity: 1;
     visibility: visible;
     transition: 0.3s linear all;
   }
-  .wps_ubo_lite_go_pro_popup_wrap {
+  .wpswocuf_ubo_lite_go_pro_popup_wrap {
     align-items: center;
     background-color: rgba(0,0,0,0.5); 
     bottom: 0;
@@ -77,7 +77,7 @@
     width: 100%; 
     z-index: 999; 
   }
-  .wps_ubo_lite_go_pro_popup {
+  .wpswocuf_ubo_lite_go_pro_popup {
     background-color: #ffffff;
     max-width: 800px;
     border-radius: 4px;
@@ -86,13 +86,13 @@
     position: relative;
     margin-left: 160px;
   }
-  .wps_ubo_lite_go_pro_popup_body {
+  .wpswocuf_ubo_lite_go_pro_popup_body {
     overflow: hidden;
   }
-  .wps_ubo_lite_go_pro_popup_head {
+  .wpswocuf_ubo_lite_go_pro_popup_head {
     position: relative;
   }
-  .wps_ubo_lite_go_pro_popup_close {
+  .wpswocuf_ubo_lite_go_pro_popup_close {
     position: absolute;
     right: -11px;
     top: 6px;
@@ -106,23 +106,23 @@
     line-height: 21px;
     border-radius: 50%;
   }
-  #wps_upsell_bump_setting_wrapper .wps_ubo_lite_go_pro_popup_close span {
+  #wpswocuf_upsell_bump_setting_wrapper .wpswocuf_ubo_lite_go_pro_popup_close span {
       font-size: 25px !important;
       line-height: 19px;
   }
-  .wps_ubo_lite_go_pro_popup_close:focus,
-  .wps_ubo_lite_go_pro_popup_close:hover{
+  .wpswocuf_ubo_lite_go_pro_popup_close:focus,
+  .wpswocuf_ubo_lite_go_pro_popup_close:hover{
     outline: 0;
     box-shadow: none;
     color: #ffffff;
     border-color: #ffffff;
   }
-  .wps_ubo_lite_go_pro_popup img {
+  .wpswocuf_ubo_lite_go_pro_popup img {
     max-width: 100%;
     width: auto;
   }
-  .wps_ubo_lite_go_pro_popup_button .wps_ubo_lite_overview_go_pro_button,
-  .button.wps_ubo_lite_overview_go_pro_button {
+  .wpswocuf_ubo_lite_go_pro_popup_button .wpswocuf_ubo_lite_overview_go_pro_button,
+  .button.wpswocuf_ubo_lite_overview_go_pro_button {
     background-color: #78c900;
     color: #ffffff;
     padding: 14px 36px;
@@ -134,24 +134,24 @@
     text-transform: capitalize;
     box-shadow: none;
   }
-  .wps_ubo_lite_go_pro_popup_button .wps_ubo_lite_overview_go_pro_button span, .button.wps_ubo_lite_overview_go_pro_button span{
+  .wpswocuf_ubo_lite_go_pro_popup_button .wpswocuf_ubo_lite_overview_go_pro_button span, .button.wpswocuf_ubo_lite_overview_go_pro_button span{
     vertical-align: middle;
     margin-left: 5px;
   }
-  .wps_ubo_lite_go_pro_popup_button .wps_ubo_lite_overview_go_pro_button:focus,
-  .wps_ubo_lite_go_pro_popup_button .wps_ubo_lite_overview_go_pro_button:hover,
-  .button.wps_ubo_lite_overview_go_pro_button:focus,
-  .button.wps_ubo_lite_overview_go_pro_button:hover{
+  .wpswocuf_ubo_lite_go_pro_popup_button .wpswocuf_ubo_lite_overview_go_pro_button:focus,
+  .wpswocuf_ubo_lite_go_pro_popup_button .wpswocuf_ubo_lite_overview_go_pro_button:hover,
+  .button.wpswocuf_ubo_lite_overview_go_pro_button:focus,
+  .button.wpswocuf_ubo_lite_overview_go_pro_button:hover{
     background-color:#78c900;
     box-shadow: none;
     color: #ffffff;
     opacity: 0.8;
     outline: 0;
   }
-  .wps_ubo_lite_go_pro_popup_button {
+  .wpswocuf_ubo_lite_go_pro_popup_button {
       text-align: center;
   }
-  .wps_ubo_lite_go_pro_popup_head h2 {
+  .wpswocuf_ubo_lite_go_pro_popup_head h2 {
     background-color: #7979f6;
     border-radius: 5px 5px 0 0;
     color: #ffffff;
@@ -161,7 +161,7 @@
     margin: -20px -20px 30px -20px;
     padding: 10px;
   }
-  .wps_ubo_lite_go_pro_popup_content p {
+  .wpswocuf_ubo_lite_go_pro_popup_content p {
     font-size: 15px;
     line-height: 1.7;
   }

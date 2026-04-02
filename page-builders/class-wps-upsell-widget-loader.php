@@ -14,16 +14,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( class_exists( 'WPS_Upsell_Widget_Loader' ) ) {
+if ( class_exists( 'Wpswocuf_Upsell_Widget_Loader' ) ) {
 	return;
 }
 
 /**
- * WPS_Upsell_Widget_Loader.
+ * Wpswocuf_Upsell_Widget_Loader.
  */
-class WPS_Upsell_Widget_Loader {
+class Wpswocuf_Upsell_Widget_Loader {
 
-	const WPS_UPSELL_WIDGET_LOADER = WPS_WOCUF_DIRPATH . 'page-builders/';
+	const WPSWOCUF_UPSELL_WIDGET_LOADER = wpswocuf_DIRPATH . 'page-builders/';
 
 	/**
 	 * The instance.
@@ -97,7 +97,7 @@ class WPS_Upsell_Widget_Loader {
 			foreach ( $builders as $slug => $class_name ) {
 				$active = false;
 
-				if ( wps_upsell_lite_is_plugin_active( $slug ) ) {
+				if ( wpswocuf_upsell_lite_is_plugin_active( $slug ) ) {
 					$active = true;
 				} elseif ( class_exists( $class_name ) ) {
 					$active = true;
@@ -110,7 +110,7 @@ class WPS_Upsell_Widget_Loader {
 			}
 		}
 
-		$this->active_builders = apply_filters( 'wps_active_page_builders', $builders );
+		$this->active_builders = apply_filters( 'wpswocuf_active_page_builders', $builders );
 
 		return $this->active_builders;
 	}
@@ -125,7 +125,7 @@ class WPS_Upsell_Widget_Loader {
 		if ( ! empty( $this->active_builders ) && is_array( $this->active_builders ) ) {
 			foreach ( $this->active_builders as $b_slug => $b_name ) {
 				$widget_file = $this->retrieve_loader_file( $b_slug, $b_slug );
-				$widget_path = self::WPS_UPSELL_WIDGET_LOADER . $widget_file;
+				$widget_path = self::wpswocuf_UPSELL_WIDGET_LOADER . $widget_file;
 
 				if ( file_exists( $widget_path ) ) {
 					require_once $widget_path;
@@ -157,4 +157,9 @@ class WPS_Upsell_Widget_Loader {
 	}
 
 	// End of class.
+}
+
+// Backward compatibility for older class names used by themes/add-ons.
+if ( ! class_exists( 'WPS_Upsell_Widget_Loader' ) ) {
+	class_alias( 'Wpswocuf_Upsell_Widget_Loader', 'WPS_Upsell_Widget_Loader' );
 }

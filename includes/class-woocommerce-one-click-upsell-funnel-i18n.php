@@ -23,7 +23,7 @@
  * @subpackage woo_one_click_upsell_funnel/includes
  * @author     wpswings <webmaster@wpswings.com>
  */
-class Woocommerce_One_Click_Upsell_Funnel_I18n {
+class Wpswocuf_I18n {
 	// phpcs:ignore
 
 
@@ -34,10 +34,10 @@ class Woocommerce_One_Click_Upsell_Funnel_I18n {
 	 */
 	public function load_plugin_textdomain() {
 
-		load_plugin_textdomain(
-			'woo-one-click-upsell-funnel',
-			false,
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
-		);
+		// WordPress loads language files automatically since WP 4.6; explicit call discouraged.
+		return;
 	}
+}
+if ( ! class_exists( 'Woocommerce_One_Click_Upsell_Funnel_I18n' ) ) {
+	class_alias( 'Wpswocuf_I18n', 'Woocommerce_One_Click_Upsell_Funnel_I18n' );
 }

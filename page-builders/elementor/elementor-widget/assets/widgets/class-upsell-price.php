@@ -33,7 +33,7 @@ use Elementor\Group_Control_Text_Shadow;
  *
  * @since 1.0.0
  */
-class Upsell_Price extends Widget_Base {
+class Wpswocuf_Upsell_Price extends Widget_Base {
 
 	/**
 	 * Get widget name.
@@ -46,7 +46,7 @@ class Upsell_Price extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'Upsell-product-price';
+		return 'wpswocuf-product-price';
 	}
 
 	/**
@@ -128,7 +128,7 @@ class Upsell_Price extends Widget_Base {
 			array(
 				'label'   => '',
 				'type'    => Controls_Manager::WYSIWYG,
-				'default' => '<p>Special Offer Price</p><p>[wps_upsell_price]</p>',
+				'default' => '<p>Special Offer Price</p><p>[wpswocuf_upsell_price]</p>',
 			)
 		);
 
@@ -446,7 +446,7 @@ class Upsell_Price extends Widget_Base {
 		<?php
 
 		// PHPCS - the main text of a widget should not be escaped.
-			echo wp_kses( $editor_content, wps_upsell_lite_allowed_html() ); // phpcs:ignore WordPress.Security.EscapeOutput 
+			echo wp_kses( $editor_content, wpswocuf_upsell_lite_allowed_html() ); // phpcs:ignore WordPress.Security.EscapeOutput 
 		?>
 		<?php if ( $should_render_inline_editing ) { ?>
 			</div>

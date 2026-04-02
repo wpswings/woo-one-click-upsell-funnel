@@ -1,9 +1,9 @@
 (function( $ ) {
 	'use strict';
 	$(document).ready(function(){
-		jQuery('.wps_ubo_lite_go_pro_popup_close').attr('href','javascript:void(0)');
+		jQuery('.wpswocuf_ubo_lite_go_pro_popup_close').attr('href','javascript:void(0)');
 	
-		$('#wps_wocuf_pro_target_pro_ids').select2();
+		$('#wpswocuf_pro_target_pro_ids').select2();
 		$('#product_features_ubo_lite').hide();
 		//  Add multiselect to Funnel Schedule since v3.0.0
 		if ( $( '.wps-upsell-funnel-schedule-search' ).length ) {
@@ -17,72 +17,73 @@
 jQuery(document).ready( function($) {
 
 	// Reflect Funnel name input value.
-	$("#wps_upsell_funnel_name").on("change paste keyup", function() {
+	$("#wpswocuf_upsell_funnel_name").on("change paste keyup", function() {
 	   
-	    $("#wps_upsell_funnel_name_heading h2").text( $(this).val() );
+	    $("#wpswocuf_upsell_funnel_name_heading h2").text( $(this).val() );
 	}); 
 
 	// Funnel status Live <->  Sandbox.
-	$('#wps_upsell_funnel_status_input').click( function() {
+	$('#wpswocuf_upsell_funnel_status_input').click( function() {
 
 	    if( true === this.checked ) {
 
-	    	$('.wps_upsell_funnel_status_on').addClass('active');
-			$('.wps_upsell_funnel_status_off').removeClass('active');
+	    	$('.wpswocuf_upsell_funnel_status_on').addClass('active');
+			$('.wpswocuf_upsell_funnel_status_off').removeClass('active');
 	    }
 
 	    else {
 
-	    	$('.wps_upsell_funnel_status_on').removeClass('active');
-			$('.wps_upsell_funnel_status_off').addClass('active');
+	    	$('.wpswocuf_upsell_funnel_status_on').removeClass('active');
+			$('.wpswocuf_upsell_funnel_status_off').addClass('active');
 	    }
 	});
 
 	// Preview respective template.
-	$(document).on('click', '.wps_upsell_view_offer_template', function(e) {
+	$(document).on('click', '.wpswocuf_upsell_view_offer_template', function(e) {
 
 		// Current template id.
 		var template_id = $(this).data( 'template-id' );
 
-		$('.wps_upsell_offer_template_previews').show();
+		$('.wpswocuf_upsell_offer_template_previews').show();
 
-		$('.wps_upsell_offer_template_preview_' + template_id ).addClass('active');
+		$('.wpswocuf_upsell_offer_template_preview_' + template_id ).addClass('active');
 
-		$('body').addClass('wps_upsell_preview_body');
+		$('body').addClass('wpswocuf_upsell_preview_body');
 
 	});
 
 	// Close Preview of respective template.
-	$(document).on('click', '.wps_upsell_offer_preview_close', function(e) {
+	$(document).on('click', '.wpswocuf_upsell_offer_preview_close', function(e) {
 
-		$('body').removeClass('wps_upsell_preview_body');
+		$('body').removeClass('wpswocuf_upsell_preview_body');
 
-		$('.wps_upsell_offer_template_preview_one').removeClass('active');
-		$('.wps_upsell_offer_template_preview_two').removeClass('active');
-		$('.wps_upsell_offer_template_preview_three').removeClass('active');
+		$('.wpswocuf_upsell_offer_template_preview_one').removeClass('active');
+		$('.wpswocuf_upsell_offer_template_preview_two').removeClass('active');
+		$('.wpswocuf_upsell_offer_template_preview_three').removeClass('active');
 
-		$('.wps_upsell_offer_template_previews').hide();
+		$('.wpswocuf_upsell_offer_template_previews').hide();
 
 	});
 
-	$('.wps_upsell_slide_down_link').click(function(e) {
+	$('.wpswocuf_upsell_slide_down_link').click(function(e) {
 
 		e.preventDefault();
 
-	    $('.wps_upsell_slide_down_content').slideToggle("fast");
+	    $('.wpswocuf_upsell_slide_down_content').slideToggle("fast");
 
 	});
 
     // Dismiss Elementor inactive notice.
-	$(document).on('click', '#wps_upsell_dismiss_elementor_inactive_notice', function(e) {
+	$(document).on('click', '#wpswocuf_upsell_dismiss_elementor_inactive_notice', function(e) {
 
 		e.preventDefault();
 
 		$.ajax({
 		    type:'POST',
-		    url :wps_wocuf_pro_obj.ajaxUrl,
+		    url :wpswocuf_pro_obj.ajaxUrl,
 		    data:{
-		    	action: 'wps_upsell_dismiss_elementor_inactive_notice',
+            action: 'wpswocufdismiss_elementor_inactive_notice',
+		    	nonce: wpswocuf_pro_obj.nonce,
 		    },
 
 		    success:function() {
@@ -100,7 +101,7 @@ jQuery(document).ready( function($) {
 		/*
 		 * Select/Upload image(s) event.
 		 */
-		jQuery('body').on('click', '.wps_wocuf_pro_upload_image_button', function(e){
+		jQuery('body').on('click', '.wpswocuf_pro_upload_image_button', function(e){
 
 			e.preventDefault();
     		var button = jQuery(this),
@@ -122,57 +123,25 @@ jQuery(document).ready( function($) {
 		/*
 		 * Remove image event.
 		 */
-		jQuery('body').on('click', '.wps_wocuf_pro_remove_image_button', function(e){
+		jQuery('body').on('click', '.wpswocuf_pro_remove_image_button', function(e){
 			e.preventDefault();
 			jQuery(this).hide().prev().val('').prev().addClass('button').html('Upload image');
 			return false;
 		});
 	});
 
-	
-	/**
-	 * Scripts after v1.0.2
-	 */
-	$('.ubo_offer_input').on( 'click', function (e) {
-		var data_offer = jQuery(e.currentTarget).attr('product_offer');
-		
-		// Add popup to unlock pro features.
-		var pro_status = document.getElementById( 'wps_ubo_pro_status' );
-		if( null != pro_status ) {
-			
-			// Add a popup over here.
-			$(this).prop("checked", false);
-			$( '.wps_ubo_lite_go_pro_popup_wrap' ).addClass( 'wps_ubo_lite_go_pro_popup_show' );
-			$( 'body' ).addClass( 'wps_ubo_lite_go_pro_popup_body' );
-			$('.wps_ubo_lite_go_pro_popup_show').show();
-		}
-		if ( data_offer == "yes" ) {
-			jQuery('#product_features_ubo_lite').show();
-			jQuery('#all_offers_ubo_lite').hide();
-		}
-	});
-
-	$('.wps_upsell_offer_preview_close').on( 'click', function (e) {
-		jQuery('.wps_upsell_offer_template_preview_three').removeClass('active');
-		jQuery('.wps_upsell_offer_template_preview_two').removeClass('active');
-		jQuery('.wps_upsell_offer_template_preview_one').removeClass('active');
-		jQuery('.wps_upsell_offer_template_preview_four').removeClass('active');
-		jQuery('.wps_upsell_offer_template_preview_five').removeClass('active');
-		jQuery('.wps_upsell_offer_template_preview_six').removeClass('active');
-		jQuery('.wps_upsell_offer_template_preview_seven').removeClass('active');
-		jQuery('.wps_upsell_offer_template_preview_eight').removeClass('active');
+	$('.wpswocuf_upsell_offer_preview_close').on( 'click', function (e) {
+		jQuery('.wpswocuf_upsell_offer_template_preview_three').removeClass('active');
+		jQuery('.wpswocuf_upsell_offer_template_preview_two').removeClass('active');
+		jQuery('.wpswocuf_upsell_offer_template_preview_one').removeClass('active');
+		jQuery('.wpswocuf_upsell_offer_template_preview_four').removeClass('active');
+		jQuery('.wpswocuf_upsell_offer_template_preview_five').removeClass('active');
+		jQuery('.wpswocuf_upsell_offer_template_preview_six').removeClass('active');
+		jQuery('.wpswocuf_upsell_offer_template_preview_seven').removeClass('active');
+		jQuery('.wpswocuf_upsell_offer_template_preview_eight').removeClass('active');
 
 	});
 
-	$('.wps_ubo_lite_go_pro_popup_close').on( 'click', function (e) {
-		
-		jQuery('#product_features_ubo_lite').hide();
-		$( '.wps_ubo_lite_go_pro_popup_wrap' ).removeClass( 'wps_ubo_lite_go_pro_popup_show' );
-		$( 'body' ).removeClass( 'wps_ubo_lite_go_pro_popup_body' );
-		jQuery('#product_features_ubo_lite').hide();
-		jQuery('#all_offers_ubo_lite').hide();
-		
-	});
 // END OF SCRIPT,
 });
 
@@ -339,10 +308,10 @@ jQuery(document).ready( function($) {
 
 			$.ajax({
 				type:'POST',
-				url :wps_wocuf_pro_obj.ajaxUrl,
+				url :wpswocuf_pro_obj.ajaxUrl,
 				data:{
-					action: 'wps_upsell_save_store_checkout_page_data',
-					nonce : wps_wocuf_pro_obj_form.nonce,
+					action: 'wpswocuf_upsell_save_store_checkout_page_data',
+					nonce : wpswocuf_pro_obj_form.nonce,
 					shippingdatamethod : shippingdatamethod, 
 					shippingdataIds : shippingdataIds,
 					billingbasicwrapid : billingbasicwrapid,
@@ -382,21 +351,21 @@ jQuery(document).ready( function($) {
 		
 		$('.wps-ufw_msmhthy-in-btn').on('click', function() {
 			
-			var wps_wocuf_content_before_order_details = jQuery('#wps_wocuf_content_before_order_details').val();
-			var wps_wocuf_content_page_header_title = jQuery('#wps_wocuf_content_page_header_title').val();
-			var wps_wocuf_content_after_order_details = jQuery('#wps_wocuf_content_after_order_details').val();
-			var wps_wocuf_content_billing_and_shipping = jQuery('#wps_wocuf_content_billing_and_shipping').val();
+			var wpswocuf_content_before_order_details = jQuery('#wpswocuf_content_before_order_details').val();
+			var wpswocuf_content_page_header_title = jQuery('#wpswocuf_content_page_header_title').val();
+			var wpswocuf_content_after_order_details = jQuery('#wpswocuf_content_after_order_details').val();
+			var wpswocuf_content_billing_and_shipping = jQuery('#wpswocuf_content_billing_and_shipping').val();
 			
 			$.ajax({
 				type:'POST',
-				url :wps_wocuf_pro_obj.ajaxUrl,
+				url :wpswocuf_pro_obj.ajaxUrl,
 				data:{
-					action: 'wps_upsell_save_store_thankyou_page_data',
-					nonce : wps_wocuf_pro_obj_form.nonce,
-					wps_wocuf_content_before_order_details:wps_wocuf_content_before_order_details,
-					wps_wocuf_content_page_header_title:wps_wocuf_content_page_header_title,
-					wps_wocuf_content_after_order_details:wps_wocuf_content_after_order_details,
-					wps_wocuf_content_billing_and_shipping:wps_wocuf_content_billing_and_shipping,
+					action: 'wpswocuf_upsell_save_store_thankyou_page_data',
+					nonce : wpswocuf_pro_obj_form.nonce,
+					wpswocuf_content_before_order_details:wpswocuf_content_before_order_details,
+					wpswocuf_content_page_header_title:wpswocuf_content_page_header_title,
+					wpswocuf_content_after_order_details:wpswocuf_content_after_order_details,
+					wpswocuf_content_billing_and_shipping:wpswocuf_content_billing_and_shipping,
 				},
 				success:function(data) {
 					
@@ -427,13 +396,13 @@ jQuery(document).ready( function($) {
 	var i, tabcontent, tablinks;
 
 	// Hide all tab content by default
-	tabcontent = document.getElementsByClassName("wps_wocuf_tabcontent");
+	tabcontent = document.getElementsByClassName("wpswocuf_tabcontent");
 	for (i = 0; i < tabcontent.length; i++) {
 		tabcontent[i].style.display = "none";
 	}
 
 	// Remove the active class from all tab links
-	tablinks = document.getElementsByClassName("wps_wocuf_tablinks");
+	tablinks = document.getElementsByClassName("wpswocuf_tablinks");
 	for (i = 0; i < tablinks.length; i++) {
 		tablinks[i].className = tablinks[i].className.replace(" active", "");
 	}

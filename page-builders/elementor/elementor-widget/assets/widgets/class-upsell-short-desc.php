@@ -29,7 +29,7 @@ use Elementor\Group_Control_Text_Shadow;
  *
  * @since 1.0.0
  */
-class Upsell_Short_Desc extends Widget_Base {
+class Wpswocuf_Upsell_Short_Desc extends Widget_Base {
 
 	/**
 	 * Get widget name.
@@ -42,7 +42,7 @@ class Upsell_Short_Desc extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'Upsell-product-short-desc';
+		return 'wpswocuf-product-short-desc';
 	}
 
 	/**
@@ -124,7 +124,7 @@ class Upsell_Short_Desc extends Widget_Base {
 			array(
 				'label'   => '',
 				'type'    => Controls_Manager::WYSIWYG,
-				'default' => '<p>[wps_upsell_desc_short]</p>',
+				'default' => '<p>[wpswocuf_upsell_desc_short]</p>',
 			)
 		);
 

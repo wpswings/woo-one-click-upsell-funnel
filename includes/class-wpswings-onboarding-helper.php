@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -105,16 +108,14 @@ class WPSwings_Onboarding_Helper {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( 'admin_footer', array( $this, 'add_onboarding_popup_screen' ) );
 		add_action( 'admin_footer', array( $this, 'add_deactivation_popup_screen' ) );
-		add_filter( 'wps_on_boarding_form_fields', array( $this, 'add_on_boarding_form_fields' ) );
-		add_filter( 'wps_deactivation_form_fields', array( $this, 'add_deactivation_form_fields' ) );
+		add_filter( 'wpswocuf_on_boarding_form_fields', array( $this, 'add_on_boarding_form_fields' ) );
+		add_filter( 'wpswocuf_deactivation_form_fields', array( $this, 'add_deactivation_form_fields' ) );
 
 		// Ajax to send data.
 		add_action( 'wp_ajax_send_onboarding_data', array( $this, 'send_onboarding_data' ) );
-		add_action( 'wp_ajax_nopriv_send_onboarding_data', array( $this, 'send_onboarding_data' ) );
 
 		// Ajax to Skip popup.
 		add_action( 'wp_ajax_skip_onboarding_popup', array( $this, 'skip_onboarding_popup' ) );
-		add_action( 'wp_ajax_nopriv_skip_onboarding_popup', array( $this, 'skip_onboarding_popup' ) );
 	}
 
 	/**
@@ -156,10 +157,10 @@ class WPSwings_Onboarding_Helper {
 		 */
 		if ( $this->is_valid_page_screen() ) {
 
-			wp_enqueue_style( 'wpswings-onboarding-style', WPS_WOCUF_URL . 'admin/css/wpswings-onboarding-admin.css', array(), '3.0.0', 'all' );
+			wp_enqueue_style( 'wpswings-onboarding-style', wpswocuf_URL . 'admin/css/wpswings-onboarding-admin.css', array(), '3.0.0', 'all' );
 
 			// Uncomment Only when your plugin doesn't uses the Select2.
-			wp_enqueue_style( 'wpswings-onboarding-select2-style', WPS_WOCUF_URL . 'admin/css/select2.min.css', array(), '3.0.0', 'all' );
+			wp_enqueue_style( 'wpswings-onboarding-select2-style', wpswocuf_URL . 'admin/css/select2.min.css', array(), '3.0.0', 'all' );
 		}
 	}
 
@@ -181,25 +182,31 @@ class WPSwings_Onboarding_Helper {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
+		global $pagenow;
+
+		// Do not hook deactivate links on the plugins screen; allow core UX.
+		if ( 'plugins.php' === $pagenow ) {
+			return;
+		}
+
 		if ( $this->is_valid_page_screen() ) {
 
-			wp_enqueue_script( 'wpswings-onboarding-scripts', WPS_WOCUF_URL . 'admin/js/wpswings-onboarding-admin.js', array( 'jquery' ), '3.0.0', true );
+			wp_enqueue_script( 'wpswings-onboarding-scripts', wpswocuf_URL . 'admin/js/wpswings-onboarding-admin.js', array( 'jquery' ), '3.0.0', true );
 
-			global $pagenow;
 			$current_slug = ! empty( explode( '/', plugin_basename( __FILE__ ) ) ) ? explode( '/', plugin_basename( __FILE__ ) )[0] : '';
 			wp_localize_script(
 				'wpswings-onboarding-scripts',
-				'wps_onboarding',
+				'wpswocuf_onboarding',
 				array(
 					'ajaxurl'                => admin_url( 'admin-ajax.php' ),
-					'auth_nonce'             => wp_create_nonce( 'wps_onboarding_nonce' ),
+					'auth_nonce'             => wp_create_nonce( 'wpswocuf_onboarding_nonce' ),
 					'current_screen'         => $pagenow,
-					'current_supported_slug' => apply_filters( 'wps_deactivation_supported_slug', array( $current_slug ) ),
+					'current_supported_slug' => apply_filters( 'wpswocuf_deactivation_supported_slug', array( $current_slug ) ),
 				)
 			);
 
 			// Uncomment Only when your plugin doesn't uses the Select2.
-			wp_enqueue_script( 'wpswings-onboarding-select2-script', WPS_WOCUF_URL . 'admin/js/select2.min.js', array( 'jquery' ), '3.0.0', false );
+			wp_enqueue_script( 'wpswings-onboarding-select2-script', wpswocuf_URL . 'admin/js/select2.min.js', array( 'jquery' ), '3.0.0', false );
 		}
 	}
 
@@ -211,7 +218,7 @@ class WPSwings_Onboarding_Helper {
 	public function add_onboarding_popup_screen() {
 		
 		if ( $this->is_valid_page_screen() && $this->can_show_onboarding_popup() ) {
-			require_once WPS_WOCUF_DIRPATH . 'extra-templates/wpswings-onboarding-template-display.php';
+			require_once wpswocuf_DIRPATH . 'extra-templates/wpswings-onboarding-template-display.php';
 		}
 	}
 
@@ -225,7 +232,7 @@ class WPSwings_Onboarding_Helper {
 
 		global $pagenow;
 		if ( ! empty( $pagenow ) && 'plugins.php' === $pagenow ) {
-			require_once WPS_WOCUF_DIRPATH . 'extra-templates/wpswings-deactivation-template-display.php';
+			require_once wpswocuf_DIRPATH . 'extra-templates/wpswings-deactivation-template-display.php';
 		}
 	}
 
@@ -682,7 +689,11 @@ class WPSwings_Onboarding_Helper {
 	 */
 	public function send_onboarding_data() {
 
-		check_ajax_referer( 'wps_onboarding_nonce', 'nonce' );
+		check_ajax_referer( 'wpswocuf_onboarding_nonce', 'nonce' );
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array( 'message' => __( 'Insufficient permissions', 'woo-one-click-upsell-funnel' ) ), 403 );
+		}
 
 		$form_data = ! empty( $_POST['form_data'] ) ? json_decode( sanitize_text_field( wp_unslash( $_POST['form_data'] ) ) ) : '';
 
@@ -803,6 +814,12 @@ class WPSwings_Onboarding_Helper {
 	 */
 	public function skip_onboarding_popup() {
 
+		check_ajax_referer( 'wpswocuf_onboarding_nonce', 'nonce' );
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array( 'message' => __( 'Insufficient permissions', 'woo-one-click-upsell-funnel' ) ), 403 );
+		}
+
 		$get_skipped_timstamp = update_option( 'onboarding-data-skipped', time() );
 		echo wp_json_encode( 'true' );
 		wp_die();
@@ -814,7 +831,7 @@ class WPSwings_Onboarding_Helper {
 	 * @param      string $result       The result of this validation.
 	 * @since    3.0.0
 	 */
-	public function add_wps_additional_validation( $result = true ) {
+	public function add_wpswocuf_additional_validation( $result = true ) {
 
 		if ( ! empty( $_GET['tab'] ) && 'settings' !== $_GET['tab'] ) { //phpcs:ignore
 
@@ -969,5 +986,3 @@ class WPSwings_Onboarding_Helper {
 
 	// End of Class.
 }
-
-

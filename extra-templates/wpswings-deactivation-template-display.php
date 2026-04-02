@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * Provide a admin area view for the plugin
  *
@@ -19,9 +22,9 @@ if ( empty( $pagenow ) || 'plugins.php' !== $pagenow ) {
 	return false;
 }
 
-$form_fields = apply_filters( 'wps_deactivation_form_fields', array() );
+$wpswocuf_form_fields = apply_filters( 'wpswocuf_deactivation_form_fields', array() );
 ?>
-<?php if ( ! empty( $form_fields ) ) : ?>
+<?php if ( ! empty( $wpswocuf_form_fields ) ) : ?>
 	<div class="wps-onboarding-section-one-click-upsell">
 		<div class="wps-on-boarding-wrapper-background">
 		<div class="wps-on-boarding-wrapper">
@@ -33,8 +36,8 @@ $form_fields = apply_filters( 'wps_deactivation_form_fields', array() );
 			<h3 class="wps-on-boarding-heading"></h3>
 			<p class="wps-on-boarding-desc"><?php esc_html_e( 'May we have a little info about why you are deactivating?', 'woo-one-click-upsell-funnel' ); ?></p>
 			<form action="#" method="post" class="wps-on-boarding-form">
-				<?php foreach ( $form_fields as $key => $field_attr ) : ?>
-					<?php $this->render_field_html( $field_attr, 'deactivating' ); ?>
+				<?php foreach ( $wpswocuf_form_fields as $wpswocuf_field_key => $wpswocuf_field_attr ) : ?>
+					<?php $this->render_field_html( $wpswocuf_field_attr, 'deactivating' ); ?>
 				<?php endforeach; ?>
 				<div class="wps-on-boarding-form-btn__wrapper">
 					<div class="wps-on-boarding-form-submit wps-on-boarding-form-verify ">
