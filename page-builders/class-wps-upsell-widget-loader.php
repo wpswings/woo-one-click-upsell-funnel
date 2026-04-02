@@ -125,7 +125,7 @@ class Wpswocuf_Upsell_Widget_Loader {
 		if ( ! empty( $this->active_builders ) && is_array( $this->active_builders ) ) {
 			foreach ( $this->active_builders as $b_slug => $b_name ) {
 				$widget_file = $this->retrieve_loader_file( $b_slug, $b_slug );
-				$widget_path = self::wpswocuf_UPSELL_WIDGET_LOADER . $widget_file;
+					$widget_path = self::WPSWOCUF_UPSELL_WIDGET_LOADER . $widget_file;
 
 				if ( file_exists( $widget_path ) ) {
 					require_once $widget_path;
